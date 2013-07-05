@@ -56,6 +56,7 @@ are <b>name</b> and <b>version</b>.-->
 {{/is_apps}}
 {{?is_apps}}
   "<a href="#file_handlers">file_handlers</a>": {...},
+{{/is_apps}}
 {{^is_apps}}
   "<a href="#homepage_url">homepage_url</a>": "http://<em>path/to/homepage</em>",
 {{/is_apps}}
@@ -736,7 +737,7 @@ for use via this property.-->
 by default, but <em>if</em> you do set this property, then it will be treated as
 a complete list of all whitelisted resources. Resources not listed will be
 blocked.-->
-使用 <code>manifest_version</code> 1
+使用 <code>manifest_version</code> 1
 的扩展程序包内的资源默认情况下可用，但是<em>只要</em>您设置了这一属性，它将以所有加入白名单资源的完整列表来对待，没有列出的资源将被阻止。
 </p>
 {{/is_apps}}
