@@ -21,23 +21,28 @@ namespace experimental.systemInfo.storage {
   };
 
   dictionary StorageUnitInfo {
-    // <!--@The unique id of the storage unit.-->
-    // 存储单元的唯一标识符。
+    // <!--@The unique storage id. It will use the transient ID.-->
+    // 存储单元的唯一标识符，标识符不是持久有效的。
     DOMString id;
+    // <!--@The name of the storage unit.-->
+    // 存储单元的名称。
+    DOMString name;
     // <!--@The media type of the storage unit.-->
     // 存储单元的媒体类型。
     StorageUnitType type;
     // <!--@The total amount of the storage space, in bytes.-->
     // 存储空间的总共大小，以字节为单位。
+    // Default value is 0 if query operation fails.
     double capacity;
     // <!--@The available amount of the storage space, in bytes.-->
     // 存储空间的可用大小，以字节为单位。
+    // Default value is 0 if query operation fails.
     double availableCapacity;
   };
 
-  dictionary StorageChangeInfo {
-    // <!--@The uniue id of the storage unit already changed.-->
-    // 已更改存储单元的唯一标识符。
+  dictionary StorageFreeSpaceChangeInfo {
+    // <!--@The transient id of the storage unit already changed.-->
+    // 已更改存储单元的暂存标识符。
     DOMString id;
     // <!--@The new value of the available capacity.-->
     // 可用容量的新值。
@@ -87,7 +92,7 @@ namespace experimental.systemInfo.storage {
     // 当存储设备的可用容量更改时产生。
     // |info|: <!--@The changed information for the specified storage unit.-->
     // 指定存储单元已更改的信息。
-    static void onAvailableCapacityChanged(StorageChangeInfo info);
+    static void onAvailableCapacityChanged(StorageFreeSpaceChangeInfo info);
 
     // <!--@Fired when a new removable storage is attached to the system.-->
     // 当可移动存储器连接到系统时产生。

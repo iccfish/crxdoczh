@@ -63,10 +63,8 @@ except that you need to specify which tab to send it to. This example
 demonstrates sending a message to the content script in the selected tab.-->
 从扩展程序向内容脚本发送请求与上面类似，唯一的区别是您需要指定发送至哪一个标签页。这一例子演示如何向选定标签页中的内容脚本发送消息。
 <pre>
-background.html
-===============
-chrome.tabs.getSelected(null, function(tab) {
-  chrome.tabs.sendMessage(tab.id, {greeting: "您好"}, function(response) {
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+  chrome.tabs.sendMessage(tabs[0].id, {greeting: "您好"}, function(response) {
     console.log(response.farewell);
   });
 });
