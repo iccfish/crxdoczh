@@ -411,7 +411,7 @@
                       "optional": true,
 //@                      "description": "Enum representing if this item is: none, check, radio, or a separator.  Radio buttons between separators are considered grouped.",
                       "description": "代表这一菜单项是否是：\"none\"（普通）、\"check\"（复选）、\"radio\"（单选）或 \"separator\"（分隔符）的枚举值。在分隔符之间的单选按钮将认为是同一组的。",
-                      "enum": ["none", "check", "radio", "separator"]
+                      "enum": ["check", "radio", "separator"]
                     },
 //@                    "visible": {"type": "boolean", "optional": true, "description": "Indicates this item is visible."},
                     "visible": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否可见。"},
@@ -466,7 +466,7 @@
                       "optional": true,
 //@                      "description": "Enum representing if this item is: none, check, radio, or a separator.  Radio buttons between separators are considered grouped.",
                       "description": "代表这一菜单项是否是：\"none\"（普通）、\"check\"（复选）、\"radio\"（单选）或 \"separator\"（分隔符）的枚举值。在分隔符之间的单选按钮将认为是同一组的。",
-                      "enum": ["none", "check", "radio", "separator"]
+                      "enum": ["check", "radio", "separator"]
                     },
 //@                    "visible": {"type": "boolean", "optional": true, "description": "Indicates this item is visible."},
                     "visible": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否可见。"},
