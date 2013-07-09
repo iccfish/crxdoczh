@@ -2,15 +2,18 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// An API that can be used to override the system's power management
-// features.
+// <!--@An API that can be used to override the system's power management
+// features.-->
+// 用于修改系统电源管理特性的 API。
 namespace power {
   [noinline_doc] enum Level {
-    // Prevent the system from sleeping in response to user inactivity.
+    // <!--@Prevent the system from sleeping in response to user inactivity.-->
+    // 避免系统由于用户不活动而进入睡眠状态。
     system,
 
-    // Prevent the display from being turned off or dimmed or the system
-    // from sleeping in response to user inactivity.
+    // <!--@Prevent the display from being turned off or dimmed or the system
+    // from sleeping in response to user inactivity.-->
+    // 避免系统由于用户不活动而使显示器关闭、变暗或者进入睡眠状态。
     display
   };
 
@@ -19,6 +22,8 @@ namespace power {
     // describes the degree to which power management should be disabled.-->
     // 请求临时禁用电源管理。<code>level</code>
     // 描述了禁用电源管理的程度。
+    // If a request previously made by the same app is still active, it
+    // will be replaced by the new request.
     static void requestKeepAwake(Level level);
 
     // <!--@Releases a request previously made via requestKeepAwake().-->
