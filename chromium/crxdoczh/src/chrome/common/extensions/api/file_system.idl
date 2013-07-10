@@ -122,10 +122,15 @@ namespace fileSystem {
 
     // <!--@Returns an id that can be passed to restoreEntry to regain access to a
     // given file entry. Only the 500 most recently used entries are retained,
-    // where calls to retainEntry and restoreEntry count as use.-->
+    // where calls to retainEntry and restoreEntry count as use. If the app has
+    // the 'retainEntries' permission under 'fileSystem', entries are retained
+    // indefinitely. Otherwise, entries are retained only while the app is
+    // running and across restarts.-->
     // 返回一个标识符，可以传递给 restoreEntry
     // 而重新获得指定文件项的访问。只能保留最近使用的 500
-    // 个项目，调用 retainEntry 和 restoreEntry 都算作使用。
+    // 个项目，调用 retainEntry 和 restoreEntry 都算作使用。如果应用拥有
+    // 'fileSystem' 之下的 'retainEntries'
+    // 权限，项目将永久保留。否则，只有应用运行时或重新启动后才会保留。
     static DOMString retainEntry([instanceOf=FileEntry] object fileEntry);
   };
 };

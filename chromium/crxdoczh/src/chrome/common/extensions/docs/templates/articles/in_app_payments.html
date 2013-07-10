@@ -1,0 +1,273 @@
+<h1><!--@In-App Payments Service-->应用内付款服务</h1>
+
+<p class="warning">
+<!--@This service is currently available to Chrome users on the-->
+该服务当前仅对
+<a href="http://www.chromium.org/getting-involved/dev-channel"><!--@dev channel-->Dev 分支</a><!--@.-->的
+Chrome 浏览器用户可用。
+</p>
+
+<table class="intro">
+  <tr>
+    <td><strong><!--@Description:-->描述：</strong></td>
+    <td><!--@Use the In-App Payments Service to sell digital and virtual goods within a Chrome app.-->使用应用内付款服务在 Chrome
+        应用中销售数字虚拟商品。
+    </td>
+  </tr>
+  <tr>
+    <td><strong><!--@Availability:-->可用版本：</strong></td>
+    <td>Chrome 29</td>
+  </tr>
+  <tr>
+    <td><strong><!--@Sample:-->示例：</strong></td>
+    <td><a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/in-app-payments">in-app-payments</a></td>
+  </tr>
+  <tr>
+    <td><strong><!--@Learn more:-->了解更多：</strong></td>
+    <td>
+    <a href="https://support.google.com/chrome_webstore/answer/1053354">Google <!--@Wallet-->电子钱包</a><!--@;--> <br>
+    <a href="https://developers.google.com/commerce/wallet/digital/docs/"><!--@Google Wallet for Digital Goods-->用于数字商品的 Google 电子钱包</a></td>
+  </tr>
+</table>
+
+<h2 id="overview"><!--@Overview-->概述</h2>
+
+<p>
+<!--@You can use the In-App Payments Service to sell digital and virtual goods within your app.
+When you use the In-App Payments Service, the Chrome Wallet App, which is embedded in Chrome, communicates with the
+<a href="https://support.google.com/chrome_webstore/answer/1053354">Google Wallet</a>
+servers and handles all the required checkout details, so your app does not have to process any financial transactions.
+The In-App Payments Service requires you to package a JavaScript file, 
+<a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>,
+with your app to trigger the purchase flow.-->
+您可以使用应用内付款服务在您的应用中销售数字虚拟商品。当您使用应用内付款服务时，内嵌在
+Chrome 浏览器中的 Chrome 电子钱包应用与
+<a href="https://support.google.com/chrome_webstore/answer/1053354">Google
+电子钱包</a>的服务器通信，并处理所有必要的交易细节，这样您的应用就不需要处理任何金融交易。应用内付款服务需要您将一个
+JavaScript 文件
+<a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>
+与您的应用一起打包，以便触发购买流程。
+</p>
+
+<h2 id="flow"><!--@Purchase flow-->购买流程</h2>
+
+<p>
+<!--@When a customer clicks a "Buy" button in your app to make a purchase, the Chrome Wallet App displays a payment processing window
+on top of your application window:-->
+当顾客在您的应用中单击“购买”按钮开始购买时，Chrome
+电子钱包应用会在您的应用窗口上显示付款处理窗口。
+</p>
+
+<img src="{{static}}/images/in-app-payments-review.png"
+     width="569"
+     alt="screenshot: in-app-payments review dialog">
+
+<p>
+<!--@When the user clicks the "Buy" button in the payment processing window, the Google Wallet server processes the payment
+and displays a purchase confirmation dialog to the user, as shown below.
+The success or failure callback in your app is invoked appropriately.-->
+用户点击付款处理窗口中的“购买”按钮后，Google
+电子钱包服务器会处理付款，并向用户显示购买确认对话框，如下所示，同时调用您的应用中相应的成功或失败回调函数。
+</p>
+
+<img src="{{static}}/images/in-app-payments-confirmation.png"
+     width="563"
+     alt="screenshot: in-app-payments confirmation dialog">
+
+<p>
+<!--@If the user is not signed up for Google Wallet, the Chrome Wallet App takes the user through the sign-up flow:-->
+如果用户还没有注册 Google 电子钱包，Chrome
+电子钱包应用会引导用户进入注册流程：
+</p>
+
+<img src="{{static}}/images/in-app-payments-set-up.png"
+     width="565"
+     alt="screenshot: Google wallet set up dialog">
+
+<h2 id="sample-code"><!--@Sample code-->示例代码</h2>
+
+<p>
+<!--@The following code snippet illustrates how to initiate the purchase flow in an app.
+The parameters for the <code>buy()</code> method are described below.-->
+以下代码片段演示如何在应用内开始购买流程。<code>buy()</code>
+方法的参数将在后面描述。
+</p>
+
+<pre>
+google.payments.inapp.buy({
+  parameters: {},
+  jwt: 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxNDIwNDk' +
+       '1MzA5NDM1MjE2ODU3MSIsImF1ZCI6Ikdvb2dsZSI' +
+       'sInR5cCI6Imdvb2dsZS9wYXltZW50cy9pbmFwcC9' +
+       'zdWJzY3JpcHRpb24vdjEiLCJpYXQiOjEzNTg0NTc' +
+       'yNjksImV4cCI6MjM1ODQxMjMzNDMsInJlcXVlc3Q' +
+       'iOnsiaW5pdGlhbFBheW1lbnQiOnsicHJpY2UiOiI' +
+       'xMC41MCIsImN1cnJlbmN5Q29kZSI6IlVTRCIsInB' +
+       'heW1lbnRUeXBlIjoicHJvcmF0ZWQifSwicmVjdXJ' +
+       'yZW5jZSI6eyJwcmljZSI6IjQuOTkiLCJjdXJyZW5' +
+       'jeUNvZGUiOiJVU0QiLCJzdGFydERhdGUiOiIxMzU' +
+       '4NDYzMjY5IiwiZnJlcXVlbmN5IjoibW9udGhseSI' +
+       'sIm51bVJlY3VycmVuY2VzIjoiMTIifSwibmFtZSI' +
+       '6IlBpZWNlIG9mIENha2UiLCJkZXNjcmlwdGlvbiI' +
+       '6IkEgZGVsaWNpb3VzIHBpZWNlIG9mIHZpcnR1YWw' +
+       'gY2FrZSIsInNlbGxlckRhdGEiOiJZb3VyIERhdGE' +
+       'gSGVyZSJ9fQ.sXd39R7MNNfDFa-jnlTNu2C2te-_' +
+       'x9--87Phfdr5GrE',
+  success: logSuccess,
+  failure: logFailure
+});
+</pre>
+
+<h2 id="how-to"><!--@How to use the Service-->如何使用该服务</h2>
+
+<p><!--@Using the In-App Payments Service in an app is similar to using the
+<a href="https://developers.google.com/commerce/wallet/digital/docs/">Google Wallet for Digital Goods API</a> in a web site.
+The integration steps below are based on the
+<a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial">Google Wallet for Digital Goods Tutorial</a>,
+but there are a few key differences for Apps. These differences are summarized below and described in detail in the
+integration steps.-->
+在应用中使用应用内付款服务与在网站中使用<a href="https://developers.google.com/commerce/wallet/digital/docs/">用于数字商品的
+Google 电子钱包 API</a> 类似，以下的总步骤基于<a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial">用于数字商品的
+Google 电子钱包教程</a>，但是对于应用来说有几个关键的区别。这些区别将在后面总结，并在总步骤中详细描述。
+</p>
+
+<ul>
+  <li><!--@You can use pre-generated JSON Web Tokens (JWTs) in your app, rather than using a server to generate the tokens.-->
+      您可以在您的应用中使用预先生成的 JSON Web
+      令牌（JWT），而不是使用服务器生成令牌。
+  </li>
+
+  <li><!--@You must package the-->您必须将 <a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>
+  <!--@library with your app, and load the library from its location in your package.-->
+  库与您的应用一起打包，并从您包中的位置载入该库。
+ </li>
+
+  <li><!--@You must call the <code>buy()</code> method with an extra parameter called <code>parameters</code>.-->
+      调用 <code>buy()</code> 方法时您必须传递一个额外的参数，称为
+      <code>parameters</code>。
+  </li>
+
+  <li><!--@The UI to process payments is displayed in a separate window on top of your application window, rather than in an iframe.-->
+      继续付款的用户界面显示在您的应用之上的一个单独的窗口中，而不是在
+      iframe 中。
+  </li>
+</ul>
+
+<p><!--@Follow these steps to use the In-App Payments Service in your app:-->遵循这些步骤，在您的应用中使用应用内付款服务：</p>
+
+<ol>
+  <li><a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial#1"><!--@Generate a JSON Web Token (JWT) for each item to be purchased.-->为需要出售的每一个项目生成一个 JSON Web 令牌（JWT）。</a>
+    <div class="indent-small">
+      <!--@You can generate JWTs using a server, or you can pre-generate JWTs for use in your app.-->
+      您可以使用服务器生成 JWT，也可以预先生成 JWT，在您的应用中使用。
+      <p class="warning">
+      <!--@Note: If you use pre-generated JWTs, you should generate the JWTs outside of your app, and include
+      the generated tokens in your app.
+      <strong>NEVER</strong> include the Seller secret you use to generate tokens in your app.
+      If you need to generate JWTs dynamically, you should use a server.-->
+      注意：如果您使用预先生成的 JWT，您应该在您的应用外生成
+      JWT，并在您的应用中包含生成的令牌。<strong>千万不要 </strong>在您的应用中包含用于生成令牌的销售者密钥。如果您需要动态生成
+      JWT，您应该使用服务器。
+      </p>
+    </div>
+  </li>
+
+  <li><!--@Include-->在您的应用中包含 <a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a><!--@ in your app.-->。
+    <div class="indent-small">
+      <!--@Due to the security restrictions in the
+      -->由于 Chrome 应用<a href="https://developer.chrome.com/extensions/contentSecurityPolicy.html"><!--@Content Security Policy-->内容安全策略</a><!--@ for Chrome apps,
+      you cannot include the -->
+      的安全性限制，您不能从外部位置包含
+      <a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>
+      <!--@library from an external location. Instead, you must package the library with your app, and load it from the packaged location.-->
+      库，而是要将库与您的应用一起打包，并从打包的位置载入。
+    </div>
+  </li>
+
+  <li><a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial#3"><!--@Create success and failure callback handlers.-->创建成功和失败回调处理程序。</a>
+    <div class="indent-small">
+      <!--@Success and failure callback handlers let your app react to the purchase flow's completion.-->
+      成功和失败回调处理程序使您的应用能够对购买流程的完成情况作出反应。
+    </div>
+  </li>
+
+  <li><a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial#4"><!--@Call-->调用 buy()<!--@.-->。</a>
+    <div class="indent-small">
+      <!--@When a customer clicks a "Buy" button in your app, call <code>buy()</code> to initiate the purchase flow.-->
+      当顾客在您的应用中单击“购买”按钮时，调用 <code>buy()</code>
+      开始购买流程。
+      <p>
+      <!--@For Apps, you must call <code>buy()</code> with an extra parameter called <code>parameters</code>.
+      This parameter currently has one field, <code>env</code>, which specifies the environment in which to process a payment.
+      You can set this field to either <code>prod</code> (production server that accepts real credit cards), or
+      <code>sandbox</code> (test server that accepts test credit cards to simulate transactions).
+      The default setting is <code>sandbox</code>.-->
+      对于应用来说，您在调用 <code>buy()</code>
+      时，必须传递一个额外参数，称为
+      <code>parameters</code>。该参数当前包含一个字段
+      <code>env</code>，指定处理付款的环境。您可以将该字段设置为
+      <code>prod</code>（接受真实信用卡的产品服务器）或
+      <code>sandbox</code>（接受测试信用卡并模拟交易的测试服务器）。默认设置为
+      <code>sandbox</code>。
+      </p>
+    </div>
+  </li>
+
+  <li><!--@(Optional) -->（可选）<a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial#5"><!--@Acknowledge purchase notification.-->发出购买通知。</a>
+    <div class="indent-small">
+      <!--@You can specify a postback URL to make sure that the customer has paid for an item.-->
+      您可以指定一个回传 URL，确保顾客已经为某个项目付费。
+    </div>
+  </li>
+
+  <li><a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial#6"><!--@Get set up as a seller on Google Wallet.-->在 Google 电子钱包中注册为销售者。</a>
+    <div class="indent-small">
+      <!--@You must sign up for Google Wallet for digital goods in order to use the In-App Payments Service.-->
+      您必须注册用于数字商品的 Google 电子钱包才能使用应用内付款服务。
+    </div>
+  </li>
+
+  <li><a href="https://developers.google.com/commerce/wallet/digital/docs/tutorial#7"><!--@Switch to the production server.-->切换到产品服务器。</a>
+    <div class="indent-small">
+      <!--@Switch from the sandbox server to the production server and test your app using real credit cards.-->
+      从测试服务器切换到产品服务器，使用真实的信用卡测试您的应用。
+    </div>
+  </li>
+</ol>
+
+<h2 id="recurring"><!--@Recurring billing-->多次付费</h2>
+
+<p><!--@The In-App Payments Service supports automated recurring billing. To set up recurring billing, follow the
+instructions for setting up
+<a href="https://developers.google.com/commerce/wallet/digital/docs/subscriptions">subscriptions</a>
+for the Google Wallet for Digital Goods API,
+but note again the differences described above (you can use pre-generated JWT tokens;
+you must package <a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>
+with your app; and you must specify an additional parameter in the call to <code>buy()</code>).-->
+应用内付款服务支持自动多次付费。要设置多次付费，遵循用于数字商品的
+Google 电子钱包 API
+中设置<a href="https://developers.google.com/commerce/wallet/digital/docs/subscriptions">订阅</a>的说明，但是一定要注意上面描述的区别（您可以使用预先生成的令牌，您必须将
+<a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>
+与您的应用一起打包，您在调用 <code>buy()</code> 时必须指定一个额外的参数）。
+
+<h2 id="sample-app">Sample app</h2>
+
+<p>
+<!--@For a simple app that demonstrates how to use the In-App Payments Service, see:-->
+有关演示如何使用应用内付款服务的简单应用，请参见：
+</p>
+
+</ul>
+  <li><a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/in-app-payments"><!--@source code-->源代码</a></li>
+  <li><a href="https://chrome.google.com/webstore/detail/moldiohggmfllblgmikpeoagipenlcae"><!--@published app-->已发布的应用</a><!--@ (requires Chrome 29 or higher)-->（需要 Chrome 29 或更高版本）</li>
+</ul>
+
+<p>
+<!--@You can install and run the published app from the Chrome Web Store to try out the in-app payment purchase flow.
+The app has options to use either the production server or the sandbox server. When testing with the sandbox server,
+use these <a href="https://developers.google.com/commerce/wallet/digital/docs/testing">test credit card numbers</a>,
+which pass basic checks by the Google Wallet for Digital Goods system.-->
+您可以从 Chrome
+网上应用店安装和运行已发布的应用，测试应用内付款的流程。应用包含使用产品服务器还是测试服务器的选项。使用测试服务器测试时，请使用这些<a href="https://developers.google.com/commerce/wallet/digital/docs/testing">测试信用卡的编号</a>，这样就能通过用于数字商品的
+Google 电子钱包系统的基本检查。
+</p>

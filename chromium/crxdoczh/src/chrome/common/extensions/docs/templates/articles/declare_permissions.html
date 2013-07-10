@@ -253,7 +253,8 @@ table.-->托管应用只能使用
 {{/is_apps}}
 {{?is_apps}}
 <tr>
-  <td id="fileSystem"> "fileSystem", "fileSystem.write" </td>
+  <td id="fileSystem"> "fileSystem", "fileSystem.write",
+    "fileSystem.retainEntries" </td>
   <td> <!--@Required if the app uses the-->如果应用使用
        <a href="fileSystem.html">chrome.fileSystem</a> <!--@module.-->模块则必须指定。</td>
 </tr>

@@ -26,8 +26,7 @@ If your app uses its own server to authenticate users, you will need to use the 
 Want to play with the code?
 Check out the-->
 想试试这些代码吗？请参见
-<a href="https://github.com/GoogleChrome/chrome-app-samples#authentication-and-user-identification">identity</a> <!--@samples.-->
-示例。
+<a href="https://github.com/GoogleChrome/chrome-app-samples#authentication-and-user-identification">identity <!--@samples-->示例</a><!--@.-->。
 </p>
 
 <h2 id="how"><!--@How it works-->工作方式</h2>
@@ -223,7 +222,7 @@ $ref:identity.getAuthToken.-->
 </p>
 
 <pre>
-chrome.identity.getAuthToken({ interactive: true }, function(token) {
+chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
   // 使用令牌。
 });
 </pre>
@@ -232,15 +231,21 @@ chrome.identity.getAuthToken({ interactive: true }, function(token) {
 
 <p>
 <!--@When calling <code>getAuthToken</code>, you can pass a flag
-(<code>interactive: true</code> in the example above) indicating
+(<code>'interactive': true</code> in the example above) indicating
 whether you want the API to be called in interactive mode or silent
 mode.  If you invoke the API in interactive mode, the user is shown
-sign in and/or approval UI when necessary.-->
+a sign in and/or approval UI when necessary, as shown in the
+screenshot below:-->
 调用 <code>getAuthToken</code> 时，您可以传递一个标识（在以上例子中为
 <code>interactive: true</code>），表示您希望该 API
 以交互模式还是静默模式调用。如果您以交互模式调用
-API，必要时会向用户显示登录和/或访问请求用户界面。
+API，必要时会向用户显示登录和/或访问请求用户界面，如以下屏幕截图所示：
 </p>
+<img src="{{static}}/images/identity-api-ui.png"
+     width="853"
+     height="514"
+     alt="screenshot showing UI when an app uses the Identity API
+     to authenticate a Google account">
 
 <p>
 <!--@If you invoke the API in silent mode, the API will only return a token
@@ -315,7 +320,7 @@ function authenticatedXhr(method, url, callback) {
           // 使用新的令牌再试一次。
           retry = false;
           chrome.identity.removeCachedAuthToken(
-              { token: access_token },
+              { 'token': access_token },
               getTokenAndXhr);
           return;
         }
@@ -394,11 +399,11 @@ XHR，您需要在权限中将这些匹配表达式加入白名单：
 <pre>
 chrome.identity.launchWebAuthFlow(
   {'url': '<em>&lt;进行认证的 URL&lt;</em>', 'interactive': true},
-  function(redirect_url) { // 从 redirect_url 提取令牌 });
+  function(redirect_url) { /* 从 redirect_url 提取令牌 */ });
 </pre>
 
 <p>
-<!--@The &lt;url-to-do-auth> is whatever the URL is to do auth to the provider from a website.
+<!--@The &lt;url-to-do-auth&gt; is whatever the URL is to do auth to the provider from a website.
 For example, let us say that you are performing OAuth2 flow with a provider
 and have registered your app with client id 123456789012345 and
 you want access to user’s photos on the provider’s website:-->
@@ -428,7 +433,7 @@ URL。应用应该从 URL 中提取令牌。
 
 <p>
 <!--@When calling <code>launchWebAuthFlow</code>,
-you can pass a flag (‘interactive’: true in the example above)
+you can pass a flag (<code>'interactive': true</code> in the example above)
 indicating whether you want the API to be called
 in interactive mode or not (aka silent mode).
 If you invoke the API in interactive mode,
@@ -437,7 +442,7 @@ to get the token (signin UI and/or approval UI;
 or for that matter any provider specific UI).-->
 调用 <code>launchWebAuthFlow</code>
 时，您可以传递一个标志（在以上例子中为
-'interactive': true），表示您是否希望 API
+<code>'interactive': true</code>），表示您是否希望 API
 以交互模式调用。如果您以交互模式调用
 API，如果有必要的话，为了获取令牌将会向用户显示用户界面（登录用户界面和/或访问请求用户界面，或者任何提供商特定的相关用户界面）。
 </p>
