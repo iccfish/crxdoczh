@@ -1,0 +1,6 @@
+.svn
+.cc
+.h
+server2
+server_static
+examples
