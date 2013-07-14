@@ -26,12 +26,10 @@ namespace mediaGalleries {
     // before returning the permitted set. Default is silent.  If the value
     // 'yes' is passed, or if the application has not been granted access to
     // any media galleries and the value 'if_needed' is passed, then the
-    // media gallery configuration dialog will be displayed. A user
-    // gesture is required for the display of the dialog. (i.e. making the call
-    // in the context of a button press)-->
+    // media gallery configuration dialog will be displayed.-->
     // 返回允许的内容前是否提示用户访问其他媒体库的权限，默认情况下不提示。如果传递了
     // 'yes'，或者如果应用没有被授予访问任何媒体库的权限并且传递了
-    // 'if_needed'，则会显示媒体库配置对话框。显示对话框需要用户操作（即某个按钮按下时调用）。
+    // 'if_needed'，则会显示媒体库配置对话框。
     GetMediaFileSystemsInteractivity? interactive;
   };
 

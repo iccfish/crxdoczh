@@ -5,16 +5,16 @@
 [
   {
     "namespace": "types",
-//@    "description": "The <code>chrome.types</code> API contains type declarations for Chrome. Currently, this comprises only a prototype for giving other APIs access to manage Chrome browser settings. This prototype is used, for example, for $ref:proxy.settings.",
-    "description": "<code>chrome.types</code> API 包含用于 Chrome 浏览器的类型声明，当前只包含用于其他模块访问 Chrome 浏览器设置的原型，例如，这一原型在 $ref:proxy.settings 中使用。",
+//@    "description": "The <code>chrome.types</code> API contains type declarations for Chrome.",
+    "description": "<code>chrome.types</code> API 包含用于 Chrome 浏览器的类型声明。",
     "types": [
       {
         "id": "ChromeSetting",
         "type": "object",
         "js_module": "ChromeSetting",
         "customBindings": "ChromeSetting",
-//@        "description": "An interface which allows access to a Chrome browser setting.",
-        "description": "允许访问 Chrome 浏览器设置的接口。",
+//@        "description": "An interface that allows access to a Chrome browser setting. See $ref:proxy.settings for an example.",
+        "description": "允许访问 Chrome 浏览器设置的接口，有关例子请参见 $ref:proxy.settings。",
         "functions": [
           {
             "name": "get",
@@ -25,14 +25,14 @@
               {
                 "name": "details",
                 "type": "object",
-//@                "description": "What setting to consider.",
-                "description": "需要考虑的设置。",
+//@                "description": "Which setting to consider.",
+                "description": "考虑哪一项设置。",
                 "properties": {
                   "incognito": {
                     "type": "boolean",
                     "optional": true,
-//@                    "description": "Whether to return the setting that applies to the incognito session (default false)."
-                    "description": "是否返回应用于隐身会话的设置（默认为 false）。"
+//@                    "description": "Whether to return the value that applies to the incognito session (default false)."
+                    "description": "是否返回应用于隐身会话的值（默认为 false）。"
                   }
                 }
               },
@@ -52,13 +52,13 @@
                         "type": "any"
                       },
                       "levelOfControl": {
-//@                        "description": "One of<br><var>not_controllable</var>: cannot be controlled by any extension<br><var>controlled_by_other_extensions</var>: controlled by extensions with higher precedence<br><var>controllable_by_this_extension</var>: can be controlled by this extension<br><var>controlled_by_this_extension</var>: controlled by this extension",
-                        "description": "以下值之一：<br><var>\"not_controllable\"</var>：无法由任何扩展程序控制。<br><var>\"controlled_by_other_extensions\"</var>：由优先级更高的扩展程序控制。<br><var>\"controllable_by_this_extension\"</var>：可以由该扩展程序控制。<br><var>\"controlled_by_this_extension\"</var>：由该扩展程序控制。",
+//@                        "description": "One of<ul><li><var>not_controllable</var>: cannot be controlled by any extension</li><li><var>controlled_by_other_extensions</var>: controlled by extensions with higher precedence</li><li><var>controllable_by_this_extension</var>: can be controlled by this extension</li><li><var>controlled_by_this_extension</var>: controlled by this extension</li></ul>",
+                        "description": "以下值之一：<ul><li><var>\"not_controllable\"</var>：无法由任何扩展程序控制。</li><li><var>\"controlled_by_other_extensions\"</var>：由优先级更高的扩展程序控制。</li><li><var>\"controllable_by_this_extension\"</var>：可以由该扩展程序控制。</li><li><var>\"controlled_by_this_extension\"</var>：由该扩展程序控制。</li></ul>",
                         "type": "string",
                         "enum": ["not_controllable", "controlled_by_other_extensions", "controllable_by_this_extension", "controlled_by_this_extension"]
                       },
                       "incognitoSpecific": {
-//@                        "description": "Whether the effective value is specific to the incognito session.<br>This property will <em>only</em> be present if the <var>incognito</var> property in the <var>details</var> parameter of <code>get()</code> was true.",
+//@                        "description": "Whether the effective value is specific to the incognito session.<br/>This property will <em>only</em> be present if the <var>incognito</var> property in the <var>details</var> parameter of <code>get()</code> was true.",
                         "description": "有效值是否只适用于隐身会话。<br><em>只有</em>当 <code>get()</code> 方法的 <var>details</var> 参数中 <var>incognito</var> 属性为 true 时才存在。",
                         "type": "boolean",
                         "optional": true
@@ -78,11 +78,11 @@
               {
                 "name": "details",
                 "type": "object",
-//@                "description": "What setting to change.",
-                "description": "要更改的设置。",
+//@                "description": "Which setting to change.",
+                "description": "考虑哪一项设置。",
                 "properties": {
                   "value": {
-//@                    "description": "The value of the setting. <br>Note that every setting has a specific value type, which is described together with the setting. An extension should <em>not</em> set a value of a different type.",
+//@                    "description": "The value of the setting. <br/>Note that every setting has a specific value type, which is described together with the setting. An extension should <em>not</em> set a value of a different type.",
                     "description": "设置的值。<br>注意每一项设置都有特定的值类型，与该设置一起描述。扩展程序<em>不应该</em>设置不同类型的值。",
                     "type": "any"
                   },
@@ -90,16 +90,16 @@
                     "type": "string",
                     "enum": ["regular", "regular_only", "incognito_persistent", "incognito_session_only"],
                     "optional": true,
-//@                    "description": "Where to set the setting (default: regular). One of<br><var>regular</var>: setting for the regular profile (which is inherited by the incognito profile if not overridden elsewhere),<br><var>regular_only</var>: setting for the regular profile only (not inherited by the incognito profile),<br><var>incognito_persistent</var>: setting for the incognito profile that survives browser restarts (overrides regular preferences),<br><var>incognito_session_only</var>: setting for the incognito profile that can only be set during an incognito session and is deleted when the incognito session ends (overrides regular and incognito_persistent preferences)."
-                    "description": "修改哪些范围的设置（默认为 \"regular\"）。以下值之一：<br><var>\"regular\"</var>：用于普通用户配置文件（如果没有被其他地方的设置覆盖，也将由隐身窗口继承）；<br><var>\"regular_only\"</var>：仅用于普通用户配置文件（不被隐身配置文件继承）；<br><var>\"incognito_persistent\"</var>：用于隐身配置文件的设置，并且在浏览器重启后仍保留（覆盖 \"regular\" 设置）；<br><var>\"incognito_session_only\"</var>：用于隐身配置文件的设置，并且只能在隐身会话中设置，在隐身会话结束时删除（覆盖 \"regular\" 和 \"incognito_persistent\" 设置）。"
+//@                    "description": "Where to set the setting (default: regular). One of<ul><li><var>regular</var>: setting for the regular profile (which is inherited by the incognito profile if not overridden elsewhere),</li><li><var>regular_only</var>: setting for the regular profile only (not inherited by the incognito profile),</li><li><var>incognito_persistent</var>: setting for the incognito profile that survives browser restarts (overrides regular preferences),</li><li><var>incognito_session_only</var>: setting for the incognito profile that can only be set during an incognito session and is deleted when the incognito session ends (overrides regular and incognito_persistent preferences).</li></ul>"
+                    "description": "修改哪些范围的设置（默认为 \"regular\"）。以下值之一：<ul><li><var>\"regular\"</var>：用于普通用户配置文件（如果没有被其他地方的设置覆盖，也将由隐身窗口继承）；</li><li><var>\"regular_only\"</var>：仅用于普通用户配置文件（不被隐身配置文件继承）；</li><li><var>\"incognito_persistent\"</var>：用于隐身配置文件的设置，并且在浏览器重启后仍保留（覆盖 \"regular\" 设置）；</li><li><var>\"incognito_session_only\"</var>：用于隐身配置文件的设置，并且只能在隐身会话中设置，在隐身会话结束时删除（覆盖 \"regular\" 和 \"incognito_persistent\" 设置）。</li></ul>"
                   }
                 }
               },
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Called after the setting has been set.",
-                "description": "设置修改后调用。",
+//@                "description": "Called at the completion of the set operation.",
+                "description": "设置操作完成后调用。",
                 "optional": true,
                 "parameters": []
               }
@@ -108,29 +108,29 @@
           {
             "name": "clear",
             "type": "function",
-//@            "description": "Clears the setting. This way default settings can become effective again.",
-            "description": "清除设置，这样默认设置可以重新变为有效设置。",
+//@            "description": "Clears the setting, restoring any default value.",
+            "description": "清除设置，恢复默认值。",
             "parameters": [
               {
                 "name": "details",
                 "type": "object",
-//@                "description": "What setting to clear.",
-                "description": "要清除的设置。",
+//@                "description": "Which setting to clear.",
+                "description": "要清除哪一项设置。",
                 "properties": {
                   "scope": {
                     "type": "string",
                     "enum": ["regular", "regular_only", "incognito_persistent", "incognito_session_only"],
                     "optional": true,
-//@                    "description": "Where to clear the setting (default: regular). One of<br><var>regular</var>: setting for the regular profile (which is inherited by the incognito profile if not overridden elsewhere),<br><var>regular_only</var>: setting for the regular profile only (not inherited by the incognito profile),<br><var>incognito_persistent</var>: setting for the incognito profile that survives browser restarts (overrides regular preferences),<br><var>incognito_session_only</var>: setting for the incognito profile that can only be set during an incognito session and is deleted when the incognito session ends (overrides regular and incognito_persistent preferences)."
-                    "description": "清除哪些范围的设置（默认为 \"regular\"）。以下值之一：<br><var>\"regular\"</var>：用于普通用户配置文件（如果没有被其他地方的设置覆盖，也将由隐身窗口继承）；<br><var>\"regular_only\"</var>：仅用于普通用户配置文件（不被隐身配置文件继承）；<br><var>\"incognito_persistent\"</var>：用于隐身配置文件的设置，并且在浏览器重启后仍保留（覆盖 \"regular\" 设置）；<br><var>\"incognito_session_only\"</var>：用于隐身配置文件的设置，并且只能在隐身会话中设置，在隐身会话结束时删除（覆盖 \"regular\" 和 \"incognito_persistent\" 设置）。"
+//@                    "description": "Where to clear the setting (default: regular). One of<ul><li><var>regular</var>: setting for the regular profile (which is inherited by the incognito profile if not overridden elsewhere),</li><li><var>regular_only</var>: setting for the regular profile only (not inherited by the incognito profile),</li><li><var>incognito_persistent</var>: setting for the incognito profile that survives browser restarts (overrides regular preferences),</li><li><var>incognito_session_only</var>: setting for the incognito profile that can only be set during an incognito session and is deleted when the incognito session ends (overrides regular and incognito_persistent preferences).</li></ul>"
+                    "description": "清除哪些范围的设置（默认为 \"regular\"）。以下值之一：<ul><li><var>\"regular\"</var>：用于普通用户配置文件（如果没有被其他地方的设置覆盖，也将由隐身窗口继承）；</li><li><var>\"regular_only\"</var>：仅用于普通用户配置文件（不被隐身配置文件继承）；</li><li><var>\"incognito_persistent\"</var>：用于隐身配置文件的设置，并且在浏览器重启后仍保留（覆盖 \"regular\" 设置）；</li><li><var>\"incognito_session_only\"</var>：用于隐身配置文件的设置，并且只能在隐身会话中设置，在隐身会话结束时删除（覆盖 \"regular\" 和 \"incognito_persistent\" 设置）。"
                   }
                 }
               },
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Called after the setting has been cleared.",
-                "description": "设置清除后调用。",
+//@                "description": "Called at the completion of the clear operation.",
+                "description": "清除操作完成后调用。",
                 "optional": true,
                 "parameters": []
               }
@@ -140,27 +140,27 @@
         "events": [
           {
             "name": "onChange",
-//@            "description": "Fired when the value of the setting changes.",
-            "description": "当设置值更改时产生。",
+//@            "description": "Fired after the setting changes.",
+            "description": "设置更改后产生。",
             "parameters": [
               {
                 "type": "object",
                 "name": "details",
                 "properties": {
                   "value": {
-//@                    "description": "The value of the setting.",
-                    "description": "设置的值。",
+//@                    "description": "The value of the setting after the change.",
+                    "description": "更改后的设置值。",
                     "type": "any"
                   },
                   "levelOfControl": {
-//@                    "description": "One of<br><var>not_controllable</var>: cannot be controlled by any extension<br><var>controlled_by_other_extensions</var>: controlled by extensions with higher precedence<br><var>controllable_by_this_extension</var>: can be controlled by this extension<br><var>controlled_by_this_extension</var>: controlled by this extension",
-                        "description": "以下值之一：<br><var>\"not_controllable\"</var>：无法由任何扩展程序控制。<br><var>\"controlled_by_other_extensions\"</var>：由优先级更高的扩展程序控制。<br><var>\"controllable_by_this_extension\"</var>：可以由该扩展程序控制。<br><var>\"controlled_by_this_extension\"</var>：由该扩展程序控制。",
+//@                    "description": "One of<ul><li><var>not_controllable</var>: cannot be controlled by any extension</li><li><var>controlled_by_other_extensions</var>: controlled by extensions with higher precedence</li><li><var>controllable_by_this_extension</var>: can be controlled by this extension</li><li><var>controlled_by_this_extension</var>: controlled by this extension</li></ul>",
+                        "description": "以下值之一：<ul><li><var>\"not_controllable\"</var>：无法由任何扩展程序控制。</li><li><var>\"controlled_by_other_extensions\"</var>：由优先级更高的扩展程序控制。</li><li><var>\"controllable_by_this_extension\"</var>：可以由该扩展程序控制。</li><li><var>\"controlled_by_this_extension\"</var>：由该扩展程序控制。</li></ul>",
                     "type": "string",
                     "enum": ["not_controllable", "controlled_by_other_extensions", "controllable_by_this_extension", "controlled_by_this_extension"]
                   },
                   "incognitoSpecific": {
-//@                    "description": "Whether the value that has changed is specific to the incognito session.<br>This property will <em>only</em> be present if the user has enabled the extension in incognito mode.",
-                    "description": "有效值是否只适用于隐身会话。<em>只有</em>当用户允许这一扩展程序在隐身模式中运行时才会存在该属性。",
+//@                    "description": "Whether the value that has changed is specific to the incognito session.<br/>This property will <em>only</em> be present if the user has enabled the extension in incognito mode.",
+                    "description": "有效值是否只适用于隐身会话。<br><em>只有</em>当用户允许这一扩展程序在隐身模式中运行时才会存在该属性。",
                     "type": "boolean",
                     "optional": true
                   }
