@@ -15,7 +15,7 @@ class EventsEventArgumentElement extends ChromeObject {
    * Public constructor
    */
   EventsEventArgumentElement({String elementStringArg}) {
-    if (elementStringArg != null)
+    if (?elementStringArg)
       this.elementStringArg = elementStringArg;
   }
 
@@ -40,21 +40,21 @@ class EventsEventArgument extends ChromeObject {
    * Public constructor
    */
   EventsEventArgument({FileEntry entryArg, String stringArg, int intArg, List<EventsEventArgumentElement> elements, FileEntry optionalEntryArg, String optionalStringArg, int optionalIntArg, List<EventsEventArgumentElement> optionalElements}) {
-    if (entryArg != null)
+    if (?entryArg)
       this.entryArg = entryArg;
-    if (stringArg != null)
+    if (?stringArg)
       this.stringArg = stringArg;
-    if (intArg != null)
+    if (?intArg)
       this.intArg = intArg;
-    if (elements != null)
+    if (?elements)
       this.elements = elements;
-    if (optionalEntryArg != null)
+    if (?optionalEntryArg)
       this.optionalEntryArg = optionalEntryArg;
-    if (optionalStringArg != null)
+    if (?optionalStringArg)
       this.optionalStringArg = optionalStringArg;
-    if (optionalIntArg != null)
+    if (?optionalIntArg)
       this.optionalIntArg = optionalIntArg;
-    if (optionalElements != null)
+    if (?optionalElements)
       this.optionalElements = optionalElements;
   }
 
@@ -192,7 +192,7 @@ class Event_events_optionalPrimitiveArgEvent extends Event {
 class Event_events_nonOptionalDictArgEvent extends Event {
   void addListener(void callback(EventsEventArgument argument)) {
     void __proxy_callback(argument) {
-      if (callback != null) {
+      if (?callback) {
         callback(new EventsEventArgument._proxy(argument));
       }
     }
@@ -201,7 +201,7 @@ class Event_events_nonOptionalDictArgEvent extends Event {
 
   void removeListener(void callback(EventsEventArgument argument)) {
     void __proxy_callback(argument) {
-      if (callback != null) {
+      if (?callback) {
         callback(new EventsEventArgument._proxy(argument));
       }
     }
@@ -210,7 +210,7 @@ class Event_events_nonOptionalDictArgEvent extends Event {
 
   bool hasListener(void callback(EventsEventArgument argument)) {
     void __proxy_callback(argument) {
-      if (callback != null) {
+      if (?callback) {
         callback(new EventsEventArgument._proxy(argument));
       }
     }
@@ -224,7 +224,7 @@ class Event_events_nonOptionalDictArgEvent extends Event {
 class Event_events_optionalDictArgEvent extends Event {
   void addListener(void callback(EventsEventArgument argument)) {
     void __proxy_callback(argument) {
-      if (callback != null) {
+      if (?callback) {
         callback(new EventsEventArgument._proxy(argument));
       }
     }
@@ -233,7 +233,7 @@ class Event_events_optionalDictArgEvent extends Event {
 
   void removeListener(void callback(EventsEventArgument argument)) {
     void __proxy_callback(argument) {
-      if (callback != null) {
+      if (?callback) {
         callback(new EventsEventArgument._proxy(argument));
       }
     }
@@ -242,7 +242,7 @@ class Event_events_optionalDictArgEvent extends Event {
 
   bool hasListener(void callback(EventsEventArgument argument)) {
     void __proxy_callback(argument) {
-      if (callback != null) {
+      if (?callback) {
         callback(new EventsEventArgument._proxy(argument));
       }
     }
