@@ -50,8 +50,6 @@
         "type": "object",
 //@        "description": "A menu item used by an input method to interact with the user from the language menu.",
         "description": "在语言菜单中，输入法用来与用户交互的菜单项。",
-            "enum": ["check", "radio", "separator"]
-          },
         "properties": {
 //@          "id": {"type": "string", "description": "String that will be passed to callbacks referencing this MenuItem."},
           "id": {"type": "string", "description": "传递给回调函数的字符串，用来引用这一菜单项。"},
