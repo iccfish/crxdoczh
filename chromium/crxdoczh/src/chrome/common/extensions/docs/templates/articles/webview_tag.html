@@ -119,7 +119,7 @@ onload = function() {
     indicator.innerText = "";
   }
   webview.addEventListener("loadstart", loadstart);
-  webview.addEvevntListener("loadstop", loadstop);
+  webview.addEventListener("loadstop", loadstop);
 }
 </pre>
 
@@ -465,12 +465,12 @@ onload = function() {
   <div class="description">
     <p>
     <!--@Fired when all loads in the tag (including all subframes) have completed.
-    Fires in addition to any <a href="#event-loadcommit">loadCommit</a>
-    or <a href="#event-loadabort">loadAbort</a> events,
+    Fires in addition to any <a href="#event-loadcommit">loadcommit</a>
+    or <a href="#event-loadabort">loadabort</a> events,
     which occur per-frame.-->
     除了每一个框架都会发生的
-    <a href="#event-loadcommit">loadCommit</a> 或
-    <a href="#event-loadabort">loadAbort</a>
+    <a href="#event-loadcommit">loadcommit</a> 或
+    <a href="#event-loadabort">loadabort</a>
     外，当标签中的所有加载（包括所有子框架）完成后也会产生该事件。
     </p>
   </div>
@@ -587,4 +587,3 @@ onload = function() {
         恢复响应的进程对应的 Chrome 浏览器内部标识符。
       </dd>
   </div>
-

@@ -44,6 +44,33 @@
 //@          "type": {"type": "string", "description": "Type of value this text field edits, (Text, Number, Password, etc)", "enum": ["text", "number", "password"]}
           "type": {"type": "string", "description": "该文本框编辑的值的类型：\"text\"（文本）、\"number\"（数字）、\"password\"（密码）等。", "enum": ["text", "number", "password"]}
         }
+      },
+      {
+        "id": "MenuItem",
+        "type": "object",
+//@        "description": "A menu item used by an input method to interact with the user from the language menu.",
+        "description": "在语言菜单中，输入法用来与用户交互的菜单项。",
+            "enum": ["check", "radio", "separator"]
+          },
+        "properties": {
+//@          "id": {"type": "string", "description": "String that will be passed to callbacks referencing this MenuItem."},
+          "id": {"type": "string", "description": "传递给回调函数的字符串，用来引用这一菜单项。"},
+//@          "label": {"type": "string", "optional": true, "description": "Text displayed in the menu for this item."},
+          "label": {"type": "string", "optional": true, "description": "这一菜单项在菜单中显示的文本。"},
+          "style": {
+            "type": "string",
+            "optional": true,
+//@            "description": "Enum representing if this item is: check, radio, or a separator.  Radio buttons between separators are considered grouped.",
+            "description": "代表这一菜单项是否是：\"check\"（复选）、\"radio\"（单选）或 \"separator\"（分隔符）的枚举值。在分隔符之间的单选按钮将认为是同一组的。",
+            "enum": ["check", "radio", "separator"]
+          },
+//@          "visible": {"type": "boolean", "optional": true, "description": "Indicates this item is visible."},
+          "visible": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否可见。"},
+//@          "checked": {"type": "boolean", "optional": true, "description": "Indicates this item should be drawn with a check."},
+          "checked": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否已勾选。"},
+//@          "enabled": {"type": "boolean", "optional": true, "description": "Indicates this item is enabled."}
+          "enabled": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否已启用。"}
+        }
       }
     ],
     "functions": [
@@ -398,28 +425,7 @@
                 "description": "要添加的菜单项，将按照数组中出现的顺序添加。",
                 "type": "array",
                 "items": {
-                  "type": "object",
-//@                  "description": "A menu item used by an input method to interact with the user from the language menu.",
-                  "description": "在语言菜单中，输入法用来与用户交互的菜单项。",
-                  "properties": {
-//@                    "id": {"type": "string", "description": "String that will be passed to callbacks referencing this MenuItem."},
-                    "id": {"type": "string", "description": "传递给回调函数的字符串，用来引用这一菜单项。"},
-//@                    "label": {"type": "string", "optional": true, "description": "Text displayed in the menu for this item."},
-                    "label": {"type": "string", "optional": true, "description": "这一菜单项在菜单中显示的文本。"},
-                    "style": {
-                      "type": "string",
-                      "optional": true,
-//@                      "description": "Enum representing if this item is: none, check, radio, or a separator.  Radio buttons between separators are considered grouped.",
-                      "description": "代表这一菜单项是否是：\"none\"（普通）、\"check\"（复选）、\"radio\"（单选）或 \"separator\"（分隔符）的枚举值。在分隔符之间的单选按钮将认为是同一组的。",
-                      "enum": ["check", "radio", "separator"]
-                    },
-//@                    "visible": {"type": "boolean", "optional": true, "description": "Indicates this item is visible."},
-                    "visible": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否可见。"},
-//@                    "checked": {"type": "boolean", "optional": true, "description": "Indicates this item should be drawn with a check."},
-                    "checked": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否已勾选。"},
-//@                    "enabled": {"type": "boolean", "optional": true, "description": "Indicates this item is enabled."}
-                    "enabled": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否已启用。"}
-                  }
+                  "$ref": "MenuItem"
                 }
               }
             }
@@ -453,28 +459,7 @@
                 "description": "要更新的菜单项数组。",
                 "type": "array",
                 "items": {
-                  "type": "object",
-//@                  "description": "A menu item used by an input method to interact with the user from the language menu.",
-                  "description": "在语言菜单中，输入法用来与用户交互的菜单项。",
-                  "properties": {
-//@                    "id": {"type": "string", "description": "String that will be passed to callbacks referencing this MenuItem."},
-                    "id": {"type": "string", "description": "传递给回调函数的字符串，用来引用这一菜单项。"},
-//@                    "label": {"type": "string", "optional": true, "description": "Text displayed in the menu for this item."},
-                    "label": {"type": "string", "optional": true, "description": "这一菜单项在菜单中显示的文本。"},
-                    "style": {
-                      "type": "string",
-                      "optional": true,
-//@                      "description": "Enum representing if this item is: none, check, radio, or a separator.  Radio buttons between separators are considered grouped.",
-                      "description": "代表这一菜单项是否是：\"none\"（普通）、\"check\"（复选）、\"radio\"（单选）或 \"separator\"（分隔符）的枚举值。在分隔符之间的单选按钮将认为是同一组的。",
-                      "enum": ["check", "radio", "separator"]
-                    },
-//@                    "visible": {"type": "boolean", "optional": true, "description": "Indicates this item is visible."},
-                    "visible": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否可见。"},
-//@                    "checked": {"type": "boolean", "optional": true, "description": "Indicates this item should be drawn with a check."},
-                    "checked": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否已勾选。"},
-//@                    "enabled": {"type": "boolean", "optional": true, "description": "Indicates this item is enabled."}
-                    "enabled": {"type": "boolean", "optional": true, "description": "表示这一菜单项是否已启用。"}
-                  }
+                  "$ref": "MenuItem"
                 }
               }
             }
