@@ -1,7 +1,7 @@
 <h1 id="lab_8_web_resources"><!--@Access Web Resources-->访问网络资源</h1>
 
 <p>Chrome <!--@packaged apps have a strict
-<a href="http://developer.chrome.com/trunk/apps/app_csp.html">Content Security Policy</a>
+<a href="app_csp.html">Content Security Policy</a>
 which will not let the user execute code or load resources that are hosted remotely.-->
 浏览器的打包应用有一项严格的<a href="app_csp.html">内容安全策略</a>，不会让用户执行或加载远程托管的代码和资源。
 </p>
@@ -18,7 +18,7 @@ which will not let the user execute code or load resources that are hosted remot
 
 <p><!--@Chrome packaged apps offer developers the ability
 to securely render third-party content in the <code>&lt;webview&gt;</code> tag.
-A <a href="http://developer.chrome.com/trunk/apps/webview_tag.html">webview</a>
+A <a href="webview_tag.html">webview</a>
 is like an iframe that you can control with greater flexibility and added security.
 It runs in a separate sandboxed process and can&#39;t communicate directly with the application.-->
 Chrome 浏览器的打包应用为开发者提供了在 <code>&lt;webview&gt;</code>
@@ -179,7 +179,6 @@ and launch the app from a new tab.-->
 
 <p><!--@To avoid this restriction, you can use XHR requests, grab the blob corresponding to the remote file and use it appropriately.
 For example, <code>&lt;img&gt;</code> tags can use a blob URL.
-<<<<<<< .mine
 Let&#39;s change our application to show a small icon in the Todo list if the dropped URL represents an image.-->
 为了避免这一限制，您可以使用 XHR 请求，获取远程文件对应的
 Blob，并以合适的方式使用它。例如，<code>&lt;img&gt;</code> 标签可以使用 Blob

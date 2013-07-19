@@ -1,11 +1,11 @@
 <h1 id="lab_5_manage_data"><!--@Save and Fetch Data-->保存和获取数据</h1>
 
-<p><!--@The <a href="http://developer.chrome.com/trunk/apps/app_codelab3_mvc.html">sample from Lab 3</a>
+<p><!--@The <a href="app_codelab3_mvc.html">sample from Lab 3</a>
 uses a static array of Todos.
 Every time your app restarts,
 whatever you&#39;ve changed is lost.
 In this section, we will save every change using
-<a href="http://developer.chrome.com/trunk/apps/storage.html">chrome.storage.sync</a>.-->
+<a href="storage.html">chrome.storage.sync</a>.-->
 <a href="app_codelab3_mvc.html">实验三中的示例</a>使用静态数组存放待办事项，每次您的应用重新启动后，您的更改都会丢失。在这一部分，我们将使用
 <a href="storage.html">chrome.storage.sync</a>
 保存所有更改
@@ -434,7 +434,7 @@ and launch the app from a new tab:
 
 <h2 id="challenge_"><!--@Challenge-->挑战</h2>
 
-<p><!--@The current code only saves the file reference, but it doesn&#39;t open the file. Using the <a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">HTML5 Filesystem API</a>, save the file contents in a sandboxed filesystem. When the Todo item is archived, remove the corresponding file from the sandboxed filesystem. Add an &quot;open&quot; link on each Todo that has an associated file. When the item is clicked and the file exists in the sandboxed filesystem, use the Chrome packaged app <a href="http://developer.chrome.com/apps/fileSystem.html">Filesystem API</a> to request a writable FileEntry from the user. Save the file data from the sandboxed filesystem into that entry.-->
+<p><!--@The current code only saves the file reference, but it doesn&#39;t open the file. Using the <a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">HTML5 Filesystem API</a>, save the file contents in a sandboxed filesystem. When the Todo item is archived, remove the corresponding file from the sandboxed filesystem. Add an &quot;open&quot; link on each Todo that has an associated file. When the item is clicked and the file exists in the sandboxed filesystem, use the Chrome packaged app <a href="fileSystem.html">Filesystem API</a> to request a writable FileEntry from the user. Save the file data from the sandboxed filesystem into that entry.-->
 当前的代码只保存了文件引用，但是它并没有打开文件。使用
 <a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">HTML 5
 文件系统 API</a>，将文件内容保存在经过沙盒屏蔽的文件系统中。当待办事项完成后，从经过沙盒屏蔽的文件系统中删除相应的文件。在每一个与文件关联的待办事项上添加一个“打开”链接，单击项目后，如果文件在经过沙盒屏蔽的文件系统中存在，则使用
@@ -456,7 +456,7 @@ Eric Bidelman 的
 </p></li>
 <li><p><!--@Chrome packaged apps support almost all HTML5 APIs, such as drag and drop.
 HTML Filesystem API is also supported, with extra features from the Chrome packaged app&#39;s
-<a href="http://developer.chrome.com/apps/fileSystem.html">Filesystem API</a>,
+<a href="fileSystem.html">Filesystem API</a>,
 like asking the user to pick files on her local disk for read and write.
 The vanilla HTML5 Filesystem API only allows access to a sandboxed filesystem.-->
 Chrome 应用支持几乎所有 HTML5 API，例如拖放。HTML 文件系统 API

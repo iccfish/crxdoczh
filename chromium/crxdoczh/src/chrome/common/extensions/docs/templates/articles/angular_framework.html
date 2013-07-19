@@ -45,14 +45,14 @@ API</a>（在此例子中即 Google Drive API）交互应用是一个很好的�
 <strong><!--@Note: -->注意：</strong><!--@
 You can also build apps which talk to 3rd party APIs/services
 that are OAuth2-enabled.
-See <a href="http://developer.chrome.com/trunk/apps/app_identity.html#non">non-Google Account authentication</a>.-->您也可以建立应用，与启用了
+See <a href="app_identity.html#non">non-Google Account authentication</a>.-->您也可以建立应用，与启用了
 OAuth2 的第三方 API/服务交互。请参见<a
 href="app_identity.html#non">非 Google 帐户的认证</a>。
 </p>
 
 <p>
 <!--@The Uploader uses OAuth2 to access the user's data. The
-<a href="http://developer.chrome.com/trunk/apps/experimental.identity.html">chrome.experimental.identity API</a>
+<a href="experimental.identity.html">chrome.experimental.identity API</a>
 handles fetching an OAuth token for the logged-in user,
 so the hard work is done for us!
 Once we have a long-lived access token,
@@ -148,7 +148,7 @@ lists any special permissions the app needs to run.-->
 <p>
 <!--@The "oauth2" section defines the required parameters by OAuth2 to do its magic.
 To create a "client_id", follow the instructions in
-<a href="http://developer.chrome.com/apps/app_identity.html#client_id">Get your client id</a>.
+<a href="app_identity.html#client_id">Get your client id</a>.
 The "scopes" list the authorization scopes
 that the OAuth token will be valid for (for example, the APIs the app wants to access).-->
 "oauth2" 部分定义了 OAuth2 需要的参数以便完成它的工作。要创建一个
@@ -429,7 +429,7 @@ putting-->
 <p>
 <!--@Unlike many other JS MVC frameworks,
 Angular v1.1.0+ requires no tweaks to work within a strict
-<a href="http://developer.chrome.com/trunk/apps/app_csp.html">CSP</a>.
+<a href="app_csp.html">CSP</a>.
 It just works, out of the box!-->
 与许多其他 JS MVC 框架不同，Angular v1.1.0+ 不需要任何调整就能在严格的
 <a href="app_csp.html">CSP</a> 下工作。它真的可以直接使用！
