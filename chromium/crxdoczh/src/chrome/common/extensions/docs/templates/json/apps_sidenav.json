@@ -97,7 +97,7 @@
           },
           {
             "title": "遵循 CSP（内容安全策略）",
-            "href": "/apps/contentSecurityPolicy.html"
+            "href": "/apps/app_csp.html"
           }
         ]
       },

@@ -1,10 +1,10 @@
-// Copyright 2013 The Chromium Authors. All rights reserved.
+// Copyright (c) 2012 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// <!--@Use the <code>system.cpu</code> API to query CPU metadata.-->
+// <!--@Use the <code>systemInfo.cpu</code> API to query CPU metadata.-->
 // 使用 <code>systemInfo.cpu</code> API 查询 CPU 元数据。
-namespace system.cpu {
+namespace systemInfo.cpu {
 
   dictionary CpuInfo {
     // <!--@The number of logical processors.-->
@@ -23,6 +23,6 @@ namespace system.cpu {
   interface Functions {
     // <!--@Queries basic CPU information of the system.-->
     // 查询系统 CPU 的基本信息。
-    static void getInfo(CpuInfoCallback callback);
+    static void get(CpuInfoCallback callback);
   };
 };
