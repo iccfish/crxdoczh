@@ -2,9 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// <!--@The <code>chrome.systemInfo.memory</code> API.-->
-// <code>chrome.systemInfo.memory</code> API。
-namespace systemInfo.memory {
+// <!--@The--> <code>chrome.system.memory</code> API<!--@.-->。
+namespace system.memory {
 
   dictionary MemoryInfo {
     // <!--@The total amount of physical memory capacity, in bytes.-->
@@ -20,6 +19,6 @@ namespace systemInfo.memory {
   interface Functions {
     // <!--@Get physical memory information.-->
     // 获取物理内存信息。
-    static void get(MemoryInfoCallback callback);
+    static void getInfo(MemoryInfoCallback callback);
   };
 };
