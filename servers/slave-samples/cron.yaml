@@ -1,5 +1,0 @@
-cron:
-- description: Update samples
-  url: /_ah/start
-  schedule: every 6 hours
-  target: update-samples

@@ -1,4 +1,0 @@
-backends:
-- name: update-docs
-  options: dynamic
-  class: B1
