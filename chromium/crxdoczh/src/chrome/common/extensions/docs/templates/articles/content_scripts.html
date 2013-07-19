@@ -460,6 +460,12 @@ JQuery v1 而页面可以包含 JQuery v2，并且它们互不影响。
 隔离环境的另一个重要好处是将页面上的 JavaScript 和扩展程序中的 JavaScript
 完全区分开来，这样我们就可以为内容脚本提供额外功能，而这些额外功能不应该从网页中访问，我们也不用担心访问它们的网页。
 
+<p><!--@It's worth noting what happens with JavaScript objects that are shared by the page and the extension - for example, the <code>window.onload</code> event. Each isolated world sees its own version of the object. Assigning to the object affects your independent copy of the object. For example, both the page and extension can assign to <code>window.onload</code>, but neither one can read the other's event handler. The event handlers are called in the order in which they were assigned.-->
+网页与扩展程序之间共享的 JavaScript 对象值得注意，例如
+<code>window.onload</code>
+事件。每一个隔离环境拥有该对象自己的副本，对该对象赋值只影响这一独立的副本。例如，网页和扩展程序都可以给
+<code>window.onload</code>
+赋值，但是都不能读取另外一方的事件处理器。事件处理器将按照它们赋值的顺序调用。
 
 <h2 id="host-page-communication"><!--@Communication with the embedding page-->与嵌入的页面通信</h2>
 
