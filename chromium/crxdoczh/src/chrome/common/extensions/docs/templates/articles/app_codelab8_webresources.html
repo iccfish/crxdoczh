@@ -1,9 +1,9 @@
 <h1 id="lab_8_web_resources"><!--@Access Web Resources-->访问网络资源</h1>
 
 <p>Chrome <!--@packaged apps have a strict
-<a href="app_csp.html">Content Security Policy</a>
+<a href="contentSecurityPolicy.html">Content Security Policy</a>
 which will not let the user execute code or load resources that are hosted remotely.-->
-浏览器的打包应用有一项严格的<a href="app_csp.html">内容安全策略</a>，不会让用户执行或加载远程托管的代码和资源。
+浏览器的打包应用有一项严格的<a href="contentSecurityPolicy.html">内容安全策略</a>，不会让用户执行或加载远程托管的代码和资源。
 </p>
 
 <p><!--@Many applications, however, need to be able to load and display content from a remote location. A News Reader, for example, needs to display remote content inline or load and show images from a remote URL.-->
@@ -175,7 +175,7 @@ and launch the app from a new tab.-->
 
 <p class="note"><b></b> Refused to load the image &#39;http://angularjs.org/img/AngularJS-large.png&#39; because it violates the following Content Security Policy directive: &quot;img-src &#39;self&#39; data: chrome-extension-resource:&quot;.（拒绝加载图片 &#39;http://angularjs.org/img/AngularJS-large.png&#39;，因为它违反了以下内容安全策略的指示：&quot;img-src &#39;self&#39; data: chrome-extension-resource:&quot;。）</p>
 
-<p><!--@Chrome packaged apps cannot load any external resource directly in the DOM, because of the -->由于<a href="app_csp.html"><!--@CSP restrictions-->内容安全策略的限制</a>，Chrome 浏览器的打包应用不能直接在 DOM 中加载任何外部资源。</p>
+<p><!--@Chrome packaged apps cannot load any external resource directly in the DOM, because of the -->由于<a href="contentSecurityPolicy.html"><!--@CSP restrictions-->内容安全策略的限制</a>，Chrome 浏览器的打包应用不能直接在 DOM 中加载任何外部资源。</p>
 
 <p><!--@To avoid this restriction, you can use XHR requests, grab the blob corresponding to the remote file and use it appropriately.
 For example, <code>&lt;img&gt;</code> tags can use a blob URL.

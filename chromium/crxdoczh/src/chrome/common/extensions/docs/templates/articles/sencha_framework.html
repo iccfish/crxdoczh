@@ -70,13 +70,13 @@ accessed and played regardless of connectivity.-->
 <!--@The "sandbox" field is used
 to sandbox the app's main logic in a unique origin.
 All sandboxed content is exempt from the packaged app
-<a href="app_csp.html">Content Security Policy</a>,
+<a href="contentSecurityPolicy.html">Content Security Policy</a>,
 but cannot directly access the packaged app APIs. 
 The manifest also includes the "socket" permission;
 the media player app uses the <a href="socket.html">socket API</a>
 to connect to a media server over the network.-->
 "sandbox"
-字段用来将应用的主要逻辑通过沙盒屏蔽在一个唯一的来源中，所有经过沙盒屏蔽的内容不受打包应用<a href="app_csp.html">内容安全策略</a>的限制，但也不能直接访问打包应用的
+字段用来将应用的主要逻辑通过沙盒屏蔽在一个唯一的来源中，所有经过沙盒屏蔽的内容不受打包应用<a href="contentSecurityPolicy.html">内容安全策略</a>的限制，但也不能直接访问打包应用的
 API。清单文件还包含了 "socket"
 权限，因为媒体播放器应用使用套接字 API 通过网络连接到媒体服务器。
 </p>
@@ -144,12 +144,12 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 <h2 id="three"><!--@Sandbox app's logic-->通过沙盒屏蔽应用的逻辑</h2>
 
 <p><!--@Packaged apps run in a controlled environment
-that enforces a strict <a href="app_csp.html">Content Security Policy (CSP)</a>.
+that enforces a strict <a href="contentSecurityPolicy.html">Content Security Policy (CSP)</a>.
 The media player app needs some higher privileges to render the Ext JS components.
 To comply with CSP and execute the app logic,
 the app's main page, <code>index.html</code>, creates an iframe
 that acts as a sandbox environment:-->
-打包应用程序在一个受控制的环境中运行，强制实施严格的<a href="app_csp.html"
+打包应用程序在一个受控制的环境中运行，强制实施严格的<a href="contentSecurityPolicy.html"
 >内容安全策略（CSP）</a>，而媒体播放器应用需要某些更高的权限来渲染 Ext JS
 组件。为了遵循 CSP 的同时执行应用的逻辑，应用的主页面
 <code>index.html</code> 创建了一个 iframe，作为一个经过沙盒屏蔽的环境：

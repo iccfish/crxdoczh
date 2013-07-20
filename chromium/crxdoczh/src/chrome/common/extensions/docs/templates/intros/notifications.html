@@ -1,32 +1,3 @@
-<table class="intro">
-  <tr>
-    <th scope="col"></th>
-    <th scope="col"></th>
-  </tr>
-  <tr>
-    <td><strong><!--@Description:-->描述：</strong></td>
-    <td><!--@Use the-->使用 <code>chrome.notifications</code> <!--@module
-    to create rich notifications using templates and
-    show these notifications to users in the system tray
-    (see <a href="#usage">Usage</a>).-->
-    模块通过模板创建丰富通知，并在系统托盘中向用户显示这些通知（请参见<a
-    href="#usage">用法</a>）。
-    </td>
-  </tr>
-  <tr>
-    <td><strong><!--@Availability:-->可用版本：</strong></td>
-    <td>仅用于 Dev 分支的 Google Chrome 浏览器</td>
-  </tr>
-  <tr>
-    <td><strong><!--@Permissions:-->权限：</strong></td>
-    <td><code>"notifications"</code></td>
-  </tr>
-  <tr>
-    <td><strong><!--@Learn more:-->了解更多：</strong></td>
-    <td><a href="https://developers.google.com/live/shows/83992232-1001/">Chrome <!--@Apps Office Hours: Rich Notifications-->应用办公时间：丰富通知</a></td>
-  </tr>
-</table>
-
 <p class="warning">
 <b><!--@Warning: -->警告：</b><!--@
 Currently this API only works on ChromeOS and Windows.-->目前该 API 只能在
@@ -67,7 +38,7 @@ as well as an <code>iconUrl</code>, which is a link to a small icon that
 is displayed to the left of the notification message. The <code>image</code>
 template type also includes an <code>imageUrl</code>, which is a link to
 an image that is previewed within the notification.
-Due to a strict <a href="app_csp.html">Content Security Policy</a>
+Due to a strict <a href="contentSecurityPolicy.html">Content Security Policy</a>
 in packaged apps, these URLs must point to a local resource or use a
 <a href="app_external.html">data URL</a>.-->
 所有模板类型（<code>simple</code>、<code>basic</code>、<code>image</code>、<code>list</code>）都必须包含通知的

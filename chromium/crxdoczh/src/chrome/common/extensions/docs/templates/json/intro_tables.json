@@ -1,0 +1,509 @@
+{
+  // TODO(epeterson) Generate permissions information dynamically.
+  "alarms": {
+    "了解更多": [
+      {
+        "link": "event_pages.html",
+        "text": "事件页面"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"alarms\""
+      }
+    ]
+  },
+  "app_runtime": {
+    "了解更多": [
+      {
+        "link": "app_lifecycle.html",
+        "text": "管理应用的生命周期"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/10291095/",
+        "text": "Chrome 浏览器办公时间：Chrome 应用简介"
+      }
+    ]
+  },
+  "app_window": {
+    "了解更多": [
+      {
+        "link": "about_apps.html#look",
+        "text": "应用的外观"
+      },
+      {
+        "link": "app_lifecycle.html",
+        "text": "管理应用的生命周期"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/9118010/",
+        "text": "Chrome 应用办公时间：建立惊人的多窗口应用"
+      }
+    ]
+  },
+  "bluetooth": {
+    "了解更多": [
+      {
+        "link": "app_hardware.html",
+        "text": "访问硬件设备"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"bluetooth\""
+      }
+    ]
+  },
+  "bookmarks": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"bookmarks\""
+      }
+    ]
+  },
+  "browsingData": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"browsingData\""
+      }
+    ]
+  },
+  "contextMenus": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"contextMenus\""
+      }
+    ]
+  },
+  "cookies": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"cookies\""
+      },
+      {
+        "link": "declare_permissions.html",
+        "text": "主机权限"
+      }
+    ]
+  },
+  "debugger": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"debugger\""
+      }
+    ]
+  },
+  "declarativeContent": {
+    "了解更多": [
+      {
+        "link": "events.html",
+        "text": "声明事件"
+      },
+      {
+        "link": "activeTab.html",
+        "text": "activeTab"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"declarativeContent\""
+      }
+    ]
+  },
+  "declarativeWebRequest": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"declarativeWebRequest\""
+      },
+      {
+        "link": "declare_permissions.html",
+        "text": "主机权限"
+      }
+    ]
+  },
+  "downloads": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"downloads\""
+      },
+      {
+        "link": "declare_permissions.html",
+        "text": "主机权限"
+      }
+    ]
+  },
+  "fileBrowserHandler": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"fileBrowserHandler\""
+      }
+    ]
+  },
+  "fileSystem": {
+    "了解更多": [
+      {
+        "link": "app_storage.html",
+        "text": "管理数据"
+      },
+      {
+        "link": "angular_framework.html",
+        "text": "用 AngularJS 建立应用"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/7320022-1001/",
+        "text": "Chrome 应用办公时间：TextDrive 与 AngularJS"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"fileSystem\""
+      },
+      {
+        "class": "code",
+        "text": "{\"fileSystem\": [\"write\"]}"
+      },
+      {
+        "class": "code",
+        "text": "{\"fileSystem\": [\"write\", \"retainEntries\"]}"
+      }
+    ]
+  },
+  "fontSettings": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"fontSettings\""
+      }
+    ]
+  },
+  "history": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"history\""
+      }
+    ]
+  },
+  "identity": {
+    "了解更多": [
+      {
+        "link": "app_identity.html",
+        "text": "认证用户"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"identity\""
+      }
+    ]
+  },
+  "idle": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"idle\""
+      }
+    ]
+  },
+  "input_ime": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"input\""
+      }
+    ]
+  },
+  "management": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"management\""
+      }
+    ]
+  },
+  "mediaGalleries": {
+    "了解更多": [
+      {
+        "link": "https://developers.google.com/live/shows/10479832/",
+        "text": "Chrome 浏览器办公时间：The Media Galleries API"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "{\"mediaGalleries\": [\"read\"]}"
+      },
+      {
+        "class": "code",
+        "text": "{\"mediaGalleries\": [\"read\", \"allAutoDetected\"]}"
+      },
+      {
+        "partial": "intro_tables/see_manifest.html"
+      }
+    ]
+  },
+  "notifications": {
+    "了解更多": [
+      {
+        "link": "https://developers.google.com/live/shows/83992232-1001/",
+        "text": "Chrome 应用办公时间：Rich Notifications"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"notifications\""
+      }
+    ]
+  },
+  "pageCapture": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"pageCapture\""
+      }
+    ]
+  },
+  "power": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"power\""
+      }
+    ]
+  },
+  "privacy": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"privacy\""
+      }
+    ]
+  },
+  "proxy": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"proxy\""
+      }
+    ]
+  },
+  "pushMessaging": {
+    "了解更多": [
+      {
+        "link": "cloudMessaging.html",
+        "text": "Google Cloud Messaging for Chrome"
+      },
+      {
+        "link": "gcm_server.html",
+        "text": "API Reference for GCM service"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"pushMessaging\""
+      }
+    ]
+  },
+  "runtime": {
+    "了解更多": [
+      {
+        "link": "app_lifecycle.html",
+        "text": "Manage App Lifecycle"
+      },
+      {
+        "link": "event_pages.html",
+        "text": "Event Pages"
+      }
+    ]
+  },
+  "serial": {
+    "了解更多": [
+      {
+        "link": "app_hardware.html",
+        "text": "Accessing Hardware Devices"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"serial\""
+      }
+    ]
+  },
+  "socket": {
+    "了解更多": [
+      {
+        "link": "app_network.html",
+        "text": "Network Communications"
+      },
+      {
+        "link": "sencha_framework.html",
+        "text": "Build Apps with Sencha ExtJS"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/7320022-5001/",
+        "text": "Chrome 应用办公时间：Networking APIs"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/7320022-2001/",
+        "text": "Chrome 应用办公时间：Controlling an AR ParrotDrone"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "{\"socket\": [\"rule1\", \"rule2\"]}"
+      },
+      {
+        "partial": "intro_tables/socket_permissions.html"
+      }
+    ]
+  },
+  "storage": {
+    "了解更多": [
+      {
+        "link": "https://developers.google.com/live/shows/7320022/",
+        "text": "Chrome 应用办公时间：Chrome Storage APIs"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/7320022-1/",
+        "text": "Chrome 应用办公时间：Storage API Deep Dive"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"storage\""
+      }
+    ]
+  },
+  "syncFileSystem": {
+    "了解更多": [
+      {
+        "link": "http://developer.chrome.com/trunk/apps/app_storage.html",
+        "text": "Manage Data"
+      },
+      {
+        "link": "https://developers.google.com/live/shows/83992232-2001/",
+        "text": "Chrome 浏览器办公时间：Synched File System"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"syncFileSystem\""
+      }
+    ]
+  },
+  "tabs": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"tabs\""
+      }
+    ]
+  },
+  "textSettings": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"textSettings\""
+      }
+    ]
+  },
+  "topSites": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"topSites\""
+      }
+    ]
+  },
+  "tts": {
+    "了解更多": [
+      {
+        "link": "https://developers.google.com/live/shows/7320022-7001/",
+        "text": "Chrome 浏览器办公时间：文字语音转换 API"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"tts\""
+      }
+    ]
+  },
+  "ttsEngine": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"ttsEngine\""
+      }
+    ]
+  },
+  "usb": {
+    "了解更多": [
+      {
+        "link": "app_hardware.html",
+        "text": "访问硬件设备"
+      }
+    ],
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"usb\""
+      }
+    ]
+  },
+  "webNavigation": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"webNavigation\""
+      }
+    ]
+  },
+  "webRequest": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"webRequest\""
+      },
+      {
+        "link": "declare_permissions.html",
+        "text": "主机权限"
+      }
+    ]
+  },
+  "webstore": {
+    "了解更多": [
+      {
+        "link": "https://developers.google.com/chrome/web-store/docs/inline_installation",
+        "text": "使用内嵌安装"
+      }
+    ]
+  },
+  "windows": {
+    "权限": [
+      {
+        "class": "code",
+        "text": "\"tabs\""
+      }
+    ]
+  }
+}

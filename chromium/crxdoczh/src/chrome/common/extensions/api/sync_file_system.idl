@@ -6,9 +6,8 @@
 // on Google Drive. This API is NOT for accessing arbitrary user docs stored in
 // Google Drive. It provides app-specific syncable storage for offline and
 // caching usage so that the same data can be available across different
-// clients. Read
-// <a href="http://developer.chrome.com/trunk/apps/app_storage.html">Manage
-// Data</a> for more on using this API.-->
+// clients. Read <a href="app_storage.html">Manage Data</a> for more on using
+// this API.-->
 // 使用 <code>chrome.syncFileSystem</code> API 在 Google
 // 云端硬盘上保存和同步数据。该 API
 // <em>并不是</em>用来访问存储在 Google

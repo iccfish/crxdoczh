@@ -1,22 +1,6 @@
 <h2 id="manifest"><!--@Notes-->说明</h2>
 
 <p>
-<!--@Debugger API serves as an alternate transport for Chrome's
-<a href="http://code.google.com/chrome/devtools/docs/remote-debugging.html">
-remote debugging protocol</a>. Use <code>chrome.debugger</code>
-to attach to one or more tabs to instrument network interaction, debug
-JavaScript, mutate the DOM  and CSS, etc. Use the Debuggee tabId to target tabs
-with sendCommand and route events by <code>tabId</code> from onEvent callbacks. -->
-调试器 API 是
-<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging">Chrome
-远程调试协议</a>（英文）的另一种消息传输方式。使用
-<code>chrome.debugger</code> 
-可以附加到一个或多个标签页，以便查看网络交互、调试 JavaScript、改变 DOM 和
-CSS 等等。使用调试对象的标签页标识符来指定 sendCommand 的目标标签页，并在
-onEvent 的回调函数中通过标签页标识符分发事件。
-</p>
-
-<p>
 <!--@As of today, attaching to the tab by means of the debugger API
 and using embedded Chrome DevTools with that tab are mutually exclusive.
 If user invokes Chrome DevTools while extension is attached to the tab,
