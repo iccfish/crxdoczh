@@ -2,21 +2,20 @@
   <table><tr>
   <td id="chrome-logo">
     <a href="/{{platform}}s/" title="Google Chrome {{title}}" id="view-original">
-      <img src="{{static}}/images/chrome-logo.png" alt="">
-      chrome {{title}}（非官方中文版）
+      <img src="{{static}}/images/chrome-logo.png" alt=""> chrome
     </a>
     <script type="text/javascript">
       document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
     </script>
     <div id="platform-chooser">
       <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
-        {{platform}}s &#x25be;&#x202F;
+        {{title}} &#x25be;&#x202F;
       </button>
       <div id="platform-chooser-popup">
-        <button class="apps" data-href="/apps/about_apps.html">apps</button>
-        <button class="extensions" data-href="/extensions">extensions</button>
+        <button class="apps" data-href="/apps/about_apps.html">应用</button>
+        <button class="extensions" data-href="/extensions">扩展程序</button>
       </div>
-    </div>
+    </div>（非官方中文版）
   </td>
   <td>
     <ul>
