@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>chrome.alarms</code> API to schedule code to run
-// periodically or at a specified time in the future.
+// <!--@Use the <code>chrome.alarms</code> API to schedule code to run
+// periodically or at a specified time in the future.-->
 // 使用 <code>chrome.alarms</code> API
 // 安排代码周期性地或者在将来的指定时间运行。
 namespace alarms {
