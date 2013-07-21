@@ -11,6 +11,7 @@ class Cache:
     if path is None:
       return None
 
+    path = '/stable' + path
     data = memcache.get(path)
     if data is not None:
       return data
@@ -34,6 +35,7 @@ class Cache:
       memcache.set(path, data)
 
 def AddSecurityHeaders(response):
+  return
   response.headers.add('Strict-Transport-Security',
                        'max-age=31536000')
   # Keep these synced with https://src.chromium.org/viewvc/chrome/trunk/src/net/base/transport_security_state_static.certs
@@ -50,41 +52,46 @@ def AddSecurityHeaders(response):
   response.headers.add('X-Frame-Options', 'SAMEORIGIN')
 
 # Parameters:
-# |slashed_channel|: trunk/|dev/|beta/|stable/|<empty>
 # |doc_type|: apps|extensions|static
 # |remaining_path|: xxx.html|css/xxx.css|...
 # Returns:
 # A path that can be passed to Cache or None if invalid.
-def NormalizePath(slashed_channel, doc_type, remaining_path):
-  channel = slashed_channel[0:-1]
-  if len(channel) == 0:
-    channel = 'stable'
-  path = '/' + channel + '/'
+def NormalizePath(doc_type, remaining_path):
+  path = '/'
+  path2 = None
   if doc_type is not None:
+    if doc_type == 'extensions':
+      path2 = path + 'apps/'
+    elif doc_type == 'apps':
+      path2 = path + 'extensions/'
     path += doc_type + '/'
 
   if doc_type == 'static':
-    return path + remaining_path
+    return (path + remaining_path, None)
   else:
     if not remaining_path.endswith('.html'):
-      return None
+      return (None, None)
     file_title = remaining_path[:-len('.html')]
-    return path + file_title.replace('.', '_') + '.html'
+    name = file_title.replace('.', '_') + '.html'
+    return (path + name, path2 + name)
 
-def Handle404(response, slashed_channel = '/', doc_type = 'extensions'):
+def Handle404(response, doc_type = 'extensions'):
   response.status = 404
-  response.write(Cache.get(NormalizePath(
-      slashed_channel, doc_type, '404.html')))
+  response.write(Cache.get(NormalizePath(doc_type, '404.html')[0]))
 
 class Handler(webapp2.RequestHandler):
-  def get(self, slashed_channel, doc_type, remaining_path):
-    path = NormalizePath(slashed_channel, doc_type, remaining_path)
+  def get(self, doc_type, remaining_path):
+    path, path2 = NormalizePath(doc_type, remaining_path)
 
     data = Cache.get(path)
     AddSecurityHeaders(self.response)
 
     if data is None:
-      Handle404(self.response, slashed_channel, doc_type)
+      if Cache.get(path2) is not None:
+        self.response.status = 302
+        self.response.location = path2.replace('/stable/', '/')
+      else:
+        Handle404(self.response, doc_type)
     else:
       mimetypes.init()
       base, ext = os.path.splitext(remaining_path)
@@ -97,6 +104,12 @@ class Handler(webapp2.RequestHandler):
         # data = data.replace('<html>', '<html manifest="/appcache.manifest">', 1)
       self.response.write(data)
 
+class ChannelRedirectHandler(webapp2.RequestHandler):
+  def get(self, channel, realpath):
+    self.response.location = '/' + realpath
+    AddSecurityHeaders(self.response)
+    self.response.status = 301
+
 class HomeRedirectHandler(webapp2.RequestHandler):
   def get(self):
     self.response.location = '/extensions/index.html'
@@ -104,34 +117,20 @@ class HomeRedirectHandler(webapp2.RequestHandler):
     self.response.status = 301
 
 class ExamplesRedirectHandler(webapp2.RequestHandler):
-  def get(self, slashed_channel, example_path):
+  def get(self, example_path):
     self.response.location = 'https://developer.chrome.com' + self.request.path
     AddSecurityHeaders(self.response)
     self.response.status = 301
 
-class ChannelIndexRedirectHandler(webapp2.RequestHandler):
-  def get(self, channel):
-    self.response.location = '/' + channel + '/extensions/index.html'
-    AddSecurityHeaders(self.response)
-    self.response.status = 301
-
 class AppsIndexRedirectHandler(webapp2.RequestHandler):
-  def get(self, slashed_channel):
-    self.response.location = slashed_channel + 'apps/about_apps.html'
+  def get(self, ):
+    self.response.location = '/apps/about_apps.html'
     AddSecurityHeaders(self.response)
     self.response.status = 301
 
 class ExtensionsIndexRedirectHandler(webapp2.RequestHandler):
-  def get(self, slashed_channel):
-    self.response.location = slashed_channel + 'extensions/index.html'
-    AddSecurityHeaders(self.response)
-    self.response.status = 301
-
-class StableRedirectHandler(webapp2.RequestHandler):
-  def get(self, remaining_path):
-    if not remaining_path:
-      remaining_path = '/'
-    self.response.location = remaining_path
+  def get(self, ):
+    self.response.location = '/extensions/index.html'
     AddSecurityHeaders(self.response)
     self.response.status = 301
 
@@ -158,7 +157,7 @@ class APIUpdateHandler(webapp2.RequestHandler):
             os.environ.get('CRXDOCZH_SLAVE_DOCS_API_KEY'),
             channel,
             path_prefix + path)
-        result = urlfetch.fetch(url, deadline = 20)
+        result = urlfetch.fetch(url, deadline = 60)
         if result.status_code == 200:
           Cache.update('/%s/%s%s' % (channel,
                                      path_prefix,
@@ -173,15 +172,14 @@ app = webapp2.WSGIApplication([
   (r'/_/api/' + os.environ.get('CRXDOCZH_MASTER_API_KEY') + '/pushUpdate',
       APIUpdateHandler),
   ('r/_cron/update', APIUpdateHandler),
-  (r'(/trunk/|/dev/|/beta/|/stable/|/)extensions/examples/(.*)', ExamplesRedirectHandler),
+  (r'/(trunk|dev|beta|stable)/?(.*)', ChannelRedirectHandler),
+  (r'/extensions/examples/(.*)', ExamplesRedirectHandler),
   (r'/', HomeRedirectHandler),
   (r'/index.html', HomeRedirectHandler),
-  (r'/(trunk|dev|beta|stable|)/?', ChannelIndexRedirectHandler),
-  (r'(/trunk/|/dev/|/beta/|/stable/|/)apps/?', AppsIndexRedirectHandler),
-  (r'(/trunk/|/dev/|/beta/|/stable/|/)apps/index\.html', AppsIndexRedirectHandler),
-  (r'(/trunk/|/dev/|/beta/|/stable/|/)extensions/?', ExtensionsIndexRedirectHandler),
-  (r'/stable(/.*|)', StableRedirectHandler),
-  (r'/(trunk/|dev/|beta/|stable/|)(apps|extensions|static)/(.+)', Handler),
+  (r'/apps/?', AppsIndexRedirectHandler),
+  (r'/apps/index\.html', AppsIndexRedirectHandler),
+  (r'/extensions/?', ExtensionsIndexRedirectHandler),
+  (r'/(apps|extensions|static)/(.+)', Handler),
   (r'.*', NotFoundHandler)
 ])
 
