@@ -1,9 +1,9 @@
-// Copyright (c) 2013 The Chromium Authors. All rights reserved.
+// Copyright 2013 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>systemInfo.display</code> API to query display metadata.
-namespace systemInfo.display {
+// <!--@Use the-->使用 <code>system.display</code> API <!--@to query display metadata.-->查询显示器的元数据。
+namespace system.display {
 
   dictionary Bounds {
     // <!--@The x-coordinate of the upper-left corner.-->
@@ -138,7 +138,7 @@ namespace systemInfo.display {
     // together with <code>boundsOriginY</code>, if <code>boundsOriginY</code>
     // is set. Note that, when updating the display origin, some constraints
     // will be applied, so the final bounds origin may be different than the one
-    // set. The final bounds can be retrieved using $ref:getDisplayInfo.
+    // set. The final bounds can be retrieved using $ref:getInfo.
     // The bounds origin is applied after <code>rotation</code>.
     // The bounds origin cannot be changed on the primary display. Note that is
     // also invalid to set bounds origin values if <code>isPrimary</code> is
@@ -146,7 +146,7 @@ namespace systemInfo.display {
     // 如果设置了该参数，更新显示器沿 x 轴方向的逻辑范围原点，如果设置了
     // <code>boundsOriginY</code> 的话与 <code>boundsOriginY</code>
     // 同时应用。注意，更新显示器原点时可能会有一些约束，最终的范围原点可能与设置的不一样，最终的范围可以使用
-    // $ref:getDisplayInfo 获取。范围原点在 <code>rotation</code>
+    // $ref:getInfo 获取。范围原点在 <code>rotation</code>
     // 之后应用，不能在主显示器上更改。注意，如果还设置了
     // <code>isPrimary</code> 就不能再设置范围原点值，因为首先应用
     // <code>isPrimary</code> 参数。
@@ -165,7 +165,7 @@ namespace systemInfo.display {
   interface Functions {
     // <!--@Get the information of all attached display devices.-->
     // 获取所有已连接显示设备的信息。
-    static void getDisplayInfo(DisplayInfoCallback callback);
+    static void getInfo(DisplayInfoCallback callback);
 
     // <!--@Updates the properties for the display specified by |id|, according to
     // the information provided in |info|. On failure, $ref:runtime.lastError
@@ -191,8 +191,7 @@ namespace systemInfo.display {
   };
 
   interface Events {
-    // <!--@Fired when anything changes to the display configuration.-->
-    // 当显示器配置发生任何更改时产生。
+    // Fired when anything changes to the display configuration.
     static void onDisplayChanged();
   };
 };
