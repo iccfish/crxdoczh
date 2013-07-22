@@ -1,0 +1,86 @@
+<h1 id="sandbox">清单文件——沙盒</h1>
+
+<p>
+<!--@Defines an collection of app or extension pages that are to be served
+in a sandboxed unique origin, and optionally a Content Security Policy to use
+with them. Being in a sandbox has two implications:-->
+要在受沙箱保护的唯一来源中加载的页面路径（相对于扩展程序包根目录）列表，还可以指定可选的内容安全策略来一起使用。在沙箱中意味着如下两点：
+</p>
+
+<ol>
+<li><!--@A sandboxed page will not have access to extension or app APIs, or
+direct access to non-sandboxed pages (it may communicate with them via
+<code>postMessage()</code>).-->
+受沙箱保护的页面不能访问扩展程序或应用
+API，也不能直接访问沙箱外的页面（但是可以通过
+<code>postMessage()</code> 进行通信）。
+</li>
+<li>
+  <p><!--@A sandboxed page is not subject to the
+  <a href="../extensions/contentSecurityPolicy.html">Content Security Policy
+  (CSP)</a> used by the rest of the app or extension (it has its own separate
+  CSP value). This means that, for example, it can use inline script and
+  <code>eval</code>.-->
+  受沙箱保护的页面不受应用或扩展程序其余部分使用的<a
+  href="../extensions/contentSecurityPolicy.html">内容安全策略（CSP）</a>所限制。这就意味着，它可以使用内嵌脚本与 <code>eval</code>。
+</p>
+
+  <p><!--@For example, here's how to specify that two extension pages are to be
+  served in a sandbox with a custom CSP:-->
+  例如，如下代码指定两个扩展程序网页在沙盒中加载，并使用自定义的 CSP：
+  </p>
+
+  <pre>{
+  ...
+  "sandbox": {
+    "pages": [
+      "page1.html",
+      "directory/page2.html"
+    ]
+    <i>// 内容安全策略是可选的。</i>
+    "content_security_policy":
+        "sandbox allow-scripts; script-src https://www.google.com"
+  ],
+  ...
+}</pre>
+
+  <p>
+  <!--@If not specified, the default <code>content_security_policy</code> value is
+  <code>sandbox allow-scripts allow-forms</code>. You can specify your CSP
+  value to restrict the sandbox even further, but it must have the <code>sandbox</code>
+  directive and may not have the <code>allow-same-origin</code> token (see
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-iframe-element.html#attr-iframe-sandbox">the
+  HTML5 specification</a> for possible sandbox tokens).-->
+  如果没有指定的话，默认的 <code>content_security_policy</code> 值为
+  <code>sandbox allow-scripts allow-forms</code>。您可以指定您自己的 CSP
+  值来更进一步限制沙箱，但是它必须包含 <code>sandbox</code>
+  指示符，并且不能包含 <code>allow-same-origin</code>
+  记号（有关可能的沙箱记号，请参见相应的
+  <a href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-iframe-element.html#attr-iframe-sandbox">HTML 5 规范</a>）。
+  </p>
+</li>
+</ol>
+
+<p>
+<!--@Note that you only need to list pages that you expected to be loaded in
+windows or frames. Resources used by sandboxed pages (e.g. stylesheets or
+JavaScript source files) do not need to appear in the
+<code>sandboxed_page</code> list, they will use the sandbox of the page
+that embeds them.-->
+注意，您只需要列出您期望在窗口或框架中加载的页面。受沙箱保护的页面所使用的资源（例如样式表或 JavaScript 源文件）不需要出现在 <code>sandbox</code>
+列表中，它们会使用内嵌它们的页面所使用的沙箱。
+</p>
+
+<p>
+<a href="sandboxingEval.html"><!--@"Using eval in Chrome Extensions. Safely."-->“安全使用eval”</a><!--@
+goes into more detail about implementing a sandboxing workflow that enables use
+of libraries that would otherwise have issues executing under extension's
+-->文档更详细地介绍了如何实现沙箱保护的工作流程，使您得以使用扩展程序<a href="../extensions/contentSecurityPolicy.html"><!--@default Content Security
+Policy-->默认内容安全策略</a><!--@.-->下无法正常执行的库。
+</p>
+
+<p>
+<!--@Sandboxed page may only be specified when using-->只有使用
+<a href="manifest_version.html"><code>manifest_version</code></a> 2 <!--@or above.-->
+或更高版本时才能指定受沙箱保护的页面。
+</p>

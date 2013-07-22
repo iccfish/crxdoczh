@@ -112,7 +112,7 @@ followed by more detailed summaries of what these changes mean and why they were
     您的扩展程序会向网页中插入需要访问包含在扩展程序包内的资源（例如图片与脚本）的内容脚本吗？
   </li>
     <ul>
-      <li><!--@Define the-->定义 <a href="manifest.html#web_accessible_resources">web_accessible_resources</a>
+      <li><!--@Define the-->定义 <a href="manifest/web_accessible_resources.html">web_accessible_resources</a>
         <!--@property and list the resources
         (and optionally a separate Content Security Policy for those resources).-->
         属性，并列出这些资源（以及可选的单独用于这些资源的内容安全策略）。
@@ -120,7 +120,7 @@ followed by more detailed summaries of what these changes mean and why they were
     </ul>
   <li><!--@Does your extension embed external Web pages?-->您的扩展程序嵌入外部网页吗？</li>
     <ul>
-      <li><!--@Define the-->定义 <a href="manifest.html#sandbox">sandbox</a> <!--@property.-->属性。</li>
+      <li><!--@Define the-->定义 <a href="manifest/sandbox.html">sandbox</a> <!--@property.-->属性。</li>
     </ul>
   <li><!--@Is your code or library using <code>eval()</code>, new <code>Function()</code>,
     <code>innerHTML</code>, <code>setTimeout()</code>, or otherwise passing strings
@@ -339,7 +339,7 @@ that can be used externally or come from an external source. -->
 that are used in content scripts that are injected into web pages,
 you need to use the-->
 如果您的扩展程序插入网页中的内容脚本嵌入资源（例如图片、脚本、CSS 样式等），您需要使用
-<a href="manifest.html#web_accessible_resources">web_accessible_resources</a> <!--@property
+<a href="manifest/web_accessible_resources.html">web_accessible_resources</a> <!--@property
 to whitelist these resources so that external Web pages can use them:-->
 属性将这些资源加入白名单，这样外部网页才能使用它们：
 </p>

@@ -63,7 +63,7 @@
 
 <h4> 新特性 </h4>
   <ul>
-    <li> <a href="manifest.html#sandbox">清单文件的 sandbox 项</a>允许您将扩展程序内的某些页面规定为自动运行在低权限的沙箱中，该沙箱不会受到
+    <li> <a href="manifest/sandbox.html">清单文件的 sandbox 项</a>允许您将扩展程序内的某些页面规定为自动运行在低权限的沙箱中，该沙箱不会受到
       <a href="contentSecurityPolicy.html">content_security_policy</a>
       的限制。
     <li> <a href="input.ime.html">输入法</a> API 允许扩展程序在 Chrome OS 上实现<a
@@ -184,14 +184,14 @@
 
 <h4> 清单文件更改 </h4>
   <ul>
-    <li>新的<a href="manifest.html#manifest_version">清单文件版本</a>字段指定您的扩展操作包需要的清单文件版本。从 Chrome 18
+    <li>新的<a href="manifest/manifest_version.html">清单文件版本</a>字段指定您的扩展操作包需要的清单文件版本。从 Chrome 18
       开始，您应该使用<a href="manifestVersion.html">清单文件版本 2</a>。
     <li>新的<a href="contentSecurityPolicy.html">内容安全策略（CSP）</a>字段用来定义扩展程序的策略，指定扩展程序能够加载和执行的内容类型。
     <li>大部分后台页面仅包括脚本文件的列表，对于这些后台页面，您可以使用新的
       <a href="background_pages.html">background.scripts</a>
       属性，Chrome 浏览器会自动为您生成后台页面。
     <li>新的
-      <a href="manifest.html#web_accessible_resources">web_accessible_resources</a>
+      <a href="manifest/web_accessible_resources.html">web_accessible_resources</a>
       字段指定希望在网页中使用的打包资源的路径。
   </ul>
 
@@ -225,8 +225,8 @@
 <h4> 对现有 API 的更改 </h4>
 
   <ul>
-    <li> <a href="omnibox.html">多功能狂 API</a>
-    现在可以在<a href="manifest.html#incognito">分离隐身模式</a>。
+    <li> <a href="omnibox.html">多功能框 API</a>
+    现在可以在<a href="manifest/incognito.html">分离式隐身模式</a>下使用。
   </ul>
 
 <h2 id="16"> Google Chrome 16 </h2>
@@ -248,7 +248,7 @@
 <h4> 清单文件更改 </h4>
   <ul>
     <li>新的
-      <a href="manifest.html#requirements">requirements</a> 字段允许您预先声明扩展程序的要求。例如，您可以使用这一字段指定您的应用要求 3D 图形支持，这样就可以使用诸如 CSS 3D 变换或 WebGL 之类的功能。
+      <a href="manifest/requirements.html">requirements</a> 字段允许您预先声明扩展程序的要求。例如，您可以使用这一字段指定您的应用要求 3D 图形支持，这样就可以使用诸如 CSS 3D 变换或 WebGL 之类的功能。
   </ul>
 
 <h4> 对现有 API 的增强 </h4>
@@ -295,7 +295,7 @@
 <h4> 清单文件更改 </h4>
   <ul>
     <li>新的
-      <a href="manifest.html#offline_enabled">offline_enabled</a>
+      <a href="manifest/offline_enabled.html">offline_enabled</a>
       字段让您指定您的应用即使在没有网络连接的情况下也能够很好地工作。
   </ul>
 
@@ -336,7 +336,7 @@
     <li>新的
       <a href="contentSecurityPolicy.html">content_security_policy</a>
       字段有助于阻止您的扩展程序中的<a href="http://blog.chromium.org/2011/07/writing-extensions-more-securely.html">跨站脚本漏洞</a>。
-    <li>新的 <a href="manifest.html#nacl_modules">nacl_modules</a>
+    <li>新的 <a href="manifest/nacl_modules.html">nacl_modules</a>
       字段让您将 Native Client 模块注册为 MIME 类型的内容处理器。
   </ul>
 
@@ -460,7 +460,7 @@
 
 <h4> 清单文件更改 </h4>
   <ul>
-    <li> <a href="manifest.html#homepage_url">homepage_url</a> 
+    <li> <a href="manifest/homepage_url.html">homepage_url</a> 
       属性允许您指定扩展程序或应用的主页。
   </ul>
 
@@ -495,7 +495,7 @@
 
 <h4> 清单文件更改 </h4>
   <ul>
-    <li>引入了<a href="manifest.html#incognito">分离的隐身模式</a>并作为可安装网上应用的默认值（也可用于扩展程序）。
+    <li>引入了<a href="manifest/incognito.html">分离式隐身模式</a>并作为可安装网上应用的默认值（也可用于扩展程序）。
     <li> <a href="tabs.html">标签页 API</a> 的
       <code>create()</code> 和 <code>update()</code>
       方法不再需要 "tabs" 权限，避免了导致<a href="permission_warnings.html">吓人对话框</a>的一种常见原因。
@@ -529,7 +529,7 @@
 
 <h4> 清单文件更改 </h4>
   <ul>
-    <li> <a href="manifest.html#geolocation">geolocation</a> 
+    <li> <a href="manifest/geolocation.html">geolocation</a> 
       权限让扩展程序访问用户的地理位置。
     <li><a href="match_patterns.html">匹配表达式</a>
       现在可以选择所有协议或所有 URL。

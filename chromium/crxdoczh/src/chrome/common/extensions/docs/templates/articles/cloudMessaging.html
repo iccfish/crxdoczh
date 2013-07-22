@@ -637,7 +637,7 @@ pushMessaging API，但是所有者检查失败了，它会收到 HTTP 状态码
 <!--@One circumstance in which the ownership check commonly fails is when you are
 developing an app and you run the app without uploading it and re-downloading
 it from the Chrome Web Store. In this situation your app may not have a
-<a href="manifest.html#key">key</a> field in its manifest.json file.
+<a href="manifest/key.html">key</a> field in its manifest.json file.
 The <code>key</code> field gives an app its Chrome Web Store ID
 (a 32 character alphabetic code, such as "bafimiidcfafikaonocgmmcpbbhfjjik").
 If you run a version of your app without a key, the app will use a
@@ -650,7 +650,7 @@ the downloaded key, and the app's ID would appear to be different than
 the ID of the downloaded app.-->
 所有者检查失败的一种常见情况是您正在开发一个应用，您没有将它上传并重新从
 Chrome 网上应用店上下载下来运行。在这种情况下，您的应用的 manifest.json
-文件中可能没有 <a href="manifest.html#key">key</a> 字段。<code>key</code>
+文件中可能没有 <a href="manifest/key.html">key</a> 字段。<code>key</code>
 字段为应用指定了它的 Chrome 网上应用店标识符（一个包含 32
 个字母的代码，例如“bafimiidcfafikaonocgmmcpbbhfjjik”）。如果您运行的应用没有
 key，应用会使用随机生成的标识符，不会和 Chrome 网上应用店中的应用标识符匹配。例如，如果您从 original_app_dir 目录将您的应用上传至 Chrome

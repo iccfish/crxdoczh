@@ -1,0 +1,38 @@
+<h1 id="incognito">清单文件——隐身模式</h1>
+
+<p>
+<!--@Either "spanning" or "split", to specify how this extension will
+behave if allowed to run in incognito mode.-->
+可以是 "spanning" 或 "split"，指定该扩展程序如果允许在隐身模式中运行时会如何表现。
+</p>
+
+<p>
+<!--@The default for extensions is "spanning", which means that the extension
+will run in a single shared process. Any events or messages from an incognito
+tab will be sent to the shared process, with an <em>incognito</em> flag
+indicating where it came from. Because incognito tabs cannot use this shared
+process, an extension using the "spanning" incognito mode will not be able to
+load pages from its extension package into the main frame of an incognito tab.-->
+对于扩展程序来说默认值为 "spanning"，意味着扩展程序将会在单个共享进程中运行，任何来自隐身标签页的事件或消息都将发送至共享的进程，以 <em>incognito</em> 标志指示它的来源。由于隐身标签页无法使用这一共享进程，使用 "spanning" 隐身模式的扩展程序不能将扩展程序包中的页面加载到隐身标签的主框架。
+</p>
+
+<p>
+<!--@The default for installable web apps is "split",
+which means that all app pages in
+an incognito window will run in their own incognito process. If the app or extension contains a background page, that will also run in the incognito process.
+This incognito process runs along side the regular process, but has a separate
+memory-only cookie store. Each process sees events and messages only from its
+own context (for example, the incognito process will see only incognito tab updates).
+The processes are unable to communicate with each other.-->
+对于可安装的网络应用来说默认值为 "split"，意味着隐身窗口中的所有应用页面将会在它们自己的隐身进程中运行。如果应用或扩展程序包含后台网页，它们也会在隐身进程中运行。隐身进程与普通进程同时运行，但是使用单独的仅保留在内存中的 Cookie 存储区。每一个进程只能接收到来自它自己上下文的事件与消息（例如，隐身进程只会看到隐身标签页的更新）。两个进程之间无法互相通信。
+</p>
+
+<p>
+<!--@As a rule of thumb, if your extension or app needs to load a tab in an incognito browser, use
+<em>split</em> incognito behavior. If your extension or app needs to be logged
+into a remote server or persist settings locally, use <em>spanning</em>
+incognito behavior.-->
+选择的准则是，如果您的扩展程序或者应用需要在隐身模式下加载标签页，请使用
+<em>"split"</em>
+隐身行为。如果您的扩展程序或应用需要登录远程服务器或者在本地保留设置，请使用 <em>"spanning"</em> 隐身模式。
+</p>

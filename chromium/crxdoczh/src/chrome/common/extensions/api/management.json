@@ -42,8 +42,8 @@
             "type": "string"
           },
           "version": {
-//@            "description": "The <a href='manifest.html#version'>version</a> of this extension, app, or theme.",
-            "description": "扩展程序、应用或主题背景的<a href='manifest.html#version'>版本</a>。",
+//@            "description": "The <a href='manifest/version.html'>version</a> of this extension, app, or theme.",
+            "description": "扩展程序、应用或主题背景的<a href='manifest/version.html'>版本</a>。",
             "type": "string"
           },
           "mayDisable": {
@@ -103,8 +103,8 @@
             "type": "string"
           },
           "icons": {
-//@            "description": "A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the <a href='manifest.html#icons'>manifest documentation on icons</a> for more details.",
-            "description": "图标信息列表。注意这只反映声明在清单文件中的信息，URL 指定的实际图像可能比声明的更大或更小，所以您引用这些图像时可能要考虑在 <img> 标签中显式使用 width 和 height 属性。有关更多细节，请参见<a href='manifest.html#icons'>清单文件：icons</a>。",
+//@            "description": "A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the <a href='manifest/icons.html'>manifest documentation on icons</a> for more details.",
+            "description": "图标信息列表。注意这只反映声明在清单文件中的信息，URL 指定的实际图像可能比声明的更大或更小，所以您引用这些图像时可能要考虑在 <img> 标签中显式使用 width 和 height 属性。有关更多细节，请参见<a href='manifest/icons.html'>清单文件：icons</a>。",
             "type": "array",
             "optional": true,
             "items": {

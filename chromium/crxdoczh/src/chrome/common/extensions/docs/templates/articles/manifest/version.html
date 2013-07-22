@@ -1,0 +1,55 @@
+<h1 id="version">清单文件——版本</h1>
+
+<p>
+<!--@One to four dot-separated integers
+identifying the version of this extension.
+A couple of rules apply to the integers:
+they must be between 0 and 65535, inclusive,
+and non-zero integers can't start with 0.
+For example, 99999 and 032 are both invalid.-->
+一至四个用点（半角英文句号）分开的整数，标识扩展程序的版本。这些整数应该符合这两条规则：范围在 0～65535 之间（包括 0 和 65535），非零整数不能以 0 开头。例如 99999 和 032 都是无效的。
+</p>
+
+<p>
+<!--@Here are some examples of valid versions:-->
+如下是一些有效的版本号的例子：
+</p>
+
+<ul>
+  <li> <code>"version": "1"</code> </li>
+  <li> <code>"version": "1.0"</code> </li>
+  <li> <code>"version": "2.10.2"</code> </li>
+  <li> <code>"version": "3.1.2.4567"</code> </li>
+</ul>
+
+<p>
+<!--@The autoupdate system compares versions
+to determine whether an installed extension
+needs to be updated.
+If the published extension has a newer version string
+than the installed extension,
+then the extension is automatically updated.-->
+自动更新系统比较版本号来确定已安装的某个扩展程序是否需要更新。如果已发布的扩展程序比已安装的扩展程序有更新的版本字符串，该扩展程序将会自动更新。
+</p>
+
+<p>
+<!--@The comparison starts with the leftmost integers.
+If those integers are equal,
+the integers to the right are compared,
+and so on.
+For example, 1.2.0 is a newer version than 1.1.9.9999.-->
+比较将从最左边的整数开始。如果相等，比较右边的整数，以此类推。例如，1.2.0
+比 1.1.9.9999 新。
+</p>
+
+<p>
+<!--@A missing integer is equal to zero.
+For example, 1.1.9.9999 is newer than 1.1.-->
+省略整数的等于零，例如 1.1.9.9999 比 1.1 新。
+</p>
+
+<p>
+<!--@For more information, see
+<a href="autoupdate.html">Autoupdating</a>.-->
+有关更多信息，请参见<a href="autoupdate.html">自动更新</a>。
+</p>

@@ -1,0 +1,79 @@
+<h1 id="nacl_modules">清单文件——NaCl 模块</h1>
+
+<p>
+<!--@One or more mappings from MIME types to the Native Client module
+that handles each type.
+For example, the bold code in the following snippet
+registers a Native Client module as the content handler
+for the OpenOffice spreadsheet MIME type.-->
+一个或多个从 MIME 类型至 Native Client
+模块的映射，用来处理这些类型。例如，如下片段中的加粗代码将一个
+Native Client 模块注册为 OpenOffice 电子表格 MIME 类型的内容处理器。
+</p>
+
+<pre>
+{
+  "name": "Native Client OpenOffice 电子表格查看器",
+  "version": "0.1",
+  "description": "直接在您的浏览器中打开 OpenOffice 电子表格。",
+  <b>"nacl_modules": [{
+    "path": "OpenOfficeViewer.nmf",
+    "mime_type": "application/vnd.oasis.opendocument.spreadsheet"
+  }]</b>
+}
+</pre>
+
+<p>
+<!--@The value of "path" is the location of a Native Client manifest
+(a <code>.nmf</code> file)
+within the extension directory.
+For more information on Native Client and <code>.nmf</code> files, see the
+<a href="http://code.google.com/chrome/nativeclient/docs/technical_overview.html">Native Client Technical Overview</a>.-->
+"path" 的值为扩展程序目录中 Native Client 清单文件（一个 <code>.nmf</code>
+文件）的位置。有关 Native Client 以及 .nmf 文件的更多信息，请参见
+<a href="http://code.google.com/chrome/nativeclient/docs/technical_overview.html">Native Client技术概述</a>（英文）。
+</p>
+
+<p>
+<!--@Each MIME type can be associated with only one <code>.nmf</code> file,
+but a single <code>.nmf</code> file might handle multiple MIME types.
+The following example shows an extension
+with two <code>.nmf</code> files
+that handle three MIME types.-->
+每一个 MIME 类型只能与一个 <code>.nmf</code> 文件关联，但是一个
+<code>.nmf</code> 文件可以处理多个 MIME
+类型。如下例子演示一个扩展程序，含有两个 <code>.nmf</code> 文件，处理三种
+MIME 类型。
+</p>
+
+<pre>
+{
+  "name": "电子表格查看器",
+  "version": "0.1",
+  "description": "直接在您的浏览器中打开 OpenOffice 和 Excel 电子表格。",
+  "nacl_modules": [{
+    "path": "OpenOfficeViewer.nmf",
+    "mime_type": "application/vnd.oasis.opendocument.spreadsheet"
+  },
+  {
+    "path": "OpenOfficeViewer.nmf",
+    "mime_type": "application/vnd.oasis.opendocument.spreadsheet-template"
+  },
+  {
+    "path": "ExcelViewer.nmf",
+    "mime_type": "application/excel"
+  }]
+}
+</pre>
+
+<p class="note">
+<strong><!--@Note:-->注意：</strong>
+<!--@You can use Native Client modules in extensions
+without specifying "nacl_modules".
+Use "nacl_modules" only if you want the browser
+to use your Native Client module
+to display a particular type of content.-->
+您不指定 "nacl_modules" 也能在扩展程序中使用 Native Client
+模块，只有当您需要浏览器使用您的 Native Client
+模块显示特定类型的内容时才需要使用 "nacl_modules"。
+</p>

@@ -1,0 +1,73 @@
+<h1 id="web_accessible_resources">清单文件——可在网页中访问的资源</h1>
+
+<p>
+<!--@An array of strings specifying the paths (relative to the package root) of
+packaged resources that are expected to be usable in the context of a web page.
+For example, an extension that injects a content script with the intention of
+building up some custom interface for <code>example.com</code> would whitelist
+any resources that interface requires (images, icons, stylesheets, scripts,
+etc.) as follows:-->
+字符串数组，指定扩展程序包内可以在网页中使用的资源路径（相对于扩展程序包的根目录）。例如，为了在 example.com 上建立自定义界面，而插入内容脚本的扩展程序可以将界面需要的所有资源（图片、图标、样式表、脚本等等）加入白名单，如下所示：
+</p>
+
+<pre>{
+  ...
+  "web_accessible_resources": [
+    "images/my-awesome-image1.png",
+    "images/my-amazing-icon1.png",
+    "style/double-rainbow.css",
+    "script/double-rainbow.js"
+  ],
+  ...
+}</pre>
+
+<p>
+<!--@These resources would then be available in a webpage via the URL
+<code>chrome-extension://[PACKAGE ID]/[PATH]</code>, which can be generated with
+the $ref:runtime.getURL method. Whitelisted resources are served with appropriate
+<a href="http://www.w3.org/TR/cors/">CORS</a> headers, so they're available via
+mechanisms like XHR.-->
+这些资源将可以通过 URL
+<code>chrome-extension://[扩展程序包的标识符]/[路径]</code>
+使用，URL 可以通过 $ref:runtime.getURL
+方法产生。加入白名单的资源将以合适的
+<a href="http://www.w3.org/TR/cors/">CORS</a>
+头信息提供，所以它们可以通过 XHR 之类的机制使用。
+</p>
+
+<p>
+<!--@Injected content scripts themselves do not need to be whitelisted.-->
+插入的内容脚本本身不需要加入白名单。
+</p>
+
+<p>
+<!--@Prior to manifest version 2 all resources within an extension could be accessed
+from any page on the web. This allowed a malicious website to
+<a href="http://en.wikipedia.org/wiki/Device_fingerprint">fingerprint</a> the
+extensions that a user has installed or exploit vulnerabilities (for example
+<a href="http://en.wikipedia.org/wiki/Cross-site_scripting">XSS bugs</a>)within
+installed extensions. Limiting availability to only resources which are
+explicitly intended to be web accessible serves to both minimize the available
+attack surface and protect the privacy of users.-->
+在清单文件版本 2 之前，扩展程序内的所有资源都可以从任何网页中访问，这样恶意网站就能收集用户已安装扩展程序的<a href="http://en.wikipedia.org/wiki/Device_fingerprint">指纹信息</a>或者利用扩展程序中的漏洞（例如 <a href="http://en.wikipedia.org/wiki/Cross-site_scripting">XSS</a> 漏洞）。将资源访问限制为明确需要可以通过网络访问的那些，有助于尽可能减小可用的攻击层面，并保护用户的隐私。
+</p>
+
+<h2 id="availability"><!--@Default Availability-->默认情况</h2>
+
+<p>
+<!--@Resources inside of packages using <a href="#manifest_version"><code>manifest_version</code></a>
+2 or above are <strong>blocked by default</strong>, and must be whitelisted
+for use via this property.-->
+使用 <a href="#manifest_version"><code>manifest_version</code></a> 2
+或更高的扩展程序包内的资源<strong
+>默认情况下被阻止</strong>，必须通过这一属性加入白名单。
+</p>
+
+<p>
+<!--@Resources inside of packages using <code>manifest_version</code> 1 are available
+by default, but <em>if</em> you do set this property, then it will be treated as
+a complete list of all whitelisted resources. Resources not listed will be
+blocked.-->
+使用 <code>manifest_version</code> 1
+的扩展程序包内的资源默认情况下可用，但是<em>只要</em>您设置了这一属性，它将以所有加入白名单资源的完整列表来对待，没有列出的资源将被阻止。
+</p>

@@ -1,0 +1,63 @@
+<h1 id="icons">清单文件——图标</h1>
+
+<p>
+<!--@One or more icons that represent the extension, app, or theme.
+You should always provide a 128x128 icon;
+it's used during installation and by the Chrome Web Store.
+Extensions should also provide a 48x48 icon,
+which is used in the extensions management page
+(chrome://extensions).
+You can also specify a 16x16 icon to be used as the favicon
+for an extension's pages.
+The 16x16 icon is also displayed in the experimental extension
+<a href="experimental.infobars.html">infobar</a>
+feature.-->
+一个或多个代表扩展程序、应用或主题背景的图标。您一定要提供一个 128×128
+大小的图标，用与安装过程中以及 Chrome 网上应用店。扩展程序同时应该提供一个
+48×48 大小的图标，用于扩展程序管理页面（chrome://extensions）。您也可以再指定一个
+16×16 大小的图标，用于扩展程序页面的收藏夹图标，16×16
+的图标也将显示在实验性的扩展程序<a
+href="experimental.infobars.html">信息栏</a>中。
+</p>
+
+<p>
+<!--@Icons should generally be in PNG format,
+because PNG has the best support for transparency.
+They can, however, be in any format supported by WebKit,
+including BMP, GIF, ICO, and JPEG.
+Here's an example of specifying the icons:-->
+通常图标应该使用 PNG 格式，因为 PNG
+格式对透明度的支持最佳。但图标也可以是其他任何 WebKit 支持的格式，包括
+BMP、GIF、ICO 和 JPEG。如下是一个指定图标的例子：
+</p>
+
+<pre>
+"icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+</pre>
+
+<p class="note">
+<!--@You may provide icons of any other size you wish, and Chrome will attempt to use
+the best size where appropriate. For example, Windows often requires 32-pixel
+icons, and if the app includes a 32-pixel icon, Chrome will choose that instead
+of shrinking a 48-pixel icon down. However, you should ensure that all of your
+icons are square, or unexpected behavior may result.-->
+您可以提供您希望的任何其他大小的图标，Chrome 浏览器会在恰当的时候尝试使用最合适的大小。例如，Windows 通常需要 32 像素的图标，如果应用包含了 32 像素的图标，Chrome 浏览器会选择它，而不是将 48 像素的图标缩小。然而，您应该确保您的所有图标都是正方形的，否则可能会导致意料之外的结果。
+</p>
+
+<p>
+<!--@If you upload your extension, app, or theme using the
+<a href="https://chrome.google.com/webstore/developer/dashboard">Chrome Developer Dashboard</a>,
+you'll need to upload additional images,
+including at least one screenshot of your extension.
+For more information,
+see the
+<a href="http://code.google.com/chrome/webstore/">Chrome Web Store
+developer documentation</a>.-->
+如果您使用 <a
+href="https://chrome.google.com/webstore/developer/dashboard">Chrome
+开发者信息中心</a>上传您的扩展程序、应用或主题背景，您还需要上传额外的图像，包括至少一张您的扩展程序的屏幕截图。有关更多信息，请参见
+<a href="https://code.google.com/chrome/webstore/">Chrome
+网上应用店开发者文档</a>（英文）。
+</p>
