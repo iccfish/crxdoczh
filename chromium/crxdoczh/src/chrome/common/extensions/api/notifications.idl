@@ -89,7 +89,8 @@ namespace notifications {
     // 多项目通知的项目。
     NotificationItem[]? items;
 
-    // Current progress ranges from 0 to 100.
+    // <!--@Current progress ranges from 0 to 100.-->
+    // 当前进度，从 0 到 100。
     long? progress;
   };
 

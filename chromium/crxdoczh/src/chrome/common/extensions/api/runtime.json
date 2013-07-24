@@ -42,7 +42,6 @@
           "id": {"type": "string", "optional": true, "description": "打开连接的扩展程序或应用的标识符（如果有的话）。"},
 //@          "url": {"type": "string", "optional": true, "description": "The URL of the page or frame that opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab or content script."}
           "url": {"type": "string", "optional": true, "description": "打开连接的页面或框架 URL（如果有的话），<strong>只有</strong>当连接从标签页或内容脚本打开时才会存在这一属性。"}
-          "url": {"type": "string", "optional": true, "description": ""}
         }
       }
     ],
