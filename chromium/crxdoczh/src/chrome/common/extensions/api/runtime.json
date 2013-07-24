@@ -38,10 +38,11 @@
         "properties": {
 //@          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "The $ref:tabs.Tab which opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab (including content scripts), and <strong>only</strong> if the receiver is an extension, not an app."},
           "tab": {"$ref": "tabs.Tab", "optional": true, "description": "打开连接的 $ref:Tab（标签页），如果有的话。<b>只有</b>当连接从标签页或内容脚本中打开，<b>并且</b>接收方是扩展程序而不是应用时才会存在这一属性。"},
-//@          "id": {"type": "string", "description": "The ID of the extension or app that opened the connection."},
-          "id": {"type": "string", "description": "打开连接的扩展程序或应用的标识符。"},
-//@          "url": {"type": "string", "optional": true, "description": "The URL of the page or frame that opened the connection. This property will <strong>only</strong> be present when the connection was opened from a tab (including content scripts)."}
-          "url": {"type": "string", "optional": true, "description": "打开连接的页面或框架 URL，<strong>只有</strong>当连接从标签页（包括内容脚本）打开时才会存在这一属性。"}
+//@          "id": {"type": "string", "optional": true, "description": "The ID of the extension or app that opened the connection, if any."},
+          "id": {"type": "string", "optional": true, "description": "打开连接的扩展程序或应用的标识符（如果有的话）。"},
+//@          "url": {"type": "string", "optional": true, "description": "The URL of the page or frame that opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab or content script."}
+          "url": {"type": "string", "optional": true, "description": "打开连接的页面或框架 URL（如果有的话），<strong>只有</strong>当连接从标签页或内容脚本打开时才会存在这一属性。"}
+          "url": {"type": "string", "optional": true, "description": ""}
         }
       }
     ],
@@ -437,7 +438,9 @@
         "name": "onConnect",
         "type": "function",
         "nocompile": true,
-        "anonymous": true,
+        "options": {
+          "unmanaged": true
+        },
 //@        "description": "Fired when a connection is made from either an extension process or a content script.",
         "description": "当连接从扩展程序进程或内容脚本中发起时产生。",
         "parameters": [
@@ -448,7 +451,9 @@
         "name": "onConnectExternal",
         "type": "function",
         "nocompile": true,
-        "anonymous": true,
+        "options": {
+          "unmanaged": true
+        },
 //@        "description": "Fired when a connection is made from another extension.",
         "description": "当连接从另一个扩展程序发起时产生。",
         "parameters": [
@@ -458,12 +463,14 @@
       {
         "name": "onMessage",
         "type": "function",
-        "anonymous": true,
+        "options": {
+          "unmanaged": true
+        },
 //@        "description": "Fired when a message is sent from either an extension process or a content script.",
         "description": "当消息从扩展程序进程或者内容脚本中发送时产生。",
         "parameters": [
-//@          {"name": "message", "type": "any", "description": "The message sent by the calling script."},
-          {"name": "message", "type": "any", "description": "调用脚本发送的消息。"},
+//@          {"name": "message", "type": "any", "optional": true, "description": "The message sent by the calling script."},
+          {"name": "message", "type": "any", "optional": true, "description": "调用脚本发送的消息。"},
           {"name": "sender", "$ref": "MessageSender" },
 //@          {"name": "sendResponse", "type": "function", "description": "Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object. If you have more than one <code>onMessage</code> listener in the same document, then only one may send a response. This function becomes invalid when the event listener returns, unless you return true from the event listener to indicate you wish to send a response asynchronously (this will keep the message channel open to the other end until <code>sendResponse</code> is called)." }
           {"name": "sendResponse", "type": "function", "description": "当您产生响应时调用（最多一次）的函数，参数可以是任何可转化为 JSON 的对象。如果您在同一个文档中有一个以上的 <code>onRequest</code> 事件处理函数，只有其中一个可以发送响应。当事件处理函数返回时，该函数将失效，除非您在事件处理函数中返回 true，表示您希望通过异步方式发送响应（这样，与另一端之间的消息通道将会保持打开状态，直到调用了 <code>sendResponse</code>）。",
@@ -487,12 +494,14 @@
       {
         "name": "onMessageExternal",
         "type": "function",
-        "anonymous": true,
+        "options": {
+          "unmanaged": true
+        },
 //@        "description": "Fired when a message is sent from another extension/app. Cannot be used in a content script.",
         "description": "当消息从另一个扩展程序/应用发送时产生。不能在内容脚本中使用。",
         "parameters": [
-//@          {"name": "message", "type": "any", "description": "The message sent by the calling script."},
-          {"name": "message", "type": "any", "description": "调用脚本发送的消息。"},
+//@          {"name": "message", "type": "any", "optional": true, "description": "The message sent by the calling script."},
+          {"name": "message", "type": "any", "optional": true, "description": "调用脚本发送的消息。"},
           {"name": "sender", "$ref": "MessageSender" },
 //@          {"name": "sendResponse", "type": "function", "description": "Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object. If you have more than one <code>onMessage</code> listener in the same document, then only one may send a response. This function becomes invalid when the event listener returns, unless you return true from the event listener to indicate you wish to send a response asynchronously (this will keep the message channel open to the other end until <code>sendResponse</code> is called)." }
           {"name": "sendResponse", "type": "function", "description": "当您产生响应时调用（最多一次）的函数，参数可以是任何可转化为 JSON 的对象。如果您在同一个文档中有一个以上的 <code>onRequest</code> 事件处理函数，只有其中一个可以发送响应。当事件处理函数返回时，该函数将失效，除非您在事件处理函数中返回 true，表示您希望通过异步方式发送响应（这样，与另一端之间的消息通道将会保持打开状态，直到调用了 <code>sendResponse</code>）。",

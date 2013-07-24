@@ -395,7 +395,7 @@
   "syncFileSystem": {
     "了解更多": [
       {
-        "link": "http://developer.chrome.com/trunk/apps/app_storage.html",
+        "link": "app_storage.html",
         "text": "管理数据"
       },
       {

@@ -183,9 +183,8 @@
             "name": "createData",
             "properties": {
               "url": {
-                "type": "string",
-//@                "description": "A URL or list of URLs to open as tabs in the window. Fully-qualified URLs must include a scheme (i.e. 'http://www.google.com', not 'www.google.com'). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.",
-                "description": "要在窗口中打开的一个 URL 或 URL 列表。完整的 URL 必须包含协议（即\"http://www.google.com\"，而不是\"www.google.com\"），而相对 URL 相对于扩展程序中的当前页面。默认为“打开新的标签页”页面。",
+//@                "description": "A URL or array of URLs to open as tabs in the window. Fully-qualified URLs must include a scheme (i.e. 'http://www.google.com', not 'www.google.com'). Relative URLs will be relative to the current page within the extension. Defaults to the New Tab Page.",
+                "description": "要在窗口中打开的一个 URL 或 URL 数组。完整的 URL 必须包含协议（即\"http://www.google.com\"，而不是\"www.google.com\"），而相对 URL 相对于扩展程序中的当前页面。默认为“打开新的标签页”页面。",
                 "optional": true,
                 "choices": [
                   {"type": "string"},
