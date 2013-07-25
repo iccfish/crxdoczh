@@ -34,10 +34,6 @@ namespace experimental.systemInfo.storage {
     // 存储空间的总共大小，以字节为单位。
     // Default value is 0 if query operation fails.
     double capacity;
-    // <!--@The available amount of the storage space, in bytes.-->
-    // 存储空间的可用大小，以字节为单位。
-    // Default value is 0 if query operation fails.
-    double availableCapacity;
   };
 
   [inline_doc] enum EjectDeviceResultCode {
