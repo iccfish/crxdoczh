@@ -554,11 +554,14 @@ namespace downloads {
                             GetFileIconCallback callback);
 
     // <!--@Open the downloaded file now if the $ref:DownloadItem is complete;
-    // returns an error through $ref:runtime.lastError otherwise. An
-    // $ref:onChanged event will fire when the item is opened for the first
-    // time.-->
+    // returns an error through $ref:runtime.lastError otherwise. Requires the
+    // <code>"downloads.open"</code> permission in addition to the
+    // <code>"downloads"</code> permission. An $ref:onChanged event will fire
+    // when the item is opened for the first time.-->
     // 如果 $ref:DownloadItem（下载项）已完成则立即打开下载的文件，否则通过
-    // $ref:runtime.lastError 返回错误。项目第一次打开时将产生
+    // $ref:runtime.lastError 返回错误。该方法除了需要
+    // <code>"downloads"</code> 权限外还需要
+    // <code>"downloads.open"</code> 权限。项目第一次打开时将产生
     // $ref:onChanged 事件。
     // |downloadId|: <!--@The identifier for the downloaded file.-->
     // 已下载文件的标识符。

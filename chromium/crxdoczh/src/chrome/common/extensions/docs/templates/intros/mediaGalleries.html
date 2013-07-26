@@ -11,9 +11,9 @@ API，您可以提示用户授予访问媒体库的权限。权限对话框会�
 
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
 <p><!--@The media galleries API has two axes of permission parameters; the locations
-that can be accessed, and the type of access (read-only, read-write,
-add-files).-->
-媒体库 API 包含两种权限：可以访问的位置以及访问类型（只读、读写、添加文件）。
+that can be accessed, and the types of access (read-only, copy-to, etc).-->
+媒体库 API
+包含两种权限：可以访问的位置以及访问类型（只读、复制到等等）。
 </p>
 
 <p><!--@On the location axis, specifying no location-type permission parameters
@@ -49,15 +49,18 @@ runtime by using the media gallery management dialog. For example:-->
   ...
 }</pre>
 
-<p><!--@This permission will trigger an install time permission prompt
+<p><!--@The above permission will trigger an install time permission prompt
 and let the app read from all auto-detected media galleries on the
 user's computer. The user may add or remove galleries using the
 media gallery management dialog, after which the app will be able
 to read all the media files from galleries that the user has selected.-->
-该权限在安装时会触发权限提示，让应用读取用户计算机上所有自动检测到的媒体库。用户可以使用媒体库管理对话框添加或删除库，之后应用就能够读取用户选择的库中的所有媒体文件。
+以上权限在安装时会触发权限提示，让应用读取用户计算机上所有自动检测到的媒体库。用户可以使用媒体库管理对话框添加或删除库，之后应用就能够读取用户选择的库中的所有媒体文件。
 </p>
 
-<p><!--@Currently "read" is the only access type supported by
-this API. Read-write and add-file access with be implemented soon.-->
-目前该 API 只支持 "read"（读取）访问类型，读写和添加文件的访问很快就会实现。
-</p>
+<p><!--@Another possible access type is "copyTo". Specifying only "copyTo" on the
+access type axis will permit using accessible media galleries as a destination
+for copyTo() operations. "copyTo" and "read" can both be specified to obtain
+both types of permissions to accessible media galleries.-->
+另一种可能的访问类型是 "copyTo"，只在访问类型中指定 "copyTo"
+后将允许在 copyTo() 操作中以可访问的媒体库作为目标。"copyTo" 与 "read"
+可以同时指定，获得对可访问媒体库的这两种权限。 </p>

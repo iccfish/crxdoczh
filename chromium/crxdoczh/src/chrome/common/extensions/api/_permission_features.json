@@ -193,6 +193,10 @@
       "extension", "packaged_app"
     ]
   },
+  "downloads.open": {
+    "channel": "beta",
+    "extension_types": ["extension"]
+  },
   "dial": {
     "channel": "stable",
     "extension_types": ["extension"],
@@ -350,6 +354,10 @@
     "channel": "stable",
     "extension_types": [ "platform_app" ]
   },
+  "mediaGalleries.copyTo": {
+    "channel": "stable",
+    "extension_types": [ "platform_app" ]
+  },
   // TODO(thestig) Remove this as part of http://crbug.com/144496
   "mediaGalleriesPrivate": {
     "channel": "stable",
@@ -388,7 +396,7 @@
     ]
   },
   "musicManagerPrivate": {
-    "channel": "dev",
+    "channel": "stable",
     "extension_types": ["platform_app"],
     "whitelist": [
       "4B1D0E19C6C43C008C44A8278C8B5BFE15ABEB3C", // Music Manager
