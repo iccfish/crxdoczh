@@ -1,21 +1,28 @@
-<h2 id="overview">Overview</h2>
+<h2 id="overview"><!--@Overview-->概述</h2>
 <p>
-  To start retrieving location information, you need to create a location watch
+  <!--@To start retrieving location information, you need to create a location watch
   by calling $ref:location.watchLocation, passing in
-  the location watch details via the <code>requestInfo</code> parameter:
+  the location watch details via the <code>requestInfo</code> parameter:-->
+  要开始接收位置信息，您需要调用 $ref:location.watchLocation 监视位置，通过
+  <code>requestInfo</code> 参数传递位置监视详情：
 </p>
 
 <pre>chrome.location.watchLocation(name, requestInfo);</pre>
 <p>
-  You also need to add a listener
+  <!--@You also need to add a listener
   for the $ref:location.onLocationUpdate event.
   Chrome will fire this event after you create your location watch, and
   it will keep firing the event every time the geographic
-  location of the host machine changes, until you call $ref:location.clearWatch.
+  location of the host machine changes, until you call $ref:location.clearWatch.-->
+  您还需要为 $ref:location.onLocationUpdate
+  事件添加一个监听器。在您开始位置监视后，Chrome
+  浏览器会产生该事件，并且每一次主机的地理位置更改时，还会产生该事件，直到您调用
+  $ref:location.clearWatch 为止。
 </p>
 <p>
-  Here's sample code
-  to listen for location updates:
+  <!--@Here's sample code
+  to listen for location updates:-->
+  如下是监听位置更新的示例代码：
 </p>
 <pre>
   chrome.location.onLocationUpdate.addListener(function(position) {
