@@ -3,99 +3,135 @@
 // found in the LICENSE file.
 // TODO(vadimt): Consider reusing WebKit/Blink types, if this is possible.
 
-// <!--@The <code>chrome.location</code> API augments the events from the
-// <a href="http://dev.w3.org/geo/api/spec-source.html">HTML Geolocation API</a>
-// to be event page compatible.-->
-// <code>chrome.location</code> API 扩充 <a
-// href="http://dev.w3.org/geo/api/spec-source.html">HTML
-// 地理定位 API</a> 的事件，使之与事件页面兼容。 
+// <!--@Use the-->使用 <code>chrome.location</code> API <!--@to retrieve the geographic location
+// of the host machine. This API is a version of the <a
+// href="http://dev.w3.org/geo/api/spec-source.html">HTML Geolocation API</a>
+// that is compatible with event pages.-->
+// 获取计算机的地理位置。该 API 是 <a
+// href="http://dev.w3.org/geo/api/spec-source.html">HTML 地理定位 API</a>
+// 的另一种版本，与事件页面兼容。
 namespace location {
-  // Coordinates part of the Location object.
+  // <!--@Coordinates part of the Location object.-->
+  // Location 对象的坐标部分。
   dictionary Coordinates {
-    // The geographic latitude specified in degrees.
+    // <!--@The geographic latitude specified in degrees.-->
+    // 地理纬度，以度为单位。
     double latitude;
 
-    // The geographic longitude specified in degrees.
+    // <!--@The geographic longitude specified in degrees.-->
+    // 地理经度，以度为单位。
     double longitude;
 
-    // The height of the position, specified in meters above the [WGS84]
-    // ellipsoid, or null if Chrome cannot provide altitude information.
+    // <!--@The height of the position, specified in meters above the [WGS84]
+    // ellipsoid, or null if Chrome cannot provide altitude information.-->
+    // 位置的高度，以 [WGS84] 椭球面上多少米表示。如果 Chrome 浏览器无法提供
+    // 高度信息则为 null。
     double? altitude;
 
-    // The accuracy of the latitude and longitude coordinates, in meters. This
-    // represents the radius of a circle around the given location.
+    // <!--@The accuracy of the latitude and longitude coordinates, in meters. This
+    // represents the radius of a circle around the given location.-->
+    // 纬度和经度坐标的精度，以米为单位，表示以指定位置为圆心的圆的半径。
     double accuracy;
 
-    // The accuracy in meters of the 'altitude' attribute if it's not null,
-    // otherwise, null.
+    // <!--@The accuracy in meters of the 'altitude' attribute if it's not null,
+    // otherwise, null.-->
+    // altitude 属性的精度，以米为单位。如果 altitude 为 null 则该属性也为
+    // null。
     double? altitudeAccuracy;
 
-    // The direction of travel of the hosting device and is specified in
+    // <!--@The direction of travel of the hosting device and is specified in
     // degrees, where 0 <= heading < 360, counting clockwise relative to the
     // true north. If the Chrome cannot provide heading information, the value
     // of this attribute is null. If the hosting device is stationary (i.e. the
     // value of the speed attribute is 0), then the value of the heading
-    // attribute is NaN.
+    // attribute is NaN.-->
+    // 主机设备的方向，以度为单位，且 0 <= heading <=
+    // 360，相对于真北以顺时针方向计算。如果 Chrome
+    // 浏览器无法提供方向信息，该属性的值为
+    // null。如果主机设备处于静止状态（即 speed 属性为 0），则该属性的值为
+    // NaN。
     double? heading;
 
-    // The magnitude of the horizontal component of the hosting device's current
+    // <!--@The magnitude of the horizontal component of the hosting device's current
     // velocity and is specified in meters per second. If the Chrome cannot
-    // provide speed information, the value of this attribute is null.
+    // provide speed information, the value of this attribute is null.-->
+    // 主机设备当前速度的水平分量大小，单位为米每秒。如果 Chrome
+    // 浏览器无法提供速度信息，该属性的值为 null。
     double? speed;
   };
 
-  // Parameter of onLocationUpdate event's listener.
+  // <!--@Parameter of onLocationUpdate event's listener.-->
+  // onLocationUpdate 事件监听器的参数。
   dictionary Location {
-    // Location watch request name.
+    // <!--@Location watch request name.-->
+    // 位置监视请求名称。
     DOMString name;
 
-    // Coordinates and their accuracy.
+    // <!--@Coordinates and their accuracy.-->
+    // 坐标及其精度。
     Coordinates coords;
 
-    // The time when the Location object was acquired in milliseconds since the
-    // start of the Unix Epoch.
+    // <!--@The time when the Location object was acquired in milliseconds since the
+    // start of the Unix Epoch.-->
+    // 获取 Location 对象的事件，表示为 1970 年 1 月 1 日以来所经过的毫秒数。
     double timestamp;
   };
 
-  // Parameter of watchLocation call.
+  // <!--@Parameter of watchLocation call.-->
+  // watchLocation 调用的参数。
   dictionary WatchLocationRequestInfo {
-    // Minimum distance between location updates, in meters. Defaults to 0 - any
-    // change in location will be reported.
+    // <!--@Minimum distance between location updates, in meters. Defaults to 0 - any
+    // change in location will be reported.-->
+    // 两次位置更新之间的最小距离，以米为单位，默认为 0，即报告所有位置的改变。
     double? minDistanceInMeters;
 
-    // Minimum time interval between location updates, in milliseconds. Defaults
-    // to 0 - system-defined frequency of updates will be used.
+    // <!--@Minimum time interval between location updates, in milliseconds. Defaults
+    // to 0 - system-defined frequency of updates will be used.-->
+    // 两次位置更新之间的最小时间间隔，以毫秒为单位，默认为
+    // 0，使用系统定义的更新频率。
     double? minTimeInMilliseconds;
 
-    // Maximum age of a cached location, in milliseconds, that Chrome can pass
+    // <!--@Maximum age of a cached location, in milliseconds, that Chrome can pass
     // to the first onLocationUpdate event for this location watch request.
     // If this value <= 0, Chrome will always attempt to acquire a new location.
-    // Defaults to 0.
+    // Defaults to 0.-->
+    // Chrome 浏览器传递给本次位置监视的请求第一个 onLocationUpdate
+    // 事件的位置缓存的最长时间，以毫秒为单位。如果这一值小于或等于零，则
+    // Chrome 浏览器随时会尝试获取新位置。默认为 0。
     long? maximumAge;
   };
 
   // TODO(vadimt): Consider adding getWatch() and getAllWatches().
   interface Functions {
-    // Starts a location watching request.
-    // |name| : Optional name to identify this request. Defaults to the empty
-    // string.
-    // |requestInfo| : Optional parameters for this request.
+    // <!--@Starts a location watching request.-->
+    // 开始位置监视请求。
+    // |name| : <!--@Optional name to identify this request. Defaults to the empty
+    // string.-->
+    // 标识本次请求的可选名称，默认为空字符串。
+    // |requestInfo| : <!--@Optional parameters for this request.-->
+    // 本次请求的可选参数。
     static void watchLocation(DOMString name,
                               WatchLocationRequestInfo requestInfo);
 
-    // Ends a location watching request.
-    // |name| : Optional name to identify the request to remove. Defaults to the
-    // empty string.
+    // <!--@Ends a location watching request.-->
+    // 结束位置监视请求。
+    // |name| : <!--@Optional name to identify the request to remove. Defaults to the
+    // empty string.-->
+    // 表示要结束的请求名称，默认为空字符串。
     static void clearWatch(DOMString name);
   };
 
   interface Events {
-    // Fired when a location change is detected.
-    // |location| : An object containing matching events and new location.
+    // <!--@Fired when a location change is detected.-->
+    // 检测到位置更改时产生。
+    // |location| : <!--@An object containing matching events and new location.-->
+    // 包含匹配的事件及新位置。
     static void onLocationUpdate(Location location);
 
-    // Fired when detecting location in not possible.
-    // |error| : Human-readable error description.
+    // <!--@Fired when detecting location in not possible.-->
+    // 无法检测位置时产生。
+    // |error| : <!--@Human-readable error description.-->
+    // 可读底错误描述。
     static void onLocationError(DOMString error);
   };
 };

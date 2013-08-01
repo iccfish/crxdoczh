@@ -83,7 +83,7 @@
                 // for custom callbacks.
                 "optional": true,
                 "type": "object",
-                "isInstanceOf": "global",
+                "isInstanceOf": "Window",
                 "additionalProperties": { "type": "any" },
 //@                "description": "The JavaScript 'window' object for the background page."
                 "description": "后台页面的 JavaScript window 对象。"

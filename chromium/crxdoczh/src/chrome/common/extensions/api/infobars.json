@@ -1,10 +1,10 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Copyright 2013 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
 [
   {
-    "namespace": "experimental.infobars",
+    "namespace": "infobars",
 //@    "description": "Use the <code>chrome.infobars</code> API to add a horizontal panel just above a tab's contents. See the screenshot below.",
     "description": "使用 <code>chrome.infobars</code> API 在标签页内容的正上方添加一个水平面板，如以下屏幕截图所示。",
     "compiler_options": {

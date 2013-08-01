@@ -213,7 +213,7 @@ namespace app.window {
 
     // <!--@The JavaScript 'window' object for the created child.-->
     // 已创建子窗口的 JavaScript window 对象。
-    [instanceOf=global] object contentWindow;
+    [instanceOf=Window] object contentWindow;
   };
 
   interface Functions {

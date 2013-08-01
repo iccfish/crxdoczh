@@ -129,7 +129,9 @@ namespace downloads {
   //     <dt>accepted</dt>
   //     <dd><!--@The user has accepted the dangerous download.-->用户已经接受了有风险的下载。</dd>
   // </dl>
-  enum DangerType {file, url, content, uncommon, host, unwanted, safe, accepted};
+  enum DangerType {
+    file, url, content, uncommon, host, unwanted, safe, accepted
+  };
 
   // <dl><dt>in_progress</dt>
   //     <dd><!--@The download is currently receiving data from the server.-->下载项当前正在从服务器接收数据。</dd>
@@ -264,6 +266,17 @@ namespace downloads {
     // 的结果不一定能准确地反映文件系统的情况。此外，尽管可以频繁调用
     // $ref:[search search()]，但是检查文件存在性的频率不会高于每 10 秒一次。
     boolean exists;
+
+    // <!--@The identifier for the extension that initiated this download if this
+    // download was initiated by an extension. Does not change once it is set.-->
+    // 如果下载项由扩展程序发起，则为开始本次下载的扩展程序标识符，一旦设置后就不会更改。
+    DOMString? byExtensionId;
+
+    // <!--@The localized name of the extension that initiated this download if this
+    // download was initiated by an extension. May change if the extension
+    // changes its name or if the user changes their locale.-->
+    // 如果下载项由扩展程序发起，则为开始本次下载的扩展程序本地化名称，如果扩展程序的名称更改或者用户更改了区域设置则该属性也会更改。
+    DOMString? byExtensionName;
   };
 
   [inline_doc] dictionary DownloadQuery {
@@ -661,6 +674,17 @@ namespace downloads {
     // 开始将已下载的文件拖动到另一个应用程序，在 JavaScript 的
     // <code>ondragstart</code> 事件处理程序中调用。
     static void drag(long downloadId);
+
+    // <!--@Enable or disable the gray shelf at the bottom of every window associated
+    // with the current browser profile. The shelf will be disabled as long as
+    // at least one extension has disabled it. Enabling the shelf while at least
+    // one other extension has disabled it will return an error through
+    // $ref:runtime.lastError. Requires the <code>"downloads.shelf"</code>
+    // permission in addition to the <code>"downloads"</code> permission.-->
+    // 启用或禁用窗口底部与当前浏览器的用户配置文件相关联的灰色下载框，只要有至少一个扩展程序禁用它则下载框就会被禁用，在其他扩展程序禁用下载框时启用它会导致错误，通过
+    // $ref:runtime.lastError 返回。除了 <code>"downloads"</code>
+    // 权限以外还需要 <code>"downloads.shelf"</code> 权限。
+    static void setShelfEnabled(boolean enabled);
   };
 
   interface Events {

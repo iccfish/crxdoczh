@@ -185,10 +185,6 @@
     "dependencies": ["permission:experimental"],
     "contexts": ["blessed_extension"]
   },
-  "experimental.infobars": {
-    "dependencies": ["permission:experimental"],
-    "contexts": ["blessed_extension"]
-  },
   "experimental.input.virtualKeyboard": {
     "dependencies": ["permission:experimental"],
     "contexts": ["blessed_extension"]
@@ -282,6 +278,10 @@
     "dependencies": ["permission:idle"],
     "contexts": ["blessed_extension"]
   },
+  "infobars": {
+    "dependencies": ["permission:infobars"],
+    "contexts": ["blessed_extension"]
+  },
   "input.ime": {
     "platform": "chromeos",
     "dependencies": ["permission:input"],
@@ -346,10 +346,6 @@
     "dependencies": ["permission:pageCapture"],
     "contexts": ["blessed_extension"]
   },
-  "pageLauncher": {
-    "dependencies": ["manifest:page_launcher"],
-    "contexts": ["blessed_extension"]
-  },
   "permissions": {
     "channel": "stable",
     "extension_types": ["extension", "packaged_app", "platform_app"],
@@ -374,6 +370,11 @@
   },
   "pushMessaging": {
     "dependencies": ["permission:pushMessaging"],
+    "contexts": ["blessed_extension"]
+  },
+  "recoveryPrivate": {
+    "dependencies": ["permission:recoveryPrivate"],
+    "extension_types": ["platform_app"],
     "contexts": ["blessed_extension"]
   },
   "rtcPrivate": {

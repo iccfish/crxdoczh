@@ -22,8 +22,11 @@ namespace system.storage {
   };
 
   dictionary StorageUnitInfo {
-    // <!--@The unique storage id. It will use the transient ID.-->
-    // 存储单元的唯一标识符，标识符不是持久有效的。
+    // <!--@The transient ID that uniquely identifies the storage device.
+    // This ID will be persistent within the same run of a single application.
+    // It will not be a persistent identifier between different runs of an
+    // application, or between different applications.-->
+    // 唯一标识存储设备的暂存标识符，标识符在应用程序同一次运行中持久有效，但不会在同一应用程序两次运行或者不同应用程序之间持久保留。
     DOMString id;
     // <!--@The name of the storage unit.-->
     // 存储单元的名称。
@@ -86,10 +89,7 @@ namespace system.storage {
     // $ref:StorageUnitInfo 对象的数组。
     static void getInfo(StorageInfoCallback callback);
 
-    // <!--@Ejects a removable storage device.
-    // Note: We plan to move this function into a namespace that indicates it
-    // that modifies the state of the system rather than just gathering
-    // information.-->
+    // <!--@Ejects a removable storage device.-->
     // 弹出可移动存储设备。
     static void ejectDevice(DOMString id, EjectDeviceCallback callback);
 
