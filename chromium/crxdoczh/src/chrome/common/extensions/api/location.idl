@@ -131,7 +131,7 @@ namespace location {
     // <!--@Fired when detecting location in not possible.-->
     // 无法检测位置时产生。
     // |error| : <!--@Human-readable error description.-->
-    // 可读底错误描述。
+    // 可读的错误描述。
     static void onLocationError(DOMString error);
   };
 };
