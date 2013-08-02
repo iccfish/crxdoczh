@@ -1,0 +1,90 @@
+<h1>Analytics（分析）</h1>
+
+<table class="intro">
+  <tr>
+    <td><strong><!--@Description:-->描述：</strong></td>
+    <td><!--@Use the Chrome Platform Analytics JavaScript library to measure user interactions with your app.-->
+    使用 Chrome Platform Analytics JavaScript 库测量用户与您的应用的交互。
+    </td>
+  </tr>
+  <tr>
+    <td><strong><!--@Samples:-->示例：</strong></td>
+    <td><a href="https://github.com/GoogleChrome/chrome-platform-analytics/tree/master/src/example">JavaScript <!--@and-->和 Closure <!--@examples-->的例子</a></td>
+  </tr>
+  <tr>
+    <td><strong><!--@Learn&nbsp;more:-->了解更多：</strong></td>
+    <td>
+    <a href="https://github.com/GoogleChrome/chrome-platform-analytics/wiki">Chrome Platform Analytics</a></td>
+  </tr>
+</table>
+
+<h2 id="overview"><!--@Overview-->概述</h2>
+
+<p>
+<!--@The--> <a href="https://developers.google.com/analytics/devguides/platform/">Google Analytics<!--@ Platform-->（分析）平台</a> <!--@lets you
+measure user interactions with your business across various devices and environments. The platform provides resources to
+collect, store, process, and report on user interactions.
+<a href="https://github.com/GoogleChrome/chrome-platform-analytics/wiki">Chrome Platform Analytics</a> (CPA) is
+a client library that lets you collect user interactions in Packaged Apps and Extensions,
+and send them to the Google Analytics Platform.-->
+使您可以在不同的设备和环境下测量用户交互，这一平台可以收集、存储、处理和报告用户交互。<a
+href="https://github.com/GoogleChrome/chrome-platform-analytics/wiki">Chrome
+Platform Analytics</a>（CPA）是一个客户端库，使您可以在打包应用与扩展程序中收集用户交互信息，并将这些信息发送至 Google Analytics（分析）平台。
+</p>
+
+<p>
+<!--@The CPA library follows the basic usage pattern of-->
+CPA 库遵循
+<a href="http://www.google.com/analytics/index.html">Google
+Analytics（分析）</a>的基本使用模式，<!--@
+and will feel familiar to existing users of Google Analytics.
+However, unlike the web-centric official Google Analytics JavaScript libraries, the CPA library uses an "app-centric" model
+that is better suited for Packaged Apps. Among other features, the library provides methods for specific types of hits,
+such as "event" and "appView", and it can be used in both Closure-based and traditional JavaScript projects.-->并且对
+Google Analytics（分析）的现有用户来说很熟悉。然而，与官方的以 Web 为中心的
+Google Analytics（分析）JavaScript 库不同的是，CPA
+使用一种“以应用为中心”的模型，更适合打包应用。此外，它还为特定匹配类型提供了专门的方法（例如“event”和“appView”），并且既可以在基于
+Closure 的项目中使用，也可以在传统的 JavaScript 项目中使用。
+</p>
+
+<h2 id="privacy"><!--@Privacy-->隐私权</h2>
+
+<p>
+<a href="https://developers.google.com/analytics/devguides/collection/protocol/policy">Google Analytics<!--@ Policies-->（分析）政策</a><!--@
+require you to give users notice about analytics tracking and the option to opt out of tracking.
+The CPA library makes it easy to build privacy-friendly apps by providing library-level support for user opt-out.-->要求您向用户告知分析跟踪的使用，并提供停用跟踪的选项。CPA
+库提供了库级别的支持使用户禁用跟踪，可以使您更容易地建立隐私权友好的应用。
+</p>
+
+<h2 id="library"><!--@Library-->库</h2>
+
+<p>
+<!--@The CPA library is hosted on GitHub: -->CPA
+托管在 GitHub 上：<a href="https://github.com/GoogleChrome/chrome-platform-analytics">chrome-platform-analytics</a><!--@.-->。
+</p>
+
+<p>
+<!--@The library is-->库文件为 <a href="https://github.com/GoogleChrome/chrome-platform-analytics/blob/master/google-analytics-bundle.js">google-analytics-bundle.js</a><!--@.-->。
+</p>
+
+<h2 id="documentation"><!--@Documentation-->文档</h2>
+
+<p>
+<!--@Documentation for the CPA library is aslo on GitHub. See specifically:-->
+CPA 库的文档也在 GitHub 上，请参见：
+</p>
+
+<ul>
+  <li><a href="https://github.com/GoogleChrome/chrome-platform-analytics/wiki#prerequisites"><!--@Prerequisites-->前提条件</a></li>
+  <li><a href="https://github.com/GoogleChrome/chrome-platform-analytics/wiki#api-reference">API <!--@Reference-->参考</a></li>
+  <li><a href="https://github.com/GoogleChrome/chrome-platform-analytics/wiki#how-to"><!--@How-To-->如何……？</a></li>
+</ul>
+
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@For an illustration of how to use the CPA library to measure user interactions in an app, see the 
+-->有关如何使用 CPA
+库测量应用中用户交互操作的演示，请参见<a href="https://github.com/GoogleChrome/chrome-platform-analytics/tree/master/src/example"><!--@examples-->例子</a><!--@.-->。
+</p>

@@ -180,6 +180,10 @@
     "title": "Google 服务",
     "items": [
       {
+        "title": "Analytics（分析）",
+        "href": "/apps/analytics.html"
+      },
+      {
         "title": "应用内付款",
         "href": "/apps/in_app_payments.html"
       }

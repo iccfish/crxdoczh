@@ -366,7 +366,13 @@ example of the manifest file:-->
   </tr>
   <tr>
     <td><code>path</code></td>
-    <td><!--@Path to the native messaging host binary.-->原生消息通信宿主的二进制文件路径。</td>
+    <td><!--@Path to the native messaging host binary. On Linux and OSX the path must
+    be absolute. On Windows it can be relative to the directory in which the
+    manifest file is located.-->
+      原生消息通信宿主的二进制文件路径。在 Linux 和 OSX
+      上必须使用绝对路径，在 Windows
+      上可以使用相对于清单文件所在目录的路径。
+    </td>
   </tr>
   <tr>
     <td><code>type</code></td>
