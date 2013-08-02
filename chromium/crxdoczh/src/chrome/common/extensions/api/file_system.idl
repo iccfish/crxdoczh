@@ -77,9 +77,22 @@ namespace fileSystem {
     // true。如果 accepts 字段未设置或没有包含有效的项，它始终会被重置为
     // true 。
     boolean? acceptsAllTypes;
+
+    // <!--@Whether to accept multiple files. This is only supported for openFile and
+    // openWritableFile. The callback to chooseEntry will be called with a list
+    // of entries if this is set to true. Otherwise it will be called with a
+    // single Entry.-->
+    // 是否接受多个文件，仅在 'openFile'（打开文件）和
+    // 'openWritableFile'（打开可写文件）时支持。如果该属性设置为
+    // true，调用 chooseEntry
+    // 的回调函数时会传递文件项列表，否则传递单个文件项。
+    boolean? acceptsMultiple;
   };
   callback GetDisplayPathCallback = void (DOMString displayPath);
   callback FileEntryCallback = void ([instanceOf=FileEntry] object fileEntry);
+  callback FileEntriesCallback = void (
+      [instanceOf=FileEntry] optional object fileEntry,
+      [instanceOf=FileEntry] optional object[] fileEntries);
   callback IsWritableCallback = void (boolean isWritable);
   callback IsRestorableCallback = void (boolean isRestorable);
 
@@ -107,7 +120,7 @@ namespace fileSystem {
     // <!--@Ask the user to choose a file.-->
     // 让用户选择文件。
     static void chooseEntry(optional ChooseEntryOptions options,
-                            FileEntryCallback callback);
+                            FileEntriesCallback callback);
 
     // <!--@Returns the file entry with the given id if it can be restored. This call
     // will fail otherwise.-->
