@@ -1,34 +1,18 @@
 <h2 id='manifest'><!--@Manifest-->清单文件</h2>
 
 <p> <!--@You must declare the 'downloads' permission in the <a
-href='manifest.html'>extension manifest</a> to use this API, along with <a
-href='declare_permissions.html'>host permissions</a> for any hosts that you may
-pass to $ref:downloads.download.-->
+href='manifest.html'>extension manifest</a> to use this API.-->
 您必须在<a href='manifest.html'>扩展程序的清单文件</a>中声明
 "downloads"
-权限才能使用该
-API，此外传递给 $ref:downloads.download 的任何主机还需要<a
-href='declare_permissions.html'>主机权限</a>。
+权限才能使用该 API。
 </p>
 
 <pre>{
   'name': '我的扩展程序',
   ...
-<b>  'permissions': [
-    'downloads',
-    '*://*.google.com'
-  ]</b>,
+<b>  'permissions': ['downloads']</b>,
   ...
 }</pre>
-
-<p><!--@If the URL's hostname is not specified in the permissions, then
-$ref:downloads.download will call its callback with a null
-<code>downloadId</code> and set the $ref:runtime.lastError object to indicate
-that the extension does not have permission to access that hostname.-->
-如果 URL 的主机名没有在权限中指定，$ref:downloads.download
-调用回调函数时 <code>downloadId</code> 为 null，同时设置
-$ref:runtime.lastError，表示扩展程序没有权限访问该主机名。
-</p>
 
 <h2 id='examples'><!--@Examples-->例子</h2>
 
