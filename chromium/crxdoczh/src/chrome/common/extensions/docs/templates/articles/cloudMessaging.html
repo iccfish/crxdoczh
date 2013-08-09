@@ -16,18 +16,18 @@ Google Cloud Messaging for Chrome（GCM，用于 Chrome 浏览器的 Google
 应用与扩展程序，该服务是为了唤醒应用或扩展程序和/或提醒用户。例如，即使日历应用没有打开，日历更新也可以推送给用户。
 </p>
 
-<p><!--@This document describes how the service works and
-provides very basic examples on how to use the service.
-To learn more about GCM,
-read the API reference for the <a href="pushMessaging.html">pushMessaging Chrome API</a> and the
-<a href="gcm_server.html">GCM service</a>.-->
-该文档描述了该服务的工作方式，并提供有关如何使用该服务的基本例子。如果您想了解更多有关
-GCM 的内容，请阅读 pushMessaging Chrome API 的
-<a href="pushMessaging.html">API 参考</a>以及
-<a href="gcm_server.html">GCM 服务</a>。
+<p><!--@This document describes how to set up and use GCM.
+For additional information see the reference documentation
+for the <a href="pushMessaging.html">pushMessaging Chrome API</a> and the
+<a href="gcm_server.html">GCM service</a>.
+To get help with GCM or to give us feedback, see <a href="#feedback">Feedback</a>.-->
+该文档描述了设置和使用 GCM 的方法。如果您想了解更多内容，请阅读
+<a href="pushMessaging.html">pushMessaging Chrome API</a> 以及
+<a href="gcm_server.html">GCM
+服务</a>。如果需要帮助或者向我们提供反馈，请参见<a href="#feedback">反馈</a>。
 </p>
 
-<h2 id="one"><!--@How it works-->工作方式</h2>
+<h2 id="one"><!--@How push messaging works-->推送消息的工作方式</h2>
 
 <p>
 <!--@At a glance, push messaging works like this:-->
@@ -723,4 +723,16 @@ with keys.-->
 每一次您重新加载您的扩展程序用于测试时，您都需要确保 key 存在。然而每当您希望更新
 Chrome
 网上应用店中的已发布版本时，您需要移除 key，因为应用店不允许包含 key 的清单文件。
+</p>
+
+<h2 id="feedback"><!--@Feedback-->反馈</h2>
+
+<p><!--@You can provide feedback about Google Cloud Messaging
+and the pushMessaging API through the Google Group
+<a target="_blank" href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM for Chrome feedback</a>. 
+Use this group to ask for help, file bug reports, and request features.-->
+您可以通过
+<a target="_blank" href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM for Chrome feedback</a>
+Google 网上论坛提供关于 Google 云消息以及 pushMessaging API
+的反馈，使用该群组寻求帮助、报告问题或请求新特性。
 </p>

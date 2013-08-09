@@ -72,8 +72,8 @@ namespace notifications {
     // <code>Date.now() + n</code>）。
     double? eventTime;
 
-    // <!--@Text and icons of notification action buttons.-->
-    // 通知动作按钮的文本和图标。
+    // <!--@Text and icons for up to two notification action buttons.-->
+    // 通知动作按钮（最多两个）的文本和图标。
     NotificationButton[]? buttons;
 
     // <!--@Secondary notification content.-->
