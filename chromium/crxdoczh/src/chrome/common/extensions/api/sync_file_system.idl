@@ -230,7 +230,7 @@ namespace syncFileSystem {
     // 返回指定 <code>fileEntry</code>（文件项）数组的每一个
     // $ref:FileStatus（文件状态），调用时通常传递
     // dirReader.readEntries() 的结果。
-    static void getFileStatuses([instanceOf=EntryArray] object fileEntries,
+    static void getFileStatuses(object[] fileEntries,
                                 GetFileStatusesCallback callback);
   };
 
