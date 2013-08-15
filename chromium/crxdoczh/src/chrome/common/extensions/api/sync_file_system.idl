@@ -82,7 +82,7 @@ namespace syncFileSystem {
     // 状态更改的目标文件的
     // <code>fileEntry</code>（文件项），包含已同步文件的名称和路径信息。当文件删除时，<code>fileEntry</code>
     // 信息仍然可用，但文件不再存在。
-    [instanceOf=FileEntry] object fileEntry;
+    [instanceOf=Entry] object fileEntry;
 
     // <!--@Resulting file status after $ref:onFileStatusChanged event.
     // The status value can be <code>'synced'</code>,
@@ -114,9 +114,9 @@ namespace syncFileSystem {
   };
 
   dictionary FileStatusInfo {
-    // <!--@One of the FileEntry's originally given to getFileStatuses.-->
-    // 原来提供给 getFileStatuses 的某个 FileEntry（文件项）。
-    [instanceOf=FileEntry] object fileEntry;
+    // <!--@One of the Entry's originally given to getFileStatuses.-->
+    // 原来提供给 getFileStatuses 的某个 Entry（文件项）。
+    [instanceOf=Entry] object fileEntry;
 
     // <!--@The status value can be <code>'synced'</code>,
     // <code>'pending'</code> or <code>'conflicting'</code>.-->
@@ -222,7 +222,7 @@ namespace syncFileSystem {
     // <code>'conflicting'</code>（冲突）。注意，只有当服务的冲突解决策略设置为
     // <code>'manual'</code>（手动）时，才会发生
     // <code>'conflicting'</code>（冲突）状态。
-    static void getFileStatus([instanceOf=FileEntry] object fileEntry,
+    static void getFileStatus([instanceOf=Entry] object fileEntry,
                               GetFileStatusCallback callback);
 
     // <!--@Returns each $ref:FileStatus for the given <code>fileEntry</code> array.

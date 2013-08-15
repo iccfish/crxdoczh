@@ -6,6 +6,8 @@
 {{/display_name}}
 <dd>
   <dl>
-    {{#items +item_partial /}}
+    {{#items}}
+      {{+item_partial @:@}}
+    {{/items}}
   </dl>
 </dd>
