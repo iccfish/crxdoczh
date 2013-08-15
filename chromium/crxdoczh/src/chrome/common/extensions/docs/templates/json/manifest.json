@@ -29,7 +29,7 @@
   },
   "content_security_policy": {
     "documentation": "contentSecurityPolicy.html",
-    "example": "policyString"
+    "example": "策略字符串"
   },
   "default_locale": {
     "documentation": "manifest/default_locale.html",
@@ -38,7 +38,7 @@
   },
   "description": {
     "documentation": "manifest/description.html",
-    "example": "A plain text description",
+    "example": "纯文本描述",
     "level": "recommended"
   },
   "file_browser_handlers": {
@@ -60,11 +60,11 @@
   },
   "incognito": {
     "documentation": "manifest/incognito.html",
-    "example": "spanning or split"
+    "example": "spanning 或 split"
   },
   "key": {
     "documentation": "manifest/key.html",
-    "example": "publicKey"
+    "example": "公钥"
   },
   "kiosk_enabled": {
     "documentation": "manifest/kiosk_enabled.html",
@@ -77,7 +77,7 @@
   },
   "minimum_chrome_version": {
     "documentation": "manifest/minimum_chrome_version.html",
-    "example": "versionString"
+    "example": "版本字符串"
   },
   "nacl_modules": {
     "documentation": "manifest/nacl_modules.html",
@@ -85,7 +85,7 @@
   },
   "name": {
     "documentation": "manifest/name.html",
-    "example": "My {{title}}",
+    "example": "我的{{title}}",
     "level": "required"
   },
   "offline_enabled": {
@@ -134,7 +134,7 @@
   },
   "version": {
     "documentation": "manifest/version.html",
-    "example": "versionString",
+    "example": "版本字符串",
     "level": "required"
   },
   "web_accessible_resources": {
