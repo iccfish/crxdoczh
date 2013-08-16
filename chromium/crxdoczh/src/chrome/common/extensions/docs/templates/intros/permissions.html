@@ -1,66 +1,58 @@
-<p>
-  <!--@For general information about permissions and details about each permission,
-  see the <a href="declare_permissions.html">declare permissions</a> documentation.-->
-  有关权限的一般信息以及每一种权限的细节，请参见<a href="declare_permissions.html">声明权限</a>文档。
-</p>
-
 <h2 id="howto"> <!--@Implementing optional permissions-->实现可选权限 </h2>
 
 <h3 id="types">
-  <!--@Step 1: Decide which permissions are optional and required-->
-  第一步：确定哪些权限是可选的，哪些是必需的
+<!--@Step 1: Decide which permissions are required and which are optional-->
+第一步：确定哪些权限是必选的，哪些是可选的
 </h3>
+
 <p>
-  <!--@Extensions should generally require permissions when they are needed for the
-  extension's basic functionality and employ optional permissions for optional
-  features.-->
-  大体上说，实现扩展程序基本功能所需要的权限应该是必需的权限，可选功能需要的权限应该是可选的。
+<!--@An extension can declare both required and optional permissions. In general, you should:-->
+扩展程序既可以声明必选权限，也可以声明可选权限。大体上说：
+<ul>
+  <li><!--@Use required permissions when they are needed for your extension’s basic functionality.-->
+    扩展程序的基本功能需要某些权限时使用必选权限。
+  </li>
+  <li><!--@Use optional permissions when they are needed for optional features in your extension.-->
+    扩展程序的可选功能需要某些权限时使用可选权限。
+  </li>
+</ul>
 </p>
 
 <p>
-  <!--@Advantages of optional permissions:-->
-  可选权限的优势：
-  <ul>
-    <li>
-      <!--@Users run with less permissions since they enable only what is needed.-->
-      用户以更少的权限运行扩展程序，因为他们仅启用确实需要的。
-    </li>
-    <li>
-      <!--@The extension can help explain why it needs particular permissions by
-      requesting them when the user enables the relevant feature.-->
-      当用户启用相关功能时，通过请求权限有住于扩展程序解释为什么需要这些特定的权限。
-    </li>
-    <li>
-      <!--@Chrome can avoid disabling extensions that upgrade if they add permissions
-      as optional rather than required.-->
-      如果更新后的扩展程序添加新的可选权限而不是必需的权限，Chrome
-      浏览器就不会禁用它们。
-    </li>
-  </ul>
+<!--@Advantages of <em>required</em> permissions:-->
+<em>必选</em>权限的优势：
+<ul>
+  <li><strong><!--@Fewer prompts:-->提示较少：</strong><!--@
+      An extension can prompt the user once to accept all permissions.
+      -->扩展程序只需要提示用户一次，接受所有权限。</li>
+  <li><strong><!--@Simpler development:-->开发更容易：</strong><!--@
+      Required permissions are guaranteed to be present.
+      -->必选权限确保存在。</li>
+</ul>
 </p>
 
 <p>
-  <!--@Advantages of required permissions:-->
-  必选权限的优势：
-  <ul>
-    <li>
-      <!--@The extension can prompt the user once to accept all permissions.-->
-      扩展程序可以一次提示用户接受所有权限。
-    </li>
-    <li>
-      <!--@They simplify extension development by guaranteeing which permissions are
-      present.-->
-      确保有哪些权限存在，简化了扩展程序的开发。
-    </li>
-  </ul>
+<!--@Advantages of <em>optional</em> permissions:-->
+<em>可选</em>权限的优势：
+<ul>
+  <li><strong><!--@Better security:-->安全性更高：</strong><!--@
+      Extensions run with fewer permissions since users only enable permissions that are needed.
+      -->扩展程序以更少的权限运行，用户仅启用需要的权限。</li>
+  <li><strong><!--@Better information for users:-->可以向用户提供更多信息：</strong><!--@
+      An extension can explain why it needs a particular permission when the user enables the relevant feature.
+      -->当用户启用相关功能时，扩展程序可以解释为什么需要某种权限。</li>
+  <li><strong><!--@Easier upgrades:-->便于更新：</strong><!--@
+      When you upgrade your extension, Chrome will not disable it for your users if the upgrade adds optional rather than required permissions.
+      -->您的扩展程序更新时，如果更新版本添加了可选而不是必选权限，Chrome
+      浏览器不会为用户禁用它。</li>
+</ul>
 </p>
-
 
 <h3 id="manifest"> <!--@Step 2: Declare optional permissions in the manifest-->第二步：在清单文件中声明可选权限 </h3>
 <p>
   <!--@Declare optional permissions in your <a href="manifest.html">extension
   manifest</a> with the <code>optional_permissions</code> key, using the
-  same format as the <a href="declare_permissions.html">permissions</a>
+  same format as the <a href="declare_permissions.html#manifest">permissions</a>
   field:-->
   和 <a href="declare_permissions.html">permissions</a> 字段使用相同的格式，使用
   <code>optional_permissions</code> 键，在您的<a href="manifest.html">扩展程序的清单文件</a>中声明可选权限：
@@ -74,8 +66,9 @@
 </p>
 
 <p>
-<!--@You can specify any of the following as optional permissions:-->
-您可以将下列任意权限指定为可选权限：
+<!--@You can specify any of the following as optional
+<a href="declare_permissions.html">permissions</a>:-->
+您可以将下列任意权限指定为可选<a href="declare_permissions.html">权限</a>：
 <ul>
   <li><i><!--@host permissions-->主机权限</i></li>
   <li>background</li>

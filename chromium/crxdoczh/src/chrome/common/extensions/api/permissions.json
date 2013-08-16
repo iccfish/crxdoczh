@@ -5,8 +5,8 @@
 [
   {
     "namespace": "permissions",
-//@    "description": "Use the <code>chrome.permissions</code> API to implement optional permissions. As of Chrome 16, you can request optional permissions during your extension's regular application flow rather than at install time, so users understand why the permissions are needed and use only those that are necessary.",
-    "description": "使用 <code>chrome.permissions</code> API 实现可选权限。从 Chrome 16 开始，您可以在您的扩展程序正常使用的过程中请求可选权限，而不是在安装的时候，这样用户可以理解为什么需要这些权限，并且仅在必要时使用那些权限。",
+//@    "description": "Use the <code>chrome.permissions</code> API to request <a href=\"#manifest\">declared optional permissions</a> at run time rather than install time, so users understand why the permissions are needed and grant only those that are necessary.",
+    "description": "使用 <code>chrome.permissions</code> API 在运行时而不是安装时请求<a href=\"#manifest\">声明的可选权限</a>，这样用户可以理解为什么需要这些权限，并且仅在必要时授予这些权限。",
     "types": [
       {
         "id": "Permissions",

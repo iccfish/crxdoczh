@@ -50,7 +50,7 @@
         "text": "\"cookies\""
       },
       {
-        "link": "declare_permissions.html",
+        "link": "declare_permissions.html#host-permissions",
         "text": "主机权限"
       }
     ]
@@ -74,7 +74,7 @@
         "text": "\"declarativeWebRequest\""
       },
       {
-        "link": "declare_permissions.html",
+        "link": "declare_permissions.html#host-permissions",
         "text": "主机权限"
       }
     ]
@@ -139,10 +139,10 @@
         "partial": "intro_tables/see_manifest.html"
       }
     ],
-    "Learn More": [
+    "了解更多": [
       {
         "link": "https://developers.google.com/live/shows/10479832/",
-        "text": "Chrome Office Hours: The Media Galleries API"
+        "text": "Chrome 浏览器办公时间：媒体库 API"
       }
     ]
   },
@@ -151,6 +151,14 @@
       {
         "link": "https://developers.google.com/live/shows/83992232-1001/",
         "text": "Chrome 应用办公时间：丰富的通知"
+      }
+    ]
+  },
+  "permissions": {
+    "了解更多": [
+      {
+        "link": "declare_permissions.html#host-permissions",
+        "text": "声明权限"
       }
     ]
   },
@@ -270,7 +278,7 @@
         "text": "\"webRequest\""
       },
       {
-        "link": "declare_permissions.html",
+        "link": "declare_permissions.html#host-permissions",
         "text": "主机权限"
       }
     ]
