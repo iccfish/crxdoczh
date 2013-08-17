@@ -1,18 +1,23 @@
-<img src="{{static}}/images/windows.png"
-     width="256" height="76" alt="Two windows, each with one tab" />
-
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
 <p>
-<!--@To use the windows API,
-you must declare the "tabs" permission
-in <a href="manifest.html">manifest.json</a>.
-(No, that isn't a typo &mdash;
-the window and tabs modules interact so closely we
-decided to just share one permission between them.)
+<!--@When requested, a <code>$ref:windows.Window</code>
+will contain an array of <code>$ref:tabs.Tab</code> objects.
+
+You must declare the <code>"tabs"</code> permission in your
+<a href="manifest.html">manifest</a> if you require access to the
+<code>$ref:[tabs.Tab.url url]</code>,
+<code>$ref:[tabs.Tab.title title]</code>, or
+<code>$ref:[tabs.Tab.favIconUrl favIconUrl]</code> properties of
+<code>$ref:tabs.Tab</code>.
 For example:-->
-要使用窗口API，您必须在<a href="manifest.html">清单文件</a>中声明
-"tabs"
-权限。（没错，这不是印刷错误，窗口和标签页模块联系紧密，所以我们决定让它们共享同一权限。）例如：
+当您请求时，<code>$ref:windows.Window</code> 对象会包含
+<code>$ref:tabs.Tab</code> 对象数组。如果您需要访问
+<code>$ref:tabs.Tab</code> 的
+<code>$ref:[tabs.Tab.url url]</code>、<code>$ref:[tabs.Tab.title title]</code>
+或
+<code>$ref:[tabs.Tab.favIconUrl favIconUrl]</code>
+属性，您必须在<a href="manifest.html">清单文件</a>中声明
+<code>"tabs"</code> 权限。例如：
 </p>
 
 <pre>{
@@ -59,6 +64,9 @@ circumstances, there may be no current window for background pages.-->
 <h2 id="examples"><!--@ Examples -->例子</h2>
 
 <p>
+<img src="{{static}}/images/windows.png"
+     width="256" height="76" alt="Two windows, each with one tab" />
+<br>
 <!--@You can find simple examples of using the windows module in the-->
 您可以在
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/windows/">examples/api/windows</a>

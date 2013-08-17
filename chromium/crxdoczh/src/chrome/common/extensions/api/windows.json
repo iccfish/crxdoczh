@@ -76,8 +76,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects" }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为true，窗口对象会包含<var>tabs</var>属性，包含该窗口的所有$ref:tabs.Tab对象。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -103,8 +103,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects" }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为true，窗口对象会包含<var>tabs</var>属性，包含该窗口的所有$ref:tabs.Tab对象。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -130,8 +130,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects" }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为true，窗口对象会包含<var>tabs</var>属性，包含该窗口的所有$ref:tabs.Tab对象。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -157,8 +157,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, each window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects for that window." }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为true，每一个窗口对象都会包含<var>tabs</var>属性，包含该窗口的所有$ref:tabs.Tab对象。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, each $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects for that window. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {

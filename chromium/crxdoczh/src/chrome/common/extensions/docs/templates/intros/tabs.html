@@ -1,15 +1,22 @@
-<img src="{{static}}/images/tabs.png"
-     width="323" height="50" alt="Two tabs in a window" />
-
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
 <p>
-<!--Almost all <code>chrome.tabs</code> methods require you to
-declare the "tabs" permission
-in the <a href="manifest.html">extension manifest</a>.
-For example:-->
-几乎所有的 <code>chrome.tabs</code> 
-方法都要求您在扩展程序的<a href="manifest.html">清单文件</a>中声明
-"tabs" 权限。例如：
+<!--@You can use most <code>chrome.tabs</code> methods and events without declaring
+any permissions in the extension's <a href="manifest.html">manifest</a> file.
+However, if you require access to the
+<code>$ref:[tabs.Tab.url url]</code>,
+<code>$ref:[tabs.Tab.title title]</code>, or
+<code>$ref:[tabs.Tab.favIconUrl favIconUrl]</code> properties of
+<code>$ref:tabs.Tab</code>,
+you must declare the <code>"tabs"</code> permission in the manifest,
+as shown below:-->
+您不需要在扩展程序的<a href="manifest.html">清单文件</a>中声明任何权限就能使用
+<code>chrome.tabs</code>
+的大多数方法和事件。然而，如果您需要访问
+<code>$ref:tabs.Tab</code> 的
+<code>$ref:[tabs.Tab.url url]</code>、<code>$ref:[tabs.Tab.title title]</code>
+或 <code>$ref:[tabs.Tab.favIconUrl favIconUrl]</code>
+属性，您必须在清单文件中声明 <code>"tabs"</code> 权限，如下所示：
 </p>
 
 <pre>{
@@ -21,25 +28,20 @@ For example:-->
   ...
 }</pre>
 
-<p>
-<!--@Three methods ($ref:tabs.create,
-$ref:tabs.update and
-$ref:tabs.remove) and one event
-($ref:tabs.onRemoved) don't require the "tabs"
-permission.-->
-有三个方法（$ref:tabs.create、$ref:tabs.update 和
-$ref:tabs.remove）和一个事件（$ref:tabs.onRemoved）不需要 "tabs"
-权限。
-</p>
-
-
 <h2 id="examples"> <!--@Examples-->例子 </h2>
 
 <p>
-<!--@You can find simple examples of using the tabs module in the-->您可以在
+<img src="{{static}}/images/tabs.png"
+     width="323" height="50" alt="Two tabs in a window" />
+<br>
+<!--@You can find simple examples of manipulating tabs with the
+<code>chrome.tabs</code> API in the-->
+您可以在
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/">examples/api/tabs</a>
 <!--@directory.
 For other examples and for help in viewing the source code, see
 <a href="samples.html">Samples</a>.-->
-目录中找到使用标签页模块的简单例子。有关其他例子以及查看源代码的帮助，请参见<a href="samples.html">示例</a>
+目录中找到一些使用 <code>chrome.tabs</code> API
+操纵标签页的简单例子。有关其他例子以及查看源代码的帮助，请参见<a
+href="samples.html">示例</a>
 </p>

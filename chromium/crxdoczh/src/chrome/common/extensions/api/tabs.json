@@ -19,7 +19,7 @@
           "index": {"type": "integer", "minimum": -1, "description": "标签页在所在窗口中的索引，从 0 开始。"},
 //@          "windowId": {"type": "integer", "minimum": 0, "description": "The ID of the window the tab is contained within."},
           "windowId": {"type": "integer", "minimum": 0, "description": "标签页所在窗口的标识符。"},
-//@          "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab that opened this tab, if any. This will only be present if the opener tab still exists."},
+//@          "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab that opened this tab, if any. This property is only present if the opener tab still exists."},
           "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "打开这一标签页的标签页标识符（如果存在的话），只有该标签页仍然存在时才会有这一属性。"},
 //@          "selected": {"type": "boolean", "description": "Whether the tab is selected.", "nodoc": true},
           "selected": {"type": "boolean", "description": "标签页是否选中。", "nodoc": true},
@@ -29,12 +29,12 @@
           "active": {"type": "boolean", "description": "标签页是否是窗口中的活动标签页。（窗口不一定有焦点。）"},
 //@          "pinned": {"type": "boolean", "description": "Whether the tab is pinned."},
           "pinned": {"type": "boolean", "description": "标签页是否固定。"},
-//@          "url": {"type": "string", "optional": true, "description": "The URL the tab is displaying. This will only be present if the extension has the 'tabs' or 'webNavigation' permission."},
-          "url": {"type": "string", "optional": true, "description": "标签页中显示的 URL，只有当扩展程序拥有 \"tabs\" 或 \"webNavigation\" 权限时才会存在。"},
-//@          "title": {"type": "string", "optional": true, "optional": true, "description": "The title of the tab. This will only be present if the extension has the 'tabs' or 'webNavigation' permission. It may also be an empty string if the tab is loading."},
-          "title": {"type": "string", "optional": true, "optional": true, "description": "标签页的标题，只有当扩展程序拥有 \"tabs\" 或 \"webNavigation\" 权限时才会存在，如果标签页正在加载它也可能是空字符串。"},
-//@          "favIconUrl": {"type": "string", "optional": true, "optional": true, "description": "The URL of the tab's favicon. This will only be present if the extension has the 'tabs' or 'webNavigation' permission. It may also be an empty string if the tab is loading."},
-          "favIconUrl": {"type": "string", "optional": true, "optional": true, "description": "标签页的收藏夹图标 URL，只有当扩展程序拥有 \"tabs\" 或 \"webNavigation\" 权限时才会存在，如果标签页正在加载它也可能是空字符串。"},
+//@          "url": {"type": "string", "optional": true, "description": "The URL the tab is displaying. This property is only present if the extension's manifest includes the <code>\"tabs\"</code> permission."},
+          "url": {"type": "string", "optional": true, "description": "标签页中显示的 URL，只有当扩展程序拥有 \"tabs\" 权限时该属性才会存在。"},
+//@          "title": {"type": "string", "optional": true, "optional": true, "description": "The title of the tab. This property is only present if the extension's manifest includes the <code>\"tabs\"</code> permission."},
+          "title": {"type": "string", "optional": true, "optional": true, "description": "标签页的标题，只有当扩展程序拥有 \"tabs\" 权限时该属性才会存在，如果标签页正在加载它也可能是空字符串。"},
+//@          "favIconUrl": {"type": "string", "optional": true, "optional": true, "description": "The URL of the tab's favicon. This property is only present if the extension's manifest includes the <code>\"tabs\"</code> permission. It may also be an empty string if the tab is loading."},
+          "favIconUrl": {"type": "string", "optional": true, "optional": true, "description": "标签页的收藏夹图标 URL，只有当扩展程序拥有 \"tabs\" 权限时该属性才会存在，如果标签页正在加载它也可能是空字符串。"},
 //@          "status": {"type": "string", "optional": true, "description": "Either <em>loading</em> or <em>complete</em>."},
           "status": {"type": "string", "optional": true, "description": "<em>\"loading\"</em>（正在加载）或 <var>\"complete\"</var>（完成）。"},
 //@          "incognito": {"type": "boolean", "description": "Whether the tab is in an incognito window."}
@@ -51,7 +51,7 @@
           "code": {"type": "string", "optional": true, "description": "要插入的 JavaScript 或 CSS 代码。"},
 //@          "file": {"type": "string", "optional": true, "description": "JavaScript or CSS file to inject."},
           "file": {"type": "string", "optional": true, "description": "要插入的 JavaScript 或 CSS 文件。"},
-//@          "allFrames": {"type": "boolean", "optional": true, "description": "If allFrames is <code>true</code>, implies that the JavaScript or CSS should be injected into all frames of current page. By default, it's <code>false</code> and will only be injected into the top frame."},
+//@          "allFrames": {"type": "boolean", "optional": true, "description": "If allFrames is <code>true</code>, implies that the JavaScript or CSS should be injected into all frames of current page. By default, it's <code>false</code> and is only injected into the top frame."},
           "allFrames": {"type": "boolean", "optional": true, "description": "如果 allFrames 为 <code>true</code>，则意味着当前页面中的所有框架都要插入 JavaScript 或 CSS。默认情况下为 <code>false</code>，只在顶层主框架中插入。"},
           "runAt": {
             "type": "string",
@@ -240,8 +240,8 @@
       {
         "name": "create",
         "type": "function",
-//@        "description": "Creates a new tab. Note: This function can be used without requesting the 'tabs' permission in the manifest.",
-        "description": "创建一个新标签页。注意：即使没有在清单文件中请求 \"tabs\" 权限，也可以使用该函数。",
+//@        "description": "Creates a new tab.",
+        "description": "创建一个新标签页。",
         "parameters": [
           {
             "type": "object",
@@ -312,8 +312,8 @@
       {
         "name": "duplicate",
         "type": "function",
-//@        "description": "Duplicates a tab. Note: This function can be used without requesting the 'tabs' permission in the manifest.",
-        "description": "复制标签页。注意：即使没有在清单文件中请求 \"tabs\" 权限，也可以使用该函数。",
+//@        "description": "Duplicates a tab.",
+        "description": "复制标签页。",
         "parameters": [
           {
             "type": "integer",
@@ -330,8 +330,8 @@
               {
                 "name": "tab",
                 "optional": true,
-//@                "description": "Details about the duplicated tab. The Tab object doesn't contain url, title and faviconUrl if the 'tabs' permission has not been requested.",
-                "description": "有关已复制标签页的详情，如果没有请求 \"tabs\" 权限的话该 Tab 对象不会包含 url、title 和 favIconUrl。",
+//@                "description": "Details about the duplicated tab. The $ref:tabs.Tab object doesn't contain <code>url</code>, <code>title</code> and <code>favIconUrl</code> if the <code>\"tabs\"</code> permission has not been requested.",
+                "description": "有关已复制标签页的详情，如果没有请求 <code>\"tabs\"</code> 权限的话 $ref:tabs.Tab 对象不会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code>。",
                 "$ref": "Tab"
               }
             ]
@@ -479,8 +479,8 @@
       {
         "name": "update",
         "type": "function",
-//@        "description": "Modifies the properties of a tab. Properties that are not specified in <var>updateProperties</var> are not modified. Note: This function can be used without requesting the 'tabs' permission in the manifest.",
-        "description": "修改标签页属性，<var>updateProperties</var> 中未指定的属性保持不变。注意：调用该函数不需要在清单文件中请求 \"tabs\" 权限。",
+//@        "description": "Modifies the properties of a tab. Properties that are not specified in <var>updateProperties</var> are not modified.",
+        "description": "修改标签页属性，<var>updateProperties</var> 中未指定的属性保持不变。",
         "parameters": [
           {
             "type": "integer",
@@ -542,8 +542,8 @@
                 "name": "tab",
                 "$ref": "Tab",
                 "optional": true,
-//@                "description": "Details about the updated tab, or <code>null</code> if the 'tabs' permission has not been requested."
-                "description": "有关更新后的标签页详情，如果没有请求 \"tabs\" 权限的话则为 <code>null</code>。"
+//@                "description": "Details about the updated tab. The $ref:tabs.Tab object doesn't contain <code>url</code>, <code>title</code> and <code>favIconUrl</code> if the <code>\"tabs\"</code> permission has not been requested."
+                "description": "有关更新后的标签页详情，如果没有请求 \"tabs\" 权限的话 $ref:tabs.Tab 对象不包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code>。"
               }
             ]
           }
@@ -628,8 +628,8 @@
       {
         "name": "remove",
         "type": "function",
-//@        "description": "Closes one or more tabs. Note: This function can be used without requesting the 'tabs' permission in the manifest.",
-        "description": "关闭一个或多个标签页。注意：调用这一函数不需要在清单文件中声明 \"tabs\" 权限。",
+//@        "description": "Closes one or more tabs.",
+        "description": "关闭一个或多个标签页。",
         "parameters": [
           {
             "name": "tabIds",
@@ -1020,8 +1020,8 @@
       {
         "name": "onRemoved",
         "type": "function",
-//@        "description": "Fired when a tab is closed. Note: A listener can be registered for this event without requesting the 'tabs' permission in the manifest.",
-        "description": "当标签页关闭时产生。注意：为该事件注册监听器不需要在清单文件中声明 \"tabs\" 权限。",
+//@        "description": "Fired when a tab is closed.",
+        "description": "当标签页关闭时产生。",
         "parameters": [
           {"type": "integer", "name": "tabId", "minimum": 0},
           {
