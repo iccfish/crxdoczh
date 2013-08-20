@@ -83,9 +83,7 @@ namespace audio {
   };
 
   interface Events {
-    // <!--@Fired when anything changes to the audio device configuration.
-    // TODO(hshi): as suggested by mpcomplete this should pass down the same
-    // data as GetInfoCallback. Implement this once we have getInfo working.-->
+    // <!--@Fired when anything changes to the audio device configuration.-->
     // 音频设备配置更改时产生。
     static void onDeviceChanged();
   };

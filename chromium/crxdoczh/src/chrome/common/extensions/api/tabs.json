@@ -37,8 +37,12 @@
           "favIconUrl": {"type": "string", "optional": true, "optional": true, "description": "标签页的收藏夹图标 URL，只有当扩展程序拥有 \"tabs\" 权限时该属性才会存在，如果标签页正在加载它也可能是空字符串。"},
 //@          "status": {"type": "string", "optional": true, "description": "Either <em>loading</em> or <em>complete</em>."},
           "status": {"type": "string", "optional": true, "description": "<em>\"loading\"</em>（正在加载）或 <var>\"complete\"</var>（完成）。"},
-//@          "incognito": {"type": "boolean", "description": "Whether the tab is in an incognito window."}
-          "incognito": {"type": "boolean", "description": "标签页是否在隐身窗口中。"}
+//@          "incognito": {"type": "boolean", "description": "Whether the tab is in an incognito window."},
+          "incognito": {"type": "boolean", "description": "标签页是否在隐身窗口中。"},
+//@          "width": {"type": "integer", "optional": true, "description": "The width of the tab in pixels."},
+          "width": {"type": "integer", "optional": true, "description": "标签页宽度，以像素为单位。"},
+//@          "height": {"type": "integer", "optional": true, "description": "The height of the tab in pixels."}
+          "height": {"type": "integer", "optional": true, "description": "标签页高度，以像素为单位。"}
         }
       },
       {
