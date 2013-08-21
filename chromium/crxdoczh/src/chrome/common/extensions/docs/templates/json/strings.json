@@ -1,0 +1,12 @@
+{
+  'app': 'app',
+  'apps_title': u'应用',
+  'extension': 'extension',
+  'extensions_title': u'扩展程序',
+  'events': 'events',
+  'methods': 'methods',
+  'properties': 'properties',
+  'events_zh_cn': u'事件',
+  'methods_zh_cn': u'方法',
+  'properties_zh_cn': u'属性',
+}
