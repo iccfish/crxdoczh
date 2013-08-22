@@ -123,27 +123,32 @@ namespace fileSystem {
                             FileEntriesCallback callback);
 
     // <!--@Returns the file entry with the given id if it can be restored. This call
-    // will fail otherwise.-->
-    // 如果可以恢复则恢复指定标识符的文件项，否则该调用会失败。
+    // will fail otherwise. This method is new in Chrome 30.-->
+    // 如果可以恢复则恢复指定标识符的文件项，否则该调用会失败。该方法在
+    // Chrome 30 中增加。
     static void restoreEntry(DOMString id, FileEntryCallback callback);
 
     // <!--@Returns whether a file entry for the given id can be restored, i.e.
-    // whether restoreEntry would succeed with this id now.-->
+    // whether restoreEntry would succeed with this id now. This method is new
+    // in Chrome 30.-->
     // 返回指定标识符的文件项能否恢复，即使用该标识符调用 restoreEntry
-    // 是否会成功。
+    // 是否会成功。该方法在 Chrome 30 中增加。
     static void isRestorable(DOMString id, IsRestorableCallback callback);
 
     // <!--@Returns an id that can be passed to restoreEntry to regain access to a
     // given file entry. Only the 500 most recently used entries are retained,
     // where calls to retainEntry and restoreEntry count as use. If the app has
-    // the 'retainEntries' permission under 'fileSystem', entries are retained
-    // indefinitely. Otherwise, entries are retained only while the app is
-    // running and across restarts.-->
+    // the 'retainEntries' permission under 'fileSystem' (currently restricted
+    // to dev channel), entries are retained indefinitely. Otherwise, entries
+    // are retained only while the app is running and across restarts. This
+    // method is new in Chrome 30.-->
     // 返回一个标识符，可以传递给 restoreEntry
     // 而重新获得指定文件项的访问。只能保留最近使用的 500
     // 个项目，调用 retainEntry 和 restoreEntry 都算作使用。如果应用拥有
     // 'fileSystem' 之下的 'retainEntries'
-    // 权限，项目将永久保留。否则，只有应用运行时或重新启动后才会保留。
+    // 权限（当前仅在 Dev
+    // 分支中可用），项目将永久保留。否则，只有应用运行时或重新启动后才会保留。该方法在
+    // Chrome 30 中增加。
     static DOMString retainEntry([instanceOf=FileEntry] object fileEntry);
   };
 };
