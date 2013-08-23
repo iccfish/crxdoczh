@@ -1,0 +1,132 @@
+// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+  {
+    "namespace": "sessions",
+//@    "description": "Use the <code>chrome.sessions</code> API to query and restore tabs and windows from a browsing session.",
+    "description": "使用 <code>chrome.sessions API 查询和恢复浏览器会话中的标签页和窗口。",
+    "types": [
+      {
+        "id": "Filter",
+        "type": "object",
+        "properties": {
+          "maxResults": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 25,
+            "optional": true,
+//@            "description": "The maximum number of entries to be fetched in the requested list. Omit this parameter to fetch the maximum number of entries ($ref:MAX_SESSION_RESULTS)."
+            "description": "在请求的列表中获取项目的最大数目，省略该参数获取最大数目的项目（$ref:MAX_SESSION_RESULTS）。"
+          }
+        }
+      },
+      {
+        "id": "Session",
+        "type": "object",
+        "properties": {
+//@          "lastModified": {"type": "integer", "description": "The time when the window or tab was closed or modified, represented in milliseconds since the epoch."},
+          "lastModified": {"type": "integer", "description": "窗口或标签页关闭或修改的时间，表示为 1970 年 1 月 1 日以来经过的毫秒数。"},
+//@          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "The $ref:tabs.Tab, if this entry describes a tab. Either this or $ref:Session.window will be set."},
+          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "如果该项目描述标签页的话则为 $ref:tabs.Tab 对象。该属性或 $ref:Session.window 中的某一个将会设置。"},
+//@          "window": {"$ref": "windows.Window", "optional": true, "description": "The $ref:windows.Window, if this entry describes a window. Either this or $ref:Session.tab will be set."}
+          "window": {"$ref": "windows.Window", "optional": true, "description": "如果该项目描述窗口的话则为 $ref:windows.Window 对象。该属性或 $ref:Session.tab 中的某一个将会设置。"}
+        }
+      },
+      {
+        "id": "Device",
+        "type": "object",
+        "properties": {
+//@          "info": {"type": "string", "description": "Represents all information about a foreign device."},
+          "info": {"type": "string", "description": "表示外来设备的所有信息。"},
+//@          "sessions": {"type": "array", "items": {"$ref": "Session"}, "description": "A list of open window sessions for the foreign device, sorted from most recently to least recently modified session."}
+          "sessions": {"type": "array", "items": {"$ref": "Session"}, "description": "外来设备打开的窗口会话列表，会话按照最近修改到最早修改的顺序排列。"}
+        }
+      }
+    ],
+    "functions": [
+      {
+        "name": "getRecentlyClosed",
+        "type": "function",
+//@        "description": "Gets the list of recently closed tabs and/or windows.",
+        "description": "获取最近关闭的标签页和/或窗口列表。",
+        "parameters": [
+          {
+            "$ref": "Filter",
+            "name": "filter",
+            "optional": true
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+//@                "name": "sessions", "type": "array", "items": { "$ref": "Session" }, "description": "The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index <code>0</code>).The entries may contain either tabs or windows."
+                "name": "sessions", "type": "array", "items": { "$ref": "Session" }, "description": "关闭的项目列表，按照与关闭相反的顺序排列（最近关闭的标签页或窗口位于索引 <code>0</code>）。项目既可能包含标签页，也可能包含窗口。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "getDevices",
+        "type": "function",
+//@        "description": "Retrieves all devices with synced sessions.",
+        "description": "获取包含已同步会话的所有设备。",
+        "parameters": [
+          {
+            "$ref": "Filter",
+            "name": "filter",
+            "optional": true
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+//@                "name": "devices", "type": "array", "items": { "$ref": "Device" }, "description": "The list of $ref:Device objects for each synced session, sorted in order from device with most recently modified session to device with least recently modified session. $ref:tabs.Tab objects are sorted by recency in the $ref:windows.Window of the $ref:Session objects."
+                "name": "devices", "type": "array", "items": { "$ref": "Device" }, "description": "每一个同步会话的 $ref:Device 对象列表，具有最近修改的会话的设备在前，具有最早修改的会话的设备在后，依次排列。$ref:Session 对象的 $ref:windows.Window 中，$ref:tabs.Tab 对象按照最近修改时间排列。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "restore",
+        "type": "function",
+//@        "description": "Reopens a $ref:windows.Window or $ref:tabs.Tab, with an optional callback to run when the entry has been restored.",
+        "description": "重新打开 $ref:windows.Window（窗口）或 $ref:tabs.Tab（标签页），可以传递一个可选的回调函数，在项目恢复后调用。",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "sessionId",
+            "optional": true,
+//@            "description": "The $ref:windows.Window.sessionId, or $ref:tabs.Tab.sessionId to restore."
+            "description": "要恢复的 $ref:windows.Window.sessionId 或 $ref:tabs.Tab.sessionId。"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "optional": true,
+            "parameters": [
+              {
+                "$ref": "Session",
+                "name": "restoredSession",
+//@                "description": "A $ref:Session containing the restored $ref:windows.Window or $ref:tabs.Tab object."
+                "description": "包含恢复后的 $ref:windows.Window 或 $ref:tabs.Tab 对象的 $ref:Session（会话）。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "properties": {
+      "MAX_SESSION_RESULTS": {
+        "value": 25,
+//@        "description": "The maximum number of $ref:Session that will be included in a requested list."
+        "description": "在请求的列表中获取项目的最大数目，省略该参数获取最大数目的项目（$ref:MAX_SESSION_RESULTS）。"
+      }
+    }
+  }
+]

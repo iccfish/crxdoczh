@@ -12,8 +12,8 @@
         "id": "Tab",
         "type": "object",
         "properties": {
-//@          "id": {"type": "integer", "minimum": 0, "description": "The ID of the tab. Tab IDs are unique within a browser session."},
-          "id": {"type": "integer", "minimum": 0, "description": "标签页的标识符。标签页的标识符在浏览器会话中唯一。"},
+//@          "id": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab. Tab IDs are unique within a browser session. Under some circumstances a Tab may not be assigned an ID, for example when querying foreign tabs using the $ref:sessions API, in which case a session ID may be present."},
+          "id": {"type": "integer", "minimum": 0, "description": "标签页的标识符。标签页的标识符在浏览器会话中唯一。在某些情况下，标签页可能没有标识符，例如使用 $ref:sessions API 查询外来标签页时，此时可能存在会话标识符。"},
           // TODO(kalman): Investigate how this is ending up as -1 (based on window type? a bug?) and whether it should be optional instead.
 //@          "index": {"type": "integer", "minimum": -1, "description": "The zero-based index of the tab within its window."},
           "index": {"type": "integer", "minimum": -1, "description": "标签页在所在窗口中的索引，从 0 开始。"},
@@ -41,8 +41,10 @@
           "incognito": {"type": "boolean", "description": "标签页是否在隐身窗口中。"},
 //@          "width": {"type": "integer", "optional": true, "description": "The width of the tab in pixels."},
           "width": {"type": "integer", "optional": true, "description": "标签页宽度，以像素为单位。"},
-//@          "height": {"type": "integer", "optional": true, "description": "The height of the tab in pixels."}
-          "height": {"type": "integer", "optional": true, "description": "标签页高度，以像素为单位。"}
+//@          "height": {"type": "integer", "optional": true, "description": "The height of the tab in pixels."},
+          "height": {"type": "integer", "optional": true, "description": "标签页高度，以像素为单位。"},
+//@          "sessionId": {"type": "string", "optional": true, "description": "The session ID used to uniquely identify a Tab obtained from the $ref:sessions API."}
+          "sessionId": {"type": "string", "optional": true, "description": "会话标识符，用于唯一标识由 $ref:sessions API 获取的标签页。"}
         }
       },
       {

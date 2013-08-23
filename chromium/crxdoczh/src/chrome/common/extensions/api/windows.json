@@ -15,18 +15,18 @@
         "id": "Window",
         "type": "object",
         "properties": {
-//@          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "The ID of the window. Window IDs are unique within a browser session. Under some circumstances a Window may not be assigned an ID, for example when querying closed windows from the $ref:sessionRestore API."},
-          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "窗口标识符，窗口标识符在浏览器会话中唯一。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有标识符。"},
+//@          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "The ID of the window. Window IDs are unique within a browser session. Under some circumstances a Window may not be assigned an ID, for example when querying windows using the $ref:sessions API, in which case a session ID may be present."},
+          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "窗口标识符，窗口标识符在浏览器会话中唯一。在某些情况下，例如当您使用 $ref:sessions API 查询窗口时，窗口可能没有标识符，此时存在会话标识符。"},
 //@          "focused": {"type": "boolean", "description": "Whether the window is currently the focused window."},
           "focused": {"type": "boolean", "description": "是否为当前具有焦点的窗口。"},
-//@          "top": {"type": "integer", "optional": true, "description": "The offset of the window from the top edge of the screen in pixels. Under some circumstances a Window may not be assigned top property, for example when querying closed windows from the $ref:sessionRestore API."},
-          "top": {"type": "integer", "optional": true, "description": "窗口与屏幕顶部的距离，以像素为单位。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有 top 属性。"},
-//@          "left": {"type": "integer", "optional": true, "description": "The offset of the window from the left edge of the screen in pixels. Under some circumstances a Window may not be assigned left property, for example when querying closed windows from the $ref:sessionRestore API."},
-          "left": {"type": "integer", "optional": true, "description": "窗口与屏幕左侧的距离，以像素为单位。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有 left 属性。"},
-//@          "width": {"type": "integer", "optional": true, "description": "The width of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned width property, for example when querying closed windows from the $ref:sessionRestore API."},
-          "width": {"type": "integer", "optional": true, "description": "窗口的宽度（包含边框），以像素为单位。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有 width 属性。"},
-//@          "height": {"type": "integer", "optional": true, "description": "The height of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned height property, for example when querying closed windows from the $ref:sessionRestore API."},
-          "height": {"type": "integer", "optional": true, "description": "窗口的高度（包含边框），以像素为单位。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有 height 属性。"},
+//@          "top": {"type": "integer", "optional": true, "description": "The offset of the window from the top edge of the screen in pixels. Under some circumstances a Window may not be assigned top property, for example when querying closed windows from the $ref:sessions API."},
+          "top": {"type": "integer", "optional": true, "description": "窗口与屏幕顶部的距离，以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 top 属性。"},
+//@          "left": {"type": "integer", "optional": true, "description": "The offset of the window from the left edge of the screen in pixels. Under some circumstances a Window may not be assigned left property, for example when querying closed windows from the $ref:sessions API."},
+          "left": {"type": "integer", "optional": true, "description": "窗口与屏幕左侧的距离，以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 left 属性。"},
+//@          "width": {"type": "integer", "optional": true, "description": "The width of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned width property, for example when querying closed windows from the $ref:sessions API."},
+          "width": {"type": "integer", "optional": true, "description": "窗口的宽度（包含边框），以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 width 属性。"},
+//@          "height": {"type": "integer", "optional": true, "description": "The height of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned height property, for example when querying closed windows from the $ref:sessions API."},
+          "height": {"type": "integer", "optional": true, "description": "窗口的高度（包含边框），以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 height 属性。"},
 //@          "tabs": {"type": "array", "items": { "$ref": "tabs.Tab" }, "optional": true, "description": "Array of $ref:tabs.Tab objects representing the current tabs in the window."},
           "tabs": {"type": "array", "items": { "$ref": "tabs.Tab" }, "optional": true, "description": "表示窗口中所有标签页的 $ref:tabs.Tab 对象数组。"},
 //@          "incognito": {"type": "boolean", "description": "Whether the window is incognito."},
@@ -34,19 +34,21 @@
           "type": {
             "type": "string",
             "optional": true,
-//@            "description": "The type of browser window this is. Under some circumstances a Window may not be assigned type property, for example when querying closed windows from the $ref:sessionRestore API.",
-            "description": "浏览器窗口的类型。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有 type 属性。",
+//@            "description": "The type of browser window this is. Under some circumstances a Window may not be assigned type property, for example when querying closed windows from the $ref:sessions API.",
+            "description": "浏览器窗口的类型。在某些情况下，例如当您使用 $ref:sessions 查询关闭的窗口时，窗口可能没有 type 属性。",
             "enum": ["normal", "popup", "panel", "app"]
           },
           "state": {
             "type": "string",
             "optional": true,
-//@            "description": "The state of this browser window. Under some circumstances a Window may not be assigned state property, for example when querying closed windows from the $ref:sessionRestore API.",
-            "description": "浏览器窗口的状态。在某些情况下，例如当您使用 $ref:sessionRestore API 查询关闭的窗口时，窗口可能没有 state 属性。",
+//@            "description": "The state of this browser window. Under some circumstances a Window may not be assigned state property, for example when querying closed windows from the $ref:sessions API.",
+            "description": "浏览器窗口的状态。在某些情况下，例如当您使用 $ref:sessions 查询关闭的窗口时，窗口可能没有 state 属性。",
             "enum": ["normal", "minimized", "maximized", "fullscreen"]
           },
-//@          "alwaysOnTop": {"type": "boolean", "description": "Whether the window is set to be always on top."}
-          "alwaysOnTop": {"type": "boolean", "description": "窗口是否设置为前端显示。"}
+//@          "alwaysOnTop": {"type": "boolean", "description": "Whether the window is set to be always on top."},
+          "alwaysOnTop": {"type": "boolean", "description": "窗口是否设置为前端显示。"},
+//@          "sessionId": {"type": "string", "optional": true, "description": "The session ID used to uniquely identify a Window obtained from the $ref:sessions API."}
+          "sessionId": {"type": "string", "optional": true, "description": "会话标识符，用于唯一标识由 $ref:sessions API 获取的窗口。"}
         }
       }
     ],
