@@ -13,20 +13,32 @@
 <!--@For a tutorial on message passing see -->有关消息传递的教程请参见<a href="../messaging.html#external"><!--@cross-extension and app messaging-->跨扩展程序和应用的消息传递</a><!--@ and -->和<a href="../messaging.html#external-webpage"><!--@sending messages from web pages-->从网页中发送消息</a><!--@.-->。
 </p>
 
+<h2 id="without-externally-connectable"><!--@Connecting without-->没有声明 externally_connectable 时连接</h2>
+
+<p>
+<!--@If <code>externally_connectable</code> is not declared in your {{platform}}'s manifest, all extensions and apps can connect, but no webpages can connect. As a consequence, when updating your manifest to use <code>externally_connectable</code>, if <code>"ids": ["*"]</code> is not specified then other extensions and apps will lose the ability to connect to your {{platform}}. This may be an unintended consequence, so keep it in mind.-->
+如果您的{{title}}中没有声明
+<code>externally_connectable</code>，所有扩展程序和应用都能连接，但是网页不能连接。当您更新您的清单文件使用
+<code>externally_connectable</code> 时，如果没有指定
+<code>"ids": ["*"]</code>，其他所有扩展程序和应用都无法再连接到您的{{title}}，您并不一定期望这样的结果，所以请牢记这一点。
+</p>
+
 <h2 id="manifest"><!--@Sample -->manifest.json 示例</h2>
 <pre>
 {
   "name": "可以从外部连接的{{title}}",
   "externally_connectable": {
-    // 扩展程序与应用的标识符：
+    // 扩展程序与应用的标识符。如果没有指定该字段，
+    // 任何扩展程序或应用都无法连接。
     "ids": [
       "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
       ...
+      // 或者如果要匹配所有扩展程序和应用，只需要指定 "*"。
+      "*"
     ],
-    // 或者所有扩展程序和应用都能连接：
-    "ids": ["*"],
-    // <em>网页</em>而不是内容脚本的匹配表达式：
+    // 网页的匹配表达式，不影响内容脚本。
+    // 如果没有指定该字段，任何网页都无法连接。
     "matches": [
       "https://*.google.com",
       "*://*.chromium.org",

@@ -162,6 +162,10 @@ namespace syncFileSystem {
   // 用于 getFileStatuses 的回调函数。
   callback GetFileStatusesCallback = void (FileStatusInfo[] status);
 
+  // <!--@A callback type for getServiceStatus.-->
+  // 用于 getServiceStatus 的回调函数。
+  callback GetServiceStatusCallback = void (ServiceStatus status);
+
   // <!--@A callback type for getConflictResolutionPolicy.-->
   // 用于 getConflictResolutionPolicy 的回调函数。
   callback GetConflictResolutionPolicyCallback =
@@ -232,6 +236,10 @@ namespace syncFileSystem {
     // dirReader.readEntries() 的结果。
     static void getFileStatuses(object[] fileEntries,
                                 GetFileStatusesCallback callback);
+
+    // <!--@Returns the current sync backend status.-->
+    // 获取同步后端的当前状态。
+    static void getServiceStatus(GetServiceStatusCallback callback);
   };
 
   interface Events {

@@ -336,7 +336,7 @@
         "parameters": [
           {
             "type": "object",
-            "name": "deails",
+            "name": "details",
             "properties": {
 //@              "requestId": {"type": "string", "description": "The ID of the request. Request IDs are unique within a browser session. As a result, they could be used to relate different events of the same request."},
               "requestId": {"type": "string", "description": "请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。"},
