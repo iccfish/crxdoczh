@@ -61,6 +61,10 @@ namespace notifications {
     // 通知的主要内容。
     DOMString? message;
 
+    // <!--@Alternate notification content with a lower-weight font.-->
+    // 附加通知内容，以较小的字体显示。
+    DOMString? contextMessage;
+
     // <!--@Priority ranges from -2 to 2. -2 is lowest priority. 2 is highest. Zero
     // is default.-->
     // 优先级，从 -2 到 2，-2 优先级最低，2 最高，默认为零。
