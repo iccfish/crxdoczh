@@ -92,6 +92,10 @@
     "extension_types": ["extension"],
     "location": "component"
   },
+  "brailleDisplayPrivate": {
+    "dependencies": ["permission:brailleDisplayPrivate"],
+    "contexts": ["blessed_extension"]
+  },
   "browserAction": {
     "dependencies": ["manifest:browser_action"],
     "contexts": ["blessed_extension"]
@@ -158,6 +162,10 @@
     "dependencies": ["permission:dial"],
     "contexts": ["blessed_extension"]
   },
+  "dns": {
+    "dependencies": ["permission:dns"],
+    "contexts": ["blessed_extension"]
+  },
   "downloads": {
     "dependencies": ["permission:downloads"],
     "contexts": ["blessed_extension"]
@@ -190,10 +198,6 @@
     "contexts": ["blessed_extension"]
   },
   "experimental.discovery": {
-    "dependencies": ["permission:experimental"],
-    "contexts": ["blessed_extension"]
-  },
-  "experimental.dns": {
     "dependencies": ["permission:experimental"],
     "contexts": ["blessed_extension"]
   },
@@ -347,6 +351,10 @@
     "dependencies": ["permission:metricsPrivate"],
     "contexts": ["blessed_extension"]
   },
+  "mdns": {
+    "dependencies": ["permission:mdns"],
+    "contexts": ["blessed_extension"]
+  },
   "musicManagerPrivate": {
     "dependencies": ["permission:musicManagerPrivate"],
     "contexts": ["blessed_extension"]
@@ -467,6 +475,10 @@
   },
   "sessions": {
     "dependencies": ["permission:sessions"],
+    "contexts": ["blessed_extension"]
+  },
+  "signedInDevices": {
+    "dependencies": ["permission:signedInDevices"],
     "contexts": ["blessed_extension"]
   },
   "socket": {

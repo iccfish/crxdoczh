@@ -28,45 +28,9 @@
             "type": "string",
             "description": "Task icon url (from chrome://extension-icon/...)"
           },
-          "driveApp": {
-            "type": "boolean",
-            "description": "True if this is Drive App."
-          },
           "isDefault": {
             "type": "boolean",
             "description": "True if this task is a default task for the selected files."
-          }
-        }
-      },
-      {
-        "id": "VolumeInfo",
-        "type": "object",
-        "description": "Mounted disk volume information.",
-        "properties": {
-          "mountPath": {
-            "type": "string",
-            "description": "Disk volume mount point path. The value corresponds to its Entry.fullPath in File API."
-          },
-          "devicePath": {
-            "type": "string",
-            "description": "Disk volume device path."
-          },
-          "label": {
-            "type": "string",
-            "description": "Volume label."
-          },
-          "deviceType": {
-            "type": "string",
-            "enum": ["sd", "usb", "optical", "mobile", "unknown"],
-            "description": "Device type."
-          },
-          "readOnly": {
-            "type": "boolean",
-            "description": "Flag that specifies if volume is mounted in read-only mode."
-          },
-          "totalSize": {
-            "type": "number",
-            "description": "Approximated total disk volume size in bytes."
           }
         }
       },
@@ -75,11 +39,6 @@
         "type": "object",
         "description": "Drive file properties.",
         "properties": {
-          "fileUrl": {
-            "type": "string",
-            "optional": true,
-            "description": "the URL given for this file."
-          },
           "thumbnailUrl": {
             "type": "string",
             "optional": true,
@@ -104,11 +63,6 @@
             "type": "boolean",
             "optional": true,
             "description": "True if the file is hosted on a Drive server instead of local."
-          },
-          "errorCode": {
-            "type": "integer",
-            "optional": true,
-            "description": "The error code (from base::PlatformFileError) if fetching the properties for this file had an error."
           },
           "customIconUrl": {
             "type": "string",
@@ -142,11 +96,11 @@
             "optional": true,
             "description": "The path to the mounted device, archive file or network resource."
           },
-          "mountType": {
+          "volumeType": {
             "type": "string",
             "optional": true,
-            "enum": ["device", "file", "network"],
-            "description": "Type of the mount."
+            "enum": ["drive", "downloads", "removable", "archive"],
+            "description": "Type of the mounted volume."
           },
           "mountCondition": {
             "type": "string",
@@ -236,22 +190,6 @@
         }
       },
       {
-        "id": "MountEvent",
-        "type": "object",
-        "description": "Payload data for disk mount / unmount event.",
-        "properties": {
-          "eventType": {
-            "type": "string",
-            "enum": ["added", "removed"],
-            "description": "Event type that tells listeners which disk volume even was raised."
-          },
-          "volumeInfo": {
-            "$ref": "VolumeInfo",
-            "description":"Volume information that this mount event applies to."
-          }
-        }
-      },
-      {
         "id": "MountCompletedEvent",
         "type": "object",
         "description": "Payload data for mount event.",
@@ -286,10 +224,10 @@
             "optional": true,
             "description": "Path that sourcePath was mounted to."
           },
-          "mountType": {
+          "volumeType": {
             "type": "string",
-            "enum": ["device", "file", "network", "drive"],
-            "description": "Type of the mount."
+            "enum": ["drive", "downloads", "removable", "archive"],
+            "description": "Type of the mounted volume."
           }
         }
       },
@@ -426,7 +364,7 @@
             "description": "The unique identifier of task to execute."
           },
           {
-            "name": "fileURLs",
+            "name": "fileUrls",
             "type": "array",
             "description": "Array of file URLs",
             "items": { "type": "string" }
@@ -456,7 +394,7 @@
             "description": "The unique identifier of task to mark as default."
           },
           {
-            "name": "fileURLs",
+            "name": "fileUrls",
             "type": "array",
             "description": "Array of selected file URLs to extract suffixes from.",
             "items": { "type": "string" }
@@ -481,7 +419,7 @@
         "description": "Gets the list of tasks that can be performed over selected files.",
         "parameters": [
           {
-            "name": "fileURLs",
+            "name": "fileUrls",
             "type": "array",
             "description": "Array of selected file URLs",
             "items": { "type": "string" }
@@ -745,11 +683,13 @@
             "type": "string",
             "description": "Mount point source. For compressed files it is relative file path within external file system"
           },
+	  // TODO(hidehiko): After the refactoring, we won't need to request
+	  // mounting the Drive. Then remove this param.
           {
-            "name": "mountType",
+            "name": "volumeType",
             "type": "string",
-            "enum": ["device", "file", "network", "drive"],
-            "description": "Mount point type. 'file' for compressed files"
+            "enum": ["drive", "archive"],
+            "description": "Type of the mounted volume"
           },
           {
             "name": "options",
@@ -1179,6 +1119,23 @@
             "type": "boolean",
             "description": "Whether the token should be refetched instead of using the cached one."
           },
+          {
+            "name": "callback",
+            "type": "function",
+            "parameters": [
+              {
+                "name": "accessToken",
+                "type": "string",
+                "description": "OAuth2 access token, or an empty string if failed to fetch."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "requestWebStoreAccessToken",
+        "description": "Requests a Webstore API OAuth2 access token.",
+        "parameters": [
           {
             "name": "callback",
             "type": "function",

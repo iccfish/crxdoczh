@@ -2,8 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>chrome.signedInDevices</code> API to get a list of devices
-// signed into chrome with the same account as the current profile.
+// <!--@Use the <code>chrome.signedInDevices</code> API to get a list of devices
+// signed into chrome with the same account as the current profile.-->
+// 使用 <code>chrome.signedInDevices</code> API
+// 获取以当前配置文件所对应的账户登录的设备列表。
 namespace signedInDevices {
   enum OS {
     win,
@@ -23,43 +25,54 @@ namespace signedInDevices {
   };
 
   dictionary DeviceInfo {
-    // Name of the device. This name is usually set by the user
-    // when setting up a device.
+    // <!--@Name of the device. This name is usually set by the user
+    // when setting up a device.-->
+    // 设备名称，该名称通常由用户配置设备时设置。
     DOMString name;
 
-    // Unique Id for this device. Note: The id is meaningful only
+    // <!--@Unique Id for this device. Note: The id is meaningful only
     // in the current device. This id cannot be used to refer to the
-    // same device from another device or extension.
+    // same device from another device or extension.-->
+    // 该设备的唯一标识符。注意：该标识符仅在当前设备中有意义，而不能在另一设备上或另一个扩展程序中引用同一设备。
     DOMString id;
 
-    // The OS of the device.
+    // <!--@The OS of the device.-->
+    // 设备的操作系统。
     OS os;
 
-    // Device Type.
+    // <!--@Device Type.-->
+    // 设备类型。
     DeviceType type;
 
-    // Version of chrome running in this device.
+    // <!--@Version of chrome running in this device.-->
+    // 该设备上运行的 Chrome 浏览器版本。
     DOMString chromeVersion;
   };
 
   callback DeviceInfoCallback = void(DeviceInfo[] devices);
 
   interface Functions {
-    // Gets the array of signed in devices, signed into the same account
-    // as the current profile.
-    // |isLocal|: If true only return the information for the local device. If
+    // <!--@Gets the array of signed in devices, signed into the same account
+    // as the current profile.-->
+    // 获取以当前配置文件所对应的账户登录的所有设备。
+    // |isLocal|: <!--@If true only return the information for the local device. If
     // false or omitted return the list of all devices including the local
-    // device.
-    // |callback|: The callback to be invoked with the array of DeviceInfo
-    // objects.
+    // device.-->
+    // 如果为 true，只返回本机设备信息。如果为 false
+    // 或省略则返回包括本机设备在内的所有设备列表。
+    // |callback|: <!--@The callback to be invoked with the array of DeviceInfo
+    // objects.-->
+    // 回调函数，调用时传递 DeviceInfo 对象数组。
     static void Get(optional boolean isLocal, DeviceInfoCallback callback);
   };
 
   interface Events {
-    // Fired if the DeviceInfo object of any of the signed in devices
-    // change or a new device is added or a device removed.
-    // |callback|: The callback to be invoked with the array of DeviceInfo
-    // objects.
+    // <!--@Fired if the DeviceInfo object of any of the signed in devices
+    // change or a new device is added or a device removed.-->
+    // 如果已登录设备的 DeviceInfo 对象更改或添加、删除设备，则产生该事件。
+    // |callback|: <!--@The callback to be invoked with the array of DeviceInfo
+    // objects.-->
+    // 调用时传递 DeviceInfo 对象数组的回调函数。
     static void onDeviceInfoChange(DeviceInfoCallback callback);
   };
 };

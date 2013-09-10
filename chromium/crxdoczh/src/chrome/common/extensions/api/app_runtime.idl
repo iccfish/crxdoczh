@@ -19,14 +19,37 @@ namespace app.runtime {
     DOMString type;
   };
 
-  // <!--@Optional data for the launch.-->
-  // 执行时的可选数据
+  // <!--@Optional data for the launch. Either <code>items</code>, or
+  // the pair (<code>url, referrerUrl</code>) can be present for any given
+  // launch.-->
+  // 启动时的可选数据。每一次启动时可能有 <code>items</code> 属性，也可能有
+  // <code>url</code>、<code>referrerUrl</code> 这两个属性。
   [inline_doc] dictionary LaunchData {
-    // <!--@The id of the file handler that the app is being invoked with.-->
-    // 调用应用的文件处理器标识符
+    // <!--@The ID of the file or URL handler that the app is being invoked with.
+    // Handler IDs are the top-level keys in the <code>file_handlers</code>
+    // and/or <code>url_handlers</code> dictionaries in the manifest.-->
+    // 调用应用的文件处理器标识符。处理器标识符为清单文件中
+    // <code>file_handlers</code> 和/或 <code>url_handlers</code>
+    // 词典中的顶层键。
     DOMString? id;
 
+    // <!--@The file entries for the <code>onLaunched</code> event triggered by a
+    // matching file handler in the <code>file_handlers</code> manifest key.-->
+    // 匹配清单文件 <code>file_handlers</code> 中的文件处理器而触发的
+    // <code>onLaunched</code> 事件的文件项。
     LaunchItem[]? items;
+
+    // <!--@The URL for the <code>onLaunched</code> event triggered by a matching
+    // URL handler in the <code>url_handlers</code> manifest key.-->
+    // 匹配清单文件 <code>url_handlers</code> 中的 URL 处理器而触发的
+    // <code>onLaunched</code> 事件的 URL。
+    DOMString? url;
+
+    // <!--@The referrer URL for the <code>onLaunched</code> event triggered by a
+    // matching URL handler in the <code>url_handlers</code> manifest key.-->
+    // 匹配清单文件 <code>url_handlers</code> 中的 URL 处理器而触发的
+    // <code>onLaunched</code> 事件的引用 URL。
+    DOMString? referrerUrl;
   };
 
   interface Events {

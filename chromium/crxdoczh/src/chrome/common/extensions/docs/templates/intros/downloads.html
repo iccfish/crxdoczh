@@ -1,6 +1,6 @@
 <h2 id='manifest'><!--@Manifest-->清单文件</h2>
 
-<p> <!--@You must declare the 'downloads' permission in the <a
+<p> <!--@You must declare the <code>"downloads"</code> permission in the <a
 href='manifest.html'>extension manifest</a> to use this API.-->
 您必须在<a href='manifest.html'>扩展程序的清单文件</a>中声明
 "downloads"
@@ -8,18 +8,22 @@ href='manifest.html'>extension manifest</a> to use this API.-->
 </p>
 
 <pre>{
-  'name': '我的扩展程序',
+  "name": "我的扩展程序",
   ...
-<b>  'permissions': ['downloads']</b>,
+  <b>"permissions": [
+    "downloads"
+  ]</b>,
   ...
 }</pre>
 
 <h2 id='examples'><!--@Examples-->例子</h2>
 
-<p><!--@You can find simple examples of using the downloads module in the-->您可以在 <a
+<p><!--@You can find simple examples of using the <code>chrome.downloads</code> API in the-->
+您可以在 <a
 href='http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/downloads/'>examples/api/downloads</a>
 <!--@directory. For other examples and for help in viewing the source code, see <a
 href='samples.html'>Samples</a>.-->
-目录中找到使用下载模块的简单例子。有关其他例子以及查看源代码的帮助，请参见<a
+目录中找到使用 <code>chrome.downloads</code> API
+的简单例子。有关其他例子以及查看源代码的帮助，请参见<a
 href='samples.html'>示例</a>。
 </p>
