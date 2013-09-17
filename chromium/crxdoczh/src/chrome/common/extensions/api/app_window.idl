@@ -78,8 +78,17 @@ namespace app.window {
     // Type of window to create.
     [nodoc] WindowType? type;
 
-    // <!--@Frame type: 'none' or 'chrome' (defaults to 'chrome').-->
-    // 框架类型：'none' 或 'chrome'（默认为 'chrome'）。
+    // <!--@Frame type: <code>none</code> or <code>chrome</code> (defaults to
+    // <code>chrome</code>). For <code>none</code>, the
+    // <code>-webkit-app-region</code> CSS property can be used to apply
+    // draggability to the app's window. <code>-webkit-app-region: drag</code>
+    // can be used to mark regions draggable. <code>no-drag</code> can be used
+    // to disable this style on nested elements.-->
+    // 框架类型：'none' 或 'chrome'（默认为 'chrome'）。如果使用
+    // 'none'，可以通过 CSS 属性 <code>-webkit-app-region</code>
+    // 设置应用窗口的拖放特性。<code>-webkit-app-region: drag</code>
+    // 可以将区域标志为可拖放的，而 <code>no-drag</code>
+    // 可以用来在嵌套元素上禁用该样式。
     DOMString? frame;
 
     // <!--@Size and position of the content in the window (excluding the titlebar).

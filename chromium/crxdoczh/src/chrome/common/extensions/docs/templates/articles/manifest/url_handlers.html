@@ -1,0 +1,74 @@
+<h1 id="url_handlers">url_handlers</h1>
+
+<p>
+<!--@Used by <a href="../app_lifecycle.html#eventpage">packaged apps</a>
+to specify URL patterns the app wants to intercept and handle. An app can
+have multiple <code>url_handlers</code>, with each one having an identifier,
+a URL pattern, and a title. Here's an example of how to specify URL handlers:-->
+由<a href="../app_lifecycle.html#eventpage"
+>打包应用</a>使用，指定应用希望拦截并处理的 URL 匹配表达式。应用可以包含多个
+<code>url_handlers</code>，每一个处理程序都应该有标识符、名称和标题。如下是指定
+URL 处理程序的例子：
+</p>
+
+<pre>
+"url_handlers": {
+  "view_foo_presentation": {
+    "matches": [
+      "https://www.foo.com/presentation/view/*"
+    ],
+    "title": "查看 Foo 演示文稿"
+  },
+  "view_bar_presentation": {
+    "matches": [
+      "https://www.bar.com/view/slideshow/*"
+    ],
+    "title": "查看 Bar 演示文稿"
+  },
+  "edit_spreadsheet": {
+    "matches": [
+      "https://www.foo.com/spreadsheet/edit/*",
+      "https://www.bar.com/spreadsheet/edit/*"
+    ],
+    "title": "编辑电子表格"
+  }
+}</pre>
+
+<p>
+<!--@Apps can only register to handle URL patterns within domains that they own,
+that is, can prove ownership of as determined by the
+<a href="https://chrome.google.com/webstore">Chrome Web Store</a>.
+Apps that violate this requirement and attempt to register for handling external
+URLs will be rejected by the Chrome Web Store on upload.-->
+应用只能注册并处理自己拥有的域名之内的 URL 匹配表达式，也就是说必须在
+<a href="https://chrome.google.com/webstore">Chrome
+网上应用店</a>中证明所有权。违反这一要求，尝试注册并处理外部 URL
+的应用在上传到 Chrome 网上应用店时会被拒绝。
+</p>
+<p>
+<!--@This automatically means that at least a complete domain should always be
+specified for all the patterns under <code>matches</code> (otherwise ownership
+cannot be verified).-->
+这也意味着 <code>matches</code> 中至少要指定一个完整域名（否则无法验证所有权）。
+</p>
+<p>
+<!--@Upon successful registration and installation, an app will be launched for all
+matching navigations inside browser tabs as well as other apps. The app will
+receive a new kind of the
+<a href="../app_runtime.html#event-onLaunched">app.runtime.onLaunched</a>
+event, with the launchData
+object containing the matched handler's identifier (such as "view_foo_presentation"
+above), the URL being navigated to, and the referrer's URL.-->
+注册并安装成功后，浏览器标签页以及其他应用内所有匹配的导航都会启动应用。应用会收到一种新的
+<a href="../app_runtime.html#event-onLaunched">app.runtime.onLaunched</a>
+事件，它的 launchData 对象包含匹配的处理程序标识符（例如上面的
+"view_foo_presentation"）、导航至的 URL 以及引用 URL。
+</p>
+<p>
+<!--@The <code>title</code> field is reserved for future use in all relevant UI elements.
+It should describe the action that the app performs when launched with this type
+of URL handler.-->
+<code>title</code>
+字段保留，将来在所有相关的用户界面元素中使用，它应该描述应用通过这种类型的
+URL 处理程序启动时执行的操作。
+</p>

@@ -54,11 +54,6 @@
             "optional": true,
             "description": "True if the file is present in Drive cache."
           },
-          "isDirty": {
-            "type": "boolean",
-            "optional": true,
-            "description": "True if the file is awaiting upload in Drive cache."
-          },
           "isHosted": {
             "type": "boolean",
             "optional": true,
@@ -305,22 +300,6 @@
         }
       },
       {
-        "id": "FileWatchChangedEntry",
-        "type": "object",
-        "description": "Information about changed file or directory",
-        "properties": {
-          "changeType": {
-            "type": "string",
-            "enum": ["added", "deleted", "updated"],
-            "description": "Specifies type of the change."
-          },
-          "fileUrl": {
-            "type": "string",
-            "description": "URL of the changed file."
-          }
-        }
-      },
-      {
         "id": "FileWatchEvent",
         "type": "object",
         "description": "Directory change notification details.",
@@ -333,10 +312,6 @@
           "directoryUrl": {
             "type": "string",
             "description": "URL of watched directory."
-          },
-          "changedEntries": {
-            "type": "array",
-            "items": {"$ref": "FileWatchChangedEntry"}
           }
         }
       }
@@ -512,6 +487,11 @@
         "name": "requestFileSystem",
         "description": "Requests access to the file system specially set up for Files.app. The filesystem has multiple mount points which provide access to the user's Downloadsfolder, removal media like SD cards, and Drive. See comments at CrosDiskMountPorivder for details.",
         "parameters": [
+          {
+            "name": "fileSystemId",
+            "type": "string",
+            "description": "The ID of the file system to request. The file system ID is delivered to JavaScript as part of VolumeMetadata (This is not yet implemented). By specifying \"compatible\", this function behaves in the compatible mode, where the returned FileSystem object gives access to all file systems (i.e. all file systems are provided inside the single FileSystem object). In the new \"multi FileSystem object model\", a separate FileSystem object is created for each file system. \"compatible\" parameter will be removed once Files.app is switched to the multi FileSystem object model. crbug.com/284963"
+          },
           {
             "name": "callback",
             "type": "function",
@@ -1022,7 +1002,7 @@
             "description": "URL of the directory containing the selected files."
           },
           {
-            "name": "selectionURLs",
+            "name": "selectionUrls",
             "type": "array",
             "description": "URLs of the selected files. The files must be under the directory specified by dirURL.",
             "items": { "type": "string" }

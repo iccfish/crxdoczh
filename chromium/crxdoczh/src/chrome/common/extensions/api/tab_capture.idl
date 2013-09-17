@@ -57,16 +57,17 @@ namespace tabCapture {
     // <!--@Captures the visible area of the currently active tab.
     // This method can only be used on the currently active page after the
     // extension has been <em>invoked</em>, similar to the way that
-    // <a href="activeTab.html">activeTab</a> works.
-    // Note that Chrome internal pages cannot be captured.-->
+    // <a href="activeTab.html">activeTab</a> works.-->
     // 捕获当前活动标签页的可视区域。该方法只能在扩展程序被<em
     // >调用</em>之后在当前活动网页上使用，与
     // <a href="activeTab.html">activeTab</a>
-    // 的工作方式类似。注意，不能捕获 Chrome 浏览器的内部页面。
+    // 的工作方式类似。
     // |options| : <!--@Configures the returned media stream.-->
     // 配置返回的流媒体。
     // |callback| : <!--@Callback with either the stream returned or null.-->
     // 传递返回的流媒体或 null 的回调函数。
+    // |options| : Configures the returned media stream.
+    // |callback| : Callback with either the stream returned or null.
     static void capture(CaptureOptions options,
                         GetTabMediaCallback callback);
 

@@ -103,8 +103,10 @@ namespace location {
 
   // TODO(vadimt): Consider adding getWatch() and getAllWatches().
   interface Functions {
-    // <!--@Starts a location watching request.-->
-    // 开始位置监视请求。
+    // <!--@Starts a location watching request. If there is another location watching
+    // request with the same name (or no name if none is specified), it will be
+    // cancelled and replaced by this request.-->
+    // 开始位置监视请求。如果已经有相同名称（或者没有指定的话则没有名称）的位置监视请求，它将会被取消并由这一请求替代。
     // |name| : <!--@Optional name to identify this request. Defaults to the empty
     // string.-->
     // 标识本次请求的可选名称，默认为空字符串。

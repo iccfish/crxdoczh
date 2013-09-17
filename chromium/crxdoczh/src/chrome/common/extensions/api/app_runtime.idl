@@ -50,6 +50,14 @@ namespace app.runtime {
     // 匹配清单文件 <code>url_handlers</code> 中的 URL 处理器而触发的
     // <code>onLaunched</code> 事件的引用 URL。
     DOMString? referrerUrl;
+
+    // <!--@Whether the app is being launched in a <a
+    // href="https://support.google.com/chromebook/answer/3134673">Chrome OS
+    // kiosk session</a>.-->
+    // 应用是否在 <a
+    // href="https://support.google.com/chromebook/answer/3134673">Chrome OS
+    // 信息亭模式</a>下启动。
+    boolean? isKioskSession;
   };
 
   interface Events {
