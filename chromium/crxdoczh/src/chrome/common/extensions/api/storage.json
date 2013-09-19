@@ -112,8 +112,8 @@
                 "name": "items",
                 "type": "object",
                 "additionalProperties": { "type": "any" },
-//@                "description": "Object specifying items to augment storage with. Values that cannot be serialized (functions, etc) will be ignored."
-                "description": "要向存储添加的对象，不能被序列化（函数等）的值将被忽略。"
+//@                "description": "<p>An object which gives each key/value pair to update storage with. Any other key/value pairs in storage will not be affected.</p><p>Primitive values such as numbers will serialize as expected. Values with a <code>typeof</code> <code>\"object\"</code> and <code>\"function\"</code> will typically serialize to <code>{}</code>, with the exception of <code>Array</code> (serializes as expected), <code>Date</code>, and <code>Regex</code> (serialize using their <code>String</code> representation).</p>"
+                "description": "<p>包含要更新的键/值对的对象，存储中的其他键/值对不会受到影响。</p><p>像数值之类的原生值会以预期的方式序列化，除了<code>Array</code>（按照预期的方式序列化）、<code>Date</code> 和 <code>RegExp</code>（以字符串表示形式序列化）以外，<code>typeof</code> 为 <code>\"object\"</code> 和 <code>\"function\"</code> 的值通常序列化为 <code>{}</code>。"
               },
               {
                 "name": "callback",

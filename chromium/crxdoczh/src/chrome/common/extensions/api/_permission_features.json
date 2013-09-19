@@ -15,9 +15,9 @@
     "channel": "stable",
     "extension_types": ["extension", "platform_app"],
     "whitelist": [
-      "acldcpdepobcjbdanifkmfndkjoilgba",  // Watchdog Release
-      "llifadooppchlccojjkgplcfeglhphpe",  // Watchdog Testing
-      "ajabfgledjhbabeoojlabelaifmakodf"   // For testing
+      "abjoigjokfeibfhiahiijggogladbmfm",  // Watchdog Release
+      "hhcnncjlpehbepkbgccanfpkneoejnpb",  // Watchdog Testing
+      "acldcpdepobcjbdanifkmfndkjoilgba"   // Obsolete key
     ]
   },
   "adview": {
@@ -56,10 +56,19 @@
     "extension_types": ["extension", "legacy_packaged_app"],
     "location": "component"
   },
-  "audioCapture": {
-    "channel": "stable",
-    "extension_types": ["platform_app"]
-  },
+  "audioCapture": [
+    {
+      "channel": "stable",
+      "extension_types": ["platform_app"]
+    },
+    {
+      "channel": "stable",
+      "extension_types": ["extension"],
+      "whitelist": [
+        "mppnpdlheglhdfmldimlhpnegondlapf"  // http://crbug.com/292856
+      ]
+    }
+  ],
   "background": [
     {
       "channel": "stable",
@@ -95,7 +104,7 @@
     "extension_types": ["extension", "legacy_packaged_app"]
   },
   "brailleDisplayPrivate": {
-    "channel": "dev",
+    "channel": "stable",
     "extension_types": ["extension", "legacy_packaged_app", "platform_app"],
     "location": "component"
   },
@@ -217,10 +226,21 @@
       "whitelist": ["80B9DC58E5210749F052F5B4DB239C50CF72AEB6"]
     }
   ],
-  "dns": {
-    "channel": "dev",
-    "extension_types": ["extension", "platform_app"]
-  },
+  "dns": [
+    {
+      "channel": "dev",
+      "extension_types": ["extension", "platform_app"]
+    },
+    {
+      "channel": "stable",
+      "extension_types": ["extension", "platform_app"],
+      "whitelist": [
+        "mlocfejafidcakdddnndjdngfmncfbeg",  // CCD Development
+        "ganomidahfnpdchomfgdoppjmmedlhia",  // CCD Testing
+        "eemlkeanncmjljgehlbplemhmdmalhdc"   // CCD Release
+      ]
+    }
+  ],
   "downloads": {
     "channel": "beta",
     "extension_types": ["extension"]
@@ -390,9 +410,12 @@
       "channel": "stable",
       "extension_types": ["platform_app"],
       "whitelist": [
+          "ohmmkhmmmpcnpikjeljgnaoabkaalbgc", // Published Apps developer tool.
+          // TODO(grv): clean up once Apps developer tool is published.
+          "lphgohfeebnhcpiohjndkgbhhkoapkjc",  // Apps Developer tool.
           "gonnpeheodhmhdjiimoiheniambmdcco",  // Apps Editor old.
           "cbelnpbjogfbjamhpbofhlnklecjpido",  // Apps Editor published.
-          "acldcpdepobcjbdanifkmfndkjoilgba"   // Activity Log (Watchdog)
+          "abjoigjokfeibfhiahiijggogladbmfm"   // Activity Log (Watchdog).
       ]
     }
   ],
@@ -549,11 +572,11 @@
     "channel": "stable",
     "extension_types": ["extension", "platform_app"]
   },
-  "recoveryPrivate": {
+  "imageWriterPrivate": {
     "channel": "dev",
     "extension_types": ["platform_app"],
     "whitelist": [
-      "nmedaodmkamdcnmfceajookiaicfnkhd", // Recovery API Dev App
+      "nmedaodmkamdcnmfceajookiaicfnkhd", // ImageWriter API Dev App
       "jdnamgpmgjhphalijaakigbpccepfllk", // Chrome OS Recovery Tool local
       "jobolcahaebjkjhdedcfcnfkgpjcmkcg" // Chrome OS Recovery Tool CWS
     ]
@@ -694,10 +717,19 @@
     "channel": "stable",
     "extension_types": ["platform_app"]
   },
-  "videoCapture": {
-    "channel": "stable",
-    "extension_types": ["platform_app"]
-  },
+  "videoCapture": [
+    {
+      "channel": "stable",
+      "extension_types": ["platform_app"]
+    },
+    {
+      "channel": "stable",
+      "extension_types": ["extension"],
+      "whitelist": [
+        "mppnpdlheglhdfmldimlhpnegondlapf"  // http://crbug.com/292856
+      ]
+    }
+  ],
   "virtualKeyboardPrivate": {
     "channel": "stable",
     "whitelist": [

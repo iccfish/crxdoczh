@@ -1,45 +1,61 @@
 <h1><!--@Accessing Hardware Devices-->访问硬件设备</h1>
 
 <p>
-<!--@This doc shows you how packaged apps can connect to USB devices
-and read from and write to a user's serial ports.
-See also the reference docs for the-->
-该文档向您演示了打包应用如何连接到 USB
-设备并读取和写入用户的串行端口。请参见
-<a href="usb.html">USB API</a>
-<!--@and the
--->与<a href="serial.html"><!--@Serial-->串行端口 API</a><!--@.
-The -->的文档。<a href="bluetooth.html"><!--@Bluetooth-->蓝牙 API</a><!--@ is also available;
-we've include a link to a Bluetooth sample below.-->
+<!--@  This doc shows you how packaged apps can connect to USB devices and read from
+  and write to a user's serial ports. See also the reference docs for the <a
+    href="usb.html">USB API</a> and the <a href="serial.html">Serial API</a>.
+  The <a href="bluetooth.html">Bluetooth API</a> is also available; we've
+  included a link to a Bluetooth sample below.-->
+该文档向您演示如何在打包应用中连接到 USB
+设备以及如何读取和写入用户的串行端口。请参见
+<a href="usb.html">USB API</a> 和 <a href="serial.html">串行端口 API</a>
+的文档。<a href="bluetooth.html">蓝牙 API</a>
 也可以使用了，我们在下面包含了一个蓝牙示例的链接。
 </p>
 
 <p class="note">
-<b>API <!--@Samples: -->示例：</b><!--@
-Want to play with the code?
-Check out the-->想试试这些代码吗？请参见
-<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a><!--@,
--->、<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a><!--@,
--->、<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a><!--@,
-and -->
-及
-<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm <!--@Bluetooth-->蓝牙</a><!--@ samples.-->示例。
+  <b>API <!--@Samples: -->示例：</b><!--@ Want to play with the code? Check out the
+  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a>,
+  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a>,
+  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a>,
+  and
+  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
+  Bluetooth</a> samples.-->想试试这些代码吗？请参见
+  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a>、<a
+  href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a>、<a
+  href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a>
+  和
+  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
+  蓝牙</a>示例。
 </p>
 
 <h2 id="usb"><!--@Accessing USB devices-->访问 USB 设备</h2>
 
 <p>
-<!--@You can use the USB API to send messages to connected devices using only JavaScript code. Some devices are not accessible through this API - see the <a href="#caveats">Caveats section</a> below for more details.-->
-只要使用 JavaScript 代码，您就可以使用 USB API
-向已连接的设备发送消息。某些设备不能通过该 API
-访问，请参见下面的<a href="#caveats">注意事项</a>部分了解详情。
+<!--@  You can use the <a href="usb.html">USB API</a> to communicate with USB devices
+  using only JavaScript code. Some devices are not accessible through this API
+  &ndash; see <a href="#caveats">Caveats</a> below for details.-->
+通过 <a href="usb.html">USB API</a>，您只要使用 JavaScript 代码就能与 USB
+设备通信。某些设备不能通过该 API 访问，请参见下面的<a href="#caveats"
+>注意事项</a>部分了解详情。
+</p>
+
+<p>
+<!--@  For background information about USB, see the official
+  <a href="http://www.usb.org/home">USB specifications</a>. <br/>
+  <a href="http://www.beyondlogic.org/usbnutshell/usb1.shtml">
+    <i>USB in a NutShell</i></a>
+  is a reasonable crash course that you may find helpful.-->
+有关 USB 的背景信息，请参见官方的
+<a href="http://www.usb.org/home">USB 规范</a>（英文）。<br>
+<a href="http://www.beyondlogic.org/usbnutshell/usb1.shtml">
+    <i>USB 简介</i></a>（英文）是一篇速成文章，可能对您有帮助。
 </p>
 
 <h3 id="manifest"><!--@Manifest requirement-->清单文件的要求</h3>
 
-<p>
-<!--@The USB API requires a special permission "usb" in the manifest file:-->
-USB API 要求清单文件中包含特殊的 "usb" 权限：
+<p><!--@The USB API requires the "usb" permission in the manifest file:-->
+USB API 要求清单文件中包含 "usb" 权限：
 </p>
 
 <pre>
@@ -48,121 +64,260 @@ USB API 要求清单文件中包含特殊的 "usb" 权限：
 ]
 </pre>
 
-<h3 id="finding_device"><!--@Finding a device-->找到设备</h3>
-
+<p><!--@In addition, in order to prevent
+  <a href="http://en.wikipedia.org/wiki/Device_fingerprint">finger-printing</a>,
+  you must declare all the device types you want to access in the manifest file.
+  Each type of USB device corresponds to a vendor id/product id (VID/PID) pair.
+  You can use $ref:usb.getDevices to enumerate devices by their VID/PID
+  pair.
+</p>
 <p>
-<!--@Every device in a USB bus is identified
-by its vendor and product IDs.
-To find a device,
-use the <code>findDevices()</code> method
-which has two parameters:-->
-USB 总线的每一个设备都由制造商与产品 ID
-标志。要找到某个设备，使用具有两个参数的
-<code>findDevices()</code> 方法：
+  You must declare the VID/PID pairs for each type of device you want to use
+  under the "usbDevices" permission in your app's manifest file, as shown in the
+  example below:-->
+此外，为了防止<a href="http://en.wikipedia.org/wiki/Device_fingerprint"
+>收集指纹信息</a>，您必须在清单文件中声明需要访问的所有设备类型。每一种 USB
+设备对应制造商标识符与产品标识符（VID/PID），您可以使用 $ref:usb.getDevices
+根据 VID/PID 对枚举设备。
 </p>
 
 <pre>
-chrome.usb.findDevices(FindDeviceOptions, callback)
+"permissions": [
+  "usbDevices": [
+    {
+      "vendorId": 123,
+      "productId": 456
+    }
+  ]
+]
 </pre>
 
-<br>
+<p class="note"><!--@Note that only decimal numbers are allowed in JSON format.
+  You cannot use hexadecimal numbers in these fields.-->
+注意，JSON 格式中只允许十进制数，您不能在这些字段中使用十六进制数。
+</p>
+
+<h3 id="finding_device"><!--@Finding a device-->发现设备</h3>
+
+<p>
+<!--@  To determine whether one or more specific devices are connected to a user's
+  system, use the $ref:usb.getDevices method:-->
+要确定一个或多个设备是否连接到用户的系统，请使用 $ref:usb.getDevices 方法：
+</p>
+
+<pre>
+chrome.usb.getDevices(enumerateDevicesOptions, callback);
+</pre>
+
+<br/>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Parameter (type)-->参数（类型） </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Parameter (type)-->参数（类型）</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>FindDeviceOptions (object)</td>
-    <td><!--@An object specifying both a <code>vendorId</code> (long) and
+    <td>EnumerateDevicesOptions (object)</td>
+    <td><!--@An object specifying both a <code>vendorId</code> (long) and 
       <code>productId</code> (long) used to find the correct type of device on
-      the bus. Your manifest must declare the<code>usbDevices</code> permission
-      section listing all the <code>vendorId</code> and
-      <code>deviceId</code> pairs your app wants to access.-->
+      the bus. Your manifest must declare the <code>usbDevices</code> permission
+      section listing all the <code>vendorId</code> and <code>deviceId</code>
+      pairs your app wants to access.-->
       指定 <code>vendorId</code> (long) 和 <code>productId</code> (long)
-      的对象，用来寻找总线上正确类型的设备。您的清单文件必须在
+      的对象，用来寻找总线上正确类型的设备。您必须在清单文件的
       <code>usbDevices</code> 权限中列出您的应用需要访问的所有设备对应的
       <code>vendorId</code> 和 <code>deviceId</code>。
     </td>
   </tr>
   <tr>
     <td>callback (function)</td>
-    <td><!--@Called when the device scan is finished.
-      The callback will be executed with one parameter, an array of device objects
-      with three properties: <code>handle</code>,
-      <code>vendorId</code>,
-      <code>productId</code>. If the optional permissions for this USB device
-      were not declared in the extension manifest or the user did not consent
-      to the permissions requested, the parameter will be <code>null</code>.
-      If no devices could be found, the array will be empty.-->
-      当设备扫描完成后调用。执行回调函数时会传递一个参数，为设备对象的数组，包含三个属性：<code>handle</code>、<code>vendorId</code>、<code>productId</code>。如果该 USB 设备的可选权限没有在扩展程序的清单文件中声明，或者用户不同意请求的权限，该参数将为
-      <code>null</code>。如果没有找到设备，该数组为空。
+    </td>
+    <td><!--@Called when the device enumeration is finished. The callback will be
+      executed with one parameter, an array of <code>Device</code> objects with
+      three properties: <code>device</code>, <code>vendorId</code>,
+      <code>productId</code>. The device property is a stable identifier for a
+      connected device. It will not change until the device is unplugged. The
+      detail of the identifier is opaque and subject to change. Do not rely on
+      its current type. <br/>
+      If no devices are found, the array will be empty.-->
+      设备枚举完成后调用。执行回调函数时传递的参数为 <code>Device</code>
+      对象的数组，包含三个属性：<code>handle</code>、<code>vendorId</code>、<code>productId</code>。<code>device</code>
+      属性是已连接的设备对应的稳定标识符，在设备拔出之前不会更改。标识符的细节是不透明的，并且随时会更改，请不要依赖它目前的类型。<br>
+      如果没有找到设备，该数组为空。
     </td>
   </tr>
 </table>
 
-<p>
-<!--@Example:-->
-例如：
-</p>
+<p><!--@Example:-->
+例如：</p>
 
 <pre>
-var onDeviceFound = function(devices) {
-  _this.devices=devices;
+function onDeviceFound(devices) {
+  this.devices=devices;
   if (devices) {
-    if (devices.length &gt; 0) {
+    if (devices.length > 0) {
       console.log("发现设备："+devices.length);
     } else {
       console.log("找不到设备");
     }
-    console.log("没有正确请求权限");
+  } else {
+    console.log("拒绝访问。");
+  }
+}
+
+chrome.usb.getDevices({"vendorId": vendorId, "productId": productId}, onDeviceFound);
+</pre>
+
+<h3 id="usb_open"><!--@Opening a device-->打开设备</h3>
+<p>
+<!--@Once the <code>Device</code> objects are returned, you can open a device using
+usb.openDevice to obtain a connection handle. You can only
+communicate with USB devices using connection handles.-->
+返回 <code>Device</code> 对象后，您就可以使用 $ref:usb.openDevice
+打开设备并获取一个连接句柄。您必须通过连接句柄与 USB 设备通信。
+</p>
+
+<table class="simple">
+  <tr>
+    <th scope="col"><!--@Property-->属性</th>
+    <th scope="col"><!--@Description-->描述</th>
+  </tr>
+  <tr>
+    <td>device</td>
+    <td><!--@Object received in $ref:usb.getDevices callback.-->
+      $ref:usb.getDevices 回调函数中接收到的对象。
+    </td>
+  </tr>
+  <tr>
+    <td>data (arraybuffer)</td>
+    <td><!--@Contains the data sent by the device if the transfer was inbound.-->如果为传入传输，则包含设备发送的数据。</td>
+  </tr>
+</table>
+
+<p><!--@Example:-->例如：</p>
+
+<pre>
+var usbConnection = null;
+var onOpenCallback = function(connection) {
+  if (connection) {
+    usbConnection = connection;
+    console.log("设备已打开。");
+  } else {
+    console.log("无法打开设备。");
   }
 };
 
-chrome.usb.findDevices({"vendorId": vendorId, "productId": productId}, onDeviceFound);
+chrome.usb.openDevice(device, onOpenCallback);
+</pre>
+
+<p class="note">
+<!--@Not every device can be opened successfully. In general, operating systems
+lock down many types of USB interfaces (e.g. keyboards and mice, mass storage
+devices, webcams, etc.) and they cannot be claimed by user applications.
+On Linux (other than Chrome OS), once an interface of a device is locked down by
+the OS, the whole device is locked down (because all the interfaces shares the
+same device file), even if the other interfaces of the device can be used in
+theory. On Chrome OS, you can request access to unlocked interfaces using the
+$ref:usb.requestAccess method. If permitted, the permission broker will
+unlock the device file for you.-->
+并不是任何设备都能成功打开。通常操作系统会锁定许多类型的 USB
+设备（例如键盘和鼠标、大容量存储设备、网络摄像头等等），它们不能由用户应用程序占有。在
+Linux 中（除了
+Chrome OS），一旦设备的某一接口被操作系统锁定，即使该设备的其他接口理论上可以使用，整个设备都将锁定（因为所有接口共享同一设备文件）。在
+Chrome OS 中，您可以使用 $ref:usb.requestAccess
+方法请求访问解锁的设备。如果允许，权限控制器会为您解锁设备。
+</p>
+
+<p>
+<!--@To simplify the opening process, you can use the $ref:usb.findDevices
+method, which enumerates, requests access, and opens devices in one call:-->
+为了简化打开设备的过程，您可以使用 $ref:usb.findDevices
+方法，通过一次调用就能枚举、请求访问并打开设备：
+</p>
+
+<pre>
+chrome.usb.findDevices({"vendorId": vendorId, "productId": productId, "interfaceId": interfaceId}, callback);
+</pre>
+<p><!--@which is equivalent to:-->以上代码等价于：</p>
+<pre>
+chrome.usb.getDevices({"vendorId": vendorId, "productId": productId}, function (devices) {
+  if (!devices) {
+    console.log("无法枚举设备。");
+    callback();
+    return;
+  }
+  var connections = [], pendingAccessRequests = devices.length;
+  devices.forEach(function (device) {
+    chrome.usb.requestAccess(interfaceId, function () {
+      // 这里不需要检查错误，即使发生了错误也不会有什么问题。
+      // 您始终应该尝试打开设备。
+      chrome.usb.openDevices(device, function (connection) {
+        if (connection) connections.push(connection);
+        pendingAccessRequests--;
+        if (pendingAccessRequests == 0) {
+          callback(connections);
+        }
+      });
+    });
+  })
+});
 </pre>
 
 <h3 id="usb_transfers"><!--@USB transfers and receiving data from a device-->USB 传输以及从设备接收数据</h3>
 
 <p>
-<!--@USB protocol defines four types of transfers:
-<a href="#control_transfers">control</a>, <a href="#bulk_transfers">bulk</a>, <a href="#isochronous_transfers">isochronous</a> and <a href="#interrupt_transfers">interrupt</a>.
-Theoretically they can occur in both directions:<br>
-device-to-host (inbound) and host-to-device (outbound).-->
+<!--@  The USB protocol defines four types of transfers:
+  <a href="#control_transfers">control</a>,
+  <a href="#bulk_transfers">bulk</a>,
+  <a href="#isochronous_transfers">isochronous</a>
+  and <a href="#interrupt_transfers">interrupt</a>.
+  These transfers are described below.-->
 USB 协议定义了四种类型的传输：<a href="#control_transfers"
 >控制</a>、<a href="#bulk_transfers"
 >大块</a>、<a href="#isochronous_transfers"
 >同步</a>与<a href="#interrupt_transfers"
->中断</a>。理论上说，它们都能双向进行：设备到主机（传入）与主机到设备（传出）。
+>中断</a>。这些传输方式将在下面描述：
 </p>
 
 <p>
-<!--@However, due to the nature of the USB protocol, both inbound and outbound messages must be initiated by the host (your computer). For inbound (device-to-host) messages, the host, your JavaScript code, sends a message flagged as "inbound" to the device. The exact contents of the message depends on the device, but usually will have some identification of what you are requesting from it. The device then responds with the requested data. The device's response is handled by Chrome and delivered asynchronously to the callback you specified in the transfer method.
-An outbound (host-to-device) message is similar, but the response doesn't contain data returned from the device.-->
-然而，由于 USB
-协议的本质，传入与传出消息都必须由主机（您的计算机）发起。对于传入（设备到主机）消息，主机，即您的
-JavaScript，向设备发送标记为“传入”的消息。消息的具体内容取决于设备，但是通常包含某些信息，标识您请求的内容。然后设备以请求的数据响应。设备的响应由
+<!--@  Transfers can occur in both directions: device-to-host (inbound), and
+  host-to-device (outbound). Due to the nature of the USB protocol,
+  both inbound and outbound messages must be initiated by the host (the
+  computer that runs the Chrome app).
+  For inbound (device-to-host) messages, the host (initiated by your JavaScript
+  code) sends a message flagged as "inbound" to the device.
+  The details of the message depend on the device, but usually will have
+  some identification of what you are requesting from it.
+  The device then responds with the requested data.
+  The device's response is handled by Chrome and delivered asynchronously to the
+  callback you specify in the transfer method.
+  An outbound (host-to-device) message is similar, but the response doesn't
+  contain data returned from the device.-->
+传输可以双向进行：设备到主机（传入）和主机到设备（传出）。根据 USB
+协议，传入与传出消息都必须由主机（运行 Chrome
+应用的计算机）发起。对于传入（设备到主机）消息，主机（由您的 JavaScript
+代码发起）向设备发送标记为“传入”的消息。消息的具体细节取决于设备，但是通常会以某种方式标识您请求的内容，然后设备以请求的数据响应。设备的响应由
 Chrome 浏览器处理，并异步地传递给您在传输方法中指定的回调函数。传出（主机到设备）消息与之类似，但是响应不包含从设备返回的数据。
 </p>
 
-<p><!--@For each message from the device,
-the specified callback will receive 
-an event object with the following properties:-->
-对于来自设备的每一条消息，<code>onEvent</code>
-回调函数都会接收一个具有如下属性的事件对象：
+<p>
+<!--@  For each message from the device, the specified callback will receive an event
+  object with the following properties:-->
+对于来自设备的每一条消息，指定的回调函数都会接收一个具有如下属性的事件对象：
 </p>
 
 <br>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Property-->属性 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Property-->属性</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
     <td>resultCode (integer)</td>
-    <td><!--@0 is success; other values indicate failure. An error string can be read from
-      <code>chrome.extension.lastError</code> when a failure is indicated.-->
+    <td><!--@0 is success; other values indicate failure. An error string can be<br/>
+      read from <code>chrome.extension.lastError</code> when a failure is<br/>
+      indicated.-->
       0 表示成功，其他值表示失败。表示失败时可以从
       <code>chrome.extension.lastError</code>
       读取错误字符串。
@@ -170,56 +325,58 @@ an event object with the following properties:-->
   </tr>
   <tr>
     <td>data (arraybuffer)</td>
-    <td><!--@Contains the data sent by the device if transfer was inbound.-->
+    <td><!--@Contains the data sent by the device if the transfer was inbound.-->
     如果是传入传输则包含设备发送的数据。
     </td>
   </tr>
 </table>
 
-<p>
-<!--@Example:-->
+<p><!--@Example:-->
 例如：
 </p>
 
 <pre>
 var onTransferCallback = function(event) {
-   if (event &amp;&amp; event.resultCode === 0 &amp;&amp; event.data) {
-     console.log("收到 "+event.data.byteLength+" 字节");
+   if (event && event.resultCode === 0 && event.data) {
+     console.log("收到 " + event.data.byteLength + " 字节");
    }
 };
 
-chrome.usb.bulkTransfer(device, transferInfo, onTransferCallback);
+chrome.usb.bulkTransfer(connectionHandle, transferInfo, onTransferCallback);
 </pre>
 
 <h3 id="control_transfers"><!--@CONTROL transfers--><b>控制</b>传输</h3>
 
-<p>
-Control transfers are generally used to send or receive configuration
-or command parameters to a USB device.
-The method is simple and receives three parameters:
+<p><!--@Control transfers are generally used to send or receive configuration or
+  command parameters to a USB device. The controlTransfer method always sends
+  to/reads from endpoint 0, and no claimInterface is required.
+  The method is simple and receives three parameters:-->
+控制传输通常用来向 USB 设备发送或接收配置或命令参数。controlTransfer
+方法始终从端点 0 发送/读取，不需要调用
+claimInterface。该方法很简单，接收三个参数。
 </p>
 
 <pre>
-chrome.usb.controlTransfer(deviceObj, transferInfo, transferCallback)
+chrome.usb.controlTransfer(connectionHandle, transferInfo, transferCallback)
 </pre>
 
 <br>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Parameter (type)-->参数（类型） </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Parameter (type)-->参数（类型）</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>deviceObj</td>
-    <td><!--@Object sent in <code>findDevice()</code> callback.-->
-    <code>findDevice()</code> 回调函数中发送的对象。
+    <td>connectionHandle</td>
+    <td><!--@Object received in $ref:usb.openDevice callback.-->
+    $ref:usb.openDevice 回调函数中接收的对象。
     </td>
   </tr>
   <tr>
     <td>transferInfo</td>
-    <td><!--@Parameter object with values from the table below.
-      Check your USB device protocol specification for specifics.-->
+    <td><!--@Parameter object with values from the table below. Check your USB
+      device protocol specification for details.-->
       参数对象，包含来自下表的值。参考您的 USB 设备协议规范了解具体的值。
     </td>
   </tr>
@@ -232,104 +389,106 @@ chrome.usb.controlTransfer(deviceObj, transferInfo, transferCallback)
 </table>
 
 <p>
-<!--@Values for <code>transferInfo</code> object:-->
+<!--@  Values for
+  <code>transferInfo</code>
+  object:-->
 <code>transferInfo</code> 对象的值：
 </p>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Value-->值 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Value-->值</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>requestType&nbsp;(string)</td>
+    <td>requestType (string)</td>
     <td>"vendor"<!--@, -->、"standard"<!--@, -->、"class" <!--@or-->或 "reserved"<!--@.-->。</td>
   </tr>
   <tr>
-    <td>recipient&nbsp;(string)</td>
+    <td>recipient (string)</td>
     <td>"device"<!--@, -->、"interface"<!--@, -->、"endpoint" <!--@or-->或 "other"<!--@.-->。</td>
   </tr>
   <tr>
-    <td>direction&nbsp;(string)</td>
-    <td>"in" <!--@or-->或 "out"<!--@.-->。<!--@
-      -->"in"<!--@ direction is used to notify the device
-      that it should send information to the host.
-      All communication in a USB bus is host-initiated,
-      so use an 'in' transfer to allow a device
-      to send information back.-->（输入）方向用于通知设备应该向主机发送信息，USB
-      总线中的所有通信都是主机启动的，所以使用 "in" 传输允许设备发回信息。</td>
-  </tr>
-  <tr>
-    <td>request&nbsp;(integer)</td>
-    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
-  </tr>
-  <tr>
-    <td>value&nbsp;(integer)</td>
-    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
-  </tr>
-  <tr>
-    <td>index&nbsp;(integer)</td>
-    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
-  </tr>
-  <tr>
-    <td>length&nbsp;(integer)</td>
-    <td><!--@Only used when direction is "in".
-      Notifies the device that this is the amount
-      of data the host is expecting in response.-->
-      只有当 direction 为 "in"
-      时才使用，通知设备主机期望的响应包含的数据量。
+    <td>direction (string)</td>
+    <td><!--@"in" or "out". The "in" direction is used to notify the device that<br/>
+        it should send information to the host. All communication on a USB<br/>
+        bus is host-initiated, so use an "in" transfer to allow a device to<br/>
+        send information back.-->
+      "in" 或 "out"。"in"（输入）方向用于通知设备应该向主机发送信息，USB
+      总线中的所有通信都是主机启动的，所以使用 "in" 传输允许设备发回信息。
     </td>
   </tr>
   <tr>
-    <td>data&nbsp;(arraybuffer)</td>
-    <td><!--@Defined by your device's protocol,
-      required when direction is "out".-->
+    <td>request (integer)</td>
+    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
+  </tr>
+  <tr>
+    <td>value (integer)</td>
+    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
+  </tr>
+  <tr>
+    <td>index (integer)</td>
+    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
+  </tr>
+  <tr>
+    <td>length (integer)</td>
+    <td><!--@Only used when direction is "in". Notifies the device that this is
+      the amount of data the host is expecting in response.-->
+      只有当 direction 为 "in" 时才使用，通知设备主机期望的响应包含的数据量。
+    </td>
+  </tr>
+  <tr>
+    <td>data (arraybuffer)</td>
+    <td><!--@Defined by your device's protocol, required when direction is
+      "out".-->
       由您的设备协议定义，当 direction 为 "out" 时必选。
     </td>
   </tr>
 </table>
 
-<p>
-<!--@Example:-->
-例如：
-</p>
+<p><!--@Example:-->
+例如：</p>
 
 <pre>
 var transferInfo = {
-   "requestType": "vendor",
+  "requestType": "vendor",
    "recipient": "device",
-   "direction": "out",
-   "request":  0x31,
-   "value": 120,
-   "index": 0,
-   "data": new Uint8Array([4, 8, 15, 16, 23, 42]).buffer
- };
-chrome.usb.controlTransfer(deviceObj, transferInfo, optionalCallback);
+  "direction": "out",
+  "request":  0x31,
+  "value": 120,
+  "index": 0,
+  // 注意，要使用 ArrayBuffer，而不是 TypedArray 本身
+  "data": new Uint8Array([4, 8, 15, 16, 23, 42]).buffer
+};
+chrome.usb.controlTransfer(connectionHandle, transferInfo, optionalCallback);
 </pre>
 
 <h3 id="isochronous_transfers"><!--@ISOCHRONOUS transfers--><b>同步</b>传输</h3>
 
-<p>
-<!--@Isochronous transfers is the most complex type of USB transfers. They are commonly used for streams of data, like video and sound. To initiate an isochronous transfer (either inbound or outbound), you must use:-->
+<p><!--@Isochronous transfers are the most complex type of USB transfer. They are
+  commonly used for streams of data, like video and sound. To initiate an
+  isochronous transfer (either inbound or outbound), you must use
+  the $ref:usb.isochronousTransfer method:-->
 同步传输是最复杂的 USB
-传输类型，通常用于数据流，例如视频与声音。要开始同步传输（无论是传入还是传出），您必须使用：
+传输类型，通常用于数据流，例如视频与声音。要开始同步传输（无论是传入还是传出），您必须使用
+$ref:usb.isochronousTransfer 方法：
 </p>
 
 <pre>
-chrome.usb.isochronousTransfer(deviceObj, isochronousTransferInfo, transferCallback)
+chrome.usb.isochronousTransfer(connectionHandle, isochronousTransferInfo, transferCallback)
 </pre>
 
-<br>
+<br/>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Parameter-->参数 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Parameter-->参数</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>deviceObj</td>
-    <td><!--@Object sent on <code>findDevice()</code> callback.-->
-      传递给 <code>findDevice()</code> 回调函数的对象。
+    <td>connectionHandle</td>
+    <td><!--@Object received in $ref:usb.openDevice callback.-->
+    $ref:usb.openDevice 回调函数中接收的对象。
     </td>
   </tr>
   <tr>
@@ -347,97 +506,117 @@ chrome.usb.isochronousTransfer(deviceObj, isochronousTransferInfo, transferCallb
 </table>
 
 <p>
-<!--@Values for <code>isochronousTransferInfo</code> object:-->
+<!--@  Values for
+  <code>isochronousTransferInfo</code>
+  object:-->
 用于 <code>isochronousTransferInfo</code> 对象的值：
 </p>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Value-->值 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Value-->值</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>transferInfo&nbsp;(object)</td>
-    <td><!--@An object with the following attributes:-->包含下列属性的参数对象：<br>
-      <b>direction (string): </b>"in" <!--@or-->或 "out"<!--@.-->。<br>
-      <b>endpoint (integer): </b><!--@defined by your device. Usually can be found by looking at an USB instrospection tool, like <code>lsusb -v</code>-->由您的设备协议定义，通常可以通过 USB
-      检测工具找到，例如 <code>lsusb -v</code>。<br>
-      <b>length (integer): </b><!--@only used when direction is "in".
-      Notifies the device that this is the amount
-      of data the host is expecting in response. Should be AT LEAST <code>packets * packetLength</code>-->只有当
-      direction 为 "in" 时才使用，通知设备主机期望的响应包含的数据量，至少为
-      <code>packets * packetLength</code>。<br>
+    <td>transferInfo (object)</td>
+    <td><!--@An object with the following attributes:-->
+      包含下列属性的参数对象：<br/>
+      <b>direction (string): </b><!--@"in" or "out".-->"in" 或 "out"。<br/> 
+      <b>endpoint (integer): </b><!--@defined by your device. Usually can be found by
+      looking at an USB instrospection tool, like <code>lsusb -v</code>-->由您的设备定义，通常可以通过
+      USB 检测工具找到，例如 <code>lsusb -v</code>。<br/>
+      <b>length (integer): </b><!--@only
+      used when direction is "in". Notifies the device that this is the amount
+      of data the host is expecting in response. -->只有当
+      direction 为 "in" 时才使用，通知设备主机期望的响应包含的数据量。
+      <br/>
+      
+      <!--@Should be AT LEAST <code>packets</code> &times; <code>packetLength</code>.-->
+      <b>至少</b>应该是 <code>packets</code> &times; <code>packetLength</code>。
+      <br/>
       <b>data (arraybuffer): </b><!--@defined by your device's protocol;
       only used when direction is "out".-->
       由您的设备协议定义，只有当 direction 为 "out" 时才使用。
     </td>
   </tr>
   <tr>
-    <td>packets&nbsp;(integer)</td>
+    <td>packets (integer)</td>
     <td><!--@Total number of packets expected in this transfer.-->本次传输期望的数据包总数。</td>
   </tr>
   <tr>
-    <td>packetLength&nbsp;(integer)</td>
+    <td>packetLength (integer)</td>
     <td><!--@Expected length of each packet in this transfer.-->本次传输期望的每一个数据包的长度。</td>
   </tr>
 </table>
 
-<p>
-<!--@Example:-->
-例如：
-</p>
+<p><!--@Example:-->
+例如：</p>
 
 <pre>
 var transferInfo = {
-   "direction": "in",
-   "endpoint": 1,
-   "length": 2560
- };
+  "direction": "in",
+  "endpoint": 1,
+  "length": 2560
+};
+
 var isoTransferInfo = {
   "transferInfo": transferInfo,
   "packets": 20,
   "packetLength": 128
 };
-chrome.usb.isochronousTransfer(deviceObj, isoTransferInfo, optionalCallback);
+
+chrome.usb.isochronousTransfer(connectionHandle, isoTransferInfo, optionalCallback);
 </pre>
 
-<p>
-  <b><!--@Notes:-->注意：</b><!--@ One isochronous transfer will contain <code>isoTransferInfo.packets</code> packets of <code>isoTransferInfo.packetLength</code> bytes. If it is an inbound transfer (your code requested data from the device), the <code>data</code> field in the onUsbEvent will be an ArrayBuffer of size <code>transferInfo.length</code>. It is your duty to walk through this ArrayBuffer and extract the different packets, each starting at a multiple of <code>isoTransferInfo.packetLength</code> bytes. If you are expecting a stream of data from the device, remember that you will have to send one "inbound" transfer for each transfer you expect back. USB devices don't send transfers to the bus unless the host explicitly requests them through "inbound" transfers.-->一次同步传输将包含
+<p class="note">
+  <b><!--@Notes:-->注意：</b><!--@ One isochronous transfer will contain
+  <code>isoTransferInfo.packets</code> packets of
+  <code>isoTransferInfo.packetLength</code> bytes.
+  If it is an inbound transfer (your code requested data from the device), the
+  <code>data</code> field in the onUsbEvent will be an ArrayBuffer of size
+  <code>transferInfo.length</code>. It is your duty to walk through this
+  ArrayBuffer and extract the different packets, each starting at a multiple of
+  <code>isoTransferInfo.packetLength</code> bytes. -->一次同步传输将包含
   <code>isoTransferInfo.packets</code>个数据包，每个数据包
   <code>isoTransferInfo.packetLength</code>
   字节。如果是传入传输（您的代码向设备请求数据），onUsbEvent 中的
   <code>data</code> 字段会是一个大小为 <code>transferInfo.length</code>
   的数组缓冲区（ArrayBuffer）。您应当分析该数组缓冲区，并提取不同的数据包，每个数据包以
   <code>isoTransferInfo.packetLength</code>
-  字节的整数倍开始。如果您期望从设备接收到数据流，牢记对于您期望返回的每一次传输您都必须发送一次“传入”传输。除非主机显式通过“传入”传输请求，USB
-  设备不会向总线发送传输。
+  字节的整数倍开始。<br/>
+  <br/>
+  <!--@If you are expecting a stream of data from the device, remember that
+  you will have to send one "inbound" transfer for each transfer you expect
+  back. USB devices don't send transfers to the USB bus unless the host
+  explicitly requests them through "inbound" transfers.-->
+  如果您期望从设备接收到数据流，请牢记对于您期望返回的每一次传输您都必须发送一次“传入”传输。除非主机显式通过“传入”传输请求，USB
+    设备不会向总线发送传输。
 </p>
 
 <h3 id="bulk_transfers"><!--@BULK transfers--><b>大块</b>传输</h3>
 
-<p>
-<!--@Bulk transfer is an USB transfer type commonly used
-to transfer a large amount of data in a reliable way.
-The method has three parameters:-->
+<p><!--@Bulk transfers are commonly used to transfer a large amount of
+  non-time-sensitive data in a reliable way.
+  $ref:usb.bulkTransfer has three parameters:-->
 大块传输是通常用于以可靠的方式传输大量数据的 USB
-传输类型。该方法包含三个参数：
+传输类型。$ref:usb.bulkTransfer 方法包含三个参数：
 </p>
 
 <pre>
-chrome.usb.bulkTransfer(deviceObj, transferInfo, transferCallback)
+chrome.usb.bulkTransfer(connectionHandle, transferInfo, transferCallback);
 </pre>
 
 <br>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Parameter-->参数 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Parameter-->参数</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>deviceObj</td>
-    <td><!--@Object sent on <code>findDevice()</code> callback.-->
-      传递给 <code>findDevice()</code> 回调函数的对象。
+    <td>connectionHandle</td>
+    <td><!--@Object received in $ref:usb.openDevice callback.-->
+      $ref:usb.openDevice 回调函数中接收到的对象。
     </td>
   </tr>
   <tr>
@@ -455,14 +634,16 @@ chrome.usb.bulkTransfer(deviceObj, transferInfo, transferCallback)
 </table>
 
 <p>
-<!--@Values for <code>transferInfo</code> object:-->
+<!--@  Values for
+  <code>transferInfo</code>
+  object:-->
 <code>transferInfo</code> 对象的值：
 </p>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Value-->值 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Value-->值</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
     <td>direction (string)</td>
@@ -474,62 +655,60 @@ chrome.usb.bulkTransfer(deviceObj, transferInfo, transferCallback)
   </tr>
   <tr>
     <td>length (integer)</td>
-    <td><!--@Only used when direction is "in".
-      Notifies the device that this is the amount
-      of data the host is expecting in response.-->
+    <td><!--@Only used when direction is "in". Notifies the device that this is
+      the amount of data the host is expecting in response.-->
       只有当 direction 为 "in" 时才使用，通知设备主机期望的响应包含的数据量。
     </td>
   </tr>
   <tr>
     <td>data (ArrayBuffer)</td>
-    <td><!--@Defined by your device's protocol;
-      only used when direction is "out".-->
+    <td><!--@Defined by your device's protocol; only used when direction is
+      "out".-->
       由您的设备协议定义，只有当 direction 为 "out" 时才使用。
     </td>
   </tr>
 </table>
 
-<p>
-<!--@Example:-->
+<p><!--@Example:-->
 例如：
 </p>
 
 <pre>
 var transferInfo = {
-   "direction": "out",
-   "endpoint": 1,
-   "data": new Uint8Array([4, 8, 15, 16, 23, 42]).buffer
- };
+  "direction": "out",
+  "endpoint": 1,
+  "data": new Uint8Array([4, 8, 15, 16, 23, 42]).buffer
+};
 </pre>
 
 <h3 id="interrupt_transfers"><!--@INTERRUPT transfers--><b>中断</b>传输</h3>
 
-<p>
-<!--@Interrupt transfers are used to send important notifications.
-Since all USB communication is initiated by the host,
-host code usually polls the device periodically,
-sending interrupt IN transfers that will make the device send data back
-if there is anything in the interrupt queue.
-The method has three parameters:-->
-中断传输用来发送重要的通知。由于所有 USB
-通信都由主机启动，主机代码通常会周期性地查询设备，发送中断输入传输，如果中断队列不为空的话使设备发回数据。该方法包含三个参数：
+<p><!--@Interrupt transfers are used to small amount of time sensitive data.
+  Since all USB communication is initiated by the host, host code usually polls
+  the device periodically, sending interrupt IN transfers that will make the
+  device send data back if there is anything in the interrupt queue (maintained
+  by the device).
+  $ref:usb.interruptTransfer has three parameters:-->
+中断传输用于少量时间敏感的数据。由于所有 USB
+通信都由主机启动，主机代码通常会周期性地查询设备，发送中断输入传输，如果中断队列（由设备维护）不为空的话使设备发回数据。$ref:usb.interruptTransfer
+方法包含三个参数：
 </p>
 
 <pre>
-chrome.usb.interruptTransfer(deviceObj, transferInfo, transferCallback)
+chrome.usb.interruptTransfer(connectionHandle, transferInfo, transferCallback);
 </pre>
 
 <br>
 
 <table class="simple">
   <tr>
-    <th scope="col"> <!--@Parameter-->参数 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
+    <th scope="col"><!--@Parameter-->参数</th>
+    <th scope="col"><!--@Description-->描述</th>
   </tr>
   <tr>
-    <td>deviceObj</td>
-    <td><!--@Object sent on <code>findDevice()</code> callback.-->
-      传递给 <code>findDevice()</code> 回调函数的对象。
+    <td>connectionHandle</td>
+    <td><!--@Object received in $ref:usb.openDevice callback.-->
+    $ref:usb.openDevice 的回调函数中接收到的对象。
     </td>
   </tr>
   <tr>
@@ -540,97 +719,123 @@ chrome.usb.interruptTransfer(deviceObj, transferInfo, transferCallback)
   </tr>
   <tr>
     <td>transferCallback</td>
-    <td><!--@Invoked when the transfer has completed.
-      Notice that this callback doesn't contain the device's response.
-      It's just to notify your code that the asynchronous transfer request
-      has been processed and you can go ahead.
-      The device's response, if any, will always be sent through
-      the <code>onEvent()</code> callback set on <code>findDevice()</code>.-->
-      传输完成时调用。注意该回调函数并不包含来自设备的任何回应，它只是通知您的代码异步传输请求已处理，您可以继续往前走，设备的响应（如果有的话）一定会通过
-      <code>findDevice()</code> 设置的 <code>onEvent()</code> 回调函数发送。
+    <td><!--@Invoked when the transfer has completed. Notice that this callback
+      doesn't contain the device's response. The purpose of the callback is
+      simply to notify your code that the asynchronous transfer requests has
+      been processed.-->
+      传输完成时调用。注意该回调函数并不包含设备的响应，回调函数的目的只是通知您的代码异步传输请求已处理。
     </td>
   </tr>
 </table>
 
 <p>
-<!--@Values for <code>transferInfo</code> object:-->
+<!--@  Values for <code>transferInfo</code> object:-->
 <code>transferInfo</code> 对象的值：
 </p>
 
 <table class="simple">
-  <tr>
-    <th scope="col"> <!--@Value-->值 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
-  </tr>
-  <tr>
-    <td>direction (string)</td>
-    <td>"in" <!--@or-->或 "out"<!--@.-->。</td>
-  </tr>
-  <tr>
-    <td>endpoint (integer)</td>
-    <td><!--@Defined by your device's protocol.-->由您的设备协议定义。</td>
-  </tr>
-  <tr>
-    <td>length (integer)</td>
-    <td><!--@Only used when direction is "in".
-      Notifies the device that this is the amount
-      of data the host is expecting in response.-->
-      只有当 direction 为 "in"
-      时才使用，通知设备主机期望的响应包含的数据量。
-    </td>
-  </tr>
-  <tr>
-    <td>data (ArrayBuffer)</td>
-    <td><!--@Defined by your device's protocol;
-      only used when direction is "out".-->
-      由您的设备协议定义，只有当 direction 为 "out" 时才使用。
-    </td>
-  </tr>
+<tr>
+  <th scope="col"><!--@Value-->值</th>
+  <th scope="col"><!--@Description-->描述</th>
+</tr>
+<tr>
+  <td>direction (string)</td>
+  <td><!--@"in" or "out".-->
+    "in" 或 "out"。
+  </td>
+</tr>
+<tr>
+  <td>endpoint (integer)</td>
+  <td><!--@Defined by your device's protocol.-->
+    由您的设备协议定义。
+  </td>
+</tr>
+<tr>
+  <td>length (integer)</td>
+  <td><!--@Only used when direction is "in". Notifies the device that this is
+    the amount of data the host is expecting in response.-->
+    只有当 direction 为 "in"
+    时才使用，通知设备主机期望的响应包含的数据量。
+  </td>
+</tr>
+<tr>
+  <td>data (ArrayBuffer)</td>
+  <td><!--@Defined by your device's protocol; only used when direction is
+    "out".-->
+    由您的设备协议定义，只有当 direction 为 "out" 时才使用。
+  </td>
+</tr>
+</table>
 
-<p>
-<!--@Example:-->例如：
-</p>
+<p><!--@Example:-->
+例如：</p>
 
 <pre>
 var transferInfo = {
-   "direction": "in", 
-   "endpoint": 1,
-   "length": 2
- };
-chrome.usb.interruptTransfer(deviceObj, transferInfo, optionalCallback);
+  "direction": "in",
+  "endpoint": 1,
+  "length": 2
+};
+chrome.usb.interruptTransfer(connectionHandle, transferInfo, optionalCallback);
 </pre>
 
 <h3 id="caveats"><!--@Caveats-->注意事项</h3>
 
+<p><!--@Not all devices can be accessed through the USB API. In general, devices
+  are not accessible because either the Operating System's kernel or a native
+  driver holds them off from user space code. Some examples are devices with
+  HID profiles on OSX systems, and USB pen drives.-->
+并不是所有设备都能通过 USB API
+访问。大体上，不能访问设备的原因包括操作系统内核或原生设备驱动程序阻止用户区代码访问，例如
+OSX 系统上包含 HID 配置文件的设备以及 USB 闪存盘。
+  </p>
+  
 <p>
-<!--@On most Linux systems, USB devices are mapped with read-only permissions by default. To access it through this API, your user will need to have write access too. A simple solution is to set a udev rule. Create a file <code>/etc/udev/rules.d/50-yourdevicename.rules</code>
-with the following content:-->
+<!--@  On most Linux systems, USB devices are mapped with read-only permissions by
+  default. To open a device through this API, your user will need to have
+  write access to it too.
+  A simple solution is to set a udev rule. Create a file
+  <code>/etc/udev/rules.d/50-yourdevicename.rules</code>
+  with the following content:-->
 在大部分 Linux 系统上，USB 设备默认情况下以只读权限映射。要通过该 API
-访问它，您的用户也需要写入的访问权限。一种简单的解决办法是设置 udev
-规则。创建一个包含如下内容的文件：<code>/etc/udev/rules.d/50-<em>yourdevicename</em>.rules</code>：
+打开设备，您的用户也需要写入权限。一种简单的解决办法是设置 udev
+规则。创建一个包含如下内容的文件：<code
+>/etc/udev/rules.d/50-<em>您的设备名称</em>.rules</code>：
 </p>
 
 <pre>
-SUBSYSTEM=="usb", ATTR{idVendor}=="[<em>yourdevicevendor</em>]", MODE="0664", GROUP="plugdev"
+SUBSYSTEM=="usb", ATTR{idVendor}=="[<em>您的设备名称</em>]", MODE="0664", GROUP="plugdev"
 </pre>
 
 <p>
-  <!--@Then, just restart the udev daemon: <code>service udev restart</code>. You can check if the permissions are correctly set by:-->
-  然后，重新启动 udev 服务：<code>service udev restart</code>。您可以通过如下方法检查权限是否正确设置：
-  <ul>
-    <li><!--@Find the bus and device numbers in <code>lsusb</code>-->
-      在 <code>lsusb</code> 中找到总线与设备号。
-    </li>
-    <li><code>ls -al /dev/bus/usb/[bus]/[device]</code><!--@. This file should be owned by group "plugdev" and have group write permissions.-->。该文件应该由“plugdev”组所有，并包含写入权限。
-    </li>
-  </ul>
+<!--@  Then, just restart the udev daemon: <code>service udev restart</code>.
+  You can check if device permissions are set correctly by following these
+  steps:-->
+  然后只要重新启动 udev 服务：<code>service udev restart</code>。您可以通过以下步骤检查权限是否正确设置：
 </p>
 
-<p>
-<!--@  Not all devices can be accessed through this API. In general, devices are not accessible either because the Operating System's kernel or a native driver holds them off from user space code. Some examples are devices with HID profiles on OSX systems and USB pen drives.-->
-并不是所有设备都能通过该 API
-访问。大体上，不能访问设备的原因包括操作系统内核或原生设备驱动程序阻止用户区代码访问，例如
-OSX 系统上包含 HID 配置文件的设备以及 USB 闪存盘。
+<ul>
+  <li><!--@Run <code>lsusb</code> to find the bus and device numbers.-->
+    运行 <code>lsusb</code>，找到总线和设备编号。
+  </li>
+  <li><!--@Run <code>ls -al /dev/bus/usb/[bus]/[device]</code>. This file should be
+    owned by group "plugdev" and have group write permissions.-->
+    运行
+    <code>ls -al /dev/bus/usb/[bus]/[device]</code>。该文件应该由“plugdev”组所有，并拥有写入权限。
+  </li>
+</ul>
+
+<p><!--@Your app cannot do this automatically since this this procedure requires root
+access. We recommend that you provide instructions to end-users and link to the
+<a href="#caveats">Caveats</a> section on this page for an explanation.-->
+您的应用不能自动完成这一步，因为这一过程需要管理员权限。我们建议您向最终用户提供指南，并链接到该网页的<a
+href="#caveats">注意事项</a>部分作为解释。
+</p>
+
+<p><!--@On Chrome OS, simply call $ref:usb.requestAccess. The permission
+  broker does this for you.-->
+在 Chrome OS 中，您只需要调用
+$ref:usb.requestAccess，权限控制器会为您完成这一步。
 </p>
 
 <h2 id="serial"><!--@Accessing serial devices-->访问串行端口设备</h2>
@@ -725,8 +930,12 @@ chrome.serial.open("/dev/ttyS01", {bitrate: 115200}, onOpen);
 <h3 id="closing"><!--@Closing a serial port-->关闭串行端口</h3>
 
 <p>
+<<<<<<< .mine
 <!--@Closing a serial port is simple but very important. See the example below: -->
 关闭串行端口很简单但是很重要，请参见下面的例子：
+=======
+Closing a serial port is simple but very important. See the example below:
+>>>>>>> .r224049
 </p>
 
 <pre>

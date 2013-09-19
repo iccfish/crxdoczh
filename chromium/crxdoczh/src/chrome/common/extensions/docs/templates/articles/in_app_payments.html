@@ -34,14 +34,14 @@ Chrome 浏览器用户可用。
 
 <p>
 <!--@You can use the In-App Payments Service to sell digital and virtual goods within your app.
-When you use the In-App Payments Service, the Chrome Wallet App, which is embedded in Chrome, communicates with the
+The In-App Payments Service, which is embedded in Chrome, communicates with the
 <a href="https://support.google.com/chrome_webstore/answer/1053354">Google Wallet</a>
 servers and handles all the required checkout details, so your app does not have to process any financial transactions.
 The In-App Payments Service requires you to package a JavaScript file, 
 <a href="https://raw.github.com/GoogleChrome/chrome-app-samples/master/in-app-payments/buy.js">buy.js</a>,
 with your app to trigger the purchase flow.-->
 您可以使用应用内付款服务在您的应用中销售数字虚拟商品。当您使用应用内付款服务时，内嵌在
-Chrome 浏览器中的 Chrome 电子钱包应用与
+Chrome 浏览器中的应用内付款服务会和
 <a href="https://support.google.com/chrome_webstore/answer/1053354">Google
 电子钱包</a>的服务器通信，并处理所有必要的交易细节，这样您的应用就不需要处理任何金融交易。应用内付款服务需要您将一个
 JavaScript 文件
@@ -52,10 +52,9 @@ JavaScript 文件
 <h2 id="flow"><!--@Purchase flow-->购买流程</h2>
 
 <p>
-<!--@When a customer clicks a "Buy" button in your app to make a purchase, the Chrome Wallet App displays a payment processing window
+<!--@When a customer clicks a "Buy" button in your app to make a purchase, the In-App Payments Service displays a payment processing window
 on top of your application window:-->
-当顾客在您的应用中单击“购买”按钮开始购买时，Chrome
-电子钱包应用会在您的应用窗口上显示付款处理窗口。
+当顾客在您的应用中单击“购买”按钮开始购买时，应用内付款服务会在您的应用窗口上显示付款处理窗口。
 </p>
 
 <img src="{{static}}/images/in-app-payments-review.png"
@@ -75,9 +74,8 @@ The success or failure callback in your app is invoked appropriately.-->
      alt="screenshot: in-app-payments confirmation dialog">
 
 <p>
-<!--@If the user is not signed up for Google Wallet, the Chrome Wallet App takes the user through the sign-up flow:-->
-如果用户还没有注册 Google 电子钱包，Chrome
-电子钱包应用会引导用户进入注册流程：
+<!--@If the user is not signed up for Google Wallet, the In-App Payments Service takes the user through the sign-up flow:-->
+如果用户还没有注册 Google 电子钱包，应用内付款服务会引导用户进入注册流程：
 </p>
 
 <img src="{{static}}/images/in-app-payments-set-up.png"
