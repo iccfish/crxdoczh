@@ -36,6 +36,11 @@
             "description": "扩展程序、应用或主题背景的名称。",
             "type": "string"
           },
+          "shortName": {
+//@            "description": "A short version of the name of this extension, app, or theme.",
+            "description": "扩展程序、应用或主题背景名称的简短版本。",
+            "type": "string"
+          },
           "description": {
 //@            "description": "The description of this extension, app, or theme.",
             "description": "扩展程序、应用或主题背景的描述。",

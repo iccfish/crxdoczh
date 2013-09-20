@@ -11,7 +11,7 @@ namespace identity {
     // approve the application's requested scopes. If the interactive
     // flag is <code>true</code>, <code>getAuthToken</code> will
     // prompt the user as necessary. When the flag is
-    // <code>false</code> or ommitted, <code>getAuthToken</code> will
+    // <code>false</code> or omitted, <code>getAuthToken</code> will
     // return failure any time a prompt would be required.-->
     // 获取令牌可能需要用户登录到 Chrome
     // 浏览器，或同意应用程序请求的范围。如果交互式标志为
@@ -46,7 +46,7 @@ namespace identity {
     //
     // <!--@If the interactive flag is <code>true</code>, the window will
     // be displayed when a page load completes. If the flag is
-    // <code>false</code> or ommitted, <code>launchWebAuthFlow</code>
+    // <code>false</code> or omitted, <code>launchWebAuthFlow</code>
     // will return with an error if the initial navigation does not
     // complete the flow.-->
     // 如果交互式标识为
