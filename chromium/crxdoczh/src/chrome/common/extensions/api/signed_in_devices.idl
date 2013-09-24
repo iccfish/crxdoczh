@@ -73,6 +73,6 @@ namespace signedInDevices {
     // |callback|: <!--@The callback to be invoked with the array of DeviceInfo
     // objects.-->
     // 调用时传递 DeviceInfo 对象数组的回调函数。
-    static void onDeviceInfoChange(DeviceInfoCallback callback);
+    static void onDeviceInfoChange(DeviceInfo[] devices);
   };
 };
