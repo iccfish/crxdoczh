@@ -34,6 +34,40 @@
             "items": {"type": "string"}
           }
         }
+      },
+      {
+        "id": "sockets",
+        "type": "object",
+//@        "description": "The <code>sockets</code> manifest property declares which sockets operations an app can issue.",
+        "description": "清单文件中的 <code>sockets</code> 属性声明应用可以进行的套接字操作。",
+        "properties": {
+          "udp": {
+//@            "description": "The <code>udp</code> manifest property declares which sockets.udp operations an app can issue.",
+            "description": "清单文件中的 <code>udp</code> 属性声明应用可以进行的 UDP 套接字操作。",
+            "optional": true,
+            "type": "object",
+            "properties": {
+              "bind": {
+//@                "description": "<p>The host:port pattern for <code>bind</code> operations.</p>",
+                "description": "<p><code>bind</code> 操作的主机:端口匹配表达式。</p>",
+                "optional": true,
+                "type": "string"
+              },
+              "send": {
+//@                "description": "<p>The host:port pattern for <code>send</code> operations.</p>",
+                "description": "<p><code>send</code> 操作的主机:端口匹配表达式。</p>",
+                "optional": true,
+                "type": "string"
+              },
+              "multicastMembership": {
+//@                "description": "<p>The host:port pattern for <code>joinGroup</code> operations.</p>",
+                "description": "<p><code>joinGroup</code> 操作的主机:端口匹配表达式。</p>",
+                "optional": true,
+                "type": "string"
+              }
+            }
+          }
+        }
       }
     ]
   }
