@@ -3,18 +3,18 @@
 that allows you to be notified
 when something interesting happens.
 Here's an example of using the
-<code>chrome.tabs.onCreated</code> event
-to be notified whenever there's a new tab:-->
-当发生一些您感兴趣的事情时，<code>Event</code> 对象可以使您收到通知。如下是一个使用 $ref:tabs.onCreated 事件的例子，每当打开新标签页时就收到通知：
+<code>chrome.alarms.onAlarm</code> event
+to be notified whenever an alarm has elapsed:-->
+当发生一些您感兴趣的事情时，<code>Event</code>
+对象可以使您收到通知。如下是一个使用 <code>chrome.alarms.onAlarm</code>
+事件的例子，每当定时器触发时就收到通知：
 </p>
 
 <pre>
-chrome.tabs.onCreated.<b>addListener(function(</b>tab<b>) {</b>
-  appendToLog('tabs.onCreated --'
-              + ' 窗口：' + tab.windowId
-              + ' 标签页：'    + tab.id
-              + ' 索引：'  + tab.index
-              + ' URL：'    + tab.url);
+chrome.alarms.onAlarm.<b>addListener(function(</b>alarm<b>) {</b>
+  appendToLog('alarms.onAlarm --'
+              + ' 名称：'          + alarm.name
+              + ' 计划的时间：' + alarm.scheduledTime);
 <b>});</b>
 </pre>
 
@@ -26,15 +26,15 @@ is always a function that you define to handle the event,
 but the parameters to the function depend on
 which event you're handling.
 Checking the documentation for
-$ref:tabs.onCreated,
+$ref:alarms.onAlarm,
 you can see that the function has a single parameter:
-a $ref:tabs.Tab object
-that has details about the newly created tab.-->
+an $ref:alarms.Alarm object
+that has details about the elapsed alarm.-->
 如这一例子所示，您使用 <code>addListener()</code>
 注册来接收通知。<code>addListener()</code>
 的参数总是一个您定义的处理事件的函数，但是函数的参数取决于您处理的事件。参考
-$ref:tabs.onCreated 的文档，您会看到该函数有一个参数：包含新创建标签页详情的
-$ref:tabs.Tab 对象。
+$ref:alarms.onAlarm 的文档，您会看到该函数有一个参数：包含已触发定时器的
+$ref:alarms.Alarm 对象。
 </p>
 
 

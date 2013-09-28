@@ -472,7 +472,7 @@
           {"name": "message", "type": "any", "optional": true, "description": "调用脚本发送的消息。"},
           {"name": "sender", "$ref": "MessageSender" },
 //@          {"name": "sendResponse", "type": "function", "description": "Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object. If you have more than one <code>onMessage</code> listener in the same document, then only one may send a response. This function becomes invalid when the event listener returns, unless you return true from the event listener to indicate you wish to send a response asynchronously (this will keep the message channel open to the other end until <code>sendResponse</code> is called)." }
-          {"name": "sendResponse", "type": "function", "description": "当您产生响应时调用（最多一次）的函数，参数可以是任何可转化为 JSON 的对象。如果您在同一个文档中有一个以上的 <code>onRequest</code> 事件处理函数，只有其中一个可以发送响应。当事件处理函数返回时，该函数将失效，除非您在事件处理函数中返回 true，表示您希望通过异步方式发送响应（这样，与另一端之间的消息通道将会保持打开状态，直到调用了 <code>sendResponse</code>）。",
+          {"name": "sendResponse", "type": "function", "description": "当您产生响应时调用（最多一次）的函数，参数可以是任何可转化为 JSON 的对象。如果您在同一个文档中有一个以上的 <code>onMessage</code> 事件处理函数，只有其中一个可以发送响应。当事件处理函数返回时，该函数将失效，除非您在事件处理函数中返回 true，表示您希望通过异步方式发送响应（这样，与另一端之间的消息通道将会保持打开状态，直到调用了 <code>sendResponse</code>）。",
           "parameters": [
               {
                 "name": "response",
@@ -503,7 +503,7 @@
           {"name": "message", "type": "any", "optional": true, "description": "调用脚本发送的消息。"},
           {"name": "sender", "$ref": "MessageSender" },
 //@          {"name": "sendResponse", "type": "function", "description": "Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object. If you have more than one <code>onMessage</code> listener in the same document, then only one may send a response. This function becomes invalid when the event listener returns, unless you return true from the event listener to indicate you wish to send a response asynchronously (this will keep the message channel open to the other end until <code>sendResponse</code> is called)." }
-          {"name": "sendResponse", "type": "function", "description": "当您产生响应时调用（最多一次）的函数，参数可以是任何可转化为 JSON 的对象。如果您在同一个文档中有一个以上的 <code>onRequest</code> 事件处理函数，只有其中一个可以发送响应。当事件处理函数返回时，该函数将失效，除非您在事件处理函数中返回 true，表示您希望通过异步方式发送响应（这样，与另一端之间的消息通道将会保持打开状态，直到调用了 <code>sendResponse</code>）。",
+          {"name": "sendResponse", "type": "function", "description": "当您产生响应时调用（最多一次）的函数，参数可以是任何可转化为 JSON 的对象。如果您在同一个文档中有一个以上的 <code>onMessage</code> 事件处理函数，只有其中一个可以发送响应。当事件处理函数返回时，该函数将失效，除非您在事件处理函数中返回 true，表示您希望通过异步方式发送响应（这样，与另一端之间的消息通道将会保持打开状态，直到调用了 <code>sendResponse</code>）。",
           "parameters": [
               {
                 "name": "response",
