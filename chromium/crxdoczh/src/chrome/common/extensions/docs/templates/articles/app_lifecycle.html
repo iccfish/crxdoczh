@@ -72,7 +72,7 @@ to the "background" field first:-->
 "backrgound" 字段：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 "background": {
   "scripts": [
     "foo.js",
@@ -89,7 +89,7 @@ when your application is launched in any way:-->
 函数，当您的应用以任何方式执行时会调用该函数：
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function() { 
   // 告诉您的应用执行的内容与方式。
 });
@@ -115,7 +115,7 @@ not associated with any Chrome browser windows.-->
 如下是在 <code>backrgound.js</code> 中创建窗口的示例：
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create('main.html', {
     bounds: {
@@ -179,7 +179,7 @@ to store and update local settings
 储存和更新本地设置（同时请参见<a href="app_storage.html#options">存储选项</a>）。
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.runtime.onInstalled.addListener(function() { 
   chrome.storage.local.set(object items, function callback);
 });
@@ -234,7 +234,7 @@ Keep the clean-up tasks synchronous and simple.-->
 执行将停止。处理这一事件时开始的任何异步操作都不能保证完整。请保持清理任务同步而且简单：
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.runtime.onSuspend.addListener(function() { 
   // 做一些简单的清理任务。
 });

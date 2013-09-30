@@ -37,7 +37,8 @@ new model.-->
 </p>
 
 {{^is_apps}}
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"background": {
@@ -45,7 +46,8 @@ new model.-->
     "persistent": false
   }</b>,
   ...
-}</pre>
+}
+</pre>
 
 <p>
 <!--@Notice that without the "persistent" key, you have
@@ -55,7 +57,8 @@ an event page from a background page.-->
 </p>
 {{/is_apps}}
 {{?is_apps}}
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的应用",
   ...
   "app": {
@@ -65,7 +68,8 @@ an event page from a background page.-->
     ...
   },
   ...
-}</pre>
+}
+</pre>
 {{/is_apps}}
 
 <h2 id="lifetime"><!--@Lifetime-->生命周期</h2>

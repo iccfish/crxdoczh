@@ -12,7 +12,7 @@
     width: 334px;
   }
   #active-tab-after {
-    width: 265px;
+    width: 334px;
   }
 </style>
 
@@ -50,9 +50,7 @@ href="browserAction.html">浏览器按钮</a>）时能够临时访问当前活�
 示例扩展程序：
 </p>
 
-<h3 id="manifest.json">manifest.json</h3>
-<p>
-<pre>
+<pre data-filename="manifest.json">
 {
   "name": "Page Redder",
   "version": "2.0",
@@ -69,12 +67,8 @@ href="browserAction.html">浏览器按钮</a>）时能够临时访问当前活�
   "manifest_version": 2
 }
 </pre>
-</p>
 
-<h3 id="background.js">background.js</h3>
-
-<p>
-<pre>
+<pre data-filename="background.js">
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
   // No tabs or host permissions needed!
@@ -84,7 +78,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   }); 
 });
 </pre>
-</p>
 
 <h2 id="motivation"><!--@Motivation-->目的</h2>
 

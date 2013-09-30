@@ -11,7 +11,8 @@ For example:-->
  权限，以及您需要访问网络请求的所有主机的主机权限。如果您需要以阻塞方式使用网络请求
  API，您还需要另外请求 "webRequestBlocking" 权限。例如：
 </p>
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"permissions": [
@@ -19,7 +20,8 @@ For example:-->
     "*://*.google.com/"
   ]</b>,
   ...
-}</pre>
+}
+</pre>
 
 <h2 id="life_cycle"><!--@Life cycle of requests-->请求的生命周期</h2>
 

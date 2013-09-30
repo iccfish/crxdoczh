@@ -50,7 +50,7 @@ an HTML page packaged inside your extension.-->
 <p><!--@First, declare the <code>notifications</code> permission in your manifest:-->
 首先在您的清单文件中声明 <code>notifications</code> 权限：
 </p>
-<pre>
+<pre data-filename="manifest.json">
 {
   "name": "我的扩展程序",
   "manifest_version": 2,
@@ -106,11 +106,10 @@ $ref:extension.getViews<!--@. For example:-->
 在您的扩展程序中实现通知与其他视图间的通信。例如：
 </p>
 
-<pre>
-// 在一个通知中...
+<pre data-filename="notification.js">
 chrome.extension.getBackgroundPage().doThing();
-
-// 来自后台网页...
+</pre>
+<pre data-filename="background.js">
 chrome.extension.getViews({type:"notification"}).forEach(function(win) {
   win.doOtherThing();
 });

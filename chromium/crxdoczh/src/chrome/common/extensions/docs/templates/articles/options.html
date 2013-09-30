@@ -5,12 +5,14 @@
 
 <h2 id="step_1"><!--@Step 1: Declare your options page in the manifest-->第一步：在清单文件中声明您的选项页面</h2>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"options_page": "options.html"</b>,
   ...
-}</pre>
+}
+</pre>
 
 
 <h2 id="step_2"><!--@Step 2: Write your options page-->第二步：编写您的选项页面</h2>
@@ -18,9 +20,32 @@
 <!--@Here is an example options page:-->
 如下是一个选项页面的例子：
 
-<pre>// 将该脚本保存为 `options.js`
+<pre data-filename="options.html">
+&lt;html>
+&lt;head>&lt;title>我的测试扩展程序选项&lt;/title>&lt;/head>
 
-// 将选项保存至 localStorage。
+&lt;body>
+
+我最喜欢的颜色：
+&lt;select id="color">
+ &lt;option value="red">红&lt;/option>
+ &lt;option value="green">绿&lt;/option>
+ &lt;option value="blue">蓝&lt;/option>
+ &lt;option value="yellow">黄&lt;/option>
+&lt;/select>
+
+&lt;br>
+&lt;div id="status">&lt;/div>
+&lt;button id="save">保存&lt;/button>
+&lt;/body>
+
+&lt;script src="options.js">&lt;/script>
+
+&lt;/html>
+</pre>
+
+<pre data-filename="options.js">
+// 将选项保存在 localStorage 中。
 function save_options() {
   var select = document.getElementById("color");
   var color = select.children[select.selectedIndex].value;
@@ -51,30 +76,6 @@ function restore_options() {
 }
 document.addEventListener('DOMContentLoaded', restore_options);
 document.querySelector('#save').addEventListener('click', save_options);
-</pre>
-
-<pre>
-&lt;html&gt;
-&lt;head&gt;&lt;title&gt;我的测试扩展程序选项&lt;/title&gt;&lt;/head&gt;
-
-&lt;body&gt;
-
-最喜欢的颜色：
-&lt;select id="color"&gt;
- &lt;option value="red"&gt;红&lt;/option&gt;
- &lt;option value="green"&gt;绿&lt;/option&gt;
- &lt;option value="blue"&gt;蓝&lt;/option&gt;
- &lt;option value="yellow"&gt;黄&lt;/option&gt;
-&lt;/select&gt;
-
-&lt;br&gt;
-&lt;div id="status"&gt;&lt;/div&gt;
-&lt;button id="save"&gt;保存&lt;/button&gt;
-&lt;/body&gt;
-
-&lt;script src="options.js"&gt;&lt;/script&gt;
-
-&lt;/html&gt;
 </pre>
 
 <h2 id="important_notes"><!--@Important notes-->重要提示</h2>

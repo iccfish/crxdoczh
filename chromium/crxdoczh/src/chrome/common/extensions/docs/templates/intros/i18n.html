@@ -155,7 +155,7 @@ the <a href="manifest.html">manifest</a>
     "description"（描述）项。名称是用来标识字符串的键，如
     "extName" 或 "search_string"，"message"（消息）指定当前语言中字符串的值，可选的
     "description"（描述）向翻译者提供帮助，因为翻译者不一定能看到该字符串是如何在您的扩展程序中使用的。例如：
-<pre>
+<pre data-filename="messages.json">
 {
   "search_string": {
     "message": "您好",
@@ -651,8 +651,8 @@ function getMessage() {
 <pre>
 <em>// 在 JavaScript 代码中</em>
 status.innerText = chrome.i18n.getMessage("error", errorDetails);
-
-<em>// 在 messages.json 中</em>
+</pre>
+<pre data-filename="messages.json">
 "error": {
   "message": "错误：$details$",
   "description": "通用错误模板，需要传递错误参数。",

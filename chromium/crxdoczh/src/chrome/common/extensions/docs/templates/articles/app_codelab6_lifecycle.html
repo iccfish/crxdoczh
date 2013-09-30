@@ -51,7 +51,7 @@ reload the app and test again:-->
 中添加一个 <code>id</code> 属性，重新加载应用并再次测试：
 </p>
 
-<pre>
+<pre data-filename="main.js">
 chrome.app.runtime.onLaunched.addListener(function() {
     chrome.app.window.create(&#39;index.html&#39;,
       {id: &#39;mainwindow&#39;, bounds: {width: 500, height: 309} });
@@ -109,7 +109,7 @@ Events are handled the same in-->
 处理事件的方式相同：
 </p>
 
-<pre>
+<pre data-filename="main.js">
 chrome.app.runtime.onLaunched.addListener(function() {
   // normal launch initiated by the user, let&#39;s start clean.
   // note that this is not related to the persistent state, which is
@@ -153,7 +153,7 @@ function runApp(readInitialState) {
   <header tabindex="0" data-value="js">JavaScript</header>
   
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 var newTodoInput = null;
 
 var clearInitialState = function() {
@@ -181,7 +181,7 @@ window.addEventListener(&#39;load&#39;, function() {
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
   var newTodoInput = document.querySelector('input[type="text"]');
  
   window.clearInitialState = function() {

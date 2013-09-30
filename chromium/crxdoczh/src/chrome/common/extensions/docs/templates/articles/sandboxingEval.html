@@ -110,13 +110,15 @@
   <code>sandbox</code> 属性。这是最关键的一步，也是最容易忘记的，所以请再次检查您需要沙箱保护的文件确实已在清单文件中列出。在该示例中，我们需要沙箱保护的文件恰好命名为“sandbox.html”。清单文件项如下所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   ...,
   "sandbox": {
      "pages": ["sandbox.html"]
   },
   ...
-}</pre>
+}
+</pre>
 
 <h3 id="load_file"><!--@Load the sandboxed file-->加载受沙箱保护的文件</h3>
 
@@ -143,14 +145,16 @@
   和 <code>command</code>，我们稍后会详细解释它们。
 </p>
 
-<pre>chrome.browserAction.onClicked.addListener(function() {
+<pre data-filename="eventpage.js">
+chrome.browserAction.onClicked.addListener(function() {
  var iframe = document.getElementById('theFrame');
  var message = {
    command: 'render',
    context: {thing: 'world'}
  };
  iframe.contentWindow.postMessage(message, '*');
-});</pre>
+});
+</pre>
 
 <p class="note">
   <!--@For general information about the <code>postMessage</code> API, take a look at
@@ -174,17 +178,19 @@
   Handlebars 提供的方式创建并编译内嵌模板：
 </p>
 
-<pre>&lt;script src="handlebars-1.0.0.beta.6.js"&gt;&lt;/script&gt;
- &lt;script id="hello-world-template" type="text/x-handlebars-template"&gt;
-   &lt;div class="entry"&gt;
-     &lt;h1&gt;Hello, &#123&#123thing&#125&#125!&lt;/h1&gt;
-   &lt;/div&gt;
- &lt;/script&gt;
- &lt;script&gt;
-   var templates = [];
-   var source = document.getElementById('hello-world-template').innerHTML;
-   templates['hello'] = Handlebars.compile(source);
- &lt;/script&gt;</pre>
+<pre data-filename="sandbox.html">
+&lt;script src="handlebars-1.0.0.beta.6.js"&gt;&lt;/script&gt;
+&lt;script id="hello-world-template" type="text/x-handlebars-template"&gt;
+  &lt;div class="entry"&gt;
+    &lt;h1&gt;Hello, &#123&#123thing&#125&#125!&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/script&gt;
+&lt;script&gt;
+  var templates = [];
+  var source = document.getElementById('hello-world-template').innerHTML;
+  templates['hello'] = Handlebars.compile(source);
+&lt;/script&gt;
+</pre>
 
 <p>
   <!--@This doesn't fail! Even though <code>Handlebars.compile</code> ends up using
@@ -213,21 +219,25 @@
   将传回事件页面，以便扩展程序利用它接着做一些有用的事：
 </p>
 
-<pre>window.addEventListener('message', function(event) {
-  var command = event.data.command;
-  var name = event.data.name || 'hello';
-  switch(command) {
-    case 'render':
-      event.source.postMessage({
-        name: name,
-        html: templates[name](event.data.context)
-      }, event.origin);
-      break;
-
-    // case 'somethingElse':
-    //   ...
-  }
-});</pre>
+<pre data-filename="sandbox.html">
+&lt;script&gt;
+  window.addEventListener('message', function(event) {
+    var command = event.data.command;
+    var name = event.data.name || 'hello';
+    switch(command) {
+      case 'render':
+        event.source.postMessage({
+          name: name,
+          html: templates[name](event.data.context)
+        }, event.origin);
+        break;
+  
+      // case 'somethingElse':
+      //   ...
+    }
+  });
+&lt;/script&gt;
+</pre>
 
 <p>
   <!--@Back in the Event Page, we'll receive this message, and do something

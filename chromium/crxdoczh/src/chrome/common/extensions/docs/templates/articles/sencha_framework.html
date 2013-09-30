@@ -81,7 +81,7 @@ API。清单文件还包含了 "socket"
 权限，因为媒体播放器应用使用套接字 API 通过网络连接到媒体服务器。
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 {
     "name": "Video Player",
     "description": "Features network media discovery and playlist management",
@@ -127,7 +127,7 @@ opens in a window with the specified dimensions:-->
 将会在指定大小的窗口中打开：
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
     var opt = {
         width: 1000,
@@ -154,15 +154,15 @@ that acts as a sandbox environment:-->
 组件。为了遵循 CSP 的同时执行应用的逻辑，应用的主页面
 <code>index.html</code> 创建了一个 iframe，作为一个经过沙盒屏蔽的环境：
 
-<pre>
-&lt;iframe id="sandbox-frame" class="sandboxed" sandbox="allow-scripts" src="sandbox.html"&gt;&lt;/iframe&gt;
+<pre data-filename="index.html">
+&lt;iframe id="sandbox-frame" sandbox="allow-scripts" src="sandbox.html">&lt;/iframe>
 </pre>
 
 <p><!--@The--> iframe <!--@points to-->指向 <a href="https://github.com/GoogleChrome/sencha-video-player-app/blob/master/sandbox.html">sandbox.html</a><!--@ which includes the files required for the Ext JS application:-->，包含了
 Ext JS 应用需要的文件：
 </p>
 
-<pre>
+<pre data-filename="sandbox.html">
 &lt;html&gt;
 &lt;head&gt;
     &lt;link rel="stylesheet" type="text/css" href="resources/css/app.css" /&gt;
@@ -206,7 +206,7 @@ Unlike the sandboxed <code>app.js</code>,
 <code>index.js</code> <!--@creates the iframe:-->获取框架：
 </p>
 
-<pre>
+<pre data-filename="index.js">
 var iframe = document.getElementById('sandbox-frame');
 
 iframeWindow = iframe.contentWindow;
@@ -217,7 +217,7 @@ iframeWindow = iframe.contentWindow;
 然后监听来自经过沙盒屏蔽的文件的消息：
 </p>
 
-<pre>
+<pre data-filename="index.js">
 window.addEventListener('message', function(e) {
     var data= e.data,
         key = data.key;
@@ -263,7 +263,7 @@ requesting the key 'extension-baseurl':-->
 发送消息，请求键为 'extension-baseurl'：
 </p>
 
-<pre>
+<pre data-filename="app.js">
 Ext.data.PostMessage.request({
     key: 'extension-baseurl',
     success: function(data) {
@@ -278,7 +278,7 @@ and replies by sending the Base URL back:-->
 接收请求，设置结果，通过发回基本 URL 的方式回复：
 </p>
 
-<pre>
+<pre data-filename="index.js">
 function extensionBaseUrl(data) {
     data.result = chrome.extension.getURL('/');
     iframeWindow.postMessage(data, '*');
@@ -320,7 +320,7 @@ The remainder of this section describes this workflow in more detail.-->
 
 <p>
 <!--@When a user clicks the Media Servers button in the center of the media player app,
-<code>MediaServers</code> calls <code>discoverServers()</code>.
+<code>MediaServers.js</code> calls <code>discoverServers()</code>.
 This function first checks for any outstanding discovery requests,
 and if true, aborts them so the new request can be initiated.
 Next, the controller posts a message to <code>index.js</code>
@@ -331,7 +331,7 @@ with a key upnp-discovery, and two callback listeners:-->
 upnp-discovery，并包含两个回调函数监听器：
 </p>
 
-<pre>
+<pre data-filename="MediaServers.js">
 me.activeDiscoverRequest = Ext.data.PostMessage.request({
     key: 'upnp-discover',
     success: function(data) {
@@ -430,7 +430,7 @@ and receives media data using the packaged app socket API:-->
 连接到发现的媒体服务器，并使用打包应用的套接字 API 接收媒体数据：
 </p>
 
-<pre>
+<pre data-filename="Upnp.js">
 socket.create("udp", {}, function(info) {
     var socketId = info.socketId;
         
@@ -490,7 +490,7 @@ with the 'play-media' key:-->列出媒体服务器文件夹中的所有媒体文
 <code>index.js</code> 传递消息，键为 'play-media'。
 </p>
 
-<pre>
+<pre data-filename="MediaExplorer.js">
 onFileDblClick: function(explorer, record) {
     var serverPanel, node,
         type    = record.get('type'),
@@ -517,7 +517,7 @@ responds by calling <code>playMedia()</code>:-->
 监听传递过来的该消息，并通过调用 <code>playMedia()</code> 响应。
 </p>
 
-<pre>
+<pre data-filename="index.js">
 function playMedia(data) {
     var type        = data.params.type,
         url         = data.params.url,
@@ -589,7 +589,7 @@ to initiate the download process:-->向 <code>index.js</code> 传递消息，键
 <code>downloadMedia()</code> 函数开始下载过程：
 </p>
 
-<pre>
+<pre data-filename="index.js">
 function downloadMedia(data) {
         DownloadProcess.run(data.params.files, function() {
             data.result = true;
@@ -608,7 +608,7 @@ and saves the data locally using the <code>filer.js</code> function:-->
 回调函数，检查接收到的内容并使用 <code>filer.js</code> 函数在本地保存数据：
 </p>
 
-<pre>
+<pre data-filename="filer.js">
 filer.write(
     saveUrl,
     {

@@ -114,7 +114,7 @@ lists any special permissions the app needs to run.-->
 上传器清单文件的简化版本如下所示：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 {
   "name": "Google Drive Uploader",
   "version": "0.0.1",
@@ -203,7 +203,7 @@ so the content doesn't become too crunched: -->
 像素的窗口显示主页面，同时它也指定了窗口的最小高度与宽度，以免内容显得过于紧凑。
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
   chrome.app.window.create('../main.html', {
     bounds: {
@@ -248,7 +248,7 @@ the custom close button is hidden until the user interacts with this the area:--
 标签中（参见下一节）。为了使应用更简洁一些，自定义按钮一开始是隐藏的，直到用户与该区域交互：
 </p>
 
-<pre>
+<pre data-filename="main.css">
 &lt;style&gt;
 nav:hover #close-button {
   opacity: 1;
@@ -262,7 +262,8 @@ nav:hover #close-button {
   -webkit-transition: all 0.3s ease-in-out;
 }
 &lt;/style&gt;
-
+</pre>
+<pre data-filename="main.html">
 &lt;button class="btn" id="close-button" title="Close"&gt;x&lt;/button&gt;
 </pre>
 
@@ -307,7 +308,7 @@ The Angular bits are highlighted in bold: -->
 &lt;ul&gt; 列表。Angular 的特有内容以粗体高亮：
 </p>
 
-<pre>
+<pre data-filename="main.html">
 &lt;ul&gt;
   &lt;li <strong>data-ng-repeat="doc in docs"</strong>&gt;
     &lt;img data-ng-src=<strong>"&#123;{doc.icon}&#125;"</strong>&gt; &lt;a href=<strong>"&#123;{doc.alternateLink}&#125;"</strong>&gt;<strong>&#123;{doc.title}&#125;</strong>&lt;/a&gt;
@@ -349,7 +350,7 @@ For that, we use the-->
 指示符让 <code>DocsController</code> 控制模板的 &lt;body&gt;。
 </p>
 
-<pre>
+<pre data-filename="main.html">
 &lt;body <strong>data-ng-controller="DocsController"</strong>&gt;
 &lt;section id="main"&gt;
   &lt;ul&gt;
@@ -380,7 +381,7 @@ The typical way to do that is include the-->
 指示符：
 </p>
 
-<pre>
+<pre data-filename="main.html">
 &lt;html <strong>data-ng-app="gDriveApp"</strong>&gt;
 </pre>
 
@@ -401,7 +402,7 @@ putting-->
 <code>main.html</code> 的最终产品如下所示：
 </p>
 
-<pre>
+<pre data-filename="main.html">
 &lt;html <strong>data-ng-app="gDriveApp"</strong>&gt;
 &lt;head&gt;
   …
@@ -450,7 +451,7 @@ Angular 运行在“内容安全模式”下，在使用
 指示符即可做到这一点。
 </p>
 
-<pre>
+<pre data-filename="main.html">
 &lt;html data-ng-app data-ng-csp&gt;
 </pre>
 
@@ -477,7 +478,7 @@ which we can reuse for future calls to the Drive API.-->
 的调用，并保存 <code>accessToken</code>，以便将来调用 Drive API 时再次使用。
 </p>
 
-<pre>
+<pre data-filename="gdocs.js">
 GDocs.prototype.auth = function(opt_callback) {
   try {
     <strong>chrome.experimental.identity.getAuthToken({interactive: false}, function(token) {</strong>
@@ -523,7 +524,7 @@ of objects that will get rendered as those &lt;li>s in the template:-->
 &lt;li&gt; 的对象。
 </p>
 
-<pre>
+<pre data-filename="app.js">
 var gDriveApp = angular.module('gDriveApp', []);
 
 gDriveApp.factory('gdocs', function() {
@@ -577,7 +578,7 @@ filing the docs array with data from API responses.-->
 docs 数组。
 </p>
 
-<pre>
+<pre data-filename="app.js">
 $scope.fetchDocs = function() {
   $scope.docs = []; // First, clear out any old results
 
@@ -693,7 +694,7 @@ with the added XHR code:-->
 如下是更新后包含新增的 XHR 代码的 <code>successCallback</code>：
 </p>
 
-<pre>
+<pre data-filename="app.js">
 var successCallback = function(resp, status, headers, config) {
   var docs = [];
   var totalEntries = resp.feed.entry.length;
@@ -750,7 +751,7 @@ n 个图片：
 </p>
 
 <img src="{{static}}/images/fetchedicon.png"
-     width="118"
+     width="180"
      height="19"
      alt="Console log 65: Fetched icon via XHR">
 
@@ -762,7 +763,7 @@ The additions are highlighted in bold:-->
 <code>successCallback</code>，增加一个缓存层。增加的部分以粗体高亮：
 </p>
 
-<pre>
+<pre data-filename="app.js">
 $scope.fetchDocs = function() {
   ...
 
@@ -902,7 +903,7 @@ Google 云端硬盘的能力。
 只要将此加入 gdocs 服务就完成了任务：
 </p>
 
-<pre>
+<pre data-filename="app.js">
 gDriveApp.factory('gdocs', function() {
   var gdocs = new GDocs();
   

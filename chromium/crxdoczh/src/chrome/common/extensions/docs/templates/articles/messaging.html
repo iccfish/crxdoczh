@@ -49,9 +49,7 @@ $ref:runtime.sendMessage 或 $ref:tabs.sendMessage
 <p>
 <!--@Sending a request from a content script looks like this:-->
 如下列代码所示从内容脚本中发送请求：
-<pre>
-contentscript.js
-================
+<pre data-filename="contentscript.js">
 chrome.runtime.sendMessage({greeting: "您好"}, function(response) {
   console.log(response.farewell);
 });
@@ -62,7 +60,7 @@ chrome.runtime.sendMessage({greeting: "您好"}, function(response) {
 except that you need to specify which tab to send it to. This example
 demonstrates sending a message to the content script in the selected tab.-->
 从扩展程序向内容脚本发送请求与上面类似，唯一的区别是您需要指定发送至哪一个标签页。这一例子演示如何向选定标签页中的内容脚本发送消息。
-<pre>
+<pre data-filename="background.html">
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
   chrome.tabs.sendMessage(tabs[0].id, {greeting: "您好"}, function(response) {
     console.log(response.farewell);
@@ -129,9 +127,7 @@ connection.-->
 <!--@Here is how you open a channel from a content script, and send and listen for
 messages:-->
 如下代码演示如何从内容脚本中建立连接，发送并监听消息：
-<pre>
-contentscript.js
-================
+<pre data-filename="contentscript.js">
 var port = chrome.runtime.connect({name: "敲门"});
 port.postMessage({joke: "敲门"});
 port.onMessage.addListener(function(msg) {
@@ -266,7 +262,7 @@ example:-->
 >跨扩展程序消息传递</a>类似，您的应用或扩展程序可以接受并响应来自普通网页的消息。要使用该特性，您必须首先在您的
 manifest.json 中指定您希望与之通信的网站，例如：
 
-<pre>
+<pre data-filename="manifest.json">
 "externally_connectable": {
   "matches": ["*://*.example.com/*"]
 }
@@ -338,7 +334,8 @@ standard output streams.-->
 manifest file that defines native messaging host configuration. Below is an
 example of the manifest file:-->
 为了注册一个原生消息通信宿主，应用程序必须安装一个清单文件，定义原生消息通信宿主的配置。如下是这一清单文件的例子：
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "com.my_company.my_application",
   "description": "我的应用程序",
   "path": "C:\Program Files\My Application\chrome_native_messaging_host.exe",
@@ -477,15 +474,13 @@ below:-->
 当您从内容脚本或另一个扩展程序接收消息时，您的后台网页应该小心，以免遭到<a
 href="http://en.wikipedia.org/wiki/Cross-site_scripting">跨站脚本攻击</a>。特别地，避免使用下面这些危险的 API：
 </p>
-<pre>background.html
-===============
+<pre data-filename="background.js">
 chrome.tabs.sendMessage(tab.id, {greeting: "hello"}, function(response) {
   // 警告！可能会执行恶意脚本！
   var resp = eval("(" + response.farewell + ")");
 });
-
-background.html
-===============
+</pre>
+<pre data-filename="background.js">
 chrome.tabs.sendMessage(tab.id, {greeting: "hello"}, function(response) {
   // 警告！可能会插入恶意脚本！
   document.getElementById("resp").innerHTML = response.farewell;
@@ -495,15 +490,13 @@ chrome.tabs.sendMessage(tab.id, {greeting: "hello"}, function(response) {
 <!--@Instead, prefer safer APIs that do not run scripts:-->
 您应该首选不运行脚本的更安全的API：
 </p>
-<pre>background.html
-===============
+<pre data-filename="background.js">
 chrome.tabs.sendMessage(tab.id, {greeting: "hello"}, function(response) {
   // JSON.parse 不会执行攻击者的脚本。
   var resp = JSON.parse(response.farewell);
 });
-
-background.html
-===============
+</pre>
+<pre data-filename="background.js">
 chrome.tabs.sendMessage(tab.id, {greeting: "hello"}, function(response) {
   // innerText 不会让攻击者插入 HTML 元素。
   document.getElementById("resp").innerText = response.farewell;

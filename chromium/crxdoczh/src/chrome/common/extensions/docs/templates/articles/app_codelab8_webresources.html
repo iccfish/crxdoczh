@@ -51,7 +51,7 @@ URL 的内容。
 <a href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab8_webresources/javascript/1_webview/manifest.json">JavaScript manifest.json</a> <!--@are the same:-->是一样的：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 &quot;permissions&quot;: [&quot;storage&quot;, &quot;webview&quot;]
 </pre>
 
@@ -68,7 +68,7 @@ URL 的内容。
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="index.html">
 &lt;!-- in TODO item: --&gt;
 &lt;a ng-show=&quot;todo.uri&quot; href=&quot;&quot; ng-click=&quot;showUri(todo.uri)&quot;&gt;(view url)&lt;/a&gt;
 &lt;!-- at the bottom, below the end of body: --&gt;
@@ -76,7 +76,7 @@ URL 的内容。
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="index.html">
 &lt;!-- right after the &quot;dropText&quot; div: --&gt;
 &lt;webview&gt;&lt;/webview&gt;
 &lt;!-- in the TODO template, right before the end of the li: --&gt;
@@ -95,7 +95,7 @@ the style sheet.
 是一样的：
 </p>
 
-<pre>
+<pre data-filename="todo.css">
 webview {
   width: 100%;
   height: 200px;
@@ -119,7 +119,7 @@ webview {
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 $scope.showUri = function(uri) {
   var webview=document.querySelector(&quot;webview&quot;);
   webview.src=uri;
@@ -127,7 +127,7 @@ $scope.showUri = function(uri) {
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 if(/^http:\/\/|https:\/\//.test(todoObj.text)) {
   var showUrl = el.querySelector('a');
   showUrl.addEventListener('click', function(e) {
@@ -197,7 +197,7 @@ Change-->
 <a href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab8_webresources/javascript/2_loading_resources/manifest.json">JavaScript manifest.json</a><!--@:-->：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 &quot;permissions&quot;: [&quot;storage&quot;, &quot;webview&quot;, &quot;&lt;all_urls&gt;&quot;]
 </pre>
 
@@ -220,13 +220,13 @@ that will be shown while we are loading the proper image.-->，当我们加载�
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="loader.js">
 &lt;img style=&quot;max-height: 48px; max-width: 120px;&quot; ng-show=&quot;todo.validImage&quot;
 ng-src=&quot;&#123;&#123;todo.imageUrl&#125;&#125;&quot;&gt;&lt;/img&gt;
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="loader.js">
 &lt;img style=&quot;max-height: 48px; max-width: 120px;&quot;&gt;&lt;/img&gt;
     </pre>
   </content>
@@ -240,7 +240,7 @@ add a constant for the placeholder image:-->
 中，添加一个占位符图片的常量：
 </p>
 
-<pre>
+<pre data-filename="controller.js">
 const PLACEHOLDER_IMAGE = "loading.gif";
 </pre>
 
@@ -259,7 +259,7 @@ that will start a XHR request and execute a callback with a Blob URL.-->
 <a href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab8_webresources/javascript/2_loading_resources/loader.js">JavaScript loader.js</a> <!--@are the same:-->是一样的：
 </p>
 
-<pre>
+<pre data-filename="loader.js">
 var loadImage = function(uri, callback) {
   var xhr = new XMLHttpRequest();
   xhr.responseType = &#39;blob&#39;;
@@ -284,7 +284,7 @@ add a new method that will search the Todo list looking for images that are not 
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 // for each image with no imageUrl, start a new loader
 $scope.loadImages = function() {
   for (var i=0; i&lt;$scope.todos.length; i++) {
@@ -305,7 +305,7 @@ $scope.loadImages = function() {
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
  var maybeStartImageLoader = function(el, todo) {
     var img = el.querySelector('img');
     if (todo['extras'] && todo.extras.validImage && todo.extras.imageUrl) {
@@ -339,7 +339,7 @@ in the-->
 中调用 <code>maybeStartImageLoader</code> 函数，根据模型更新待办事项列表：
 </p>
 
-<pre>
+<pre data-filename="controller.js">
 var updateTodo = function(model) {
   var todoElement = list.querySelector('li[data-id="'+model.id+'"]');
   if (todoElement) {
@@ -373,7 +373,7 @@ png 和 jpg 扩展名，您可以在您的代码中检测其他类型。
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 var uri=e.dataTransfer.getData(&quot;text/uri-list&quot;);
 var todo = {text:uri, done:false, uri: uri};
 if (/.png$/.test(uri) || /.jpg$/.test(uri)) {
@@ -388,7 +388,7 @@ $scope.loadImages();
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 var uri = e.dataTransfer.getData("text/uri-list");
 var extras = { uri: uri };
 if (/\.png$/.test(uri) || /\.jpg$/.test(uri)) {
@@ -417,7 +417,7 @@ loadImages 方法再次请求它们：
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 // If there is saved data in storage, use it. Otherwise, bootstrap with sample todos
 $scope.load = function(value) {
   if (value &amp;&amp; value.todolist) {
@@ -437,7 +437,7 @@ $scope.load = function(value) {
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 /**
  * Listen to changes in the model and trigger the appropriate changes in the view
  **/

@@ -55,7 +55,7 @@ describes this manifest in detail):-->
 文件（<a href="manifest.html">格式：清单文件</a>详细描述了该清单文件）：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 {
   "name": "Hello World!",
   "description": "我的第一个打包应用。",
@@ -84,7 +84,7 @@ with the following content:-->
 <code>background.js</code>，包含如下内容：
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create('window.html', {
     'bounds': {
@@ -114,7 +114,7 @@ all of which are used by the event page to manage the app.-->
 创建您的 <code>window.html</code> 文件：
 </p>
 
-<pre>
+<pre data-filename="window.html">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;

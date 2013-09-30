@@ -240,7 +240,7 @@ that uses information from google.com:-->
 ，提供有关扩展程序的各种信息，例如最重要的文件和扩展程序可能具有的能力。以下是一个典型的清单文件，用于一个浏览器按钮，它将会访问来自 google.com 的信息：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 {
   "name": "我的扩展程序",
   "version": "2.1",
@@ -534,10 +534,10 @@ you might write code like this:-->
 </p>
 
 <pre>
-   <b>//以下代码不能正常工作！</b>
-<span class="linenumber">1: </span>var tab = chrome.tabs.query({'active': true}); <b>//错误！</b>
-<span class="linenumber">2: </span>chrome.tabs.update(tab.id, {url:newUrl});
-<span class="linenumber">3: </span>someOtherFunction();
+<b>//以下代码不能正常工作！</b>
+var tab = chrome.tabs.query({'active': true}); <b>//错误！</b>
+chrome.tabs.update(tab.id, {url:newUrl});
+someOtherFunction();
 </pre>
 
 <p>
@@ -572,11 +572,11 @@ and calls <code>update()</code>.-->
 </p>
 
 <pre>
-   <b>//以下代码可以正常工作</b>
-<span class="linenumber">1: </span>chrome.tabs.query({'active': true}, <b>function(tabs) {</b>
-<span class="linenumber">2: </span>  chrome.tabs.update(tabs[0].id, {url: newUrl});
-<span class="linenumber">3: </span><b>}</b>);
-<span class="linenumber">4: </span>someOtherFunction();
+<b>//以下代码可以正常工作</b>
+chrome.tabs.query({'active': true}, <b>function(tabs) {</b>
+  chrome.tabs.update(tabs[0].id, {url: newUrl});
+<b>}</b>);
+someOtherFunction();
 </pre>
 
 <p>

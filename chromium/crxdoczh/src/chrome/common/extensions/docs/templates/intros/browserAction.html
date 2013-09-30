@@ -28,7 +28,8 @@ like this:-->
 >扩展程序的清单文件</a>中注册您的浏览器按钮：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"browser_action": {
@@ -40,7 +41,8 @@ like this:-->
     "default_popup": "popup.html"        <em>// 可选</em>
   }</b>,
   ...
-}</pre>
+}
+</pre>
 
 <p>
 <!--@If you only provide one of the 19px or 38px icon size, the extension system will
@@ -50,7 +52,8 @@ default icon is still supported:-->
 如果您只提供 19px 或 38px 图标大小中的一个，扩展程序系统将会缩放您提供的图标，以适应用户显示器的像素密度，这有可能会丢失细节或使它看上去很模糊。注册默认图标的旧语法仍然支持：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"browser_action": {
@@ -59,7 +62,8 @@ default icon is still supported:-->
     <em>// 等价于 "default_icon": { "19": "images/icon19.png" }</em>
   }</b>,
   ...
-}</pre>
+}
+</pre>
 
 <h2 id="ui"><!--@Parts of the UI-->用户界面的几个部分</h2>
 

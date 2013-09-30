@@ -30,20 +30,22 @@ API，也不能直接访问沙箱外的页面（但是可以通过
   例如，如下代码指定两个扩展程序网页在沙盒中加载，并使用自定义的 CSP：
   </p>
 
-  <pre>{
+  <pre data-filename="manifest.json">
+{
   ...
   "sandbox": {
     "pages": [
       "page1.html",
       "directory/page2.html"
     ]
-    <i>// 内容安全策略是可选的。</i>
+    // 内容安全策略是可选的。
     "content_security_policy":
         "sandbox allow-scripts; script-src https://www.google.com"
   ],
   ...
-}</pre>
-
+}
+</pre>
+  
   <p>
   <!--@If not specified, the default <code>content_security_policy</code> value is
   <code>sandbox allow-scripts allow-forms</code>. You can specify your CSP

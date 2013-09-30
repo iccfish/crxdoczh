@@ -39,7 +39,8 @@ like this:-->
 文件中添加 "update_url" 属性，如下所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"update_url": "http://myhost.com/mytestextension/updates.xml"</b>,
@@ -53,7 +54,7 @@ like this:-->
 文档（高亮部分表示您需要修改的部分）：
 </p>
 
-<pre>
+<pre data-filename="updates.xml">
 &lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'&gt;
   &lt;app appid='<b>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</b>'&gt;
@@ -210,7 +211,8 @@ Google Chrome 浏览器，您可以在您的更新清单中向 &lt;app&gt; 元�
 "prodversionmin" 属性。例如：
 </p>
 
-<pre>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
+<pre data-filename="updates.xml">
+&lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'&gt;
 &nbsp;&nbsp;&lt;app appid='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'&gt;
 &nbsp;&nbsp; &nbsp;&lt;updatecheck&nbsp;codebase='http://myhost.com/mytestextension/mte_v2.crx'&nbsp;version='2.0' <b>prodversionmin='3.0.193.0'</b>/&gt;

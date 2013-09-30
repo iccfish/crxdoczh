@@ -39,11 +39,13 @@
   文件定义，如下所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   ...,
   "content_security_policy": "[策略字符串写在这里]"
   ...
-}</pre>
+}
+</pre>
 
 <p class="note">
   <!--@For full details regarding CSP's syntax, please take a look at
@@ -124,7 +126,8 @@ function() { return foo &amp;&amp; foo.bar &amp;&amp; foo.bar.baz };
   <code>popup.html</code>，作为<a href="browserAction.html#popups">浏览器按钮的弹出内容</a>：
 </p>
 
-<pre>&lt;!doctype html&gt;
+<pre data-filename="popup.html">
+&lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;我做的很棒的弹出内容！&lt;/title&gt;
@@ -201,9 +204,7 @@ function() { return foo &amp;&amp; foo.bar &amp;&amp; foo.bar.baz };
   做出这些更改后代码如下所示：
 </p>
 
-<pre>popup.js:
-=========
-
+<pre data-filename="popup.js">
 function awesome() {
   // 做些很棒的事情！
 }
@@ -232,9 +233,7 @@ function main() {
   main();
 });
 </pre>
-<pre>popup.html:
-===========
-
+<pre data-filename="popup.html">
 &lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
@@ -244,7 +243,8 @@ function main() {
   &lt;body&gt;
     &lt;button&gt;单击看看会发生什么！&lt;/button&gt;
   &lt;/body&gt;
-&lt;/html&gt;</pre>
+&lt;/html&gt;
+</pre>
 
 <p>
 
@@ -268,7 +268,8 @@ function main() {
   jQuery 包含在您的扩展程序包中。即，不要：
 </p>
 
-<pre>&lt;!doctype html&gt;
+<pre data-filename="popup.html">
+&lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;我做的很棒的弹出内容！&lt;/title&gt;
@@ -277,14 +278,16 @@ function main() {
   &lt;body&gt;
     &lt;button&gt;单击看看会发生什么！&lt;/button&gt;
   &lt;/body&gt;
-&lt;/html&gt;</pre>
+&lt;/html&gt;
+</pre>
 
 <p>
   <!--@Download the file, include it in your package, and write:-->
   而应该下载此文件，包含在您的扩展程序包中，并编写如下代码：
 <p>
 
-<pre>&lt;!doctype html&gt;
+<pre data-filename="popup.html">
+&lt;!doctype html&gt;
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;我做的很棒的弹出内容！&lt;/title&gt;
@@ -359,7 +362,9 @@ function main() {
   的脚本资源的放宽策略定义如下所示：
 </p>
 
-<pre>"content_security_policy": "script-src 'self' https://example.com; object-src 'self'"</pre>
+<pre data-filename="manifest.json">
+"content_security_policy": "script-src 'self' https://example.com; object-src 'self'"
+</pre>
 
 <p class="note">
   <!--@Note that both <code>script-src</code> and <code>object-src</code> are defined
@@ -393,7 +398,9 @@ function main() {
   <code>unsafe-eval</code> 来放松：
 </p>
 
-<pre>"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"</pre>
+<pre data-filename="manifest.json">
+"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+</pre>
 
 <p>
   <!--@However, we strongly recommend against doing this. These functions are

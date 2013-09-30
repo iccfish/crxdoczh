@@ -344,8 +344,8 @@ to whitelist these resources so that external Web pages can use them:-->
 属性将这些资源加入白名单，这样外部网页才能使用它们：
 </p>
 
-<pre>
-{ // 清单文件
+<pre data-filename="manifest.json">
+{ 
 ...
   "<strong>web_accessible_resources</strong>": [
     "images/image1.png",
@@ -376,14 +376,15 @@ jQuery 或 Google Analytics（分析）代码。有两种方式可以实现：
       您也可以有限地放宽 CSP（内容安全策略），在您的清单文件中的
       "content_security_policy" 部分将 HTTPS 来源加入白名单。要包含像
       Google Analytics（分析）之类的库，可以采用如下方式：
-      <pre>
-        { // 清单文件
-          ...,
-          "content_security_policy": "script-src 'self'
-          <strong>https://ssl.google-analytics.com</strong>; object-src 'self'",
-          ...
-        }
-      </pre></li>
+      <pre data-filename="manifest.json">
+{
+  ...,
+  "content_security_policy": "script-src 'self'
+  <strong>https://ssl.google-analytics.com</strong>; object-src 'self'",
+  ...
+}
+</pre>
+    </li>
 </ol>
 
 <h3 id="using"><!--@Using dynamic script evaluation-->使用动态脚本求值</h3>

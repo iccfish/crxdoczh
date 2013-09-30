@@ -10,7 +10,8 @@ href="declare_permissions.html">主机权限</a>才能使用这一
 API。
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
 <b>  "permissions": [
@@ -18,7 +19,8 @@ API。
     "*://*/*"
   ]</b>,
   ...
-}</pre>
+}
+</pre>
 
 <p>
 <!--@Note that certain types of non-sensitive actions do not require host

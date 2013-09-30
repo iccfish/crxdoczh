@@ -38,8 +38,8 @@ href="storage.html">存储 API</a>
 如下是一个清单文件中权限部分的例子：
 </p>
 
+<pre data-filename="manifest.json">
 {{^is_apps}}
-<pre>
 "permissions": [
   "tabs",
   "bookmarks",
@@ -47,18 +47,16 @@ href="storage.html">存储 API</a>
   "http://*.google.com/",
   "unlimitedStorage"
 ],
-</pre>
 {{/is_apps}}
 
 {{?is_apps}}
-<pre>
 "permissions": [
   "serial",
   "storage",
   "videoCapture"
 ],
-</pre>
 {{/is_apps}}
+</pre>
 
 <p>
 <!--@The following table lists the currently available permissions:-->

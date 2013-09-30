@@ -10,7 +10,8 @@ etc.) as follows:-->
 字符串数组，指定扩展程序包内可以在网页中使用的资源路径（相对于扩展程序包的根目录）。例如，为了在 example.com 上建立自定义界面，而插入内容脚本的扩展程序可以将界面需要的所有资源（图片、图标、样式表、脚本等等）加入白名单，如下所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   ...
   "web_accessible_resources": [
     "images/my-awesome-image1.png",
@@ -19,7 +20,8 @@ etc.) as follows:-->
     "script/double-rainbow.js"
   ],
   ...
-}</pre>
+}
+</pre>
 
 <p>
 <!--@These resources would then be available in a webpage via the URL

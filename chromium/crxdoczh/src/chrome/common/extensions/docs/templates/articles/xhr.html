@@ -50,14 +50,16 @@ remote servers outside of its origin.-->
 部分添加主机或主机匹配表达式，扩展程序可以请求访问位于自己的来源外的远程服务器。
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"permissions": [
     "http://www.google.com/"
   ]</b>,
   ...
-}</pre>
+}
+</pre>
 
 <p><!--@Cross-origin permission values can be fully qualified host names,
 like these:-->
@@ -93,7 +95,8 @@ of hosts, it must declare the permissions separately:-->
 同时注意访问权限是通过主机和协议同时授予的，如果扩展程序需要指定某个主机安全和非安全的 HTTP 访问，必须分开声明权限：
 </p>
 
-<pre>"permissions": [
+<pre data-filename="manifest.json">
+"permissions": [
   "http://www.google.com/",
   "https://www.google.com/"
 ]
@@ -108,8 +111,7 @@ href="http://en.wikipedia.org/wiki/Cross-site_scripting">cross-site
 scripting</a>.  Specifically, avoid using dangerous APIs such as the below:-->
 当使用通过 XMLHttpRequest 获取的资源时，您的后台网页应该小心，以免<a href="http://en.wikipedia.org/wiki/Cross-site_scripting">跨站脚本攻击</a>。特别地，避免使用如下一些危险的 API：
 </p>
-<pre>background.html
-===============
+<pre data-filename="background.js">
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "http://api.example.com/data.json", true);
 xhr.onreadystatechange = function() {
@@ -120,9 +122,8 @@ xhr.onreadystatechange = function() {
   }
 }
 xhr.send();
-
-background.html
-===============
+</pre>
+<pre data-filename="background.js">
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "http://api.example.com/data.json", true);
 xhr.onreadystatechange = function() {
@@ -138,8 +139,7 @@ xhr.send();
 <!--@Instead, prefer safer APIs that do not run scripts:-->
 因此，您应该首选更安全的不运行脚本的 API：
 </p>
-<pre>background.html
-===============
+<pre data-filename="background.js">
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "http://api.example.com/data.json", true);
 xhr.onreadystatechange = function() {
@@ -149,9 +149,8 @@ xhr.onreadystatechange = function() {
   }
 }
 xhr.send();
-
-background.html
-===============
+</pre>
+<pre data-filename="background.js">
 var xhr = new XMLHttpRequest();
 xhr.open("GET", "http://api.example.com/data.json", true);
 xhr.onreadystatechange = function() {

@@ -52,7 +52,7 @@ for the remote URL's host:-->
 为了能够发出跨来源 XMLHttpRequest 请求，您需要为远程 URL 的主机添加权限：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 "permissions": [
     "...",
     "https://supersweetdomainbutnotcspfriendly.com/"
@@ -120,7 +120,9 @@ and specify its dimensions.-->
 您的 webview 元素必须包含来源内容的 URL 并指定大小。
 </p>
 
-<pre>&lt;webview src="http://news.google.com/" width="640" height="480"&gt;&lt;/webview&gt;</pre>
+<pre data-filename="browser.html">
+&lt;webview src="http://news.google.com/" width="640" height="480">&lt;/webview>
+</pre>
 
 <h3 id="properties"><!--@Update properties-->更新属性</h3>
 
@@ -134,7 +136,7 @@ set those properties directly on the JavaScript object, or use the
 对象上设置这些属性，也可以使用 DOM 函数 <code>setAttribute</code>。
 </p>
 
-<pre>
+<pre data-filename="browser.js">
 document.querySelector('#mywebview').src =
     'http://blog.chromium.org/';
 // 或
@@ -178,7 +180,7 @@ which uses an inline script and <code>eval()</code>:-->
 <code>eval()</code>：
 </p>
 
-<pre>
+<pre data-filename="sandboxed.html">
 &lt;html&gt;
   &lt;body&gt;
     &lt;h1&gt;Woot&lt;/h1&gt;
@@ -199,7 +201,7 @@ and list the app pages to be served in a sandbox:-->
 字段，并列出需要在沙盒中运行的应用页面：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 "sandbox": {
   "pages": ["sandboxed.html"]
 }
@@ -229,7 +231,7 @@ undefined”，而且 app.window.create
 不会调用回调函数，并传递窗口对象。但还是会创建新窗口，打开经过沙盒屏蔽的页面。
 </p>
 
-<pre>
+<pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create('window.html', {
     'bounds': {
@@ -258,7 +260,7 @@ chrome.app.runtime.onLaunched.addListener(function() {
   经过沙盒屏蔽的页面也可以使用 <code>iframe</code> 嵌入至另一个应用页面：
 </p>
 
-<pre>
+<pre data-filename="window.html">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -293,7 +295,7 @@ opens:-->
 在您的应用与经过沙盒屏蔽的内容间通信。如下是一个后台脚本的示例，向它打开的经过沙盒屏蔽的页面发送消息：
 </p>
 
-<pre>
+<pre data-filename="background.js">
 var myWin = null;
 
 chrome.app.runtime.onLaunched.addListener(function() {
@@ -335,7 +337,7 @@ that gets added to your sandboxed page:-->
 如下是消息接收端的示例，可以添加到经过沙盒屏蔽的页面中去：
 </p>
 
-<pre>
+<pre data-filename="sandboxed.html">
 var messageHandler = function(e) {
   console.log('后台脚本打了个招呼。', e.data);
 };

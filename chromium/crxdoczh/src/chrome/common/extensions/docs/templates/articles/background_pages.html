@@ -51,7 +51,8 @@ like this:-->
 请在<a href="manifest.html">扩展程序的清单文件</a>中注册您的后台页面。通常情况下，后台页面不需要任何 HTML 标记，这种情况下后台页面可以单独使用 JavaScript文件实现，如下列代码所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"background": {
@@ -77,7 +78,8 @@ property instead:-->
 如果您需要在您的后台页面中指定 HTML，您可以改用 <code>page</code> 属性：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"background": {
@@ -137,9 +139,8 @@ from a file named <code>image.html</code>.-->
 
 </p>
 
-<pre>
-<em>// 在 background.js 中：</em>
-// 当浏览器按钮图标单击时作出反应。
+<pre data-filename="background.js">
+// 单击浏览器按钮时作出反应。
 chrome.browserAction.onClicked.addListener(function(tab) {
   var viewTabUrl = chrome.extension.getURL('image.html');
   var imageUrl = <em>/* 某个图片的 URL */</em>;
@@ -160,11 +161,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   }
 });
 </pre>
-
-<pre>
-<em>&lt;!-- 在 image.html 中： --&gt;</em>
-&lt;html&gt;
-  &lt;script&gt;
+<pre data-filename="image.html">
+&lt;html>
+  &lt;script>
     function setImageUrl(url) {
       document.getElementById('target').src = url;
     }
@@ -172,7 +171,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
   &lt;body&gt;
     &lt;p&gt;
-    Image here:
+    图片在此：
     &lt;/p&gt;
 
     &lt;img id="target" src="white.png" width="640" height="480">

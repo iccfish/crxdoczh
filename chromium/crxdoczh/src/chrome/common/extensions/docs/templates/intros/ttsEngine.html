@@ -25,7 +25,8 @@ it provides in the extension manifest, like this:-->
 权限，并声明它提供的所有语音，如下所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的 TTS 引擎",
   "version": "1.0",
   <b>"permissions": ["ttsEngine"],
@@ -48,7 +49,8 @@ it provides in the extension manifest, like this:-->
     "page": "background.html",
     "persistent": false
   }
-}</pre>
+}
+</pre>
 
 <p><!--@An extension can specify any number of voices.-->
 扩展程序可以指定任意数量的语音。

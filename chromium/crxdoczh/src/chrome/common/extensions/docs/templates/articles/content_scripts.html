@@ -87,7 +87,8 @@ href="manifest.html">扩展程序的清单文件</a>中使用
 <code>content_scripts</code> 字段注册它，如以下例子所示：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"content_scripts": [
@@ -98,7 +99,8 @@ href="manifest.html">扩展程序的清单文件</a>中使用
     }
   ]</b>,
   ...
-}</pre>
+}
+</pre>
 
 <p>
 <!--@If you want to inject the code only sometimes,
@@ -110,14 +112,16 @@ as described in <a href="#pi">Programmatic injection</a>.-->
 字段，如<a href="#pi">以编程方式插入</a>部分所述。
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"permissions": [
     "tabs", "http://www.google.com/*"
   ]</b>,
   ...
-}</pre>
+}
+</pre>
 
 <p>
 <!--@Using the <code>content_scripts</code> field,
@@ -374,16 +378,16 @@ and executing the script.-->
 例子）当用户单击浏览器按钮时向当前标签页插入并执行 JavaScript 代码。
 </p>
 
-<pre>
-<em>/* 在 background.html 中 */</em>
+<pre data-filename="background.html">
 chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.executeScript(null,
-                           {code:"document.body.bgColor='red'"});
+  chrome.tabs.executeScript({
+    code: 'document.body.style.backgroundColor="red"'
+  }); 
 });
-
-<em>/* 在 manifest.json 中 */</em>
+</pre>
+<pre data-filename="manifest.json">
 "permissions": [
-  "tabs", "http://*/*"
+  "activeTab"
 ],
 </pre>
 
@@ -421,8 +425,7 @@ DOM，但是不能访问当前页面创建的任何 JavaScript
 
 <p><!--@For example, consider this simple page:-->例如，考虑如下简单页面：
 
-<pre>hello.html
-==========
+<pre data-filename="hello.html">
 &lt;html&gt;
   &lt;button id="mybutton"&gt;单击我&lt;/button&gt;
   &lt;script&gt;
@@ -433,13 +436,13 @@ DOM，但是不能访问当前页面创建的任何 JavaScript
       alert(greeting + button.person_name + "。");
     }, false);
   &lt;/script&gt;
-&lt;/html&gt;</pre>
+&lt;/html&gt;
+</pre>
 
 <p><!--@Now, suppose this content script was injected into hello.html:-->
 假设如下内容脚本插入到了 hello.html 中：
 
-<pre>contentscript.js
-================
+<pre data-filename="contentscript.js">
 var greeting = "您好啊，";
 var button = document.getElementById("mybutton");
 button.person_name = "Roberto";
@@ -477,24 +480,24 @@ DOM 进行。
 <p><!--@An example can be accomplished using window.postMessage (or window.webkitPostMessage for Transferable objects):-->
 可以使用 window.postMessage（或者 window.webkitPostMessage 用于可传输（Transferable）的对象）：
 </p>
-<pre>contentscript.js
-================
+<pre data-filename="contentscript.js">
 var port = chrome.runtime.connect();
 
 window.addEventListener("message", function(event) {
-    // 我们只接受来自我们自己的消息
-    if (event.source != window)
-      return;
+  // 我们只接受来自我们自己的消息
+  if (event.source != window)
+    return;
 
-    if (event.data.type &amp;&amp; (event.data.type == "FROM_PAGE")) {
-      console.log("内容脚本接收到：" + event.data.text);
-      port.postMessage(event.data.text);
-    }
-}, false);</pre>
-<pre>http://foo.com/example.html
-===========================
-document.getElementById("theButton").addEventListener("click", function() {
-    window.postMessage({ type: "FROM_PAGE", text: "来自网页的问候！" }, "*");
+  if (event.data.type &amp;&amp; (event.data.type == "FROM_PAGE")) {
+    console.log("内容脚本接收到：" + event.data.text);
+    port.postMessage(event.data.text);
+  }
+}, false);
+</pre>
+<pre data-filename="http://foo.com/example.html">
+document.getElementById("theButton").addEventListener("click",
+    function() {
+  window.postMessage({ type: "FROM_PAGE", text: "来自网页的问候！" }, "*");
 }, false);</pre>
 <p><!--@In the above example, example.html (which is not a part of the extension) posts messages to itself, which are intercepted and inspected by the content script, and then posted to the extension process. In this way, the page establishes a line of communication to the extension process. The reverse is possible through similar means.-->
 在上面的例子中，example.html（不是扩展程序的一部分）向自己发送消息，由内容脚本截获并检查，然后发送至扩展程序进程。通过这种方式，页面建立了与扩展程序之间的通信，通过类似的方式反过来也是可能的。
@@ -528,27 +531,23 @@ some protection from the web page, a malicious web page might still be able
 to attack your content script if you use content from the web page
 indiscriminately.  For example, the following patterns are dangerous:-->
 第二，尽管在隔离环境中运行您的内容脚本提供了某些保护，但是如果您不加区分地使用来自网页的内容，恶意网页仍然可能攻击您的内容脚本。例如，以下形式是危险的：
-<pre>contentscript.js
-================
+<pre data-filename="contentscript.js">
 var data = document.getElementById("json-data")
 // 警告！可能会执行恶意脚本！
 var parsed = eval("(" + data + ")")
-
-contentscript.js
-================
+</pre>
+<pre data-filename="contentscript.js">
 var elmt_id = ...
 // 警告！elmt_id可能为"); …恶意脚本… //"！
 window.setTimeout("animate(" + elmt_id + ")", 200);
 </pre>
 <p><!--@Instead, prefer safer APIs that do not run scripts:-->因此，改用更安全的不运行脚本的 API：</p>
-<pre>contentscript.js
-================
+<pre data-filename="contentscript.js">
 var data = document.getElementById("json-data")
 // JSON.parse 不会运行攻击者的脚本。
-var parsed = JSON.parse(data)
-
-contentscript.js
-================
+var parsed = JSON.parse(data);
+</pre>
+<pre data-filename="contentscript.js">
 var elmt_id = ...
 // 闭包形式的 setTimeout 不会运行脚本。
 window.setTimeout(function() {
@@ -616,9 +615,5 @@ sending a request to its parent extension.-->
 </p>
 
 <p>
-<<<<<<< .mine
 <iframe title="YouTube video player" width="640" height="390" src="https://www.youtube.com/embed/B4M_a7xejYI?rel=0" frameborder="0" allowfullscreen></iframe>
-=======
-<iframe title="YouTube video player" width="640" height="390" src="//www.youtube.com/embed/B4M_a7xejYI?rel=0" frameborder="0" allowfullscreen></iframe>
->>>>>>> .r224942
 </p>

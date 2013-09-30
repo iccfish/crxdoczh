@@ -6,12 +6,17 @@ For example:-->
 href="manifest.html">扩展程序的清单文件</a>中声明
 "fontSettings" 权限。例如：
 </p>
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的字体设置扩展程序",
   "description": "自定义您的字体",
   "version": "0.2",
-  "permissions": ["fontSettings"]
-}</pre>
+  <b>"permissions": [
+    "fontSettings"
+  ]</b>,
+  ...
+}
+</pre>
 
 <h2 id="scripts"><!--@Generic Font Families and Scripts-->一般字体系列及书写文字</h2>
 <p><!--@Chrome allows for some font settings to depend on certain generic font

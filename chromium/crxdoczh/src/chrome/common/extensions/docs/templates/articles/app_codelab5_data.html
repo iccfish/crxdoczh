@@ -37,7 +37,7 @@ Permissions are the same in the-->
 <a href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab5_data/javascript/1_storage_sync/manifest.json">JavaScript manifest.json</a><!--@:-->中一致：
 </p>
 
-<pre>
+<pre data-filename="manifest.json">
 {
   ... ,
   &quot;permissions&quot;: [&quot;storage&quot;]
@@ -58,7 +58,7 @@ from syncable storage instead of a static list:
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 // Notice that chrome.storage.sync.get is asynchronous
 chrome.storage.sync.get(&#39;todolist&#39;, function(value) {
   // The $apply is only necessary to execute the function inside Angular scope
@@ -84,7 +84,7 @@ $scope.save = function() {
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
   /**
    * Listen to changes in the model and trigger the appropriate changes in the view
    **/
@@ -141,7 +141,7 @@ Angular 中，我们显式调用
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="index.html">
 ...
        [ &lt;a href=&quot;&quot; ng-click=&quot;archive() || save()&quot;&gt;archive&lt;/a&gt; ]
 ...
@@ -152,7 +152,7 @@ Angular 中，我们显式调用
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="index.html">
 &lt;form&gt;
   &lt;input type="text" size="30"
          placeholder="add new todo here"&gt;
@@ -208,7 +208,7 @@ add code to handle the events of dragover, dragleave, and drop:
   <header tabindex="0" data-value="js">JavaScript</header>
 
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 var defaultDropText = &quot;Or drop files here...&quot;;
 $scope.dropText = defaultDropText;
 
@@ -268,7 +268,7 @@ document.body.addEventListener(&quot;drop&quot;, drop, false);
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="controller.js">
 var defaultDropText = "Or drop files here...";
 
 var dropText = document.getElementById('dropText');
@@ -354,7 +354,7 @@ body 的 CSS 类与 Angular
   <header tabindex="0" data-value="angular">Angular</header>
 
   <content>
-    <pre>
+    <pre data-filename="index.html">
 &lt;body ng-controller=&quot;TodoCtrl&quot; ng-class=&quot;dropClass&quot;&gt;
 &lt;!-- remember to remove the ng-controller attribute from the div where it was before --&gt;
     </pre>
@@ -373,14 +373,14 @@ body 的 CSS 类与 Angular
   <header tabindex="0" data-value="js">JavaScript</header>
   
   <content>
-    <pre>
+    <pre data-filename="index.html">
 &lt;div&gt;
  &#123;&#123;dropText&#125;&#125;
 &lt;/div&gt;
     </pre>
   </content>
   <content>
-    <pre>
+    <pre data-filename="index.html">
 &lt;div id=&quot;dropText&quot;&gt;
 &lt;/div&gt;
     </pre>
@@ -399,7 +399,7 @@ Here we used a green or red background color animation:-->
 是一样的。这里我们使用绿色和红色的背景颜色动画：
 </p>
 
-<pre>
+<pre data-filename="todo.css">
 @-webkit-keyframes switch-green {
   from { background-color: white;} to {background-color: rgb(163, 255, 163);}
 }

@@ -54,14 +54,16 @@ follow these steps to get your extension using it.-->
     在您的扩展程序的 <code>manifest.json</code>
     文件中添加一部分内容，描述插件的位置及其他有关属性：
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"plugins": [
     { "path": "extension_plugin.dll" }
   ]</b>,
   ...
-}</pre>
+}
+</pre>
 
     <p>
     <!--@The "path" property specifies the path to your plugin,

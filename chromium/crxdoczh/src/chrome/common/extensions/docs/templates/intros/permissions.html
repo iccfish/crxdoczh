@@ -56,14 +56,16 @@
   field:-->
   和 <a href="declare_permissions.html">permissions</a> 字段使用相同的格式，使用
   <code>optional_permissions</code> 键，在您的<a href="manifest.html">扩展程序的清单文件</a>中声明可选权限：
+</p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的扩展程序",
   ...
   <b>"optional_permissions": [ "tabs", "http://www.google.com/" ],</b>
   ...
-}</pre>
-</p>
+}
+</pre>
 
 <p>
 <!--@You can specify any of the following as optional

@@ -107,14 +107,16 @@ in the table below:-->
 如下是指定媒体库权限的清单文件的例子：
 </p>
 
-<pre>{
+<pre data-filename="manifest.json">
+{
   "name": "我的应用",
   ...
   "permissions": [
     <b>{ "mediaGalleries": ["read", "allAutoDetected"] }</b>
   ],
   ...
-}</pre>
+}
+</pre>
 
 <p><!--@This example manifest file will trigger an install-time permission prompt,
 and let the app read from all auto-detected media galleries on the
