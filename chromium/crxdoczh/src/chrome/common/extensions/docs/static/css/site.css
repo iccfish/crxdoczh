@@ -443,7 +443,7 @@ button.google-button:active {
 }
 
 #gc-sidebar .toggleIndicator {
-  background: url(../images/toggle_sprite.png) no-repeat 0 0;
+  background: url(https://developer.chrome.com/static/images/toggle_sprite.png) no-repeat 0 0;
   height: 8px;
   position: absolute;
   right: 0;
@@ -465,7 +465,7 @@ button.google-button:active {
   padding-top: 10px;
 }
 #gc-sidebar ul.level3 {
-  list-style: url(../images/sidearrow.png);
+  list-style: url(https://developer.chrome.com/static/images/sidearrow.png);
   margin-left: 20px;
   padding-top: 10px;
 }
