@@ -1,0 +1,173 @@
+<h1>Webview <!--@Tag-->标签</h1>
+
+<table class="intro">
+  <tr>
+    <td><strong><!--@Samples:-->示例：</strong></td>
+    <td><a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/browser">browser</a><!--@;--><br>
+    <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/tcpserver">tcpserver</a><!--@;--><br>
+    <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/webview">webview</a>
+    </td>
+  </tr>
+  <tr>
+    <td><strong><!--@Learn more:-->了解更多：</strong></td>
+    <td><a href="app_external.html"><!--@Embed Content-->嵌入内容</a><!--@;--><br>
+    <a href="https://developers.google.com/live/shows/7320022-11001/">Chrome <!--@Apps Office Hours - the WebView Control-->应用办公时间——WebView 控件</a></td>
+  </tr>
+</table>
+
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<p>
+<!--@Use the <code>webview</code> tag to embed 'guest' content
+(such as web pages) in your packaged app.
+The guest content is contained within the <code>webview</code> container;
+an embedder page within your packaged app controls
+how the guest content is laid out and rendered.-->
+使用 <code>webview</code>
+标签在您的打包应用中嵌入“来宾”内容（例如网页）。来宾内容包含在
+<code>webview</code>
+容器中，您的打包应用中的嵌入者网页控制来宾内容的布局和渲染方式。
+</p>
+
+<p>
+<!--@Different from the <code>iframe</code>,
+the <code>webview</code>
+runs in a separate process than your app;
+it doesn't have the same permissions as your app and
+all interactions between your app and embedded content will be asynchronous.
+This keeps your app safe from the embedded content.-->
+与 <code>iframe</code> 不同，<code>webview</code>
+在单独的进程中运行，而不是在您的应用中。它并不拥有您的应用具有的权限，而且您的应用和嵌入内容之间的交互都是异步的，这样可以确保您的应用的安全，不受嵌入内容的影响。
+</p>
+</p>
+
+<h2 id="example"><!--@Example-->例子</h2>
+
+<p>
+<!--@To embed a web page in your app,
+add the <code>webview</code> tag to your app's embedder page
+(this is the app page that will display the guest content).
+In its simplest form,
+the <code>webview</code> tag includes the <code>src</code> of the web page
+and css styles that control the appearance of the <code>webview</code> container:-->
+要想在您的应用中嵌入网页，请在您的应用的嵌入者页面（即显示来宾内容的应用页面）中添加
+<code>webview</code> 标签。<code>webview</code> 标签最简单的形式包括网页的
+<code>src</code>（来源）以及控制 <code>webview</code> 容器外观的 CSS 样式：
+</p>
+</p>
+
+<pre>&lt;webview id="foo" src="http://www.google.com/" style="width:640px; height:480px">&lt;/webview></pre>
+
+<p>
+<!--@If you want to control the guest content in any way,
+you can write JavaScript that listens for <a href="#events">webview events</a>
+and responds to those events using the <a href="#methods">webview methods</a>.
+Here's sample code in <code>app.js</code>
+with two event listeners:
+one that listens for the web page to start loading,
+the other for the web page to stop loading,
+and displays a "loading..." message during the load time:-->
+如果您希望以任何方式控制来宾内容，您可以编写 JavaScript，监听
+<a href="#events">webview 事件</a>，并使用
+<a href="#methods">webview 方法</a>响应这些事件。如下是 <code>app.js</code>
+中的示例代码，包含两个事件监听器：一个监听网页开始加载，另一个监听网页停止加载，并在加载的时候显示“正在加载...”消息：
+</p>
+
+<pre>
+onload = function() {
+  var webview = document.getElementById("foo");
+  var indicator = document.querySelector(".indicator");
+
+  var loadstart = function() {
+    indicator.innerText = "正在加载...";
+  }
+  var loadstop = function() {
+    indicator.innerText = "";
+  }
+  webview.addEventListener("loadstart", loadstart);
+  webview.addEventListener("loadstop", loadstop);
+}
+</pre>
+
+<h2 id="tag"><!--@Tag attributes-->标签属性</h2>
+
+<h3 id="src">src</h3>
+  <div class="summary">
+    <pre>&lt;webview id="foo" <strong>src="http://www.google.com/"</strong> style="width:640px; height:480px">&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@Returns the visible URL.
+    Mirrors the logic in the browser's omnibox:
+    either returning a pending new navigation if initiated by the embedder page,
+    or the last committed navigation.
+    Writing to this attribute initiates top-level navigation.-->
+    返回可见的 URL，与浏览器多功能框的逻辑类似：如果嵌入者网页产生新的待定的导航则返回它，否则返回最后提交的导航。写入该属性将产生顶层导航。
+    </p>
+    <p>
+    <!--@Assigning <code>src</code> its own value will reload the current page.-->
+    将 <code>src</code> 设置为它本身的值会重新加载当前网页。
+    </p>
+    <p>
+    <!--@The <code>src</code> attribute can also accept data URLs, such as -->
+    <code>src</code> 属性也可以接受数据 URL，例如
+    <code>"data:text/plain,Hello, world!"</code><!--@.-->。
+  </div>
+
+<h3 id="partition">partition</h3>
+  <div class="summary">
+    <pre>&lt;webview id="foo" src="http://www.google.com/" style="width:640px; height:480px" <strong>partition="persist:googlepluswidgets"</strong>>&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@Storage partition ID used by the <code>webview</code> tag.
+    If the storage partition ID starts with <code>persist:</code>
+    (<code>partition="persist:googlepluswidgets"</code>),
+    the <code>webview</code> will use a persistent storage partition
+    available to all guests in the app
+    with the same storage partition ID.
+    If the ID is unset or if there is no <code>'persist':</code> prefix,
+    the <code>webview</code> will use an in-memory storage partition.
+    This value can only be modified before the first navigation,
+    since the storage partition of an active renderer process cannot change.
+    Subsequent attempts to modify the value will fail with a DOM exception.
+    By assigning the same partition ID,
+    multiple webviews can share the same storage partition.-->
+    <code>webview</code> 标签使用的存储分区标识符。如果存储分区标识符以
+    <code>persist:</code>
+    开始（<code>partition="persist:googlepluswidgets"</code>），<code>webview</code>
+    将使用持久存储分区，对于应用中具有相同存储分区标识符的所有来宾都可用。如果没有设置标识符或者没有
+    <code>persist:</code> 前缀，<code>webview</code>
+    将使用内存中的存储分区。只有在第一次导航开始前才能修改该属性值，因为活动渲染器进程的存储分区不能更改。如果之后尝试修改这一值将会失败，并产生
+    DOM 异常。指定同一个分区标识符，多个 webview 可以共享同一个存储分区。
+    </p>
+    <p class="note">
+    <strong><!--@Exception thrown:-->可能产生的异常：</strong>
+    <!--@The partition attribute must be valid for navigation to proceed.
+    In the case of an invalid partition, such as <code>partition="persist:"</code>,
+    the <a href="#src">src attribute</a> cannot be set and an exception is thrown.-->
+    partition 属性必须有效，导航才能继续。如果指定了无效分区，例如
+    <code>partition="persist:"</code>，您就无法设置
+    <a href="#src">src 属性</a>，并且还会产生异常。
+    </p>
+  </div>
+
+<h3 id="autosize">autosize</h3>
+  <div class="summary">
+    <pre>&lt;webview id="foo" src="http://www.google.com/" style="width:640px; height:480px" <strong>autosize="on" minwidth="576" minheight="432"</strong>>&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@If "on", the <code>webview</code> will container will automatically resize within the bounds specified
+    by the attributes <code>minwidth</code>, <code>minheight</code>,
+    <code>maxwidth</code>, and <code>maxheight</code>.
+    These contraints do not impact the <code>webview</code> UNLESS <code>autosize</code> is enabled.
+    When autosize is enabled, the <code>webview</code> container size cannot be less than the minimum values
+    or greater than the maximum.-->
+    如果为 "on"，<code>webview</code> 容器会在 <code>minwidth</code>、<code
+    >minheight</code>、<code>maxwidth</code> 和 <code>maxheight</code>
+    属性指定的范围内自动调整大小，<b>只有</b>启用 <code>autosize</code>
+    时这些属性才会影响 <code>webview</code>。启用自动调整大小后，<code
+    >webview</code> 容器的大小不能小于最小值或大于最大值。
+    </p>
+  </div>

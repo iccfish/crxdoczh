@@ -3,10 +3,9 @@
 # found in the LICENSE file.
 
 from code import Code
-from model import Namespace, PropertyType, Type
+from model import PropertyType
 import cpp_util
 from json_parse import OrderedDict
-from operator import attrgetter
 import schema_util
 
 class _TypeDependency(object):
@@ -20,6 +19,7 @@ class _TypeDependency(object):
 
   def GetSortKey(self):
     return '%s.%s' % (self.type_.namespace.name, self.type_.name)
+
 
 class CppTypeGenerator(object):
   """Manages the types of properties and provides utilities for getting the
@@ -152,7 +152,8 @@ class CppTypeGenerator(object):
         if dependency.hard:
           continue
         # Add more ways to forward declare things as necessary.
-        if dependency.type_.property_type == PropertyType.OBJECT:
+        if dependency.type_.property_type in (PropertyType.CHOICES,
+                                              PropertyType.OBJECT):
           c.Append('struct %s;' % dependency.type_.name)
       c.Append('}')
 

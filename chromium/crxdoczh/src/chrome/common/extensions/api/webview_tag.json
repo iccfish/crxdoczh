@@ -1,0 +1,594 @@
+// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+  {
+    "namespace": "webviewTag",
+//@    "description": "Use the <code>webview</code> tag to actively load live content from the web over the network and embed it in your packaged app. Your app can control the appearance of the <code>webview</code> and interact with the web content, initiate navigations in an embedded web page, react to error events that happen within it, and more (see <a href=\"#usage\">Usage</a>).",
+    "description": "使用 <code>webview</code> 标签主动通过网络加载网上的活动内容，并将它嵌入在您的打包应用中。您的应用可以控制 <code>webview</code> 的外观，与网上内容交互，在嵌入的网页中进行导航，响应其中发生的错误事件等等。（请参见<a href=\"#usage\">用法</a>）。",
+    "documentation_options": {
+//@      "title": "<webview> Tag",
+      "title": "<webview> 标签",
+      "namespace": "<webview>"
+    },
+    "types": [
+      {
+        "id": "InjectDetails",
+        "type": "object",
+//@        "description": "Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.",
+        "description": "要插入的脚本或 CSS 的详情，必须设置 code 或 file 中的某一个属性，但是不能同时设置。",
+        "properties": {
+          "code": {
+            "type": "string",
+            "optional": true,
+//@            "description": "JavaScript or CSS code to inject."
+            "description": "要插入的 JavaScript 或 CSS 代码。"
+          },
+          "file": {
+            "type": "string",
+            "optional": true,
+//@            "description": "JavaScript or CSS file to inject."
+            "description": "要插入的 JavaScript 或 CSS 文件。"
+          }
+        }
+      },
+      {
+        "id": "ContentWindow",
+        "type": "object",
+//@        "description": "Messaging handle to a guest window.",
+        "description": "来宾窗口的消息传递句柄。",
+        "functions": [
+          {
+            "name": "postMessage",
+//@            "description": "<p>Posts a message to the embedded web content as long as the embedded content is displaying a page from the target origin. This method is available once the page has completed loading. Listen for the <a href=\"#event-contentload\">contentload</a> event and then call the method.</p><p>The guest will be able to send replies to the embedder by posting message to <code>event.source</code> on the message event it receives.</p><p>This API is identical to the <a href=\"https://developer.mozilla.org/en-US/docs/DOM/window.postMessage\">HTML5 postMessage API</a> for communication between web pages. The embedder may listen for replies by adding a <code>message</code> event listener to its own frame.</p>",
+            "description": "<p>只要嵌入内容显示的是来自目标来源的网页，就向嵌入的网页内容发送消息。网页加载完成后该方法才可用，您可以监听 <a href=\"#event-contentload\">contentload</a> 事件并调用该方法。</p><p>来宾可以通过接收到的消息事件中的 <code>event.source</code> 向嵌入者发送回复。</p><p>该 API 与 <a href=\"https://developer.mozilla.org/en-US/docs/DOM/window.postMessage\">HTML5 postMessage API</a> 等价，用于在网页间通信。嵌入者可以在自己的框架上添加 <code>message</code> 事件监听器来监听回复。</p>",
+            "parameters": [
+              {
+                "type": "any",
+                "name": "message",
+//@                "description": "Message object to send to the guest."
+                "description": "要发送至来宾的消息对象。"
+              },
+              {
+                "type": "string",
+                "name": "targetOrigin",
+//@                "description": "Specifies what the origin of the guest window must be for the event to be dispatched."
+                "description": "指定来宾窗口的来源，来源一致才会分发事件。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "NewWindow",
+        "type": "object",
+//@        "description": "Interface attached to <code>newwindow</code> DOM events.",
+        "description": "附加到 <code>newwindow</code> DOM 事件的接口。",
+        "functions": [
+          {
+            "name": "attach",
+//@            "description": "Attach the requested target page to an existing <code>webview</code> element.",
+            "description": "将请求的目标网页附加到现有的 <code>webview</code> 元素。",
+            "parameters": [
+              {
+                "type": "object",
+                "name": "webview",
+//@                "description": "The <code>webview</code> element to which the target page should be attached.",
+                "description": "目标网页附加至哪一个 <code>webview</code> 元素。",
+                "properties": {}
+              }
+            ]
+          },
+          {
+            "name": "discard",
+//@            "description": "Cancel the new window request."
+            "description": "取消打开新窗口的请求。"
+          }
+        ]
+      },
+      {
+        "id": "MediaPermissionRequest",
+        "type": "object",
+//@        "description": "The type of <code>request</code> object which accompanies a <code>media</code> <a href=\"#event-permissionrequest\">permissionrequest</a></code> DOM event.",
+        "description": "code>media <a href=\"#event-permissionrequest\">permissionrequest</a></code>（媒体权限请求）DOM 事件的 <code>request</code> 对象。",
+        "properties": {
+          "url": {
+//@            "description": "The URL of the frame requesting access to user media.",
+            "description": "请求访问用户媒体的框架 URL。",
+            "type": "string"
+          }
+        },
+        "functions": [
+//@          { "name": "allow", "description": "Allow the permission request." },
+          { "name": "allow", "description": "允许权限请求。" },
+//@          { "name": "deny", "description": "Deny the permission request." }
+          { "name": "deny", "description": "拒绝权限请求。" }
+        ]
+      },
+      {
+        "id": "GeolocationPermissionRequest",
+        "type": "object",
+//@        "description": "The type of <code>request</code> object which accompanies a <code>geolocation</code> <a href=\"#event-permissionrequest\">permissionrequest</a></code> DOM event.",
+        "description": "<code>geolocation <a href=\"#event-permissionrequest\">permissionrequest</a></code>（地理定位权限请求）DOM 事件的 <code>request</code> 对象。",
+        "properties": {
+          "url": {
+//@            "description": "The URL of the frame requesting access to geolocation data.",
+            "description": "请求访问地理位置数据的框架 URL。",
+            "type": "string"
+          }
+        },
+        "functions": [
+//@          { "name": "allow", "description": "Allow the permission request." },
+          { "name": "allow", "description": "允许权限请求。" },
+//@          { "name": "deny", "description": "Deny the permission request." }
+          { "name": "deny", "description": "拒绝权限请求。" }
+        ]
+      },
+      {
+        "id": "PointerLockPermissionRequest",
+        "type": "object",
+//@        "description": "The type of <code>request</code> object which accompanies a <code>pointerLock</code> <a href=\"#event-permissionrequest\">permissionrequest</a></code> DOM event.",
+        "description": "<code>pointerLock <a href=\"#event-permissionrequest\">permissionrequest</a></code>（指针锁定权限请求）DOM 事件的 <code>request</code> 对象。",
+        "properties": {
+          "userGesture": {
+//@            "description": "Whether or not pointer lock was requested as a result of a user input gesture.",
+            "description": "指针锁定是否通过用户输入操作请求。",
+            "type": "boolean"
+          },
+          "lastUnlockedBySelf": {
+//@            "description": "Whether or not the requesting frame was the most recent client to hold pointer lock.",
+            "description": "请求的框架是否是最近锁定指针的客户端。",
+            "type": "boolean"
+          },
+          "url": {
+//@            "description": "The URL of the frame requesting pointer lock.",
+            "description": "请求指针锁定的框架 URL。",
+            "type": "string"
+          }
+        },
+        "functions": [
+//@          { "name": "allow", "description": "Allow the permission request." },
+          { "name": "allow", "description": "允许权限请求。" },
+//@          { "name": "deny", "description": "Deny the permission request." }
+          { "name": "deny", "description": "拒绝权限请求。" }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "name": "back",
+        "type": "function",
+//@        "description": "Navigates backward one history entry if possible. Equivalent to <code>go(-1)</code>."
+        "description": "如果可能的话，后退导航至历史记录中的前一项，等价于 <code>go(-1)</code>。"
+      },
+      {
+        "name": "canGoBack",
+        "type": "function",
+        "returns": { "type": "boolean" },
+//@        "description": "Indicates whether or not it is possible to navigate backward through history."
+        "description": "表示能否后退导航历史记录。"
+      },
+      {
+        "name": "canGoForward",
+        "type": "function",
+        "returns": { "type": "boolean" },
+//@        "description": "Indicates whether or not it is possible to navigate forward through history."
+        "description": "表示能否前进导航历史记录。"
+      },
+      {
+        "name": "executeScript",
+        "type": "function",
+//@        "description": "<p>Injects JavaScript code into the guest page.</p><p>The following sample code uses script injection to set the guest page's background color to red:</p><pre>webview.executeScript({ code: \"document.body.bgColor = 'red'\" });</pre>",
+        "description": "<p>向来宾网页插入 JavaScript 代码。</p><p>以下示例代码使用脚本插入的方式将来宾网页的背景颜色设置为红色：</p><pre>webview.executeScript({ code: \"document.body.bgColor = 'red'\" });</pre>",
+        "parameters": [
+          {
+            "$ref": "InjectDetails",
+            "name": "details",
+//@            "description": "Details of the script to run."
+            "description": "要运行的脚本详情。"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "optional": true,
+//@            "description": "Called after all the JavaScript has been executed.",
+            "description": "所有 JavaScript 执行弯后调用。",
+            "parameters": [
+              {
+                "name": "result",
+                "optional": true,
+                "type": "array",
+                "items": {"type": "any", "minimum": 0},
+//@                "description": "The result of the script in every injected frame."
+                "description": "插入的每一个框架中脚本的结果。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "forward",
+        "type": "function",
+//@        "description": "Navigates forward one history entry if possible. Equivalent to <code>go(1)</code>.",
+        "description": "如果可能的话，前进导航至历史记录中的前一项，等价于 <code>go(1)</code>。",
+        "parameters": []
+      },
+      {
+        "name": "getProcessId",
+        "type": "function",
+        "returns": { "type": "integer" },
+//@        "description": "Returns Chrome's internal process ID for the guest web page's current process, allowing embedders to know how many guests would be affected by terminating the process. Two guests will share a process only if they belong to the same app and have the same <a href=\"#partition\">storage partition ID</a>. The call is synchronous and returns the embedder's cached notion of the current process ID. The process ID isn't the same as the operating system's process ID.",
+        "description": "返回来宾网页当前进程所对应的 Chrome 浏览器内部进程标识符，允许嵌入者了解终止该进程会影响多少来宾。只有两个来宾属于同一应用并且具有相同的<a href=\"#partition\">存储分区标识符</a>时，它们才会共用同一个进程。该调用是同步的，返回嵌入者缓存中的当前进程标识符，这一进程标识符与操作系统的进程标识符不同。",
+        "parameters": []
+      },
+      {
+        "name": "go",
+        "type": "function",
+//@        "description": "Navigates to a history entry using a history index relative to the current navigation. If the requested navigation is impossible, this method has no effect.",
+        "description": "通过相对于当前导航的历史记录索引导航至历史记录中的某一项。如果请求的导航不可能完成，该方法没有任何效果。",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "relativeIndex",
+//@            "description": "Relative history index to which the webview should be navigated. For example, a value of <code>2</code> will navigate forward 2 history entries if possible; a value of <code>-3</code> will navigate backward 3 entries."
+            "description": "webview 应该导航至的相对历史记录索引。例如，<code>2</code> 会前进导航两个历史记录项（如果可能的话），<code>-3</code> 会后退导航三次。"
+          }
+        ]
+      },
+      {
+        "name": "insertCSS",
+        "type": "function",
+//@        "description": "Injects CSS into the guest page.",
+        "description": "在来宾网页中嵌入 CSS。",
+        "parameters": [
+          {
+            "$ref": "InjectDetails",
+            "name": "details",
+//@            "description": "Details of the CSS to insert."
+            "description": "要嵌入的 CSS 详情。"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "optional": true,
+//@            "description": "Called after the CSS has been inserted.",
+            "description": "CSS 嵌入后调用。",
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "name": "reload",
+        "type": "function",
+//@        "description": "Reloads the current top-level page.",
+        "description": "重新加载当前的顶层网页。",
+        "parameters": []
+      },
+      {
+        "name": "stop",
+        "type": "function",
+//@        "description": "Stops loading the current &lt;webview> navigation if in progress.",
+        "description": "停止加载当期 &lt;webview> 导航（如果正在进行的话）。",
+        "parameters": []
+      },
+      {
+        "name": "terminate",
+        "type": "function",
+//@        "description": "Forcibly kills the guest web page's renderer process. This may affect multiple <code>webview</code> tags in the current app if they share the same process, but it will not affect <code>webview</code> tags in other apps.",
+        "description": "强制终止来宾网页的渲染进程，这样可能会影响当前应用中共享同一个进程的多个 <code>webview</code> 标签，但不会影响其他应用中的 <code>webview</code> 标签。",
+        "parameters": []
+      }
+    ],
+    "events": [
+      {
+        "name": "close",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the guest window attempts to close itself.<p>The following example code navigates the webview to <code>about:blank</code> when the guest attempts to close itself.</p><pre>webview.addEventListener('close', function() {\r  webview.src = 'about:blank';\r});</pre>",
+        "description": "来宾窗口尝试将自己关闭时产生。<p>以下例子在来宾尝试关闭自己时将 webview 导航至 <code>about:blank</code>。</p><pre>webview.addEventListener('close', function() {\r  webview.src = 'about:blank';\r});</pre>",
+        "parameters": []
+      },
+      {
+        "name": "consolemessage",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the guest window logs a console message.<p>The following example code forwards all log messages to the embedder's console without regard for log level or other properties.</p><pre>webview.addEventListener('consolemessage', function(e) {\r  console.log('Guest page logged a message: ', e.message);\r});</pre>",
+        "description": "来宾窗口记录控制台消息时产生。<p>以下例子将所有日志消息转发至嵌入者的控制台，忽略日志级别和其他属性。</p><pre>webview.addEventListener('consolemessage', function(e) {\r  console.log('来宾网页记录了一条消息：', e.message);\r});</pre>",
+        "parameters": [
+          {
+            "name": "level",
+//@            "description": "The severity level of the log message. Ranges from 0 to 4.",
+            "description": "日志消息的严重性级别，从 0 到 4。",
+            "type": "integer"
+          },
+          {
+            "name": "message",
+//@            "description": "The logged message contents.",
+            "description": "日志消息的内容。",
+            "type": "string"
+          },
+          {
+            "name": "line",
+//@            "description": "The line number of the message source.",
+            "description": "消息来源行号。",
+            "type": "integer"
+          },
+          {
+            "name": "sourceId",
+//@            "description": "A string identifying the resource which logged the message.",
+            "description": "表示记录消息的资源的字符串。",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "contentload",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the guest window fires a <code>load</code> event.<p>The following example code modifies the default font size of the guest's <code>body</code> element after the page loads:</p><pre>webview.addEventListener('contentload', function() {\r  webview.executeScript({ code: 'document.body.style.fontSize = \"42px\"' });\r});</pre>",
+        "description": "来宾窗口产生 <code>load</code> 事件时产生。<p>以下例子在网页加载后修改来宾 <code>body</code> 元素的默认字体大小</p><pre>webview.addEventListener('contentload', function() {\r  webview.executeScript({ code: 'document.body.style.fontSize = \"42px\"' });\r});</pre>",
+        "parameters": []
+      },
+      {
+        "name": "exit",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the process rendering the guest web content has exited.<p>The following example code will show a farewell message whenever the guest page crashes:</p><pre>webview.addEventListener('exit', function(e) {\r  if (e.reason === 'crash') {\r    webview.src = 'data:text/plain,Goodbye, world!';\r  }\r});</pre>",
+        "description": "渲染来宾网页内容的进程退出时产生。<p>以下例子在来宾网页崩溃时显示告别消息：</p><pre>webview.addEventListener('exit', function(e) {\r  if (e.reason === 'crash') {\r    webview.src = 'data:text/plain,再见！';\r  }\r});</pre>",
+        "parameters": [
+          {
+            "name": "processID",
+//@            "description": "Chrome's interal ID of the process that exited.",
+            "description": "退出的进程对应的 Chrome 浏览器内部标识符。",
+            "type": "integer"
+          },
+          {
+            "name": "reason",
+//@            "description": "String indicating the reason for the exit.",
+            "description": "表示退出原因的字符串。",
+            "type": "string",
+            "enum": ["normal", "abnormal", "crash", "kill"]
+          }
+        ]
+      },
+      {
+        "name": "loadabort",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when a top-level load has aborted without committing.",
+        "description": "顶层加载未提交就终止时产生。",
+        "parameters": [
+          {
+            "name": "url",
+//@            "description": "Requested URL.",
+            "description": "请求的 URL。",
+            "type": "string"
+          },
+          {
+            "name": "isTopLevel",
+//@            "description": "Whether the load was top-level or in a subframe.",
+            "description": "本次加载是在顶层还是子框架中。",
+            "type": "boolean"
+          },
+          {
+            "name": "reason",
+//@            "description": "String indicating what type of abort occurred.",
+            "description": "表示终止类型的字符串。",
+            "type": "string",
+            "enum": ["networkError", "download", "canceled", "sslError", "safeBrowsingError"]
+          }
+        ]
+      },
+      {
+        "name": "loadcommit",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when a load has committed.",
+        "description": "加载提交后产生",
+        "parameters": [
+          {
+            "name": "url",
+//@            "description": "The URL that committed.",
+            "description": "提交的 URL。",
+            "type": "string"
+          },
+          {
+            "name": "isTopLevel",
+//@            "description": "Whether the load is top-level or in a subframe.",
+            "description": "本次加载是在顶层还是子框架中。",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "name": "loadredirect",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when a top-level load request has redirected to a different URL.",
+        "description": "顶层加载请求重定向至另一个 URL 时产生。",
+        "parameters": [
+          {
+            "name": "oldUrl",
+//@            "description": "The requested URL before the redirect.",
+            "description": "重定向前的请求 URL。",
+            "type": "string"
+          },
+          {
+            "name": "newUrl",
+//@            "description": "The new URL after the redirect.",
+            "description": "重定向后的 URL。",
+            "type": "string"
+          },
+          {
+            "name": "isTopLevel",
+//@            "description": "Whether or not the redirect happened at top-level or in a subframe.",
+            "description": "重定向是在顶层还是子框架中发生。",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "name": "loadstart",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when a load has begun.",
+        "description": "开始加载时产生。",
+        "parameters": [
+          {
+            "name": "url",
+//@            "description": "Requested URL.",
+            "description": "请求的 URL。",
+            "type": "string"
+          },
+          {
+            "name": "isTopLevel",
+//@            "description": "Whether the load is top-level or in a subframe.",
+            "description": "本次加载是在顶层还是子框架中。",
+            "type": "boolean"
+          }
+        ]
+      },
+      {
+        "name": "loadstop",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when all loads in the guest page (including all subframes) have completed. Fires in addition to any related <code>loadcommit</code> or <code>loadabort</code> events, which occur per-frame.",
+        "description": "来宾网页中的所有加载操作（包括所有子框架）完成后产生，除此之外也会产生相关的 <code>loadcommit</code> 或 <code>loadabort</code> 事件，这些对每个框架都会产生。",
+        "parameters": []
+      },
+      {
+        "name": "newwindow",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the guest page attempts to open a new browser window.<p>The following example code will create and navigate a new <code>webview</code> in the embedder for each requested new window:</p><pre>webview.addEventListener('newwindow', function(e) {\r  var newWebview = document.createElement('webview');\r  document.body.appendChild(newWebview);\r  e.window.attach(newWebview);\r});</pre>",
+        "description": "来宾网页尝试打开新的浏览器窗口时产生。<p>以下例子在嵌入者中为每一个请求的新窗口创建新的 <code>webview</code> 并开始导航：</p><pre>webview.addEventListener('newwindow', function(e) {\r  var newWebview = document.createElement('webview');\r  document.body.appendChild(newWebview);\r  e.window.attach(newWebview);\r});</pre>",
+        "parameters": [
+          {
+            "name": "window",
+//@            "description": "An interface that can be used to either attach the requested target page to an existing <code>webview</code> element or explicitly discard the request.",
+            "description": "可以用来将请求的目标网页附加至现有的 <code>webview</code> 元素或显式取消请求的接口。",
+            "$ref": "NewWindow"
+          },
+          {
+            "name": "targetUrl",
+//@            "description": "The target URL requested for the new window.",
+            "description": "请求打开新窗口的目标 URL。",
+            "type": "string"
+          },
+          {
+            "name": "initialWidth",
+//@            "description": "The initial width requested for the new window.",
+            "description": "请求打开的新窗口的初始宽度。",
+            "type": "number"
+          },
+          {
+            "name": "initialHeight",
+//@            "description": "The initial height requested for the new window.",
+            "description": "请求打开的新窗口的初始高度。",
+            "type": "number"
+          },
+          {
+            "name": "name",
+//@            "description": "The requested name of the new window.",
+            "description": "请求打开的新窗口名称。",
+            "type": "string"
+          },
+          {
+            "name": "windowOpenDisposition",
+//@            "description": "The requested disposition of the new window.",
+            "description": "请求打开新窗口的方式。",
+            "type": "string",
+            "enum": ["ignore", "save_to_disk", "current_tab", "new_background_tab", "new_foreground_tab", "new_window", "new_popup"]
+          }
+        ]
+      },
+      {
+        "name": "permissionrequest",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the guest page needs to request special permission from the embedder.<p>The following example code will grant the guest page access to the <code>webkitGetUserMedia</code> API. Note that an app using this example code must itself specify <code>audioCapture</code> and/or <code>videoCapture</code> manifest permissions:</p><pre>webview.addEventListener('permissionrequest', function(e) {\r  if (e.permission === 'media') {\r    e.request.allow();\r  }\r});</pre>",
+        "description": "来宾网页需要向嵌入者请求特殊权限时产生。<p>以下例子授予来宾网页访问 <code>webkitGetUserMedia</code> API 的权限。注意，使用该例子的应用本身必须指定 <code>audioCapture</code> 和/或 <code>videoCapture</code> 清单文件权限：</p><pre>webview.addEventListener('permissionrequest', function(e) {\r  if (e.permission === 'media') {\r    e.request.allow();\r  }\r});</pre>",
+        "parameters": [
+          {
+            "name": "permission",
+//@            "description": "The type of permission being requested.",
+            "description": "请求的权限类型。",
+            "type": "string",
+            "enum": ["media", "geolocation", "pointerLock"]
+          },
+          {
+            "name": "requestId",
+//@            "description": "An number which uniquely identifies this request from the guest.",
+            "description": "标志来宾的这一请求的数。",
+            "type": "integer"
+          },
+          {
+            "name": "request",
+            "type": "object",
+            "properties": {},
+//@            "description": "An object which holds details of the requested permission. Depending on the type of permission requested, this may be a $ref:MediaPermissionRequest, $ref:GeolocationPermissionRequest, or a $ref:PointerLockPermissionRequest."
+            "description": "包含请求权限详情的对象，取决于请求的权限类型，可能为 $ref:MediaPermissionRequest、$ref:GeolocationPermissionRequest 或 $ref:PointerLockPermissionRequest 对象。"
+          }
+        ]
+      },
+      {
+        "name": "responsive",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the process rendering the guest web content has become responsive again after being unresponsive.<p>The following example code will fade the <code>webview</code> element in or out as it becomes responsive or unresponsive:</p><pre>webview.style.webkitTransition = 'opacity 250ms';\rwebview.addEventListener('unresponsive', function() {\r  webview.style.opacity = '0.5';\r});\rwebview.addEventListener('responsive', function() {\r  webview.style.opacity = '1';\r});</pre>",
+        "description": "渲染来宾网页内容的进程失去响应后再恢复响应时产生。<p>以下例子在 <code>webview</code> 失去响应时淡出，恢复响应时淡入：</p><pre>webview.style.webkitTransition = 'opacity 250ms';\rwebview.addEventListener('unresponsive', function() {\r  webview.style.opacity = '0.5';\r});\rwebview.addEventListener('responsive', function() {\r  webview.style.opacity = '1';\r});</pre>",
+        "parameters": [
+          {
+            "name": "processID",
+//@            "description": "Chrome's internal ID of the process that became responsive.",
+            "description": "恢复响应的进程所对应的 Chrome 浏览器内部标识符。",
+            "type": "integer"
+          }
+        ]
+      },
+      {
+        "name": "sizechanged",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the embedded web content has been resized. Only fires if <code>autosize</code> is enabled.",
+        "description": "嵌入的网页内容大小更改时产生，只有在启用 <code>autosize</code> 时才会产生。",
+        "parameters": [
+          {
+            "name": "oldWidth",
+//@            "description": "Old width of embedded web content.",
+            "description": "嵌入的网页内容原来的宽度。",
+            "type": "number"
+          },
+          {
+            "name": "oldHeight",
+//@            "description": "Old height of embedded web content.",
+            "description": "嵌入的网页内容原来的高度。",
+            "type": "number"
+          },
+          {
+            "name": "newWidth",
+//@            "description": "New width of embedded web content.",
+            "description": "嵌入的网页内容的新宽度。",
+            "type": "number"
+          },
+          {
+            "name": "newHeight",
+//@            "description": "New height of embedded web content.",
+            "description": "嵌入的网页内容的新高度。",
+            "type": "number"
+          }
+        ]
+      },
+      {
+        "name": "unresponsive",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the process rendering the guest web content has become unresponsive. This event will be generated once with a matching responsive event if the guest begins to respond again.",
+        "description": "渲染来宾网页内容的进程失去响应时产生，如果来宾恢复响应，则会产生与之对应的 responsive 事件。",
+        "parameters": [
+          {
+            "name": "processID",
+//@            "description": "Chrome's internal ID of the process that has become unresponsive.",
+            "description": "失去响应的进程所对应的 Chrome 浏览器内部标识符。",
+            "type": "integer"
+          }
+        ]
+      }
+    ],
+    "properties": {
+      "contentWindow": {
+        "$ref": "ContentWindow",
+//@        "description": "Object reference which can be used to post messages into the guest page."
+        "description": "可以用来向来宾网页发送消息的对象引用。"
+      }
+    }
+  }
+]
+

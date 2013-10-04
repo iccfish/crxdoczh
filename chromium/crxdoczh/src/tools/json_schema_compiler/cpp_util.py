@@ -7,7 +7,7 @@
 
 from code import Code
 from datetime import datetime
-from model import Property, PropertyType, Type
+from model import PropertyType
 import os
 import re
 
@@ -34,6 +34,7 @@ def Classname(s):
   """
   return '_'.join([x[0].upper() + x[1:] for x in re.split('\W', s)])
 
+
 def GetAsFundamentalValue(type_, src, dst):
   """Returns the C++ code for retrieving a fundamental type from a
   Value into a variable.
@@ -42,36 +43,40 @@ def GetAsFundamentalValue(type_, src, dst):
   dst: Property*
   """
   return {
-      PropertyType.STRING: '%s->GetAsString(%s)',
       PropertyType.BOOLEAN: '%s->GetAsBoolean(%s)',
-      PropertyType.INTEGER: '%s->GetAsInteger(%s)',
       PropertyType.DOUBLE: '%s->GetAsDouble(%s)',
+      PropertyType.INTEGER: '%s->GetAsInteger(%s)',
+      PropertyType.STRING: '%s->GetAsString(%s)',
   }[type_.property_type] % (src, dst)
 
+
 def GetValueType(type_):
-  """Returns the Value::Type corresponding to the model.PropertyType.
+  """Returns the Value::Type corresponding to the model.Type.
   """
   return {
-      PropertyType.STRING: 'Value::TYPE_STRING',
-      PropertyType.INTEGER: 'Value::TYPE_INTEGER',
-      PropertyType.BOOLEAN: 'Value::TYPE_BOOLEAN',
-      PropertyType.DOUBLE: 'Value::TYPE_DOUBLE',
-      PropertyType.ENUM: 'Value::TYPE_STRING',
-      PropertyType.OBJECT: 'Value::TYPE_DICTIONARY',
-      PropertyType.FUNCTION: 'Value::TYPE_DICTIONARY',
-      PropertyType.ARRAY: 'Value::TYPE_LIST',
-      PropertyType.BINARY: 'Value::TYPE_BINARY',
+      PropertyType.ARRAY: 'base::Value::TYPE_LIST',
+      PropertyType.BINARY: 'base::Value::TYPE_BINARY',
+      PropertyType.BOOLEAN: 'base::Value::TYPE_BOOLEAN',
+      # PropertyType.CHOICES can be any combination of types.
+      PropertyType.DOUBLE: 'base::Value::TYPE_DOUBLE',
+      PropertyType.ENUM: 'base::Value::TYPE_STRING',
+      PropertyType.FUNCTION: 'base::Value::TYPE_DICTIONARY',
+      PropertyType.INTEGER: 'base::Value::TYPE_INTEGER',
+      PropertyType.OBJECT: 'base::Value::TYPE_DICTIONARY',
+      PropertyType.STRING: 'base::Value::TYPE_STRING',
   }[type_.property_type]
+
 
 def GetParameterDeclaration(param, type_):
   """Gets a parameter declaration of a given model.Property and its C++
   type.
   """
-  if param.type_.property_type in (PropertyType.REF,
-                                   PropertyType.OBJECT,
+  if param.type_.property_type in (PropertyType.ANY,
                                    PropertyType.ARRAY,
-                                   PropertyType.STRING,
-                                   PropertyType.ANY):
+                                   PropertyType.CHOICES,
+                                   PropertyType.OBJECT,
+                                   PropertyType.REF,
+                                   PropertyType.STRING):
     arg = 'const %(type)s& %(name)s'
   else:
     arg = '%(type)s %(name)s'
@@ -79,6 +84,7 @@ def GetParameterDeclaration(param, type_):
     'type': type_,
     'name': param.unix_name,
   }
+
 
 def GenerateIfndefName(path, filename):
   """Formats a path and filename as a #define name.
@@ -88,11 +94,13 @@ def GenerateIfndefName(path, filename):
   return (('%s_%s_H__' % (path, filename))
           .upper().replace(os.sep, '_').replace('/', '_'))
 
+
 def PadForGenerics(var):
   """Appends a space to |var| if it ends with a >, so that it can be compiled
   within generic types.
   """
   return ('%s ' % var) if var.endswith('>') else var
+
 
 def OpenNamespace(namespace):
   """Get opening root namespace declarations.
@@ -101,6 +109,7 @@ def OpenNamespace(namespace):
   for component in namespace.split('::'):
     c.Append('namespace %s {' % component)
   return c
+
 
 def CloseNamespace(namespace):
   """Get closing root namespace declarations.

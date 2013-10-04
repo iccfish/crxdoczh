@@ -6,8 +6,8 @@ Generator language component for compiler.py that adds Dart language support.
 """
 
 from code import Code
-from model import *
-from schema_util import *
+from model import Function, PropertyType
+from schema_util import StripNamespace
 
 import os
 from datetime import datetime
@@ -24,6 +24,7 @@ class DartGenerator(object):
 
   def Generate(self, namespace):
     return _Generator(namespace, self._dart_overrides_dir).Generate()
+
 
 class _Generator(object):
   """A .dart generator for a namespace.
@@ -127,7 +128,7 @@ class _Generator(object):
       )
 
       for prop_name in type_.properties:
-        (c.Sblock('if (?%s)' % prop_name)
+        (c.Sblock('if (%s != null)' % prop_name)
           .Append('this.%s = %s;' % (prop_name, prop_name))
           .Eblock()
         )
@@ -278,9 +279,9 @@ class _Generator(object):
     c.Concat(self._GenerateDocumentation(f))
 
     if not self._NeedsProxiedCallback(f):
-        c.Append("%s => %s;" % (self._GenerateFunctionSignature(f),
-                               self._GenerateProxyCall(f)))
-        return c
+      c.Append("%s => %s;" % (self._GenerateFunctionSignature(f),
+                              self._GenerateProxyCall(f)))
+      return c
 
     (c.Sblock("%s {" % self._GenerateFunctionSignature(f))
       .Concat(self._GenerateProxiedFunction(f.callback, f.callback.name))
@@ -325,7 +326,7 @@ class _Generator(object):
 
     (c.Sblock("void __proxy_callback(%s) {" % ', '.join(p.name for p in
                                                f.params))
-      .Sblock('if (?%s) {' % callback_name)
+      .Sblock('if (%s != null) {' % callback_name)
     )
 
     # Add the proxied lists.
