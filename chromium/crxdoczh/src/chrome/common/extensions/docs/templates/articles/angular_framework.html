@@ -9,7 +9,7 @@ with the-->
 To illustrate Angular in action,
 we'll be referencing an actual app built using the framework,
 the Google Drive Uploader.
-The <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/gdocs">source code</a>
+The <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/gdrive">source code</a>
 is available on GitHub.-->
 框架建立打包应用。为了以实际例子演示
 Angular，我们将引用一个使用该框架建立的实际的应用——Google Drive
@@ -52,7 +52,7 @@ href="app_identity.html#non">非 Google 帐户的认证</a>。
 
 <p>
 <!--@The Uploader uses OAuth2 to access the user's data. The
-<a href="experimental.identity.html">chrome.experimental.identity API</a>
+<a href="identity.html">chrome.identity API</a>
 handles fetching an OAuth token for the logged-in user,
 so the hard work is done for us!
 Once we have a long-lived access token,
@@ -60,7 +60,7 @@ the apps uses the
 <a href="https://developers.google.com/drive/get-started">Google Drive API</a>
 to access the user's data.-->
 上传器使用 OAuth2 访问用户数据。<a
-href="experimental.identity.html">chrome.experimental.identity</a> API
+href="identity.html">chrome.identity</a> API
 可以为已登录用户获取 OAuth
 令牌，所以这些麻烦的工作已经为我们做好了！一旦我们获得了长时间有效的访问令牌，应用就可以使用
 <a href="https://developers.google.com/drive/get-started">Google Drive API</a>
@@ -90,7 +90,7 @@ href="experimental.identity.html">chrome.experimental.identity</a> API
         导入/上传桌面上的新文件
     </li>
     <li>使用 XHR2 <!--@to load images, cross-domain-->跨域加载图片</li>
-    <li>使用 <a href="app_identity.html">chrome.experimental.identity API</a>
+    <li>使用 <a href="app_identity.html">chrome.identity API</a>
         <!--@for OAuth authorization-->进行 OAuth 认证</li>
     <li><!--@Chromeless frames to define the app's own navbar look and feel-->
         使用无边框框架定义应用自己的导航栏样式与体验
@@ -122,15 +122,11 @@ lists any special permissions the app needs to run.-->
   "oauth2": {
     "client_id": "665859454684.apps.googleusercontent.com",
     "scopes": [
-      "https://docs.google.com/feeds/",
-      "https://docs.googleusercontent.com/",
-      "https://spreadsheets.google.com/feeds/",
       "https://www.googleapis.com/auth/drive"
     ]
   },
  ...
   "permissions": [
-    "experimental",
     "https://docs.google.com/feeds/",
     "https://docs.googleusercontent.com/",
     "https://spreadsheets.google.com/feeds/",
@@ -157,29 +153,11 @@ href="app_identity.html#client_id">获取您的客户端标识符</a>中的指�
 列出了 OAuth 令牌有效的认证域（例如应用需要访问的 API）。
 </p>
 
-<p class="note">
-<strong><!--@Note: -->注意：</strong><!--@
-The Uploader actually uses the
-<a href="https://developers.google.com/google-apps/documents-list/">Documents List API v3</a>
-to access Google Drive content,
-hence needing the first several scopes to access all the different types of files.
-However, when using the Google Drive API, you only need
-<a href="https://www.googleapis.com/auth/drive">"https://www.googleapis.com/auth/drive"</a>.-->上传器实际上使用<a
-href="https://developers.google.com/google-apps/documents-list/">文档列表
-API v3</a> 访问 Google
-云端硬盘的内容，所以需要前几个区域访问各种不同类型的文件。然而，使用
-Google Drive API 时，您只需要
-"https://www.googleapis.com/auth/drive"。
-</p>
-
 <p>
-<!--@The "permissions" section includes the "experimental" bit
-(necessary because the current chrome.identity API is still experimental)
-and additional URLs that the app will access via XHR2.
+<!--@The "permissions" section includes URLs that the app will access via XHR2.
 The URL prefixes are required in order for Chrome
 to know which cross-domain requests to allow.-->
-"permissions" 部分包含 "experimental" 项（必须存在，因为目前
-chrome.identity API 还是实验性的）以及应用将会通过 XHR2 访问的其他 URL。URL
+"permissions" 部分包含应用通过 XHR2 访问的 URL。URL
 前缀是必须的，这样 Chrome 浏览器才能知道允许哪些跨域请求。
 </p>
 
@@ -194,7 +172,7 @@ to launch the app and respond to system events.-->
 <p>
 <!--@In its-->
 在它的
-<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdocs/js/background.js">background.js</a> 
+<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdrive/js/background.js">background.js</a> 
 <!--@script,
 Drive Uploader opens a 500x600px window to the main page.
 It also specifies a minimum height and width for the window
@@ -270,7 +248,7 @@ nav:hover #close-button {
 <p>
 <!--@In-->
 在
-<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdocs/js/app.js">app.js</a><!--@,
+<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdrive/js/app.js">app.js</a><!--@,
 this button is hooked up to <code>window.close()</code>.-->
 中，该按钮将调用 <code>window.close()</code>。
 </p>
@@ -293,7 +271,7 @@ Angular 时这是很普通的。
 <h3 id="view"><!--@Creating the view-->创建视图</h3>
 
 <p>
-<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdocs/main.html">main.html</a>
+<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdrive/main.html">main.html</a>
 <!--@is the "V" in MVC; where we define HTML templates to render data into.
 In Angular, templates are simple blocks of HTML with some special sauce.-->
 是 MVC 中的“V”（视图），我们在其中定义呈现数据的 HTML 模板。在 Angular
@@ -469,19 +447,19 @@ API（Google Drive API）获取的。因此，为了获取应用的数据有必�
 <!--@Before we can make an API request,
 we need to fetch an OAuth token for the user's Google Account.
 For that, we've created a method to wrap the call
-to <code>chrome.experimental.identity.getAuthToken()</code> and
+to <code>chrome.identity.getAuthToken()</code> and
 store the <code>accessToken</code>,
 which we can reuse for future calls to the Drive API.-->
 在我们调用 API 请求前，我们需要获取用户 Google 帐户的 OAuth
 令牌。为了做到这一点，我们创建了一个方法包装对
-<code>chrome.experimental.identity.getAuthToken()</code>
+<code>chrome.identity.getAuthToken()</code>
 的调用，并保存 <code>accessToken</code>，以便将来调用 Drive API 时再次使用。
 </p>
 
 <pre data-filename="gdocs.js">
 GDocs.prototype.auth = function(opt_callback) {
   try {
-    <strong>chrome.experimental.identity.getAuthToken({interactive: false}, function(token) {</strong>
+    <strong>chrome.identity.getAuthToken({interactive: false}, function(token) {</strong>
       if (token) {
         this.accessToken = token;
         opt_callback &amp;&amp; opt_callback();
@@ -504,7 +482,7 @@ OAuth 令牌什么时候已经准备好。
 <strong><!--@Note: -->注意：</strong><!--@
 To simplify things a bit,
 we've created a library,-->为了简单起见，我们创建了一个
-<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdocs/js/gdocs.js">gdocs.js</a>
+<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdrive/js/gdocs.js">gdocs.js</a>
 <!--@to handle API tasks.-->
 库处理 API 任务。
 </p>
@@ -857,7 +835,7 @@ each blob is written to the filesystem (see-->
 第一次运行时，图标还不在 HTML5
 文件系统中，<code>window.webkitResolveLocalFileSystemURL()</code>
 的调用将会导致错误回调函数的执行。在这种情况下，我们可以重用之前的技术获取图片。这一次唯一的区别就是每一个 Blob 将写入文件系统（参见
-<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdocs/js/app.js#L25">writeBlob()</a><!--@).
+<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdrive/js/app.js#L27">writeFile()</a><!--@).
 The console verifies this behavior:-->）。控制台验证了这一行为：
 </p>
 
@@ -888,7 +866,7 @@ if it can't upload files!-->
 </p>
 
 <p>
-<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdocs/js/app.js#L177">app.js</a>
+<a href="https://github.com/GoogleChrome/chrome-app-samples/blob/master/gdrive/js/app.js#L52">app.js</a>
 <!--@handles this feature by implementing a small library
 around HTML5 Drag and Drop called <code>DnDFileController</code>.
 It gives the ability to drag in files from the desktop
