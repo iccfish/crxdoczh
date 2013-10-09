@@ -104,6 +104,10 @@
     "dependencies": ["permission:browsingData"],
     "contexts": ["blessed_extension"]
   },
+  "cast.channel": {
+    "dependencies": ["permission:cast"],
+    "contexts": ["blessed_extension"]
+  },
   "chromeosInfoPrivate": {
     "platform": "chromeos",
     "dependencies": ["permission:chromeosInfoPrivate"],
@@ -635,6 +639,14 @@
   },
   "webstorePrivate": {
     "dependencies": ["permission:webstorePrivate"],
+    "contexts": ["blessed_extension"]
+  },
+  "webrtc.castSendTransport": {
+    "dependencies": ["permission:webrtc"],
+    "contexts": ["blessed_extension"]
+  },
+  "webrtc.udpTransport": {
+    "dependencies": ["permission:webrtc"],
     "contexts": ["blessed_extension"]
   },
   "webview": {
