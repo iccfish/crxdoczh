@@ -186,7 +186,8 @@
       },
       {
         "name": "restart",
-        "description": "Restart the ChromeOS device when the app runs in kiosk mode. Otherwise, it's no-op.",
+//@        "description": "Restart the ChromeOS device when the app runs in kiosk mode. Otherwise, it's no-op.",
+        "description": "如果应用在信息亭模式下运行，则重新启动 Chrome OS 设备，否则不进行任何操作。",
         "type": "function",
         "nocompile": true,
         "parameters": []

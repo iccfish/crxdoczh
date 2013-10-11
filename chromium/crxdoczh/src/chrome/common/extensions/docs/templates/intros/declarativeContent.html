@@ -27,12 +27,12 @@ user clicks on it, you'll have to keep using the $ref:pageAction API.-->
 
 <p><!--@As a <a href="events.html#declarative">declarative API</a>, this
 API lets you register rules on the
-<code>$ref:declarativeContent.onPageChanged</code> event object which
+<code>$ref:onPageChanged</code> event object which
 take an action (currently just <code>$ref:ShowPageAction</code>) when
 a set of conditions, represented as a
 <code>$ref:[PageStateMatcher]</code>, are met.-->
 作为一种<a href="events.html#declarative">声明式 API</a>，该 API 让您在
-<code>$ref:declarativeContent.onPageChanged</code>
+<code>$ref:onPageChanged</code>
 事件对象上注册规则，当一系列由
 <code>$ref:PageStateMatcher</code>
 表示的条件满足时执行某个操作（目前只有
@@ -52,12 +52,12 @@ password field is present on it:-->
 <pre>
 var rule1 = {
   conditions: [
-    new $ref:[declarativeContent.PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
+    new $ref:[PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
       $ref:[PageStateMatcher.pageUrl pageUrl]: { $ref:[events.UrlFilter.hostEquals hostEquals]: 'www.google.com', $ref:[events.UrlFilter.schemes schemes]: ['https'] },
       $ref:[PageStateMatcher.css css]: ["input[type='password']"]
     })
   ],
-  actions: [ new $ref:[declarativeContent.ShowPageAction chrome.declarativeContent.ShowPageAction]() ]
+  actions: [ new $ref:[ShowPageAction chrome.declarativeContent.ShowPageAction]() ]
 };
 </pre>
 
@@ -75,15 +75,15 @@ specified actions:-->
 <pre>
 var rule2 = {
   conditions: [
-    new $ref:[declarativeContent.PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
+    new $ref:[PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
       $ref:[PageStateMatcher.pageUrl pageUrl]: { $ref:[events.UrlFilter.hostEquals hostEquals]: 'www.google.com', $ref:[events.UrlFilter.schemes schemes]: ['https'] },
       $ref:[PageStateMatcher.css css]: ["input[type='password']"]
     })<strong>,
-    new chrome.declarativeContent.PageStateMatcher({
+    new $ref:[PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
       $ref:[PageStateMatcher.css css]: ["video"]
     })</strong>
   ],
-  actions: [ new $ref:[declarativeContent.ShowPageAction chrome.declarativeContent.ShowPageAction]() ]
+  actions: [ new $ref:[ShowPageAction chrome.declarativeContent.ShowPageAction]() ]
 };
 </pre>
 
@@ -93,8 +93,8 @@ browser restarts, so register them as follows:-->在浏览器重新启动后也�
 </p>
 <pre>
 $ref:[runtime.onInstalled chrome.runtime.onInstalled].addListener(function(details) {
-  $ref:[declarativeContent.onPageChanged chrome.declarativeContent.onPageChanged].<a href="events.html#removingrules">removeRules</a>(undefined, function() {
-    $ref:[declarativeContent.onPageChanged chrome.declarativeContent.onPageChanged].<a href="events.html#addingrules">addRules</a>([rule2]);
+  $ref:[onPageChanged chrome.declarativeContent.onPageChanged].<a href="events.html#removingrules">removeRules</a>(undefined, function() {
+    $ref:[onPageChanged chrome.declarativeContent.onPageChanged].<a href="events.html#addingrules">addRules</a>([rule2]);
   });
 });
 </pre>

@@ -26,8 +26,11 @@ namespace desktopCapture {
   callback ChooseDesktopMediaCallback = void (DOMString streamId);
 
   interface Functions {
-    // <!--@Shows desktop media picker UI with the specified set of sources.-->
-    // 显示桌面媒体选择器用户界面，包含指定类型的源。
+    // <!--@Shows desktop media picker UI with the specified set of sources. Returns
+    // an id that can be passed to cancelChooseDesktopMedia() in case the prompt
+    // need to be canceled.-->
+    // 显示桌面媒体选择器用户界面，包含指定类型的源。返回一个可以传递给
+    // cancelChooseDesktopMedia() 的标识符，以便在需要时取消提示。
     //
     // |sources|: <!--@Set of sources that should be shown to the user.-->
     // 要向用户显示的源类型。
@@ -37,8 +40,14 @@ namespace desktopCapture {
     // extension, otherwise the stream can be used only by a page with the
     // specified origin.-->
     // 创建流媒体的网页来源（可选），如果不指定的话，得到的流媒体只能在当前扩展程序中使用，否则只能在指定来源的网页中使用。
-    static void chooseDesktopMedia(DesktopCaptureSourceType[] sources,
+    static long chooseDesktopMedia(DesktopCaptureSourceType[] sources,
                                    optional DOMString origin,
                                    ChooseDesktopMediaCallback callback);
+
+    // <!--@Hides desktop media picker dialog shown by chooseDesktopMedia().-->
+    // 隐藏由 chooseDesktopMedia() 显示的媒体选择器对话框。
+    //
+    // |desktopMediaRequestId|: Id returned by chooseDesktopMedia()
+    static void cancelChooseDesktopMedia(long desktopMediaRequestId);
   };
 };
