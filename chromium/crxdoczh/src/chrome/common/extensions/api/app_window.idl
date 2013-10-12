@@ -237,7 +237,6 @@ namespace app.window {
     // 设置窗口是否应该前端显示，目前仅在 Dev 分支可用。
     static void setAlwaysOnTop(boolean always_on_top);
 
-    // The JavaScript 'window' object for the created child.
     // <!--@The JavaScript 'window' object for the created child.-->
     // 已创建子窗口的 JavaScript window 对象。
     [instanceOf=Window] object contentWindow;

@@ -22,7 +22,7 @@ API，也不能直接访问沙箱外的页面（但是可以通过
   CSP value). This means that, for example, it can use inline script and
   <code>eval</code>.-->
   受沙箱保护的页面不受应用或扩展程序其余部分使用的<a
-  href="../extensions/contentSecurityPolicy.html">内容安全策略（CSP）</a>所限制。这就意味着，它可以使用内嵌脚本与 <code>eval</code>。
+  href="../contentSecurityPolicy.html">内容安全策略（CSP）</a>所限制。这就意味着，它可以使用内嵌脚本与 <code>eval</code>。
 </p>
 
   <p><!--@For example, here's how to specify that two extension pages are to be
@@ -74,10 +74,10 @@ that embeds them.-->
 </p>
 
 <p>
-<a href="sandboxingEval.html"><!--@"Using eval in Chrome Extensions. Safely."-->“安全使用eval”</a><!--@
+<a href="../sandboxingEval.html"><!--@"Using eval in Chrome Extensions. Safely."-->“安全使用eval”</a><!--@
 goes into more detail about implementing a sandboxing workflow that enables use
 of libraries that would otherwise have issues executing under extension's
--->文档更详细地介绍了如何实现沙箱保护的工作流程，使您得以使用扩展程序<a href="../extensions/contentSecurityPolicy.html"><!--@default Content Security
+-->文档更详细地介绍了如何实现沙箱保护的工作流程，使您得以使用扩展程序<a href="../contentSecurityPolicy.html"><!--@default Content Security
 Policy-->默认内容安全策略</a><!--@.-->下无法正常执行的库。
 </p>
 
