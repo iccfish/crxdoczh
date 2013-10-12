@@ -127,6 +127,13 @@ namespace app.window {
     // 默认情况下，如果您指定了窗口的标识符，只有当另一个具有相同标识符的窗口不存在时才会创建。如果另一个具有相同标识符的窗口存在，则它将变为活动窗口。如果您确实需要创建多个相同标识符的窗口，您可以将该属性设置为
     // false。
     boolean? singleton;
+
+    // If true, the window will stay above most other windows. If there are
+    // multiple windows of this kind, the currently focused window will be in
+    // the foreground. Defaults to false. Call <code>setAlwaysOnTop()</code> on
+    // the window to change this property after creation.
+    // Currently available in the Dev channel only.
+    boolean? alwaysOnTop;
   };
 
   // <!--@Called in the creating window (parent) before the load event is called in
@@ -220,6 +227,17 @@ namespace app.window {
     // TODO(stevenjb): Investigate implementing this on Windows and OSX.
     [nodoc] static void setIcon(DOMString icon_url);
 
+    // <!--@Is the window always on top?
+    // Currently available in the Dev channel only.-->
+    // 窗口是否前端显示，目前仅在 Dev 分支可用。
+    static boolean isAlwaysOnTop();
+
+    // <!--@Set whether the window should stay above most other windows.
+    // Currently available in the Dev channel only.-->
+    // 设置窗口是否应该前端显示，目前仅在 Dev 分支可用。
+    static void setAlwaysOnTop(boolean always_on_top);
+
+    // The JavaScript 'window' object for the created child.
     // <!--@The JavaScript 'window' object for the created child.-->
     // 已创建子窗口的 JavaScript window 对象。
     [instanceOf=Window] object contentWindow;

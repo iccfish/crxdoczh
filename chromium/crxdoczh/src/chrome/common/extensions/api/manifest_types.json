@@ -66,6 +66,20 @@
                 "type": "string"
               }
             }
+          },
+          "tcp": {
+//@            "description": "The <code>tcp</code> manifest property declares which sockets.tcp operations an app can issue.",
+            "description": "清单文件中的 <code>tcp</code> 属性声明应用可以进行的 sockets.tcp 操作。",
+            "optional": true,
+            "type": "object",
+            "properties": {
+              "connect": {
+//@                "description": "<p>The host:port pattern for <code>connect</code> operations.</p>",
+                "description": "<p><code>connect</code> 操作的主机：端口匹配表达式。</p>",
+                "optional": true,
+                "type": "string"
+              }
+            }
           }
         }
       }

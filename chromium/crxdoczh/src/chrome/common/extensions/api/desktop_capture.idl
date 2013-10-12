@@ -47,7 +47,8 @@ namespace desktopCapture {
     // <!--@Hides desktop media picker dialog shown by chooseDesktopMedia().-->
     // 隐藏由 chooseDesktopMedia() 显示的媒体选择器对话框。
     //
-    // |desktopMediaRequestId|: Id returned by chooseDesktopMedia()
+    // |desktopMediaRequestId|: <!--@Id returned by chooseDesktopMedia()-->
+    // 由 chooseDesktopMedia() 返回的标识符。
     static void cancelChooseDesktopMedia(long desktopMediaRequestId);
   };
 };
