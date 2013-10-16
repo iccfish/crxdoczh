@@ -7,7 +7,6 @@
     "namespace": "runtime",
 //@    "description": "Use the <code>chrome.runtime</code> API to retrieve the background page, return details about the manifest, and listen for and respond to events in the app or extension lifecycle. You can also use this API to convert the relative path of URLs to fully-qualified URLs.",
     "description": "使用 <code>chrome.runtime</code> API 获取后台页面、返回清单文件的详情、监听并响应应用或扩展程序生命周期内的事件，您还可以使用该 API 将相对路径的 URL 转换为完全限定的 URL。",
-    "documentation_permissions_required": ["runtime"],
     "types": [
       {
         "id": "Port",

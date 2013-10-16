@@ -27,21 +27,20 @@ our client-side applications are much more complex than before.
 Application development requires collaboration from multiple developers.
 Writing <strong>maintainable</strong> and
 <strong>reusable</strong> code is crucial in the new web app era.
-The Chrome packaged app, with its rich client-side features, is no exception. -->
+The Chrome App, with its rich client-side features, is no exception. -->
 随着 JavaScript
 越来越流行，我们的客户端应用程序也比以前要复杂得多。应用程序开发需要许多开发者的合作，编写<strong>可维护</strong>、<strong>可重用</strong>的代码在新的网络应用时代显得至关重要，包含丰富客户端特性的
-Chrome 打包应用也不例外。
+Chrome 应用也不例外。
 </p>
 
 <p>
 <!--@Design patterns are important to write maintainable and reusable code.
 A pattern is a reusable solution that can be applied to commonly occurring problems in software design &mdash;
-in our case &mdash; writing Chrome packaged apps.
+in our case &mdash; writing Chrome Apps.
 We recommend that developers decouple the app
 into a series of independent components following the MVC pattern.-->
 设计模式对于编写可维护、可重用代码是十分重要的。模式是一种可重用的解决方案，适用于软件设计中经常遇到的问题——在我们的情况中即编写
-Chrome
-打包应用。我们建议开发者将应用分解为一系列互相独立的组件，遵循 MVC 模式。
+Chrome 应用。我们建议开发者将应用分解为一系列互相独立的组件，遵循 MVC 模式。
 </p>
 
 <p>
@@ -110,10 +109,10 @@ it is stored in an instance of the model.-->
 <p>
 <!--@View is what's presented to the users and how users interact with the app.
 The view is made with HTML, CSS, JavaScript and often templates.
-This part of your Chrome packaged app has access to the DOM.-->
+This part of your Chrome App has access to the DOM.-->
 视图就是展现给用户的内容以及用户与应用交互的方式。视图使用
 HTML、CSS、JavaScript 实现，经常还会用到模板。您的 Chrome
-打包应用的这一部分能够访问 DOM。
+应用的这一部分能够访问 DOM。
 </p>
 
 <p>
@@ -140,11 +139,11 @@ when the user checks an item as completed,
 the click is forwarded to the controller.
 The controller modifies the model to mark item as completed.
 If the data needs to be persistent, it also makes an async save to the server.
-In rich client-side web app development such as Chrome packaged apps,
+In rich client-side web app development such as Chrome Apps,
 keeping the data persistent in local storage is also crucial.
 In this case, the controller also handles saving the data
 to the client-side storage such as <a href="app_storage.html">FileSystem API</a>.-->
-在待办事项网络应用中，当用户选中项目将它标记为已完成时，单击事件将转发至控制器。控制器修改模型，将项目标记为已完成。如果数据需要持久保存，它将同时向服务器发出一个异步保存的请求。在富客户端网络应用开发，例如 Chrome 打包应用中，保持数据在本地持久存储也是至关重要的。在这种情况下，控制器也要进行处理，将数据保存到客户端存储区，例如<a href="app_storage.html">文件系统 API</a>。
+在待办事项网络应用中，当用户选中项目将它标记为已完成时，单击事件将转发至控制器。控制器修改模型，将项目标记为已完成。如果数据需要持久保存，它将同时向服务器发出一个异步保存的请求。在富客户端网络应用开发，例如 Chrome 应用中，保持数据在本地持久存储也是至关重要的。在这种情况下，控制器也要进行处理，将数据保存到客户端存储区，例如<a href="app_storage.html">文件系统 API</a>。
 </p>
 
 <p>
@@ -195,11 +194,11 @@ to application developers and it enables:-->
 <p>
 <!--@There are many different ways of implementing persistence
 with an MVC framework, each with different trade&ndash;offs.
-When writing Chrome packaged apps,
+When writing Chrome Apps,
 choose the frameworks with MVC and persistence patterns
 that feel natural to you and fit you application needs.-->
 有许多不同的方式通过 MVC 框架实现持久存储，每一种都有不同的优缺点。当您编写
-Chrome 打包应用时，选择您觉得最自然并且最适合您的应用需要的 MVC
+Chrome 应用时，选择您觉得最自然并且最适合您的应用需要的 MVC
 与持久模式框架。
 </p>
 
@@ -241,12 +240,12 @@ against your persistent data layer
 This is interesting in the modern web app design
 because you often interact with more than one persistent data layer
 such as a remote server and browser’s local storage.
-Chrome package apps provides both
+Chrome Apps provides both
 <a href="storage.html">Chrome Storage API</a> and
 <a href="fileSystem.html">HTML 5 fileSystem API</a> for client side storage.-->
 适配器或代理从存储区接收请求，并将它转换为对您的持久数据层（例如
 JSON API）进行的适当操作。这种方式在现代网络应用设计中十分有意义，因为您经常与不止一个持久数据层交互，例如远程服务器与浏览器的本地存储区。Chrome
-的打包应用为客户端存储提供了
+应用为客户端存储提供了
 <a href="storage.html">Chrome 浏览器的存储 API</a>
 与
 <a href="fileSystem.html">HTML5 文件系统 API</a>。
@@ -358,12 +357,12 @@ constructing all of the matching views and controllers for that screen.-->
 <h3 id="recommended"><!--@Recommended MVC frameworks-->推荐的 MVC 框架</h3>
 
 <p>
-<!--@MVC is crucial to designing Chrome packaged apps.
+<!--@MVC is crucial to designing Chrome Apps.
 We recommend the following <a href="contentSecurityPolicy.html">CSP&ndash;Compliant</a> MVC frameworks
-for writing secure and scalable Chrome packaged apps:-->
-MVC 对于设计 Chrome 打包应用是至关重要的。我们推荐如下<a href="app_csp.html">遵循
+for writing secure and scalable Chrome Apps:-->
+MVC 对于设计 Chrome 应用是至关重要的。我们推荐如下<a href="app_csp.html">遵循
 CSP（内容安全策略）</a>的 MVC 框架，用于编写安全而且可伸缩的 Chrome
-打包应用：
+应用：
 </p>
 
 <ul>

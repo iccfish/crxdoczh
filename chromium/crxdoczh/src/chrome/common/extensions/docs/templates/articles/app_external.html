@@ -2,12 +2,12 @@
 
 
 <p>
-<!--@The <a href="app_architecture.html#security">packaged apps security model</a> disallows
+<!--@The <a href="app_architecture.html#security">Chrome Apps security model</a> disallows
 external content in iframes and
 the use of inline scripting and <code>eval()</code>.
 You can override these restrictions,
 but your external content must be isolated from the app.-->
-<a href="app_architecture.html#security">打包应用的安全模型</a>不允许
+<a href="app_architecture.html#security">Chrome 应用的安全模型</a>不允许
 iframe 中的外部内容，也不允许使用内嵌脚本与
 <code>eval()</code>。您可以覆盖这些限制，但是您的外部内容必须与应用程序隔离。
 </p>
@@ -101,14 +101,14 @@ Want to play with the code? Check out the-->想试试这些代码吗？请参见
 <p>
 <!--@The <code>webview</code> tag allows you to embed external web content in your
 app, for example, a web page. It replaces iframes that point to remote URLs,
-which are disabled inside packaged apps. Unlike iframes, the
+which are disabled inside Chrome Apps. Unlike iframes, the
 <code>webview</code> tag runs in a separate process. This means that an exploit
 inside of it will still be isolated and won't be able to gain elevated
 privileges. Further, since its storage (cookies, etc.) is isolated from the app,
 there is no way for the web content to access any of the app's data.-->
 <code>webview</code>
 标签允许您在您的应用中嵌入外部网络内容，例如一个网页。它替换了指向远程 URL
-的 iframe，在打包应用内这是禁用的。与 iframe 不同，<code>webview</code>
+的 iframe，在 Chrome 应用内这是禁用的。与 iframe 不同，<code>webview</code>
 标签运行在单独的进程中，这意味着它内部的攻击仍然会被隔离开来，不能获得提升的权限。此外，由于它的存储区（Cookie 等）与应用隔离，没有办法让网络内容访问应用的任何数据。
 </p>
 
@@ -315,17 +315,19 @@ chrome.app.runtime.onLaunched.addListener(function() {
 <!--@Generally speaking on the web,
 you want to specify the exact origin
 from where the message is sent.
-Packaged apps have no access
+Chrome Apps have no access
 to the unique origin of sandboxed content,
 so you can only whitelist all origins
 as acceptable origins ('*').
 On the receiving end,
 you generally want to check the origin;
-but since packaged apps content is contained,
+but since Chrome Apps content is contained,
 it isn't necessary.
 To find out more,
 see-->
-一般从网页的角度来说，您希望指定消息发送方的准确来源。打包应用无法访问经过沙盒屏蔽的内容的唯一来源，所以您只能将所有来源添加到可接受来源的白名单中（'*'）。在接收端，您通常希望检查来源，但是由于打包应用的内容是受限的，这没有必要。要想了解更多内容，请参见
+一般从网页的角度来说，您希望指定消息发送方的准确来源。Chrome
+应用无法访问经过沙盒屏蔽的内容的唯一来源，所以您只能将所有来源添加到可接受来源的白名单中（'*'）。在接收端，您通常希望检查来源，但是由于
+Chrome 应用的内容是受限的，这没有必要。要想了解更多内容，请参见
 <a href="https://developer.mozilla.org/en/DOM/window.postMessage">window.postMessage</a><!--@.-->。
 </p>
 

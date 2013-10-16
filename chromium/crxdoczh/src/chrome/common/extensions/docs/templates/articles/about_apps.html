@@ -1,17 +1,17 @@
 <meta name="doc-family" content="apps">
-<h1><!--@What Are Packaged Apps?-->什么是打包应用？</h1>
+<h1><!--@What Are Chrome Apps?-->什么是 Chrome 应用？</h1>
 
 <p>
-<!--@Packaged apps deliver an experience as capable as a native app,
+<!--@Chrome Apps deliver an experience as capable as a native app,
 but as safe as a web page.
 Just like web apps,
-packaged apps are written in HTML5, JavaScript, and CSS.
-But packaged apps look and behave like native apps,
+Chrome Apps are written in HTML5, JavaScript, and CSS.
+But Chrome Apps look and behave like native apps,
 and they have native-like capabilities
 that are much more powerful than those available to web apps.-->
-打包应用提供了与原生应用能力相同的体验，但是与网页一样安全。就像网上应用一样，打包应用使用
-HTML5、JavaScript 和 CSS
-编写，但是打包应用从外观上与行为上都与原生应用类似，它们也具有类似于原生应用的能力，比网上应用可用的更强大。
+Chrome 应用提供了与原生应用能力相同的体验，但是与网页一样安全。就像网上应用一样，Chrome
+应用使用 HTML5、JavaScript 和 CSS 编写，但是 Chrome
+应用从外观上与行为上都与原生应用类似，它们也具有类似于原生应用的能力，比网上应用可用的更强大。
 </p>
 
 <p>
@@ -19,11 +19,11 @@ HTML5、JavaScript 和 CSS
 </p>
 
 <p>
-<!--@Packaged apps have access to Chrome APIs and services not available to
+<!--@Chrome Apps have access to Chrome APIs and services not available to
 traditional web sites. You can build powerful apps that interact with network
 and hardware devices, media tools, and much more. Here's a short list of
 examples:-->
-打包应用可以访问对传统网站不可用的 Chrome 浏览器 API
+Chrome 应用可以访问对传统网站不可用的 Chrome 浏览器 API
 与服务。您可以建立与网络和硬件设备、媒体工具等等交互的强大的应用，如下是一些例子：
 </p>
 
@@ -43,36 +43,38 @@ Google I/O presentation</a> for an in-depth introduction.-->
 <h2 id="look"><!--@How they look-->应用的外观</h2>
 
 <p>
-<!--@When a user opens a packaged app,
+<!--@When a user opens a Chrome App,
 their focus is specifically on the tasks
 relating to the app.
-Packaged apps have no traditional chrome:
+Chrome Apps have no traditional chrome:
 the omnibox (address bar), tab strip,
 and other browser interface elements no longer appear.
 Like native apps, they don’t live within the browser.
-When launched, packaged apps can open in windows
+When launched, Chrome Apps can open in windows
 that look like this (and you can style
 your windows in all different ways):-->
-当用户打开打包应用时，他们的注意力集中在与应用相关的任务上。打包应用没有传统的
-Chrome 界面：多功能框（地址栏）、标签页及其他浏览器界面元素将不再出现。与原生应用类似，它们不在浏览器内活动。运行后，打包应用可以在如下所示的窗口中打开（您也可以以各种不同的方式修饰您的窗口）：
+当用户打开 Chrome
+应用时，他们的注意力集中在与应用相关的任务上。Chrome 应用没有传统的 Chrome
+界面：多功能框（地址栏）、标签页及其他浏览器界面元素将不再出现。与原生应用类似，它们不在浏览器内活动。运行后，Chrome
+应用可以在如下所示的窗口中打开（您也可以以各种不同的方式修饰您的窗口）：
 </p>
 <br>
 
 <img src="{{static}}/images/editor.png"
      width="770"
      height="586"
-     alt="Text editor packaged app in a standalone window">
+     alt="Text editor Chrome App in a standalone window">
 
 <h2 id="behave"><!--@How they behave-->应用的行为</h2>
 
 <p>
-<!--@Packaged app pages always load locally.
+<!--@Chrome App pages always load locally.
 This allows apps to be less dependent on the network.
 Once a user installs an app, they have full control over the app's lifecycle.
 Apps open and close quickly,
 and the system can shut apps down at any time to improve performance.
 Users can fully uninstall apps.-->
-打包应用的页面总是从本地加载，这样可以使应用更少地依赖于网络。一旦用户安装了应用，他们可以完全控制应用的生命周期。应用的打开和关闭都很迅速，系统也可以在任何时候为提高性能而关闭应用。用户可以完全卸载应用。
+Chrome 应用的页面总是从本地加载，这样可以使应用更少地依赖于网络。一旦用户安装了应用，他们可以完全控制应用的生命周期。应用的打开和关闭都很迅速，系统也可以在任何时候为提高性能而关闭应用。用户可以完全卸载应用。
 </p>
 
 <p>
@@ -86,29 +88,29 @@ and then synced back up to your data server once online
 <h2 id="develop"><!--@How to develop them-->如何开发应用</h2>
 
 <p>
-<!--@Packaged apps are modified web apps.
+<!--@Chrome Apps are modified web apps.
 You use the same code, frameworks, and tools of the web platform to write your apps.
 Some browser features have been removed, other web APIs have been disabled
 or changed to improve security and programming practices.-->
-打包应用是经过修改的网上应用。您使用与网页平台相同的代码、框架以及工具编写您的应用。某些浏览器特性已移除，其他网页
+Chrome 应用是经过修改的网上应用。您使用与网页平台相同的代码、框架以及工具编写您的应用。某些浏览器特性已移除，其他网页
 API 已禁用或更改，以便提升安全性并改善编程习惯。
 </p>
 
 <p>
 <!--@New features have been added to help you build more native-like apps.
-The app container and programming models control how packaged apps look and behave.
+The app container and programming models control how Chrome Apps look and behave.
 These models aim to provide users with a more native experience.
 Powerful APIs have been added so your apps can have native-like capabilities,
 and a serious security model is enforced to make sure these APIs are not abused.-->
-新增的特性可以帮助您建立更类似原生的应用。应用容器与编程模型控制打包应用的外观与行为，这些模型旨在为用户提供更加原生的体验。新增的强大
-API
-使您的应用能够具有类似原生的能力，强制实施的严格安全模型确保这些
-API 不会被滥用。
+新增的特性可以帮助您建立更类似原生的应用。应用容器与编程模型控制 Chrome
+应用的外观与行为，这些模型旨在为用户提供更加原生的体验。新增的强大 API
+使您的应用能够具有类似原生的能力，强制实施的严格安全模型确保这些 API
+不会被滥用。
 </p>
 
 <p>
-<!--@To learn more about how to develop packaged apps:-->
-要了解有关如何开发打包应用的更多信息：
+<!--@To learn more about how to develop Chrome Apps:-->
+要了解有关如何开发 Chrome 应用的更多信息：
 </p>
 
 <ul>

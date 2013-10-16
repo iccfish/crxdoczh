@@ -7,7 +7,6 @@
     "namespace": "fontSettings",
 //@    "description": "Use the <code>chrome.fontSettings</code> API to manage Chrome's font settings.",
     "description": "使用 <code>chrome.fontSettings</code> API 管理 Chrome 浏览器的字体设置。",
-    "documentation_permissions_required": ["fontSettings"],
     "types": [
       {
         "id": "FontName",

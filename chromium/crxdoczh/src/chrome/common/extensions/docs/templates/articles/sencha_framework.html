@@ -3,14 +3,14 @@
 
 <p>
 <!--@The goal of this doc is to get you started
-on building packaged apps with the-->
+on building Chrome Apps with the-->
 该文档的目的是使您初步了解如何使用
 <a href="http://www.sencha.com/products/extjs">Sencha Ext JS</a><!--@ framework.
 To achieve this goal,
 we will dive into a media player app built by Sencha.
 The <a href="https://github.com/GoogleChrome/sencha-video-player-app">source code</a>
 and <a href="http://senchaprosvcs.github.com/GooglePlayer/docs/output/#!/api">API Documentation</a> are available on GitHub.-->
-框架建立打包应用。要实现这一目的，我们将会深入讨论一个通过 Sencha
+框架建立 Chrome 应用。要实现这一目的，我们将会深入讨论一个通过 Sencha
 建立的媒体播放器应用，<a href="https://github.com/GoogleChrome/sencha-video-player-app">源代码</a>与
 <a href="http://senchaprosvcs.github.com/GooglePlayer/docs/output/#!/api">API 文档</a>可以在在
 GitHub 上访问。
@@ -43,8 +43,8 @@ to build a media player app using Sencha Ext JS:-->
   <li><!--@<a href="app_external.html#sandboxing">Sandbox</a> app's logic.-->
   用<a href="app_external.html#sandboxing">沙盒</a>屏蔽应用的逻辑。
   </li>
-  <li><!--@Communicate between packaged app and sandboxed files.-->
-  在打包应用与经过沙盒屏蔽的文件之间通信。
+  <li><!--@Communicate between Chrome App and sandboxed files.-->
+  在 Chrome 应用与经过沙盒屏蔽的文件之间通信。
   </li>
   <li><!--@Discover media servers.-->搜索媒体服务器。</li>
   <li><!--@Explore and play media.-->浏览与播放媒体。</li>
@@ -54,14 +54,14 @@ to build a media player app using Sencha Ext JS:-->
 <h2 id="first"><!--@Create manifest-->创建清单文件</h2>
 
 <p>
-<!--@All packaged apps require a
+<!--@All Chrome Apps require a
 <a href="manifest.html">manifest file</a>
 which contains the information Chrome needs to launch apps.
 As indicated in the manifest,
 the media player app is "offline_enabled";
 media assets can be saved locally,
 accessed and played regardless of connectivity.-->
-所有打包应用都需要一个清单文件，包含 Chrome
+所有 Chrome 应用都需要一个清单文件，包含 Chrome
 浏览器执行应用时需要的信息。如<a href="manifest.html">清单文件</a>中所述，媒体播放器应用是
 "offline_enabled"（在离线状态下也能使用），媒体资源可以在本地保存、访问及播放，不管有没有网络连接。
 </p>
@@ -69,14 +69,14 @@ accessed and played regardless of connectivity.-->
 <p>
 <!--@The "sandbox" field is used
 to sandbox the app's main logic in a unique origin.
-All sandboxed content is exempt from the packaged app
+All sandboxed content is exempt from the Chrome App
 <a href="contentSecurityPolicy.html">Content Security Policy</a>,
-but cannot directly access the packaged app APIs. 
+but cannot directly access the Chrome App APIs. 
 The manifest also includes the "socket" permission;
 the media player app uses the <a href="socket.html">socket API</a>
 to connect to a media server over the network.-->
 "sandbox"
-字段用来将应用的主要逻辑通过沙盒屏蔽在一个唯一的来源中，所有经过沙盒屏蔽的内容不受打包应用<a href="contentSecurityPolicy.html">内容安全策略</a>的限制，但也不能直接访问打包应用的
+字段用来将应用的主要逻辑通过沙盒屏蔽在一个唯一的来源中，所有经过沙盒屏蔽的内容不受 Chrome 应用<a href="contentSecurityPolicy.html">内容安全策略</a>的限制，但也不能直接访问 Chrome 应用的
 API。清单文件还包含了 "socket"
 权限，因为媒体播放器应用使用套接字 API 通过网络连接到媒体服务器。
 </p>
@@ -118,11 +118,11 @@ API。清单文件还包含了 "socket"
 <h2 id="second"><!--@Create event page-->创建事件页面</h2>
 
 <p>
-<!--@All packaged apps require <code>background.js</code>
+<!--@All Chrome Apps require <code>background.js</code>
 to launch the application.
 The media player's main page, <code>index.html</code>,
 opens in a window with the specified dimensions:-->
-所有打包应用都需要 <code>background.js</code>
+所有 Chrome 应用都需要 <code>background.js</code>
 来执行应用。媒体播放器的主页面 <code>index.html</code>
 将会在指定大小的窗口中打开：
 </p>
@@ -143,13 +143,13 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
 
 <h2 id="three"><!--@Sandbox app's logic-->通过沙盒屏蔽应用的逻辑</h2>
 
-<p><!--@Packaged apps run in a controlled environment
+<p><!--@Chrome Apps run in a controlled environment
 that enforces a strict <a href="contentSecurityPolicy.html">Content Security Policy (CSP)</a>.
 The media player app needs some higher privileges to render the Ext JS components.
 To comply with CSP and execute the app logic,
 the app's main page, <code>index.html</code>, creates an iframe
 that acts as a sandbox environment:-->
-打包应用程序在一个受控制的环境中运行，强制实施严格的<a href="contentSecurityPolicy.html"
+Chrome 应用程序在一个受控制的环境中运行，强制实施严格的<a href="contentSecurityPolicy.html"
 >内容安全策略（CSP）</a>，而媒体播放器应用需要某些更高的权限来渲染 Ext JS
 组件。为了遵循 CSP 的同时执行应用的逻辑，应用的主页面
 <code>index.html</code> 创建了一个 iframe，作为一个经过沙盒屏蔽的环境：
@@ -177,12 +177,12 @@ Ext JS 应用需要的文件：
 
 <p>
 <!--@The--> <a href="http://senchaprosvcs.github.com/GooglePlayer/docs/output/source/app.html#VP-Application">app.js</a> <!--@script executes all the Ext JS code and renders the media player views.
-Since this script is sandboxed, it cannot directly access the packaged app APIs.
+Since this script is sandboxed, it cannot directly access the Chrome App APIs.
 Communication between <code>app.js</code> and non-sandboxed files is done using the
 <a href="https://developer.mozilla.org/en-US/docs/DOM/window.postMessage">HTML5 Post Message API</a>.-->
 脚本执行所有 Ext JS
-代码，并渲染媒体播放器的视图。由于该脚本经过沙盒屏蔽，它无法直接访问打包应用的
-API，但可以使用
+代码，并渲染媒体播放器的视图。由于该脚本经过沙盒屏蔽，它无法直接访问 Chrome
+应用的 API，但可以使用
 <a href="https://developer.mozilla.org/en-US/docs/DOM/window.postMessage">HTML5
 消息传递 API</a> 实现 <code>app.js</code> 与不经过沙盒屏蔽的文件间的通信。
 </p>
@@ -190,16 +190,16 @@ API，但可以使用
 <h2 id="four"><!--@Communicate between files-->在文件之间通信</h2>
 
 <p>
-<!--@In order for the media player app to access packaged app APIs,
-like query the network for media servers, -->为了使媒体播放应用访问打包应用的
-API，例如查询网络上的媒体服务器，<code>app.js</code><!--@ posts messages
-to -->
+<!--@In order for the media player app to access Chrome Apps APIs,
+like query the network for media servers, -->为了使媒体播放应用访问 Chrome
+应用的 API，例如查询网络上的媒体服务器，<code>app.js</code><!--@
+posts messages to -->
 向
 <a href="https://github.com/GoogleChrome/sencha-video-player-app/blob/master/index.js">index.js</a><!--@.
 Unlike the sandboxed <code>app.js</code>,
-<code>index.js</code> can directly access the packaged app APIs.-->
+<code>index.js</code> can directly access the Chrome Apps APIs.-->
 传递消息。和经过沙盒屏蔽的 <code>app.js</code> 不同，<code>index.js</code>
-可以直接访问打包应用 API。
+可以直接访问 Chrome 应用 API。
 </p>
 
 <p>
@@ -302,7 +302,7 @@ calls <a href="https://github.com/GoogleChrome/sencha-video-player-app/blob/mast
 </p>
 
 <p>
-<!--@The <code>Upnp library</code> uses the packaged app
+<!--@The <code>Upnp library</code> uses the Chrome App
 <a href="app_network.html">socket API</a>
 to connect the media player app with any discovered media servers
 and receive media data from the media server.
@@ -310,7 +310,8 @@ and receive media data from the media server.
 <a href="https://github.com/GoogleChrome/sencha-video-player-app/blob/master/lib/soapclient.js">soapclient.js</a>
 to parse the media server data.
 The remainder of this section describes this workflow in more detail.-->
-<code>Upnp</code> 库使用打包应用的<a href="app_network.html">套接字 API</a>
+<code>Upnp</code> 库使用 Chrome 应用的<a href="app_network.html">套接字
+API</a>
 将所有发现的媒体服务器连接到媒体播放器应用，并从媒体服务器接收媒体数据。<code>Upnp.js</code>
 还使用 <a href="https://github.com/GoogleChrome/sencha-video-player-app/blob/master/lib/soapclient.js">soapclient.js</a>
 分析媒体服务器的数据。这一节剩下的内容更详细地描述这一工作流程。
@@ -426,8 +427,8 @@ Soaprequest 浏览并分析媒体服务器数据，<code>soapclient.js</code>
 
 <p>
 <code>Upnp.js</code> <!--@connects to discovered media servers
-and receives media data using the packaged app socket API:-->
-连接到发现的媒体服务器，并使用打包应用的套接字 API 接收媒体数据：
+and receives media data using the Chrome Apps socket API:-->
+连接到发现的媒体服务器，并使用 Chrome 应用的套接字 API 接收媒体数据：
 </p>
 
 <pre data-filename="Upnp.js">

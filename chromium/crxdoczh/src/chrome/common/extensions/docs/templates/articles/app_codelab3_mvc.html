@@ -12,7 +12,7 @@ like Model-View-Presentation (MVP).-->
 <p><!--@There are several frameworks to help apply
 <a href="app_frameworks.html">MVC concepts</a>
 to a Javascript application, and most of them,
-as long as they are CSP compliant, can be used in a Chrome packaged app.
+as long as they are CSP compliant, can be used in a Chrome App.
 In this lab,
 we'll add an MVC model using both pure JavaScript and
 the <a href="http://angularjs.org/">AngularJS</a> framework.
@@ -20,14 +20,14 @@ Most of the AngularJS code from this section was copied,
 with small changes, from the AngularJS Todo tutorial.-->
 有好几种框架能够帮助您将 <a href="app_frameworks.html">MVC 概念</a>应用到
 JavaScript 应用程序上，大部分也都能在 Chrome
-浏览器的打包应用中使用。在这一代码实验室中我们将分别使用纯 JavaScript 以及
+应用中使用。在这一代码实验室中我们将分别使用纯 JavaScript 以及
 <a href="http://angularjs.org/">AngularJS</a>
 框架添加 MVC 模型。这一部分的大部分 AngularJS 代码都是从 AngularJS“待办事项”教程中复制过来的，只是做了一点改动。
 </p>
 
 <p class="note"><b><!--@Note:-->注意：</b><!--@
-Chrome packaged apps don&#39;t enforce any specific framework or programming style.-->Chrome
-浏览器的打包应用并不强制要求使用任何特定的框架或编程风格。
+Chrome Apps don&#39;t enforce any specific framework or programming style.-->Chrome
+应用并不强制要求使用任何特定的框架或编程风格。
 </p>
 
 <h2 id="simple"><!--@Create a simple view-->创建简单视图</h2>
@@ -424,14 +424,13 @@ window.addEventListener('DOMContentLoaded', function() {
 <h2 id="takeaways_"><!--@Takeaways-->更多信息</h2>
 
 <ul>
-<li><p><!--@Chrome packaged apps are-->
-Chrome
-浏览器的打包应用<a href="offline_apps.html"><!--@offline first-->通常是离线的</a><!--@,
+<li><p><!--@Chrome Apps are-->
+Chrome 应用<a href="offline_apps.html"><!--@offline first-->通常是离线的</a><!--@,
 so the recommended way to include third-party scripts is to download
 and package them inside your app.-->，所以包含第三方脚本的推荐方法是下载并将它打包在您的应用内。</p></li>
 <li><p><!--@You can use any framework you want,
 as long as it complies with Content Security Policies
-and other restrictions that Chrome apps are enforced to follow.-->您可以使用您希望使用的任何框架，只要它遵循内容安全策略以及
+and other restrictions that Chrome Apps are enforced to follow.-->您可以使用您希望使用的任何框架，只要它遵循内容安全策略以及
 Chrome 应用强制遵循的其他限制。</p></li>
 <li><p><!--@MVC frameworks make your life easier.
 Use them, specially if you want to build a non-trivial application.-->MVC 框架使您可以更方便地建立应用，如果您想建立一个非凡的应用，请使用它们。</p></li>

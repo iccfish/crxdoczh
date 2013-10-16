@@ -5,8 +5,8 @@
 [
   {
     "namespace": "webviewTag",
-//@    "description": "Use the <code>webview</code> tag to actively load live content from the web over the network and embed it in your packaged app. Your app can control the appearance of the <code>webview</code> and interact with the web content, initiate navigations in an embedded web page, react to error events that happen within it, and more (see <a href=\"#usage\">Usage</a>).",
-    "description": "使用 <code>webview</code> 标签主动通过网络加载网上的活动内容，并将它嵌入在您的打包应用中。您的应用可以控制 <code>webview</code> 的外观，与网上内容交互，在嵌入的网页中进行导航，响应其中发生的错误事件等等。（请参见<a href=\"#usage\">用法</a>）。",
+//@    "description": "Use the <code>webview</code> tag to actively load live content from the web over the network and embed it in your Chrome App. Your app can control the appearance of the <code>webview</code> and interact with the web content, initiate navigations in an embedded web page, react to error events that happen within it, and more (see <a href=\"#usage\">Usage</a>).",
+    "description": "使用 <code>webview</code> 标签主动通过网络加载网上的活动内容，并将它嵌入在您的 Chrome 应用中。您的应用可以控制 <code>webview</code> 的外观，与网上内容交互，在嵌入的网页中进行导航，响应其中发生的错误事件等等。（请参见<a href=\"#usage\">用法</a>）。",
     "documentation_options": {
 //@      "title": "<webview> Tag",
       "title": "<webview> 标签",

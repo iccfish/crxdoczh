@@ -1,15 +1,15 @@
 <h1><!--@Network Communications-->网络通信</h1>
 
 <p>
-<!--@Packaged apps can act as a network client
+<!--@Chrome Apps can act as a network client
 for TCP and UDP connections.
 This doc shows you how to use TCP and UDP
 to send and receive data over the network.
 For more information,
 see the 
 <a href="socket.html">Sockets API</a>.-->
-打包应用可以用作 TCP 与 UDP 连接的网络客户端，该文档向您展示如何使用 TCP 与
-UDP 在网络上发送与接收数据。有关更多信息，请参见<a
+Chrome 应用可以用作 TCP 与 UDP 连接的网络客户端，该文档向您展示如何使用
+TCP 与 UDP 在网络上发送与接收数据。有关更多信息，请参见<a
 href="socket.html">套接字 API</a>。
 </p>
 
@@ -25,11 +25,11 @@ Check out the-->想试试这些代码吗？请参见
 <h2 id="manifest"><!--@Manifest requirements-->清单文件的要求</h2>
 
 <p>
-<!--@For packaged apps that use TCP or UDP,
+<!--@For Chrome Apps that use TCP or UDP,
 add the "socket" permission to the manifest
 and specify the IP end point permission rules.
 For example:-->
-对于使用 TCP 或 UDP 的打包应用来说，请向清单文件添加
+对于使用 TCP 或 UDP 的 Chrome 应用来说，请向清单文件添加
 "socket" 权限并指定 IP 端点权限规则。例如：
 </p>
 
@@ -74,8 +74,8 @@ For example:-->
 <h2 id="tcp"><!--@Using-->使用 TCP</h2>
 
 <p>
-<!--@Packaged apps can make connections to any service that supports TCP.-->
-打包应用可以连接到任何支持 TCP 的服务。
+<!--@Chrome Apps can make connections to any service that supports TCP.-->
+Chrome 应用可以连接到任何支持 TCP 的服务。
 </p>
 
 <h3 id="connecting"><!--@Connecting to a socket-->连接到套接字</h3>
@@ -135,8 +135,8 @@ chrome.socket.read(socketId, null, function(readInfo) {
 <h2 id="udp"><!--@Using-->使用 UDP</h2>
 
 <p>
-<!--@Packaged apps can make connections to any service that supports UDP.-->
-打包应用可以连接到支持 UDP 的任何服务。
+<!--@Chrome Apps can make connections to any service that supports UDP.-->
+Chrome 应用可以连接到支持 UDP 的任何服务。
 </p>
 
 <h3 id="sending"><!--@Sending data-->发送数据</h3>

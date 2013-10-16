@@ -3,45 +3,48 @@
 
 
 <p>
-<!--@Packaged apps integrate closely with a user’s operating system.
+<!--@Chrome Apps integrate closely with a user’s operating system.
 They are designed to be run outside of a browser tab,
 to run robustly in offline and poor connectivity scenarios and
 to have far more powerful capabilities than are available
 in a typical web browsing environment.
 The app container, programming, and security models
-support these packaged app requirements.-->
-打包应用与用户的操作系统紧密集成。它们设计为在浏览器标签页外运行，能够在离线及连接不稳定的情况下健壮地运行，并且比普通的网页浏览环境具有更强大的能力。应用容器、编程及安全模型为打包应用的这些要求提供支持。
+support these Chrome Apps requirements.-->
+Chrome 应用与用户的操作系统紧密集成。它们设计为在浏览器标签页外运行，能够在离线及连接不稳定的情况下健壮地运行，并且比普通的网页浏览环境具有更强大的能力。应用容器、编程及安全模型为 Chrome 应用的这些要求提供支持。
 </p>
 
 <h2 id="container"><!--@App container model-->应用容器模型</h2>
 
 <p>
 <!--@The app container describes the visual appearance
-and loading behavior of packaged apps.
-Packaged apps look different than traditional web apps
+and loading behavior of Chrome Apps.
+Chrome Apps look different than traditional web apps
 because the app container does not show any traditional web page UI controls;
 it simply contains a blank rectangular area.
 This allows an app to blend with “native” apps on the system,
 and it prevents the user from “messing” with the app logic
 by manually changing the URL.-->
-应用容器描述了打包应用的视觉外观及加载行为。打包应用与传统的网上应用外观不同，因为应用容器不显示任何传统网页的用户界面控件，它只包含一个空白的矩形区域。这样使应用能够与系统上的“原生”应用一致，并且防止用户通过手动更改
+应用容器描述了 Chrome 应用的视觉外观及加载行为。Chrome
+应用与传统的网上应用外观不同，因为应用容器不显示任何传统网页的用户界面控件，它只包含一个空白的矩形区域。这样使应用能够与系统上的“原生”应用一致，并且防止用户通过手动更改
 URL 的方式干扰应用的逻辑。
 </p>
 
 <p>
-<!--@Packaged apps are loaded differently than web apps.
+<!--@Chrome Apps are loaded differently than web apps.
 Both load the same type of content:
 HTML documents with CSS and JavaScript;
-however, a packaged app is loaded in the app container,
+however, a Chrome App is loaded in the app container,
 not in the browser tab.
 Also, the app container must load the main document
-of the packaged app from a local source.
-This forces all packaged apps to be at least minimally functional
+of the Chrome App from a local source.
+This forces all Chrome Apps to be at least minimally functional
 when offline and it provides a place
 to enforce stricter security measures.-->
-打包应用加载的方式与网上应用不同。它们都加载相同类型的内容：包含 CSS 和
-JavaScript 的 HTML
-文档，然而打包应用在应用容器而不是浏览器标签页中加载。此外，应用容器必须从本地来源加载打包应用的主文档，这样可以强制所有打包应用在离线状态下至少具有最小的功能，并提供了强制实施更严格安全策略的环境。
+Chrome 应用加载的方式与网上应用不同。它们都加载相同类型的内容：包含 CSS 和
+JavaScript 的 HTML 文档，然而 Chrome
+应用在应用容器而不是浏览器标签页中加载。此外，应用容器必须从本地来源加载
+Chrome 应用的主文档，这样可以强制所有 Chrome
+应用在离线状态下至少具有最小的功能，并提供了强制实施更严格安全策略的环境。
 </p>
 
 <img src="{{static}}/images/container.png"
@@ -54,24 +57,28 @@ JavaScript 的 HTML
 
 <p>
 <!--@The programming model describes the lifecycle
-and window behavior of packaged apps.
+and window behavior of Chrome Apps.
 Similar to native apps,
 the goal of this programming model is to give users
 and their systems full control over the app lifecycle.
-The packaged app lifecycle should be independent
+The Chrome App lifecycle should be independent
 of browser window behavior or a network connection.-->
-编程模型部分描述了打包应用的生命周期及窗口行为。与原生应用类似，这一编程模型的目标是使用户及其系统拥有对应用生命周期的完全控制。打包应用的生命周期应该与浏览器窗口的行为或网络连接无关。
+编程模型部分描述了 Chrome
+应用的生命周期及窗口行为。与原生应用类似，这一编程模型的目标是使用户及其系统拥有对应用生命周期的完全控制。Chrome
+应用的生命周期应该与浏览器窗口的行为或网络连接无关。
 </p>
 
 <p>
-<!--@The “event page” manages the packaged app lifecycle
+<!--@The “event page” manages the Chrome App lifecycle
 by responding to user gestures and system events.
 This page is invisible, only exists in the background,
 and can be closed automatically by the system runtime.
 It controls how windows open and close and
 when the app is started or terminated.
 There can only be one “event page” for a packaged app.-->
-“事件页面”通过响应用户操作和系统事件管理打包应用的生命周期。该页面不可见，只在后台存在，并可以由系统运行时环境自动关闭。它控制窗口打开与关闭的方式以及应用启动与终止的时间。一个打包应用只能有一个“事件页面”。
+“事件页面”通过响应用户操作和系统事件管理 Chrome
+应用的生命周期。该页面不可见，只在后台存在，并可以由系统运行时环境自动关闭。它控制窗口打开与关闭的方式以及应用启动与终止的时间。一个
+Chrome 应用只能有一个“事件页面”。
 <p>
 
 <p>
@@ -83,9 +90,10 @@ There can only be one “event page” for a packaged app.-->
 <p>
 <!--@For detailed instructions on how to use the programming model,
 see <a href="app_lifecycle.html">Manage App Lifecycle</a>.
-Here's a brief summary of the packaged app lifecyle
+Here's a brief summary of the Chrome App lifecyle
 to get you started:-->
-有关如何使用编程模型的详细指示，请参见<a href="app_lifecycle.html">管理应用的生命周期</a>。如下是打包应用生命周期的简要概述，帮助您入门：
+有关如何使用编程模型的详细指示，请参见<a href="app_lifecycle.html">管理应用的生命周期</a>。如下是
+Chrome 应用生命周期的简要概述，帮助您入门：
 </p>
 
 <br>
@@ -129,9 +137,10 @@ to get you started:-->
   <tr>
     <td><!--@Update-->更新</td>
     <td><!--@Apps can be updated at any time;
-      however, the code that a packaged app is running
+      however, the code that a Chrome App is running
       cannot change during a startup/termination cycle.-->
-      应用可以在任何时候更新，然而打包应用正在运行的代码不能在启动/终止周期中更改。
+      应用可以在任何时候更新，然而 Chrome
+      应用正在运行的代码不能在启动/终止周期中更改。
     </td>
   </tr>
   <tr>
@@ -147,7 +156,7 @@ to get you started:-->
 <h2 id="security"><!--@Security model-->安全模型</h2>
 
 <p>
-<!--@The packaged apps security model protects users
+<!--@The Chrome Apps security model protects users
 by ensuring their information is managed
 in a safe and secure manner.
 <a href="contentSecurityPolicy.html">Comply with CSP</a>
@@ -155,32 +164,33 @@ includes detailed information on how to comply with content security policy.
 This policy blocks dangerous scripting
 reducing cross-site scripting bugs
 and protecting users against man-in-the-middle attacks.-->
-打包应用的安全模型通过确保信息的安全管理来保护用户。<a
+Chrome 应用的安全模型通过确保信息的安全管理来保护用户。<a
 href="contentSecurityPolicy.html">遵循 CSP（内容安全策略）</a>包含了如何遵循内容安全策略的详细信息，该策略阻止了危险的脚本代码，减少跨站脚本漏洞并保护用户免受中间人攻击。
 </p>
 
 <p>
-<!--@Loading the packaged app main page locally provides a place
+<!--@Loading the Chrome Apps main page locally provides a place
 to enforce stricter security than the web.
 Like Chrome extensions,
-users must explicitly agree to trust the packaged app on install;
+users must explicitly agree to trust the Chrome App on install;
 they grant the app permission to access and use their data.
 Each API that your app uses will have its own permission.
-The packaged apps security model also provides the ability
+The Chrome Apps security model also provides the ability
 to set up privilege separation on a per window basis.
 This allows you to minimize the code in your app
 that has access to dangerous APIs,
 while still getting to use them.-->
-在本地加载打包应用的主页面为强制实施比网络更严格的安全策略提供了环境。与
-Chrome
-浏览器的扩展程序类似，安装时用户必须显式同意信任打包应用，授予应用访问并使用用户数据的权限。您的应用使用的每一个
-API
-都有它自己的权限。打包应用的安全模型还提供了按照窗口进行权限分离的能力，这样您可以尽可能减少应用中访问危险
+在本地加载 Chrome
+应用的主页面为强制实施比网络更严格的安全策略提供了环境。与 Chrome
+浏览器的扩展程序类似，安装时用户必须显式同意信任 Chrome
+应用，授予应用访问并使用用户数据的权限。您的应用使用的每一个 API
+都有它自己的权限。Chrome
+应用的安全模型还提供了按照窗口进行权限分离的能力，这样您可以尽可能减少应用中访问危险
 API 的代码，但仍然能够使用它们。
 </p>
 
 <p>
-<!--@Packaged apps reuse Chrome extension process isolation,
+<!--@Chrome Apps reuse Chrome extension process isolation,
 and take this a step further by isolating storage and external content.
 Each app has its own private storage area
 and can’t access the storage of another app
@@ -191,7 +201,7 @@ they can only be used to load other app pages.
 You can use the <code>object</code> tag to
 <a href="app_external.html">embed external content</a>;
 this content runs in a separate process from the app.-->
-打包应用也重用了 Chrome
+Chrome 应用也重用了 Chrome
 扩展程序的进程隔离，并进一步将存储区与外部内容隔离。每一个应用都有自己私有的存储区，不能访问其他应用的存储区或您在浏览器中使用的网站的个人数据（例如
 Cookie）。所有外部进程都与应用隔离。由于
 iframe
@@ -199,10 +209,6 @@ iframe
 </p>
 
 <p>
-<<<<<<< .mine
 <iframe title="YouTube video player" width="610" height="380" src="https://www.youtube.com/embed/EDtiWN42lHs" frameborder="0" allowfullscreen></iframe>
-=======
-<iframe title="YouTube video player" width="610" height="380" src="//www.youtube.com/embed/EDtiWN42lHs" frameborder="0" allowfullscreen></iframe>
->>>>>>> .r224942
 </p>
 
