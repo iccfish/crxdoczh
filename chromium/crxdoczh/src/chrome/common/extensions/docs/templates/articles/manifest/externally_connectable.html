@@ -43,7 +43,12 @@
       "https://*.google.com",
       "*://*.chromium.org",
       ...
-    ]
+    ],
+    // 表示扩展程序需要使用连接到它的网页的
+    // TLS 通道标识符，网页也必须将 $ref:runtime.connect 的
+    // connectInfo 或 $ref:runtime.sendMessage 的 options
+    // 中的 <code>includeTlsChannelId</code> 设置为 <code>true</code>。
+    "accepts_tls_channel_id": false
   },
   ...
 }

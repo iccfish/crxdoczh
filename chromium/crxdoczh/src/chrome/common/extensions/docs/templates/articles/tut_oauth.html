@@ -36,19 +36,22 @@ API</a>）的开发背景，但是理解这一协议可能有所帮助。
 <h2 id="getting-started"><!--@Getting started-->入门</h2>
 
 <p>
-<!--@First, copy over the three library files from the Chromium source tree at -->
+<!--@First, copy the four library files from the Chromium source tree at -->
 首先，从位于
 <a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/oauth_contacts/">.../examples/extensions/oauth_contacts/</a><!--@:-->
-的 Chromium 源代码树中将如下三个库文件复制到您的计算机上：
+的 Chromium 源代码树中将如下四个库文件复制到您的计算机上：
 </p>
 <ul>
 <li><strong><a href="examples/extensions/oauth_contacts/chrome_ex_oauth.html" download="chrome_ex_oauth.html">chrome_ex_oauth.html</a></strong> - <!--@interstitial page for the oauth_callback URL-->用于重定向至 oauth_callback URL 的中间页面</li>
 <li><strong><a href="examples/extensions/oauth_contacts/chrome_ex_oauth.js" download="chrome_ex_oauth.js">chrome_ex_oauth.js</a></strong> - <!--@core OAuth library-->核心 OAuth 库</li>
 <li><strong><a href="examples/extensions/oauth_contacts/chrome_ex_oauthsimple.js" download="chrome_ex_oauthsimple.js">chrome_ex_oauthsimple.js</a></strong> - <!--@helpful wrapper for chrome_ex_oauth.js-->对 chrome_ex_oauth.js 有用的包装</li>
+<li><strong><a href="examples/extensions/oauth_contacts/onload.js" download="onload.js">onload.js</a></strong> -
+<!--@initializes chrome_ex_oauth.html and redirects the page if needed to start the OAuth flow-->
+初始化 chrome_ex_oauth.html，如果需要开始 OAuth 流程则重定向网页</li>
 </ul>
 
-<p><!--@Place the three library files in the root of your extension directory (or wherever your JavaScript is stored). Then include both .js files in your background page in the following order:-->
-将这三个库文件放在您的扩展程序的根目录中（或者您的
+<p><!--@Place the four library files in the root of your extension directory (or wherever your JavaScript is stored). Then include both .js files in your background page in the following order:-->
+将这四个库文件放在您的扩展程序的根目录中（或者您的
 JavaScript
 代码存放的位置，然后在您的后台网页中按照以下顺序包含那两个
 .js 文件：
@@ -57,6 +60,7 @@ JavaScript
 <pre>
 &lt;script type="text/javascript" src="chrome_ex_oauthsimple.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="chrome_ex_oauth.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="onload.js"&gt;&lt;/script&gt;
 </pre>
 
 <p><!--@Your background page will manage the OAuth flow.-->您的后台网页将会管理 OAuth 流程。</p>

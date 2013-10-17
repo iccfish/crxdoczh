@@ -1,0 +1,75 @@
+// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+  {
+    "namespace": "desktopCapture",
+//@    "description": "Desktop Capture API that can be used to capture content of screen, individual windows or tabs.",
+    "description": "桌面捕获 API 可以用于捕获屏幕、单个窗口或标签页的内容。",
+    "types": [
+      {
+        "id": "DesktopCaptureSourceType",
+        "type": "string",
+        "enum": ["screen", "window", "tab"],
+//@        "description": "Enum used to define set of desktop media sources used in chooseDesktopMedia()."
+        "description": "在 chooseDesktopMedia() 中使用，定义桌面媒体来源。"
+      }
+    ],
+    "functions": [
+      {
+        "name": "chooseDesktopMedia",
+        "type": "function",
+//@        "description": "Shows desktop media picker UI with the specified set of sources.",
+        "description": "显示桌面媒体选择器用户界面，包含指定类型的源。",
+        "parameters": [
+          {
+            "type": "array",
+            "items": { "$ref": "DesktopCaptureSourceType" },
+            "name": "sources",
+//@            "description": "Set of sources that should be shown to the user."
+            "description": "要向用户显示的源类型。"
+          },
+          {
+            "$ref": "tabs.Tab",
+            "name": "targetTab",
+            "optional": true,
+//@            "description": "Optional tab for which the stream is created. If not specified then the resulting stream can be used only by the calling extension, otherwise the stream can be used only by the specified tab. If the tab's security origin changes before this function returns, the call may fail."
+            "description": "创建流媒体的可选标签页。如果没有指定，所得到的流媒体只能由调用的扩展程序使用，否则流媒体只能由指定标签页使用。如果标签页的安全来源在该函数返回前更改，该调用可能会失败。"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "streamId",
+                "type": "string",
+//@                "description": "An opaque string that can be passed to <code>getUserMedia()</code> API to generate media stream that corresponds to the source selected by the user. If user didn't select any source (i.e. canceled the prompt) then the callback is called with an empty <code>streamId</code>"
+                "description": "一个不透明字符串，可以传递给 <code>getUserMedia()</code> API，生成与用户选择的源相对应的媒体流。如果用户没有选择任何源（即取消提示），调用回调函数时传递空的 <code>streamId</code>。"
+              }
+            ]
+          }
+        ],
+        "returns": {
+          "type": "integer",
+//@          "description": "An id that can be passed to cancelChooseDesktopMedia() in case the prompt need to be canceled."
+          "description": "可以传递给 cancelChooseDesktopMedia() 的标识符，以便在需要时取消提示。"
+        }
+      },
+      {
+        "name": "cancelChooseDesktopMedia",
+        "type": "function",
+//@        "description": "Hides desktop media picker dialog shown by chooseDesktopMedia().",
+        "description": "隐藏由 chooseDesktopMedia() 显示的媒体选择器对话框。",
+        "parameters": [
+          {
+            "name": "desktopMediaRequestId",
+            "type": "integer",
+//@            "description": "Id returned by chooseDesktopMedia()"
+            "description": "由 chooseDesktopMedia() 返回的标识符。"
+          }
+        ]
+      }
+    ]
+  }
+]
