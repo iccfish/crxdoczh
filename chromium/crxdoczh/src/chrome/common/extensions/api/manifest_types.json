@@ -34,7 +34,7 @@
             "items": {"type": "string"}
           },
           "accepts_tls_channel_id": {
-//@            "description": "If <code>true</true>, messages sent via $ref:runtime.connect or $ref:runtime.sendMessage will set $ref:runtime.MessageSender.tlsChannelId if those methods request it to be. If <code>false</code>, $ref:runtime.MessageSender.tlsChannelId will never be set under any circumstance.",
+//@            "description": "If <code>true</code>, messages sent via $ref:runtime.connect or $ref:runtime.sendMessage will set $ref:runtime.MessageSender.tlsChannelId if those methods request it to be. If <code>false</code>, $ref:runtime.MessageSender.tlsChannelId will never be set under any circumstance.",
             "description": "如果为 <code>true</code>，并且调用 $ref:runtime.connect 或 $ref:runtime.sendMessage 时请求 TLS 通道标识符，发送的消息会设置 $ref:runtime.MessageSender.tlsChannelId。如果为 <code>false</code>，在任何情况下都不会设置 $ref:runtime.MessageSender.tlsChannelId。",
             "optional": true,
             "type": "boolean"
@@ -82,6 +82,18 @@
               "connect": {
 //@                "description": "<p>The host:port pattern for <code>connect</code> operations.</p>",
                 "description": "<p><code>connect</code> 操作的主机：端口匹配表达式。</p>",
+                "optional": true,
+                "type": "string"
+              }
+            }
+          },
+          "tcpServer": {
+            "description": "The <code>tcpServer</code> manifest property declares which sockets.tcpServer operations an app can issue.",
+            "optional": true,
+            "type": "object",
+            "properties": {
+              "listen": {
+                "description": "<p>The host:port pattern for <code>listen</code> operations.</p>",
                 "optional": true,
                 "type": "string"
               }

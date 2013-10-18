@@ -5,11 +5,12 @@
 // <!--@Use the <code>chrome.fileSystem</code> API to create, read, navigate,
 // and write to a sandboxed section of the user's local file system. With this
 // API, Chrome Apps can read and write to a user-selected location. For
-// example, a text editor app can use the API to read and write local documents.-->
+// example, a text editor app can use the API to read and write local documents.
+// All failures are notified via chrome.runtime.lastError.-->
 // 使用 <code>chrome.fileSystem</code> API
 // 创建、读取、浏览与写入用户本地文件系统中经过沙盒屏蔽的一个区域。使用该
 // API，Chrome 应用可以读取和写入用户选定的位置，例如文本编辑应用可以使用该
-// API 读取和写入本地文档。
+// API 读取和写入本地文档。所有失败信息都通过 $ref:runtime.lastError 通知。
 namespace fileSystem {
   dictionary AcceptOption {
     // <!--@This is the optional text description for this option. If not present,
@@ -43,31 +44,35 @@ namespace fileSystem {
     openFile,
 
     // <!--@Prompts the user to open an existing file and returns a writable
-    // FileEntry on success. Calls using this type will fail unless the
-    // application has the 'write' permission under 'fileSystem'.-->
+    // FileEntry on success. Calls using this type will fail with a runtime
+    // error if the application doesn't have the 'write' permission under
+    // 'fileSystem'.-->
     // 提示用户打开现有文件，并在成功后返回可写的
-    // FileEntry（文件项）。除非应用拥有 'fileSystem' 下的 'write'
-    // 权限，否则使用这种类型的调用将会失败。
+    // FileEntry（文件项）。如果应用没有 'fileSystem' 下的 'write'
+    // 权限，使用这种类型的调用将会失败，产生运行时错误。
     openWritableFile,
 
     // <!--@Prompts the user to open an existing file or a new file and returns a
-    // writable FileEntry on success. Calls using this type will fail unless the
-    // application has the 'write' permission under 'fileSystem'.-->
+    // writable FileEntry on success. Calls using this type will fail with a
+    // runtime error if the application doesn't have the 'write' permission
+    // under 'fileSystem'.-->
     // 提示用户打开现有文件或新文件，并在成功后返回可写的
-    // FileEntry（文件项）。除非应用拥有 'fileSystem' 下的 'write'
-    // 权限，否则使用这种类型的调用将会失败。
+    // FileEntry（文件项）。如果应用没有 'fileSystem' 下的 'write'
+    // 权限，使用这种类型的调用将会失败，产生运行时错误。
     saveFile,
 
     // <!--@Prompts the user to open a directory and returns a DirectoryEntry on
-    // success. Calls using this type will fail unless the application has the
-    // 'directory' permission under 'fileSystem'. If the application has the
-    // 'write' permission under 'fileSystem', the returned DirectoryEntry will
-    // be writable; otherwise it will be read-only. New in Chrome 31.-->
+    // success. Calls using this type will fail with a runtime error if the
+    // application doesn't have the 'directory' permission under 'fileSystem'.
+    // If the application has the 'write' permission under 'fileSystem', the
+    // returned DirectoryEntry will be writable; otherwise it will be read-only.
+    // New in Chrome 31.-->
     // 提示用户打开目录，并在成功后返回
-    // DirectoryEntry（目录项）。除非应用程序拥有 "fileSystem" 之下的
-    // "directory" 权限，使用这种类型调用会失败。如果应用程序拥有 "fileSystem"
-    // 之下的 "write" 权限，返回的 DirectoryEntry 可写，否则只读。该类型在
-    // Chrome 31 中新增。
+    // DirectoryEntry（目录项）。如果应用程序没有 "fileSystem" 之下的
+    // "directory"
+    // 权限，使用这种类型调用会失败，产生运行时错误。如果应用程序拥有
+    // "fileSystem" 之下的 "write" 权限，返回的 DirectoryEntry
+    // 可写，否则只读。该类型在 Chrome 31 中新增。
     openDirectory
   };
 
@@ -75,13 +80,14 @@ namespace fileSystem {
     // <!--@Type of the prompt to show. The default is 'openFile'. From Chrome 31
     // onwards, 'openWritableFile' is deprecated and 'openFile' will return a
     // writable file entry for apps with the 'write' permission under
-    // 'fileSystem'. 'openDirectory' is new in Chrome 31 and will fail unless
-    // the application has the 'directory' permission under 'fileSystem'.-->
+    // 'fileSystem'. 'openDirectory' is new in Chrome 31 and will fail with a
+    // runtime error if the application doesn't have the 'directory' permission
+    // under 'fileSystem'.-->
     // 显示的提示类型，默认为 'openFile'（打开文件）。从 Chrome 31
     // 开始，'openWritableFile' 弃用，如果应用拥有 "fileSystem" 之下的
     // "write" 权限则 'openFile' 会返回可写的文件项。'openDirectory' 在
     // Chrome 31 中新增，如果应用没有指定 "fileSystem" 之下的 "directory"
-    // 权限则调用会失败。
+    // 权限则调用会失败，产生运行时错误。
     ChooseEntryType? type;
 
     // <!--@The suggested file name that will be presented to the user as the
@@ -129,12 +135,14 @@ namespace fileSystem {
     static void getDisplayPath([instanceOf=Entry] object entry,
                                GetDisplayPathCallback callback);
 
-    // <!--@Get a writable Entry from another Entry. This call will fail if the
-    // application does not have the 'write' permission under 'fileSystem'. If
-    // entry is a DirectoryEntry, this call will fail if the application does
-    // not have the 'directory' permission under 'fileSystem'.-->
+    // <!--@Get a writable Entry from another Entry. This call will fail with a
+    // runtime error if the application does not have the 'write' permission
+    // under 'fileSystem'. If entry is a DirectoryEntry, this call will fail if
+    // the application does not have the 'directory' permission under
+    // 'fileSystem'.-->
     // 从另一个 <code>Entry</code> 获取可写的 Entry。如果应用程序没有
-    // 'fileSystem' 下的 'write' 权限则该方法会失败。如果项目为
+    // 'fileSystem' 下的 'write'
+    // 权限则该方法会失败，产生运行时错误。如果项目为
     // DirectoryEntry（目录项），应用程序必须拥有 "fileSystem" 之下的
     // "directory" 权限，否则调用会失败。
     static void getWritableEntry([instanceOf=Entry] object entry,
@@ -151,8 +159,9 @@ namespace fileSystem {
                             EntriesCallback callback);
 
     // <!--@Returns the file entry with the given id if it can be restored. This call
-    // will fail otherwise. This method is new in Chrome 31.-->
-    // 如果可以恢复则恢复指定标识符的文件项，否则该调用会失败。该方法在
+    // will fail with a runtime error otherwise. This method is new in Chrome
+    // 31.-->
+    // 如果可以恢复则恢复指定标识符的文件项，否则该调用会失败，产生运行时错误。该方法在
     // Chrome 31 中增加。
     static void restoreEntry(DOMString id, EntryCallback callback);
 

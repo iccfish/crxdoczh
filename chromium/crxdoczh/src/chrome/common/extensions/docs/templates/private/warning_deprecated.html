@@ -1,0 +1,8 @@
+{{- Parameters:
+    |function|: the schema for the function
+-}}
+{{?function.deprecated}}
+<p class="warning">
+  {{function.name}} <!--@is deprecated. -->已弃用。{{{function.deprecated}}}
+</p>
+{{/function.deprecated}}
