@@ -56,6 +56,11 @@ namespace identity {
     boolean? interactive;
   };
 
+  dictionary AccountInfo {
+    DOMString id;
+    DOMString? email;
+  };
+
   callback GetAuthTokenCallback = void (optional DOMString token);
   callback InvalidateAuthTokenCallback = void ();
   callback LaunchWebAuthFlowCallback = void (optional DOMString responseUrl);
@@ -120,6 +125,11 @@ namespace identity {
     // 调用时传递重定向回您的应用程序的 URL。
     static void launchWebAuthFlow(WebAuthFlowDetails details,
                                   LaunchWebAuthFlowCallback callback);
-  }
-  ;
+  };
+
+  interface Events {
+    // <!--@Fired when signin state changes for an account on the user's profile.-->
+    // 当用户配置文件中某个账户的登录状态更改时产生。
+    static void onSignInChanged(AccountInfo account, boolean signedIn);
+  };
 };

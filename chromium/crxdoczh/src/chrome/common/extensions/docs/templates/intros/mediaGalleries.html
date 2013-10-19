@@ -65,10 +65,13 @@ in the table below:-->
         <!--@Grants your app the right to copy files into media galleries.
         Only valid media files that Chrome is capable of playing or displaying
         are permitted; files that Chrome is not able to validate will result
-        in a security error.-->
+        in a security error. "read" permission is a prerequisite for "copyTo".
+        Specify both "read" and "copyTo" to obtain both types of permissions to
+        media galleries.-->
         授予您的应用向媒体库复制文件的权限，只允许 Chrome
         浏览器能够播放或显示的有效媒体文件，复制 Chrome
-        浏览器无法验证的文件将导致安全错误。
+        浏览器无法验证的文件将导致安全错误。"read" 权限是 "copyTo"
+        的前提条件，同时指定 "read" 和 "copyTo" 获得这两种媒体库的访问权限。
       </td>
     </tr>
 </table>
@@ -88,11 +91,6 @@ in the table below:-->
   a different file system like the temporary file system, and then copy
   the files into the desired media gallery.-->
   由于文件验证的要求，没有对媒体库的写入权限。然而，您可以将文件写入另一个文件系统，如临时文件系统，然后将这些文件复制到期望的媒体库中。
-  </li>
-
-  <li><!--@You can specify "read" and "copyTo" to obtain both types of permissions
-  to media galleries.-->
-  您可以同时指定 "read" 和 "copyTo" 权限，获得这两种媒体库的访问权限。
   </li>
 
   <li><!--@Access type permissions do not trigger an install-time prompt
@@ -124,4 +122,23 @@ user's computer. The user may add or remove galleries using the
 media gallery permission dialog, after which the app will be able
 to read all the media files from galleries that the user selected.-->
 这一清单文件的例子在安装时会触发权限提示，让应用读取用户计算机上所有自动检测到的媒体库。用户可以使用媒体库权限对话框添加或删除库，之后应用就能够读取用户选择的库中的所有媒体文件。
+</p>
+
+<h2 id="iTunes">iTunes</h2>
+
+<p><!--@If present, the user's iTunes library can be accessed as a media gallery.
+In addition to the media files in the library, the "iTunes Music Library.xml"
+file is also presented. Regardless of where the music files are actually on the
+disk (and where the xml file says they are), they are mapping into an
+Artist/Album/Track hierarchy like iTunes does by default.  This mapping doesn't
+always work perfectly, so there are two things to note for Apps trying to match
+the xml file with files in the gallery. If the filenames for tracks within an
+album are not unique, they will be uniquified by adding the track id in
+parentheses before the extension, and if there is a colon or a slash in the
+artist, album, or track name, they are turned into underscore characters.-->
+如果存在，用户的 iTunes 库可以作为媒体库访问。除了库中的媒体文件，“iTunes
+Music Library.xml”文件也会存在。无论音乐文件在磁盘上的什么位置（以及 XML
+文件中包含的位置），默认情况下它们都会被映射至艺术家/唱片集/音轨这样的结构。这一种映射方式有时候并不完美，所以如果应用需要将
+XML
+文件与媒体库中的文件配对的话，需要注意两点。如果唱片集中的音轨文件名不唯一，在扩展名之前会加上包含括号的音轨号，使它们唯一。如果艺术家、唱片集或音轨名称中包含冒号或斜杠，它们会变成下划线。
 </p>
