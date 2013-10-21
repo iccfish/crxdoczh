@@ -340,6 +340,26 @@
             "description": "您希望修改浏览器按钮的标签页标识符。"
           }
         ]
+      },
+      {
+        "name": "openPopup",
+        "type": "function",
+//@        "description": "Opens the extension popup window in the active window but does not grant tab permissions.",
+        "description": "在当前窗口打开扩展程序的弹出窗口，但是不会授予标签页权限。",
+        "nodoc": true,
+        "parameters": [
+          {
+            "type": "function",
+            "name": "callback",
+            "parameters": [
+              {
+                "name": "popupView",
+                "type": "object",
+                "additionalProperties": { "type": "any" }
+              }
+            ]
+          }
+        ]
       }
     ],
     "events": [
