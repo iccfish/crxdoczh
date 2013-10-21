@@ -1,18 +1,10 @@
 [
   {
-    "title": "入门",
+    "title": "发现",
     "items": [
       {
         "title": "什么是 Chrome 应用？",
         "href": "/apps/about_apps.html"
-      },
-      {
-        "title": "理解架构",
-        "href": "/apps/app_architecture.html"
-      },
-      {
-        "title": "创建您的第一个应用",
-        "href": "/apps/first_app.html"
       }
     ]
   },
@@ -20,172 +12,211 @@
     "title": "开发",
     "items": [
       {
-        "title": "在您开始之前",
-        "href": "/apps/develop_apps.html"
+        "title": "创建您的第一个应用",
+        "href": "/apps/first_app.html"
       },
       {
-        "title": "基础知识",
+        "title": "教程",
         "toggleable": true,
         "items": [
           {
-            "title": "管理应用的生命周期",
-            "href": "/apps/app_lifecycle.html"
-          },
-          {
-            "title": "管理数据",
-            "href": "/apps/app_storage.html"
-          },
-          {
-            "title": "首先考虑离线",
-            "href": "/apps/offline_apps.html"
-          },
-          {
-            "title": "嵌入内容",
-            "href": "/apps/app_external.html"
-          }
-        ]
-      },
-      {
-        "title": "通过代码实验室学习",
-        "toggleable": true,
-        "items": [
-          {
-            "title": "关于代码实验室",
-            "href": "/apps/app_codelab.html"
-          },
-          {
-            "title": "1 - 设置开发环境",
-            "href": "/apps/app_codelab1_setup.html"
-          },
-          {
-            "title": "2 -  创建基本的应用",
-            "href": "/apps/app_codelab2_basic.html"
-          },
-          {
-            "title": "3 - 创建 MVC",
-            "href": "/apps/app_codelab3_mvc.html"
-          },
-          {
-            "title": "4 - 保存和获取数据",
-            "href": "/apps/app_codelab5_data.html"
-          },
-          {
-            "title": "5 - 管理应用的生命周期",
-            "href": "/apps/app_codelab6_lifecycle.html"
-          },
-          {
-            "title": "6 - 访问用户数据",
-            "href": "/apps/app_codelab7_useridentification.html"
-          },
-          {
-            "title": "7 - 访问网络资源",
-            "href": "/apps/app_codelab8_webresources.html"
-          },
-          {
-            "title": "8 - 发布应用",
-            "href": "/apps/app_codelab_10_publishing.html"
-          }
-        ]
-      },
-      {
-        "title": "安全和隐私权",
-        "toggleable": true,
-        "items": [
-          {
-            "title": "用户认证",
-            "href": "/apps/app_identity.html"
-          },
-          {
-            "title": "遵循 CSP（内容安全策略）",
-            "href": "/apps/contentSecurityPolicy.html"
-          }
-        ]
-      },
-      {
-        "title": "通知",
-        "toggleable": true,
-        "items": [
-            {
-            "title": "云消息服务",
+            "title": "通过代码实验室学习",
             "toggleable": true,
             "items": [
               {
-                "title": "关于云消息服务",
-                "href": "/apps/cloudMessaging.html"
+                "title": "关于代码实验室",
+                "href": "/apps/app_codelab.html"
               },
               {
-                "title": "客户端参考",
-                "href": "/apps/pushMessaging.html"
+                "title": "1、设置开发环境",
+                "href": "/apps/app_codelab1_setup.html"
               },
               {
-                "title": "服务参考",
-                "href": "/apps/gcm_server.html"
+                "title": "2、创建基本的应用",
+                "href": "/apps/app_codelab2_basic.html"
               },
               {
-                "title": "服务条款",
-                "href": "/apps/gcm_tos.html"
+                "title": "3、创建 MVC",
+                "href": "/apps/app_codelab3_mvc.html"
+              },
+              {
+                "title": "4、保存和获取数据",
+                "href": "/apps/app_codelab5_data.html"
+              },
+              {
+                "title": "5、管理应用的生命周期",
+                "href": "/apps/app_codelab6_lifecycle.html"
+              },
+              {
+                "title": "6、访问用户数据",
+                "href": "/apps/app_codelab7_useridentification.html"
+              },
+              {
+                "title": "7、访问网络资源",
+                "href": "/apps/app_codelab8_webresources.html"
+              },
+              {
+                "title": "8、发布应用",
+                "href": "/apps/app_codelab_10_publishing.html"
               }
             ]
           },
           {
-            "title": "桌面通知",
-            "href": "/apps/desktop_notifications.html"
+            "title": "MVC 架构与框架",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "关于 MVC 架构",
+                "href": "/apps/app_frameworks.html"
+              },
+              {
+                "title": "用 AngularJS 建立应用",
+                "href": "/apps/angular_framework.html"
+              },
+              {
+                "title": "用 Sencha Ext JS 建立应用",
+                "href": "/apps/sencha_framework.html"
+              }
+            ]
           }
         ]
       },
       {
-        "title": "高级技术",
+        "title": "Chrome 应用的概念",
         "toggleable": true,
         "items": [
           {
-            "title": "网络通信",
-            "href": "/apps/app_network.html"
+            "title": "基础知识",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "应用的架构",
+                "href": "/apps/app_architecture.html"
+              },
+              {
+                "title": "应用的生命周期",
+                "href": "/apps/app_lifecycle.html"
+              },
+              {
+                "title": "首先考虑离线",
+                "href": "/apps/offline_apps.html"
+              },
+              {
+                "title": "外部内容",
+                "href": "/apps/app_external.html"
+              }
+            ]
           },
           {
-            "title": "访问硬件设备",
-            "href": "/apps/app_hardware.html"
-          }
-        ]
-      },
-      {
-        "title": "MVC 架构",
-        "toggleable": true,
-        "items": [
-          {
-            "title": "关于 MVC 架构",
-            "href": "/apps/app_frameworks.html"
+            "title": "安全性",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "内容安全策略",
+                "href": "/apps/contentSecurityPolicy.html"
+              }
+            ]
           },
           {
-            "title": "用 AngularJS 建立应用",
-            "href": "/apps/angular_framework.html"
+            "title": "将您的应用与云端结合",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "云消息服务",
+                "toggleable": true,
+                "items": [
+                  {
+                    "title": "关于云消息服务",
+                    "href": "/apps/cloudMessaging.html"
+                  },
+                  {
+                    "title": "客户端参考",
+                    "href": "/apps/pushMessaging.html"
+                  },
+                  {
+                    "title": "服务参考",
+                    "href": "/apps/gcm_server.html"
+                  },
+                  {
+                    "title": "服务条款",
+                    "href": "/apps/gcm_tos.html"
+                  }
+                ]
+              },
+              {
+                "title": "云存储服务",
+                "toggleable": true,
+                "items": [
+                  {
+                    "title": "chrome.storage",
+                    "href": "/apps/storage.html"
+                  }
+                ]
+              },
+              {
+                "title": "用户认证",
+                "href": "/apps/app_identity.html"
+              }
+            ]
           },
           {
-            "title": "用 Sencha Ext JS 建立应用",
-            "href": "/apps/sencha_framework.html"
+            "title": "存储与获取数据",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "文件系统与同步文件系统 API",
+                "href": "/apps/app_storage.html"
+              }
+            ]
+          },
+          {
+            "title": "使用低级系统服务",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "USB",
+                "href": "/apps/app_hardware.html"
+              },
+              {
+                "title": "网络通信",
+                "href": "/apps/app_network.html"
+              }
+            ]
+          },
+          {
+            "title": "与主机平台交互",
+            "toggleable": true,
+            "items": [
+              {
+                "title": "丰富的通知",
+                "href": "/apps/desktop_notifications.html"
+              }
+            ]
           }
         ]
       }
     ]
   },
   {
-    "title": "部署",
+    "title": "发布",
     "items": [
       {
-        "title": "发布",
+        "title": "发布您的应用",
         "href": "/apps/publish_app.html"
-      }
-    ]
-  },
-  {
-    "title": "Google 服务",
-    "items": [
+      },
+      {
+        "title": "通过您的应用获利",
+        "toggleable": true,
+        "items": [
+          {
+            "title": "应用内付款",
+            "href": "/apps/in_app_payments.html"
+          }
+        ]
+      },
       {
         "title": "Analytics（分析）",
         "href": "/apps/analytics.html"
-      },
-      {
-        "title": "应用内付款",
-        "href": "/apps/in_app_payments.html"
       }
     ]
   },
@@ -193,20 +224,20 @@
     "title": "参考",
     "items": [
       {
-        "title": "清单文件",
-        "href": "/apps/manifest.html"
-      },
-      {
-        "title": "Chrome 浏览器的 JavaScript API",
+        "title": "Chrome 平台 API",
         "href": "/apps/api_index.html"
       },
       {
-        "title": "Webview 标签 API",
+        "title": "Webview 标签",
         "href": "/apps/tags/webview.html"
       },
       {
-        "title": "支持的库",
+        "title": "网页 API",
         "href": "/apps/api_other.html"
+      },
+      {
+        "title": "清单文件格式",
+        "href": "/apps/manifest.html"
       },
       {
         "title": "禁用的网页特性",
@@ -215,15 +246,28 @@
     ]
   },
   {
-    "title": "更多",
+    "title": "示例",
+    "items": [
+      {
+        "title": "示例应用",
+        "href": "/apps/samples.html"
+      }
+    ]
+  },
+  {
+    "title": "帮助",
     "items": [
       {
         "title": "常见问题",
         "href": "/apps/faq.html"
       },
       {
-        "title": "示例",
-        "href": "/apps/samples.html"
+        "title": "Google 网上论坛",
+        "href": "https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps"
+      },
+      {
+        "title": "Stack Overflow",
+        "href": "http://stackoverflow.com/questions/tagged/google-chrome-app"
       }
     ]
   }

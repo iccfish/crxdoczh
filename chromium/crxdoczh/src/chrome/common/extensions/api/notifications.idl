@@ -96,6 +96,11 @@ namespace notifications {
     // <!--@Current progress ranges from 0 to 100.-->
     // 当前进度，从 0 到 100。
     long? progress;
+
+    // <!--@Whether to show UI indicating that the app will visibly respond to
+    // clicks on the body of a notification.-->
+    // 是否在用户界面中显示应用会以可见的方式响应通知正文的单击。
+    boolean? isClickable;
   };
 
   callback CreateCallback = void (DOMString notificationId);

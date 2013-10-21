@@ -39,6 +39,15 @@ namespace system.storage {
     double capacity;
   };
 
+  dictionary StorageAvailableCapacityInfo {
+    // <!--@A copied |id| of getAvailableCapacity function parameter |id|.-->
+    // 从 getAvailableCapacity 函数的 id 参数复制过来的标识符。
+    DOMString id;
+    // <!--@The available capacity of the storage device, in bytes.-->
+    // 存储设备的可用容量，以字节为单位。
+    double availableCapacity;
+  };
+
   [inline_doc] enum EjectDeviceResultCode {
     // The ejection command is successful -- the application can prompt the user
     // to remove the device.
@@ -57,6 +66,9 @@ namespace system.storage {
 
   callback StorageInfoCallback = void (StorageUnitInfo[] info);
 
+  callback GetAvailableCapacityCallback = void (
+      StorageAvailableCapacityInfo info);
+
   interface Functions {
     // Get the storage information from the system. The argument passed to the
     // callback is an array of StorageUnitInfo objects.
@@ -69,6 +81,13 @@ namespace system.storage {
     // <!--@Ejects a removable storage device.-->
     // 弹出可移动存储设备。
     static void ejectDevice(DOMString id, EjectDeviceCallback callback);
+
+    // <!--@Get the available capacity of a specified |id| storage device.-->
+    // 获取指定存储设备的可用容量。
+    // <!--@The |id| is the transient device ID from StorageUnitInfo.-->
+    // 来自 StorageUnitInfo 的设备标识符。
+    static void getAvailableCapacity(DOMString id,
+                                     GetAvailableCapacityCallback callback);
   };
 
   interface Events {
@@ -82,4 +101,3 @@ namespace system.storage {
   };
 
 };
-
