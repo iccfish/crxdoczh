@@ -22,11 +22,13 @@ namespace notifications {
   };
 
   enum PermissionLevel {
-    // User has elected to show notifications from the app or extension.
-    // This is the default at install time.
+    // <!--@User has elected to show notifications from the app or extension.
+    // This is the default at install time.-->
+    // 用户允许为当前应用或扩展程序显示通知，在安装时这是默认的。
     granted,
 
-    // User has elected not to show notifications from the app or extension.
+    // <!--@User has elected not to show notifications from the app or extension.-->
+    // 用户拒绝为当前应用或扩展程序显示通知。
     denied
   };
 
@@ -160,8 +162,9 @@ namespace notifications {
     // 执行 <code>callback</code> 时传递系统当前所有的通知标识符。
     static void getAll(GetAllCallback callback);
 
-    // Retrieves whether the user has enabled notifications from this app
-    // or extension.
+    // <!--@Retrieves whether the user has enabled notifications from this app
+    // or extension.-->
+    // 获取用户是否为当前应用或扩展程序启用通知。
     static void getPermissionLevel(PermissionLevelCallback callback);
   };
 
@@ -178,7 +181,8 @@ namespace notifications {
     // 用户按下了通知中的一个按钮。
     static void onButtonClicked(DOMString notificationId, long buttonIndex);
 
-    // The user changes the permission level.
+    // <!--@The user changes the permission level.-->
+    // 用户更改了权限级别。
     static void onPermissionLevelChanged(PermissionLevel level);
   };
 
