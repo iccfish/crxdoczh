@@ -70,11 +70,11 @@ namespace sockets.udp {
     // <!--@The result code returned from the underlying network call.
     // A negative value indicates an error.-->
     // 底层网络调用返回的结果代码，负值表示错误。
-    long result;
+    long resultCode;
 
     // <!--@The number of bytes sent (if result == 0)-->
     // 已发送的字节数（如果 result 为 0）。
-    long? bytesWritten;
+    long? bytesSent;
   };
 
   // <!--@Callback from the <code>send</code> method.-->
@@ -166,7 +166,7 @@ namespace sockets.udp {
     long socketId;
 
      // The result code returned from the underlying recvfrom() call.
-    long result;
+    long resultCode;
   };
 
   interface Functions {
@@ -203,7 +203,7 @@ namespace sockets.udp {
 
     // Sends data on the given UDP socket to the given address and port.
     // |socketId| : The socket ID.
-    // |data| : The data to write.
+    // |data| : The data to send.
     // |address| : The address of the remote machine.
     // |port| : The port of the remote machine.
     // |callback| : Called when the <code>send</code> operation completes.

@@ -21,6 +21,15 @@ namespace notifications {
     progress
   };
 
+  enum PermissionLevel {
+    // User has elected to show notifications from the app or extension.
+    // This is the default at install time.
+    granted,
+
+    // User has elected not to show notifications from the app or extension.
+    denied
+  };
+
   dictionary NotificationItem {
     // <!--@Title of one item of a list notification.-->
     // 通知列表中某个项目的标题。
@@ -111,6 +120,8 @@ namespace notifications {
 
   callback GetAllCallback = void (object notifications);
 
+  callback PermissionLevelCallback = void (PermissionLevel level);
+
   interface Functions {
     // <!--@Creates and displays a notification having the contents in |options|,
     // identified by the id |notificationId|. If |notificationId| is empty,
@@ -148,6 +159,10 @@ namespace notifications {
     // the system.-->
     // 执行 <code>callback</code> 时传递系统当前所有的通知标识符。
     static void getAll(GetAllCallback callback);
+
+    // Retrieves whether the user has enabled notifications from this app
+    // or extension.
+    static void getPermissionLevel(PermissionLevelCallback callback);
   };
 
   interface Events {
@@ -162,6 +177,9 @@ namespace notifications {
     // <!--@The user pressed a button in the notification.-->
     // 用户按下了通知中的一个按钮。
     static void onButtonClicked(DOMString notificationId, long buttonIndex);
+
+    // The user changes the permission level.
+    static void onPermissionLevelChanged(PermissionLevel level);
   };
 
 };

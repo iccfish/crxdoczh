@@ -164,7 +164,7 @@
             "toggleable": true,
             "items": [
               {
-                "title": "文件系统与同步文件系统 API",
+                "title": "存储 API",
                 "href": "/apps/app_storage.html"
               }
             ]
@@ -209,8 +209,8 @@
         "toggleable": true,
         "items": [
           {
-            "title": "应用内付款",
-            "href": "/apps/in_app_payments.html"
+            "title": "用于数字商品的 Google 电子钱包",
+            "href": "/apps/google_wallet.html"
           }
         ]
       },
