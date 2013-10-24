@@ -355,6 +355,9 @@
               {
                 "name": "popupView",
                 "type": "object",
+                "optional": true,
+//@                "description": "JavaScript 'window' object for the popup window if it was succesfully opened.",
+                "description": "如果成功打开，则为弹出窗口的 JavaScript <code>window</code> 对象。",
                 "additionalProperties": { "type": "any" }
               }
             ]

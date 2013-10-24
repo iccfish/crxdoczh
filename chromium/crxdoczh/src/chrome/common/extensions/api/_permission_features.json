@@ -360,10 +360,6 @@
     "channel": "stable",
     "extension_types": ["extension", "platform_app"]
   },
-  "identity.email": {
-    "channel": "dev",
-    "extension_types": ["extension", "platform_app"]
-  },
   "identityPrivate": {
     "channel": "stable",
     "extension_types": [
@@ -686,7 +682,7 @@
     "min_manifest_version": 2
   },
   "system.cpu": {
-    "channel": "dev",
+    "channel": "stable",
     "extension_types": ["extension", "legacy_packaged_app", "platform_app"]
   },
   "system.memory": {
@@ -786,6 +782,14 @@
   "webrtc": {
     "channel": "trunk",
     "extension_types": ["extension"]
+  },
+  "webrtcAudioPrivate": {
+    "channel": "stable",
+    "extension_types": ["extension"],
+    "whitelist": [
+      "80B9DC58E5210749F052F5B4DB239C50CF72AEB6",
+      "knldjmfmopnpolahpmmgbagdohdnhkik"  // Extension used for API test.
+    ]
   },
   "webrtcLoggingPrivate": {
     "channel": "stable",
