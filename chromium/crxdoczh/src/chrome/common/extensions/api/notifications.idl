@@ -55,21 +55,29 @@ namespace notifications {
   };
 
   dictionary NotificationOptions {
-    // <!--@Which type of notification to display.-->
-    // 要显示哪种类型的通知。
+    // <!--@Which type of notification to display.
+    // <em>Required for $ref:notifications.create</em> method.-->
+    // 要显示哪种类型的通知，<em>调用
+    // $ref:notifications.create 方法时必须指定</em>。
     TemplateType? type;
 
-    // <!--@Sender's avatar, app icon, or a thumbnail for image notifications.-->
-    // 发送方的图标、应用图标或图片通知的缩略图。
+    // <!--@Sender's avatar, app icon, or a thumbnail for image notifications.
+    // <em>Required for $ref:notifications.create</em> method.-->
+    // 发送方的图标、应用图标或图片通知的缩略图，<em>调用
+    // $ref:notifications.create 方法时必须指定</em>。
     DOMString? iconUrl;
     [nodoc] NotificationBitmap? iconBitmap;
 
-    // <!--@Title of the notification (e.g. sender name for email).-->
-    // 通知标题（例如邮件发送者的姓名）。
+    // <!--@Title of the notification (e.g. sender name for email).
+    // <em>Required for $ref:notifications.create</em> method.-->
+    // 通知标题（例如邮件发送者的姓名），<em>调用
+    // $ref:notifications.create 方法时必须指定</em>。
     DOMString? title;
 
-    // <!--@Main notification content.-->
-    // 通知的主要内容。
+    // <!--@Main notification content.
+    // <em>Required for $ref:notifications.create</em> method.-->
+    // 通知的主要内容，<em>调用
+    // $ref:notifications.create 方法时必须指定</em>。
     DOMString? message;
 
     // <!--@Alternate notification content with a lower-weight font.-->
@@ -125,46 +133,55 @@ namespace notifications {
   callback PermissionLevelCallback = void (PermissionLevel level);
 
   interface Functions {
-    // <!--@Creates and displays a notification having the contents in |options|,
-    // identified by the id |notificationId|. If |notificationId| is empty,
-    // |create| generates an id. If |notificationId| matches an existing
-    // notification, |create| first clears that notification before proceeding
-    // with the create operation. |callback| returns the notification id
-    // (either supplied or generated) that represents the created notification.-->
-    // 创建并显示一个通知，内容由 <code>options</code> 指定，由
-    // <code>notificationId</code> 标识。如果 <code>notificationId</code>
-    // 为空，<code>create</code> 会生成一个标识符。如果
-    // <code>notificationId</code> 匹配已有的通知，<code>create</code>
-    // 在创建操作前首先会清除这一通知。<code>callback</code>
-    // 返回通知标识符（可能是提供的，也可能是生成的），表示创建的通知。
+    // <!--@Creates and displays a notification.-->
+    // 创建并显示通知。
+    // |notificationId|: <!--@Identifier of the notification. If it is empty, this
+    // method generates an id. If it matches an existing notification, this
+    // method first clears that notification before proceeding with the create
+    // operation.-->
+    // 通知的标识符。如果为空，该方法会生成一个标识符。如果匹配已有的标识符，该方法在创建操作之前会首先清除这一通知。
+    // |options|: <!--@Contents of the notification.-->
+    // 通知内容。
+    // |callback|: <!--@Returns the notification id (either supplied or generated)
+    // that represents the created notification.-->
+    // 返回通知标识符（提供的或生成的），代表创建的通知。
     static void create(DOMString notificationId,
                        NotificationOptions options,
                        CreateCallback callback);
 
-    // <!--@Updates an existing notification having the id |notificationId| and the
-    // options |options|. |callback| indicates whether a matching notification
-    // existed.-->
-    // 更新具有 <code>notificationId</code> 标识符和 <code>options</code>
-    // 选项的已有通知，<code>callback</code> 指示是否存在匹配的通知。
+    // <!--@Updates an existing notification.-->
+    // 更新已有的通知。
+    // |notificationId|: <!--@The id of the notification to be updated. This is
+    // returned by $ref:notifications.create method.-->
+    // 要更新的通知标识符，由 $ref:notifications.create 方法返回。
+    // |options|: <!--@Contents of the notification to update to.-->
+    // 更新后的通知内容。
+    // |callback|: <!--@Called to indicate whether a matching notification existed.-->
+    // 调用时指示是否存在匹配的通知。
     static void update(DOMString notificationId,
                        NotificationOptions options,
                        UpdateCallback callback);
 
-    // <!--@Given a |notificationId| returned by the |create| method, clears the
-    // corresponding notification. |callback| indicates whether a matching
-    // notification existed.-->
-    // 清除指定的由 <code>create</code> 方法返回的 <code>notificationId</code>
-    // 对应的通知，<code>callback</code> 指示是否存在匹配的通知。
+    // <!--@Clears the specified notification.-->
+    // 清除指定的通知。
+    // |notificationId|: <!--@The id of the notification to be cleared. This is
+    // returned by $ref:notifications.create method.-->
+    // 要清除的通知标识符，由 $ref:notifications.create 方法返回。
+    // |callback|: <!--@Called to indicate whether a matching notification existed.-->
+    // 调用时指示是否存在匹配的通知。
     static void clear(DOMString notificationId, ClearCallback callback);
 
-    // <!--@|callback| is executed with the set of notification_ids currently in
-    // the system.-->
-    // 执行 <code>callback</code> 时传递系统当前所有的通知标识符。
+    // <!--@Retrieves all the notifications.-->
+    // 获取所有通知。
+    // |callback|: <!--@Returns the set of notification_ids currently in the system.-->
+    // 返回系统中当前所有通知标识符。
     static void getAll(GetAllCallback callback);
 
     // <!--@Retrieves whether the user has enabled notifications from this app
     // or extension.-->
     // 获取用户是否为当前应用或扩展程序启用通知。
+    // |callback|: <!--@Returns the current permission level.-->
+    // 返回当前的权限级别。
     static void getPermissionLevel(PermissionLevelCallback callback);
   };
 
