@@ -208,9 +208,8 @@ class Function(object):
                 available to
   - |params| a list of parameters to the function (order matters). A separate
              parameter is used for each choice of a 'choices' parameter
-  - |deprecated| a reason and possible alternative for a deprecated function
   - |extra_params| extra parameters for addListener in chrome.webRequest events
-  - |returns| return value of the function
+  - |deprecated| a reason and possible alternative for a deprecated function
   - |description| a description of the function (if provided)
   - |callback| the callback parameter to the function. There should be exactly
                one
