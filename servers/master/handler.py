@@ -1,6 +1,7 @@
 import json, logging, mimetypes, os, webapp2
 from google.appengine.api import urlfetch, memcache
 from google.appengine.ext import db
+from redirects import REDIRECTS
 
 class CacheModel(db.Expando):
   data = db.BlobProperty(required=True)
@@ -67,13 +68,14 @@ def NormalizePath(doc_type, remaining_path):
     path += doc_type + '/'
 
   if doc_type == 'static':
-    return (path + remaining_path, None)
+    return (path + remaining_path, None, False)
   else:
     if not remaining_path.endswith('.html'):
-      return (None, None)
+      return (None, None, None)
     file_title = remaining_path[:-len('.html')]
-    name = file_title.replace('.', '_') + '.html'
-    return (path + name, path2 + name)
+    canonical_file_title = file_title.replace('.', '_')
+    name = canonical_file_title + '.html'
+    return (path + name, path2 + name, canonical_file_title != file_title)
 
 def Handle404(response, doc_type = 'extensions'):
   response.status = 404
@@ -81,7 +83,13 @@ def Handle404(response, doc_type = 'extensions'):
 
 class Handler(webapp2.RequestHandler):
   def get(self, doc_type, remaining_path):
-    path, path2 = NormalizePath(doc_type, remaining_path)
+    path, path2, need_redirect = NormalizePath(doc_type, remaining_path)
+    if need_redirect:
+      self.response.status = 302
+      self.response.location = path
+    if REDIRECTS.get(path):
+      self.response.status = 302
+      self.response.location = REDIRECTS.get(path)
 
     data = Cache.get(path)
     AddSecurityHeaders(self.response)
