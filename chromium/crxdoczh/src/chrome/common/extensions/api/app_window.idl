@@ -60,7 +60,7 @@ namespace app.window {
     [nodoc] long? top;
 
     // <!--@Minimum width of the window.-->
-    窗口的最小宽度。
+    // 窗口的最小宽度。
     long? minWidth;
 
     // <!--@Minimum height of the window.-->
