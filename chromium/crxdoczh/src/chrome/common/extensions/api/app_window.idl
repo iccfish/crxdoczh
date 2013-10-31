@@ -59,20 +59,20 @@ namespace app.window {
     // Y coordinate of the window. (Deprecated; use 'bounds'.)
     [nodoc] long? top;
 
-    // <!--@Minimum width for the lifetime of the window.-->
-    // 窗口在其生命周期内的最小宽度。
+    // <!--@Minimum width of the window.-->
+    窗口的最小宽度。
     long? minWidth;
 
-    // <!--@Minimum height for the lifetime of the window.-->
-    // 窗口在其生命周期内的最小高度。
+    // <!--@Minimum height of the window.-->
+    // 窗口的最小高度。
     long? minHeight;
 
-    // <!--@Maximum width for the lifetime of the window.-->
-    // 窗口在其生命周期内的最大宽度。
+    // <!--@Maximum width of the window.-->
+    // 窗口的最大宽度。
     long? maxWidth;
 
-    // <!--@Maximum height for the lifetime of the window.-->
-    // 窗口在其生命周期内的最大高度。
+    // <!--@Maximum height of the window.-->
+    // 窗口的最大高度。
     long? maxHeight;
 
     // Type of window to create.
@@ -132,26 +132,25 @@ namespace app.window {
     // multiple windows of this kind, the currently focused window will be in
     // the foreground. Defaults to false. Call <code>setAlwaysOnTop()</code> on
     // the window to change this property after creation.
-    // Currently available in the Dev channel only.
     boolean? alwaysOnTop;
   };
 
   // <!--@Called in the creating window (parent) before the load event is called in
   // the created window (child). The parent can set fields or functions on the
   // child usable from onload. E.g. background.js:<br>
-  // <code>function(created_window) { created_window.contentWindow.foo =
+  // <code>function(createdWindow) { createdWindow.contentWindow.foo =
   // function () { }; };</code>
   // <br>window.js:<br>
   // <code>window.onload = function () { foo(); }</code>-->
   // 在已创建窗口（子窗口）的 load
   // 事件产生前在父窗口中调用，父窗口可以设置子窗口中的字段或函数，以便在
   // onload 中使用。例如：background.js：<br>
-  // <code>function(created_window) { created_window.contentWindow.foo =
+  // <code>function(createdWindow) { createdWindow.contentWindow.foo =
   // function () { }; };</code>
   // <br>window.js：<br>
   // <code>window.onload = function () { foo(); }</code>-->
   callback CreateWindowCallback =
-      void ([instanceOf=AppWindow] object created_window);
+      void ([instanceOf=AppWindow] object createdWindow);
 
   [noinline_doc] dictionary AppWindow {
     // <!--@Focus the window.-->
@@ -222,20 +221,58 @@ namespace app.window {
     // 设置窗口的大小与位置。
     static void setBounds(Bounds bounds);
 
+    // <!--@Get the current minimum width of the window. Returns |undefined| if there
+    // is no minimum.-->
+    // 获取窗口当前的最小宽度，如果没有最小值则返回 <code>undefined</code>。
+    [nocompile] static long getMinWidth();
+
+    // <!--@Get the current minimum height of the window. Returns |undefined| if
+    // there is no minimum.-->
+    // 获取窗口当前的最小高度，如果没有最小值则返回 <code>undefined</code>。
+    [nocompile] static long getMinHeight();
+
+    // <!--@Get the current maximum width of the window. Returns |undefined| if there
+    // is no maximum.-->
+    // 获取窗口当前的最大宽度，如果没有最小值则返回 <code>undefined</code>。
+    [nocompile] static long getMaxWidth();
+
+    // <!--@Get the current maximum height of the window. Returns |undefined| if
+    // there is no maximum.-->
+    // 获取窗口当前的最大高度，如果没有最小值则返回 <code>undefined</code>。
+    [nocompile] static long getMaxHeight();
+
+    // <!--@Set the current minimum width of the window. Set to |null| to remove the
+    // constraint.-->
+    // 设置窗口当前的最小宽度，设置为 <code>null</code> 取消这一约束。
+    static void setMinWidth(optional long minWidth);
+
+    // <!--@Set the current minimum height of the window. Set to |null| to remove the
+    // constraint.-->
+    // 设置窗口当前的最小高度，设置为 <code>null</code> 取消这一约束。
+    static void setMinHeight(optional long minHeight);
+
+    // <!--@Set the current maximum width of the window. Set to |null| to remove the
+    // constraint.-->
+    // 设置窗口当前的最大宽度，设置为 <code>null</code> 取消这一约束。
+    static void setMaxWidth(optional long maxWidth);
+
+    // <!--@Set the current maximum height of the window. Set to |null| to remove the
+    // constraint.-->
+    // 设置窗口当前的最大高度，设置为 <code>null</code> 取消这一约束。
+    static void setMaxHeight(optional long maxHeight);
+
     // Set the app icon for the window (experimental).
     // Currently this is only being implemented on Ash.
     // TODO(stevenjb): Investigate implementing this on Windows and OSX.
-    [nodoc] static void setIcon(DOMString icon_url);
+    [nodoc] static void setIcon(DOMString iconUrl);
 
-    // <!--@Is the window always on top?
-    // Currently available in the Dev channel only.-->
-    // 窗口是否前端显示，目前仅在 Dev 分支可用。
+    // <!--@Is the window always on top?-->
+    // 窗口是否前端显示。
     static boolean isAlwaysOnTop();
 
-    // <!--@Set whether the window should stay above most other windows.
-    // Currently available in the Dev channel only.-->
-    // 设置窗口是否应该前端显示，目前仅在 Dev 分支可用。
-    static void setAlwaysOnTop(boolean always_on_top);
+    // <!--@Set whether the window should stay above most other windows.-->
+    // 设置窗口是否应该前端显示。
+    static void setAlwaysOnTop(boolean alwaysOnTop);
 
     // <!--@The JavaScript 'window' object for the created child.-->
     // 已创建子窗口的 JavaScript window 对象。
