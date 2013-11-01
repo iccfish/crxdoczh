@@ -1,43 +1,26 @@
-<h1><!--@Accessing Hardware Devices-->访问硬件设备</h1>
+<h1>USB <!--@Devices-->设备</h1>
 
 <p>
-<!--@  This doc shows you how Chrome Apps can connect to USB devices and read from
-  and write to a user's serial ports. See also the reference docs for the <a
-    href="usb.html">USB API</a> and the <a href="serial.html">Serial API</a>.
-  The <a href="bluetooth.html">Bluetooth API</a> is also available; we've
-  included a link to a Bluetooth sample below.-->
-该文档向您演示如何在 Chrome 应用中连接到 USB
-设备以及如何读取和写入用户的串行端口。请参见
-<a href="usb.html">USB API</a> 和 <a href="serial.html">串行端口 API</a>
-的文档。<a href="bluetooth.html">蓝牙 API</a>
-也可以使用了，我们在下面包含了一个蓝牙示例的链接。
+<!--@This document describes how to use the <a href="usb.html">USB API</a> to communicate
+with USB devices. Some devices are not accessible through the USB API
+(see the <a href="#caveats">Caveats</a> section below for details).
+Chrome Apps can also connect to <a href="serial.html">serial</a> and
+<a href="bluetooth.html">Bluetooth</a> devices.-->
+该文档描述如何使用 <a href="usb.html">USB API</a> 与 USB
+设备通信。一些设备不能通过 USB API 访问（有关详情请参见下面的<a
+href="#caveats">注意事项</a>部分），Chrome 应用还可以连接到<a
+href=serial.html">串行端口</a>与<a href="bluetooth.html">蓝牙</a>设备。
 </p>
 
 <p class="note">
-  <b>API <!--@Samples: -->示例：</b><!--@ Want to play with the code? Check out the
-  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a>,
-  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a>,
-  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a>,
-  and
-  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
-  Bluetooth</a> samples.-->想试试这些代码吗？请参见
-  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a>、<a
-  href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a>、<a
-  href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a>
-  和
-  <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
-  蓝牙</a>示例。
-</p>
-
-<h2 id="usb"><!--@Accessing USB devices-->访问 USB 设备</h2>
-
-<p>
-<!--@  You can use the <a href="usb.html">USB API</a> to communicate with USB devices
-  using only JavaScript code. Some devices are not accessible through this API
-  &ndash; see <a href="#caveats">Caveats</a> below for details.-->
-通过 <a href="usb.html">USB API</a>，您只要使用 JavaScript 代码就能与 USB
-设备通信。某些设备不能通过该 API 访问，请参见下面的<a href="#caveats"
->注意事项</a>部分了解详情。
+<b><!--@Samples:-->示例：</b><!--@ For examples that illustrate how Chrome Apps can connect to hardware devices, see the-->有关演示如何在
+Chrome 应用中连接到硬件设备的例子，请参见
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a><!--@,
+-->、<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a><!--@,
+-->、<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a><!--@, and-->
+和
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
+<!--@Bluetooth-->蓝牙</a><!--@ samples.-->示例。
 </p>
 
 <p>
@@ -52,7 +35,7 @@
     <i>USB 简介</i></a>（英文）是一篇速成文章，可能对您有帮助。
 </p>
 
-<h3 id="manifest"><!--@Manifest requirement-->清单文件的要求</h3>
+<h2 id="manifest"><!--@Manifest requirement-->清单文件的要求</h2>
 
 <p><!--@The USB API requires the "usb" permission in the manifest file:-->
 USB API 要求清单文件中包含 "usb" 权限：
@@ -97,7 +80,7 @@ USB API 要求清单文件中包含 "usb" 权限：
 注意，JSON 格式中只允许十进制数，您不能在这些字段中使用十六进制数。
 </p>
 
-<h3 id="finding_device"><!--@Finding a device-->发现设备</h3>
+<h2 id="finding_device"><!--@Finding a device-->发现设备</h2>
 
 <p>
 <!--@  To determine whether one or more specific devices are connected to a user's
@@ -168,7 +151,7 @@ function onDeviceFound(devices) {
 chrome.usb.getDevices({"vendorId": vendorId, "productId": productId}, onDeviceFound);
 </pre>
 
-<h3 id="usb_open"><!--@Opening a device-->打开设备</h3>
+<h2 id="usb_open"><!--@Opening a device-->打开设备</h2>
 <p>
 <!--@Once the <code>Device</code> objects are returned, you can open a device using
 usb.openDevice to obtain a connection handle. You can only
@@ -263,7 +246,7 @@ chrome.usb.getDevices({"vendorId": vendorId, "productId": productId}, function (
 });
 </pre>
 
-<h3 id="usb_transfers"><!--@USB transfers and receiving data from a device-->USB 传输以及从设备接收数据</h3>
+<h2 id="usb_transfers"><!--@USB transfers and receiving data from a device-->USB 传输以及从设备接收数据</h2>
 
 <p>
 <!--@  The USB protocol defines four types of transfers:
@@ -345,7 +328,7 @@ var onTransferCallback = function(event) {
 chrome.usb.bulkTransfer(connectionHandle, transferInfo, onTransferCallback);
 </pre>
 
-<h3 id="control_transfers"><!--@CONTROL transfers--><b>控制</b>传输</h3>
+<h2 id="control_transfers"><!--@CONTROL transfers--><b>控制</b>传输</h2>
 
 <p><!--@Control transfers are generally used to send or receive configuration or
   command parameters to a USB device. The controlTransfer method always sends
@@ -463,7 +446,7 @@ var transferInfo = {
 chrome.usb.controlTransfer(connectionHandle, transferInfo, optionalCallback);
 </pre>
 
-<h3 id="isochronous_transfers"><!--@ISOCHRONOUS transfers--><b>同步</b>传输</h3>
+<h2 id="isochronous_transfers"><!--@ISOCHRONOUS transfers--><b>同步</b>传输</h2>
 
 <p><!--@Isochronous transfers are the most complex type of USB transfer. They are
   commonly used for streams of data, like video and sound. To initiate an
@@ -593,7 +576,7 @@ chrome.usb.isochronousTransfer(connectionHandle, isoTransferInfo, optionalCallba
     设备不会向总线发送传输。
 </p>
 
-<h3 id="bulk_transfers"><!--@BULK transfers--><b>大块</b>传输</h3>
+<h2 id="bulk_transfers"><!--@BULK transfers--><b>大块</b>传输</h2>
 
 <p><!--@Bulk transfers are commonly used to transfer a large amount of
   non-time-sensitive data in a reliable way.
@@ -681,7 +664,7 @@ var transferInfo = {
 };
 </pre>
 
-<h3 id="interrupt_transfers"><!--@INTERRUPT transfers--><b>中断</b>传输</h3>
+<h2 id="interrupt_transfers"><!--@INTERRUPT transfers--><b>中断</b>传输</h2>
 
 <p><!--@Interrupt transfers are used to small amount of time sensitive data.
   Since all USB communication is initiated by the host, host code usually polls
@@ -779,7 +762,7 @@ var transferInfo = {
 chrome.usb.interruptTransfer(connectionHandle, transferInfo, optionalCallback);
 </pre>
 
-<h3 id="caveats"><!--@Caveats-->注意事项</h3>
+<h2 id="caveats"><!--@Caveats-->注意事项</h2>
 
 <p><!--@Not all devices can be accessed through the USB API. In general, devices
   are not accessible because either the Operating System's kernel or a native
@@ -837,186 +820,3 @@ href="#caveats">注意事项</a>部分作为解释。
 在 Chrome OS 中，您只需要调用
 $ref:usb.requestAccess，权限控制器会为您完成这一步。
 </p>
-
-<h2 id="serial"><!--@Accessing serial devices-->访问串行端口设备</h2>
-
-<p>
-<!--@You can use the serial API to read
-and write from a serial device.-->
-您可以使用串行端口 API 读取和写入串行端口设备。
-</p>
-
-<h3 id="requirement"><!--@Manifest requirement-->清单文件的要求</h3>
-
-<p>
-<!--@You must add the "serial" permission to the manifest file:-->
-您必须在清单文件中加入 "serial" 权限：
-</p>
-<pre data-filename="manifest.json">
-"permissions": [
-  "serial"
-]
-</pre>
-
-<h3 id="listing"><!--@Listing available serial ports-->列举可用的串行端口</h3>
-
-<p>
-<!--@To get a list of available serial ports,
-use the <code>getPorts()</code> method. <b>Note:</b> not all serial ports are available. The API uses a heuristic based on the name of the port to only expose serial devices that are expected to be safe.-->
-要获取可用串行端口的列表，请使用 <code>getPorts()</code>
-方法。<b>注意：</b>并不是所有的串行端口都可用。该 API
-采用启发式的方式，基于端口名称，只暴露被视为安全的串行端口设备。
-</p>
-
-<pre>
-var onGetPorts = function(ports) {
-  for (var i=0; i&lt;ports.length; i++) {
-    console.log(ports[i]);
-  }
-}
-chrome.serial.getPorts(onGetPorts);
-</pre>
-
-<h3 id="opening"><!--@Opening a serial device-->打开串行端口设备</h3>
-
-<p>
-<!--@If you know the serial port name, you can open it for read and write using the <code>open</code> method:-->
-如果您知道串行端口的名称，您可以使用 <code>open</code> 方法打开它用于读写：
-</p>
-
-<pre>
-chrome.serial.open(portName, options, openCallback)
-</pre>
-
-<table border="0">
-  <tr>
-    <th scope="col"> <!--@Parameter-->参数 </th>
-    <th scope="col"> <!--@Description-->描述 </th>
-  </tr>
-  <tr>
-    <td>portName&nbsp;(string)</td>
-    <td><!--@If your device's port name is unknown, you can use the <code>getPorts</code> method.-->
-      如果您的设备的端口名未知，您可以使用 <code>getPorts</code> 方法。
-    </td>
-  </tr>
-  <tr>
-    <td>options&nbsp;(object)</td>
-    <td><!--@Parameter object with one single value: <code>bitrate</code>, an integer specifying the desired bitrate used to communicate with the serial port.-->
-    包含单个值的参数对象：<code>bitrate</code>，为一个整数，指定用于与串行端口通信时希望使用的比特率。
-  </td>
-  </tr>
-  <tr>
-    <td>openCallback</td>
-    <td><!--@Invoked when the port has been successfully opened. The callback will be called with one parameter, <code>openInfo</code>, that has one attribute, <code>connectionId</code>. Save this id, because you will need it to actually communicate with the port.-->
-    端口成功打开后调用。该回调函数调用时将传递一个参数
-    <code>openInfo</code>，包含一个属性
-    <code>connectionId</code>，请保存该标识符，因为您需要它才能与端口进行实际的通信。
-    </td>
-  </tr>
-</table>
-
-<p><!--@A simple example:-->一个简单的例子：</p>
-
-<pre>
-var onOpen = function(connectionInfo) {
-   // 串行端口已打开，保存其标识符以便以后使用。
-  _this.connectionId = connectionInfo.connectionId;
-  // 对已打开的端口做任何您需要做的事情。
-}
-// 打开串行端口 /dev/ttyS01
-chrome.serial.open("/dev/ttyS01", {bitrate: 115200}, onOpen);
-</pre>
-
-<h3 id="closing"><!--@Closing a serial port-->关闭串行端口</h3>
-
-<p>
-<!--@Closing a serial port is simple but very important. See the example below: -->
-关闭串行端口很简单但是很重要，请参见下面的例子：
-</p>
-
-<pre>
-var onClose = function(result) {
- console.log("串行端口已关闭");
-}
-chrome.serial.close(connectionId, onClose);
-</pre>
-
-<h3 id="reading"><!--@Reading from a serial port-->读取串行端口</h3>
-
-<p>
-<!--@The serial API reads from the serial port and
-delivers the read bytes as an ArrayBuffer.
-There is no guarantee that all the requested bytes, even if available in the port, will be read in one chunk.
-The following example can accumulate read bytes, at most 128 at a time, until a new line is read,
-and then call a listener with the <code>ArrayBuffer</code> bytes converted to a String:-->
-串行端口 API 从串行端口读取数据并以 <code>ArrayBuffer</code>
-的方式传递已读取的字节。不能保证所有请求的字节（即使在端口中可用）都能在一个片段中读取。如下过程可以积累读取的字节，一次最多
-128 字节，直到读到了换行符，然后调用监听器，传递转换为字符串的
-<code>ArrayBuffer</code>：
-</p>
-
-<pre>
-var dataRead='';
-
-var onCharRead=function(readInfo) {
-    if (!connectionInfo) {
-      return;
-    }
-    if (readInfo &amp;&amp; readInfo.bytesRead&gt;0 &amp;&amp; readInfo.data) {
-      var str=ab2str(readInfo.data);
-      if (str[readInfo.bytesRead-1]==='\n') {
-        dataRead+=str.substring(0, readInfo.bytesRead-1);
-        onLineRead(dataRead);
-        dataRead="";
-      } else {
-        dataRead+=str;
-      }
-    }
-    chrome.serial.read(connectionId, 128, onCharRead);
-  }
-
-/* 将 ArrayBuffer 转换为字符串，使用 UTF-8 编码方案，
-   这和 Arduino 默认情况下发送字符串的方式一致 */
-  var ab2str=function(buf) {
-    return String.fromCharCode.apply(null, new Uint8Array(buf));
-  };
-</pre>
-
-<h3 id="writing"><!--@Writing to a serial port-->写入串行端口</h3>
-
-<p>
-<!--@The writing routine is simpler than reading,
-since the writing can occur all at once.
-The only catch is that if your data protocol is String based,
-you have to convert your output string to an <code>ArrayBuffer</code>.
-See the code example below:-->
-写入例程比读取简单，因为写入操作可以一次完成。唯一的问题是，如果您的数据协议基于字符串，您必须将您的输出字符串转换为
-<code>ArrayBuffer</code>。请参考下列代码：
-</p>
-
-<pre>
-var writeSerial=function(str) {
-  chrome.serial.write(connectionId, str2ab(str), onWrite);
-}
-// 将字符串转换为 ArrayBuffer
-var str2ab=function(str) {
-  var buf=new ArrayBuffer(str.length);
-  var bufView=new Uint8Array(buf);
-  for (var i=0; i&lt;str.length; i++) {
-    bufView[i]=str.charCodeAt(i);
-  }
-  return buf;
-}
-</pre>
-
-<h3 id="flushing"><!--@Flushing a serial port buffer-->清洗串行端口缓存</h3>
-
-<p>
-<!--@You can flush your serial port buffer by issuing the flush command:-->
-您可以通过发出清洗命令清除串行端口缓存：
-</p>
-
-<pre>
-  chrome.serial.flush(connectionId, onFlush);
-</pre>
-

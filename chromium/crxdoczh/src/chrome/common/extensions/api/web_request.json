@@ -353,8 +353,8 @@
               "type": {"type": "string", "enum": ["main_frame", "sub_frame", "stylesheet", "script", "image", "object", "xmlhttprequest", "other"], "description": "请求的资源将如何使用。"},
 //@              "timeStamp": {"type": "number", "description": "The time when this signal is triggered, in milliseconds since the epoch."},
               "timeStamp": {"type": "number", "description": "该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。"},
-//@              "statusLine": {"type": "string", "optional": true, "description": "HTTP status line of the response."},
-              "statusLine": {"type": "string", "optional": true, "description": "响应的 HTTP 状态行。"},
+//@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line)."},
+              "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that have been received with this response."}
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that have been received with this response."}
               "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"}
@@ -423,8 +423,8 @@
               "isProxy": {"type": "boolean", "description": "如果为 Proxy-Authenticate（代理服务器认证）则为 true，否则如果为 WWW-Authenticate 则为 false。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
               "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
-//@              "statusLine": {"type": "string", "optional": true, "description": "HTTP status line of the response."}
-              "statusLine": {"type": "string", "optional": true, "description": "响应的 HTTP 状态行。"}
+//@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
+              "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"},
             }
           },
           {
@@ -497,8 +497,8 @@
               "statusCode": {"type": "integer", "description": "服务器返回的标准 HTTP 状态代码。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
               "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
-//@              "statusLine": {"type": "string", "optional": true, "description": "HTTP status line of the response."}
-              "statusLine": {"type": "string", "optional": true, "description": "响应的 HTTP 状态行。"}
+//@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
+              "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"},
             }
           }
         ],
@@ -560,6 +560,8 @@
               "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
 //@              "statusLine": {"type": "string", "optional": true, "description": "HTTP status line of the response."}
               "statusLine": {"type": "string", "optional": true, "description": "响应的 HTTP 状态行。"}
+//@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
+              "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"},
             }
           }
         ],
@@ -617,8 +619,8 @@
               "statusCode": {"type": "integer", "description": "服务器返回的标准 HTTP 状态代码。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
               "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
-//@              "statusLine": {"type": "string", "optional": true, "description": "HTTP status line of the response."}
-              "statusLine": {"type": "string", "optional": true, "description": "响应的 HTTP 状态行。"}
+//@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
+              "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"},
             }
           }
         ],

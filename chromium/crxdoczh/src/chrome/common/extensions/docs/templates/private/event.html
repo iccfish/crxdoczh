@@ -4,78 +4,62 @@
     {{?description}}<p>
       {{{description}}}
     </p>{{/description}}
-    {{?conditions}}
     {{?supportsRules}}
+    <p><!--@Provides the <a href="events.html#declarative">Declarative Event API</a>
+    consisting of $ref:[events.Event.addRules addRules],
+    $ref:[events.Event.removeRules removeRules], and $ref:[events.Event.getRules
+    getRules].-->
+    提供<a href="events.html#declarative">声明式事件 API</a>，包括
+    $ref:[events.Event.addRules addRules]、$ref:[events.Event.removeRules
+    removeRules]  和 $ref:[events.Event.getRules getRules]。
+    </p>
+    <div class="summary">
+      {{+partials.function_signature function:byName.addRules
+                                     parentName:name
+                                     api:api}}
+      {{+partials.function_signature function:byName.removeRules
+                                     parentName:name
+                                     api:api}}
+      {{+partials.function_signature function:byName.getRules
+                                     parentName:name
+                                     api:api}}
+    </div>
+    {{?conditions}}
       <h4><!--@Supported conditions-->支持的条件</h4>
-      <p>
-        <!--@The following conditions may be used in rules registered through-->
-        通过
-        <a href="#{{id}}-{{addRulesFunction.name}}">
-          {{addRulesFunction.name}}
-        </a><!--@.-->
-        注册规则时可以使用以下条件。。
-      </p>
       <ul>
         {{#conditions}}<div><li>{{+partials.ref_link}}</li></div>{{/}}
       </ul>
-    {{/supportsRules}}
     {{/conditions}}
     {{?actions}}
-    {{?supportsRules}}
       <h4><!--@Supported actions-->支持的操作</h4>
-      <p>
-        <!--@The following actions may be used in rules registered through-->
-        通过
-        <a href="#{{id}}-{{addRulesFunction.name}}">
-          {{addRulesFunction.name}}
-        </a><!--@.-->
-        注册规则时可以使用以下操作。
-      </p>
       <ul>
         {{#actions}}<div><li>{{+partials.ref_link}}</li></div>{{/}}
       </ul>
-    {{/supportsRules}}
     {{/actions}}
-    {{?extraParameters}}
-      <h4><code>addListener</code> 的附加参数</h4>
-      <dl>
-        {{#extraParameters}}{{+partials.parameter_full}}{{/}}
-      </dl>
-    {{/extraParameters}}
-    {{?returns}}
-      <h4>监听器返回值</h4>
-      <dl>
-        {{+partials.return_value}}
-      </dl>
-    {{/returns}}
+    {{/supportsRules}}
     {{?filters}}
       <h4><!--@Filters--><a href="events.html#filtered">过滤器</a></h4>
       <dl>
         {{#filters}}{{+partials.parameter_full}}{{/}}
       </dl>
     {{/filters}}
-    {{?supportsRules}}
-      {{-
-      TODO(vabr): For addRulesFunction it would be better to call
-      partials.function directly as follows:
-      {{+partials.function @:addRulesFunction
-                           parentName:name
-                           api:api
-                           parentId:id}}
-      but for some reason the parentName:name does not override the
-      'parentName' property of addRulesFunction (which is 'Event'). This will
-      get fixed as soon as we get rid of using @ in partials.function.
-      -}}
-      <h4 id="{{id}}-{{addRulesFunction.name}}">{{addRulesFunction.name}}</h4>
-      {{+partials.function_details function:addRulesFunction
-                                   parentName:name
-                                   api:api}}
-    {{/supportsRules}}
     {{?supportsListeners}}
-      {{+partials.function @:addListenerFunction
+      {{+partials.function @:byName.addListener
                            parentName:name
                            api:api
                            parentId:id}}
+      {{?extraParameters}}
+        <h4><code>addListener</code> 的附加参数</h4>
+        <dl>
+          {{#extraParameters}}{{+partials.parameter_full}}{{/}}
+        </dl>
+      {{/extraParameters}}
+      {{?returns}}
+        <h4>监听器返回值</h4>
+        <dl>
+          {{+partials.return_value}}
+        </dl>
+      {{/returns}}
     {{/supportsListeners}}
   </div>
 </div>

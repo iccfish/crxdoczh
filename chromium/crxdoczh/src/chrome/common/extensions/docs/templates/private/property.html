@@ -10,6 +10,7 @@
 {{?description}}<dd>
   {{{description}}}
 </dd>{{/description}}
+{{+partials.enum_descriptions values:enum_values}}
 {{?array.is_object}}
   <h4><!--@Properties of each item-->每一个项目的属性</h4>
   {{+partials.type @:array}}

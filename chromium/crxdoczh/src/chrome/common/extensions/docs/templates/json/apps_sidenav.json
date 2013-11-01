@@ -178,6 +178,10 @@
                 "href": "/apps/app_usb.html"
               },
               {
+                "title": "串行端口",
+                "href": "/apps/app_serial.html"
+              },
+              {
                 "title": "网络通信",
                 "href": "/apps/app_network.html"
               }

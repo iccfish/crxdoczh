@@ -27,13 +27,13 @@ user clicks on it, you'll have to keep using the $ref:pageAction API.-->
 
 <p><!--@As a <a href="events.html#declarative">declarative API</a>, this
 API lets you register rules on the
-<code>$ref:onPageChanged</code> event object which
+<code>$ref:onPageChanged</code> $ref:[events.Event event] object which
 take an action (currently just <code>$ref:ShowPageAction</code>) when
 a set of conditions, represented as a
 <code>$ref:[PageStateMatcher]</code>, are met.-->
 作为一种<a href="events.html#declarative">声明式 API</a>，该 API 让您在
 <code>$ref:onPageChanged</code>
-事件对象上注册规则，当一系列由
+$ref:[events.Event 事件对象]上注册规则，当一系列由
 <code>$ref:PageStateMatcher</code>
 表示的条件满足时执行某个操作（目前只有
 <code>$ref:ShowPageAction</code>）。
@@ -64,7 +64,7 @@ var rule1 = {
 <p class="note">
 <strong><!--@Note:-->注意：</strong><!--@ All conditions and actions are created via a constructor
 as shown in the example above.-->所有条件和操作都通过构造函数创建，如以上例子所示。
-<p>
+</p>
 
 <p>
 <!--@In order to also show a page action for sites with a video, you can
@@ -115,4 +115,37 @@ page action.-->
 将以上规则与
 <a href="activeTab.html">activeTab</a>
 权限一起使用，就能创建一个不需要任何安装时警告的扩展程序，使用户在相关的页面上单击它的页面按钮，并当用户单击页面按钮时在这些页面上运行。
+</p>
+
+<h2 id="css-matching">CSS <!--@Matching-->匹配</h2>
+
+<p>$ref:PageStateMatcher.css <!--@conditions must be
+<i><a href="http://www.w3.org/TR/selectors4/#compound">compound selectors</a></i>,
+meaning that you can't
+include <a href="http://www.w3.org/community/webed/wiki/CSS/Selectors#Combinators">combinators</a>
+like whitespace or "<code>&gt;</code>" in your selectors.  This helps Chrome
+match the selectors more efficiently.-->
+条件必须为<i><a href="http://www.w3.org/TR/selectors4/#compound"
+>复合选择器</a></i>，这意味着您在选择器中不能包含<a
+href="http://www.w3.org/community/webed/wiki/CSS/Selectors#Combinators">组合器</a>，例如空格或“<code>&gt;</code>”。这有利于让 Chrome
+浏览器更高效地匹配选择器。
+</p>
+
+<table>
+  <tr><th><!--@Compound Selectors (OK)-->复合选择器（可以使用）</th><th><!--@Complex Selectors (Not OK)-->复杂选择器（不能使用）</th></tr>
+  <tr><td><code>a</code></td><td><code>div p</code></td></tr>
+  <tr><td><code>iframe.special[src^='http']</code></td><td><code>p&gt;span.highlight</code></td></tr>
+  <tr><td><code>ns|*</code></td><td><code>p + ol</code></td></tr>
+  <tr><td><code>#abcd:checked</code></td><td><code>p::first-line</code></td></tr>
+</table>
+
+<p><!--@CSS conditions only match displayed elements: if an element that matches your
+selector is <code>display:none</code> or one of its parent elements
+is <code>display:none</code>, it doesn't cause the condition to match.  Elements
+styled with <code>visibility:hidden</code>, positioned off-screen, or hidden by
+other elements can still make your condition match.-->
+CSS 条件只匹配显示的元素：如果匹配您的选择器的元素或者它的某个父元素为
+<code>display:none</code>，这样不会使条件匹配。具有
+<code>visibility:hidden</code>
+样式、位置在屏幕以外或者被其他元素隐藏的元素仍然可以使您的条件匹配。
 </p>
