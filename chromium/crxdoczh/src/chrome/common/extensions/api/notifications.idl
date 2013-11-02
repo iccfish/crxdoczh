@@ -8,16 +8,20 @@
 // 通过模板创建丰富通知，并在系统托盘中向用户显示这些通知。
 namespace notifications {
   [noinline_doc] enum TemplateType {
-    // icon, title, message, expandedMessage, up to two buttons
+    // <!--@icon, title, message, expandedMessage, up to two buttons-->
+    // 包含图标、标题、消息、辅助消息以及最多两个按钮。
     basic,
 
-    // icon, title, message, expandedMessage, image, up to two buttons
+    // <!--@icon, title, message, expandedMessage, image, up to two buttons-->
+    // 包含图标、标题、消息、辅助消息、图片以及最多两个按钮。
     image,
 
-    // icon, title, message, items, up to two buttons
+    // <!--@icon, title, message, items, up to two buttons-->
+    // 包含图标、标题、消息、项目以及最多两个按钮。
     list,
 
-    // icon, title, message, progress, up to two buttons
+    // <!--@icon, title, message, progress, up to two buttons-->
+    // 包含图标、标题、消息、进度条以及最多两个按钮。
     progress
   };
 
