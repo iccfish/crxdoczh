@@ -71,6 +71,12 @@
             "description": "语音的性别，\"male\" 表示男性，\"female\" 表示女性。",
             "enum": ["male", "female"]
           },
+          "remote": {
+            "type": "boolean",
+            "optional": true,
+//@            "description": "If true, the synthesis engine is a remote network resource. It may be higher latency and may incur bandwidth costs."
+            "description": "如果为 true，综合引擎是远程网络资源，可能有较高的延迟并且会增加带宽的开销。"
+          },
           "extensionId": {
             "type": "string",
             "optional": true,

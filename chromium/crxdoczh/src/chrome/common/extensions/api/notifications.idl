@@ -201,6 +201,10 @@ namespace notifications {
     // <!--@The user changes the permission level.-->
     // 用户更改了权限级别。
     static void onPermissionLevelChanged(PermissionLevel level);
+
+    // <!--@The user clicked on a link for the app's notification settings.-->
+    // 用户单击了应用的通知设置链接。
+    static void onShowSettings();
   };
 
 };
