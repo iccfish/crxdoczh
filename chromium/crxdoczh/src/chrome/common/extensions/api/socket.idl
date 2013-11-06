@@ -123,6 +123,10 @@ namespace socket {
     // <!--@The available IPv4/6 address.-->
     // 可用的 IPv4/6 地址。
     DOMString address;
+
+    // <!--@The prefix length-->
+    // 前缀长度。
+    long prefixLength;
   };
 
   callback RecvFromCallback = void (RecvFromInfo recvFromInfo);
