@@ -41,8 +41,8 @@
         "properties": {
 //@          "contextID": {"type": "integer", "description": "This is used to specify targets of text field operations.  This ID becomes invalid as soon as onBlur is called."},
           "contextID": {"type": "integer", "description": "该属性用来指定文本框操作的目标，一旦接收到 onBlur 事件该标识符就不再有效。"},
-//@          "type": {"type": "string", "description": "Type of value this text field edits, (Text, Number, Password, etc)", "enum": ["text", "number", "password"]}
-          "type": {"type": "string", "description": "该文本框编辑的值的类型：\"text\"（文本）、\"number\"（数字）、\"password\"（密码）等。", "enum": ["text", "number", "password"]}
+//@          "type": {"type": "string", "description": "Type of value this text field edits, (Text, Number, URL, etc)", "enum": ["text", "search", "tel", "url", "email", "number"]}
+          "type": {"type": "string", "description": "该文本框编辑的值的类型：文本、数字、URL 等。Type of value this text field edits, (Text, Number, URL, etc)", "enum": ["text", "search", "tel", "url", "email", "number"]}
         }
       },
       {
