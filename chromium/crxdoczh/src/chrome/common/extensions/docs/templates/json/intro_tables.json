@@ -38,7 +38,7 @@
   "bluetooth": {
     "了解更多": [
       {
-        "link": "app_hardware.html",
+        "link": "app_usb.html",
         "text": "访问硬件设备"
       }
     ]
@@ -157,7 +157,7 @@
   "permissions": {
     "了解更多": [
       {
-        "link": "declare_permissions.html#host-permissions",
+        "link": "declare_permissions.html",
         "text": "声明权限"
       }
     ]
@@ -189,7 +189,7 @@
   "serial": {
     "了解更多": [
       {
-        "link": "app_hardware.html",
+        "link": "app_usb.html",
         "text": "访问硬件设备"
       }
     ]
@@ -265,7 +265,7 @@
   "usb": {
     "了解更多": [
       {
-        "link": "app_hardware.html",
+        "link": "app_usb.html",
         "text": "访问硬件设备"
       }
     ]
