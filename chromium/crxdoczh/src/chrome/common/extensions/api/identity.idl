@@ -127,6 +127,17 @@ namespace identity {
     // 调用时传递重定向回您的应用程序的 URL。
     static void launchWebAuthFlow(WebAuthFlowDetails details,
                                   LaunchWebAuthFlowCallback callback);
+
+    // <!--@Generates a redirect URL to be used in |launchWebAuthFlow|.-->
+    // 生成重定向 URL，以便在 <code>launchWebAuthFlow</code> 中使用。
+    //
+    // <!--@The generated URLs match the pattern-->
+    // 生成的 URL 匹配如下表达式
+    // <code>https://&lt;app-id&gt;.chromiumapp.org/*</code><!--@.-->。
+    //
+    // |path| : <!--@The path appended to the end of the generated URL.-->
+    // 附加到生成的 URL 末尾的路径。
+    [nocompile] static DOMString getRedirectURL(optional DOMString path);
   };
 
   interface Events {
