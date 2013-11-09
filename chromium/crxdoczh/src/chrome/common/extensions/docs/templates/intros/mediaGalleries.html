@@ -60,18 +60,29 @@ in the table below:-->
       </td>
     </tr>
     <tr>
+      <td>"delete"</td>
+      <td>
+        <!--@Grants your app the right to delete files from media galleries.
+        "read" permission is a prerequisite for "delete". Specify both "read"
+        and "delete" to obtain both types of permissions to media galleries.-->
+      授予您的应用从媒体库删除文件的权限，"read" 权限是 "delete"
+      的前提条件，同时指定 "read" 与 "delete" 获得这两种访问媒体库的权限。
+      </td>
+    </tr>
+    <tr>
       <td>"copyTo"</td>
       <td>
         <!--@Grants your app the right to copy files into media galleries.
         Only valid media files that Chrome is capable of playing or displaying
         are permitted; files that Chrome is not able to validate will result
-        in a security error. "read" permission is a prerequisite for "copyTo".
-        Specify both "read" and "copyTo" to obtain both types of permissions to
-        media galleries.-->
+        in a security error. "read" and "delete" permissions are prerequisites
+        for "copyTo". Specify "read", "delete" and "copyTo" to obtain all three
+        types of permissions to media galleries.-->
         授予您的应用向媒体库复制文件的权限，只允许 Chrome
         浏览器能够播放或显示的有效媒体文件，复制 Chrome
-        浏览器无法验证的文件将导致安全错误。"read" 权限是 "copyTo"
-        的前提条件，同时指定 "read" 和 "copyTo" 获得这两种媒体库的访问权限。
+        浏览器无法验证的文件将导致安全错误。"read" 与 "delete" 权限是
+        "copyTo" 的前提条件，同时指定 "read"、"delete" 和 "copyTo"
+        获得媒体库的所有访问权限。
       </td>
     </tr>
 </table>
