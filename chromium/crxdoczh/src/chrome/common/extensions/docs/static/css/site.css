@@ -385,7 +385,11 @@ button.google-button:active {
 /* Avoid line-break in table headers of intro so that Chinese translations
  * look much better.
  */
-#gc-pagecontent table.intro tr td:first-child {
+table.intro tr td:first-child {
+  white-space: nowrap;
+}
+
+table.simple tr td:first-child {
   white-space: nowrap;
 }
 
