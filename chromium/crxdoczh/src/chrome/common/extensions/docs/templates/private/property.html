@@ -7,11 +7,15 @@
     )
   </span>
 </dt>
-{{?description}}<dd>
+<dd>
+{{?description}}
   {{{description}}}
-</dd>{{/description}}
+{{/description}}
 {{+partials.enum_descriptions values:enum_values}}
 {{?array.is_object}}
-  <h4><!--@Properties of each item-->每一个项目的属性</h4>
-  {{+partials.type @:array}}
+  <h5><!--@Properties of each object in --><span class="variable">{{name}}</span> 中每一个对象的属性</h5>
+  <dl>
+    {{+partials.type @:array}}
+  </dl>
 {{/array.is_object}}
+</dd>
