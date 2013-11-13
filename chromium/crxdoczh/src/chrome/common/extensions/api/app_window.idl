@@ -284,6 +284,10 @@ namespace app.window {
     // <!--@The JavaScript 'window' object for the created child.-->
     // 已创建子窗口的 JavaScript window 对象。
     [instanceOf=Window] object contentWindow;
+
+    // <!--@The id the window was created with.-->
+    // 创建窗口时指定的标识符。
+    DOMString id;
   };
 
   interface Functions {
@@ -323,6 +327,16 @@ namespace app.window {
     // otherWindow.chrome.app.window.current()。
     [nocompile] static AppWindow current();
     [nocompile, nodoc] static void initializeAppWindow(object state);
+
+    // <!--@Gets an array of all currently created app windows.-->
+    // 获取所有当前创建的应用窗口数组。
+    [nocompile] static AppWindow[] getAll();
+
+    // <!--@Gets an $ref:AppWindow with the given id. If no window with the given id
+    // exists null is returned.-->
+    // 获取指定标识符的 $ref:AppWindow 对象，如果没有指定标识符的窗口则返回
+    // null。
+    [nocompile] static AppWindow get(DOMString id);
   };
 
   interface Events {
