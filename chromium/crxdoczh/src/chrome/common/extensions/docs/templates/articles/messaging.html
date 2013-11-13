@@ -331,7 +331,7 @@ standard output streams.-->
 <h3 id="native-messaging-host"><!--@Native messaging host-->原生消息通信宿主</h3>
 <p>
 <!--@In order to register a native messaging host the application must install a
-manifest file that defines native messaging host configuration. Below is an
+manifest file that defines the native messaging host configuration. Below is an
 example of the manifest file:-->
 为了注册一个原生消息通信宿主，应用程序必须安装一个清单文件，定义原生消息通信宿主的配置。如下是这一清单文件的例子：
 <pre data-filename="manifest.json">
@@ -355,7 +355,11 @@ example of the manifest file:-->
   </tr>
   <tr>
     <td><code>name</code></td>
-    <td><!--@Native messaging host name.-->消息通信宿主的名称。</td>
+    <td><!--@Name of the native messaging host. Clients pass this string to
+    $ref:runtime.connectNative or $ref:runtime.sendNativeMessage.-->
+    原生消息通信宿主的名称，客户端需要将该字符串传递给
+    $ref:runtime.connectNative 或 $ref:runtime.sendNativeMessage。
+    </td>
   </tr>
   <tr>
     <td><code>description</code></td>
@@ -399,19 +403,19 @@ example of the manifest file:-->
     <dd><!--@The manifest file can be located anywhere in the file system.
      The application installer must create registry key-->
      清单文件可以在文件系统中的任意位置，应用程序的安装程序必须创建如下注册表键
-     <code>HKEY_LOCAL_MACHINE\SOFTWARE\Google\Chrome\NativeMessagingHosts\<em>host_name</em></code><!--
+     <code>HKEY_LOCAL_MACHINE\SOFTWARE\Google\Chrome\NativeMessagingHosts\<em>com.my_company.my_application</em></code><!--
      and set default value of that key to the full path to the manifest file.-->，并将键的默认值设置为清单文件的完整路径。
     </dd>
 
   <dt>OSX<!--@:-->：</dt>
     <dd><!--@The manifest file must be placed at-->
     清单文件必须位于
-    <code>/Library/Google/Chrome/NativeMessagingHosts/<em>host_name</em>.json</code>
+    <code>/Library/Google/Chrome/NativeMessagingHosts/<em>com.my_company.my_application</em>.json</code>
     </dd>
   <dt>Linux<!--@:-->：</dt>
     <dd><!--@The manifest file must be placed at-->
     清单文件必须位于
-    <code>/etc/opt/chrome/native-messaging-hosts/<em>host_name</em>.json</code>
+    <code>/etc/opt/chrome/native-messaging-hosts/<em>com.my_company.my_application</em>.json</code>
     </dd>
 </dl>
 
