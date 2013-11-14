@@ -117,6 +117,17 @@ Google 云端硬盘账户。当用户在新的客户端打开文本编辑器时�
 云端硬盘会将新的文本文件推送至该文本编辑器的实例。
 </p>
 
+<p>
+<!--@Note: Unlike regular Filesystem API, Chrome's Sync Filesystem API
+currently does <b>NOT</b> support directory operations, except for
+reading directory entries in the root directory.
+An attempt to create a directory in Sync Filesystem will result
+in INVALID_MODIFICATION_ERROR.-->
+注意：与普通的文件系统 API 不同，Chrome 浏览器的同步文件系统 API
+当前<b>还不</b>支持目录操作，除了在根目录中读取目录项。尝试在同步文件系统中创建目录会导致
+INVALID_MODIFICATION_ERROR 错误。
+</p>
+
 <h2 id="filesystem"><!--@Using the Chrome Filesystem API-->使用 Chrome
  浏览器的文件系统 API</h2>
 <h3 id="filesystem-manifest"><!--@Adding file system permission-->添加文件系统权限</h3>
