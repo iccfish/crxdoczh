@@ -69,7 +69,8 @@
             "optional": true
           },
           "isApp": {
-            "description": "True if this is an app.",
+//@            "description": "True if this is an app.",
+            "description": "如果是应用则为 true。",
             "type": "boolean",
 //@            "deprecated": "Please use $ref:ExtensionInfo.type."
             "deprecated": "请使用 $ref:ExtensionInfo.type。"
