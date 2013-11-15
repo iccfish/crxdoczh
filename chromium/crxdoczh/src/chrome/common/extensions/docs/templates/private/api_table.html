@@ -1,11 +1,11 @@
 <table>
-  <tr><th><!--@Name-->名称</th><th><!--@Description-->描述</th>{{?is_stable}}<th><!--@Since-->最低版本</th>{{/}}</tr>
+  <tr><th><!--@Name-->名称</th><th><!--@Description-->描述</th>{{?is_stable}}<th style="white-space:nowrap;"><!--@Since-->最低版本</th>{{/}}</tr>
   {{#a:apis}}
    <tr>
      <td><a href="{{a.name}}.html">{{a.name}}</a></td>
      <td>{{{a.description}}}</td>
      {{?a.version}}
-     <td>{{a.version}}</td>
+     <td style="text-align:center;">{{a.version}}</td>
      {{/a.version}}
    </tr>
   {{/apis}}
