@@ -21,8 +21,8 @@
           "windowId": {"type": "integer", "minimum": 0, "description": "标签页所在窗口的标识符。"},
 //@          "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab that opened this tab, if any. This property is only present if the opener tab still exists."},
           "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "打开这一标签页的标签页标识符（如果存在的话），只有该标签页仍然存在时才会有这一属性。"},
-//@          "selected": {"type": "boolean", "description": "Whether the tab is selected.", "nodoc": true},
-          "selected": {"type": "boolean", "description": "标签页是否选中。", "nodoc": true},
+//@          "selected": {"type": "boolean", "description": "Whether the tab is selected.", "deprecated": "Please use $ref:Tab.highlighted."},
+          "selected": {"type": "boolean", "description": "标签页是否选中。", "deprecated": "请使用 $ref:Tab.highlighted。"},
 //@          "highlighted": {"type": "boolean", "description": "Whether the tab is highlighted."},
           "highlighted": {"type": "boolean", "description": "标签页是否高亮突出。"},
 //@          "active": {"type": "boolean", "description": "Whether the tab is active in its window. (Does not necessarily mean the window is focused.)"},
@@ -139,11 +139,12 @@
       },
       {
         "name": "sendRequest",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:runtime.sendMessage.",
+        "deprecated": "请使用 $ref:runtime.sendMessage。",
         "nocompile": true,
         "type": "function",
-//@        "description": "Deprecated: Please use sendMessage.",
-        "description": "已弃用。请使用 sendMessage。",
+//@        "description": "Sends a single request to the content script(s) in the specified tab, with an optional callback to run when a response is sent back.  The $ref:extension.onRequest event is fired in each content script running in the specified tab for the current extension.",
+        "description": "向指定标签页中的内容脚本发送一个消息，当发回响应时执行一个可选的回调函数。当前扩展程序在指定标签页中的每一个内容脚本都会收到 $ref:extension.onRequest 事件。",
         "parameters": [
           {
             "type": "integer",
@@ -162,7 +163,8 @@
               {
                 "name": "response",
                 "type": "any",
-                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
+//@                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
+                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $ref:runtime.lastError 设置为错误消息。"
               }
             ]
           }
@@ -201,16 +203,19 @@
       },
       {
         "name": "getSelected",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:query <code>{active: true}</code>.",
+        "deprecated": "请使用 $ref:query <code>{active: true}</code>。",
         "type": "function",
-        "description": "Deprecated. Please use query({'active': true}). Gets the tab that is selected in the specified window.",
+//@        "description": "Gets the tab that is selected in the specified window.",
+        "description": "获取指定窗口中选定的标签页。",
         "parameters": [
           {
             "type": "integer",
             "name": "windowId",
             "minimum": -2,
             "optional": true,
-            "description": "Defaults to the <a href='windows.html#current-window'>current window</a>."
+//@            "description": "Defaults to the <a href='windows.html#current-window'>current window</a>."
+            "description": "默认为<a href='windows.html#current-window'>当前窗口</a>。"
           },
           {
             "type": "function",
@@ -224,15 +229,18 @@
       {
         "name": "getAllInWindow",
         "type": "function",
-        "nodoc": true,
-        "description": "Deprecated. Please use query({'windowId': windowId}). Gets details about all tabs in the specified window.",
+//@        "deprecated": "Please use $ref:query <code>{windowId: windowId}</code>.",
+        "deprecated": "请使用 $ref:query <code>{windowId: windowId}</code>。",
+//@        "description": "Gets details about all tabs in the specified window.",
+        "description": "获取指定窗口中所有标签页的详情。",
         "parameters": [
           {
             "type": "integer",
             "name": "windowId",
             "minimum": -2,
             "optional": true,
-            "description": "Defaults to the <a href='windows.html#current-window'>current window</a>."
+//@            "description": "Defaults to the <a href='windows.html#current-window'>current window</a>."
+            "description": "默认为<a href='windows.html#current-window'>当前窗口</a>。"
             },
           {
             "type": "function",
@@ -280,10 +288,12 @@
                 "description": "标签页是否应该成为窗口中的活动标签页，不影响窗口是否有焦点（参见 $ref:windows.update），默认为 <var>true</var>。"
               },
               "selected": {
-                "nodoc": true,
+//@                "deprecated": "Please use <em>active</em>.",
+                "deprecated": "请使用 <em>active</em>。",
                 "type": "boolean",
                 "optional": true,
-                "description": "Whether the tab should become the selected tab in the window. Defaults to <var>true</var>"
+//@                "description": "Whether the tab should become the selected tab in the window. Defaults to <var>true</var>"
+                "description": "标签页是否为窗口中的选定标签页，默认为 <var>true</var>。"
               },
               "pinned": {
                 "type": "boolean",
@@ -519,7 +529,8 @@
                 "description": "从当前选定项目中添加或删除标签页。"
               },
               "selected": {
-                "nodoc": true,
+//@                "deprecated": "Please use <em>highlighted</em>.",
+                "deprecated": "请使用 <em>highlighted</em>。",
                 "type": "boolean",
                 "optional": true,
                 "description": "Whether the tab should be selected."
@@ -863,15 +874,18 @@
       },
       {
         "name": "onSelectionChanged",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:onActivated.",
+        "deprecated": "请使用 $ref:onActivated。",
         "type": "function",
-        "description": "Deprecated. Please use onActivated.",
+//@        "description": "Fires when the selected tab in a window changes.",
+        "description": "窗口中的选定标签页更改时产生。",
         "parameters": [
           {
             "type": "integer",
             "name": "tabId",
             "minimum": 0,
-            "description": "The ID of the tab that has become active."
+//@            "description": "The ID of the tab that has become active."
+            "description": "变成活动标签页的标签页标识符。"
           },
           {
             "type": "object",
@@ -880,7 +894,8 @@
               "windowId": {
                 "type": "integer",
                 "minimum": 0,
-                "description": "The ID of the window the selected tab changed inside of."
+//@                "description": "The ID of the window the selected tab changed inside of."
+                "description": "选定标签页更改的窗口标识符。"
               }
             }
           }
@@ -888,15 +903,18 @@
       },
       {
         "name": "onActiveChanged",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:onActivated.",
+        "deprecated": "请使用 $ref:onActivated。",
         "type": "function",
-        "description": "Deprecated. Please use onActivated.",
+//@        "description": "Fires when the selected tab in a window changes. Note that the tab's URL may not be set at the time this event fired, but you can listen to $ref:onUpdated events to be notified when a URL is set.",
+        "description": "窗口中的选定标签页更改时产生。注意，该事件产生时标签页的 URL 可能还没有设置，但是您可以监听 $ref:onUpdated 事件，当 URL 设置时收到通知。",
         "parameters": [
           {
             "type": "integer",
             "name": "tabId",
             "minimum": 0,
-            "description": "The ID of the tab that has become active."
+//@            "description": "The ID of the tab that has become active."
+            "description": "变成活动标签页的标签页标识符。"
           },
           {
             "type": "object",
@@ -905,7 +923,8 @@
               "windowId": {
                 "type": "integer",
                 "minimum": 0,
-                "description": "The ID of the window the selected tab changed inside of."
+//@                "description": "The ID of the window the selected tab changed inside of."
+                "description": "选定标签页更改的窗口标识符。"
               }
             }
           }
@@ -939,9 +958,11 @@
       },
       {
         "name": "onHighlightChanged",
+//@        "deprecated": "Please use $ref:onHighlighted.",
+        "deprecated": "请使用 $ref:onHighlighted。",
         "type": "function",
-        "nodoc": true,
-        "description": "Deprecated. Please use onHighlighted.",
+//@        "description": "Fired when the highlighted or selected tabs in a window changes.",
+        "description": "窗口中高亮或选定标签页更改时产生。",
         "parameters": [
           {
             "type": "object",
@@ -950,13 +971,15 @@
               "windowId": {
                 "type": "integer",
                 "minimum": 0,
-                "description": "The window whose tabs changed."
+//@                "description": "The window whose tabs changed."
+                "description": "标签页更改的窗口。"
               },
               "tabIds": {
                 "type": "array",
                 "name": "tabIds",
                 "items": {"type": "integer", "minimum": 0},
-                "description": "All highlighted tabs in the window."
+//@                "description": "All highlighted tabs in the window."
+                "description": "窗口中的所有高亮标签页。"
               }
             }
           }

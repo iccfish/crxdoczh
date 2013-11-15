@@ -334,6 +334,7 @@ class Property(object):
   - |description| a description of the property (if provided)
   - |type_| the model.Type of this property
   - |simple_name| the name of this Property without a namespace
+  - |deprecated| a reason and possible alternative for a deprecated property
   """
   def __init__(self, parent, name, json, namespace, origin):
     """Creates a Property from JSON.
@@ -347,6 +348,7 @@ class Property(object):
     self.description = json.get('description', None)
     self.optional = json.get('optional', None)
     self.instance_of = json.get('isInstanceOf', None)
+    self.deprecated = json.get('deprecated')
 
     # HACK: only support very specific value types.
     is_allowed_value = (

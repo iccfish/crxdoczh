@@ -1,43 +1,35 @@
 <h1 class="page_title">Chrome <!--@Platform APIs-->平台 API</h1>
-{{?is_apps}}
 <p class="doc-family apps">
-<!--@Chrome provides many special-purpose APIs like
-<code>chrome.runtime</code> and <code>chrome.alarms</code>
-to Chrome Apps.-->
-Chrome 浏览器为 Chrome 应用提供了许多专用 API，例如
+<!--@Chrome provides {{platform}}s with many special-purpose APIs like
+<code>chrome.runtime</code> and <code>chrome.alarms</code>.-->
+Chrome 浏览器为{{title}}提供了许多专用 API，例如
 <code>chrome.runtime</code> 与 <code>chrome.alarms</code>。
 </p>
-{{:is_apps}}
-<p class="doc-family extensions">
-<!--@Chrome provides APIs such as
-<code>chrome.bookmarks</code> and <code>chrome.tab</code>
-so that extensions can interact with the browser.-->
-Chrome 浏览器提供了许多 API，例如 <code>chrome.bookmarks</code> 和
-<code>chrome.tabs</code>，以便扩展程序与浏览器交互。
-</p>
-{{/is_apps}}
 
-<h2 id="supported"><!--@Supported APIs-->支持的 API</h2>
-
+{{?stable_apis}}
+<h2 id="stable_apis"><!--@Stable APIs-->稳定的 API</h2>
 <p>
-<!--@Here are the supported chrome.* APIs:-->
-如下是支持的 chrome.* API：
+{{+partials.api_table apis:stable_apis is_stable:true}}
 </p>
+{{/stable_apis}}
 
-<ul>
-  {{?is_apps}}
-  {{#api_list.apps.chrome}}
-  <li><a href="{{name}}.html">{{name}}</a></li>
-  {{/api_list.apps.chrome}}
-  {{:is_apps}}
-  {{#api_list.extensions.chrome}}
-  <li><a href="{{name}}.html">{{name}}</a></li>
-  {{/api_list.extensions.chrome}}
-  {{/is_apps}}
-</ul>
+{{?beta_apis}}
+<h2 id="beta_apis"><!--@Beta APIs-->Beta 测试的 API</h2>
+<p><!--@These APIs are only available in the Chrome Beta and Dev channels:-->
+这些 API 仅在 Beta 与 Dev 分支的 Chrome 浏览器中可用：
+{{+partials.api_table apis:beta_apis is_stable:false}}
+</p>
+{{/beta_apis}}
+
+{{?dev_apis}}
+<h2 id="dev_apis"><!--@Dev APIs-->开发中的 API</h2>
+<p><!--@These APIs are only available in the Chrome Dev channel:-->
+这些 API 仅在 Dev 分支的 Chrome 浏览器中可用：
+{{+partials.api_table apis:dev_apis is_stable:false}}
+</p>
+{{/dev_apis}}
 
 <h2 id="experimental"><!--@Experimental APIs-->实验性 API</h2>
-
 <p>
 <!--@Chrome also has
 <a href="experimental.html">experimental APIs</a>,

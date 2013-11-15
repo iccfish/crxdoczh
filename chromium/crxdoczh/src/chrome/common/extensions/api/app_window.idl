@@ -134,14 +134,11 @@ namespace app.window {
 
     // <!--@If true, the window will stay above most other windows. If there are
     // multiple windows of this kind, the currently focused window will be in
-    // the foreground. Requires the <code>"alwaysOnTopWindows"</code>
-    // permission. Defaults to false.<br>
-    // Call <code>setAlwaysOnTop()</code> on the window to change this property
-    // after creation.-->
+    // the foreground. Defaults to false. Call <code>setAlwaysOnTop()</code> on
+    // the window to change this property after creation.-->
     // 如果为
-    // true，窗口会保持在其他大部分窗口之上。如果有多个这样的窗口，当前具有焦点的窗口会在前台。需要
-    // <code>"alwaysOnTopWindows"</code> 权限，默认为 false。创建窗口后调用
-    // <code>setAlwaysOnTop</code> 修改该属性。
+    // true，窗口会保持在其他大部分窗口之上。如果有多个这样的窗口，当前具有焦点的窗口会在前台，默认为
+    // false。创建窗口后调用 <code>setAlwaysOnTop</code> 修改该属性。
     boolean? alwaysOnTop;
   };
 
@@ -280,10 +277,8 @@ namespace app.window {
     // 窗口是否前端显示。
     static boolean isAlwaysOnTop();
 
-    // <!--@Set whether the window should stay above most other windows. Requires the
-    // <code>"alwaysOnTopWindows"</code> permission.-->
-    // 设置窗口是否应该前端显示。需要 <code>"alwaysOnTopWindows"</code>
-    // 权限。
+    // <!--@Set whether the window should stay above most other windows.-->
+    // 设置窗口是否应该前端显示。
     static void setAlwaysOnTop(boolean alwaysOnTop);
 
     // <!--@The JavaScript 'window' object for the created child.-->

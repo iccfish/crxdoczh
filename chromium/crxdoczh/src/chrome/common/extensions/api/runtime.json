@@ -450,7 +450,8 @@
         "type": "function",
 //@        "description": "Fired when a Chrome update is available, but isn't installed immediately because a browser restart is required.",
         "description": "当 Chrome 浏览器的更新可用，但是由于需要浏览器重新启动而没有立即安装时产生。",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:onRestartRequired.",
+        "deprecated": "请使用 $ref:onRestartRequired。",
         "parameters": []
       },
       {

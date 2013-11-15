@@ -32,12 +32,15 @@
       {
         "name": "sendRequest",
         "nocompile": true,
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:runtime.sendMessage.",
+        "deprecated": "请使用 $ref:runtime.sendMessage。",
         "type": "function",
         "allowAmbiguousOptionalArguments": true,
-        "description": "Deprecated: Please use sendMessage.",
+//@        "description": "Sends a single request to other listeners within the extension. Similar to $ref:runtime.connect, but only sends a single request with an optional response. The $ref:onRequest event is fired in each page of the extension.",
+        "description": "向扩展程序中的其他监听者（或另一个扩展程序/应用）发送单个请求。与 $ref:runtime.connect 类似，但是只发送具有可选回应的单个请求。$ref:onRequest 事件将在扩展程序的每一个页面中产生。",
         "parameters": [
-          {"type": "string", "name": "extensionId", "optional": true, "description": "The extension ID of the extension you want to connect to. If omitted, default is your own extension."},
+//@          {"type": "string", "name": "extensionId", "optional": true, "description": "The extension ID of the extension you want to connect to. If omitted, default is your own extension."},
+          {"type": "string", "name": "extensionId", "optional": true, "description": "您希望连接的扩展程序标识符，如果省略，默认为您自己的扩展程序。"},
           { "type": "any", "name": "request" },
           {
             "type": "function",
@@ -47,7 +50,8 @@
               {
                 "name": "response",
                 "type": "any",
-                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
+//@                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
+                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $ref:runtime.lastError 设置为错误消息。"
               }
             ]
           }
@@ -131,16 +135,19 @@
       {
         "name": "getExtensionTabs",
         "nocompile": true,
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:getViews <code>{type: \"tab\"}</code>.",
+        "deprecated": "请使用 $ref:getViews <code>{type: \"tab\"}</code>。",
         "type": "function",
         "maximumManifestVersion": 1,
-        "description": "Deprecated. Please use getViews({type: 'TAB'}). Returns an array of the JavaScript 'window' objects for each of the tabs running inside the current extension. If windowId is specified, returns only the 'window' objects of tabs attached to the specified window.",
+//@        "description": "Returns an array of the JavaScript 'window' objects for each of the tabs running inside the current extension. If <code>windowId</code> is specified, returns only the 'window' objects of tabs attached to the specified window.",
+        "description": "返回包含 JavaScript 'window' 对象的数组，对应当前扩展程序中运行的每一个标签页。如果指定了 <code>windowId</code>，只返回附加到指定窗口的标签页的 'window' 对象。",
         "parameters": [
           {"type": "integer", "name": "windowId", "optional": true}
         ],
         "returns": {
           "type": "array",
-          "description": "Array of global window objects",
+//@          "description": "Array of global window objects",
+          "description": "全局 window 对象数组。",
           "items": {
             "type": "object",
             "name": "tabGlobals",
@@ -204,30 +211,38 @@
     "events": [
       {
         "name": "onRequest",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:runtime.onMessage.",
+        "deprecated": "请使用 $ref:runtime.onMessage。",
         "type": "function",
         "options": {
           "unmanaged": true
         },
-        "description": "Deprecated: please use onMessage.",
+//@        "description": "Fired when a request is sent from either an extension process or a content script.",
+        "description": "扩展程序进程或内容脚本发送请求时产生。",
         "parameters": [
-          {"name": "request", "type": "any", "optional": true, "description": "The request sent by the calling script."},
+//@          {"name": "request", "type": "any", "optional": true, "description": "The request sent by the calling script."},
+          {"name": "request", "type": "any", "optional": true, "description": "调用脚本发送的请求。"},
           {"name": "sender", "$ref": "runtime.MessageSender" },
-          {"name": "sendResponse", "type": "function", "description": "Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object, or undefined if there is no response. If you have more than one <code>onRequest</code> listener in the same document, then only one may send a response." }
+//@          {"name": "sendResponse", "type": "function", "description": "Function to call (at most once) when you have a response. The argument should be any JSON-ifiable object, or undefined if there is no response. If you have more than one <code>onRequest</code> listener in the same document, then only one may send a response." }
+          {"name": "sendResponse", "type": "function", "description": "有响应时调用的函数（最多调用一次），参数必须是可以转换为 JSON 的对象，或者没有响应时为 undefined。如果在同一文档中有多个 <code>onRequest</code> 监听器，只有其中一个可以发送响应。" }
         ]
       },
       {
         "name": "onRequestExternal",
-        "nodoc": true,
+//@        "deprecated": "Please use $ref:runtime.onMessageExternal.",
+        "deprecated": "请使用 $ref:runtime.onMessageExternal。",
         "type": "function",
         "options": {
           "unmanaged": true
         },
-        "description": "Deprecated: please use onMessageExternal.",
+//@        "description": "Fired when a request is sent from another extension.",
+        "description": "请求从另一个扩展程序发送时产生。",
         "parameters": [
-          {"name": "request", "type": "any", "optional": true, "description": "The request sent by the calling script."},
+//@          {"name": "request", "type": "any", "optional": true, "description": "The request sent by the calling script."},
+          {"name": "request", "type": "any", "optional": true, "description": "调用脚本发送的请求。"},
           {"name": "sender", "$ref": "runtime.MessageSender" },
-          {"name": "sendResponse", "type": "function", "description": "Function to call when you have a response. The argument should be any JSON-ifiable object, or undefined if there is no response." }
+//@          {"name": "sendResponse", "type": "function", "description": "Function to call when you have a response. The argument should be any JSON-ifiable object, or undefined if there is no response." }
+          {"name": "sendResponse", "type": "function", "description": "有响应时调用的函数（最多调用一次），参数必须是可以转换为 JSON 的对象，或者没有响应时为 undefined。" }
         ]
       }
     ]
