@@ -68,13 +68,13 @@ href="storage.html">存储 API</a>
     <th><!--@Permission-->权限</th>
     <th><!--@Description-->描述</th>
   </tr>
-  {{#permissions}}
-  <tr id="{{anchor}}">
+  {{#p:permissions}}
+  <tr id="{{p.anchor}}">
     <td>
-      <code>"{{name}}"</code>
+      <code>"{{p.name}}"</code>
     </td>
     <td>
-      {{+description platform:platform name:name title:title}}
+      {{+p.description platform:platform name:p.name title:title/}}
     </td>
   </tr>
   {{/permissions}}

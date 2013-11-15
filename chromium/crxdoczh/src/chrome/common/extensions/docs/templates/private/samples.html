@@ -5,15 +5,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    {{+partials.header_head}}
+    {{+partials.header_head/}}
     <link href="{{static}}/css/samples.css" rel="stylesheet" type="text/css">
     <!--@<title>Sample {{title}} - Google Chrome {{title}}</title>-->
     <title>示例{{title}} - Google Chrome {{title}}开发文档（非官方中文版）</title>
   </head>
   <body>
-    {{+partials.header_body}}
+    {{+partials.header_body platform:platform title:title/}}
     <div id="gc-container">
-      {{+partials.sidenav items:sidenav}}
+      {{+partials.sidenav items:sidenav/}}
       <div id="gc-pagecontent">
         <h1 class="page_title"><!--@Sample -->示例{{title}}</h1>
         <div id="controls">
@@ -26,16 +26,14 @@
               <td class="label"><!--@Filter by API:-->按照 API 过滤：</td>
               <td>
                 <div id="api_filter_items">
-                   {{#filter_list.all}}{{+partials.filter_item}}{{/}}<br>
+                   {{#filter:filter_list.all +partials.filter_item item:filter/}}<br>
                 </div>
               </td>
             </tr>
           </table>
         </div>
         {{?samples_list}}
-          {{#samples_list}}
-            {{+partials.sample_item}}
-          {{/samples_list}}
+          {{#s:samples_list +partials.sample_item sample:s/}}
         {{:samples_list}}
           <p><!--There was a problem fetching the sample {{title}}, but they may be
           available directly from the <a href="{{samples_url}}">source</a>.-->获取示例{{title}}时遇到问题，但是可能可以直接通过<a href="{{samples_url}}">源代码</a>访问。</p>
@@ -43,6 +41,6 @@
       </div>
     </div>
   </body>
-  {{+partials.footer}}
+  {{+partials.footer/}}
   <script src="{{static_zh_cn}}/js/samples.js" type="text/javascript"></script>
 </html>
