@@ -1,0 +1,36 @@
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+<p><!--@You must declare the "wallpaper" permission in the app
+<a href="manifest.html">manifest</a> to use the wallpaper API.
+For example:-->
+您必须在应用的<a href="manifest.html">清单文件</a>中声明 "wallpaper"
+权限才能使用壁纸 API。例如：
+</p>
+<pre data-filename="manifest.json">
+{
+  "name": "我的应用",
+  ...
+  <b>"permissions": [
+    "wallpaper"
+  ]</b>,
+  ...
+}</pre>
+
+<h2 id="overview-examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@For example, to set the wallpaper as the image at
+<code>http://example.com/a_file.png</code>, you can call
+<code>chrome.wallpaper.setWallpaper</code> this way:-->
+例如如果要将壁纸设置为图片
+<code>http://example.com/a_file.png</code>，您可以以如下方式调用
+<code>chrome.wallpaper.setWallpaper</code>：
+</p>
+
+<pre>
+chrome.wallpaper.setWallpaper(
+    {
+      'url': 'http://example.com/a_file.jpg',
+      'layout': 'CENTER_CROPPED',
+      'name': 'test_wallpaper'
+    }, function() {});
+</pre>
