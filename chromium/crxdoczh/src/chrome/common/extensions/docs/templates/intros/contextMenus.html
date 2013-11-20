@@ -22,13 +22,17 @@ into a single parent menu.-->
 </p>
 
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
-<p><!--@You must declare the "contextMenus" permission
-in your extension's manifest to use the API.
+<p>
+<!--@You must declare the "contextMenus" permission
+in your {{platform}}'s manifest to use the API.
+{{^is_apps}}
 Also, you should specify a 16x16-pixel icon
 for display next to your menu item.
+{{/is_apps}}
 For example:-->
-您必须在扩展程序的清单文件中声明 "contextMenus" 权限才能使用有关
-API，您还应该指定一个 16×16 像素的图标，显示在您的菜单项旁边。例如：
+您必须在{{title}}的清单文件中声明 "contextMenus" 权限才能使用有关
+API{{^is_apps}}，您还应该指定一个 16×16
+像素的图标，显示在您的菜单项旁边{{/is_apps}}。例如：
 </p>
 
 <pre data-filename="manifest.json">
@@ -38,11 +42,13 @@ API，您还应该指定一个 16×16 像素的图标，显示在您的菜单项
   "permissions": [
     <b>"contextMenus"</b>
   ],
+{{^is_apps}}
   "icons": {
     <b>"16": "icon-bitty.png",</b>
     "48": "icon-small.png",
     "128": "icon-large.png"
   },
+{{/is_apps}}
   ...
 }
 </pre>
