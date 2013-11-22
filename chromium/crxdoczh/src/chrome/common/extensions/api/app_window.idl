@@ -331,14 +331,15 @@ namespace app.window {
     [nocompile] static AppWindow current();
     [nocompile, nodoc] static void initializeAppWindow(object state);
 
-    // <!--@Gets an array of all currently created app windows.-->
-    // 获取所有当前创建的应用窗口数组。
+    // <!--@Gets an array of all currently created app windows. This method is new in
+    // Chrome 33.-->
+    // 获取所有当前创建的应用窗口数组。该方法在 Chrome 33 中新增。
     [nocompile] static AppWindow[] getAll();
 
     // <!--@Gets an $ref:AppWindow with the given id. If no window with the given id
-    // exists null is returned.-->
+    // exists null is returned. This method is new in Chrome 33.-->
     // 获取指定标识符的 $ref:AppWindow 对象，如果没有指定标识符的窗口则返回
-    // null。
+    // null。该方法在 Chrome 33 中新增。
     [nocompile] static AppWindow get(DOMString id);
   };
 
