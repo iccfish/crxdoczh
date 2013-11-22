@@ -1,0 +1,181 @@
+// Copyright 2013 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+  {
+    "namespace": "gcm",
+//@    "description": "Use <code>chrome.gcm</code> to enable apps and extensions to send and receive messages through <a href='http://developer.android.com/google/gcm/index.html'>Google Cloud Messaging for Android</a>.",
+    "description": "使用 <code>chrome.gcm</code> 通过 <a href='https://developer.android.com/google/gcm/index.html'>Google Cloud Messaging for Android</a> 在应用和扩展程序中发送和接收消息。",
+    "properties": {
+      "MAX_MESSAGE_SIZE": {
+        "value": 4096,
+//@        "description": "The maximum size (in bytes) of all key/value pairs in a message."
+        "description": "消息中所有键/值对的最大大小（以字节为单位）。"
+      }
+    },
+    "functions": [
+      {
+        "name": "register",
+        "type": "function",
+//@        "description": "Registers the application with GCM. The registration ID will be returned by the <code>callback</code>. If <code>register</code> is called again with the same list of <code>senderIds</code>, the same registration ID will be returned.",
+        "description": "在 GCM 中注册应用，注册标识符由 <code>callback</code> 返回。如果以相同的 <code>senderIds</code> 再次调用 <code>register</code>，则会返回相同的注册标识符。",
+        "parameters": [
+          {
+            "name": "senderIds",
+            "type": "array",
+            "items": { 
+              "type": "string"
+            },
+            "minItems": 1,
+            "maxItems": 100,
+//@            "description": "A list of server IDs that are allowed to send messages to the application. It should contain at least one and no more than 100 sender IDs."
+            "description": "允许向应用发送消息的服务器标识符列表，至少包含一个，不能超过 100 个发送者标识符。"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+//@            "description": "Function called when registration completes. It should check $ref:runtime.lastError for error when <code>registrationId</code> is empty.",
+            "description": "注册完成时调用的函数，如果 <code>registrationId</code> 为空，它应该检查 $ref:runtime.lastError 中的错误信息。",
+            "parameters": [
+              { 
+                "name": "registrationId",
+                "type": "string",
+//@                "description": "A registration ID assigned to the application by the GCM."
+                "description": "GCM 分配给应用的注册标识符。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "send",
+        "type": "function",
+//@        "description": "Sends a message according to its contents.",
+        "description": "发送指定内容的消息。",
+        "parameters": [
+          {
+            "name": "message",
+            "type": "object",
+//@            "description": "A message to send to the other party via GCM.",
+            "description": "通过 GCM 发送给另一方的消息。",
+            "properties": {
+              "destinationId": {
+                "type": "string",
+//@                "description": "The ID of the server to send the message to as assigned by <a href='https://code.google.com/apis/console'>Google API Console</a>."
+                "description": "发送消息的目标服务器标识符，在 <a href='https://code.google.com/apis/console'>Google API 控制台</a>中指定。"
+              },
+              "messageId": {
+                "type": "string",
+//@                "description": "The ID of the message. It must be unique for each message."
+                "description": "消息标识符，对每一条消息都必须唯一。"
+              },
+              "timeToLive": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2419200,
+                "optional": true,
+//@                "description": "Time-to-live of the message in seconds. If it is not possible to send the message wihtin that time an error will be raised. A time-to-live of 0 indicates that the message should be sent immediately or fail if it's not possible. The maximum and a default value of time-to-live is 2419200 seconds (4 weeks)."
+                "description": "消息保留的最长时间，以秒为单位。如果无法在指定时间内发送消息则会产生错误。0 表示应该立即发送消息，如果无法做到则失败。默认及最大值为 2419200 秒（4 星期）。"
+              },
+              "data": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "string"
+                },
+//@                "description": "Message data to send to the server. <code>goog.</code> and <code>google</code> are disallowed as key prefixes. Sum of all key/value pairs should not exceed $ref:MAX_MESSAGE_SIZE."
+                "description": "发送到服务器的消息数据，不允许使用 <code>goo.</code> 和 <code>google</code> 作为键的前缀。所有键/值对的大小不应该超过 $ref:MAX_MESSAGE_SIZE。"
+              }
+            }
+          },
+          {
+            "name": "callback",
+            "type": "function",
+//@            "description": "A function called after the message is successfully queued for sending. $ref:runtime.lastError should be checked, to ensure a message was sent without problems.",
+            "description": "消息成功放入队列等待发送后调用的函数，您应该检查 $ref:runtime.lastError，确保消息已经发送，没有遇到问题。",
+            "parameters": [
+              {
+                "name": "messageId",
+                "type": "string",
+//@                "description": "The ID of the message that the callback was issued for."
+                "description": "调用回调函数时对应的消息标识符。"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "onMessage",
+        "type": "function",
+//@        "description": "Fired when a message is received through GCM.",
+        "description": "通过 GCM 收到消息时产生。",
+        "parameters": [
+          { 
+            "name": "message",
+            "type": "object",
+//@            "description": "A message received from another party via GCM.",
+            "description": "通过 GCM 从另一方收到的消息。",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "string"
+                },
+//@                "description": "The message data."
+                "description": "消息数据。"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "onMessagesDeleted",
+        "type": "function",
+//@        "description": "Fired when a GCM server had to delete messages to the application from its queue in order to manage its size. The app is expected to handle that case gracefully, e.g. by running a full sync with its server."
+        "description": "GCM 服务器为了管理大小而不得不从队列中删除发送给应用的消息时产生，应用应该妥善处理这一情况，例如与服务器进行一次完整的同步。"
+      },
+      {
+        "name": "onSendError",
+        "type": "function",
+//@        "description": "Fired when it was not possible to send a message to the GCM server.",
+        "description": "无法向 GCM 服务器发送消息时产生。",
+        "parameters": [
+          {
+            "name": "error",
+            "type": "object",
+//@            "description": "An error related to sending a message raised by GCM.",
+            "description": "发送消息时由 GCM 产生的错误。",
+            "properties": {
+              "errorMessage": {
+                "type": "string",
+//@                "description": "The error message describing the problem."
+                "description": "描述问题的错误消息。"
+              },
+              "messageId": {
+                "type": "string",
+                "optional": true,
+//@                "description": "The ID of the message with this error, if error is related to a specific message."
+                "description": "如果错误与特定消息相关的话，则为产生该错误的消息标识符。"
+              },
+              "details": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": {
+                  "type": "string"
+                },
+//@                "description": "Additional details related to the error, when available."
+                "description": "如果可用，则为与错误相关的其他详情。"
+              }
+            },
+//@            "description": "An error that occured while trying to send the message either in Chrome or on the GCM server. Application can retry sending the message with a reasonable backoff and possibly longer time-to-live."
+            "description": "尝试发送消息时在 Chrome 浏览器或 GCM 服务器中发生的错误。应用可以等待合适的时间或者延长消息的生存期重新发送该消息。"
+          }
+        ]
+      }
+    ]
+  }
+]
