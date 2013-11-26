@@ -46,8 +46,8 @@ namespace mediaGalleries {
     DOMString galleryId;
 
     // <!--@If the media gallery is on a removable device, a unique id for the
-    // device.-->
-    // 如果媒体库位于可移动设备上则为设备的唯一标识符。
+    // device while the device is online.-->
+    // 如果媒体库位于可移动设备上，并且设备在线，则为设备的唯一标识符。
     DOMString? deviceId;
 
     // <!--@True if the media gallery is on a removable device.-->
@@ -59,7 +59,14 @@ namespace mediaGalleries {
     // 如果检测到媒体库所在的设备是媒体设备（即 PTP 或 MTP
     // 设备，或存在 DCIM 目录）则为 true。
     boolean isMediaDevice;
+
+    // <!--@True if the device is currently available.-->
+    // 如果设备当前可用则为 true。
+    boolean isAvailable;
   };
+
+  callback MediaGalleriesMetadataCallback =
+      void (MediaFileSystemMetadata[] metadata);
 
   interface Functions {
     // <!--@Get the media galleries configured in this user agent. If none are
@@ -72,6 +79,11 @@ namespace mediaGalleries {
     // 获取指定媒体文件系统的元数据。
     [nocompile] static MediaFileSystemMetadata getMediaFileSystemMetadata(
         [instanceOf=DOMFileSystem] object mediaFileSystem);
+
+    // <!--@Get metadata for all available media galleries.-->
+    // 获取所有可用媒体库的元数据。
+    static void getAllMediaFileSystemMetadata(
+        MediaGalleriesMetadataCallback callback);
   };
 
 };
