@@ -9,9 +9,10 @@ namespace serial {
 
   dictionary DeviceInfo {
     // <!--@The device's system path. This should be passed as the <code>path</code>
-    // argument to <code>chrome.serial.open</code> in order to open this device.-->
-    // 设备的系统路径，应该传递给 <code>chrome.serial.open</code>
-    // 的 <code>path</code> 参数，以便打开设备。
+    // argument to <code>chrome.serial.connect</code> in order to connect to
+    // this device.-->
+    // 设备的系统路径，应该传递给 <code>chrome.serial.connect</code>
+    // 的 <code>path</code> 参数，以便连接到该设备。
     DOMString path;
   };
 
@@ -89,30 +90,6 @@ namespace serial {
     long? sendTimeout;
   };
 
-  // <!--@Result of the <code>open</code> method.-->
-  // <code>open</code> 方法的结果。
-  dictionary OpenInfo {
-    // <!--@The id of the opened connection.-->
-    // 已打开连接的标识符。
-    long connectionId;
-  };
-
-  // <!--@Callback from the <code>open</code> method;-->
-  // <code>open</code> 方法的回调函数。
-  callback OpenCallback = void (OpenInfo openInfo);
-
-  // <!--@Callback from the <code>update</code> method.-->
-  // <code>update</code> 方法的回调函数。
-  callback UpdateCallback = void (boolean result);
-
-  // <!--@Returns true if operation was successful.-->
-  // 如果操作成功则返回 true。
-  callback CloseCallback = void (boolean result);
-
-  // <!--@Callback from the <code>setPaused</code> method.-->
-  // <code>setPaused</code> 方法的回调函数。
-  callback SetPausedCallback = void ();
-
   // <!--@Result of the <code>getInfo</code> method.-->
   // <code>getInfo</code> 方法的结果。
   dictionary ConnectionInfo {
@@ -173,14 +150,35 @@ namespace serial {
     boolean? ctsFlowControl;
   };
 
+  // <!--@Callback from the <code>connect</code> method;-->
+  // <code>connect</code> 方法的回调函数。
+  callback ConnectCallback = void (ConnectionInfo connectionInfo);
+
+  // <!--@Callback from the <code>update</code> method.-->
+  // <code>update</code> 方法的回调函数。
+  callback UpdateCallback = void (boolean result);
+
+  // <!--@Callback from the <code>disconnect</code> method. Returns true if the
+  // operation was successful.-->
+  // <code>disconnect</code> 方法的回调函数，如果操作成功则返回 true。
+  callback DisconnectCallback = void (boolean result);
+
+  // <!--@Callback from the <code>setPaused</code> method.-->
+  // <code>setPaused</code> 方法的回调函数。
+  callback SetPausedCallback = void ();
+
+  // <!--@Callback from the <code>getInfo</code> method.-->
+  // <code>getInfo</code> 方法的回调函数。
   callback GetInfoCallback = void (ConnectionInfo connectionInfo);
 
+  // <!--@Callback from the <code>getConnections</code> method.-->
+  // <code>getConnections</code> 方法的回调函数。
   callback GetConnectionsCallback = void (ConnectionInfo[] connectionInfos);
 
   enum SendError {
-    // <!--@The connection was closed.-->
-    // 连接已关闭。
-    closed,
+    // <!--@The connection was disconnected.-->
+    // 连接已断开。
+    disconnected,
 
     // <!--@A send was already pending.-->
     // 发送操作正在进行。
@@ -209,44 +207,47 @@ namespace serial {
 
   callback FlushCallback = void (boolean result);
 
-  // <!--@Boolean true = mark signal (negative serial voltage).
-  // Boolean false = space signal (positive serial voltage).
-  // 
-  //
-  // For SetControlSignals, include the sendable signals that you wish to
-  // change. Signals not included in the dictionary will be left unchanged.
-  //
-  // GetControlSignals includes all receivable signals.-->
-  // 布尔真 = MARK 信号（负串行电压）。
-  // 布尔假 = SPACE 信号（正串行电压）。
-  //
-  //
-  // 调用 setControlSignals 时，包含您希望更改的可发送信号，没有包含在词典内的信号不会更改。
-  //
-  // getControlSignals 会包含所有可接收的信号。
-  dictionary ControlSignals {
-    // <!--@Serial control signals that your machine can send. Missing fields will
-    // not be changed.-->
-    // 您的计算机能够发送的串行控制信号，省略的字段不会更改。
+  // <!--@The set of control signals which may be sent to a connected serial device
+  // using <code>setControlSignals</code>. Note that support for these signals
+  // is device-dependent.-->
+  // 使用 <code>setControlSignals</code>
+  // 向已连接的串行设备发送的控制信号。注意：对这些信号的支持与设备有关。
+  dictionary HostControlSignals {
+    // <!--@DTR (Data Terminal Ready).-->
+    // DTR（数据终端就绪）。
     boolean? dtr;
-    boolean? rts;
 
-    // <!--@Serial control signals that your machine can receive.-->
-    // 您的计算机能够接收的串行控制信号。
-    //
-    // <!--@DCD (Data Carrier Detect) is equivalent to RLSD (Receive Line Signal
-    // Detect) on some platforms.-->
-    // 在某些平台上，DCD（Data Carrier Detect）与
-    // RLSD（Receive Line Signal Detect）等价。
-    boolean? dcd;
-    boolean? cts;
-    boolean? ri;
-    boolean? dsr;
+    // <!--@RTS (Request To Send).-->
+    // RTS（请求发送）。
+    boolean? rts;
+  };
+
+  // <!--@The set of control signals which may be set by a connected serial device.
+  // These can be queried using <code>getControlSignals</code>. Note that
+  // support for these signals is device-dependent.-->
+  // 已连接的串行设备可能设置的控制信号，可以使用
+  // <code>getControlSignals</code> 查询。注意：对这些信号的支持与设备有关。
+  dictionary DeviceControlSignals {
+    // <!--@DCD (Data Carrier Detect) or RLSD (Receive Line Signal/ Detect).-->
+    // DCD（数据载波检测）或 RLSD（接收线信号检出）。
+    boolean dcd;
+
+    // <!--@CTS (Clear To Send).-->
+    // 清除发送。
+    boolean cts;
+
+    // <!--@RI (Ring Indicator).-->
+    // 振铃指示。
+    boolean ri;
+
+    // <!--@DSR (Data Set Ready).-->
+    // 数据装置就绪。
+    boolean dsr;
   };
 
   // <!--@Returns a snapshot of current control signals.-->
   // 返回当前控制信号的快照。
-  callback GetControlSignalsCallback = void (ControlSignals signals);
+  callback GetControlSignalsCallback = void (DeviceControlSignals signals);
 
   // <!--@Returns true if operation was successful.-->
   // 如果操作成功则返回 true。
@@ -265,9 +266,9 @@ namespace serial {
   };
 
   enum ReceiveError {
-    // <!--@The connection was closed.-->
-    // 连接已关闭。
-    closed,
+    // <!--@The connection was disconnected.-->
+    // 连接已断开。
+    disconnected,
 
     // <!--@No data has been received for <code>receiveTimeout</code> milliseconds.-->
     // 经过 <code>receiveTimeout</code> 毫秒后仍然未接收到数据。
@@ -302,20 +303,20 @@ namespace serial {
     // 调用时传递 <code>DeviceInfo</code> 对象列表。
     static void getDevices(GetDevicesCallback callback);
 
-    // <!--@Opens a connection to the given serial port.-->
-    // 打开到指定串行端口的连接。
+    // <!--@Connects to a given serial port.-->
+    // 连接到指定的串行端口。
     // |path| : <!--@The system path of the serial port to open.-->
     // 要打开的串行端口的系统路径。
     // |options| : <!--@Port configuration options.-->
     // 端口配置选项。
     // |callback| : <!--@Called when the connection has been opened.-->
     // 连接打开后调用。
-    static void open(DOMString path,
-                     optional ConnectionOptions options,
-                     OpenCallback callback);
+    static void connect(DOMString path,
+                        optional ConnectionOptions options,
+                        ConnectCallback callback);
 
-    // <!--@Update the option settings on an open serial port.-->
-    // 更新打开的串行端口的选项设置。
+    // <!--@Update the option settings on an open serial port connection.-->
+    // 更新打开的串行端口连接的选项设置。
     // |connectionId| : <!--@The id of the opened connection.-->
     // 打开的连接的标识符。
     // |options| : <!--@Port configuration options.-->
@@ -326,13 +327,13 @@ namespace serial {
                        ConnectionOptions options,
                        UpdateCallback callback);
 
-    // <!--@Closes an open connection.-->
-    // 关闭打开的连接。
+    // <!--@Disconnects from a serial port.-->
+    // 断开串行端口连接。
     // |connectionId| : <!--@The id of the opened connection.-->
     // 打开的连接的标识符。
     // |callback| : <!--@Called when the connection has been closed.-->
     // 连接关闭后调用。
-    static void close(long connectionId, CloseCallback callback);
+    static void disconnect(long connectionId, DisconnectCallback callback);
 
     // <!--@Pauses or unpauses an open connection.-->
     // 暂停打开的连接，或取消暂停。
@@ -391,10 +392,12 @@ namespace serial {
     // 设置指定连接上控制信号的状态。
     // |connectionId| : <!--@The id of the connection.-->
     // 连接标识符。
+    // |signals| : <!--@The set of signal changes to send to the device.-->
+    // 要向设备发送的信号变化。
     // |callback| : <!--@Called once the control signals have been set.-->
     // 控制信号设置后调用。
     static void setControlSignals(long connectionId,
-                                  ControlSignals signals,
+                                  HostControlSignals signals,
                                   SetControlSignalsCallback callback);
   };
 
@@ -406,10 +409,11 @@ namespace serial {
     static void onReceive(ReceiveInfo info);
 
     // <!--@Event raised when an error occurred while the runtime was waiting for
-    // data on the serial port. Once this event is raised, the connection is set
-    // to <code>paused</code>.-->
+    // data on the serial port. Once this event is raised, the connection may be
+    // set to <code>paused</code>. A <code>"timeout"</code> error does not pause
+    // the connection.-->
     // 运行时等待串行端口上的数据时如果发生错误，则产生该事件。产生该事件后，连接状态将设置为
-    // <code>paused</code>（暂停）。
+    // <code>paused</code>（暂停）。<code>"timeout"</code>（超时）错误不会暂停连接。
     static void onReceiveError(ReceiveErrorInfo info);
   };
 };
