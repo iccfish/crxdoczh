@@ -14,6 +14,54 @@
     },
     "types": [
       {
+        "id": "ClearDataOptions",
+        "type": "object",
+//@        "description": "Options that determine what data should be cleared by <code>clearData</code>.",
+        "description": "指定 <code>clearData</code> 应该清除哪些数据的选项。",
+        "properties": {
+          "since": {
+            "type": "number",
+            "optional": true,
+//@            "description": "Clear data accumulated on or after this date, represented in milliseconds since the epoch (accessible via the getTime method of the JavaScript <code>Date</code> object). If absent, defaults to <code>0</code> (which would remove all browsing data)."
+            "description": "清除指定日期及指定日期后积累的数据，表示为 1970 年 1 月 1 日以来所经过的毫秒数（可以通过 JavaScript <code>Date</code> 对象的 getTime 方法访问）。如果未指定，默认为 <code>0</code>（删除所有浏览数据）。"
+          }
+        }
+      },
+      {
+        "id": "ClearDataTypeSet",
+        "type": "object",
+//@        "description": "A set of data types. Missing properties are interpreted as <code>false</code>.",
+        "description": "数据类型的集合，未指定的属性认为是 <code>false</code>。",
+        "properties": {
+//@          "appcache": { "type": "boolean", "optional": true, "description": "Websites' appcaches." },
+          "appcache": { "type": "boolean", "optional": true, "description": "网站的应用程序缓存。" },
+//@          "cache": { "type": "boolean", "optional": true, "description": "The partition's cache. Note: This clears the entire cache regardless of the age passed to <code>clearData</code>." },
+          "cache": { "type": "boolean", "optional": true, "description": "浏览器缓存。注意：这会清除所有缓存内容，无论传递给 <code>clearData</code> 的时间是什么。" },
+//@          "cookies": { "type": "boolean", "optional": true, "description": "The partition's cookies." },
+          "cookies": { "type": "boolean", "optional": true, "description": "分区的 Cookie。" },
+//@          "downloads": { "type": "boolean", "optional": true, "description": "The partition's download list." },
+          "downloads": { "type": "boolean", "optional": true, "description": "分区的下载项列表。" },
+//@          "fileSystems": { "type": "boolean", "optional": true, "description": "Websites' filesystems." },
+          "fileSystems": { "type": "boolean", "optional": true, "description": "网站的文件系统。" },
+//@          "formData": { "type": "boolean", "optional": true, "description": "The partition's stored form data." },
+          "formData": { "type": "boolean", "optional": true, "description": "分区存储的表单数据。" },
+//@          "history": { "type": "boolean", "optional": true, "description": "The partition's history." },
+          "history": { "type": "boolean", "optional": true, "description": "分区的历史记录。" },
+//@          "indexedDB": { "type": "boolean", "optional": true, "description": "Websites' IndexedDB data." },
+          "indexedDB": { "type": "boolean", "optional": true, "description": "网站的 IndexedDB 数据。" },
+//@          "localStorage": { "type": "boolean", "optional": true, "description": "Websites' local storage data." },
+          "localStorage": { "type": "boolean", "optional": true, "description": "网站的本地存储数据。" },
+//@          "serverBoundCertificates": { "type": "boolean", "optional": true, "description": "Server-bound certificates." },
+          "serverBoundCertificates": { "type": "boolean", "optional": true, "description": "服务器绑定的证书。" },
+//@          "pluginData": { "type": "boolean", "optional": true, "description": "Plugins' data." },
+          "pluginData": { "type": "boolean", "optional": true, "description": "插件数据。" },
+//@          "passwords": { "type": "boolean", "optional": true, "description": "Stored passwords." },
+          "passwords": { "type": "boolean", "optional": true, "description": "保存的密码。" },
+//@          "webSQL": { "type": "boolean", "optional": true, "description": "Websites' WebSQL data." }
+          "webSQL": { "type": "boolean", "optional": true, "description": "网站的 WebSQL 数据。" }
+        }
+      },
+      {
         "id": "InjectDetails",
         "type": "object",
 //@        "description": "Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.",
@@ -61,6 +109,33 @@
         ]
       },
       {
+        "id": "DialogController",
+        "type": "object",
+//@        "description": "Interface attached to <code>dialog</code> DOM events.",
+        "description": "附加到 <code>dialog</code> DOM 事件的接口。",
+        "functions": [
+          {
+            "name": "ok",
+//@            "description": "Accept the dialog. Equivalent to clicking OK in an <code>alert</code>, <code>confirm</code>, or <code>prompt</code> dialog.",
+            "description": "接受对话框，等价于在 <code>alert</code>、<code>confirm</code> 或 <code>prompt</code> 对话框中单击确定。",
+            "parameters": [
+              {
+                "type": "string",
+                "optional": true,
+                "name": "response",
+//@                "description": "The response string to provide to the guest when accepting a <code>prompt</code> dialog."
+                "description": "接受 <code>prompt</code> 对话框时的响应字符串。"
+              }
+            ]
+          },
+          {
+            "name": "cancel",
+//@            "description": "Reject the dialog. Equivalent to clicking Cancel in a <code>confirm</code> or <code>prompt</code> dialog."
+            "description": "拒绝对话框，等价于在 <code>confirm</code> 或 <code>prompt</code> 对话框中单击取消。"
+          }
+        ]
+      },
+      {
         "id": "NewWindow",
         "type": "object",
 //@        "description": "Interface attached to <code>newwindow</code> DOM events.",
@@ -103,7 +178,8 @@
 //@          { "name": "allow", "description": "Allow the permission request." },
           { "name": "allow", "description": "允许权限请求。" },
 //@          { "name": "deny", "description": "Deny the permission request." }
-          { "name": "deny", "description": "拒绝权限请求。" }
+//@          { "name": "deny", "description": "Deny the permission request. This is the default behavior if <code>allow</code> is not called." }
+          { "name": "deny", "description": "拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。" }
         ]
       },
       {
@@ -121,8 +197,8 @@
         "functions": [
 //@          { "name": "allow", "description": "Allow the permission request." },
           { "name": "allow", "description": "允许权限请求。" },
-//@          { "name": "deny", "description": "Deny the permission request." }
-          { "name": "deny", "description": "拒绝权限请求。" }
+//@          { "name": "deny", "description": "Deny the permission request. This is the default behavior if <code>allow</code> is not called." }
+          { "name": "deny", "description": "拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。" }
         ]
       },
       {
@@ -150,9 +226,64 @@
         "functions": [
 //@          { "name": "allow", "description": "Allow the permission request." },
           { "name": "allow", "description": "允许权限请求。" },
+//@          { "name": "deny", "description": "Deny the permission request. This is the default behavior if <code>allow</code> is not called." }
+          { "name": "deny", "description": "拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。" }
+        ]
+      },
+      {
+        "id": "DownloadPermissionRequest",
+        "type": "object",
+//@        "description": "The type of <code>request</code> object which accompanies a <code>download</code> <a href=\"#event-permissionrequest\">permissionrequest</a></code> DOM event.",
+        "description": "<code>download <a href=\"#event-permissionrequest\">permissionrequest</a></code>（下载权限请求）DOM 事件的 <code>request</code> 对象。",
+        "properties": {
+          "requestMethod": {
+//@            "description": "The HTTP request type (e.g. <code>GET</code>) associated with the download request.",
+            "description": "与下载请求相关联的 HTTP 请求类型（例如 <code>GET</code>）。",
+            "type": "string"
+          },
+          "url": {
+//@            "description": "The requested download URL.",
+            "description": "请求的下载 URL。",
+            "type": "string"
+          }
+        },
+        "functions": [
+//@          { "name": "allow", "description": "Allow the permission request." },
+          { "name": "allow", "description": "允许权限请求。" },
+//@          { "name": "deny", "description": "Deny the permission request. This is the default behavior if <code>allow</code> is not called." }
+          { "name": "deny", "description": "拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。" }
+        ]
+      },
+      {
+        "id": "LoadPluginPermissionRequest",
+        "type": "object",
+//@        "description": "The type of <code>request</code> object which accompanies a <code>loadplugin</code> <a href=\"#event-permissionrequest\">permissionrequest</a> DOM event.<p>",
+        "description": "<code>loadplugin <a href=\"#event-permissionrequest\">permissionrequest</a></code>（下载权限请求）DOM 事件的 <code>request</code> 对象。",
+        "properties": {
+          "identifier": {
+//@            "description": "The plugin's identifier string.",
+            "description": "插件的标识符字符串。",
+            "type": "string"
+          },
+          "name": {
+//@            "description": "The plugin's display name.",
+            "description": "插件的显示名称。",
+            "type": "string"
+          }
+        },
+        "functions": [
+//@          { "name": "allow", "description": "Allow the permission request. This is the default behavior if <code>deny</code> is not called.." },
+          { "name": "allow", "description": "允许权限请求。如果没有调用 <code>deny</code>，这是默认行为。" },
 //@          { "name": "deny", "description": "Deny the permission request." }
           { "name": "deny", "description": "拒绝权限请求。" }
         ]
+      },
+      {
+        "id": "WebRequestEventInteface",
+        "type": "object",
+//@        "description": "Interface which provides access to webRequest events on the guest page. See the <a href=\"http://developer.chrome.com/extensions/webRequest.html\">chrome.webRequest</a> extensions API for details on webRequest life cycle and related concepts.<p>To illustrate how usage differs from the extensions webRequest API, consider the following example code which blocks any guest requests for URLs which match <code>*://www.evil.com/*</code>:</p><pre>webview.request.onBeforeRequest.addListener(\r  function(details) { return {cancel: true}; },\r  {urls: [\"*://www.evil.com/*\"]},\r  [\"blocking\"]);</pre><p>Additionally, this interface supports declarative webRequest rules through <code>onRequest</code> and <code>onMessage</code> events. See <a href=\"http://developer.chrome.com/extensions/declarativeWebRequest.html\">declarativeWebRequest</a> for API details.</p>Note that conditions and actions for declarative webview webRequests should be instantiated from their <code>chrome.webViewRequest.*</code> counterparts. The following example code declaratively blocks all requests to <code>\"example.com\"</code> on the webview <code>myWebview</code>:</p><pre>var rule = {\r  conditions: [\r    new chrome.webViewRequest.RequestMatcher({ url: { hostSuffix: 'example.com' } })\r  ],\r  actions: [ new chrome.webViewRequest.CancelRequest() ]\r};\rmyWebview.request.onRequest.addRules([rule]);</pre>",
+        "description": "使您访问来宾网页上网络请求事件的接口，有关网络请求生命周期以及相关概念的详情，请参见 <a href=\"/extensions/webRequest.html\">chrome.webRequest</a> 扩展程序 API。<p>为了演示用法上与扩展程序网络请求 API 的区别，考虑以下例子，阻止来宾请求所有匹配 <code>*://www.evil.com/*</code> 的 URL：</p><pre>webview.request.onBeforeRequest.addListener(\r  function(details) { return {cancel: true}; },\r  {urls: [\"*://www.evil.com/*\"]},\r  [\"blocking\"]);</pre><p>此外，该接口的 <code>onRequest</code> 和 <code>onMessage</code> 事件还支持声明式网络请求事件，有关 API 详情请参见 <a href=\"/extensions/declarativeWebRequest.html\">declarativeWebRequest</a>。</p>注意：声明式 webview 网络请求的条件和操作应该由对应的 <code>chrome.webViewRequest.*</code> 对象构造，以下示例代码以声明式的方式阻止 <code>myWebView</code> 中所有发送给 <code>\"example.com\"</code> 的请求：</p><pre>var rule = {\r  conditions: [\r    new chrome.webViewRequest.RequestMatcher({ url: { hostSuffix: 'example.com' } })\r  ],\r  actions: [ new chrome.webViewRequest.CancelRequest() ]\r};\rmyWebview.request.onRequest.addRules([rule]);</pre>",
+        "properties": {}
       }
     ],
     "functions": [
@@ -175,6 +306,34 @@
         "returns": { "type": "boolean" },
 //@        "description": "Indicates whether or not it is possible to navigate forward through history."
         "description": "表示能否前进导航历史记录。"
+      },
+      {
+        "name": "clearData",
+        "type": "function",
+//@        "description": "<p>Clears browsing data for the <code>webview</code> partition.</p>",
+        "description": "<p>清除 <code>webview</code> 分区中的浏览数据。</p>",
+        "parameters": [
+          {
+            "name": "options",
+            "$ref": "ClearDataOptions",
+//@            "description": "Options determining exactly what data to clear."
+            "description": "指定清除哪些数据的选项。"
+          },
+          {
+            "name": "types",
+            "$ref": "ClearDataTypeSet",
+//@            "description": "The types of data to be cleared."
+            "description": "要清除的数据类型。"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "optional": true,
+//@            "description": "Called after the data has been successfully cleared.",
+            "description": "数据成功清除后调用。",
+            "parameters": []
+          }
+        ]
       },
       {
         "name": "executeScript",
@@ -223,6 +382,14 @@
         "parameters": []
       },
       {
+        "name": "getUserAgent",
+        "type": "function",
+        "returns": { "type": "string" },
+//@        "description": "Returns the user agent string used by the webview for guest page requests.",
+        "description": "返回由 webview 来宾网页请求使用的用户代理字符串。",
+        "parameters": []
+      },
+      {
         "name": "go",
         "type": "function",
 //@        "description": "Navigates to a history entry using a history index relative to the current navigation. If the requested navigation is impossible, this method has no effect.",
@@ -259,11 +426,31 @@
         ]
       },
       {
+        "name": "isUserAgentOverridden",
+        "type": "function",
+//@        "description": "Indicates whether or not the webview's user agent string has been overridden by $ref:setUserAgentOverride"
+        "description": "指示 webview 的用户代理字符串是否由 $ref:setUserAgentOverride 覆盖。"
+      },
+      {
         "name": "reload",
         "type": "function",
 //@        "description": "Reloads the current top-level page.",
         "description": "重新加载当前的顶层网页。",
         "parameters": []
+      },
+      {
+        "name": "setUserAgentOverride",
+        "type": "function",
+//@        "description": "Override the user agent string used by the webview for guest page requests.",
+        "description": "覆盖由 webview 来宾网页请求使用的用户代理字符串。",
+        "parameters": [
+          {
+            "name": "userAgent",
+            "type": "string",
+//@            "description": "The user agent string to use."
+            "description": "要使用的用户代理字符串。"
+          }
+        ]
       },
       {
         "name": "stop",
@@ -326,6 +513,33 @@
 //@        "description": "Fired when the guest window fires a <code>load</code> event.<p>The following example code modifies the default font size of the guest's <code>body</code> element after the page loads:</p><pre>webview.addEventListener('contentload', function() {\r  webview.executeScript({ code: 'document.body.style.fontSize = \"42px\"' });\r});</pre>",
         "description": "来宾窗口产生 <code>load</code> 事件时产生。<p>以下例子在网页加载后修改来宾 <code>body</code> 元素的默认字体大小</p><pre>webview.addEventListener('contentload', function() {\r  webview.executeScript({ code: 'document.body.style.fontSize = \"42px\"' });\r});</pre>",
         "parameters": []
+      },
+      {
+        "name": "dialog",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the guest window attempts to open a modal dialog via <code>window.alert</code>, <code>window.confirm</code>, or <code>window.prompt</code>.<p>Handling this event will block the guest process until each event listener returns or the <code>dialog</code> object becomes unreachable (if <code>preventDefault()</code> was called.)</p><p>The default behavior is to cancel the dialog.</p>",
+        "description": "来宾窗口通过 <code>window.alert</code>、<code>window.confirm</code> 或 <code>window.prompt</code> 尝试打开有模式对话框时产生。<p>处理该事件时会阻塞来宾进程，直到每一个事件监听器都返回或 <code>dialog</code> 对象不可访问（如果调用了 <code>preventDefault()</code>）。</p><p>默认行为是取消对话框。</p>",
+        "parameters": [
+          {
+            "name": "messageType",
+            "type": "string",
+            "enum": ["alert", "confirm", "prompt"],
+//@            "description": "The type of modal dialog requested by the guest."
+            "description": "来宾请求的有模式对话框类型。"
+          },
+          {
+            "name": "messageText",
+            "type": "string",
+//@            "description": "The text the guest attempted to display in the modal dialog."
+            "description": "来宾希望在有模式对话框中显示的字符串。"
+          },
+          {
+            "name": "dialog",
+            "$ref": "DialogController",
+//@            "description": "An interface that can be used to respond to the guest's modal request."
+            "description": "用于响应来宾的有模式对话框请求的接口。"
+          }
+        ]
       },
       {
         "name": "exit",
@@ -504,11 +718,11 @@
 //@            "description": "The type of permission being requested.",
             "description": "请求的权限类型。",
             "type": "string",
-            "enum": ["media", "geolocation", "pointerLock"]
+            "enum": ["media", "geolocation", "pointerLock", "download", "loadplugin"]
           },
           {
             "name": "requestId",
-//@            "description": "An number which uniquely identifies this request from the guest.",
+//@            "description": "A number which uniquely identifies this request from the guest.",
             "description": "标志来宾的这一请求的数。",
             "type": "integer"
           },
@@ -516,8 +730,8 @@
             "name": "request",
             "type": "object",
             "properties": {},
-//@            "description": "An object which holds details of the requested permission. Depending on the type of permission requested, this may be a $ref:MediaPermissionRequest, $ref:GeolocationPermissionRequest, or a $ref:PointerLockPermissionRequest."
-            "description": "包含请求权限详情的对象，取决于请求的权限类型，可能为 $ref:MediaPermissionRequest、$ref:GeolocationPermissionRequest 或 $ref:PointerLockPermissionRequest 对象。"
+//@            "description": "An object which holds details of the requested permission. Depending on the type of permission requested, this may be a $ref:MediaPermissionRequest, $ref:GeolocationPermissionRequest, $ref:PointerLockPermissionRequest, $ref:DownloadPermissionRequest, or $ref:LoadPluginPermissionRequest."
+            "description": "包含请求权限详情的对象，取决于请求的权限类型，可能为 $ref:MediaPermissionRequest、$ref:GeolocationPermissionRequest、$ref:PointerLockPermissionRequest、$ref:DownloadPermissionRequest 或 $ref:LoadPluginPermissionRequest 对象。"
           }
         ]
       },
@@ -587,6 +801,11 @@
         "$ref": "ContentWindow",
 //@        "description": "Object reference which can be used to post messages into the guest page."
         "description": "可以用来向来宾网页发送消息的对象引用。"
+      },
+      "request": {
+        "$ref": "WebRequestEventInteface",
+//@        "description": "Interface which provides access to webRequest events on the guest page."
+        "description": "使您访问来宾网页上网络请求事件的接口。"
       }
     }
   }

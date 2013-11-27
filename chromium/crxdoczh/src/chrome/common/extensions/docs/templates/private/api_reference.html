@@ -1,5 +1,6 @@
-<h1 id="apiReference">{{+partials.api_title api:api/}} <!--@reference-->参考</h1>
 <div class="api_reference">
+  {{- This is a span not a header-tag so that it doesn't show up in the TOC. -}}
+  <span id="api-reference-header"><!--@Reference-->参考</span>
   {{?api.types}}
     <h2 id="types"><!--@Types-->类型</h2>
     {{#t:api.types}}
@@ -25,7 +26,7 @@
     {{/}}
   {{/api.events}}
   {{?api.domEvents}}
-    <h2 id="dom_events">DOM <!--@Events-->事件</h2>
+    <h2 id="dom_events">DOM <!--@events-->事件</h2>
     <dd>
       <!--@Listeners can be added for these events using the standard -->
       这些事件可以使用标准
