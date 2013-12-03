@@ -1,8 +1,8 @@
 {
   "app": "app",
-  "apps_title": "应用",
+  "appsTitle": "应用",
   "extension": "extension",
-  "extensions_title": "扩展程序",
+  "extensionsTitle": "扩展程序",
   "events": "events",
   "methods": "methods",
   "properties": "properties",

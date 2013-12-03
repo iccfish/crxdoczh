@@ -25,7 +25,8 @@
             "name": "senderIds",
             "type": "array",
             "items": { 
-              "type": "string"
+              "type": "string",
+              "minLength": 1
             },
             "minItems": 1,
             "maxItems": 100,
@@ -62,16 +63,18 @@
             "properties": {
               "destinationId": {
                 "type": "string",
+                "minLength": 1,
 //@                "description": "The ID of the server to send the message to as assigned by <a href='https://code.google.com/apis/console'>Google API Console</a>."
                 "description": "发送消息的目标服务器标识符，在 <a href='https://code.google.com/apis/console'>Google API 控制台</a>中指定。"
               },
               "messageId": {
                 "type": "string",
+                "minLength": 1,
 //@                "description": "The ID of the message. It must be unique for each message."
                 "description": "消息标识符，对每一条消息都必须唯一。"
               },
               "timeToLive": {
-                "type": "number",
+                "type": "integer",
                 "minimum": 0,
                 "maximum": 2419200,
                 "optional": true,
@@ -82,7 +85,8 @@
                 "type": "object",
                 "properties": {},
                 "additionalProperties": {
-                  "type": "string"
+                  "type": "string",
+                  "minLength": 1
                 },
 //@                "description": "Message data to send to the server. <code>goog.</code> and <code>google</code> are disallowed as key prefixes. Sum of all key/value pairs should not exceed $ref:MAX_MESSAGE_SIZE."
                 "description": "发送到服务器的消息数据，不允许使用 <code>goo.</code> 和 <code>google</code> 作为键的前缀。所有键/值对的大小不应该超过 $ref:MAX_MESSAGE_SIZE。"

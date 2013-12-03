@@ -43,7 +43,7 @@
   {{/api.domEvents}}
 </div>
 {{?samples_list}}
-  <h2 id="samples"><!--@Sample {{title}} that use chrome.{{api.name}}-->使用 chrome.{{api.name}} 的示例{{title}}</h2>
+  <h2 id="samples"><!--@Sample {{platformTitle}} that use {{api.namespace}}-->使用 {{api.namespace}} 的示例{{platformTitle}}</h2>
   <ul>
   {{#sample:samples_list}}
     <li><strong><a href="samples.html#{{sample.id}}">{{sample.name}}</a></strong>
