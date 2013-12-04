@@ -65,7 +65,7 @@ namespace mediaGalleries {
     boolean isAvailable;
   };
 
-  callback MediaGalleriesMetadataCallback =
+  callback MediaFileSystemsMetadataCallback =
       void (MediaFileSystemMetadata[] metadata);
 
   interface Functions {
@@ -83,7 +83,7 @@ namespace mediaGalleries {
     // <!--@Get metadata for all available media galleries.-->
     // 获取所有可用媒体库的元数据。
     static void getAllMediaFileSystemMetadata(
-        MediaGalleriesMetadataCallback callback);
+        MediaFileSystemsMetadataCallback callback);
   };
 
 };
