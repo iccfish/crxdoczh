@@ -68,6 +68,12 @@ namespace mediaGalleries {
   callback MediaFileSystemsMetadataCallback =
       void (MediaFileSystemMetadata[] metadata);
 
+  dictionary MediaMetadata {
+    // <!--@The browser sniffed mime type.-->
+    // 浏览器检测到的 MIME 类型。
+    DOMString mimeType;
+  };
+
   interface Functions {
     // <!--@Get the media galleries configured in this user agent. If none are
     // configured or available, the callback will receive an empty array.-->
