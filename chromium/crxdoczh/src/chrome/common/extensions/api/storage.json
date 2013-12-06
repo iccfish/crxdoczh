@@ -186,8 +186,8 @@
           {
             "name": "areaName",
             "type": "string",
-//@            "description": "The name of the storage area (<code>sync</code> or <code>local</code>) the changes are for."
-            "description": "这一更改对应的存储区（\"sync\"（同步）或\"local\"（本机））。"
+//@            "description": "The name of the storage area (<code>\"sync\"</code>, <code>\"local\"</code> or <code>\"managed\"</code>) the changes are for."
+            "description": "这一更改对应的存储区（\"sync\"（同步）、\"local\"（本机）或 <code>\"managed\"</code>））。"
           }
         ]
       }
@@ -241,9 +241,9 @@
       },
       "managed": {
         "$ref": "StorageArea",
-        "description": "Items in the <code>managed</code> storage area are set by the domain administrator, and are read-only by the extension; trying to modify this namespace results in an error.",
-        "value": [ "managed" ],
-        "nodoc": true
+//@        "description": "Items in the <code>managed</code> storage area are set by the domain administrator, and are read-only for the extension; trying to modify this namespace results in an error.",
+        "description": "<code>managed</code> 存储区中的项目由域管理员设置，对扩展程序来说只读，尝试修改这一命名空间会导致错误。",
+        "value": [ "managed" ]
       }
     }
   }

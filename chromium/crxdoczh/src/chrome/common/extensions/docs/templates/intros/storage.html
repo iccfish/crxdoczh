@@ -18,9 +18,9 @@ with the following key differences:-->
   浏览器的同步功能自动同步（使用
   <code>storage.sync</code>）。
   </li>
-  <li><!--@Your extension's content scripts can directly access user data
+  <li><!--@Your {{platform}}'s content scripts can directly access user data
   without the need for a background page.-->
-  您的扩展程序的内容脚本可以直接访问用户数据，而不需要后台页面。
+  您的{{platformTitle}}的内容脚本可以直接访问用户数据，而不需要后台页面。
   </li>
   <li><!--@A user's extension settings can be persisted
   even when using
@@ -35,6 +35,12 @@ with the following key differences:-->
   (the <code>localStorage API</code> stores data in strings).-->
   用户数据可以存储为对象（<code>localStorage</code> API
   以字符串方式存储数据）。
+  </li>
+  <li><!--@Enterprise policies configured by the administrator for the extension
+  can be read (using <code>storage.managed</code> with a
+  <a href="manifest/storage.html">schema</a>).-->
+  可以读取管理员为扩展程序配置的企业策略（使用 <code>storage.managed</code>
+  和<a href="manifest/storage.html">架构</a>）。
   </li>
 </ul>
 
@@ -60,7 +66,7 @@ with the following key differences:-->
 <h2 id="using-sync"><!--@Usage-->用法</h2>
 
 <p>
-<!--@To store user data for your extension,
+<!--@To store user data for your {{platform}},
 you can use either
 <code>storage.sync</code> or
 <code>storage.local</code>.
@@ -68,7 +74,7 @@ When using <code>storage.sync</code>,
 the stored data will automatically be synced
 to any Chrome browser that the user is logged into,
 provided the user has sync enabled.-->
-如果要为您的扩展程序储存用户数据，您可以使用
+如果要为您的{{platformTitle}}储存用户数据，您可以使用
 <code>storage.sync</code> 或 <code>storage.local</code>。使用
 <code>storage.sync</code>
 时，储存的数据将会自动在用户启用同步功能并已经登录的所有
@@ -94,6 +100,11 @@ to <code>storage.local</code>.-->
 <!--@Confidential user information should not be stored!
 The storage area isn't encrypted.-->
 不应该储存机密的用户信息！存储区没有加密。
+</p>
+
+<p>
+<!--@The <code>storage.managed</code> storage is read-only.-->
+<code>storage.managed</code> 存储区是只读的。
 </p>
 
 <h2 id="limits"><!--@Storage and throttling limits-->存储空间与调用频率限制</h2>

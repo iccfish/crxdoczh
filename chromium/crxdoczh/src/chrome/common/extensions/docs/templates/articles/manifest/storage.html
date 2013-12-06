@@ -1,0 +1,192 @@
+<h1><!--@Manifest for storage areas-->在清单文件中定义存储区</h1>
+
+<p>
+<!--@Unlike the <code>local</code> and <code>sync</code> storage areas, the
+<code>managed</code> storage area requires its structure to be declared as
+<a href="http://tools.ietf.org/html/draft-zyp-json-schema-03">JSON Schema</a>
+and is strictly validated by Chrome. This schema must be stored in a file
+indicated by the <code>"managed_schema"</code> property of the
+<code>"storage"</code> manifest key and declares the enterprise
+policies supported by the {{platform}}.-->
+与 <code>local</code> 和 <code>sync</code> 存储区不同，您需要以
+<a href="http://tools.ietf.org/html/draft-zyp-json-schema-03">JSON
+架构</a>的形式声明 <code>managed</code> 存储区的结构，Chrome
+浏览器会严格地检验。该架构必须存放在清单文件 <code>"storage"</code> 键下
+<code>"managed_schema"</code>
+属性指定的文件中，声明{{platformTitle}}支持的企业策略。
+</p>
+
+<p>
+<!--@Policies are analogous to options but are configured by a system
+administrator instead of the user, allowing the {{platform}} to be
+preconfigured for all users of an organization. See
+<a href="http://www.chromium.org/administrators/">how Chrome handles policies</a>
+for examples from Chrome itself.-->
+策略与选项类似，但是是由系统管理员而不是用户配置的，允许您预先为组织中的所有用户配置{{platformTitle}}。有关 Chrome 本身的例子，请参见
+<a href="http://www.chromium.org/administrators/">Chrome
+浏览器对策略的处理方式</a>。
+</p>
+
+<p>
+<!--@After declaring the policies they can be read from the
+<a href="../storage.html#property-managed">storage.managed</a> API.
+It's up to the {{platform}} to enforce the policies configured
+by the administrator.-->
+策略声明后，可以通过 $ref:storage.managed API 读取。强制实施管理员配置的策略是{{platformTitle}}的职责。
+</p>
+
+<h2 id="manifest"><!--@Sample-->示例 manifest.json</h2>
+
+<p>
+<!--@The <code>storage.managed_schema</code> property indicates a file
+within the {{platform}} that contains the policy schema. Since policies
+are read from the <code>storage.managed</code> API the
+<code>storage</code> permission is required.-->
+<code>storage.managed_schema</code>
+属性指定{{platformTitle}}中包含策略架构的文件。由于策略通过
+<code>storage.managed</code> API 读取，还需要 <code>storage</code> 权限。
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的企业{{platform}}",
+  "permissions": [ "storage" ],
+  "storage": {
+    "managed_schema": "schema.json"
+  },
+  ...
+}
+</pre>
+
+<p>
+<!--@Chrome will then load these policies from the underlying operating system
+and from Google Apps for signed-in users. The
+<a href="../storage.html#event-onChanged">storage.onChanged</a>
+event is fired whenever a policy change is detected, including while
+the browser wasn't running if the {{platform}} uses
+<a href="../event_pages.html">event pages</a>.
+You can verify the policies that Chrome loaded at
+<a href="chrome://policy">chrome://policy</a>.-->
+Chrome 浏览器会从下层操作系统加载这些策略，对于已登录的用户还会从 Google
+Apps 加载策略。每当检测到策略更改时就会产生 $ref:storage.onChanged
+事件，如果{{platformTitle}}使用<a href="../event_pages.html"
+>事件页面</a>的话，还包括浏览器不在运行的时候。您可以在
+<b>chrome://policy</b> 检查 Chrome 浏览器加载的策略。
+</p>
+
+<h2 id="format"><!--@Schema format-->架构格式</h2>
+
+<p>
+<!--@The JSON Schema format has some additional requirements from Chrome:-->
+Chrome 浏览器对 JSON 架构格式还有另外一些要求：
+</p>
+
+<ul>
+<li><!--@The top-level schema must have type <code>object</code>.-->
+顶层架构的类型必须为 <code>object</code>。
+</li>
+<li><!--@The top-level <code>object</code> can't have
+<code>additionalProperties</code>. The <code>properties</code>
+declared are the policies for this {{platform}}.-->
+顶层 <code>object</code> 不能包含 <code>additionalProperties</code>，声明的
+<code>properties</code> 为该{{platformTitle}}使用的策略。
+</li>
+<li><!--@Each schema must have either a <code>$ref</code> value or exactly one <code>type</code>.-->
+每一个架构要么包含 <code>$ref</code> 值，要么只有一种类型（<code>type</code>）。
+</li>
+</ul>
+
+<p>
+<!--@If the schema is invalid then Chrome won't load the extension and will
+indicate the reason why the schema wasn't validated. If a policy value
+does not conform to the schema then it will not be published by the
+<code>storage.managed</code> API.-->
+如果架构无效，Chrome
+浏览器不会载入{{platformTitle}}，并指出无法验证架构的原因。如果某个策略值没有遵循架构，它不会发布至
+<code>storage.managed</code> API。
+</p>
+
+<h2 id="sample"><!--@Sample schema-->示例架构</h2>
+
+<pre data-filename="schema.json">
+{
+  "type": "object",
+
+  // "properties" 将对象可选的键映射至它的架构，
+  // 在顶层对象中，这些键即为支持的策略名称。
+  "properties": {
+
+    // 策略名称 "AutoSave" 映射至它的架构，在以下
+    // 例子中，将它声明为一个简单的布尔值。
+    // "title" 和 "description" 是可选的，用来
+    // 显示用户友好的名称以及提供给管理员的文档。
+    "AutoSave": {
+      "title": "自动保存更改。",
+      "description": "如果设置为 true，更改会自动保存。",
+      "type": "boolean"
+    },
+
+    // 支持的其他简单类型包括 "integer"（整型）、
+    // "string"（字符串）和 "number"（数值）。
+    "PollRefreshRate": {
+      "type": "integer"
+    },
+
+    "DefaultServiceUrl": {
+      "type": "string"
+    },
+
+    // "array" 为遵循某个架构的项目列表，在
+    // "items" 中描述。遵循该架构的一个例子为
+    // [ "one", "two" ]。
+    "ServiceUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+
+    // 以下是一个更复杂的例子，描述书签列表，
+    // 每一个书签包含 "title"（标题），可以拥有
+    // "url" 或 "children" （子书签列表）。"id"
+    // 属性用来为架构命名，其他架构可以通过
+    // "$ref" 属性引用它。
+    "Bookmarks": {
+      "type": "array",
+      "id": "ListOfBookmarks",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string" },
+          "children": { "$ref": "ListOfBookmarks" }
+        }
+      }
+    },
+
+    // "object" 可以包含已知属性，在 "properties"
+    // 中列出，还可以包含可选的 "additionalProperties"，
+    // 表示 "properties" 中未列出的键使用的架构。
+    // 以下例子可以将 URL 映射至它的设置，策略值的
+    // 一个例子为：
+    // {
+    //   "youtube.com": {
+    //     "blacklisted": true
+    //   },
+    //   "google.com": {
+    //     "bypass_proxy": true
+    //   }
+    // }
+    "SettingsForUrls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "blacklisted": { "type": "boolean" },
+          "bypass_proxy": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}
+</pre>
