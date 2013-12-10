@@ -260,10 +260,6 @@
     "dependencies": ["permission:experimental"],
     "contexts": ["blessed_extension"]
   },
-  "experimental.history": {
-    "dependencies": ["permission:history", "permission:experimental"],
-    "contexts": ["blessed_extension"]
-  },
   "extension": {
     "channel": "stable",
     "extension_types": ["extension", "legacy_packaged_app"],
@@ -467,8 +463,7 @@
   "permissions": {
     "channel": "stable",
     "extension_types": ["extension", "legacy_packaged_app", "platform_app"],
-    "contexts": "all",
-    "matches": ["<all_urls>"]
+    "contexts": ["blessed_extension"]
   },
   "power": {
     "dependencies": ["permission:power"],

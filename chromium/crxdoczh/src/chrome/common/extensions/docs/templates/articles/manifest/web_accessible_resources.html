@@ -38,6 +38,24 @@ mechanisms like XHR.-->
 </p>
 
 <p>
+<!--@A navigation from a web origin to an extension resource will be blocked unless
+the resource is listed as web accessible. Note these corner cases:-->
+除非在网页可以访问的资源中列出，从网页来源到扩展程序资源的导航会被阻止。注意以下边缘情况：
+</p>
+<ul>
+<li><!--@When an extension uses the $ref:webRequest or $ref:declarativeWebRequest
+APIs to redirect a public resource request to a resource that is not web
+accessible, such request is also blocked.-->
+扩展程序使用 $ref:webRequest 或 $ref:declarativeWebRequest API
+将公共资源重定向至网页不能访问的资源时，这样的请求也会被阻止。
+</li>
+<li><!--@The above holds true even if the resource that is not web accessible is
+owned by the redirecting extension.-->
+即使网页不能访问的资源属于进行重定向的扩展程序，以上情况仍然成立。
+</li>
+</ul>
+
+<p>
 <!--@Injected content scripts themselves do not need to be whitelisted.-->
 插入的内容脚本本身不需要加入白名单。
 </p>
