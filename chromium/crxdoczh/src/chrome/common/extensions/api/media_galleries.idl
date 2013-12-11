@@ -21,6 +21,15 @@ namespace mediaGalleries {
     if_needed
   };
 
+  enum GetMetadataType {
+    // <!--@Retrieve all available metadata.-->
+    // 获取所有可用的元数据。
+    all,
+    // <!--@Retrieve only the mime type.-->
+    // 仅获取 MIME 类型。
+    mimeTypeOnly
+  };
+
   [inline_doc] dictionary MediaFileSystemsDetails {
     // <!--@Whether to prompt the user for permission to additional media galleries
     // before returning the permitted set. Default is silent.  If the value
@@ -31,6 +40,13 @@ namespace mediaGalleries {
     // 'yes'，或者如果应用没有被授予访问任何媒体库的权限并且传递了
     // 'if_needed'，则会显示媒体库配置对话框。
     GetMediaFileSystemsInteractivity? interactive;
+  };
+
+  dictionary MediaMetadataOptions {
+    // <!--@Specifies which subset of the metadata to retrieve. Defaults to 'all'
+    // if the option is omitted.-->
+    // 指定要获取哪些元数据，如果省略该选项则默认为 'all'（全部）。
+    GetMetadataType? metadataType;
   };
 
   callback MediaFileSystemsCallback =
@@ -74,6 +90,8 @@ namespace mediaGalleries {
     DOMString mimeType;
   };
 
+  callback MediaMetadataCallback = void (MediaMetadata metadata);
+
   interface Functions {
     // <!--@Get the media galleries configured in this user agent. If none are
     // configured or available, the callback will receive an empty array.-->
@@ -90,6 +108,14 @@ namespace mediaGalleries {
     // 获取所有可用媒体库的元数据。
     static void getAllMediaFileSystemMetadata(
         MediaFileSystemsMetadataCallback callback);
+                
+    // <!--@Gets the media-specific metadata for a media file. This should work
+    // for files in media galleries as well as other DOM filesystems.-->
+    // 获取媒体文件特定的元数据，媒体库和其他 DOM
+    // 文件系统中的文件都可以使用该方法。
+    static void getMetadata([instanceOf=Blob] object mediaFile,
+                            optional MediaMetadataOptions options,
+                            MediaMetadataCallback callback);
   };
 
 };
