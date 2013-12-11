@@ -703,28 +703,9 @@
             "description": "目标窗口，默认为<a href='windows.html#current-window'>当前窗口</a>。"
           },
           {
-            "type": "object",
+            "$ref": "types.ImageDetails",
             "name": "options",
-            "optional": true,
-//@            "description": "Set parameters of image capture, such as the format of the resulting image.",
-            "description": "设置图像捕捉的参数，例如所得图像的格式。",
-            "properties": {
-              "format": {
-                "type": "string",
-                "optional": true,
-                "enum": ["jpeg", "png"],
-//@                "description": "The format of the resulting image.  Default is jpeg."
-                "description": "所得图像的格式，默认为 jpeg。"
-              },
-              "quality": {
-                "type": "integer",
-                "optional": true,
-                "minimum": 0,
-                "maximum": 100,
-//@                "description": "When format is 'jpeg', controls the quality of the resulting image.  This value is ignored for PNG images.  As quality is decreased, the resulting image will have more visual artifacts, and the number of bytes needed to store it will decrease."
-                "description": "当格式为 \"jpeg\" 时，控制所得图像的质量。使用 PNG 图像时忽略该参数。随着质量下降，所得图像会更加粗糙，用于储存图像所需的字节数也会下降。"
-              }
-            }
+            "optional": true
           },
           {
             "type": "function", "name": "callback", "parameters": [

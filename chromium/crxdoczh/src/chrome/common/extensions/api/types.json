@@ -19,6 +19,7 @@
           {
             "name": "get",
             "type": "function",
+            "nocompile": true,
 //@            "description": "Gets the value of a setting.",
             "description": "获得设置的值。",
             "parameters": [
@@ -72,6 +73,7 @@
           {
             "name": "set",
             "type": "function",
+            "nocompile": true,
 //@            "description": "Sets the value of a setting.",
             "description": "修改设置的值。",
             "parameters": [
@@ -108,6 +110,7 @@
           {
             "name": "clear",
             "type": "function",
+            "nocompile": true,
 //@            "description": "Clears the setting, restoring any default value.",
             "description": "清除设置，恢复默认值。",
             "parameters": [
@@ -169,6 +172,29 @@
             ]
           }
         ]
+      },
+      {
+        "id": "ImageDetails",
+        "type": "object",
+//@        "description": "Details about the format and quality of an image.",
+        "description": "图片格式和质量的有关详情。",
+        "properties": {
+          "format": {
+            "type": "string",
+            "optional": true,
+            "enum": ["jpeg", "png"],
+//@            "description": "The format of the resulting image.  Default is <code>\"jpeg\"</code>."
+            "description": "所得图像的格式，默认为 jpeg。"
+          },
+          "quality": {
+            "type": "integer",
+            "optional": true,
+            "minimum": 0,
+            "maximum": 100,
+//@            "description": "When format is <code>\"jpeg\"</code>, controls the quality of the resulting image.  This value is ignored for PNG images.  As quality is decreased, the resulting image will have more visual artifacts, and the number of bytes needed to store it will decrease."
+            "description": "当格式为 <code>\"jpeg\"</code> 时，控制所得图像的质量。使用 PNG 图像时忽略该参数。随着质量下降，所得图像会更加粗糙，用于储存图像所需的字节数也会下降。"
+          }
+        }
       }
     ]
   }
