@@ -1,6 +1,6 @@
 {{#event}}
 <div>
-  <h4 id="{{id}}">{{name}}</h4>
+  <h3 id="{{id}}">{{name}}</h3>
   {{+partials.warning_deprecated item:event/}}
   <div class="description">
     {{?description}}<p>
@@ -27,31 +27,33 @@
                                      api:api/}}
     </div>
     {{?conditions}}
-      <h4><!--@Supported conditions-->支持的条件</h4>
+      <h4 title=""><!--@Supported conditions-->支持的条件</h4>
       <ul>
         {{#c:conditions}}<div><li>{{+partials.ref_link link:c/}}</li></div>{{/}}
       </ul>
     {{/conditions}}
     {{?actions}}
-      <h4><!--@Supported actions-->支持的操作</h4>
+      <h4 title=""><!--@Supported actions-->支持的操作</h4>
       <ul>
         {{#a:actions}}<div><li>{{+partials.ref_link link:a/}}</li></div>{{/}}
       </ul>
     {{/actions}}
     {{/supportsRules}}
+    {{?filters}}
+      <h4 title=""><!--@Filters--><a href="events.html#filtered">过滤器</a></h4>
+      <dl>
+        {{#f:filters +partials.parameter_full parameter:f
+                                              parentName:name
+                                              hideParamTOC:true /}}
+      </dl>
+    {{/filters}}
     {{?supportsListeners}}
       {{+partials.function function:byName.addListener
                            parentName:name
                            api:api
-                           parentId:id/}}
-      {{?filters}}
-        <h4><!--@Filters--><a href="events.html#filtered">过滤器</a></h4>
-        <dl>
-          {{#f:filters +partials.parameter_full parameter:f/}}
-        </dl>
-      {{/filters}}
+                           hideParamTOC:true /}}
       {{?returns}}
-        <h4>监听器返回值</h4>
+        <h4 title="">监听器返回值</h4>
         <dl>
           {{+partials.return_value returns:returns/}}
         </dl>

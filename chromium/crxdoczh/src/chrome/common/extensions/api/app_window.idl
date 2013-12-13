@@ -144,6 +144,10 @@ namespace app.window {
     // <code>"alwaysOnTopWindows"</code> 权限，默认为 false。创建窗口后调用
     // <code>setAlwaysOnTop</code> 修改该属性。当前仅在 Dev 分支可用。
     boolean? alwaysOnTop;
+
+    // <!--@If true, the window will be focused when created. Defaults to true.-->
+    // 如果为 true，窗口创建时具有焦点。默认为 true。
+    boolean? focused;
   };
 
   // <!--@Called in the creating window (parent) before the load event is called in

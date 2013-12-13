@@ -223,9 +223,44 @@
         ]
       },
       {
+        "name": "sendKeyEvents",
+        "type": "function",
+//@        "description": "Sends the key events.  This function is expected to be used by virtual keyboards.  When key(s) on a virtual keyboard is pressed by a user, this function is used to propagate that event to the system.",
+        "description": "发送键盘事件，该函数由虚拟键盘使用。用户按下虚拟键盘上的按键时，该函数可以用来将该事件传播给系统。",
+        "parameters": [
+          {
+            "name": "parameters",
+            "type": "object",
+            "properties": {
+              "contextID": {
+//@                "description": "ID of the context where the key events will be sent",
+                "description": "发送键盘事件的上下文标识符。",
+                "type": "integer"
+              },
+              "keyData": {
+                "type": "array",
+//@                "description": "Data on the key event.",
+                "description": "键盘事件的相关数据。",
+                "items": {
+                  "$ref": "KeyboardEvent"
+                }
+              }
+            }
+          },
+          {
+            "type": "function",
+            "name": "callback",
+            "optional": true,
+//@            "description": "Called when the operation completes.",
+            "description": "操作完成时调用。",
+            "parameters": []
+          }
+        ]
+      },
+      {
         "name": "setCandidateWindowProperties",
         "type": "function",
-//@        "description": "Sets the properties of the candidate window. This fails if the extension doesn’t own the active IME",
+//@        "description": "Sets the properties of the candidate window. This fails if the extension doesn't own the active IME",
         "description": "设置候选窗口的属性。如果当前扩展程序没有独占当前输入法，该方法将会失败。",
         "parameters": [
           {
@@ -305,7 +340,7 @@
       {
         "name": "setCandidates",
         "type": "function",
-//@        "description": "Sets the current candidate list. This fails if this extension doesn’t own the active IME",
+//@        "description": "Sets the current candidate list. This fails if this extension doesn't own the active IME",
         "description": "设置当前的候选列表。如果当前扩展程序没有独占当前输入法，该方法将会失败。",
         "parameters": [
           {
