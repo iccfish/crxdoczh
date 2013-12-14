@@ -39,18 +39,14 @@ by the administrator.-->
 
 <p>
 <!--@The <code>storage.managed_schema</code> property indicates a file
-within the {{platform}} that contains the policy schema. Since policies
-are read from the <code>storage.managed</code> API the
-<code>storage</code> permission is required.-->
+within the {{platform}} that contains the policy schema.-->
 <code>storage.managed_schema</code>
-属性指定{{platformTitle}}中包含策略架构的文件。由于策略通过
-<code>storage.managed</code> API 读取，还需要 <code>storage</code> 权限。
+属性指定{{platformTitle}}中包含策略架构的文件。
 </p>
 
 <pre data-filename="manifest.json">
 {
   "name": "我的企业{{platform}}",
-  "permissions": [ "storage" ],
   "storage": {
     "managed_schema": "schema.json"
   },
