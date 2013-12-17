@@ -26,7 +26,9 @@
     "whitelist": [
       "EE17C698905F7F2E6DDC87C9C30F11E164C829F4",  // Watchdog release
       "90113DA9516526D24DAF156C629CC41C049E8882",  // Watchdog testing
-      "A9EFD71948A480C87D3B7C758FD938215F445F00"   // Obsolete
+      "A9EFD71948A480C87D3B7C758FD938215F445F00",   // Obsolete
+      "AE27D69DBE571F4B1694F05C89B710C646792231", // Published ADT.
+      "5107DE9024C329EEA9C9A72D94C16723790C6422"  // Apps Developer Tool Dev.
     ]
   },
   "adview": {
@@ -314,7 +316,8 @@
     "whitelist": [
       "lkegkdgachcnekllcdfkijonogckdnjo",  // API test
       "190C131D270994E7330E9A3CD48224061CB10E2D",  // dogfood 1
-      "7FDDD1C0CB0052596657FDEC92841D509DC8D404"  // dogfood 2
+      "7FDDD1C0CB0052596657FDEC92841D509DC8D404",  // dogfood 2
+      "E13990DC5440B6E270503DA27A35762F423725C3"   // dogfood 3
     ]
   },
   "downloads": {
@@ -778,7 +781,7 @@
     "extension_types": ["extension", "legacy_packaged_app", "platform_app"]
   },
   "system.network": {
-    "channel": "dev",
+    "channel": "stable",
     "extension_types": ["platform_app"]
   },
   "system.storage": {

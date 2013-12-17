@@ -214,12 +214,43 @@
       {
         "name": "search",
         "type": "function",
-//@        "description": "Searches for BookmarkTreeNodes matching the given query.",
-        "description": "搜索书签树节点，找出匹配的结果。",
+//@        "description": "Searches for BookmarkTreeNodes matching the given query. Queries specified with an object produce BookmarkTreeNodes matching all specified properties.",
+        "description": "搜索书签树节点，找出匹配的结果。如果以对象方式指定查询，得到的 BookmarkTreeNodes 匹配所有指定的属性。",
         "parameters": [
           {
-            "type": "string",
-            "name": "query"
+            "name": "query",
+            "choices": [
+              {
+                "type": "string",
+//@                "description": "A string of words and quoted phrases that are matched against bookmark URLs and titles."
+                "description": "包含关键字和含有引号的短语，匹配书签 URL 和标题。"
+              },
+              {
+                "type": "object",
+//@                "description": "An object specifying properties and values to match when searching. Produces bookmarks matching all properties.",
+                "description": "指定搜索时匹配的属性值的对象，产生的结果匹配所有属性。",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "optional": true,
+//@                    "description": "A string of words and quoted phrases that are matched against bookmark URLs and titles."
+                    "description": "包含关键字和含有引号的短语，匹配书签 URL 和标题。"
+                  },
+                  "url": {
+                    "type": "string",
+                    "optional": true,
+//@                    "description": "The URL of the bookmark; matches verbatim. Note that folders have no URL."
+                    "description": "书签 URL，必须完全匹配。注意，文件夹没有 URL。"
+                  },
+                  "title": {
+                    "type": "string",
+                    "optional": true,
+//@                    "description": "The title of the bookmark; matches verbatim."
+                    "description": "书签标题，必须完全匹配。"
+                  }
+                }
+              }
+            ]
           },
           {
             "type": "function",
