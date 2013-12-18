@@ -220,9 +220,11 @@ namespace app.window {
     // 关闭窗口。
     static void close();
 
-    // <!--@Show the window. Does nothing if the window is already visible.-->
-    // 显示窗口，如果窗口已经可见则什么都不做。
-    static void show();
+    // <!--@Show the window. Does nothing if the window is already visible.
+    // Focus the window if |focused| is set to true or omitted.-->
+    // 显示窗口，如果窗口已经可见则什么都不做。如果 <code>focused</code>
+    // 设置为 true 或省略则使窗口获得焦点。
+    static void show(optional boolean focused);
 
     // <!--@Hide the window. Does nothing if the window is already hidden.-->
     // 隐藏窗口，如果窗口已经可见则什么都不做。
