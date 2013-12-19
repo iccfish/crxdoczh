@@ -258,6 +258,13 @@
         ]
       },
       {
+        "name": "hideInputView",
+        "type": "function",
+//@        "description": "Hides the input view window, which is popped up automatically by system. If the input view window is already hidden, this function will do nothing.",
+        "description": "隐藏系统自动弹出的输入视图窗口。如果输入视图窗口已经隐藏，该函数不进行任何操作。",
+        "parameters": []
+      },
+      {
         "name": "setCandidateWindowProperties",
         "type": "function",
 //@        "description": "Sets the properties of the candidate window. This fails if the extension doesn't own the active IME",
