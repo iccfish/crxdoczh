@@ -1,7 +1,8 @@
-<!--@Specifies a <em>host permission</em>. Required if the extension or app wants to interact with the code running on pages. Many capabilities, such as <a href="xhr.html">cross-origin XMLHttpRequests</a>, <a href="content_scripts.html#pi">programmatically injected content scripts</a>, and <a href="cookies.html">the extension's cookies API</a> require host permissions. For details on the syntax, see <a href="match_patterns.html">Match Patterns</a>.-->
+<!--@Specifies a <em>host permission</em>. Required if the extension or app wants to interact with the code running on pages. Many capabilities, such as <a href="xhr.html">cross-origin XMLHttpRequests</a>, <a href="content_scripts.html#pi">programmatically injected content scripts</a>, and <a href="cookies.html">the extension's cookies API</a> require host permissions. For details on the syntax, see <a href="match_patterns.html">Match Patterns</a>. A path is allowed but treated as <code>/*</code>.-->
 指定<em
 >主机权限</em>。如果扩展程序或应用需要与页面上运行的代码交互则必须指定该权限。许多扩展程序的能力，例如<a
 href="xhr.html">跨站 XMLHttpRequest</a>、<a href="content_scripts.html#pi"
 >以编程方式插入内容脚本</a>以及<a href="cookies.html">扩展程序的 Cookie
 API</a> 都需要主机权限。有关语法上的详情，请参见<a
-href="match_patterns.html">匹配表达式</a>。
+href="match_patterns.html">匹配表达式</a>。允许指定路行，但始终视为
+<code>/*</code>。

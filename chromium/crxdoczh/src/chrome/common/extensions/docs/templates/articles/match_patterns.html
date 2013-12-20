@@ -1,24 +1,11 @@
 <h1><!--@Match Patterns-->匹配表达式</h1>
 
 <p>
-<a href="content_scripts.html"><!--@Content scripts-->内容脚本</a><!--@ operate on
-a set of URLs defined by match patterns.
-You can put one or more match patterns
-in the <code>"matches"</code> part of
-a content script's section of the manifest,
-as well as in the <code>"exclude_matches"</code> section.
-This page describes the match pattern syntax &mdash;
-the rules you need to follow when you specify
-which URLs your content script affects.-->在匹配表达式定义的一组
-URL 上运行。您可以在清单文件中内容脚本部分的
-<code>"matches"</code> 属性以及 <code>"exclude_match"</code>
-属性中添加一个或多个匹配表达式。该页面描述匹配表达式的语法，当您指定哪些
-URL 将会受您的内容脚本影响时您应该遵守这些规则。
-</p>
-
-<p>
-<!--@A match pattern is essentially a URL
-that begins with a permitted scheme (<code>http</code>,
+<!--@<a href="declare_permissions.html#host-permissions">Host
+permissions</a> and <a href="content_scripts.html">content
+script</a> matching are based on a set of URLs defined by
+<dfn>match patterns</dfn>.  A match pattern is essentially a
+URL that begins with a permitted scheme (<code>http</code>,
 <code>https</code>, <code>file</code>, <code>ftp</code>, or
 <code>chrome-extension</code>),
 and that can contain '<code>*</code>' characters.
@@ -26,7 +13,10 @@ The special pattern
 <code>&lt;all_urls&gt;</code> matches any URL
 that starts with a permitted scheme.
 Each match pattern has 3 parts:-->
-匹配表达式本质上是以允许的协议（<code>http</code>、<code>https</code>、<code>file</code> 或
+<a href="declare_permissions.html#host-permissions">主机权限</a>和<a
+href="content_scripts.html">内容脚本</a>的匹配基于<dfn
+>匹配表达式</dfn>定义的一组 URL。匹配表达式本质上就是以允许的协议（<code
+>http</code>、<code>https</code>、<code>file</code> 或
 <code>ftp</code>）开头，并且可以包含星号（“<code>*</code>”）的
 URL。特殊的表达式 <code>&lt;all_urls&gt;</code>
 匹配以允许的协议开头的任何
@@ -56,8 +46,13 @@ URL。每一个匹配表达式包含三部分：
     there is no <em>host</em> part-->，则没有<em>主机</em>部分
   </li>
   <li> <em><!--@path-->路径</em> &mdash;
-    <!--@for example, -->例如，<code>/*</code><!--@, -->、<code>/foo* </code><!--@,
-    or--> 或 <code>/foo/bar </code>
+    <!--@for example, <code>/*</code>, <code>/foo*</code>,
+    or <code>/foo/bar</code>. The path must be present in a
+    host permission, but is always treated
+    as <code>/*</code>.-->
+    例如，<code>/*</code>、<code>/foo*</code> 或
+    <code>/foo/bar</code>。主机权限中必须包含路径，但是始终视为
+    <code>/*</code>。
   </li>
 </ul>
 
