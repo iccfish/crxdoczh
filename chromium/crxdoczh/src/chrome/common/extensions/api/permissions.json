@@ -16,15 +16,15 @@
             "type": "array",
             "items": {"type": "string"},
             "optional": true,
-//@            "description": "List of named permissions (does not include hosts or origins)."
-            "description": "权限名称列表（不包括主机权限）。"
+//@            "description": "List of named permissions (does not include hosts or origins).  Anything listed here must appear in the <code>optional_permissions</code> list in the manifest."
+            "description": "权限名称列表（不包括主机权限）。此处列出的所有权限都必须在清单文件的 <code>optional_permissions</code> 列表中出现。"
           },
           "origins": {
             "type": "array",
             "items": {"type": "string"},
             "optional": true,
-//@            "description": "List of origin permissions."
-            "description": "主机权限列表。"
+//@            "description": "List of origin permissions. Anything listed here must be a subset of a host that appears in the <code>optional_permissions</code> list in the manifest. For example, if <code>http://*.example.com/</code> or <code>http://*/</code> appears in <code>optional_permissions</code>, you can request an origin of <code>http://help.example.com/</code>. Any path is ignored."
+            "description": "主机权限列表。此处列出的所有权限都必须为清单文件 <code>optional_permissions</code> 列表中出现的主机子集。例如，如果 <code>http://*.example.com/</code> 或 <code>http://*/</code> 包含在 <code>optional_permissions</code> 中，您可以请求 <code>http://help.example.com/</code> 来源。路径部分忽略。"
           }
         }
       }
