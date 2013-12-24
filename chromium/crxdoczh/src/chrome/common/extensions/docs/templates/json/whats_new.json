@@ -1,0 +1,440 @@
+{
+    "backgroundpages.to-be-non-persistent": {
+        "type": "additionsToExistingApis",
+//@        "description": "Background pages can optionally be non-persistent, using a feature we call <code>event pages</code>. Event pages run only while they're being used, and will unload when idle to save resources.",
+        "description": "使用一种我们称之为<em>事件页面</em>的特性，后台网页可以不持久存在。事件页面只有在使用时才会运行，空闲时卸载以便节约资源。",
+        "version": 22
+    },
+    "chromeSetting.set-regular-only-scope": {
+        "type": "additionsToExistingApis",
+//@        "description": "The types.ChromeSetting.set method now has a <code>regular_only</code> scope.",
+        "description": "types.ChromeSetting.set 方法新增 <code>regular_only</code>（仅用于普通用户配置文件）范围。",
+        "version": 21
+    },
+    "browsingData.RemovalOptions.set-originTypes-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The browsingData.RemovalOptions now has an <code>originTypes</code> property.",
+        "description": "browsingData.RemovalOptions 新增 <code>originTypes</code> 属性。",
+        "version": 21
+    },
+    "management.uninstall.set-showConfirmDialog": {
+        "type": "additionsToExistingApis",
+//@        "description": "The management.uninstall method now has a <code>showConfirmDialog</code> parameter.",
+        "description": "management.uninstall 方法新增 <code>showConfirmDialog</code> 参数。",
+        "version": 21
+    },
+    "contextMenus.create.set-unique-IDs": {
+        "type": "additionsToExistingApis",
+//@        "description": "The contextMenus.create method now allows you to specify unique IDs for each item. This is intended to be used with the new <code>contextMenus.onClicked</code> event, to distinguish the clicked item.",
+        "description": "contextMenus.create 方法现在允许您为每一个菜单项指定唯一的标识符，这是为了与新的 <code>contextMenus.onClicked</code> 事件搭配使用，区分单击的菜单项。",
+        "version": 21
+    },
+    "browserAction.setIcon-and-pageAction.setIcon": {
+        "type": "additionsToExistingApis",
+//@        "description": "The browserAction.setIcon and pageAction.setIcon methods now accept optional callbacks.",
+        "description": "browserAction.setIcon 和 pageAction.setIcon 现在接受可选的回调函数。",
+        "version": 21
+    },
+    "privacy.websites.has-protectedContentEnabled-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The privacy.websites namespace now has a <code>protectedContentEnabled</code> property.",
+        "description": "privacy.websites 命名空间新增 <code>protectedContentEnabled</code> 属性。",
+        "version": 21
+    },
+    "tabs.move.index.accept--1": {
+        "type": "additionsToExistingApis",
+//@        "description": "The <code>index</code> parameter to the tabs.move method now accepts -1 to indicate that the tab should be placed at the end.",
+        "description": "tabs.move 方法的 <code>index</code> 参数现在可以使用 -1 表示指定标签页应该放在最后。",
+        "version": 21
+    },
+    "tabs.highlight.windowId.be-optional": {
+        "type": "additionsToExistingApis",
+//@        "description": "The <code>windowId</code> parameter to the tabs.highlight method is now optional.",
+        "description": "tabs.highlight 方法的 <code>windowId</code> 变为可选。",
+        "version": 21
+    },    
+    "manifest-v1-deprecated": {
+        "type": "manifestChanges",
+//@        "description": "Manifest version 1 was deprecated in Chrome 18 and will be phased out according to the Manifest version 1 support",
+        "description": "清单文件版本 1 在 Chrome 18 中弃用，并将根据清单文件版本 1 支持计划逐渐减少支持。",
+        "version": 20
+    },
+    "chrome.contextMenus.create-and-update-has-enabled-parameter": {
+        "type": "additionsToExistingApis",
+//@        "description": "The chrome.contextMenus contextMenus.create and contextMenus.update methods now have an <code>enabled</code> parameter.",
+        "description": "chrome.contextMenus 的 contextMenus.create 和 contextMenus.update 方法新增 <code>enabled</code> 参数。",
+        "version": 20
+    },
+    " privacy.services.has-spellingServiceEnabled-setting": {
+        "type": "additionsToExistingApis",
+//@        "description": "The privacy API's privacy.services object now has a <code>spellingServiceEnabled</code> setting.",
+        "description": "隐私 API 的 privacy.services 对象新增 <code>spellingServiceEnabled</code> 设置。",
+        "version": 20
+    },
+    "chrome.tabs.executeScript-and-insertCSS-has-runAt-parameter": {
+        "type": "additionsToExistingApis",
+//@        "description": "The chrome.tabs tabs.executeScript and tabs.insertCSS now accept a runAt parameter.",
+        "description": "chrome.tabs 的 tabs.executeScript 和 tabs.insertCSS 新增 runAt 参数。",
+        "version": 20
+    },
+    "sendRequest.deprecated-for-runtime-and-sendMessage": {
+        "type": "additionsToExistingApis",
+//@        "description": "The <code>sendRequest()</code> method has been deprecated in favor of the <code>sendMessage()</code> method for both the runtime.sendMessage and tabs.sendMessage.",
+        "description": "<code>sendRequest()</code> 方法已弃用，您应该改用 <code>sendMessage()</code> 方法：runtime.sendMessage 和 tabs.sendMessage。",
+        "version": 20
+    },
+    "window.window.support-fullscreen-state": {
+        "type": "additionsToExistingApis",
+//@        "description": "The window API's windows.Window object now has an <code>alwaysOnTop</code> property and supports the fullscreen state.",
+        "description": "窗口 API 的 windows.Window 对象新增 <code>alwaysOnTop</code> 属性，并支持全屏状态。",
+        "version": 19
+    },
+    "chrome.tabs.query.has-currentWindow-and-lastFocusedWindow-parameter": {
+        "type": "additionsToExistingApis",
+//@        "description": "The <code>chrome.tabs</code> tabs.query method now has the <code>currentWindow</code> and <code>lastFocusedWindow</code> parameters.",
+        "description": "code>chrome.tabs</code> 的 tabs.query 方法新增 <code>currentWindow</code> 和 <code>lastFocusedWindow</code> 参数。",
+        "version": 19
+    },
+    "browser.action.api.has-new-getter-fucntions": {
+        "type": "additionsToExistingApis",
+//@        "description": "The browser action API has the following new getter functions: browserAction.getTitle, browserAction.getBadgeText, browserAction.getBadgeBackgroundColor, and browserAction.getPopup.",
+        "description": "浏览器按钮 API 新增以下函数用于获取信息：browserAction.getTitle、browserAction.getBadgeText、browserAction.getBadgeBackgroundColor 和 browserAction.getPopup。",
+        "version": 19
+    },
+    "page.action.has-new-getter-functions": {
+        "type": "additionsToExistingApis",
+//@        "description": "The page action API has the following new getter functions: pageAction.getTitle and pageAction.getPopup.",
+        "description": "页面按钮 API 新增以下函数用于获取信息：pageAction.getTitle 和 pageAction.getPopup。",
+        "version": 19
+    },
+    "chrome.tabs.create-update-methods-has-openerTabId-parameter": {
+        "type": "additionsToExistingApis",
+//@        "description": "The chrome.tabs tabs.create and tabs.update methods now have an <code>openerTabId</code> parameter",
+        "description": "chrome.tabs 的 tabs.create 和 tabs.update 方法新增 <code>openerTabId</code> 参数。",
+        "version": 18
+    },
+    "new-manifest-version-field-specifies-the-version": {
+        "type": "manifestChanges",
+//@        "description": "The new manifest version field specifies the version of the manifest that your package requires. As of Chrome 18, you should use manifest version 2.",
+        "description": "新的清单文件版本字段指定您的扩展程序包要求的清单文件版本。从 Chrome 18 开始，您应该使用清单文件版本 2。",
+        "version": 18
+    },
+    "new-CSP-field-define-extensions-policies": {
+        "type": "manifestChanges",
+//@        "description": "The new Content Security Policy (CSP) field is used to define an extension's policies towards the types of content that can be loaded and executed by the extension.",
+        "description": "新的内容安全策略（CSP）字段用于定义扩展程序的策略，指定可以由扩展程序加载和运行的内容类型。",
+        "version": 18
+    },
+    "background-pages-includes-scripts-property": {
+        "type": "manifestChanges",
+//@        "description": "Most background pages only include a list of script files. For these background pages, you can use the new background.scripts property and Chrome will generate a background page for you.",
+        "description": "大部分后台网页只包含脚本文件列表，对于这些后台网页，您可以使用新的 background.scripts 属性，Chrome 浏览器会为您生成后台网页。",
+        "version": 18
+    },
+    "new-web-accessible-resources-field": {
+        "type": "manifestChanges",
+//@        "description": "The new web_accessible_resources field specifies the paths of packaged resources that are expected to be usable in the context of a web page.",
+        "description": "新的 web_accessible_resources 字段指定可以在网页上下文中使用的打包资源路径。",
+        "version": 18
+    },
+    "permission-be-optional-for-some-apis": {
+        "type": "manifestChanges",
+//@        "description": "Permissions can be optional for the content setting API, the web navigation API, and the new web request API.",
+        "description": "内容设置、网页导航和新的网络请求 API 可以使用可选权限。",
+        "version": 17
+    },
+    "management.ExtensionInfo.object.has-disabledReason-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The management API's management.ExtensionInfo object now has a <code>disabledReason</code> property.",
+        "description": "管理 API 的 management.ExtensionInfo 对象新增 <code>disabledReason</code> 属性。",
+        "version": 17
+    },
+    "omnibox.api.works-in-split-incognito-mode": {
+        "type": "additionsToExistingApis",
+//@        "description": "The omnibox API now works in split incognito mode.",
+        "description": "多功能框 API 现在可以在分离式隐身模式中使用。",
+        "version": 17
+    },
+    "new-requirements-field-declare-extension-requirements": {
+        "type": "manifestChanges",
+//@        "description": "The new requirements field allows you to declare extension requirements up front. For example, you can use this field to specify that your app requires 3D graphics support in order to use features such as CSS 3D Tranforms or WebGL.",
+        "description": "新的 requirements 字段允许您事先声明扩展程序的要求。例如您可以使用该字段指定您的应用要求 3D 图形支持，以便使用 CSS 3D 或 WebGL 之类的特性。",
+        "version": 16
+    },
+    "tabs.query.gets-all-tabs": {
+        "type": "additionsToExistingApis",
+//@        "description": "The new tabs.query method gets all tabs that have the specified properties or all tabs if no properties are specified.",
+        "description": "新的 tabs.query 方法获取包含指定属性的所有标签页，如果没有指定任何属性则获取所有标签页。",
+        "version": 16
+    },
+    "tabs.reload.preserve-local-cache": {
+        "type": "additionsToExistingApis",
+//@        "description": "The new tabs.reload method reloads a tab and includes the option to preserve the local cache of the reloaded tab.",
+        "description": "新的 tabs.reload 方法重新加载标签页，您还可以指定是否保留本地缓存的选项。",
+        "version": 16
+    },
+    "management.ExtensionInfo.has-updateURL-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The management API's management.ExtensionInfo object now has an <code>updateURL</code> property.",
+        "description": "管理 API 的 management.ExtensionInfo 对象新增 <code>updateURL</code> 属性。",
+        "version": 16
+    },
+    "external_extensions.json.limit-supported-locals": {
+        "type": "additionsToExistingApis",
+//@        "description": "You can now limit the supported locales for an external extension by adding the <code>supported_locales</code> attribute to the <code>external_extensions.json</code>.",
+        "description": "您现在可以在 <code>external_extensions.json</code> 中添加 <code>supported_locales</code> 属性限制外部扩展程序支持的语言。",
+        "version": 16
+    },
+    "getAllInWindow-getSelected.deprecated": {
+        "type": "additionsToExistingApis",
+//@        "description": "The methods <code>getAllInWindow()</code> and <code>getSelected()</code> have been deprecated. To get details about all tabs in the specified window, use tabs.query with the argument {'windowId': windowId}. To get the tab that is selected in the specified window, use <code>chrome.tabs.query()</code> with the argument <code>{'active': true}</code>.",
+        "description": "<code>getAllInWindow()</code> 和 <code>getSelected()</code> 方法已弃用。要获取指定窗口中所有标签页的有关详情，请使用 tabs.query，并在参数中指定 {'windowId': windowId}。要获取指定窗口中选中的标签页，请使用 <code>chrome.tabs.query()</code>，并在参数中指定 <code>{'active': true}</code>。",
+        "version": 16
+    },
+    "tabs.upate-doesnot-need-tabId": {
+        "type": "additionsToExistingApis",
+//@        "description": "You are no longer required to specify the <code>tabId</code> for the tabs.update method. When not provided, the tabId defaults to the selected tab of the current window.",
+        "description": "您不再需要在 tabs.update 方法中指定 <code>tabId</code>，未提供时，tabId 默认为当前窗口中的选定标签页。",
+        "version": 16
+    },
+    "external-files-be-owned-by-users-in-wheel-group": {
+        "type": "additionsToExistingApis",
+//@        "description": "External extension files on Mac OS can now be owned by users within a wheel group (or an admin group).",
+        "description": "Mac OS 中的外部扩展程序文件的所有者现在可以是 Wheel 组（或管理员组）。",
+        "version": 16
+    },
+    "experimental-permission-no-longer-required-for-panel-type": {
+        "type": "additionsToExistingApis",
+//@        "description": "The experimental permission is no longer required for the panel type. By default, the panel type creates a popup unless the <code>--enable-panels</code> flag is set.",
+        "description": "面板类型不再需要 \"experimental\" 权限。默认情况下，面板类型创建弹出窗口，除非设置了 <code>--enable-panels</code> 标志。",
+        "version": 16
+    },
+    "offline_enabled.field-specify-without-connection": {
+        "type": "manifestChanges",
+//@        "description": "The new offline_enabled field lets you specify that your app works well even without an internet connection.",
+        "description": "新增的 offline_enabled 字段让您指定您的应用即使在没有网络连接的情况下也能正常工作。",
+        "version": 15
+    },
+    "management.getPermissionWarningsById.retrieve-permission-warning": {
+        "type": "additionsToExistingApis",
+//@        "description": "You can retrieve permission warnings using the new management API methods management.getPermissionWarningsById and management.getPermissionWarningsByManifest.",
+        "description": "您现在可以使用新的管理 API 方法 management.getPermissionWarningsById 和 management.getPermissionWarningsByManifest 获取权限警告。",
+        "version": 15
+    },
+    "management.ExtensionInfo.has-offlineEnabled": {
+        "type": "additionsToExistingApis",
+//@        "description": "The management API’s management.ExtensionInfo object has a new field, offlineEnabled.",
+        "description": "管理 API 的 management.ExtensionInfo 对象新增 offlineEnabled 字段。",
+        "version": 15
+    },
+    "internationalize.using-placeholders": {
+        "type": "additionsToExistingApis",
+//@        "description": "You can now internationalize content script CSS files by using __MSG_messagename__ placeholders.",
+        "description": "您现在可以使用 __MSG_messagename__ 占位符为内容脚本 CSS 文件提供国际化支持。",
+        "version": 15
+    },
+    "tabs.update.callback-passed-null": {
+        "type": "additionsToExistingApis",
+//@        "description": "The callback for the tabs.update method is passed null instead of the tab details if the extension does not have the tabs permission.",
+        "description": "如果扩展程序没有 \"tabs\" 权限，tabs.update 方法调用回调函数时传递 null，而不是标签页详情。",
+        "version": 15
+    },
+    "content_security_policy-prevent-xss-attack": {
+        "type": "manifestChanges",
+//@        "description": "The new content_security_policy field can help prevent cross-site scripting vulnerabilities in your extension.",
+        "description": "新增的 content_security_policy 字段可以帮助您避免您的扩展程序中存在的跨站脚本漏洞。",
+        "version": 14
+    },
+    "nacl_modules.register-native-client-modules": {
+        "type": "manifestChanges",
+//@        "description": "The new nacl_modules field lets you register Native Client modules as content handlers for MIME types.",
+        "description": "新增的 nacl_modules 字段让您将 Native Client 模块注册为 MIME 类型的内容处理程序。",
+        "version": 14
+    },
+    "context.menu.items-appear-in-documents": {
+        "type": "additionsToExistingApis",
+//@        "description": "Context menu items can now appear even in documents that have file:// or chrome:// URLs. Previously, they were restricted to documents with http:// or https:// URLs.",
+        "description": "右键菜单项现在可以在 file:// 或 chrome:// URL 的文档中出现，原来仅限于 http:// 或 https:// URL 的文档。",
+        "version": 14
+    },
+    "drawAttention-field-specify-that-window": {
+        "type": "additionsToExistingApis",
+//@        "description": "An optional drawAttention field in windows.update's updateInfo object lets you specify that the window should entice the user to change focus to it.",
+        "description": "windows.update 中 updateInfo 对象中可选的 drawAttention 字段让您指定窗口应该提醒用户将焦点切换至该窗口。",
+        "version": 14
+    },
+    "bookmarks.getSubTree-retrieve-bookmarks-hierarchy": {
+        "type": "additionsToExistingApis",
+//@        "description": "The new bookmarks.getSubTree function lets you retrieve just part of the Bookmarks hierarchy",
+        "description": "新增的 bookmarks.getSubTree 函数使您可以只获取一部分书签架构。",
+        "version": 14
+    },
+    "tabs.permission.no-longer-required-for-tabs-remove": {
+        "type": "additionsToExistingApis",
+//@        "description": "The tabs permission is no longer required for tabs.remove and tabs.onRemoved.",
+        "description": "tabs.remove 和 tabs.onRemoved 不再需要 \"tabs\" 权限。",
+        "version": 14
+    },
+    "exclude_matches-targets-content-script-precisely": {
+        "type": "manifestChanges",
+//@        "description": "A new <code>exclude_matches</code> item in the content_scripts field lets you target your content script more precisely. For details, see Match patterns and globs.",
+        "description": "content_scripts 字段中新增的 <code>exclude_matches</code> 项可以让您更精确地指定您的内容脚本的目标，有关详情请参见匹配表达式和范围。",
+        "version": 13
+    },
+    "new-clipboardRead-specify-capabilities-for-document.execCommand": {
+        "type": "manifestChanges",
+//@        "description": "New clipboardRead and clipboardWrite permissions specify capabilities for <code>document.execCommand()</code>.",
+        "description": "新增的 clipboardRead 和 clipboardWrite 权限指定 <code>document.execCommand()</code> 的能力。",
+        "version": 13
+    },
+    "content-scripts-make-cross-origin-requests": {
+        "type": "additionsToExistingApis",
+//@        "description": "Content scripts can now make cross-origin XMLHttpRequests to the same sites that their parent extension can, eliminating the need to relay these requests through a background page.",
+        "description": "现在内容脚本可以向所属扩展程序允许的站点发出跨来源 XMLHttpRequest 请求，而不用通过后台网页转发这些请求。",
+        "version": 13
+    },
+    "use-runat-in-greasemonkey-script": {
+        "type": "additionsToExistingApis",
+//@        "description": "You can now use <code>@run-at</code> in an imported Greasemonkey script to control when the script is injected. It works the same way as <code>run_at</code> in content scripts.",
+        "description": "现在您可以在导入的油猴脚本中使用 <code>@run-at</code>，控制何时插入脚本。它的工作方式与内容脚本中的 <code>run_at</code> 一致。",
+        "version": 13
+    },
+    "two-new-chrome-extension-methods": {
+        "type": "additionsToExistingApis",
+//@        "description": "Two new <code>chrome.extension</code> methods—extension.isAllowedFileSchemeAccess and extension.isAllowedIncognitoAccess—let you determine whether your extension has increased access, which the user specifies using the extensions management page (chrome://extensions).",
+        "description": "<code>chrome.extension</code> 中新增的两个方法——extension.isAllowedFileSchemeAccess 和 extension.isAllowedIncognitoAccess 允许您确定您的扩展程序是否具有附加的访问权限，用户可以使用扩展程序管理网页（chrome://extensions）指定它们。",
+        "version": 12
+    },
+    "window.create.takes-focused-value": {
+        "type": "additionsToExistingApis",
+//@        "description": "The windows.create method can now take a <code>focused</code> value. Previously, all new windows had the keyboard focus; now you can create windows without interrupting the user's typing.",
+        "description": "windows.create 方法现在可以接受 <code>focused</code> 值。原来所有新窗口都有键盘焦点，现在您可以不打断用户输入而创建窗口。",
+        "version": 12
+    },
+    "manifest-specifies-experimental-permission": {
+        "type": "additionsToExistingApis",
+//@        "description": "If the manifest specifies experimental permission, your extension can specify panel as the value of the <code>type</code> field in the windows.create method or the windows.Window type.",
+        "description": "如果清单文件指定了 experimental 权限，您的扩展程序可以在 window.create 或 windows.Window 类型中的 <code>type</code> 字段指定 panel（面板）值。",
+        "version": 12
+    },
+    "cookies.onChanged.event-has-a-cause-parameter": {
+        "type": "additionsToExistingApis",
+//@        "description": "The cookies.onChanged event of <code>chrome.cookies</code> now has a <code>cause</code> parameter.",
+        "description": "<code>chrome.cookies</code> 的 cookies.onChanged 事件新增 <code>cause</code> 参数。",
+        "version": 12
+    },
+    "chrome.contextMenus.create.specifies-frame-value": {
+        "type": "additionsToExistingApis",
+//@        "description": "The <code>chrome.contextMenus</code> contextMenus.create and contextMenus.update methods now let you specify a context value of frame",
+        "description": "<code>chrome.contextMenus</code> 的 contextMenus.create 和 contextMenus.update 方法现在允许您指定框架上下文。",
+        "version": 12
+    },
+    "host-permission-for-tabs-operation": {
+        "type": "additionsToExistingApis",
+//@        "description": "For security reasons, you can no longer call tabs.captureVisibleTab on just any tab. Instead, you now must have host permission for the URL displayed by that tab. To get the previous behavior, specify <code><all_urls></code> for the host permission.",
+        "description": "处于安全性原因，您不能在任意标签页中调用 tabs.captureVisibleTab，而必须首先拥有标签页中显示 URL 的主机权限。要获得原来的行为，请在主机权限中指定 <code><all_urls></code>。",
+        "version": 11
+    },
+    "management.ExtensionInfo.has-homepageUrl-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The management API's management.ExtensionInfo object now has a <code>homepageUrl</code> property.",
+        "description": "管理 API 的 management.ExtensionInfo 对象新增 <code>homepageUrl</code> 属性。",
+        "version": 11
+    },
+    "management.has-homepageUrl-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The management API now lets you get the icons of disabled apps and extensions. Also, you can now modify the regular icon's URL to get its disabled equivalent. See management.IconInfo for details.",
+        "description": "管理 API 现在允许您获取已禁用的应用和扩展程序图标，此外您还可以修改普通图标的 URL 获取禁用时的图标。有关详情请参见 management.IconInfo。",
+        "version": 11
+    },
+    "cookies.set-take-callbacks": {
+        "type": "additionsToExistingApis",
+//@        "description": "The cookies API cookies.set and cookies.remove methods can now take callbacks.",
+        "description": "Cookie API 的 cookies.set 和 cookies.remove 方法现在可以接受回调函数。",
+        "version": 11
+    },
+    "new.background-permission-extends-life-of-chrome": {
+        "type": "manifestChanges",
+//@        "description": "The new background permission extends the life of Chrome, allowing your extension or app to run even when Chrome has no windows open.",
+        "description": "新的 background 权限可以扩展 Chrome 浏览器的生命周期，允许您的扩展程序或应用在 Chrome 浏览器没有窗口打开时就运行。",
+        "version": 10
+    },
+    "windows.create.has-tabId-field": {
+        "type": "additionsToExistingApis",
+//@        "description": "The windows.create method now has a <code>tabId</code> field. You can use it to move a tab or panel into a new window.",
+        "description": "windows.create 方法新增 <code>tabId</code> 字段，您可以使用它将标签页或面板移动到新窗口中。",
+        "version": 10
+    },
+    "homepage-url-field-specify-extension-homepage": {
+        "type": "manifestChanges",
+//@        "description": "The homepage_url field lets you specify the extension or app's homepage.",
+        "description": "homepage_url 字段允许您指定扩展程序或应用的主页。",
+        "version": 9
+    },
+    "tabs.Tab.has-pinned-property": {
+        "type": "additionsToExistingApis",
+//@        "description": "The tabs.Tab object now has a <code>pinned</code> property that's reflected in various <code>chrome.tabs</code> methods. For example, you can tabs.create a pinned tab.",
+        "description": "tabs.Tab 对象新增 <code>pinned</code> 属性，可以在各种 <code>chrome.tabs</code> 方法中使用。例如您可以调用 tabs.create 创建固定的标签页。",
+        "version": 9
+    },
+    "windows.create.takes-urls": {
+        "type": "additionsToExistingApis",
+//@        "description": "The windows.create method can now take a list of URLs, letting you create multiple tabs in the new window.",
+        "description": "windows.create 方法现在可以接受 URL 列表，允许您在新窗口中创建多个标签页。",
+        "version": 9
+    },
+    "management.get.specified-apps": {
+        "type": "additionsToExistingApis",
+//@        "description": "The new management.get method lets you get information about the specified extension or app.",
+        "description": "新增的 management.get 方法允许您获取指定扩展程序或应用的有关信息。",
+        "version": 9
+    },
+    "introduce-split-incognito-mode": {
+        "type": "manifestChanges",
+//@        "description": "Introduced split incognito mode as the default for installable web apps (also available to extensions).",
+        "description": "引入了分离式隐身模式，作为可安装网上应用的默认模式（也可用于扩展程序）。",
+        "version": 7
+    },    
+    "tabs.create-and-update-no-longer-require-tabs-permission": {
+        "type": "manifestChanges",
+//@        "description": "The tabs API <code>create()</code> and <code>update()</code> methods no longer require the tabs permission, removing one common cause of scary dialogs.",
+        "description": "标签页 API 的 <code>create()</code> 和 <code>update()</code> 方法不再要求 tabs 权限，避免了一些常见的吓人的权限对话框。",
+        "version": 7
+    },
+    "geolocation-permission-access-users-location": {
+        "type": "manifestChanges",
+//@        "description": "The geolocation permission gives an extension access to the user's physical location.",
+        "description": "geolocation 权限允许扩展程序访问用户的地理位置。",
+        "version": 6
+    },
+    "match-patterns-select-all-schemes": {
+        "type": "manifestChanges",
+//@        "description": "Match patterns can now select all schemes or all URLs.",
+        "description": "匹配表达式现在可以选择所有协议或所有 URL。",
+        "version": 6
+    },
+    "access-file-urls-triggers-access-warning": {
+        "type": "manifestChanges",
+//@        "description": "Access to file:/// URLs no longer triggers the access to your machine security warning, but now requires user opt-in from the extensions management page.",
+        "description": "访问 file:/// URL 不再触发访问您的计算机的安全警告，但是现在需要用户在扩展程序管理网页中允许访问。",
+        "version": 6
+    },
+    "extension.getViews.return-popup-views": {
+        "type": "additionsToExistingApis",
+//@        "description": "The extension.getViews method can now return popup views.",
+        "description": "extension.getViews 方法现在可以返回弹出视图。",
+        "version": 6
+    },
+    "windows.WINDOW_ID_NONE.identifies": {
+        "type": "additionsToExistingApis",
+//@        "description": "A new windows.WINDOW_ID_NONE constant identifies when focus shifts away from the browser.",
+        "description": "新的 windows.WINDOW_ID_NONE 常量表示焦点离开浏览器。",
+        "version": 6
+    },
+    "tabs.getCurrent-returns-tab": {
+        "type": "additionsToExistingApis",
+//@        "description": "The new tabs.getCurrent method returns the tab associated with the currently executing script.",
+        "description": "新的 tabs.getCurrent 方法返回与当前执行脚本相关联的标签页。",
+        "version": 6
+    }
+}

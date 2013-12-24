@@ -30,11 +30,4 @@
       filterSamples();
     }
   });
-
-  // Support #<api namespace> and filter #<sample id>
-  // The length of the id of a sample is 32
-  if(location.hash && location.hash.length <= 32) {
-    search_box.value = location.hash.substr(1);
-    filterSamples();
-  }
 })();
