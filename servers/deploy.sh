@@ -1,7 +1,7 @@
 #!/bin/bash
 
 APPENGINE_PATH=~/google_appengine
-APPENGINE_APPCFG=$APPENGINE_PATH/appcfg.py
+APPENGINE_APPCFG="$APPENGINE_PATH/appcfg.py --oauth2"
 KEYS_SED=private/keys.sed
 CP='rsync -a --exclude=.svn --exclude=test_data'
 
