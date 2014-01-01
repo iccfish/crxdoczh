@@ -35,7 +35,7 @@ class Cache:
     if memcache.get(path) is not None:
       memcache.set(path, data)
 
-def AddSecurityHeaders(response):
+def _AddSecurityHeaders(response):
   return
   response.headers.add('Strict-Transport-Security',
                        'max-age=31536000')
@@ -51,6 +51,10 @@ def AddSecurityHeaders(response):
                        'pin-sha1="SOZo+SvSspXXR9gjIBBPM5iQn9Q="; ' +
                        'pin-sha1="wHqYaI2J+6sFZAwRfap9ZbjKzE4="')
   response.headers.add('X-Frame-Options', 'SAMEORIGIN')
+
+def _AddCanonicalLinkHeader(normalized_path, response):
+  response.headers.add('Link',
+      '<https://crxdoc-zh.appspot.com%s>; rel="canonical"' % normalized_path)
 
 # Parameters:
 # |doc_type|: apps|extensions|static
@@ -87,17 +91,20 @@ class Handler(webapp2.RequestHandler):
     if need_redirect:
       self.response.status = 302
       self.response.location = path
+      return
     if REDIRECTS.get(path):
       self.response.status = 302
       self.response.location = REDIRECTS.get(path)
+      return
 
     data = Cache.get(path)
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
 
     if data is None:
       if Cache.get(path2) is not None:
         self.response.status = 302
-        self.response.location = path2.replace('/stable/', '/')
+        logging.debug(path2)
+        self.response.location = path2
       else:
         Handle404(self.response, doc_type)
     else:
@@ -110,41 +117,42 @@ class Handler(webapp2.RequestHandler):
         pass
         # AppCache support is not yet ready.
         # data = data.replace('<html>', '<html manifest="/appcache.manifest">', 1)
+      _AddCanonicalLinkHeader(path, self.response)
       self.response.write(data)
 
 class ChannelRedirectHandler(webapp2.RequestHandler):
   def get(self, channel, realpath):
     self.response.location = '/' + realpath
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
     self.response.status = 301
 
 class HomeRedirectHandler(webapp2.RequestHandler):
   def get(self):
     self.response.location = '/extensions/index.html'
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
     self.response.status = 301
 
 class ExamplesRedirectHandler(webapp2.RequestHandler):
   def get(self, example_path):
     self.response.location = 'https://developer.chrome.com' + self.request.path
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
     self.response.status = 301
 
 class AppsIndexRedirectHandler(webapp2.RequestHandler):
   def get(self, ):
     self.response.location = '/apps/about_apps.html'
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
     self.response.status = 301
 
 class ExtensionsIndexRedirectHandler(webapp2.RequestHandler):
   def get(self, ):
     self.response.location = '/extensions/index.html'
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
     self.response.status = 301
 
 class NotFoundHandler(webapp2.RequestHandler):
   def get(self):
-    AddSecurityHeaders(self.response)
+    _AddSecurityHeaders(self.response)
     Handle404(self.response)
 
 class APIUpdateHandler(webapp2.RequestHandler):
