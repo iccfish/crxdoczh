@@ -105,10 +105,12 @@ to the event page and are directly scriptable by the event page.-->
 </p>
 
 <p>
-<!--@Windows have an optional frame with title bar and size controls. They are
-not associated with any Chrome browser windows.-->
-窗口可以具有可选的框架，包含标题栏和大小控件，它们不和任何 Chrome
-浏览器窗口关联。
+<!--@Windows in Chrome Apps are not associated with any Chrome browser 
+windows. They have an optional frame with title bar and size controls, 
+and a recommended window ID.
+Windows without IDs will not restore to their size and location after restart.-->
+Chrome 应用的窗口不和任何 Chrome
+浏览器窗口关联，它们可以具有可选的框架，包含标题栏和大小控件。建议您指定窗口标识符，没有标识符的窗口在重新启动后不能恢复到原来的大小与位置。
 </p>
 
 <p><!--@Here's a sample window created from <code>background.js</code>:-->
@@ -118,6 +120,7 @@ not associated with any Chrome browser windows.-->
 <pre data-filename="background.js">
 chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create('main.html', {
+    id: 'MyWindowID',
     bounds: {
       width: 800,
       height: 600,

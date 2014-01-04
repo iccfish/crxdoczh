@@ -6,21 +6,24 @@
 <p>
 <!--@This document describes how to use the <a href="serial.html">serial API</a> to read
 and write from serial devices. Chrome Apps can also connect to
-<a href="usb.html">USB</a> and <a href="bluetooth.html">Bluetooth</a> devices.-->
+<a href="app_usb.html">USB</a> and <a href="bluetooth.html">Bluetooth</a> devices.-->
 该文档描述如何使用<a href="serial.html">串行端口
 API</a>读取和写入串行端口设备，Chrome 应用还可以连接到
-<a href="usb.html">USB</a> 与<a href="bluetooth.html">蓝牙</a>设备。
+<a href="app_usb.html">USB</a> 与<a href="bluetooth.html">蓝牙</a>设备。
 </p>
 
 <p class="note">
-<b><!--@Samples:-->示例：</b><!--@ For examples that illustrate how Chrome Apps can connect to hardware devices, see the-->有关演示如何在
-Chrome 应用中连接到硬件设备的例子，请参见
-<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a><!--@,-->、
-<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a><!--@,-->、
-<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a><!--@, and-->
-和
-<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
-<!--@Bluetooth-->蓝牙</a><!--@ samples.-->示例。
+<!--@<b>Samples:</b> For examples that illustrate how Chrome Apps can connect to hardware devices through a serial port, see the
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial/adkjs#readme">adkjs</a>,
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial/ledtoggle#readme">ledtoggle</a> and the
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo#readme">servo</a> samples.-->
+<b>示例：</b>有关演示如何在 Chrome 应用中连接到硬件设备的例子，请参见 <a
+href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial/adkjs#readme"
+>adkjs</a>、<a
+href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial/ledtoggle#readme"
+>ledtoggle</a> 以及 <a
+href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo#readme"
+>servo</a> 示例。
 </p>
 
 <h2 id="requirement"><!--@Manifest requirement-->清单文件的要求</h2>
@@ -38,31 +41,31 @@ Chrome 应用中连接到硬件设备的例子，请参见
 <h2 id="listing"><!--@Listing available serial ports-->列举可用的串行端口</h2>
 
 <p>
-<!--@To get a list of available serial ports,
-use the <code>getPorts()</code> method. <b>Note:</b> not all serial ports are available. The API uses a heuristic based on the name of the port to only expose serial devices that are expected to be safe.-->
-要获取可用串行端口的列表，请使用 <code>getPorts()</code>
+<!--@To get a list of paths associated with available serial ports,
+use the <code>$ref:serial.getDevices</code> method. <b>Note:</b> not all serial ports are available. The API uses heuristics to only expose serial devices that are expected to be safe.-->
+要获取可用串行端口的路径列表，请使用 <code>$ref:serial.getDevices</code>
 方法。<b>注意：</b>并不是所有的串行端口都可用。该 API
-采用启发式的方式，基于端口名称，只暴露被视为安全的串行端口设备。
+采用启发式的方式，只暴露被视为安全的串行端口设备。
 </p>
 
 <pre>
-var onGetPorts = function(ports) {
+var onGetDevices = function(ports) {
   for (var i=0; i&lt;ports.length; i++) {
-    console.log(ports[i]);
+    console.log(ports[i].path);
   }
 }
-chrome.serial.getPorts(onGetPorts);
+chrome.serial.getDevices(onGetDevices);
 </pre>
 
-<h2 id="opening"><!--@Opening a serial device-->打开串行端口设备</h2>
+<h2 id="opening"><!--@Connecting to a serial device-->连接到串行端口设备</h2>
 
 <p>
-<!--@If you know the serial port name, you can open it for read and write using the <code>open</code> method:-->
-如果您知道串行端口的名称，您可以使用 <code>open</code> 方法打开它用于读写：
+<!--@If you know the path associated with the serial port, you can connect to it using the <code>$ref:serial.connect</code> method:-->
+如果您知道串行端口的路径，您可以使用 <code>$ref:serial.connect</code> 方法打开它用于读写：
 </p>
 
 <pre>
-chrome.serial.open(portName, options, openCallback)
+chrome.serial.connect(path, options, callback)
 </pre>
 
 <table border="0">
@@ -71,23 +74,23 @@ chrome.serial.open(portName, options, openCallback)
     <th scope="col"> <!--@Description-->描述 </th>
   </tr>
   <tr>
-    <td>portName&nbsp;(string)</td>
-    <td><!--@If your device's port name is unknown, you can use the <code>getPorts</code> method.-->
-      如果您的设备的端口名未知，您可以使用 <code>getPorts</code> 方法。
+    <td>path&nbsp;(string)</td>
+    <td><!--@If the path associated with your device's port is unknown, you can use the <code>$ref:serial.getDevices</code> method.-->
+      如果与您的设备端口相关联的路径名未知，您可以使用 <code>$ref:serial.getDevices</code> 方法。
     </td>
   </tr>
   <tr>
     <td>options&nbsp;(object)</td>
-    <td><!--@Parameter object with one single value: <code>bitrate</code>, an integer specifying the desired bitrate used to communicate with the serial port.-->
-    包含单个值的参数对象：<code>bitrate</code>，为一个整数，指定用于与串行端口通信时希望使用的比特率。
-  </td>
+    <td><!--@Parameter object with several configuration values. See details at $ref:serial.ConnectionOptions-->
+    包含多个配置值的参数对象，有关详情请参见 $ref:serial.ConnectionOptions。
+    </td>
   </tr>
   <tr>
-    <td>openCallback</td>
-    <td><!--@Invoked when the port has been successfully opened. The callback will be called with one parameter, <code>openInfo</code>, that has one attribute, <code>connectionId</code>. Save this id, because you will need it to actually communicate with the port.-->
-    端口成功打开后调用。该回调函数调用时将传递一个参数
-    <code>openInfo</code>，包含一个属性
-    <code>connectionId</code>，请保存该标识符，因为您需要它才能与端口进行实际的通信。
+    <td>callback</td>
+    <td><!--@Invoked when the port has been successfully opened. The callback will be called with one parameter, <code>connectionInfo</code>, that has several important values. See details at $ref:serial.ConnectionInfo.-->
+    端口成功打开后调用。调用回调函数时将传递一个参数
+    <code>connectionInfo</code>，包含几个重要的值，有关详情请参见
+    $ref:serial.ConnectionInfo。
     </td>
   </tr>
 </table>
@@ -95,88 +98,97 @@ chrome.serial.open(portName, options, openCallback)
 <p><!--@A simple example:-->一个简单的例子：</p>
 
 <pre>
-var onOpen = function(connectionInfo) {
+var onConnect = function(connectionInfo) {
    // 串行端口已打开，保存其标识符以便以后使用。
   _this.connectionId = connectionInfo.connectionId;
   // 对已打开的端口做任何您需要做的事情。
 }
-// 打开串行端口 /dev/ttyS01
-chrome.serial.open("/dev/ttyS01", {bitrate: 115200}, onOpen);
+// 连接到串行端口 /dev/ttyS01
+chrome.serial.connect("/dev/ttyS01", {bitrate: 115200}, onConnect);
 </pre>
 
-<h2 id="closing"><!--@Closing a serial port-->关闭串行端口</h2>
+<h2 id="disconnect"><!--@Disconnect from a serial port-->断开串行端口连接</h2>
 
 <p>
-<!--@Closing a serial port is simple but very important. See the example below: -->
-关闭串行端口很简单但是很重要，请参见下面的例子：
+<!--@When an app terminates, connections to serial ports that are not persistent 
+are automatically closed by the platform. However, if you want to disconnect
+while your app is still running, you can use the $ref:serial.disconnect method:-->
+您的应用终止时，平台会自动关闭非持久的串行端口连接。然而如果您希望在应用运行时就断开连接，您可以使用
+$ref:serial.disconnect 方法。
 </p>
 
 <pre>
-var onClose = function(result) {
- console.log("串行端口已关闭");
+var onDisconnect = function(result) {
+  if (result) {
+    console.log("已经断开串行端口连接");
+  } else {
+    console.log("断开连接失败");
+  }
 }
-chrome.serial.close(connectionId, onClose);
+chrome.serial.disconnect(connectionId, onDisconnect);
 </pre>
 
 <h2 id="reading"><!--@Reading from a serial port-->读取串行端口</h2>
 
 <p>
-<!--@The serial API reads from the serial port and
-delivers the read bytes as an ArrayBuffer.
-There is no guarantee that all the requested bytes, even if available in the port, will be read in one chunk.
-The following example can accumulate read bytes, at most 128 at a time, until a new line is read,
-and then call a listener with the <code>ArrayBuffer</code> bytes converted to a String:-->
+<!--@The serial API reads from the serial port and delivers the read bytes as an ArrayBuffer to event listeners.
+
+Every port that your application is connected to will generate read events to all listeners added through 
+<code>chrome.serial.onReceive.addListener(onReceiveCallback)</code>. If you are connected to more than one port at the
+same time, you may find the corresponding <code>connectionId</code> of an incoming read event in the callback parameter 
+of $ref:serial.onReceive.-->
 串行端口 API 从串行端口读取数据并以 <code>ArrayBuffer</code>
-的方式传递已读取的字节。不能保证所有请求的字节（即使在端口中可用）都能在一个片段中读取。如下过程可以积累读取的字节，一次最多
-128 字节，直到读到了换行符，然后调用监听器，传递转换为字符串的
-<code>ArrayBuffer</code>：
+的方式将已读取的字节传递给事件监听器。您的应用连接的每一个端口都会产生读取事件，传递给通过
+<code>chrome.serial.onReceive.addListener(onReceiveCallback)</code>
+添加的监听器。如果您同时连接到多个端口，您可以在 $ref:serial.onReceive
+的回调函数参数中找到对应的 <code>connectionId</code>。
+</p>
+<p>
+<!--@The following example can accumulate read bytes until a new line is read, converting the received ArrayBuffer to String and
+calling a method when a newline is found as the last character received:-->
+以下示例保存读取到的字节，直到读到了换行符为止，然后将接收到的 ArrayBuffer
+转换成字符串，并在接收到换行符时调用某个方法。
 </p>
 
 <pre>
-var dataRead='';
+var stringReceived = '';
 
-var onCharRead=function(readInfo) {
-    if (!connectionInfo) {
-      return;
-    }
-    if (readInfo &amp;&amp; readInfo.bytesRead&gt;0 &amp;&amp; readInfo.data) {
-      var str=ab2str(readInfo.data);
-      if (str[readInfo.bytesRead-1]==='\n') {
-        dataRead+=str.substring(0, readInfo.bytesRead-1);
-        onLineRead(dataRead);
-        dataRead="";
+var onReceiveCallback = function(info) {
+    if (info.connectionId == expectedConnectionId &amp;&amp; info.data) {
+      var str = convertArrayBufferToString(info.data);
+      if (str.charAt(str.length-1) === '\n') {
+        stringReceived += str.substring(0, str.length-1);
+        onLineReceived(stringReceived);
+        stringReceived = '';
       } else {
-        dataRead+=str;
+        stringReceived += str;
       }
     }
-    chrome.serial.read(connectionId, 128, onCharRead);
-  }
-
-/* 将 ArrayBuffer 转换为字符串，使用 UTF-8 编码方案，
-   这和 Arduino 默认情况下发送字符串的方式一致 */
-  var ab2str=function(buf) {
-    return String.fromCharCode.apply(null, new Uint8Array(buf));
   };
+
+chrome.serial.onReceive.addListener(onReceiveCallback);
+
+// [...] 没有包含在这里：连接到串行端口
+
 </pre>
 
-<h2 id="writing"><!--@Writing to a serial port-->写入串行端口</h2>
+<h2 id="writing"><!--@Sending data to a serial port-->向串行端口发送数据</h2>
 
 <p>
-<!--@The writing routine is simpler than reading,
-since the writing can occur all at once.
+<!--@Sending data is simpler than reading.
 The only catch is that if your data protocol is String based,
 you have to convert your output string to an <code>ArrayBuffer</code>.
 See the code example below:-->
-写入例程比读取简单，因为写入操作可以一次完成。唯一的问题是，如果您的数据协议基于字符串，您必须将您的输出字符串转换为
+发送数据要比读取简单得多，唯一一个需要注意的问题是，如果您的数据协议基于字符串，您必须将您的输出字符串转换为
 <code>ArrayBuffer</code>。请参考下列代码：
 </p>
 
 <pre>
 var writeSerial=function(str) {
-  chrome.serial.write(connectionId, str2ab(str), onWrite);
+  chrome.serial.send(connectionId, convertStringToArrayBuffer(str), onSend);
 }
 // 将字符串转换为 ArrayBuffer
-var str2ab=function(str) {
+var convertStringToArrayBuffer=function(str) {
   var buf=new ArrayBuffer(str.length);
   var bufView=new Uint8Array(buf);
   for (var i=0; i&lt;str.length; i++) {
@@ -196,3 +208,16 @@ var str2ab=function(str) {
 <pre>
   chrome.serial.flush(connectionId, onFlush);
 </pre>
+
+<h2 id="More"><!--@More-->更多功能</h2>
+
+<p>
+<!--@The Serial API has several other features. You can, for example, set a connection to persistent, so it can receive data
+even when your app is not running, or you can update connection parameters on the fly, like bitrate, timeouts, control signals, and many others
+ with the $ref:serial.update method. See the full reference of the $ref:serial API for more information.-->
+ 串行端口 API
+ 还有一些其他功能。例如，您可以将连接设置为持久存在，这样即使您的应用不在运行，它仍然可以接收数据。使用
+$ref:serial.update
+方法，您还可以随时更新连接参数，例如比特率、超时、控制信号等等。有关更多信息请参见
+$ref:serial API 的完整参考。
+</p>

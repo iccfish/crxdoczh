@@ -24,9 +24,15 @@ If your app uses its own server to authenticate users, you will need to use the 
 <p class="note">
 <b>API <!--@Samples: -->示例：</b><!--@
 Want to play with the code?
-Check out the-->
-想试试这些代码吗？请参见
-<a href="https://github.com/GoogleChrome/chrome-app-samples#authentication-and-user-identification">identity <!--@samples-->示例</a><!--@.-->。
+Check out 
+<a href="https://github.com/GoogleChrome/chrome-app-samples#_feature_identity">these samples</a>,
+in particular the
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/identity#readme">identity sample</a>.-->
+想试试这些代码吗？请参见<a
+href="https://github.com/GoogleChrome/chrome-app-samples#_feature_identity"
+>这些示例</a>，特别是
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/identity#readme"
+>identity 示例</a>。
 </p>
 
 <h2 id="how"><!--@How it works-->工作方式</h2>
@@ -371,18 +377,16 @@ redirect URIs from other providers, you should use:-->
 <h3 id="permissions_provider"><!--@Add permissions for provider-->为提供商添加权限</h3>
 
 <p>
-<!--@To make cross-origin XHRs to Google API endpoints,
-you need to whitelist those patterns in the permissions:-->
-为了向 Google API 端点发出跨来源
-XHR，您需要在权限中将这些匹配表达式加入白名单：
+<!--@To make cross-origin XHRs to the provider API endpoints,
+you need to whitelist the appropriate patterns in the permissions:-->
+为了向服务提供商 API 端点发出跨来源
+XHR，您需要在权限中将合适的匹配表达式加入白名单：
 </p>
 
 <pre data-filename="manifest.json">
 "permissions": [
   ...
-  "https://docs.google.com/feeds/",
-  "https://docs.googleusercontent.com/",
-  "https://www.website-of-provider-with-user-photos.com/photos/"
+  "https://www.website-of-provider-with-user-photos.com/photos/*"
 ]
 </pre>
 
