@@ -172,8 +172,17 @@ namespace app.window {
     // 使窗口拥有焦点。
     static void focus();
 
-    // <!--@Fullscreens the window.-->
-    // 使窗口进入全屏状态。
+    // <!--@Fullscreens the window.<br>
+    // The user will be able to restore the window by pressing ESC. An
+    // application can prevent the fullscreen state to be left when ESC is
+    // pressed by requesting the <b>overrideEscFullscreen</b> permission and
+    // canceling the event by calling .preventDefault(), like this:<br>-->
+    // 使窗口进入全屏状态。<br>
+    // 用户可以按下 Esc 键恢复窗口。如果应用请求 <b>overrideEscFullscreen</b>
+    // 权限，并调用 .preventDefault()
+    // 取消事件，就能避免离开全屏状态，如下所示：<br>
+    // <code>window.onKeyDown = function(e) { if (e.keyCode == 27 /* ESC */) {
+    // e.preventDefault(); } };</code>
     static void fullscreen();
 
     // <!--@Is the window fullscreen?-->
