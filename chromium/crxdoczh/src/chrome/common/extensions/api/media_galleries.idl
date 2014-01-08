@@ -88,6 +88,27 @@ namespace mediaGalleries {
     // <!--@The browser sniffed mime type.-->
     // 浏览器检测到的 MIME 类型。
     DOMString mimeType;
+    
+    // <!--@Defined for images and video. In pixels.-->
+    // 图片和视频会包含这些属性，以像素为单位。
+    long? height;
+    long? width;
+    
+    // <!--@Defined for audio and video. In seconds.-->
+    // 音频和视频会包含该属性，以秒为单位。
+    double? duration;
+    
+    // <!--@Generic metadata tags.-->
+    // 通用元数据标签。
+    DOMString? album;
+    DOMString? artist;
+    DOMString? comment;
+    DOMString? copyright;
+    long? disc;
+    DOMString? genre;
+    DOMString? language;
+    DOMString? title;
+    long? track;
   };
 
   callback MediaMetadataCallback = void (MediaMetadata metadata);
