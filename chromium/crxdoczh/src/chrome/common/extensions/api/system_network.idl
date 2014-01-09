@@ -2,29 +2,37 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>chrome.system.network</code> API.
+// <!--@Use the <code>chrome.system.network</code> API.-->
+// 使用 <code>chrome.system.network</code> API 获取网络接口信息。
 namespace system.network {
   dictionary NetworkInterface {
-    // The underlying name of the adapter. On *nix, this will typically be
-    // "eth0", "wlan0", etc.
+    // <!--@The underlying name of the adapter. On *nix, this will typically be
+    // "eth0", "wlan0", etc.-->
+    // 适配器的底层名称，在类 Unix 系统中通常为 "eth0"、"wlan0" 等等。
     DOMString name;
 
-    // The available IPv4/6 address.
+    // <!--@The available IPv4/6 address.-->
+    // 可用的 IPv4/6 地址。
     DOMString address;
 
-    // The prefix length
+    // <!--@The prefix length-->
+    // 前缀长度。
     long prefixLength;
   };
 
-  // Callback from the <code>getNetworkInterfaces</code> method.
-  // |networkInterfaces| : Array of object containing network interfaces
-  // information.
+  // <!--@Callback from the <code>getNetworkInterfaces</code> method.-->
+  // <code>getNetworkInterfaces</code> 方法的回调函数。
+  // |networkInterfaces| : <!--@Array of object containing network interfaces
+  // information.-->
+  // 包含网络接口信息的对象数组。
   callback GetNetworkInterfacesCallback =
       void (NetworkInterface[] networkInterfaces);
 
   interface Functions {
-    // Retrieves information about local adapters on this system.
-    // |callback| : Called when local adapter information is available.
+    // <!--@Retrieves information about local adapters on this system.-->
+    // 获取当前系统中本地适配器的有关信息。
+    // |callback| : <!--@Called when local adapter information is available.-->
+    // 本地适配器信息可用时调用。
     static void getNetworkInterfaces(GetNetworkInterfacesCallback callback);
   };
 };

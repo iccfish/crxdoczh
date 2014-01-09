@@ -139,6 +139,12 @@
     "documentation": "manifest/name.html#short_name",
     "example": "短名称"
   },
+  "sockets": {
+    "documentation": "manifest/sockets.html",
+    "example": {
+      "tcp": { "connect": "*" }, "udp": { "send": "*" }
+    }
+  },
   "storage": {
     "documentation": "manifest/storage.html",
     "example": {

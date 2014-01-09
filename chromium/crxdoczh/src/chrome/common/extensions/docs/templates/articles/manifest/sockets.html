@@ -1,0 +1,45 @@
+<h1><!--@sockets-->套接字</h1>
+
+<p>
+<!--@The <code>sockets</code> manifest property declares which permissions are
+available for the $ref:sockets.udp, $ref:sockets.tcp and
+$ref:sockets.tcpServer APIs.-->
+清单文件中的 <code>sockets</code> 属性声明
+$ref:sockets.udp、$ref:sockets.tcp 以及 $ref:sockets.tcpServer API
+具有哪些权限。
+</p>
+
+<h2 id="manifest"><!--@Sample -->manifest.json 示例</h2>
+<pre data-filename="manifest.json">
+{
+  "name": "我的套接字{{platformTitle}}",
+  "sockets": {
+    "udp": {
+      // chrome.sockets.udp.send 权限：
+      // 该应用允许向任何主机:端口组合
+      // 发送 UDP 数据包。
+      "send": "*"
+    },
+    "tcp": {
+      // chrome.sockets.tcp.connect 权限：
+      // 该应用只允许连接到 127.0.0.1 上
+      // 端口为 80 的 TCP 服务器。
+      "connect": "127.0.0.1:80"
+    },
+    "tcpServer": {
+      // chrome.sockets.tcpServer.listen 权限：
+      // 该应用允许接受本机地址 80
+      // 端口上的客户端连接。
+      "listen": "127.0.0.1:80"
+    }
+  },
+  ...
+}
+</pre>
+
+<section>
+<h2 id="reference"><!--@Reference-->参考</h2>
+<p class="api_reference">
+{{+partials.type type:apis.manifestTypes.byName.sockets/}}
+</p>
+</section>

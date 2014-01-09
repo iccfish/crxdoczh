@@ -199,12 +199,14 @@
             }
           },
           "tcpServer": {
-            "description": "The <code>tcpServer</code> manifest property declares which sockets.tcpServer operations an app can issue.",
+//@            "description": "The <code>tcpServer</code> manifest property declares which sockets.tcpServer operations an app can issue.",
+            "description": "清单文件中的 <code>tcpServer</code> 属性声明应用可以进行的 sockets.tcpServer 操作。",
             "optional": true,
             "type": "object",
             "properties": {
               "listen": {
-                "description": "<p>The host:port pattern for <code>listen</code> operations.</p>",
+//@                "description": "<p>The host:port pattern for <code>listen</code> operations.</p>",
+                "description": "<p><code>listen</code>（监听）操作的主机:端口匹配表达式。</p>",
                 "optional": true,
                 "$ref": "SocketHostPatterns"
               }
