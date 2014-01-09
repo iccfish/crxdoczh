@@ -26,7 +26,7 @@ namespace sockets.tcp {
     // loaded, any sockets previously opened with persistent=true can be fetched
     // with <code>getSockets</code>.-->
     // 表示应用的事件页面卸载（参见<a href="app_lifecycle.html"
-    // >管理应用的生命周期</a>）是否使套接字保持打开状态的标志，默认值为
+    // >管理应用的生命周期</a>）时是否使套接字保持打开状态的标志，默认值为
     // <code>false</code>。应用载入时，之前使用 <code>persistent: true</code>
     // 打开的套接字可以通过 <code>getSockets</code> 获取。
     boolean? persistent;
@@ -157,7 +157,7 @@ namespace sockets.tcp {
     // 如果下层套接字已连接，则包含它的远程 IPv4/6 地址。
     DOMString? peerAddress;
 
-    // <!--@If the underlying socket is connected, contains the peer port.
+    // <!--@If the underlying socket is connected, contains the peer port.-->
     // 如果下层套接字已连接，则包含它的远程端口。
     long? peerPort;
   };
@@ -295,7 +295,7 @@ namespace sockets.tcp {
     // 断开套接字的连接。
     // |socketId| : <!--@The socket identifier.-->
     // 套接字标识符。
-    // |callback| : Called when the disconnect attempt is complete.
+    // |callback| : <!--@Called when the disconnect attempt is complete.-->
     // 连接断开后调用。
     static void disconnect(long socketId,
                            optional DisconnectCallback callback);
@@ -316,7 +316,7 @@ namespace sockets.tcp {
     // Each socket created should be closed after use. The socket id is no
     // no longer valid as soon at the function is called. However, the socket is
     // guaranteed to be closed only when the callback is invoked.-->
-    // 关闭套接字，并释放套接字绑定的地址/端口。每一个创建的套接字在使用完成后都必须关闭，该函数调用后套接字标识符就失效，但是调用回调函数时才能保证套接字已经关闭。
+    // 关闭套接字，并释放套接字绑定的地址/端口。每一个创建的套接字在使用完成后都必须关闭。该函数调用后套接字标识符就失效，但是调用回调函数时才能保证套接字已经关闭。
     // |socketId| : <!--@The socket identifier.-->
     // 套接字标识符。
     // |callback| : <!--@Called when the <code>close</code> operation completes.-->

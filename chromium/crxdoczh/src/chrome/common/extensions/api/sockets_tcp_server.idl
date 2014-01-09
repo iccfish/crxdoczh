@@ -25,7 +25,7 @@ namespace sockets.tcpServer {
     // loaded, any sockets previously opened with persistent=true can be fetched
     // with <code>getSockets</code>.-->
     // 表示应用的事件页面卸载（参见<a href="app_lifecycle.html"
-    // >管理应用的生命周期</a>）是否使套接字保持打开状态的标志，默认值为
+    // >管理应用的生命周期</a>）时是否使套接字保持打开状态的标志，默认值为
     // <code>false</code>。应用载入时，之前使用 <code>persistent: true</code>
     // 打开的套接字可以通过 <code>getSockets</code> 获取。
     boolean? persistent;
@@ -99,7 +99,7 @@ namespace sockets.tcpServer {
     // dispatched through the <code>onAccept<code> event or queued up in the
     // listen queue backlog.
     // See <code>setPaused<code>. The default value is "false".-->
-    // 表示正在监听的套接字上的连接请求是否通过 <code>onAccept</code>
+    // 表示正在监听的套接字上的连接请求是通过 <code>onAccept</code>
     // 事件分发还是放入监听队列中的标志。请参见
     // <code>setPaused</code>。默认值为 <code>false</code>。
     boolean paused;
@@ -228,7 +228,7 @@ namespace sockets.tcpServer {
     // closed after use. The socket id is no longer valid as soon at the
     // function is called. However, the socket is guaranteed to be closed only
     // when the callback is invoked.-->
-    // 断开连接并释放套接字，每一个创建的套接字在使用完成后都应该关闭。该函数调用后套接字标识符就失效，但是调用回调函数时才能保证套接字已经关闭。
+    // 断开连接并释放套接字。每一个创建的套接字在使用完成后都应该关闭。该函数调用后套接字标识符就失效，但是调用回调函数时才能保证套接字已经关闭。
     // |socketId| : <!--@The socket identifier.-->
     // 套接字标识符。
     // |callback| : <!--@Called when the <code>close</code> operation completes.-->
