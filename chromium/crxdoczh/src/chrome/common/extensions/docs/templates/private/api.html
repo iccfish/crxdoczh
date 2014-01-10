@@ -10,22 +10,30 @@
        platform:platform
        platformTitle:platformTitle
        sidenav:sidenav}}
-{{?api.channelWarning.trunk +partials.warning_trunk/}}
-{{?api.channelWarning.dev   +partials.warning_dev/}}
-{{?api.channelWarning.beta  +partials.warning_beta/}}
-<h1>{{api.title}}</h1>
-$(table_of_contents)
-{{+partials.intro_table api:api /}}
-{{?intro}}
-<section>
-{{+intro platform:platform platformTitle:platformTitle /}}
-</section>
-{{/intro}}
-<section>
-<h2 id="api-reference-header" title="">{{api.namespace}} <!--@reference-->参考</h2>
-{{+partials.api_reference api:api
-                          platform:platform
-                          platformTitle:platformTitle
-                          samplesForApi:samplesForApi /}}
-</section>
+<article class="article-content">
+  <div itemprop="articleBody">
+    {{?api.channelWarning.trunk +partials.warning_trunk/}}
+    {{?api.channelWarning.dev   +partials.warning_dev/}}
+    {{?api.channelWarning.beta  +partials.warning_beta/}}
+    <h1>{{api.title}}</h1>
+    {{+partials.intro_table api:api /}}
+    {{?intro}}
+    <section>
+      {{+intro platform:platform platformTitle:platformTitle /}}
+    </section>
+    {{/intro}}
+    <section>
+      <h2 id="api-reference-header" title="">{{api.namespace}} <!--@reference-->参考</h2>
+      {{+partials.api_reference api:api
+                                platform:platform
+                                platformTitle:platformTitle
+                                samplesForApi:samplesForApi /}}
+    </section>
+    {{+partials.cc /}}
+    <nav class="inline-toc no-permalink">
+      {{+partials.relatedpages_items items:sidenavs.related /}}
+      $(table_of_contents)
+    </nav>
+  </div>
+</article>
 {{/partials.site}}

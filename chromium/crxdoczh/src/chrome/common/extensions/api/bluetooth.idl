@@ -3,8 +3,9 @@
 // found in the LICENSE file.
 
 // <!--@Use the <code>chrome.bluetooth</code> API to connect to a Bluetooth
-// device.-->
-// 使用 <code>chrome.bluetooth</code> API 连接到蓝牙设备。
+// device. All functions report failures via chrome.runtime.lastError.-->
+// 使用 <code>chrome.bluetooth</code> API 连接到蓝牙设备。所有函数都通过
+// chrome.runtime.lastError 报告错误。
 namespace bluetooth {
   dictionary AdapterState {
     // <!--@The address of the adapter, in the format 'XX:XX:XX:XX:XX:XX'.-->
@@ -301,12 +302,15 @@ namespace bluetooth {
     static void disconnect(DisconnectOptions options,
                            optional ResultCallback callback);
 
-    // <!--@Read data from a Bluetooth connection.-->
-    // 从蓝牙连接读取数据。
+    // <!--@Read data from a Bluetooth connection. The |callback| will be called
+    // with the current data in the buffer even if it is empty. This function
+    // should be polled to read incoming data.-->
+    // 从蓝牙连接读取数据。调用 <code>callback</code>
+    // 时会传递缓冲区中的当前数据，即使缓冲区为空也是如此。您应该以查询方式使用该函数读取数据。
     // |options|  : <!--@The options for this function.-->
     // 该函数的选项。
-    // |callback| : <!--@Called with the data when it is available.-->
-    // 可用时调用并传递数据。
+    // |callback| : <!--@Called with the data read from the socket buffer.-->
+    // 调用时传递套接字缓冲区中读取的数据。
     static void read(ReadOptions options,
                      DataCallback callback);
 
