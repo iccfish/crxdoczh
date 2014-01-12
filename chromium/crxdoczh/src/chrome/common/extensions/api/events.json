@@ -5,8 +5,8 @@
 [
   {
     "namespace": "events",
-//@    "description": "Use the <code>chrome.events</code> API to notify you when something interesting happens.",
-    "description": "使用 <code>chrome.events</code> API 使您在感兴趣的事情发生时得到通知。",
+//@    "description": "The <code>chrome.events</code> namespace contains common types used by APIs dispatching events to notify you when something interesting happens.",
+    "description": "<code>chrome.events</code> 命名空间包含 API 分发事件使用的通用类型，以便在某些有意义的事情发生时通知您。",
     "compiler_options": {
       "implemented_in": "chrome/browser/extensions/api/declarative/declarative_api.h"
     },

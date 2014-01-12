@@ -238,16 +238,16 @@ namespace downloads {
     // <!--@Number of bytes received so far from the host, without considering file
     // compression.-->
     // 目前为止从主机接收到的字节数，不考虑文件压缩。
-    long bytesReceived;
+    double bytesReceived;
 
     // <!--@Number of bytes in the whole file, without considering file compression,
     // or -1 if unknown.-->
     // 整个文件的字节数，不考虑压缩，如果未知则为 -1。
-    long totalBytes;
+    double totalBytes;
 
     // <!--@Number of bytes in the whole file post-decompression, or -1 if unknown.-->
     // 整个文件解压缩后包含的字节数，如果未知则为 -1。
-    long fileSize;
+    double fileSize;
 
     // <!--@Whether the downloaded file still exists. This information may be out of
     // date because Chrome does not automatically watch for file removal. Call
@@ -321,13 +321,13 @@ namespace downloads {
     // <code>totalBytes</code> is greater than the given integer.-->
     // 将结果限制为 <code>totalBytes</code> 大于指定整数的
     // $ref:DownloadItem。
-    long? totalBytesGreater;
+    double? totalBytesGreater;
 
     // <!--@Limits results to $ref:DownloadItem whose
     // <code>totalBytes</code> is less than the given integer.-->
     // 将结果限制为 <code>totalBytes</code> 小于指定整数的
     // $ref:DownloadItem。
-    long? totalBytesLess;
+    double? totalBytesLess;
 
     // <!--@Limits results to $ref:DownloadItem whose
     // <code>filename</code> matches the given regular expression.-->
@@ -407,16 +407,16 @@ namespace downloads {
     // <!--@Number of bytes received so far from the host, without considering file
     // compression.-->
     // 目前为止从主机接收到的字节数，不考虑文件压缩。
-    long? bytesReceived;
+    double? bytesReceived;
 
     // <!--@Number of bytes in the whole file, without considering file compression,
     // or -1 if unknown.-->
     // 整个文件的字节数，不考虑压缩，如果未知则为 -1。
-    long? totalBytes;
+    double? totalBytes;
 
     // <!--@Number of bytes in the whole file post-decompression, or -1 if unknown.-->
     // 整个文件解压缩后包含的字节数，如果未知则为 -1。
-    long? fileSize;
+    double? fileSize;
 
     // <!--@Whether the downloaded file exists;-->
     // 下载的文件是有存在。
@@ -428,9 +428,9 @@ namespace downloads {
     DOMString? current;
   };
 
-  dictionary LongDelta {
-    long? previous;
-    long? current;
+  dictionary DoubleDelta {
+    double? previous;
+    double? current;
   };
 
   dictionary BooleanDelta {
@@ -488,11 +488,11 @@ namespace downloads {
 
     // <!--@The change in <code>totalBytes</code>, if any.-->
     // <code>totalBytes</code> 属性的更改（如果有的话）。
-    LongDelta? totalBytes;
+    DoubleDelta? totalBytes;
 
     // <!--@The change in <code>fileSize</code>, if any.-->
     // <code>fileSize</code> 属性的更改（如果有的话）。
-    LongDelta? fileSize;
+    DoubleDelta? fileSize;
 
     // <!--@The change in <code>exists</code>, if any.-->
     // <code>exists</code> 属性的更改（如果有的话）。
