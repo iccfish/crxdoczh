@@ -3,11 +3,14 @@
   - |sidenav|       The sidenav items.
   - |platform|      The platform.
   - |platformTitle| The title of the platform ("Extensions" or "Apps").
+  - |removeToc|     Whether or not to remove the Table of Contents.
   -}}
 {{+content:partials.site
        platform:platform
        platformTitle:platformTitle
        sidenav:sidenav}}
+{{^removeToc}}
 $(table_of_contents)
+{{/removeToc}}
 {{+article platform:platform platformTitle:platformTitle /}}
 {{/partials.site}}
