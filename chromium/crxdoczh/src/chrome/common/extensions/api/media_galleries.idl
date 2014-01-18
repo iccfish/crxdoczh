@@ -21,13 +21,27 @@ namespace mediaGalleries {
     if_needed
   };
 
-  enum GetMetadataType {
+  [inline_doc] enum GetMetadataType {
     // <!--@Retrieve all available metadata.-->
     // 获取所有可用的元数据。
     all,
     // <!--@Retrieve only the mime type.-->
     // 仅获取 MIME 类型。
     mimeTypeOnly
+  };
+
+  [inline_doc] enum ScanProgressType {
+    // <!--@The scan started.-->
+    // 扫描开始。
+    start,
+    // <!--@The scan was cancelled.-->
+    // 扫描取消。
+    cancel,
+    // <!--@The scan finished but none of the result have been added,
+    // addScanResults() has to be called to ask the user for permission.-->
+    // 扫描完成，但是结果还没添加，您必须调用 addScanResults()
+    // 得到用户的许可。
+    finish
   };
 
   [inline_doc] dictionary MediaFileSystemsDetails {
@@ -42,7 +56,7 @@ namespace mediaGalleries {
     GetMediaFileSystemsInteractivity? interactive;
   };
 
-  dictionary MediaMetadataOptions {
+  [inline_doc] dictionary MediaMetadataOptions {
     // <!--@Specifies which subset of the metadata to retrieve. Defaults to 'all'
     // if the option is omitted.-->
     // 指定要获取哪些元数据，如果省略该选项则默认为 'all'（全部）。
@@ -83,6 +97,23 @@ namespace mediaGalleries {
     // <!--@True if the device is currently available.-->
     // 如果设备当前可用则为 true。
     boolean isAvailable;
+  };
+
+  [inline_doc] dictionary ScanProgressDetails {
+    // <!--@The type of progress event, i.e. start, finish, etc.-->
+    // 进度事件的类型，例如 start（开始）、finish（完成）等。
+    ScanProgressType type;
+
+    // <!--@The number of Galleries found.-->
+    // 找到的媒体库数目。
+    long? galleryCount;
+
+    // <!--@Appoximate number of media files found; some file types can be either
+    // audio or video and are included in both counts.-->
+    // 找到的媒体文件的大致数目。某些文件类型既有可能是音频，也有可能是视频，在这两种类型中都会计算在内。
+    long? imageCount;
+    long? audioCount;
+    long? videoCount;
   };
 
   callback MediaFileSystemsMetadataCallback =
@@ -133,6 +164,28 @@ namespace mediaGalleries {
     // 为空。需要用户操作才能显示对话框，如果没有用户操作，调用回调函数时就像用户取消操作一样。
     static void addUserSelectedFolder(AddUserFolderCallback callback);
 
+    // <!--@Start a scan of the user's hard disks for directories containing media.
+    // The scan may take a long time so progress and completion is communicated
+    // by events. No permission is granted as a result of the scan, see
+    // addScanResults.-->
+    // 开始扫描用户的硬盘，寻找包含媒体的目录。扫描可能需要很长时间，所以进度和完成情况通过事件的方式通知。扫描完成后不会授予任何权限，而需要调用
+    // addScanResults。
+    static void startMediaScan();
+
+    // <!--@Cancel any pending media scan.  Well behaved apps should provide a way
+    // for the user to cancel scans they start.-->
+    // 取消正在进行的媒体扫描，正常情况下应用应该提供某种方式让用户取消他们开始的扫描操作。
+    static void cancelMediaScan();
+
+    // <!--@Show the user the scan results and let them add any or all of them as
+    // galleries. This should be used after the 'finish' onScanProgress()
+    // event has happened. A galleries the app has access to are returned, not
+    // just the newly added galleries.-->
+    // 向用户显示扫描的结果，并让他们将其中的一部分或者全部添加为媒体库。该方法应该在
+    // 'finish'（完成）类型的  onScanProgress
+    // 事件产生之后调用，调用后返回应用能够访问的所有媒体库，而不仅仅是新增加的媒体库。
+    static void addScanResults(MediaFileSystemsCallback callback);
+
     // Get metadata about a specific media file system.
     // <!--@Get metadata about a specific media file system.-->
     // 获取指定媒体文件系统的元数据。
@@ -143,7 +196,7 @@ namespace mediaGalleries {
     // 获取所有可用媒体库的元数据。
     static void getAllMediaFileSystemMetadata(
         MediaFileSystemsMetadataCallback callback);
-                
+
     // <!--@Gets the media-specific metadata for a media file. This should work
     // for files in media galleries as well as other DOM filesystems.-->
     // 获取媒体文件特定的元数据，媒体库和其他 DOM
@@ -153,4 +206,10 @@ namespace mediaGalleries {
                             MediaMetadataCallback callback);
   };
 
+  interface Events {
+    // <!--@The pending media scan has changed state. See details for more
+    // information.-->
+    // 正在进行中的媒体扫描已经更改状态，有关更多信息请参见 details 参数。
+    static void onScanProgress(ScanProgressDetails details);
+  };
 };

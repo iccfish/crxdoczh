@@ -501,10 +501,13 @@ namespace downloads {
   };
 
   [inline_doc] dictionary GetFileIconOptions {
-    // <!--@The size of the icon.  The returned icon will be square with dimensions
-    // size * size pixels.  The default size for the icon is 32x32 pixels.-->
-    // 图标大小。返回图标的大小为 size×size 像素，图标的默认大小为 32×32
-    // 像素。有效的值包括 16 和 32。
+    // <!--@The size of the returned icon. The icon will be square with dimensions
+    // size * size pixels. The default and largest size for the icon is 32x32
+    // pixels. The only supported sizes are 16 and 32. It is an error to specify
+    // any other size.-->
+    // 返回图标的大小。返回图标的大小为 size×size
+    // 像素，图标的默认大小和最大大小都是 32×32 像素。支持的大小有
+    // 16 和 32，指定其他大小都会导致错误。
     [legalValues=(16,32)] long? size;
   };
 
