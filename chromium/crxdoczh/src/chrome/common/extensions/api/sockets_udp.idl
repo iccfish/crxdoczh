@@ -85,7 +85,7 @@ namespace sockets.udp {
   // <code>send</code> 方法的结果。
   callback SendCallback = void (SendInfo sendInfo);
 
-  // <!--@Callback from the <code>close<code> method.-->
+  // <!--@Callback from the <code>close</code> method.-->
   // <code>close</code> 方法的回调函数。
   callback CloseCallback = void ();
 
@@ -93,7 +93,7 @@ namespace sockets.udp {
   // <code>update</code> 方法的回调函数。
   callback UpdateCallback = void ();
 
-  // <!--@Callback from the <code>setPaused<code> method.-->
+  // <!--@Callback from the <code>setPaused</code> method.-->
   // <code>setPaused</code> 方法的回调函数。
   callback SetPausedCallback = void ();
 

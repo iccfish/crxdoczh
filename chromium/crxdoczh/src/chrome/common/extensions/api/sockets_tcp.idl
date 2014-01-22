@@ -87,7 +87,7 @@ namespace sockets.tcp {
   // <code>send</code> 方法的结果。
   callback SendCallback = void (SendInfo sendInfo);
 
-  // <!--@Callback from the <code>close<code> method.-->
+  // <!--@Callback from the <code>close</code> method.-->
   // <code>close</code> 方法的回调函数。
   callback CloseCallback = void ();
 
@@ -95,18 +95,18 @@ namespace sockets.tcp {
   // <code>update</code> 方法的回调函数。
   callback UpdateCallback = void ();
 
-  // <!--@Callback from the <code>setPaused<code> method.-->
+  // <!--@Callback from the <code>setPaused</code> method.-->
   // <code>setPaused</code> 方法的回调函数。
   callback SetPausedCallback = void ();
 
-  // <!--@Callback from the <code>setKeepAliveCallback<code> method.-->
+  // <!--@Callback from the <code>setKeepAliveCallback</code> method.-->
   // <code>setKeepAlive</code> 方法的回调函数。
   // |result| : <!--@The result code returned from the underlying network call.
   // A negative value indicates an error.-->
   // 底层网络调用返回的结果代码，负值表示错误。
   callback SetKeepAliveCallback = void (long result);
 
-  // <!--@Callback from the <code>setNodeDelay<code> method.-->
+  // <!--@Callback from the <code>setNodeDelay</code> method.-->
   // <code>setNodeDelay</code> 方法的回调函数。
   // |result| : <!--@The result code returned from the underlying network call.
   // A negative value indicates an error.-->
@@ -223,8 +223,8 @@ namespace sockets.tcp {
     // <!--@Enables or disables the application from receiving messages from its
     // peer. The default value is "false". Pausing a socket is typically used
     // by an application to throttle data sent by its peer. When a socket is
-    // paused, no <code>onReceive<code> event is raised. When a socket is
-    // connected and un-paused, <code>onReceive<code> events are raised again
+    // paused, no <code>onReceive</code> event is raised. When a socket is
+    // connected and un-paused, <code>onReceive</code> events are raised again
     // when messages are received.-->
     // 允许或阻止应用从远程计算机接收消息，默认值为
     // <code>false</code>。应用通常使用暂停套接字的方式限制远程计算机发送的数据。套接字暂停时不会产生

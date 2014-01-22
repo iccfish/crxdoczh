@@ -1,6 +1,5 @@
 <h1><!--@Other Deployment Options-->其他部署方式</h1>
 
-
 <p>
 <!--@Usually, users install their own extensions.
 But sometimes you might want an extension
@@ -35,44 +34,86 @@ installing external extensions:-->
 </p>
 
 <ul>
-  <li> <!--@Using a preferences JSON file-->使用首选项 JSON 文件 </li>
+  <li> <!--@Using a preferences JSON file (Mac OS X and Linux only)-->使用首选项 JSON 文件（仅用于 Mac OS X 和 Linux）</li>
   <li> <!--@Using the Windows registry (Windows only)-->使用 Windows 注册表（仅用于 Windows） </li>
 </ul>
 
 <p>
-<!--@Both ways support installing an extension from a <code>.crx</code> extension
-file on the user's computer.  The preferences JSON file also supports installing
-an extension hosted at an
-<a href="autoupdate.html#update_url">update URL</a>.
-See <a href="hosting.html">hosting</a> for details on hosting an extension.-->
-这两种方式都支持在用户的计算机上安装来自
-<code>.crx</code> 文件的扩展程序，首选项 JSON
-文件还支持安装已托管在<a href="autoupdate.html#update_url">更新
-URL</a> 的扩展程序。有关托管扩展程序的详情，请参见<a href="hosting.html"
->托管</a>。
+<!--@Both ways support installing an extension hosted at an
+<code>update_URL</code>.
+In the Windows registry,
+the <code>update_URL</code> must point to the Chrome Web Store
+where the extension is hosted.-->
+这两种方式都支持安装托管在<a href="autoupdate.html#update_url">更新
+URL</a> 上的扩展程序。在 Windows 注册表中，<code>update_url</code>
+必须指向 Chrome 网上应用店中扩展程序的所在位置。
+</p>
+
+<p>
+<!--@In the preferences file,
+it can point to your own server where you are hosting the extension
+(see <a href="autoupdate.html#update_url">autoupdating</a>).
+The preferences JSON file also supports installing
+an extension from a <code>.crx</code> extension
+file on the user's computer
+(see <a href="hosting.html">hosting</a>).-->
+在首选项文件中，它可以指向您自己托管扩展程序的服务器（参见<a
+href="autoupdate.html#update_url">自动更新</a>），首选项 JSON
+文件还支持通过用户计算机上的 <code>.crx</code> 文件安装扩展程序（参见<a
+href="hosting.html">托管</a>）。
+</p>
+
+
+<p class="note">
+<b><!--@Install extensions from your website:-->从您的网站安装扩展程序：</b><!--@
+The safest option for your users is to publish your extension
+in the Chrome Web Store.
+Instead of hosting your own extension,
+publish it in the store, and link to the store install using
+<a href="https://developers.google.com/chrome/web-store/docs/inline_installation">inline installation</a>.-->对于您的用户来说，最安全的选择就是将您的扩展程序发布到
+Chrome 网上应用店。不是自己托管扩展程序，而是在网上应用店中发布，并通过<a
+href="https://developers.google.com/chrome/web-store/docs/inline_installation"
+>内嵌安装</a>链接到网上应用店进行安装。
 </p>
 
 <h2 id="prereqs"><!--@Before you begin-->在您开始前</h2>
 
 <p>
-<!--@First, package a
-<a href="packaging.html"><code>.crx</code> file</a>
+<!--@First, <a href="/webstore/publish.html">publish</a>
+the extension in the Chrome Web Store,
+or package a <a href="packaging.html"><code>.crx</code> file</a>
 and make sure that it installs successfully.-->
-首先，将扩展程序<a href="packaging.html">打包</a>为
-<code>.crx</code> 文件并确保它能够成功安装。
+首先，在网上应用店<a
+href="https://developer.chrome.com/webstore/publish.html">发布扩展程序或<a
+href="packaging.html">打包</a>为 <code>.crx</code> 文件并确保它能够成功安装。
 </p>
-<p>
-<!--@If you wish to install from an
- <a href="autoupdate.html#update_url">update URL</a>, ensure that the extension
-is properly <a href="hosting.html">hosted</a>.-->
-如果您希望从<a href="autoupdate.html#update_url">更新
-URL</a>安装，确保扩展程序已正确<a href="hosting.html">托管</a>。
+
+
+<p class="warning">
+<b><!--@Windows installs must come from Chrome Web Store:-->在
+Windows 中必须从 Chrome 网上应用店安装扩展程序：</b><br>
+<!--@As of Chrome 33,
+no external installs are allowed from a path to a local <code>.crx</code>
+(see <a href="http://blog.chromium.org/2013/11/protecting-windows-users-from-malicious.html">Protecting Windows users from malicious extensions</a>).-->
+从 Chrome 33 开始，不再允许从本地 <code>.crx</code>
+路径安装外部扩展程序（参见<a
+href="http://blog.chromium.org/2013/11/protecting-windows-users-from-malicious.html"
+>Protecting Windows users from malicious extensions（保护 Windows
+用户，避免恶意扩展程序）</a>）。
 </p>
 
 <p>
-<!--@Then, before you edit the preferences file or the registry,
+<!--@If installing from an
+ <a href="autoupdate.html#update_url">update URL</a>, ensure that the extension
+is properly <a href="hosting.html">hosted</a>.-->
+如果从<a href="autoupdate.html#update_url">更新
+URL</a>安装，请确保扩展程序已正确<a href="hosting.html">托管</a>。
+</p>
+
+<p>
+<!--@Before you edit the preferences file or the registry,
 make a note of the following:-->
-然后，在您编辑首选项文件或者注册表前，请先记录一下内容：
+编辑首选项文件或者注册表前，请先记录以下内容：
 </p>
 
 <ul>
@@ -102,25 +143,13 @@ and the ID is <code>aaaaaaaaaabbbbbbbbbbcccccccccc</code>.-->
 
 <h2 id="preferences"><!--@Using a preferences file-->使用首选项文件</h2>
 
-<p class="note">
-<b>Windows <!--@note:-->用户请注意：</b><!--@
-Until-->在 <a href="http://crbug.com/41902">bug 41902</a> <!--@is fixed,
-you might want to use the <a href="#registry">Windows registry</a>
-instead of the preferences file.-->
-修复之前，您可能需要使用
-<a href="#registry">Windows 注册表</a>，而不是首选项文件。
-</p>
+<br>
 
 <p class="note">
-<b><!--@Note:-->注意：</b><!--@
-Previous versions of Google Chrome used an
-<code>external_extensions.json</code> file to specify which extensions to
-install. This file has been deprecated in favor of individual <code>.json</code>
-files, one per extension.-->
-以前版本的 Google Chrome 浏览器使用
-<code>external_extensions.json</code>
-文件来指定要安装的扩展程序。该文件已弃用，建议为每一个扩展程序使用单独的
-<code>.json</code> 文件。
+<b><!--@Mac OS X and Linux only:-->仅用于 Mac OS X 和 Linux：</b><!--@
+Do not use the preferences file for Windows.
+Use <a href="#registry">Windows registry</a> instead.-->不要在 Windows
+中使用首选项文件，而应该使用 <a href="#registry">Windows 注册表</a>。
 </p>
 
 <ol>
@@ -141,11 +170,6 @@ or <code>/home/share/extension.crx</code>.)-->
   The location depends on the operating system.-->
   在下面列出的某一个文件夹中创建以下名称的文件：<code>aaaaaaaaaabbbbbbbbbbcccccccccc.json</code>，其中文件名（不包括扩展名）对应于您的扩展程序标志符。文件的位置取决于操作系统。
   <dl>
-  <dt> Windows<!--@:-->： </dt>
-    <dd> <code><em>chrome_root</em>\Application\<em>chrome_version</em>\Extensions\</code>
-    <br />
-    <!--@Example: -->例如：<code>c:\Users\Me\AppData\Local\Google\Chrome\Application\6.0.422.0\Extensions\</code>
-    </dd>
   <dt> Mac OS X<!--@:-->：</dt>
     <dd><!--@For a specific user: -->用于某个特定用户：<code>~USERNAME/Library/Application Support/Google/Chrome/External Extensions/</code><br>
         <!--@For all users: -->用于所有用户：<code>/Library/Application Support/Google/Chrome/External Extensions/</code>
@@ -228,13 +252,24 @@ is missing, the extension will be installed for any locale.-->
   "supported_locales": [ "en", "fr", "de" ]
 }</pre>
 </li>
-<li><!--@Save the JSON file.-->保存 JSON 文件。 </li>
+<li><!--@Save the JSON file.-->保存 JSON 文件。</li>
 <li><!--@Launch Google Chrome and go to <b>chrome://extensions</b>;
 you should see the extension listed.-->
 运行 Google Chrome 浏览器，并进入
 <b>chrome://extensions</b>，您应该会看到列出的扩展程序。
 </li>
 </ol>
+
+<p class="note">
+<b><!--@Note:-->注意：</b><!--@
+Previous versions of Google Chrome used an
+<code>external_extensions.json</code> file to specify which extensions to
+install. This file has been deprecated in favor of individual <code>.json</code>
+files, one per extension.-->以前版本的 Google Chrome 浏览器使用
+<code>external_extensions.json</code>
+文件指定要安装哪些扩展程序，这种方式已弃用，您应该为每一个扩展程序使用单独的
+<code>.json</code> 文件。
+</p>
 
 <h3 id="troubleshooting"><!--@Troubleshooting Mac OS permissions problems-->Mac OS 权限问题疑难解答</h3>
 
@@ -264,13 +299,6 @@ Chrome
 <h2 id="registry"><!--@Using the Windows registry-->使用 Windows 注册表</h2>
 
 <ol>
-<li><!--@Make the <code>.crx</code> extension file available
-to the machine you want to install the extension on.
-(Copy it to a local directory or to a network share &mdash;
-for example, <code>\\server\share\extension.crx</code>.)-->
-确保 <code>.crx</code>扩展程序文件在您需要安装扩展程序的计算机上可用。（将它复制到本地目录或者网络共享，例如
-<code>\\server\share\extension.crx</code>。）
-</li>
 <li><!--@Find or create the following key in the
 registry:-->
 在注册表中寻找或创建如下键：
@@ -286,14 +314,16 @@ same name as the ID of your extension
 (for example, <code>aaaaaaaaaabbbbbbbbbbcccccccccc</code>).-->
 在 <b>Extensions</b> 键下创建一个新键（文件夹），名称与您的扩展程序标识符相同（例如，<code>aaaaaaaaaabbbbbbbbbbcccccccccc</code>）。
 </li>
-<li><!--@Create two string values (<code>REG_SZ</code>) named "path" and "version",
-  and set them to the extension's location and version.
-  For example:-->
-  创建两个字符串值（<code>REG_SZ</code>），分别名为"path"和"version"，并分别设置为扩展程序的位置和版本。例如：
-<ul>
-  <li>path: <code>\\server\share\extension.crx</code> </li>
-  <li>version: <code>1.0</code> </li>
-</ul>
+<li><!--@In your extension key,
+create a property, "update_url", and set it to the value:
+"https://clients2.google.com/service/update2/crx"
+(this points to your extension's crx in the Chrome Web Store):-->
+在您的扩展程序键中创建 <code>update_url</code> 属性，并设置为如下值：<code
+>"https://clients2.google.com/service/update2/crx"</code>（指向 Chrome
+网上应用店中您的扩展程序的 crx 文件）。
+<pre>{
+  "update_url": "https://clients2.google.com/service/update2/crx"
+}</pre>
 </li>
 <li><!--@Launch the browser and go to
 <b>chrome://extensions</b>; you should
@@ -333,20 +363,32 @@ or the metadata from the registry. -->
 这一部分回答有关外部扩展程序的常见问题。
 </p>
 
-<br>
+<p><b><!--@Will the methodology for allowing a “pre-install” still be supported
+by Google Chrome from M33 onwards?-->允许“预装”扩展程序的方法从
+Google Chrome 33 开始是否仍然支持？</b></p>
+<p><!--@Yes, but only as an install from a Chrome Web Store
+<code>update_URL</code>,
+not from a local file path.-->
+仍然支持，但是只能从 Chrome 网上应用店的 <code>update_url</code>
+安装，而不允许本地文件路径。</p> 
 
 <p><b><!--@Can I specify a URL as a path to the external extension?-->我能否将 URL 指定为指向外部扩展程序的路径？</b> </p>
-<p><!--@Yes, if you use a <a href="#preferences">preferences JSON</a> file. The
-extension must be hosted as explained in <a href="hosting.html">hosting</a>.
-Use the "external_update_url" property to point to an
+<p><!--@Yes, use the <a href="#preferences">preferences JSON</a> file
+for Mac OS X and Linux; the <a href=#"registry">registry</a> for Windows.
+The extension must be hosted as explained in
+<a href="hosting.html">hosting</a>.
+In the preferences file,
+use the "external_update_url" property to point to an
 <a href="autoupdate.html#update_manifest">update manifest</a> that has the URL for your
-extension.-->
-如果您使用了<a href="#preferences">首选项 JSON</a> 文件的话就可以，扩展程序必须按照<a href="hosting.html">托管</a>部分描述的那样正确托管。使用
+extension.
+In the Windows registry,
+use the "update_url" property.-->
+可以，在 Mac OS X 和 Linux 下使用<a href="#preferences">首选项 JSON</a>
+文件，在 Windows 下使用<a href=#"registry">注册表</a>。扩展程序必须按照<a
+href="hosting.html">托管</a>部分描述的那样正确托管。在首选项文件中，使用
 "external_update_url"
-属性指向<a href="autoupdate.html#update_manifest">更新清单</a>，包含您的扩展程序的 URL。
+属性指向<a href="autoupdate.html#update_manifest">更新清单</a>，包含您的扩展程序的 URL；在 Windows 注册表中，则使用 <code>update_url</code> 属性。
 </p>
-
-<br>
 
 <p><b><!--@What are some common mistakes when installing with the preferences
 file?-->使用首选项文件安装时的常见问题有哪些？</b></p>
@@ -383,26 +425,35 @@ file?-->使用首选项文件安装时的常见问题有哪些？</b></p>
     <!--@Permissions problems on a network share-->网络共享的权限问题 </li>
 </ul>
 
-<br>
-
 <p><b><!--@What are some common mistakes when installing with the registry?-->使用注册表安装时的常见问题有哪些？</b> </p>
 <ul>
   <li>
     <!--@Not specifying the same id/version
-    as the one listed in the-->指定的标识符、版本与 <code>.crx</code>
-    文件中不同
+    as the one listed in the-->指定的标识符、版本与 Chrome <!--@Web Store-->
+    网上应用店中不同
   </li>
   <li><!--@Key created in the wrong location in the registry-->
     键在注册表中创建的位置不对
   </li>
-  <li><!--@Registry entry points to the wrong path to the <code>.crx</code> file
-    (or path specified but no filename) -->
-    注册表项指向的 <code>.crx</code> 文件路径不正确（或者指定的路径不包含文件名）
-  </li>
+  <li><!--@Registry entry points to the wrong path
+to the <code>.crx</code> file in the Chrome Web Store--></li>
+    注册表项指向的 Chrome 网上应用店 <code>.crx</code> 文件路径不正确
   <li><!--@Permissions problems on a network share-->网络共享的权限问题 </li>
 </ul>
 
-<br>
+<p><b><!--@How do I update my native binaries and extension in-step?-->我应该如何一步到位更新原生二进制文件和扩展程序？</b></p>
+<p><!--@Previously when off-store extensions were supported,
+it was possible to have the native binaries and the extension be updated in lock step.
+However, extensions hosted on the Chrome Web Store are updated
+via the Chrome update mechanism which developers do not control.
+Extension developers should be careful about updating extensions
+that have a dependency on the native binary
+(for example, legacy extensions using <a href="npapi.html">NPAPI</a>).-->
+以前支持网上应用店以外的扩展程序时，可以一次性更行原生二进制文件和扩展程序。而现在，Chrome
+网上应用店中托管的扩展程序通过 Chrome
+浏览器的更新机制更新，开发者并不能控制。扩展程序开发者在更新依赖于原生二进制文件的扩展程序（例如使用
+<a href="npapi.html">NPAPI</a> 的旧式扩展程序）时要特别注意。
+</p>
 
 <p><b><!--@What if the user uninstalls the extension?-->如果用户卸载了扩展程序怎么办？</b> </p>
 <p><!--@If the user uninstalls the extension through the UI, it will no
@@ -410,8 +461,6 @@ longer be installed or updated on each startup. In other words, the
 external extension is blacklisted. -->
 如果用户通过用户界面卸载了扩展程序，在启动时将不会再安装或更新这一扩展程序。换句话说，这一扩展程序进入了黑名单。
 </p>
-
-<br>
 
 <p><b><!--@How do I get off the blacklist?-->我应该如何从黑名单中去掉我的扩展程序？</b> </p>
 <p><!--@If the user uninstalls your extension, you should respect that
@@ -422,3 +471,4 @@ by installing the extension normally
 through the UI, and then uninstalling it. -->
 如果用户卸载了您的扩展程序，您应该尊重这一决定。然而，如果您（开发者）意外地通过用户界面卸载了您的扩展程序，您可以通过用户界面正常安装扩展程序，然后卸载，移除黑名单标记。
 </p>
+
