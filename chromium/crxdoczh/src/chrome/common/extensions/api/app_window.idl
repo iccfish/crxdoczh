@@ -34,33 +34,29 @@ namespace app.window {
     // 用于标识窗口的标识符，会用来记住窗口的大小与位置，当同一标识符的窗口再次打开时恢复原来的尺寸。如果创建窗口时另一个具有同样标识符的窗口已经存在，当前打开的窗口将获得焦点，而不会创建新窗口。
     DOMString? id;
 
-    // Default width of the window. (Deprecated; regular bounds act like this
-    // now.)
-    [nodoc] long? defaultWidth;
+    // Default width of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? defaultWidth;
 
-    // Default height of the window. (Deprecated; regular bounds act like this
-    // now.)
-    [nodoc] long? defaultHeight;
+    // Default height of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? defaultHeight;
 
-    // Default X coordinate of the window. (Deprecated; regular bounds act like
-    // this now.)
-    [nodoc] long? defaultLeft;
+    // Default X coordinate of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? defaultLeft;
 
-    // Default Y coordinate of the window. (Deprecated; regular bounds act like
-    // this now.)
-    [nodoc] long? defaultTop;
+    // Default Y coordinate of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? defaultTop;
 
-    // Width of the window. (Deprecated; use 'bounds'.)
-    [nodoc] long? width;
+    // Width of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? width;
 
-    // Height of the window. (Deprecated; use 'bounds'.)
-    [nodoc] long? height;
+    // Height of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? height;
 
-    // X coordinate of the window. (Deprecated; use 'bounds'.)
-    [nodoc] long? left;
+    // X coordinate of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? left;
 
-    // Y coordinate of the window. (Deprecated; use 'bounds'.)
-    [nodoc] long? top;
+    // Y coordinate of the window.
+    [deprecated="请使用 $ref:Bounds。"] long? top;
 
     // <!--@Minimum width of the window.-->
     // 窗口的最小宽度。
@@ -126,11 +122,10 @@ namespace app.window {
     // created if another window with the same id doesn't already exist. If a
     // window with the same id already exists that window is activated instead.
     // If you do want to create multiple windows with the same id, you can
-    // set this property to false.
-    // (Deprecated; multiple windows with the same id is no longer supported.)-->
+    // set this property to false.-->
     // 默认情况下，如果您指定了窗口的标识符，只有当另一个具有相同标识符的窗口不存在时才会创建。如果另一个具有相同标识符的窗口存在，则它将变为活动窗口。如果您确实需要创建多个相同标识符的窗口，您可以将该属性设置为
-    // false。（已弃用，不再支持具有相同标志的多个窗口。）
-    [nodoc] boolean? singleton;
+    // false。
+    [deprecated="<!--@Multiple windows with the same id is no longer supported.-->不再支持具有相同标志的多个窗口。"] boolean? singleton;
 
     // <!--@If true, the window will stay above most other windows. If there are
     // multiple windows of this kind, the currently focused window will be in

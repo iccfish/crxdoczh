@@ -403,19 +403,26 @@ example of the manifest file:-->
     <dd><!--@The manifest file can be located anywhere in the file system.
      The application installer must create registry key-->
      清单文件可以在文件系统中的任意位置，应用程序的安装程序必须创建如下注册表键
-     <code>HKEY_LOCAL_MACHINE\SOFTWARE\Google\Chrome\NativeMessagingHosts\<em>com.my_company.my_application</em></code><!--
+     <code>HKEY_LOCAL_MACHINE\SOFTWARE\Google\Chrome\NativeMessagingHosts\<em>com.my_company.my_application</em></code>
+     <!--@or-->或
+     <code>HKEY_CURRENT_USER\SOFTWARE\Google\Chrome\NativeMessagingHosts\<em>com.my_company.my_application</em></code><!--@,
      and set default value of that key to the full path to the manifest file.-->，并将键的默认值设置为清单文件的完整路径。
     </dd>
 
   <dt>OSX<!--@:-->：</dt>
     <dd><!--@The manifest file must be placed at-->
     清单文件必须位于
-    <code>/Library/Google/Chrome/NativeMessagingHosts/<em>com.my_company.my_application</em>.json</code>
+    <code>/Library/Google/Chrome/NativeMessagingHosts/<em>com.my_company.my_application</em>.json</code><!--@,
+    or, for applications installed on user level,-->，对于在用户级别上安装的应用程序则是
+    <code>~/Library/Application Support/Google/Chrome/NativeMessagingHosts/<em>com.my_company.my_application</em>.json</code><!--@.-->。
     </dd>
+
   <dt>Linux<!--@:-->：</dt>
-    <dd><!--@The manifest file must be placed at-->
+    <dd><!--The manifest file must be placed at-->
     清单文件必须位于
-    <code>/etc/opt/chrome/native-messaging-hosts/<em>com.my_company.my_application</em>.json</code>
+    <code>/etc/opt/chrome/native-messaging-hosts/<em>com.my_company.my_application</em>.json</code><!--@,
+    or, for applications installed on user level,-->，对于在用户级别上安装的应用程序则是
+    <code>~/.config/chrome/NativeMessagingHosts/<em>com.my_company.my_application</em>.json</code><!--@.-->。
     </dd>
 </dl>
 
