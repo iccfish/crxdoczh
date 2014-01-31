@@ -41,7 +41,10 @@ namespace mediaGalleries {
     // addScanResults() has to be called to ask the user for permission.-->
     // 扫描完成，但是结果还没添加，您必须调用 addScanResults()
     // 得到用户的许可。
-    finish
+    finish,
+    // <!--@The scan encountered an error and could not proceed.-->
+    // 扫描遇到错误，不能继续进行。
+    error
   };
 
   [inline_doc] dictionary MediaFileSystemsDetails {
