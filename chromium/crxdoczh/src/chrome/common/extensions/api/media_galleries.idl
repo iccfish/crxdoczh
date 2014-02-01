@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// <!--@Use the <code>chrome.mediaGalleries</code> API to access media files (images,
-// video, audio) from the user's local disks (with the user's consent).-->
+// <!--@Use the <code>chrome.mediaGalleries</code> API to access media files (audio,
+// images, video) from the user's local disks (with the user's consent).-->
 // 使用 <code>chrome.mediaGalleries</code> API
-// 从用户的本地磁盘（包含用户内容）中访问媒体文件（图片、视频、音频）。
+// 从用户的本地磁盘（包含用户内容）中访问媒体文件（音频、图片、视频）。
 namespace mediaGalleries {
 
   [inline_doc] enum GetMediaFileSystemsInteractivity {
@@ -114,8 +114,8 @@ namespace mediaGalleries {
     // <!--@Appoximate number of media files found; some file types can be either
     // audio or video and are included in both counts.-->
     // 找到的媒体文件的大致数目。某些文件类型既有可能是音频，也有可能是视频，在这两种类型中都会计算在内。
-    long? imageCount;
     long? audioCount;
+    long? imageCount;
     long? videoCount;
   };
 
@@ -126,16 +126,16 @@ namespace mediaGalleries {
     // <!--@The browser sniffed mime type.-->
     // 浏览器检测到的 MIME 类型。
     DOMString mimeType;
-    
+
     // <!--@Defined for images and video. In pixels.-->
     // 图片和视频会包含这些属性，以像素为单位。
     long? height;
     long? width;
-    
+
     // <!--@Defined for audio and video. In seconds.-->
     // 音频和视频会包含该属性，以秒为单位。
     double? duration;
-    
+
     // <!--@Generic metadata tags.-->
     // 通用元数据标签。
     DOMString? album;
