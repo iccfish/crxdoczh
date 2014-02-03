@@ -360,8 +360,16 @@
       "eggnbpckecmjlblplehfpjjdhhidfdoj"
     ]
   },
+  "hid": {
+    "dependencies": ["permission:hid"],
+    "contexts": ["blessed_extension"]
+  },
   "history": {
     "dependencies": ["permission:history"],
+    "contexts": ["blessed_extension"]
+  },
+  "hotwordPrivate": {
+    "dependencies": ["permission:hotwordPrivate"],
     "contexts": ["blessed_extension"]
   },
   "i18n": {
