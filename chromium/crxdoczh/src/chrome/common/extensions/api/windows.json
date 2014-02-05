@@ -15,40 +15,40 @@
         "id": "Window",
         "type": "object",
         "properties": {
-//@          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "The ID of the window. Window IDs are unique within a browser session. Under some circumstances a Window may not be assigned an ID, for example when querying windows using the $ref:sessions API, in which case a session ID may be present."},
-          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "窗口标识符，窗口标识符在浏览器会话中唯一。在某些情况下，例如当您使用 $ref:sessions API 查询窗口时，窗口可能没有标识符，此时存在会话标识符。"},
+//@          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "The ID of the window. Window IDs are unique within a browser session. Under some circumstances a Window may not be assigned an ID, for example when querying windows using the $(ref:sessions) API, in which case a session ID may be present."},
+          "id": {"type": "integer", "optional": true, "minimum": 0, "description": "窗口标识符，窗口标识符在浏览器会话中唯一。在某些情况下，例如当您使用 $(ref:sessions) API 查询窗口时，窗口可能没有标识符，此时存在会话标识符。"},
 //@          "focused": {"type": "boolean", "description": "Whether the window is currently the focused window."},
           "focused": {"type": "boolean", "description": "是否为当前具有焦点的窗口。"},
-//@          "top": {"type": "integer", "optional": true, "description": "The offset of the window from the top edge of the screen in pixels. Under some circumstances a Window may not be assigned top property, for example when querying closed windows from the $ref:sessions API."},
-          "top": {"type": "integer", "optional": true, "description": "窗口与屏幕顶部的距离，以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 top 属性。"},
-//@          "left": {"type": "integer", "optional": true, "description": "The offset of the window from the left edge of the screen in pixels. Under some circumstances a Window may not be assigned left property, for example when querying closed windows from the $ref:sessions API."},
-          "left": {"type": "integer", "optional": true, "description": "窗口与屏幕左侧的距离，以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 left 属性。"},
-//@          "width": {"type": "integer", "optional": true, "description": "The width of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned width property, for example when querying closed windows from the $ref:sessions API."},
-          "width": {"type": "integer", "optional": true, "description": "窗口的宽度（包含边框），以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 width 属性。"},
-//@          "height": {"type": "integer", "optional": true, "description": "The height of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned height property, for example when querying closed windows from the $ref:sessions API."},
-          "height": {"type": "integer", "optional": true, "description": "窗口的高度（包含边框），以像素为单位。在某些情况下，例如当您使用 $ref:sessions API 查询关闭的窗口时，窗口可能没有 height 属性。"},
-//@          "tabs": {"type": "array", "items": { "$ref": "tabs.Tab" }, "optional": true, "description": "Array of $ref:tabs.Tab objects representing the current tabs in the window."},
-          "tabs": {"type": "array", "items": { "$ref": "tabs.Tab" }, "optional": true, "description": "表示窗口中所有标签页的 $ref:tabs.Tab 对象数组。"},
+//@          "top": {"type": "integer", "optional": true, "description": "The offset of the window from the top edge of the screen in pixels. Under some circumstances a Window may not be assigned top property, for example when querying closed windows from the $(ref:sessions) API."},
+          "top": {"type": "integer", "optional": true, "description": "窗口与屏幕顶部的距离，以像素为单位。在某些情况下，例如当您使用 $(ref:sessions) API 查询关闭的窗口时，窗口可能没有 top 属性。"},
+//@          "left": {"type": "integer", "optional": true, "description": "The offset of the window from the left edge of the screen in pixels. Under some circumstances a Window may not be assigned left property, for example when querying closed windows from the $(ref:sessions) API."},
+          "left": {"type": "integer", "optional": true, "description": "窗口与屏幕左侧的距离，以像素为单位。在某些情况下，例如当您使用 $(ref:sessions) API 查询关闭的窗口时，窗口可能没有 left 属性。"},
+//@          "width": {"type": "integer", "optional": true, "description": "The width of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned width property, for example when querying closed windows from the $(ref:sessions) API."},
+          "width": {"type": "integer", "optional": true, "description": "窗口的宽度（包含边框），以像素为单位。在某些情况下，例如当您使用 $(ref:sessions) API 查询关闭的窗口时，窗口可能没有 width 属性。"},
+//@          "height": {"type": "integer", "optional": true, "description": "The height of the window, including the frame, in pixels. Under some circumstances a Window may not be assigned height property, for example when querying closed windows from the $(ref:sessions) API."},
+          "height": {"type": "integer", "optional": true, "description": "窗口的高度（包含边框），以像素为单位。在某些情况下，例如当您使用 $(ref:sessions) API 查询关闭的窗口时，窗口可能没有 height 属性。"},
+//@          "tabs": {"type": "array", "items": { "$ref": "tabs.Tab" }, "optional": true, "description": "Array of $(ref:tabs.Tab) objects representing the current tabs in the window."},
+          "tabs": {"type": "array", "items": { "$ref": "tabs.Tab" }, "optional": true, "description": "表示窗口中所有标签页的 $(ref:tabs.Tab) 对象数组。"},
 //@          "incognito": {"type": "boolean", "description": "Whether the window is incognito."},
           "incognito": {"type": "boolean", "description": "是否为隐身窗口。"},
           "type": {
             "type": "string",
             "optional": true,
-//@            "description": "The type of browser window this is. Under some circumstances a Window may not be assigned type property, for example when querying closed windows from the $ref:sessions API.",
-            "description": "浏览器窗口的类型。在某些情况下，例如当您使用 $ref:sessions 查询关闭的窗口时，窗口可能没有 type 属性。",
+//@            "description": "The type of browser window this is. Under some circumstances a Window may not be assigned type property, for example when querying closed windows from the $(ref:sessions) API.",
+            "description": "浏览器窗口的类型。在某些情况下，例如当您使用 $(ref:sessions) 查询关闭的窗口时，窗口可能没有 type 属性。",
             "enum": ["normal", "popup", "panel", "app"]
           },
           "state": {
             "type": "string",
             "optional": true,
-//@            "description": "The state of this browser window. Under some circumstances a Window may not be assigned state property, for example when querying closed windows from the $ref:sessions API.",
-            "description": "浏览器窗口的状态。在某些情况下，例如当您使用 $ref:sessions 查询关闭的窗口时，窗口可能没有 state 属性。",
+//@            "description": "The state of this browser window. Under some circumstances a Window may not be assigned state property, for example when querying closed windows from the $(ref:sessions) API.",
+            "description": "浏览器窗口的状态。在某些情况下，例如当您使用 $(ref:sessions) 查询关闭的窗口时，窗口可能没有 state 属性。",
             "enum": ["normal", "minimized", "maximized", "fullscreen"]
           },
 //@          "alwaysOnTop": {"type": "boolean", "description": "Whether the window is set to be always on top."},
           "alwaysOnTop": {"type": "boolean", "description": "窗口是否设置为前端显示。"},
-//@          "sessionId": {"type": "string", "optional": true, "description": "The session ID used to uniquely identify a Window obtained from the $ref:sessions API."}
-          "sessionId": {"type": "string", "optional": true, "description": "会话标识符，用于唯一标识由 $ref:sessions API 获取的窗口。"}
+//@          "sessionId": {"type": "string", "optional": true, "description": "The session ID used to uniquely identify a Window obtained from the $(ref:sessions) API."}
+          "sessionId": {"type": "string", "optional": true, "description": "会话标识符，用于唯一标识由 $(ref:sessions) API 获取的窗口。"}
         }
       }
     ],
@@ -78,8 +78,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $(ref:windows.Window) object will have a <var>tabs</var> property that contains a list of the $(ref:tabs.Tab) objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$(ref:windows.Window) 对象会有 <var>tabs</var> 属性，包含所有 $(ref:tabs.Tab) 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -105,8 +105,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $(ref:windows.Window) object will have a <var>tabs</var> property that contains a list of the $(ref:tabs.Tab) objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$(ref:windows.Window) 对象会有 <var>tabs</var> 属性，包含所有 $(ref:tabs.Tab) 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -132,8 +132,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, the $(ref:windows.Window) object will have a <var>tabs</var> property that contains a list of the $(ref:tabs.Tab) objects. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$(ref:windows.Window) 对象会有 <var>tabs</var> 属性，包含所有 $(ref:tabs.Tab) 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -159,8 +159,8 @@
             "optional": true,
             "description": "",
             "properties": {
-//@              "populate": {"type": "boolean", "optional": true, "description": "If true, each $ref:windows.Window object will have a <var>tabs</var> property that contains a list of the $ref:tabs.Tab objects for that window. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
-              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$ref:windows.Window 对象会有 <var>tabs</var> 属性，包含所有 $ref:tabs.Tab 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
+//@              "populate": {"type": "boolean", "optional": true, "description": "If true, each $(ref:windows.Window) object will have a <var>tabs</var> property that contains a list of the $(ref:tabs.Tab) objects for that window. The <code>Tab</code> objects only contain the <code>url</code>, <code>title</code> and <code>favIconUrl</code> properties if the extension's manifest file includes the <code>\"tabs\"</code> permission." }
+              "populate": {"type": "boolean", "optional": true, "description": "如果为 true，$(ref:windows.Window) 对象会有 <var>tabs</var> 属性，包含所有 $(ref:tabs.Tab) 对象的列表。只有当扩展程序清单文件中包含 <code>\"tabs\"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。" }
             }
           },
           {
@@ -315,7 +315,7 @@
         "name": "onFocusChanged",
         "type": "function",
 //@        "description": "Fired when the currently focused window changes. Will be chrome.windows.WINDOW_ID_NONE if all chrome windows have lost focus. Note: On some Linux window managers, WINDOW_ID_NONE will always be sent immediately preceding a switch from one chrome window to another.",
-        "description": "在当前具有焦点的窗口改变时产生，如果所有 Chrome 浏览器窗口都没有焦点则为 $ref:windows.WINDOW_ID_NONE。注意：在某些 Linux 窗口管理器中，从一个 Chrome 浏览器窗口切换到另一个之前总是会发送 $ref:windows.WINDOW_ID_NONE 的该事件。",
+        "description": "在当前具有焦点的窗口改变时产生，如果所有 Chrome 浏览器窗口都没有焦点则为 $(ref:windows.WINDOW_ID_NONE)。注意：在某些 Linux 窗口管理器中，从一个 Chrome 浏览器窗口切换到另一个之前总是会发送 $(ref:windows.WINDOW_ID_NONE) 的该事件。",
         "parameters": [
 //@          {"type": "integer", "name": "windowId", "minimum": -1, "description": "ID of the newly focused window."}
           {"type": "integer", "name": "windowId", "minimum": -1, "description": "获得焦点的新窗口的标识符。"}

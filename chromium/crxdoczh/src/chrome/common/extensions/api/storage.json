@@ -56,8 +56,8 @@
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Callback with storage items, or on failure (in which case $ref:runtime.lastError will be set).",
-                "description": "包含存储项目或者表示失败（这种情况下会设置 $ref:runtime.lastError）的回调函数。",
+//@                "description": "Callback with storage items, or on failure (in which case $(ref:runtime.lastError) will be set).",
+                "description": "包含存储项目或者表示失败（这种情况下会设置 $(ref:runtime.lastError)）的回调函数。",
                 "parameters": [
                   {
                     "name": "items",
@@ -89,8 +89,8 @@
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Callback with the amount of space being used by storage, or on failure (in which case $ref:runtime.lastError will be set).",
-                "description": "回调函数，将传递存储占用的空间大小，或者指示失败（这种情况下将会设置 $ref:runtime.lastError）",
+//@                "description": "Callback with the amount of space being used by storage, or on failure (in which case $(ref:runtime.lastError) will be set).",
+                "description": "回调函数，将传递存储占用的空间大小，或者指示失败（这种情况下将会设置 $(ref:runtime.lastError)）",
                 "parameters": [
                   {
                     "name": "bytesInUse",
@@ -118,8 +118,8 @@
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Callback on success, or on failure (in which case $ref:runtime.lastError will be set).",
-                "description": "在成功或失败（这种情况下会设置 $ref:runtime.lastError）时调用。",
+//@                "description": "Callback on success, or on failure (in which case $(ref:runtime.lastError) will be set).",
+                "description": "在成功或失败（这种情况下会设置 $(ref:runtime.lastError)）时调用。",
                 "parameters": [],
                 "optional": true
               }
@@ -143,8 +143,8 @@
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Callback on success, or on failure (in which case $ref:runtime.lastError will be set).",
-                "description": "在成功或失败（这种情况下会设置 $ref:runtime.lastError）时调用。",
+//@                "description": "Callback on success, or on failure (in which case $(ref:runtime.lastError) will be set).",
+                "description": "在成功或失败（这种情况下会设置 $(ref:runtime.lastError)）时调用。",
                 "parameters": [],
                 "optional": true
               }
@@ -159,8 +159,8 @@
               {
                 "name": "callback",
                 "type": "function",
-//@                "description": "Callback on success, or on failure (in which case $ref:runtime.lastError will be set).",
-                "description": "在成功或失败（这种情况下会设置 $ref:runtime.lastError）时调用。",
+//@                "description": "Callback on success, or on failure (in which case $(ref:runtime.lastError) will be set).",
+                "description": "在成功或失败（这种情况下会设置 $(ref:runtime.lastError)）时调用。",
                 "parameters": [],
                 "optional": true
               }
@@ -180,8 +180,8 @@
             "name": "changes",
             "type": "object",
             "additionalProperties": { "$ref": "StorageChange" },
-//@            "description": "Object mapping each key that changed to its corresponding $ref:StorageChange for that item."
-            "description": "一个对象，将更改的每一个键映射到该项目对应的 $ref:StorageChange 对象。"
+//@            "description": "Object mapping each key that changed to its corresponding $(ref:storage.StorageChange) for that item."
+            "description": "一个对象，将更改的每一个键映射到该项目对应的 $(ref:StorageChange) 对象。"
           },
           {
             "name": "areaName",
@@ -201,28 +201,28 @@
         "properties": {
           "QUOTA_BYTES": {
             "value": 102400,
-//@            "description": "The maximum total amount (in bytes) of data that can be stored in sync storage, as measured by the JSON stringification of every value plus every key's length. Updates that would cause this limit to be exceeded fail immediately and set $ref:runtime.lastError."
-            "description": "可以在同步存储区储存的数据量大小（以字节为单位），计算方式为每一个值 JSON 字符串化的结果加上每一个键的长度。超出该限制的更新将失败，并设置 $ref:runtime.lastError。"
+//@            "description": "The maximum total amount (in bytes) of data that can be stored in sync storage, as measured by the JSON stringification of every value plus every key's length. Updates that would cause this limit to be exceeded fail immediately and set $(ref:runtime.lastError)."
+            "description": "可以在同步存储区储存的数据量大小（以字节为单位），计算方式为每一个值 JSON 字符串化的结果加上每一个键的长度。超出该限制的更新将失败，并设置 $(ref:runtime.lastError)。"
           },
           "QUOTA_BYTES_PER_ITEM": {
             "value": 4096,
-//@            "description": "The maximum size (in bytes) of each individual item in sync storage, as measured by the JSON stringification of its value plus its key length. Updates containing items larger than this limit will fail immediately and set $ref:runtime.lastError."
-            "description": "同步存储区中每个项目的最大大小（以字节为单位），计算方式为值 JSON 字符串化的结果加上键的长度。包含的项目比该限制大的更新将失败，并设置 $ref:runtime.lastError。"
+//@            "description": "The maximum size (in bytes) of each individual item in sync storage, as measured by the JSON stringification of its value plus its key length. Updates containing items larger than this limit will fail immediately and set $(ref:runtime.lastError)."
+            "description": "同步存储区中每个项目的最大大小（以字节为单位），计算方式为值 JSON 字符串化的结果加上键的长度。包含的项目比该限制大的更新将失败，并设置 $(ref:runtime.lastError)。"
           },
           "MAX_ITEMS": {
             "value": 512,
-//@            "description": "The maximum number of items that can be stored in sync storage. Updates that would cause this limit to be exceeded will fail immediately and set $ref:runtime.lastError."
-            "description": "可以储存在同步存储区中的最大项目数目。超出该限制的更新将失败，并设置 $ref:runtime.lastError。"
+//@            "description": "The maximum number of items that can be stored in sync storage. Updates that would cause this limit to be exceeded will fail immediately and set $(ref:runtime.lastError)."
+            "description": "可以储存在同步存储区中的最大项目数目。超出该限制的更新将失败，并设置 $(ref:runtime.lastError)。"
           },
           "MAX_WRITE_OPERATIONS_PER_HOUR": {
             "value": 1000,
-//@            "description": "The maximum number of <code>set</code>, <code>remove</code>, or <code>clear</code> operations that can be performed each hour. Updates that would cause this limit to be exceeded fail immediately and set $ref:runtime.lastError."
-            "description": "一小时内可以进行的 <code>se</code>（设置）、<code>remove</code>（移除）或<code>clear</code>（清除）操作的最大次数。超出该限制的更新将失败，并设置 $ref:runtime.lastError。"
+//@            "description": "The maximum number of <code>set</code>, <code>remove</code>, or <code>clear</code> operations that can be performed each hour. Updates that would cause this limit to be exceeded fail immediately and set $(ref:runtime.lastError)."
+            "description": "一小时内可以进行的 <code>se</code>（设置）、<code>remove</code>（移除）或<code>clear</code>（清除）操作的最大次数。超出该限制的更新将失败，并设置 $(ref:runtime.lastError)。"
           },
           "MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE": {
             "value": 10,
-//@            "description": "The maximum number of <code>set</code>, <code>remove</code>, or <code>clear</code> operations that can be performed each minute, sustained over 10 minutes. Updates that would cause this limit to be exceeded fail immediately and set $ref:runtime.lastError."
-            "description": "在连续的 10 分钟内每分钟可以进行的 <code>se</code>（设置）、<code>remove</code>（移除）或<code>clear</code>（清除）操作的最大次数。超出该限制的更新将失败，并设置 $ref:runtime.lastError。"
+//@            "description": "The maximum number of <code>set</code>, <code>remove</code>, or <code>clear</code> operations that can be performed each minute, sustained over 10 minutes. Updates that would cause this limit to be exceeded fail immediately and set $(ref:runtime.lastError)."
+            "description": "在连续的 10 分钟内每分钟可以进行的 <code>se</code>（设置）、<code>remove</code>（移除）或<code>clear</code>（清除）操作的最大次数。超出该限制的更新将失败，并设置 $(ref:runtime.lastError)。"
           }
         }
       },
@@ -234,7 +234,7 @@
         "properties": {
           "QUOTA_BYTES": {
             "value": 5242880,
-//@            "description": "The maximum amount (in bytes) of data that can be stored in local storage, as measured by the JSON stringification of every value plus every key's length. This value will be ignored if the extension has the <code>unlimitedStorage</code> permission. Updates that would cause this limit to be exceeded fail immediately and set $ref:runtime.lastError."
+//@            "description": "The maximum amount (in bytes) of data that can be stored in local storage, as measured by the JSON stringification of every value plus every key's length. This value will be ignored if the extension has the <code>unlimitedStorage</code> permission. Updates that would cause this limit to be exceeded fail immediately and set $(ref:runtime.lastError)."
             "description": "可以在本地存储区储存的数据量大小（以字节为单位），计算方式为每一个值 JSON 字符串化的结果加上每一个键的长度。如果扩展程序拥有 <code>unlimitedStorage</code> 权限则会忽略这一值。"
           }
         }

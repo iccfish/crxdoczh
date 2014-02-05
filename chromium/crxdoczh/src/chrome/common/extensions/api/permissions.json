@@ -107,8 +107,8 @@
       {
         "name": "request",
         "type": "function",
-//@        "description": "Requests access to the specified permissions. These permissions must be defined in the optional_permissions field of the manifest. If there are any problems requesting the permissions, $ref:runtime.lastError will be set.",
-        "description": "请求访问指定的权限，这些权限必须已在清单文件中的 optional_permissions 字段中定义。如果请求权限过程中发生任何问题，将会设置 $ref:runtime.lastError。",
+//@        "description": "Requests access to the specified permissions. These permissions must be defined in the optional_permissions field of the manifest. If there are any problems requesting the permissions, $(ref:runtime.lastError) will be set.",
+        "description": "请求访问指定的权限，这些权限必须已在清单文件中的 optional_permissions 字段中定义。如果请求权限过程中发生任何问题，将会设置 $(ref:runtime.lastError)。",
         "parameters": [
           {
             "name": "permissions",
@@ -132,8 +132,8 @@
       {
         "name": "remove",
         "type": "function",
-//@        "description": "Removes access to the specified permissions. If there are any problems removing the permissions, $ref:runtime.lastError will be set.",
-        "description": "移除指定权限的访问。如果移除权限过程中发生任何问题，将会设置 $ref:runtime.lastError。",
+//@        "description": "Removes access to the specified permissions. If there are any problems removing the permissions, $(ref:runtime.lastError) will be set.",
+        "description": "移除指定权限的访问。如果移除权限过程中发生任何问题，将会设置 $(ref:runtime.lastError)。",
         "parameters": [
           {
             "name": "permissions",

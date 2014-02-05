@@ -35,8 +35,8 @@
 //@        "description": "An object containing information about the script context that sent a message or request.",
         "description": "包含有关发送消息或请求的脚本上下文信息的对象。",
         "properties": {
-//@          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "The $ref:tabs.Tab which opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab (including content scripts), and <strong>only</strong> if the receiver is an extension, not an app."},
-          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "打开连接的 $ref:Tab（标签页），如果有的话。<b>只有</b>当连接从标签页或内容脚本中打开，<b>并且</b>接收方是扩展程序而不是应用时才会存在这一属性。"},
+//@          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "The $(ref:tabs.Tab) which opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab (including content scripts), and <strong>only</strong> if the receiver is an extension, not an app."},
+          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "打开连接的 $(ref:tabs.Tab)（标签页），如果有的话。<b>只有</b>当连接从标签页或内容脚本中打开，<b>并且</b>接收方是扩展程序而不是应用时才会存在这一属性。"},
 //@          "id": {"type": "string", "optional": true, "description": "The ID of the extension or app that opened the connection, if any."},
           "id": {"type": "string", "optional": true, "description": "打开连接的扩展程序或应用的标识符（如果有的话）。"},
 //@          "url": {"type": "string", "optional": true, "description": "The URL of the page or frame that opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab or content script."},
@@ -197,8 +197,8 @@
         "name": "connect",
         "type": "function",
         "nocompile": true,
-//@        "description": "Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and <a href=\"manifest/externally_connectable.html\">web messaging</a>. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in tabs via $ref:tabs.connect.",
-        "description": "尝试连接到扩展程序/应用中的连接监听者（例如后台网页）或其他扩展程序/应用，该方法可用于内容脚本连接到所属扩展程序进程、应用/扩展程序之间的通信以及<a href=\"manifest/externally_connectable.html\">与网页通信</a>。注意，该方法不能连接到内容脚本中的监听者，扩展程序可以通过 $ref:tabs.connect 连接到嵌入至标签页中的内容脚本。",
+//@        "description": "Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and <a href=\"manifest/externally_connectable.html\">web messaging</a>. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in tabs via $(ref:tabs.connect.)",
+        "description": "尝试连接到扩展程序/应用中的连接监听者（例如后台网页）或其他扩展程序/应用，该方法可用于内容脚本连接到所属扩展程序进程、应用/扩展程序之间的通信以及<a href=\"manifest/externally_connectable.html\">与网页通信</a>。注意，该方法不能连接到内容脚本中的监听者，扩展程序可以通过 $(ref:tabs.connect) 连接到嵌入至标签页中的内容脚本。",
         "parameters": [
 //@          {"type": "string", "name": "extensionId", "optional": true, "description": "The ID of the extension or app to connect to. If omitted, a connection will be attempted with your own extension. Required if sending messages from a web page for <a href=\"manifest/externally_connectable.html\">web messaging</a>."},
           {"type": "string", "name": "extensionId", "optional": true, "description": "您需要连接的扩展程序或应用的标识符，如果省略，则会尝试连接到您自己的扩展程序。如果使用<a href=\"manifest/externally_connectable.html\">与网页通信</a>的方式从网页发送消息则必须指定该参数。"},
@@ -217,7 +217,7 @@
         "returns": {
           "$ref": "Port",
 //@          "description": "Port through which messages can be sent and received. The port's $ref:[runtime.Port onDisconnect] event is fired if the extension/app does not exist. "
-          "description": "用来与扩展程序发送和接受消息的端口。如果扩展程序不存在则引发该端口的 $ref:runtime.Port.onDisconnect 事件。"
+          "description": "用来与扩展程序发送和接受消息的端口。如果扩展程序不存在则引发该端口的 $(ref:runtime.Port.onDisconnect) 事件。"
         }
       },
       {
@@ -245,8 +245,8 @@
         "type": "function",
         "nocompile": true,
         "allowAmbiguousOptionalArguments": true,
-//@        "description": "Sends a single message to event listeners within your extension/app or a different extension/app. Similar to $ref:runtime.connect but only sends a single message, with an optional response. If sending to your extension, the $ref:runtime.onMessage event will be fired in each page, or $ref:runtime.onMessageExternal, if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use $ref:tabs.sendMessage.",
-        "description": "向您的扩展程序/应用或另一个扩展程序/应用中的其他事件监听者发送单个消息。与 $ref:runtime.connect 类似，但是只发送单个消息（可以有响应）。如果向您自己的扩展程序发送消息，每个网页中都会产生 $ref:runtime.onMessage 事件；如果发送至另一个扩展程序则产生 $ref:runtime.onMessageExternal 事件。注意，扩展程序不能使用该方法向内容脚本发送消息。要向内容脚本发送消息，请使用 $ref:tabs.sendMessage。",
+//@        "description": "Sends a single message to event listeners within your extension/app or a different extension/app. Similar to $(ref:runtime.connect) but only sends a single message, with an optional response. If sending to your extension, the $(ref:runtime.onMessage) event will be fired in each page, or $(ref:runtime.onMessageExternal), if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use $(ref:tabs.sendMessage.)",
+        "description": "向您的扩展程序/应用或另一个扩展程序/应用中的其他事件监听者发送单个消息。与 $(ref:runtime.connect) 类似，但是只发送单个消息（可以有响应）。如果向您自己的扩展程序发送消息，每个网页中都会产生 $(ref:runtime.onMessage) 事件；如果发送至另一个扩展程序则产生 $(ref:runtime.onMessageExternal) 事件。注意，扩展程序不能使用该方法向内容脚本发送消息。要向内容脚本发送消息，请使用 $(ref:tabs.sendMessage)。",
         "parameters": [
 //@          {"type": "string", "name": "extensionId", "optional": true, "description": "The ID of the extension/app to send the message to. If omitted, the message will be sent to your own extension/app. Required if sending messages from a web page for <a href=\"manifest/externally_connectable.html\">web messaging</a>."},
           {"type": "string", "name": "extensionId", "optional": true, "description": "您需要发送消息的扩展程序或应用的标识符，如果省略，消息就发送到您自己的扩展程序/应用。如果使用<a href=\"manifest/externally_connectable.html\">与网页通信</a>的方式从网页发送消息则必须指定该参数。"},
@@ -268,8 +268,8 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
-                "description": "消息处理程序发送的 JSON 响应对象。如果连接到扩展程序的过程中发生错误，调用这一回调函数时将不传递参数，并将 $ref:runtime.lastError 设为错误消息。"
+//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
+                "description": "消息处理程序发送的 JSON 响应对象。如果连接到扩展程序的过程中发生错误，调用这一回调函数时将不传递参数，并将 $(ref:runtime.lastError) 设为错误消息。"
               }
             ]
           }
@@ -305,8 +305,8 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The response message sent by the native messaging host. If an error occurs while connecting to the native messaging host, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message.",
-                "description": "原生消息宿主发送的响应消息。如果连接到原生消息宿主的过程中发生错误，调用回调函数时不会传递参数，同时 $ref:runtime.lastError 将设置为错误消息。",
+//@                "description": "The response message sent by the native messaging host. If an error occurs while connecting to the native messaging host, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message.",
+                "description": "原生消息宿主发送的响应消息。如果连接到原生消息宿主的过程中发生错误，调用回调函数时不会传递参数，同时 $(ref:runtime.lastError) 将设置为错误消息。",
                 "additionalProperties": {
                   "type": "any"
                 }
@@ -425,7 +425,7 @@
         "name": "onUpdateAvailable",
         "type": "function",
 //@        "description": "Fired when an update is available, but isn't installed immediately because the app is currently running. If you do nothing, the update will be installed the next time the background page gets unloaded, if you want it to be installed sooner you can explicitly call chrome.runtime.reload().",
-        "description": "当更新可用时产生，然而由于应用当前还在运行，不能立即安装。如果您什么都不做，更新将在后台网页下一次卸载时安装。如果您希望快点安装，您可以显式调用 $ref:runtime.reload。",
+        "description": "当更新可用时产生，然而由于应用当前还在运行，不能立即安装。如果您什么都不做，更新将在后台网页下一次卸载时安装。如果您希望快点安装，您可以显式调用 $(ref:runtime.reload)。",
         "parameters": [
           {
             "type": "object",
@@ -450,8 +450,8 @@
         "type": "function",
 //@        "description": "Fired when a Chrome update is available, but isn't installed immediately because a browser restart is required.",
         "description": "当 Chrome 浏览器的更新可用，但是由于需要浏览器重新启动而没有立即安装时产生。",
-//@        "deprecated": "Please use $ref:onRestartRequired.",
-        "deprecated": "请使用 $ref:onRestartRequired。",
+//@        "deprecated": "Please use $(ref:runtime.onRestartRequired.)",
+        "deprecated": "请使用 $(ref:runtime.onRestartRequired)。",
         "parameters": []
       },
       {
@@ -498,7 +498,7 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
+//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
                 "description": "要发送的 JSON 响应对象。"
               }
             ]
@@ -529,7 +529,7 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
+//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the extension, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
                 "description": "要发送的 JSON 响应对象。"
               }
             ]

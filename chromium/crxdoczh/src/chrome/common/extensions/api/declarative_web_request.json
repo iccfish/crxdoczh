@@ -341,8 +341,8 @@
       },
       {
         "id": "declarativeWebRequest.SendMessageToExtension",
-//@        "description": "Triggers the $ref:declarativeWebRequest.onMessage event.",
-        "description": "触发 $ref:declarativeWebRequest.onMessage 事件。",
+//@        "description": "Triggers the $(ref:declarativeWebRequest.onMessage) event.",
+        "description": "触发 $(ref:declarativeWebRequest.onMessage) 事件。",
         "type": "object",
         "properties": {
           "instanceType": {
@@ -654,8 +654,8 @@
       {
         "name": "onMessage",
         "type": "function",
-//@        "description": "Fired when a message is sent via $ref:declarativeWebRequest.SendMessageToExtension from an action of the declarative web request API.",
-        "description": "当消息通过声明式网络请求 API 的 $ref:declarativeWebRequest.SendMessageToExtension 操作发送时产生。",
+//@        "description": "Fired when a message is sent via $(ref:declarativeWebRequest.SendMessageToExtension) from an action of the declarative web request API.",
+        "description": "当消息通过声明式网络请求 API 的 $(ref:declarativeWebRequest.SendMessageToExtension) 操作发送时产生。",
         "parameters": [
           {
             "type": "object",

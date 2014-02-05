@@ -72,8 +72,8 @@
 //@            "description": "True if this is an app.",
             "description": "如果是应用则为 true。",
             "type": "boolean",
-//@            "deprecated": "Please use $ref:ExtensionInfo.type."
-            "deprecated": "请使用 $ref:ExtensionInfo.type。"
+//@            "deprecated": "Please use $(ref:management.ExtensionInfo.type)."
+            "deprecated": "请使用 $(ref:management.ExtensionInfo.type)。"
           },
           "type": {
 //@            "description": "The type of this extension, app, or theme.",
@@ -173,8 +173,8 @@
           {
             "name": "id",
             "type": "string",
-//@            "description": "The ID from an item of $ref:ExtensionInfo."
-            "description": "来自 $ref:ExtensionInfo 项目的标识符。"
+//@            "description": "The ID from an item of $(ref:management.ExtensionInfo)."
+            "description": "来自 $(ref:management.ExtensionInfo) 项目的标识符。"
           },
           {
             "type": "function",
@@ -246,8 +246,8 @@
           {
             "name": "id",
             "type": "string",
-//@            "description": "This should be the id from an item of $ref:ExtensionInfo."
-            "description": "该参数应该为来自 $ref:ExtensionInfo 项目的标识符。"
+//@            "description": "This should be the id from an item of $(ref:management.ExtensionInfo)."
+            "description": "该参数应该为来自 $(ref:management.ExtensionInfo) 项目的标识符。"
           },
           {
             "name": "enabled",
@@ -271,8 +271,8 @@
           {
             "name": "id",
             "type": "string",
-//@            "description": "This should be the id from an item of $ref:ExtensionInfo."
-            "description": "该参数应该为来自 $ref:ExtensionInfo 项目的标识符。"
+//@            "description": "This should be the id from an item of $(ref:management.ExtensionInfo)."
+            "description": "该参数应该为来自 $(ref:management.ExtensionInfoi) 项目的标识符。"
           },
           {
             "type": "object",

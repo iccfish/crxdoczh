@@ -32,12 +32,12 @@
       {
         "name": "sendRequest",
         "nocompile": true,
-//@        "deprecated": "Please use $ref:runtime.sendMessage.",
-        "deprecated": "请使用 $ref:runtime.sendMessage。",
+//@        "deprecated": "Please use $(ref:runtime.sendMessage).",
+        "deprecated": "请使用 $(ref:runtime.sendMessage)。",
         "type": "function",
         "allowAmbiguousOptionalArguments": true,
-//@        "description": "Sends a single request to other listeners within the extension. Similar to $ref:runtime.connect, but only sends a single request with an optional response. The $ref:onRequest event is fired in each page of the extension.",
-        "description": "向扩展程序中的其他监听者（或另一个扩展程序/应用）发送单个请求。与 $ref:runtime.connect 类似，但是只发送具有可选回应的单个请求。$ref:onRequest 事件将在扩展程序的每一个页面中产生。",
+//@        "description": "Sends a single request to other listeners within the extension. Similar to $(ref:runtime.connect), but only sends a single request with an optional response. The $(ref:extension.onRequest) event is fired in each page of the extension.",
+        "description": "向扩展程序中的其他监听者（或另一个扩展程序/应用）发送单个请求。与 $(ref:runtime.connect) 类似，但是只发送具有可选回应的单个请求。$(ref:extension.onRequest) 事件将在扩展程序的每一个页面中产生。",
         "parameters": [
 //@          {"type": "string", "name": "extensionId", "optional": true, "description": "The extension ID of the extension you want to connect to. If omitted, default is your own extension."},
           {"type": "string", "name": "extensionId", "optional": true, "description": "您希望连接的扩展程序标识符，如果省略，默认为您自己的扩展程序。"},
@@ -50,8 +50,8 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
-                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $ref:runtime.lastError 设置为错误消息。"
+//@                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the extension, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
+                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $(ref:runtime.lastError) 设置为错误消息。"
               }
             ]
           }
@@ -135,8 +135,8 @@
       {
         "name": "getExtensionTabs",
         "nocompile": true,
-//@        "deprecated": "Please use $ref:getViews <code>{type: \"tab\"}</code>.",
-        "deprecated": "请使用 $ref:getViews <code>{type: \"tab\"}</code>。",
+//@        "deprecated": "Please use $(ref:extension.getViews) <code>{type: \"tab\"}</code>.",
+        "deprecated": "请使用 $(ref:extension.getViews) <code>{type: \"tab\"}</code>。",
         "type": "function",
         "maximumManifestVersion": 1,
 //@        "description": "Returns an array of the JavaScript 'window' objects for each of the tabs running inside the current extension. If <code>windowId</code> is specified, returns only the 'window' objects of tabs attached to the specified window.",
@@ -211,8 +211,8 @@
     "events": [
       {
         "name": "onRequest",
-//@        "deprecated": "Please use $ref:runtime.onMessage.",
-        "deprecated": "请使用 $ref:runtime.onMessage。",
+//@        "deprecated": "Please use $(ref:runtime.onMessage).",
+        "deprecated": "请使用 $(ref:runtime.onMessage)。",
         "type": "function",
         "options": {
           "unmanaged": true
@@ -229,8 +229,8 @@
       },
       {
         "name": "onRequestExternal",
-//@        "deprecated": "Please use $ref:runtime.onMessageExternal.",
-        "deprecated": "请使用 $ref:runtime.onMessageExternal。",
+//@        "deprecated": "Please use $(ref:runtime.onMessageExternal).",
+        "deprecated": "请使用 $(ref:runtime.onMessageExternal)。",
         "type": "function",
         "options": {
           "unmanaged": true

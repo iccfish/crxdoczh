@@ -203,7 +203,7 @@
             "name": "callback",
             "optional": true,
 //@            "description": "Called right away, before speech finishes. Check chrome.runtime.lastError to make sure there were no errors. Use options.onEvent to get more detailed feedback.",
-            "description": "在朗读完成前立即调用。检查 $ref:runtime.lastError 确保没有错误发生。使用 options.onEvent 获得更详细的反馈。",
+            "description": "在朗读完成前立即调用。检查 $(ref:runtime.lastError) 确保没有错误发生。使用 options.onEvent 获得更详细的反馈。",
             "parameters": []
           }
         ]
@@ -265,8 +265,8 @@
                 "type": "array",
                 "name": "voices",
                 "items": { "$ref": "TtsVoice" },
-//@                "description": "Array of $ref:TtsVoice objects representing the available voices for speech synthesis."
-                "description": "包含 $ref:TtsVoice 对象的数组，代表语音合成可用的语音。"
+//@                "description": "Array of $(ref:TtsVoice) objects representing the available voices for speech synthesis."
+                "description": "包含 $(ref:TtsVoice) 对象的数组，代表语音合成可用的语音。"
               }
             ]
           }

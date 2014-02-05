@@ -12,8 +12,8 @@
         "id": "Tab",
         "type": "object",
         "properties": {
-//@          "id": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab. Tab IDs are unique within a browser session. Under some circumstances a Tab may not be assigned an ID, for example when querying foreign tabs using the $ref:sessions API, in which case a session ID may be present."},
-          "id": {"type": "integer", "minimum": 0, "description": "标签页的标识符。标签页的标识符在浏览器会话中唯一。在某些情况下，标签页可能没有标识符，例如使用 $ref:sessions API 查询外来标签页时，此时可能存在会话标识符。"},
+//@          "id": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab. Tab IDs are unique within a browser session. Under some circumstances a Tab may not be assigned an ID, for example when querying foreign tabs using the $(ref:sessions) API, in which case a session ID may be present."},
+          "id": {"type": "integer", "minimum": 0, "description": "标签页的标识符。标签页的标识符在浏览器会话中唯一。在某些情况下，标签页可能没有标识符，例如使用 $(ref:sessions) API 查询外来标签页时，此时可能存在会话标识符。"},
           // TODO(kalman): Investigate how this is ending up as -1 (based on window type? a bug?) and whether it should be optional instead.
 //@          "index": {"type": "integer", "minimum": -1, "description": "The zero-based index of the tab within its window."},
           "index": {"type": "integer", "minimum": -1, "description": "标签页在所在窗口中的索引，从 0 开始。"},
@@ -21,8 +21,8 @@
           "windowId": {"type": "integer", "minimum": 0, "description": "标签页所在窗口的标识符。"},
 //@          "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "The ID of the tab that opened this tab, if any. This property is only present if the opener tab still exists."},
           "openerTabId": {"type": "integer", "minimum": 0, "optional": true, "description": "打开这一标签页的标签页标识符（如果存在的话），只有该标签页仍然存在时才会有这一属性。"},
-//@          "selected": {"type": "boolean", "description": "Whether the tab is selected.", "deprecated": "Please use $ref:Tab.highlighted."},
-          "selected": {"type": "boolean", "description": "标签页是否选中。", "deprecated": "请使用 $ref:Tab.highlighted。"},
+//@          "selected": {"type": "boolean", "description": "Whether the tab is selected.", "deprecated": "Please use $(ref:tabs.Tab.highlighted)."},
+          "selected": {"type": "boolean", "description": "标签页是否选中。", "deprecated": "请使用 $(ref:tabs.Tab.highlighted)。"},
 //@          "highlighted": {"type": "boolean", "description": "Whether the tab is highlighted."},
           "highlighted": {"type": "boolean", "description": "标签页是否高亮突出。"},
 //@          "active": {"type": "boolean", "description": "Whether the tab is active in its window. (Does not necessarily mean the window is focused.)"},
@@ -43,8 +43,8 @@
           "width": {"type": "integer", "optional": true, "description": "标签页宽度，以像素为单位。"},
 //@          "height": {"type": "integer", "optional": true, "description": "The height of the tab in pixels."},
           "height": {"type": "integer", "optional": true, "description": "标签页高度，以像素为单位。"},
-//@          "sessionId": {"type": "string", "optional": true, "description": "The session ID used to uniquely identify a Tab obtained from the $ref:sessions API."}
-          "sessionId": {"type": "string", "optional": true, "description": "会话标识符，用于唯一标识由 $ref:sessions API 获取的标签页。"}
+//@          "sessionId": {"type": "string", "optional": true, "description": "The session ID used to uniquely identify a Tab obtained from the $(ref:sessions) API."}
+          "sessionId": {"type": "string", "optional": true, "description": "会话标识符，用于唯一标识由 $(ref:sessions) API 获取的标签页。"}
         }
       },
       {
@@ -113,8 +113,8 @@
         "name": "connect",
         "nocompile": true,
         "type": "function",
-//@        "description": "Connects to the content script(s) in the specified tab. The $ref:runtime.onConnect event is fired in each content script running in the specified tab for the current extension. For more details, see <a href='messaging.html'>Content Script Messaging</a>.",
-        "description": "连接到指定标签页中的内容脚本，这样当前扩展程序在指定标签页中运行的每一个内容脚本都会产生 $ref:runtime.onConnect 事件。有关更多详情，请参见<a href='messaging.html'>内容脚本的消息传递</a>。",
+//@        "description": "Connects to the content script(s) in the specified tab. The $(ref:runtime.onConnect) event is fired in each content script running in the specified tab for the current extension. For more details, see <a href='messaging.html'>Content Script Messaging</a>.",
+        "description": "连接到指定标签页中的内容脚本，这样当前扩展程序在指定标签页中运行的每一个内容脚本都会产生 $(ref:runtime.onConnect) 事件。有关更多详情，请参见<a href='messaging.html'>内容脚本的消息传递</a>。",
         "parameters": [
           {
             "type": "integer",
@@ -133,18 +133,18 @@
         ],
         "returns": {
           "$ref": "runtime.Port",
-//@          "description": "A port that can be used to communicate with the content scripts running in the specified tab. The port's $ref:runtime.Port event is fired if the tab closes or does not exist. "
-          "description": "用来与指定标签页中正在运行的内容脚本通信的端口，如果标签页关闭或者不存在则会引发该端口的 $ref:runtime.Port.onDisconnect 事件。"
+//@          "description": "A port that can be used to communicate with the content scripts running in the specified tab. The port's $(ref:runtime.Port) event is fired if the tab closes or does not exist. "
+          "description": "用来与指定标签页中正在运行的内容脚本通信的端口，如果标签页关闭或者不存在则会引发该端口的 $(ref:runtime.Port.onDisconnect) 事件。"
         }
       },
       {
         "name": "sendRequest",
-//@        "deprecated": "Please use $ref:runtime.sendMessage.",
-        "deprecated": "请使用 $ref:runtime.sendMessage。",
+//@        "deprecated": "Please use $(ref:runtime.sendMessage).",
+        "deprecated": "请使用 $(ref:runtime.sendMessage)。",
         "nocompile": true,
         "type": "function",
-//@        "description": "Sends a single request to the content script(s) in the specified tab, with an optional callback to run when a response is sent back.  The $ref:extension.onRequest event is fired in each content script running in the specified tab for the current extension.",
-        "description": "向指定标签页中的内容脚本发送一个消息，当发回响应时执行一个可选的回调函数。当前扩展程序在指定标签页中的每一个内容脚本都会收到 $ref:extension.onRequest 事件。",
+//@        "description": "Sends a single request to the content script(s) in the specified tab, with an optional callback to run when a response is sent back.  The $(ref:extension.onRequest) event is fired in each content script running in the specified tab for the current extension.",
+        "description": "向指定标签页中的内容脚本发送一个消息，当发回响应时执行一个可选的回调函数。当前扩展程序在指定标签页中的每一个内容脚本都会收到 $(ref:extension.onRequest) 事件。",
         "parameters": [
           {
             "type": "integer",
@@ -163,8 +163,8 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
-                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $ref:runtime.lastError 设置为错误消息。"
+//@                "description": "The JSON response object sent by the handler of the request. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
+                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $(ref:runtime.lastError) 设置为错误消息。"
               }
             ]
           }
@@ -174,8 +174,8 @@
         "name": "sendMessage",
         "nocompile": true,
         "type": "function",
-//@        "description": "Sends a single message to the content script(s) in the specified tab, with an optional callback to run when a response is sent back.  The $ref:runtime.onMessage event is fired in each content script running in the specified tab for the current extension.",
-        "description": "向指定标签页中的内容脚本发送一个消息，当发回响应时执行一个可选的回调函数。当前扩展程序在指定标签页中的每一个内容脚本都会收到 $ref:runtime.onMessage 事件。",
+//@        "description": "Sends a single message to the content script(s) in the specified tab, with an optional callback to run when a response is sent back.  The $(ref:runtime.onMessage) event is fired in each content script running in the specified tab for the current extension.",
+        "description": "向指定标签页中的内容脚本发送一个消息，当发回响应时执行一个可选的回调函数。当前扩展程序在指定标签页中的每一个内容脚本都会收到 $(ref:runtime.onMessage) 事件。",
         "parameters": [
           {
             "type": "integer",
@@ -194,8 +194,8 @@
               {
                 "name": "response",
                 "type": "any",
-//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
-                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $ref:runtime.lastError 设置为错误消息。"
+//@                "description": "The JSON response object sent by the handler of the message. If an error occurs while connecting to the specified tab, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
+                "description": "请求处理程序发出的 JSON 响应对象。如果连接到指定标签页的过程中发生错误，将不传递参数调用回调函数，并将 $(ref:runtime.lastError) 设置为错误消息。"
               }
             ]
           }
@@ -203,8 +203,8 @@
       },
       {
         "name": "getSelected",
-//@        "deprecated": "Please use $ref:query <code>{active: true}</code>.",
-        "deprecated": "请使用 $ref:query <code>{active: true}</code>。",
+//@        "deprecated": "Please use $(ref:tabs.query) <code>{active: true}</code>.",
+        "deprecated": "请使用 $(ref:tabs.query) <code>{active: true}</code>。",
         "type": "function",
 //@        "description": "Gets the tab that is selected in the specified window.",
         "description": "获取指定窗口中选定的标签页。",
@@ -229,8 +229,8 @@
       {
         "name": "getAllInWindow",
         "type": "function",
-//@        "deprecated": "Please use $ref:query <code>{windowId: windowId}</code>.",
-        "deprecated": "请使用 $ref:query <code>{windowId: windowId}</code>。",
+//@        "deprecated": "Please use $(ref:tabs.query) <code>{windowId: windowId}</code>.",
+        "deprecated": "请使用 $(ref:tabs.query) <code>{windowId: windowId}</code>。",
 //@        "description": "Gets details about all tabs in the specified window.",
         "description": "获取指定窗口中所有标签页的详情。",
         "parameters": [
@@ -284,8 +284,8 @@
               "active": {
                 "type": "boolean",
                 "optional": true,
-//@                "description": "Whether the tab should become the active tab in the window. Does not affect whether the window is focused (see $ref:windows.update). Defaults to <var>true</var>."
-                "description": "标签页是否应该成为窗口中的活动标签页，不影响窗口是否有焦点（参见 $ref:windows.update），默认为 <var>true</var>。"
+//@                "description": "Whether the tab should become the active tab in the window. Does not affect whether the window is focused (see $(ref:windows.update)). Defaults to <var>true</var>."
+                "description": "标签页是否应该成为窗口中的活动标签页，不影响窗口是否有焦点（参见 $(ref:windows.update)），默认为 <var>true</var>。"
               },
               "selected": {
 //@                "deprecated": "Please use <em>active</em>.",
@@ -346,8 +346,8 @@
               {
                 "name": "tab",
                 "optional": true,
-//@                "description": "Details about the duplicated tab. The $ref:tabs.Tab object doesn't contain <code>url</code>, <code>title</code> and <code>favIconUrl</code> if the <code>\"tabs\"</code> permission has not been requested.",
-                "description": "有关已复制标签页的详情，如果没有请求 <code>\"tabs\"</code> 权限的话 $ref:tabs.Tab 对象不会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code>。",
+//@                "description": "Details about the duplicated tab. The $(ref:tabs.Tab) object doesn't contain <code>url</code>, <code>title</code> and <code>favIconUrl</code> if the <code>\"tabs\"</code> permission has not been requested.",
+                "description": "有关已复制标签页的详情，如果没有请求 <code>\"tabs\"</code> 权限的话 $(ref:tabs.Tab) 对象不会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code>。",
                 "$ref": "Tab"
               }
             ]
@@ -417,8 +417,8 @@
                 "type": "integer",
                 "optional": true,
                 "minimum": -2,
-//@                "description": "The ID of the parent window, or $ref:windows.WINDOW_ID_CURRENT for the <a href='windows.html#current-window'>current window</a>."
-                "description": "父窗口标识符，或者为 $ref:windows.WINDOW_ID_CURRENT，表示<a href='windows.html#current-window'>当前窗口</a>。"
+//@                "description": "The ID of the parent window, or $(ref:windows.WINDOW_ID_CURRENT) for the <a href='windows.html#current-window'>current window</a>."
+                "description": "父窗口标识符，或者为 $(ref:windows.WINDOW_ID_CURRENT)，表示<a href='windows.html#current-window'>当前窗口</a>。"
               },
               "windowType": {
                 "type": "string",
@@ -519,8 +519,8 @@
               "active": {
                 "type": "boolean",
                 "optional": true,
-//@                "description": "Whether the tab should be active. Does not affect whether the window is focused (see $ref:windows.update)."
-                "description": "标签页是否为活动标签页，不影响窗口是否有焦点（参见 $ref:windows.update）。"
+//@                "description": "Whether the tab should be active. Does not affect whether the window is focused (see $(ref:windows.update))."
+                "description": "标签页是否为活动标签页，不影响窗口是否有焦点（参见 $(ref:windows.update)）。"
               },
               "highlighted": {
                 "type": "boolean",
@@ -559,8 +559,8 @@
                 "name": "tab",
                 "$ref": "Tab",
                 "optional": true,
-//@                "description": "Details about the updated tab. The $ref:tabs.Tab object doesn't contain <code>url</code>, <code>title</code> and <code>favIconUrl</code> if the <code>\"tabs\"</code> permission has not been requested."
-                "description": "有关更新后的标签页详情，如果没有请求 \"tabs\" 权限的话 $ref:tabs.Tab 对象不包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code>。"
+//@                "description": "Details about the updated tab. The $(ref:tabs.Tab) object doesn't contain <code>url</code>, <code>title</code> and <code>favIconUrl</code> if the <code>\"tabs\"</code> permission has not been requested."
+                "description": "有关更新后的标签页详情，如果没有请求 \"tabs\" 权限的话 $(ref:tabs.Tab) 对象不包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code>。"
               }
             ]
           }
@@ -838,8 +838,8 @@
       {
         "name": "onMoved",
         "type": "function",
-//@        "description": "Fired when a tab is moved within a window. Only one move event is fired, representing the tab the user directly moved. Move events are not fired for the other tabs that must move in response. This event is not fired when a tab is moved between windows. For that, see $ref:onDetached.",
-        "description": "当标签页在窗口中移动时产生。仅产生一次移动事件，代表用户的直接移动，其他标签页因此而随之移动并不产生此事件。当标签页在窗口间移动时不产生此事件，在这种情况下，请参见 $ref:onDetached。",
+//@        "description": "Fired when a tab is moved within a window. Only one move event is fired, representing the tab the user directly moved. Move events are not fired for the other tabs that must move in response. This event is not fired when a tab is moved between windows. For that, see $(ref:tabs.onDetached).",
+        "description": "当标签页在窗口中移动时产生。仅产生一次移动事件，代表用户的直接移动，其他标签页因此而随之移动并不产生此事件。当标签页在窗口间移动时不产生此事件，在这种情况下，请参见 $(ref:tabs.onDetached)。",
         "parameters": [
           {"type": "integer", "name": "tabId", "minimum": 0},
           {
@@ -855,8 +855,8 @@
       },
       {
         "name": "onSelectionChanged",
-//@        "deprecated": "Please use $ref:onActivated.",
-        "deprecated": "请使用 $ref:onActivated。",
+//@        "deprecated": "Please use $(ref:tabs.onActivated).",
+        "deprecated": "请使用 $(ref:tabs.onActivated)。",
         "type": "function",
 //@        "description": "Fires when the selected tab in a window changes.",
         "description": "窗口中的选定标签页更改时产生。",
@@ -884,11 +884,11 @@
       },
       {
         "name": "onActiveChanged",
-//@        "deprecated": "Please use $ref:onActivated.",
-        "deprecated": "请使用 $ref:onActivated。",
+//@        "deprecated": "Please use $(ref:tabs.onActivated).",
+        "deprecated": "请使用 $(ref:tabs.onActivated)。",
         "type": "function",
-//@        "description": "Fires when the selected tab in a window changes. Note that the tab's URL may not be set at the time this event fired, but you can listen to $ref:onUpdated events to be notified when a URL is set.",
-        "description": "窗口中的选定标签页更改时产生。注意，该事件产生时标签页的 URL 可能还没有设置，但是您可以监听 $ref:onUpdated 事件，当 URL 设置时收到通知。",
+//@        "description": "Fires when the selected tab in a window changes. Note that the tab's URL may not be set at the time this event fired, but you can listen to $(ref:onUpdated) events to be notified when a URL is set.",
+        "description": "窗口中的选定标签页更改时产生。注意，该事件产生时标签页的 URL 可能还没有设置，但是您可以监听 $(ref:onUpdated) 事件，当 URL 设置时收到通知。",
         "parameters": [
           {
             "type": "integer",
@@ -939,8 +939,8 @@
       },
       {
         "name": "onHighlightChanged",
-//@        "deprecated": "Please use $ref:onHighlighted.",
-        "deprecated": "请使用 $ref:onHighlighted。",
+//@        "deprecated": "Please use $(ref:tabs.onHighlighted).",
+        "deprecated": "请使用 $(ref:tabs.onHighlighted)。",
         "type": "function",
 //@        "description": "Fired when the highlighted or selected tabs in a window changes.",
         "description": "窗口中高亮或选定标签页更改时产生。",

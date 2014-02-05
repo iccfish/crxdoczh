@@ -36,8 +36,8 @@
           {
             "name": "callback",
             "type": "function",
-//@            "description": "Function called when registration completes. It should check $ref:runtime.lastError for error when <code>registrationId</code> is empty.",
-            "description": "注册完成时调用的函数，如果 <code>registrationId</code> 为空，它应该检查 $ref:runtime.lastError 中的错误信息。",
+//@            "description": "Function called when registration completes. It should check $(ref:runtime.lastError) for error when <code>registrationId</code> is empty.",
+            "description": "注册完成时调用的函数，如果 <code>registrationId</code> 为空，它应该检查 $(ref:runtime.lastError) 中的错误信息。",
             "parameters": [
               { 
                 "name": "registrationId",
@@ -88,16 +88,16 @@
                   "type": "string",
                   "minLength": 1
                 },
-//@                "description": "Message data to send to the server. <code>goog.</code> and <code>google</code> are disallowed as key prefixes. Sum of all key/value pairs should not exceed $ref:MAX_MESSAGE_SIZE."
-                "description": "发送到服务器的消息数据，不允许使用 <code>goo.</code> 和 <code>google</code> 作为键的前缀。所有键/值对的大小不应该超过 $ref:MAX_MESSAGE_SIZE。"
+//@                "description": "Message data to send to the server. <code>goog.</code> and <code>google</code> are disallowed as key prefixes. Sum of all key/value pairs should not exceed $(ref:gcm.MAX_MESSAGE_SIZE)."
+                "description": "发送到服务器的消息数据，不允许使用 <code>goo.</code> 和 <code>google</code> 作为键的前缀。所有键/值对的大小不应该超过 $(ref:MAX_MESSAGE_SIZE)。"
               }
             }
           },
           {
             "name": "callback",
             "type": "function",
-//@            "description": "A function called after the message is successfully queued for sending. $ref:runtime.lastError should be checked, to ensure a message was sent without problems.",
-            "description": "消息成功放入队列等待发送后调用的函数，您应该检查 $ref:runtime.lastError，确保消息已经发送，没有遇到问题。",
+//@            "description": "A function called after the message is successfully queued for sending. $(ref:runtime.lastError) should be checked, to ensure a message was sent without problems.",
+            "description": "消息成功放入队列等待发送后调用的函数，您应该检查 $(ref:runtime.lastError)，确保消息已经发送，没有遇到问题。",
             "parameters": [
               {
                 "name": "messageId",

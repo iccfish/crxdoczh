@@ -27,8 +27,8 @@
             "description": "可读性较好的资源描述。"
           }
         },
-//@        "description": "The only content type using resource identifiers is $ref:contentSettings.plugins. For more information, see <a href=\"contentSettings.html#resource-identifiers\">Resource Identifiers</a>."
-        "description": "使用资源标识符的内容类型只有 $ref:contentSettings.plugins（插件）。有关更多信息，请参见<a href=\"contentSettings.html#resource-identifiers\">资源标识符</a>。"
+//@        "description": "The only content type using resource identifiers is $(ref:contentSettings.plugins). For more information, see <a href=\"contentSettings.html#resource-identifiers\">Resource Identifiers</a>."
+        "description": "使用资源标识符的内容类型只有 $(ref:contentSettings.plugins)（插件）。有关更多信息，请参见<a href=\"contentSettings.html#resource-identifiers\">资源标识符</a>。"
       },
       {
         "id": "ContentSetting",

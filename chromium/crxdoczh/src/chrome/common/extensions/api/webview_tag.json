@@ -428,8 +428,8 @@
       {
         "name": "isUserAgentOverridden",
         "type": "function",
-//@        "description": "Indicates whether or not the webview's user agent string has been overridden by $ref:setUserAgentOverride"
-        "description": "指示 webview 的用户代理字符串是否由 $ref:setUserAgentOverride 覆盖。"
+//@        "description": "Indicates whether or not the webview's user agent string has been overridden by $(ref:webviewTag.setUserAgentOverride)"
+        "description": "指示 webview 的用户代理字符串是否由 $(ref:webviewTag.setUserAgentOverride) 覆盖。"
       },
       {
         "name": "reload",
@@ -730,8 +730,8 @@
             "name": "request",
             "type": "object",
             "properties": {},
-//@            "description": "An object which holds details of the requested permission. Depending on the type of permission requested, this may be a $ref:MediaPermissionRequest, $ref:GeolocationPermissionRequest, $ref:PointerLockPermissionRequest, $ref:DownloadPermissionRequest, or $ref:LoadPluginPermissionRequest."
-            "description": "包含请求权限详情的对象，取决于请求的权限类型，可能为 $ref:MediaPermissionRequest、$ref:GeolocationPermissionRequest、$ref:PointerLockPermissionRequest、$ref:DownloadPermissionRequest 或 $ref:LoadPluginPermissionRequest 对象。"
+//@            "description": "An object which holds details of the requested permission. Depending on the type of permission requested, this may be a $(ref:webviewTag.MediaPermissionRequest), $(ref:webviewTag.GeolocationPermissionRequest), $(ref:webviewTag.PointerLockPermissionRequest), $(ref:webviewTag.DownloadPermissionRequest), or $(ref:webviewTag.LoadPluginPermissionRequest.)"
+            "description": "包含请求权限详情的对象，取决于请求的权限类型，可能为 $(ref:webviewTag.MediaPermissionRequest)、$(ref:webviewTag.GeolocationPermissionRequest)、$(ref:webviewTag.PointerLockPermissionRequest)、$(ref:webviewTag.DownloadPermissionRequest) 或 $(ref:webviewTag.LoadPluginPermissionRequest) 对象。"
           }
         ]
       },
