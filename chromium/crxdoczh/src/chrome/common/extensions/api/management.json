@@ -272,7 +272,7 @@
             "name": "id",
             "type": "string",
 //@            "description": "This should be the id from an item of $(ref:management.ExtensionInfo)."
-            "description": "该参数应该为来自 $(ref:management.ExtensionInfoi) 项目的标识符。"
+            "description": "该参数应该为来自 $(ref:management.ExtensionInfo) 项目的标识符。"
           },
           {
             "type": "object",
