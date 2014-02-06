@@ -41,20 +41,6 @@
 //    this to true. Otherwise, it's safer and more efficient to omit it.
 
 {
-  "cr-chrome-docs-home": {
-    "chromium": {
-      "dir": "chrome/docs"
-    },
-    "serveFrom": "home",
-    "supportsTemplates": true
-  },
-  "cr-extensions-examples": {
-    "chromium": {
-      "dir": "chrome/common/extensions/docs/examples"
-    },
-    "serveFrom": "extensions/examples",
-    "supportsZip": true
-  },
   "cr-public": {
     "chromium": {
       "dir": "chrome/common/extensions/docs/templates/public"
@@ -67,13 +53,6 @@
       "dir": "chrome/common/extensions/docs/static"
     },
     "serveFrom": "static"
-  },
-  "cr-native-client": {
-    "chromium": {
-      "dir": "native_client_sdk/doc_generated"
-    },
-    "serveFrom": "native-client",
-    "supportsTemplates": true
   }
 
   // GitHub is not working at the moment. Disable entirely.
