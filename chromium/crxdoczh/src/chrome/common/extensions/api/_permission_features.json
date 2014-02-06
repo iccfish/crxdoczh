@@ -428,7 +428,11 @@
   },
   "hotwordPrivate": {
     "channel": "stable",
-    "extension_types": ["extension"]
+    "extension_types": ["extension"],
+    "whitelist": [
+      "8CE39F175D076AD6BDF7CBF418F2409558B367E3",  // hotword_helper
+      "09FDCB5851B8F3378DB630D06E316076E89C95A6"   // hotword nacl
+    ]
   },
   "identity": {
     "channel": "stable",
@@ -508,7 +512,9 @@
         "8C0B1873FFFB65E4D0F4D772879F7304CEF125C2",  // Apps Editor old.
         "FA0501B579070BB9CBD4FCAEC8CB0EDF22BA2F04",  // Apps Editor published.
         "EE17C698905F7F2E6DDC87C9C30F11E164C829F4",  // Watchdog (Activity Log)
-        "90113DA9516526D24DAF156C629CC41C049E8882"   // Watchdog Test Version
+        "90113DA9516526D24DAF156C629CC41C049E8882",   // Watchdog Test Version
+        "4A4EA121622FCA3D78ED2AB534197F43D7189EE0", // Spark nightly build
+        "9FDE6E7F06FCFA11D9A05041C7FF6D8AE662F5D1"  // Spark release
       ]
     },
     {

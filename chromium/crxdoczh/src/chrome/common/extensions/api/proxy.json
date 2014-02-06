@@ -14,8 +14,8 @@
 //@        "description": "An object encapsulating a single proxy server's specification.",
         "description": "包含单个代理服务器信息的对象。",
         "properties": {
-//@          "scheme": {"type": "string", "optional": true, "enum": ["http", "https", "socks4", "socks5"], "description": "The scheme (protocol) of the proxy server itself. Defaults to 'http'."},
-          "scheme": {"type": "string", "optional": true, "enum": ["http", "https", "socks4", "socks5"], "description": "代理服务器自己的协议，默认为 \"http\"。"},
+//@          "scheme": {"type": "string", "optional": true, "enum": ["http", "https", "quic", "socks4", "socks5"], "description": "The scheme (protocol) of the proxy server itself. Defaults to 'http'."},
+          "scheme": {"type": "string", "optional": true, "enum": ["http", "https", "quic", "socks4", "socks5"], "description": "代理服务器自己的协议，默认为 \"http\"。"},
 //@          "host": {"type": "string", "description": "The URI of the proxy server. This must be an ASCII hostname (in Punycode format). IDNA is not supported, yet."},
           "host": {"type": "string", "description": "代理服务器的 URL，必须为 ASCII 主机名（以 <a href=\"https://en.wikipedia.org/wiki/Punycode\">Punycode</a> 的格式），暂时还不支持 IDNA。"},
 //@          "port": {"type": "integer", "optional": true, "description": "The port of the proxy server. Defaults to a port that depends on the scheme."}
