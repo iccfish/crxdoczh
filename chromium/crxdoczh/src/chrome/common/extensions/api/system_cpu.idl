@@ -6,16 +6,58 @@
 // 使用 <code>systemInfo.cpu</code> API 查询 CPU 元数据。
 namespace system.cpu {
 
+  // <!--@Counters for assessing CPU utilization.  Each field is monotonically
+  // increasing while the processor is powered on.  Values are in milliseconds.-->
+  // 用于访问 CPU
+  // 使用情况的计数器。只要处理器电源开启，每一字段都是单调递增的，字段值以毫秒表示。
+  dictionary CpuTime {
+    // <!--@The cumulative time used by userspace programs on this processor.-->
+    // 用户空间的程序在该处理器上总共使用的时间。
+    double user;
+
+    // <!--@The cumulative time used by kernel programs on this processor.-->
+    // 内核程序在该处理器上总共使用的时间。
+    double kernel;
+
+    // <!--@The cumulative time spent idle by this processor.-->
+    // 该处理器空闲的总计时间。
+    double idle;
+
+    // <!--@The total cumulative time for this processor.  This value is equal to
+    // user + kernel + idle.-->
+    // 该处理器累计使用时间，等于 user + kernel + idle。
+    double total;
+  };
+
+  dictionary ProcessorInfo {
+    // <!--@Cumulative usage info for this logical processor.-->
+    // 该逻辑处理器累计使用情况。
+    CpuTime usage;
+  };
+
   dictionary CpuInfo {
     // <!--@The number of logical processors.-->
     // 逻辑处理器数目。
     long numOfProcessors;
+
     // <!--@The architecture name of the processors.-->
     // 处理器的架构名称。
     DOMString archName;
+
     // <!--@The model name of the processors.-->
     // 处理器的模型名称。
     DOMString modelName;
+
+    // <!--@A set of feature codes indicating some of the processor's capabilities.
+    // The currently supported codes are "mmx", "sse", "sse2", "sse3", "ssse3",
+    // "sse4_1", "sse4_2", and "avx".-->
+    // 表示处理器能力的特性代号，目前支持的代号有
+    // "mmx"、"sse"、"sse2"、"sse3"、"ssse3"、"sse4_1"、"sse4_2" 和 "avx"。
+    DOMString[] features;
+
+    // <!--@Information about each logical processor.-->
+    // 每个逻辑处理器的有关信息。
+    ProcessorInfo[] processors;
   };
 
   callback CpuInfoCallback = void (CpuInfo info);
