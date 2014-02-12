@@ -219,6 +219,23 @@
             }
           }
         }
+      },
+      {
+        "id": "bluetooth",
+        "type": "object",
+//@        "description": "The <code>bluetooth</code> manifest property give permission to an app to use the $ref:bluetooth API. A list of profile IDs can be optionally specified to enable communication with specific device types",
+        "description": "清单文件中的 <code>bluetooth</code> 属性为应用提供权限，以便使用 $ref:bluetooth API。您可以指定一系列规范标识符，允许您的应用与指定的设备类型通信。",
+        "properties": {
+          "profiles": {
+            "description": "清单文件中的 <code>profiles</code> 属性声明应用可以注册的规范列表。",
+            "optional": true,
+            "type": "array",
+            "items": {
+              "description": "<p>规范列表，以 UUID 字符串的形式指定。</p>",
+              "type": "string"
+            }
+          }
+        }
       }
     ]
   }

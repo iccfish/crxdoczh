@@ -1,23 +1,25 @@
 <h1 id="web_accessible_resources">清单文件——可在网页中访问的资源</h1>
 
 <p>
-<!--@An array of strings specifying the paths (relative to the package root) of
-packaged resources that are expected to be usable in the context of a web page.
+<!--@An array of strings specifying the paths of packaged resources that are expected
+to be usable in the context of a web page. These paths are relative to the package
+root, and may contain wildcards.
 For example, an extension that injects a content script with the intention of
 building up some custom interface for <code>example.com</code> would whitelist
 any resources that interface requires (images, icons, stylesheets, scripts,
 etc.) as follows:-->
-字符串数组，指定扩展程序包内可以在网页中使用的资源路径（相对于扩展程序包的根目录）。例如，为了在 example.com 上建立自定义界面，而插入内容脚本的扩展程序可以将界面需要的所有资源（图片、图标、样式表、脚本等等）加入白名单，如下所示：
+字符串数组，指定扩展程序包内可以在网页中使用的资源路径。这些路径相对于扩展程序包的根目录，还可以包含通配符。例如，为了在 example.com 上建立自定义界面，而插入内容脚本的扩展程序可以将界面需要的所有资源（图片、图标、样式表、脚本等等）加入白名单，如下所示：
 </p>
 
 <pre data-filename="manifest.json">
 {
   ...
   "web_accessible_resources": [
-    "images/my-awesome-image1.png",
-    "images/my-amazing-icon1.png",
+    "images/*.png",
     "style/double-rainbow.css",
-    "script/double-rainbow.js"
+    "script/double-rainbow.js",
+    "script/main.js",
+    "templates/*"
   ],
   ...
 }
@@ -56,8 +58,8 @@ owned by the redirecting extension.-->
 </ul>
 
 <p>
-<!--@Injected content scripts themselves do not need to be whitelisted.-->
-插入的内容脚本本身不需要加入白名单。
+<!--@<a href="http://developer.chrome.com/extensions/content_scripts.html">Content scripts</a> themselves do not need to be whitelisted.-->
+<a href="../content_scripts.html">内容脚本</a>本身不需要加入白名单。
 </p>
 
 <p>
@@ -65,7 +67,7 @@ owned by the redirecting extension.-->
 from any page on the web. This allowed a malicious website to
 <a href="http://en.wikipedia.org/wiki/Device_fingerprint">fingerprint</a> the
 extensions that a user has installed or exploit vulnerabilities (for example
-<a href="http://en.wikipedia.org/wiki/Cross-site_scripting">XSS bugs</a>)within
+<a href="http://en.wikipedia.org/wiki/Cross-site_scripting">XSS bugs</a>) within
 installed extensions. Limiting availability to only resources which are
 explicitly intended to be web accessible serves to both minimize the available
 attack surface and protect the privacy of users.-->

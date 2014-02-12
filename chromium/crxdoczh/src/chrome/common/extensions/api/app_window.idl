@@ -287,6 +287,16 @@ namespace app.window {
     // TODO(stevenjb): Investigate implementing this on Windows and OSX.
     [nodoc] static void setIcon(DOMString iconUrl);
 
+    // <!--@Set a badge icon for the window.
+    // TODO(benwells): Document this properly before going to stable.-->
+    // 设置窗口的徽章图标。
+    [nodoc] static void setBadgeIcon(DOMString iconUrl);
+
+    // <!--@Clear the current for the window.
+    // TODO(benwells): Document this properly before going to stable.-->
+    // 清除窗口当前的徽章。
+    [nodoc] static void clearBadge();
+
     // <!--@Is the window always on top?-->
     // 窗口是否前端显示。
     static boolean isAlwaysOnTop();
