@@ -189,7 +189,6 @@ namespace mediaGalleries {
     // 事件产生之后调用，调用后返回应用能够访问的所有媒体库，而不仅仅是新增加的媒体库。
     static void addScanResults(MediaFileSystemsCallback callback);
 
-    // Get metadata about a specific media file system.
     // <!--@Get metadata about a specific media file system.-->
     // 获取指定媒体文件系统的元数据。
     [nocompile] static MediaFileSystemMetadata getMediaFileSystemMetadata(
