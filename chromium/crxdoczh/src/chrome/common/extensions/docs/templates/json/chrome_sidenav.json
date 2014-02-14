@@ -7,181 +7,181 @@
         "items": [
           {
             "title": "了解基础知识",
-            "href": "/apps/first_app.html",
+            "href": "/apps/first_app",
             "items": [
               {
                 "title": "创建您的第一个应用",
-                "href": "/apps/first_app.html"
+                "href": "/apps/first_app"
               },
               {
                 "title": "应用的架构",
-                "href": "/apps/app_architecture.html"
+                "href": "/apps/app_architecture"
               },
               {
                 "title": "应用的生命周期",
-                "href": "/apps/app_lifecycle.html"
+                "href": "/apps/app_lifecycle"
               },
               {
                 "title": "内容安全策略",
-                "href": "/apps/contentSecurityPolicy.html"
+                "href": "/apps/contentSecurityPolicy"
               }
             ]
           },
           {
             "title": "通过代码实验室学习",
-            "href": "/apps/app_codelab1_setup.html",
+            "href": "/apps/app_codelab1_setup",
             "items": [
               {
                 "title": "1、设置开发环境",
-                "href": "/apps/app_codelab1_setup.html"
+                "href": "/apps/app_codelab1_setup"
               },
               {
                 "title": "2、创建基本应用",
-                "href": "/apps/app_codelab2_basic.html"
+                "href": "/apps/app_codelab2_basic"
               },
               {
                 "title": "3、创建 MVC",
-                "href": "/apps/app_codelab3_mvc.html"
+                "href": "/apps/app_codelab3_mvc"
               },
               {
                 "title": "4、保存和获取数据",
-                "href": "/apps/app_codelab5_data.html"
+                "href": "/apps/app_codelab5_data"
               },
               {
                 "title": "5、管理应用的生命周期",
-                "href": "/apps/app_codelab6_lifecycle.html"
+                "href": "/apps/app_codelab6_lifecycle"
               },
               {
                 "title": "6、访问用户数据",
-                "href": "/apps/app_codelab7_useridentification.html"
+                "href": "/apps/app_codelab7_useridentification"
               },
               {
                 "title": "7、访问网络资源",
-                "href": "/apps/app_codelab8_webresources.html"
+                "href": "/apps/app_codelab8_webresources"
               },
               {
                 "title": "8、发布应用",
-                "href": "/apps/app_codelab_10_publishing.html"
+                "href": "/apps/app_codelab_10_publishing"
               }
             ]
           },
           {
             "title": "示例",
-            "href": "/apps/samples.html"
+            "href": "/apps/samples"
           },
           {
             "title": "在云端开发",
-            "href": "/apps/offline_apps.html",
+            "href": "/apps/offline_apps",
       "items": [
               {
                 "title": "首先考虑离线",
-                "href": "/apps/offline_apps.html"
+                "href": "/apps/offline_apps"
               },
               {
                 "title": "处理外部内容",
-                "href": "/apps/app_external.html"
+                "href": "/apps/app_external"
               },
               {
                 "title": "保存数据",
-                "href": "/apps/app_storage.html"
+                "href": "/apps/app_storage"
               },
               {
                 "title": "云消息服务",
-                "href": "/apps/cloudMessaging.html"
+                "href": "/apps/cloudMessaging"
               },
               {
                 "title": "用户认证",
-                "href": "/apps/app_identity.html"
+                "href": "/apps/app_identity"
               }
             ]
           }, 
           {
             "title": "使用低级系统服务",
-            "href": "/apps/app_usb.html",
+            "href": "/apps/app_usb",
             "items": [
               {
                 "title": "USB",
-                "href": "/apps/app_usb.html"
+                "href": "/apps/app_usb"
               },
               {
                 "title": "串行端口",
-                "href": "/apps/app_serial.html"
+                "href": "/apps/app_serial"
               },
               {
                 "title": "网络通信",
-                "href": "/apps/app_network.html"
+                "href": "/apps/app_network"
               }
             ]
           },
           {
             "title": "MVC 架构和框架",
-            "href": "/apps/app_frameworks.html",
+            "href": "/apps/app_frameworks",
       "items": [
               {
                 "title": "关于 MVC 架构",
-                "href": "/apps/app_frameworks.html"
+                "href": "/apps/app_frameworks"
               },
               {
                 "title": "使用 AngularJS 建立应用",
-                "href": "/apps/angular_framework.html"
+                "href": "/apps/angular_framework"
               },
               {
                 "title": "使用 SenchaJS 建立应用",
-                "href": "/apps/sencha_framework.html"
+                "href": "/apps/sencha_framework"
               }
             ]
           },
           {   
             "title": "发布应用",
-            "href": "/apps/publish_app.html",
+            "href": "/apps/publish_app",
             "items": [
               {
                 "title": "发布您的应用",
-                "href": "/apps/publish_app.html"
+                "href": "/apps/publish_app"
               },
               {
                 "title": "通过您的应用获利",
-                "href": "/apps/google_wallet.html"
+                "href": "/apps/google_wallet"
               },
               {
                 "title": "Analytics（分析）",
-                "href": "/apps/analytics.html"
+                "href": "/apps/analytics"
               }
             ]
           },
           {
             "title": "参考",
-            "href": "/apps/api_index.html",
+            "href": "/apps/api_index",
             "items": [
               {
                 "title": "Chrome 平台 API",
-                "href": "/apps/api_index.html"
+                "href": "/apps/api_index"
               },
               {
                 "title": "Webview 标签",
-                "href": "/apps/tags/webview.html"
+                "href": "/apps/tags/webview"
               },
               {
                 "title": "网页 API",
-                "href": "/apps/api_other.html"
+                "href": "/apps/api_other"
               },
               {
                 "title": "清单文件格式",
-                "href": "/apps/manifest.html"
+                "href": "/apps/manifest"
               },
               {
                 "title": "禁用的网页特性",
-                "href": "/apps/app_deprecated.html"
+                "href": "/apps/app_deprecated"
               }
             ]
           },
           {
             "title": "帮助",
-            "href": "/apps/faq.html",
+            "href": "/apps/faq",
             "items": [
               {
                 "title": "常见问题",
-                "href": "/apps/faq.html"
+                "href": "/apps/faq"
               },
               {
                 "title": "Google 网上论坛",
@@ -200,143 +200,143 @@
         "items": [
           {
             "title": "了解基础知识",
-            "href": "/extensions/overview.html",
+            "href": "/extensions/overview",
             "items": [
               {
                 "title": "概述",
-                "href": "/extensions/overview.html"
+                "href": "/extensions/overview"
               },              
               {
                 "title": "事件页面",
-                "href": "/extensions/event_pages.html"
+                "href": "/extensions/event_pages"
               },
               {
                 "title": "内容脚本",
-                "href": "/extensions/content_scripts.html"
+                "href": "/extensions/content_scripts"
               },
               {
                 "title": "activeTab 权限",
-                "href": "/extensions/activeTab.html"
+                "href": "/extensions/activeTab"
               }
             ]
           },
           {
             "title": "入门教程",
-            "href": "/extensions/getstarted.html"
+            "href": "/extensions/getstarted"
           },
           {
             "title": "示例",
-            "href": "/extensions/samples.html"
+            "href": "/extensions/samples"
           },
           {
             "title": "开发扩展程序",
-            "href": "/extensions/tut_migration_to_manifest_v2.html",
+            "href": "/extensions/tut_migration_to_manifest_v2",
             "items": [
               {
                 "title": "辅助功能",
-                "href": "/extensions/a11y.html"
+                "href": "/extensions/a11y"
               },
               {
                 "title": "内容安全策略",
-                "href": "/extensions/contentSecurityPolicy.html"
+                "href": "/extensions/contentSecurityPolicy"
               },
               {
                 "title": "跨站 XHR",
-                "href": "/extensions/xhr.html"
+                "href": "/extensions/xhr"
               },
               {
                 "title": "调试",
-                "href": "/extensions/tut_debugging.html"
+                "href": "/extensions/tut_debugging"
               },
               {
                 "title": "国际化支持",
-                "href": "/extensions/i18n.html"
+                "href": "/extensions/i18n"
               },
               {
                 "title": "消息传递",
-                "href": "/extensions/messaging.html"
+                "href": "/extensions/messaging"
               },
               {
                 "title": "迁移至清单文件版本 2",
-                "href": "/extensions/tut_migration_to_manifest_v2.html"
+                "href": "/extensions/tut_migration_to_manifest_v2"
               },
               {
                 "title": "OAuth",
-                "href": "/extensions/tut_oauth.html"
+                "href": "/extensions/tut_oauth"
               }
             ]
           },
           {
             "title": "发布扩展程序",
-            "href": "/extensions/hosting.html",
+            "href": "/extensions/hosting",
             "items": [
               {
                 "title": "托管",
-                "href": "/extensions/hosting.html"
+                "href": "/extensions/hosting"
               },
               {
                 "title": "打包",
-                "href": "/extensions/packaging.html"
+                "href": "/extensions/packaging"
               },
               {
                 "title": "自动更新",
-                "href": "/extensions/autoupdate.html"
+                "href": "/extensions/autoupdate"
               },
               {
                 "title": "其他部署选项",
-                "href": "/extensions/external_extensions.html"
+                "href": "/extensions/external_extensions"
               },
               {
                 "title": "Google Analytics（分析）",
-                "href": "/extensions/tut_analytics.html"
+                "href": "/extensions/tut_analytics"
               },
               {
                 "title": "发布主题",
-                "href": "/extensions/themes.html"
+                "href": "/extensions/themes"
               }
             ]
           },
           {
             "title": "参考",
-            "href": "/extensions/api_index.html",
+            "href": "/extensions/api_index",
             "items": [
               {
                 "title": "新增特性",
-                "href": "/extensions/whats_new.html"
+                "href": "/extensions/whats_new"
               },
               {
                 "title": "Chrome 平台 API",
-                "href": "/extensions/api_index.html"
+                "href": "/extensions/api_index"
               },
               {
                 "title": "网页 API",
-                "href": "/extensions/api_other.html"
+                "href": "/extensions/api_other"
               },
               {
                 "title": "清单文件格式",
-                "href": "/extensions/manifest.html"
+                "href": "/extensions/manifest"
               },
               {
                 "title": "权限警告",
-                "href": "/extensions/permission_warnings.html"
+                "href": "/extensions/permission_warnings"
               },
               {
                 "title": "可选权限",
-                "href": "/extensions/permissions.html"
+                "href": "/extensions/permissions"
               },
               {
                 "title": "匹配表达式",
-                "href": "/extensions/match_patterns.html"
+                "href": "/extensions/match_patterns"
               }
             ]
           },
           {
             "title": "帮助",
-            "href": "/extensions/faq.html",
+            "href": "/extensions/faq",
             "items": [
               {
                 "title": "常见问题",
-                "href": "/extensions/faq.html"
+                "href": "/extensions/faq"
               },
               {  
                 "title": "Google 网上论坛",

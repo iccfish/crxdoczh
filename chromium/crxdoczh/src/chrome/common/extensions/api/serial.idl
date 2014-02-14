@@ -14,6 +14,20 @@ namespace serial {
     // 设备的系统路径，应该传递给 <code>chrome.serial.connect</code>
     // 的 <code>path</code> 参数，以便连接到该设备。
     DOMString path;
+
+    // <!--@A PCI or USB vendor ID if one can be determined for the underlying
+    // device.-->
+    // PCI 或 USB 制造商标识符（如果可以从底层设备获取）。
+    long? vendorId;
+
+    // <!--@A USB product ID if one can be determined for the underlying device.-->
+    // USB 产品标识符（如果可以从底层设备获取）。
+    long? productId;
+
+    // <!--@A human-readable display name for the underlying device if one can be
+    // queried from the host driver.-->
+    // 底层设备的可读显示名称（如果可以从宿主设备获取）。
+    DOMString? displayName;
   };
 
   callback GetDevicesCallback = void (DeviceInfo[] ports);
