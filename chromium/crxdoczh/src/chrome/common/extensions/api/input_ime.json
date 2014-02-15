@@ -19,6 +19,8 @@
           "type": {"type": "string", "description": "\"keyup\"（按键弹起）或 \"keydown\"（按键按下）。", "enum": ["keyup", "keydown"]},
 //@          "requestId": {"type": "string", "description": "The ID of the request."},
           "requestId": {"type": "string", "description": "请求标识符。"},
+//@          "extensionId": {"type": "string", "optional": true, "description": "The extension ID of the sender of this keyevent."},
+          "extensionId": {"type": "string", "optional": true, "description": "发送键盘事件的扩展程序标识符。"},
 //@          "key": {"type": "string", "description": "Value of the key being pressed"},
           "key": {"type": "string", "description": "按下的按键值。"},
 //@          "code": {"type": "string", "description": "Value of the physical key being pressed. The value is not affected by current keyboard layout or modifier state."},
