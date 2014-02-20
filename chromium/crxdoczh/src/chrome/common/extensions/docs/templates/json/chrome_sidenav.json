@@ -1,13 +1,13 @@
 [
   {
-    "title": "探索",
+    "title": "平台",
     "items": [
       {
         "title": "应用",
         "items": [
           {
-            "title": "了解基础知识",
-            "href": "/apps/first_app",
+            "title": "什么是 Chrome 应用？",
+            "href": "/apps/about_apps",
             "items": [
               {
                 "title": "创建您的第一个应用",
@@ -94,7 +94,7 @@
                 "href": "/apps/app_identity"
               }
             ]
-          }, 
+          },
           {
             "title": "使用低级系统服务",
             "href": "/apps/app_usb",
@@ -116,7 +116,7 @@
           {
             "title": "MVC 架构和框架",
             "href": "/apps/app_frameworks",
-      "items": [
+            "items": [
               {
                 "title": "关于 MVC 架构",
                 "href": "/apps/app_frameworks"
@@ -131,7 +131,7 @@
               }
             ]
           },
-          {   
+          {
             "title": "发布应用",
             "href": "/apps/publish_app",
             "items": [
@@ -144,18 +144,26 @@
                 "href": "/apps/google_wallet"
               },
               {
+                "title": "一次性付款",
+                "href": "https://developer.chrome.com/webstore/one_time_payments"
+              },
+              {
                 "title": "Analytics（分析）",
                 "href": "/apps/analytics"
               }
             ]
           },
           {
-            "title": "参考",
+            "title": "Chrome 平台 API",
             "href": "/apps/api_index",
             "items": [
               {
-                "title": "Chrome 平台 API",
+                "title": "JavaScript API",
                 "href": "/apps/api_index"
+              },
+              {
+                "title": "清单文件格式",
+                "href": "/apps/manifest"
               },
               {
                 "title": "Webview 标签",
@@ -164,10 +172,6 @@
               {
                 "title": "网页 API",
                 "href": "/apps/api_other"
-              },
-              {
-                "title": "清单文件格式",
-                "href": "/apps/manifest"
               },
               {
                 "title": "禁用的网页特性",
@@ -205,7 +209,7 @@
               {
                 "title": "概述",
                 "href": "/extensions/overview"
-              },              
+              },
               {
                 "title": "事件页面",
                 "href": "/extensions/event_pages"
@@ -217,6 +221,10 @@
               {
                 "title": "activeTab 权限",
                 "href": "/extensions/activeTab"
+              },
+              {
+                "title": "新增特性",
+                "href": "/extensions/whats_new"
               }
             ]
           },
@@ -279,6 +287,10 @@
                 "href": "/extensions/packaging"
               },
               {
+                "title": "一次性付款",
+                "href": "https://developer.chrome.com/webstore/one_time_payments"
+              },
+              {
                 "title": "自动更新",
                 "href": "/extensions/autoupdate"
               },
@@ -297,24 +309,20 @@
             ]
           },
           {
-            "title": "参考",
+            "title": "Chrome 平台 API",
             "href": "/extensions/api_index",
             "items": [
               {
-                "title": "新增特性",
-                "href": "/extensions/whats_new"
-              },
-              {
-                "title": "Chrome 平台 API",
+                "title": "JavaScript API",
                 "href": "/extensions/api_index"
-              },
-              {
-                "title": "网页 API",
-                "href": "/extensions/api_other"
               },
               {
                 "title": "清单文件格式",
                 "href": "/extensions/manifest"
+              },
+              {
+                "title": "网页 API",
+                "href": "/extensions/api_other"
               },
               {
                 "title": "权限警告",
@@ -338,7 +346,7 @@
                 "title": "常见问题",
                 "href": "/extensions/faq"
               },
-              {  
+              {
                 "title": "Google 网上论坛",
                 "href": "https://groups.google.com/a/chromium.org/forum/#!forum/chromium-extensions"
               },
