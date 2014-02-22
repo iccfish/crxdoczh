@@ -24,6 +24,11 @@
 //@            "description": "The ID of the process, as provided by the OS."
             "description": "由操作系统提供的进程标志符。"
           },
+          "title": {
+            "type": "string",
+//@            "description": "The title of the process as seen in the task manager."
+            "description": "进程标题，与任务管理器中一致。"
+          },
           "type": {
             "type": "string",
             "enum": ["browser", "renderer", "extension", "notification", "plugin", "worker", "nacl", "utility", "gpu", "other"],
@@ -34,6 +39,11 @@
             "type": "string",
 //@            "description": "The profile which the process is associated with."
             "description": "与进程相关联的用户配置文件。"
+          },
+          "naclDebugPort": {
+            "type": "integer",
+//@            "description": "The debugging port for Native Client processes. Zero for other process types and for NaCl processes that do not have debugging enabled."
+            "description": "Native Client 进程的调试端口，如果是其他进程类型或者是没有启用调试的 NaCl 进程则为零。"
           },
           "tabs": {
             "type": "array",  "items": {"type": "integer", "minimum": 0},

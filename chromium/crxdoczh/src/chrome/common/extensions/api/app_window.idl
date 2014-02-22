@@ -16,6 +16,12 @@ namespace app.window {
     long? height;
   };
 
+  // TODO(benwells): document this once we are happy with it.
+  [nodoc] dictionary FrameOptions {
+    DOMString? type;
+    DOMString? color;
+  };
+
   // <!--@State of a window: normal, fullscreen, maximized, minimized.-->
   // 窗口的状态：正常、全屏、最大化、最小化。
   enum State { normal, fullscreen, maximized, minimized };
@@ -89,6 +95,10 @@ namespace app.window {
     // 可以将区域标志为可拖放的，而 <code>no-drag</code>
     // 可以用来在嵌套元素上禁用该样式。
     DOMString? frame;
+
+    // TODO(benwells): Fix the IDL parsing so this can be:
+    // (DOMString or FrameOptions)? frame.
+    [nodoc] FrameOptions? frameOptions;
 
     // <!--@Size and position of the content in the window (excluding the titlebar).
     // If an id is also specified and a window with a matching id has been shown
@@ -299,6 +309,10 @@ namespace app.window {
     // <!--@Is the window always on top?-->
     // 窗口是否前端显示。
     static boolean isAlwaysOnTop();
+
+    // Accessors for testing.
+    [nodoc] boolean hasFrameColor;
+    [nodoc] long frameColor;
 
     // <!--@Set whether the window should stay above most other windows. Requires the
     // <code>"alwaysOnTopWindows"</code> permission.-->
