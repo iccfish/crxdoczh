@@ -186,7 +186,7 @@ namespace mediaGalleries {
 
     // <!--@Show the user the scan results and let them add any or all of them as
     // galleries. This should be used after the 'finish' onScanProgress()
-    // event has happened. A galleries the app has access to are returned, not
+    // event has happened. All galleries the app has access to are returned, not
     // just the newly added galleries.-->
     // 向用户显示扫描的结果，并让他们将其中的一部分或者全部添加为媒体库。该方法应该在
     // 'finish'（完成）类型的  onScanProgress
