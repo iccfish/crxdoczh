@@ -44,110 +44,130 @@
       {
         "id": "ChromeSettingsOverrides",
         "type": "object",
-        "description": "Chrome settings which can be overriden by an extension.",
+//@        "description": "Chrome settings which can be overriden by an extension.",
+        "description": "可以由扩展程序重写的 Chrome 浏览器设置。",
         "properties": {
           "bookmarks_ui": {
             "type": "object",
-            "description": "Settings to permit bookmarks user interface customization by extensions.",
+//@            "description": "Settings to permit bookmarks user interface customization by extensions.",
+            "description": "允许扩展程序自定义书签用户界面的设置。",
             "optional": true,
             "properties": {
               "remove_button": {
                 "type": "boolean",
-                "description": "If <code>true</code>, the built-in bookmark button will be removed from the user interface.",
+//@                "description": "If <code>true</code>, the built-in bookmark button will be removed from the user interface.",
+                "description": "如果为 <code>true</code>，内建的书签按钮会从用户界面中移除。",
                 "optional": true
               },
               "remove_bookmark_shortcut": {
                 "type": "boolean",
-                "description": "If <code>true</code>, the built-in \"Bookmark this page...\" shortcut key is removed and the extension is permitted to override the shortcut by binding it in the commands section of the manifest.",
+//@                "description": "If <code>true</code>, the built-in \"Bookmark this page...\" shortcut key is removed and the extension is permitted to override the shortcut by binding it in the commands section of the manifest.",
+                "description": "如果为 <code>true</code>，内建的“为当前网页创建书签...”快捷键将取消，并允许扩展程序在清单文件的 commands 部分绑定该快捷键。",
                 "optional": true
               },
               // TODO(wittman): Remove for M36.
               "hide_bookmark_button": {
                 "type": "boolean",
-                "description": "Deprecated. Use remove_button instead.",
+//@                "description": "Deprecated. Use remove_button instead.",
+                "description": "已弃用。请使用 remove_button。",
                 "optional": true
               }
             }
           },
           "homepage": {
-            "description": "New value for the homepage.",
+//@            "description": "New value for the homepage.",
+            "description": "您指定的主页。",
             "optional": true,
             "type": "string"
           },
           "search_provider": {
             "type": "object",
-            "description": "A search engine",
+//@            "description": "A search engine",
+            "description": "某个搜索引擎。",
             "optional": true,
             "properties": {
               "name": {
                 "type": "string",
-                "description": "Name of the search engine displayed to user."
+//@                "description": "Name of the search engine displayed to user."
+                "description": "向用户显示的搜索引擎名称。"
               },
               "keyword": {
                 "type": "string",
-                "description": "Omnibox keyword for the search engine."
+//@                "description": "Omnibox keyword for the search engine."
+                "description": "搜索引擎的多功能框关键字。"
               },
               "favicon_url": {
                 "type": "string",
-                "description": "An icon URL for the search engine."
+//@                "description": "An icon URL for the search engine."
+                "description": "搜索引擎的图标 URL。"
               },
               "search_url": {
                 "type": "string",
-                "description": "An search URL used by the search engine."
+//@                "description": "An search URL used by the search engine."
+                "description": "搜索引擎使用的搜索 URL。"
               },
               "encoding": {
                 "type": "string",
-                "description": "Encoding of the search term."
+//@                "description": "Encoding of the search term."
+                "description": "搜索条目的编码。"
               },
               "suggest_url": {
                 "type": "string",
                 "optional": true,
-                "description": "If omitted, this engine does not support suggestions."
+//@                "description": "If omitted, this engine does not support suggestions."
+                "description": "如果省略，该搜索引擎不支持建议。"
               },
               "instant_url": {
                 "type": "string",
                 "optional": true,
-                "description": "If omitted, this engine does not support instant."
+//@                "description": "If omitted, this engine does not support instant."
+                "description": "如果省略，该搜索引擎不支持即搜即得。"
               },
               "image_url": {
                 "type": "string",
                 "optional": true,
-                "description": "If omitted, this engine does not support image search."
+//@                "description": "If omitted, this engine does not support image search."
+                "description": "如果省略，该搜索引擎不支持图片搜索。"
               },
               "search_url_post_params": {
                 "type": "string",
                 "optional": true,
-                "description": "The string of post parameters to search_url"
+//@                "description": "The string of post parameters to search_url"
+                "description": "search_url 的 POST 参数字符串。"
               },
               "suggest_url_post_params": {
                 "type": "string",
                 "optional": true,
-                "description": "The string of post parameters to suggest_url"
+//@                "description": "The string of post parameters to suggest_url"
+                "description": "suggest_url 的 POST 参数字符串。"
               },
               "instant_url_post_params": {
                 "type": "string",
                 "optional": true,
-                "description": "The string of post parameters to instant_url"
+                "description": "instant_url 的 POST 参数字符串。"
               },
               "image_url_post_params": {
                 "type": "string",
                 "optional": true,
-                "description": "The string of post parameters to image_url"
+                "description": "image_url 的 POST 参数字符串。"
               },
               "alternate_urls": {
                 "type": "array",
                 "items": { "type": "string" },
                 "optional": true,
-                "description": "A list of URL patterns that can be used, in addition to |search_url|."
+//@                "description": "A list of URL patterns that can be used, in addition to |search_url|."
+                "description": "除了 <code>search_url</code> 以外还可以使用的 URL 列表。"
               },
               "is_default": {
                 "type": "boolean",
-                "description": "Specifies if the search provider should be default."
+//@                "description": "Specifies if the search provider should be default."
+                "description": "指定是否设置为默认搜索引擎。"
               }
             }
           },
           "startup_pages": {
-            "description": "A new startup page to be added to the list.",
+//@            "description": "URLs to be added to the list of startup pages.",
+            "description": "要添加至起始页列表的 URL。",
             "optional": true,
             "type": "array",
             "items": {"type": "string"}
