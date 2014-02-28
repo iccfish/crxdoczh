@@ -10,7 +10,8 @@
 // Chrome 浏览器窗口关联。
 namespace app.window {
 
-  // Previously named Bounds.
+  // <!--@Previously named Bounds.-->
+  // 原来叫做 Bounds。
   dictionary ContentBounds {
     long? left;
     long? top;
@@ -45,32 +46,40 @@ namespace app.window {
   };
 
   dictionary Bounds {
-    // The current X coordinate of the content or window.
+    // <!--@The current X coordinate of the content or window.-->
+    // 内容或窗口当前的 X 坐标。
     long left;
 
-    // The current Y coordinate of the content or window.
+    // <!--@The current Y coordinate of the content or window.-->
+    // 内容或窗口当前的 Y 坐标。
     long top;
 
-    // The current width of the content or window.
+    // <!--@The current width of the content or window.-->
+    // 内容或窗口的当前宽度。
     long width;
 
-    // The current height of the content or window.
+    // <!--@The current height of the content or window.-->
+    // 内容或窗口的当前高度。
     long height;
 
-    // The current minimum width of the content or window.
-    // Will be <code>null</code> if not specified.
+    // <!--@The current minimum width of the content or window.
+    // Will be <code>null</code> if not specified.-->
+    // 内容或窗口当前的最小宽度，如果没有指定则为 <code>null</code>。
     long? minWidth;
 
-    // The current minimum height of the content or window.
-    // Will be <code>null</code> if not specified.
+    // <!--@The current minimum height of the content or window.
+    // Will be <code>null</code> if not specified.-->
+    // 内容或窗口当前的最小高度，如果没有指定则为 <code>null</code>。
     long? minHeight;
 
-    // The current maximum width of the content or window.
-    // Will be <code>null</code> if not specified.
+    // <!--@The current maximum width of the content or window.
+    // Will be <code>null</code> if not specified.-->
+    // 内容或窗口当前的最大宽度，如果没有指定则为 <code>null</code>。
     long? maxWidth;
 
-    // The current maximum height of the content or window.
-    // Will be <code>null</code> if not specified.
+    // <!--@The current maximum height of the content or window.
+    // Will be <code>null</code> if not specified.-->
+    // 内容或窗口当前的最大高度，如果没有指定则为 <code>null</code>。
     long? maxHeight;
   };
 
@@ -386,14 +395,18 @@ namespace app.window {
     // 创建窗口时指定的标识符。
     DOMString id;
 
-    // The position, size and constraints of the window's content, which does
+    // <!--@The position, size and constraints of the window's content, which does
     // not include window decorations.
-    // Currently only available on the Dev channel from Chrome 35.
+    // Currently only available on the Dev channel from Chrome 35.-->
+    // 窗口内容的位置、大小和约束，不包括窗口边框。目前仅在 Chrome 35 Dev
+    // 分支及更高版本中可用。
     Bounds innerBounds;
 
-    // The position, size and constraints of the window, which includes window
+    // <!--@The position, size and constraints of the window, which includes window
     // decorations, such as the title bar and frame.
-    // Currently only available on the Dev channel from Chrome 35.
+    // Currently only available on the Dev channel from Chrome 35.-->
+    // 窗口的位置、大小和约束，包括窗口标题栏和边框。目前仅在 Chrome 35 Dev
+    // 分支及更高版本中可用。
     Bounds outerBounds;
   };
 
