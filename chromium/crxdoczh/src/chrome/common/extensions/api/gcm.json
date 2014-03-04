@@ -89,7 +89,7 @@
                   "minLength": 1
                 },
 //@                "description": "Message data to send to the server. Case-insensitive <code>goog.</code> and <code>google</code>, as well as case-sensitive <code>collapse_key</code> are disallowed as key prefixes. Sum of all key/value pairs should not exceed $(ref:gcm.MAX_MESSAGE_SIZE)."
-                "description": "发送到服务器的消息数据，不允许使用 <code>goo.</code> 和 <code>google</code>（不分大小写）作为键的前缀。所有键/值对的大小不应该超过 $(ref:MAX_MESSAGE_SIZE)。"
+                "description": "发送到服务器的消息数据，不允许使用 <code>goo.</code>、<code>google</code> 或 <code>collapse_key</code>（不分大小写）作为键的前缀。所有键/值对的大小不应该超过 $(ref:MAX_MESSAGE_SIZE)。"
               }
             }
           },
@@ -117,7 +117,7 @@
 //@        "description": "Fired when a message is received through GCM.",
         "description": "通过 GCM 收到消息时产生。",
         "parameters": [
-          { 
+          {
             "name": "message",
             "type": "object",
 //@            "description": "A message received from another party via GCM.",
@@ -131,6 +131,12 @@
                 },
 //@                "description": "The message data."
                 "description": "消息数据。"
+              },
+              "collapseKey": {
+                "type": "string",
+                "optional": "true",
+//@                "desctription": "The collapse key of a message."
+                "desctription": "消息的折叠键。"
               }
             }
           }

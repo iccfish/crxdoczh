@@ -22,6 +22,12 @@
 //@            "description": "The ID of the menu item that was clicked."
             "description": "单击的菜单项标识符。"
           },
+          "webviewInstanceId": {
+            "type": "integer",
+            "optional": true,
+//@            "description": "Instance ID of a <webview> if this is associated with a <webview>, empty otherwise."
+            "description": "如果该事件与 <webview> 有关则为 <webview> 实例标识符，否则为空。"
+          },
           "parentMenuItemId": {
             "choices": [
               { "type": "integer" },
