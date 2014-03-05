@@ -1,6 +1,0 @@
-/* Avoid line-break in table headers of intro so that Chinese translations
- * look much better.
- */
-table.intro tr td:first-child {
-  white-space: nowrap;
-}
