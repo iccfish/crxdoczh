@@ -42,6 +42,10 @@
     "channel": "stable",
     "extension_types": ["legacy_packaged_app", "hosted_app"]
   },
+  "app.service_worker": {
+    "channel": "trunk",
+    "extension_types": ["platform_app"]
+  },
   "author": {
     "channel": "stable",
     "extension_types": "all"
@@ -77,7 +81,8 @@
   },
   "chrome_settings_overrides": [{
     "channel": "dev",
-    "extension_types": ["extension"]
+    "extension_types": ["extension"],
+    "platforms": ["win"]
   }, {
     "channel": "stable",
     "extension_types": ["extension"],
