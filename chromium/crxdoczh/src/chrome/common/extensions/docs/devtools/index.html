@@ -1,0 +1,298 @@
+{{+bindTo:partials.standard_devtools_article}}
+
+<h1><!--@Overview-->概述</h1>
+
+<p><!--@The Chrome Developer Tools (DevTools for short), are a set web authoring and debugging tools
+built into Google Chrome. The DevTools provide web developers deep access into the
+internals of the browser and their web application. This overview of the DevTools 
+points out the most popular and useful
+features. If you haven't used the DevTools before, start here.
+Even if you're an experienced web developer, you might pick up some tips.-->
+Chrome 开发者工具（简称开发者工具）是 Google Chrome
+浏览器中内建的网页编写和调试工具，开发者工具允许网页开发者访问浏览器以及网上应用的内部细节。开发者工具概述指出了最常用而且最有用的功能，如果您以前没有用过开发者工具，请从这里开始。即使您是一个经验丰富的网页开发者，您可能也会学会一些技巧。
+</p>
+
+<p class="note"><strong><!--@Note:-->注意：</strong><!--@ If you are a web developer and want to get the latest version of
+DevTools, you should use -->
+如果您是网页开发者，希望获取最新版本的开发者工具，您应该使用
+<a href="https://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a><!--@.-->。</p>
+
+<h2 id ="access"><!--@How to access the DevTools-->如何访问开发者工具</h2>
+
+<p><!--@To access the DevTools, open a web page or web app in Google Chrome. Then take
+one of the following actions:-->
+要访问开发者工具，请在 Google Chrome
+浏览器中打开某个网页或网上应用，然后使用以下某一中方式：
+</p>
+
+<ul>
+<li><!--@Select the -->单击浏览器窗口右上角的 <strong>Chrome <!--@menu-->菜单</strong> <img src="images/chrome-menu.png"/> <!--@at the top-right of your browser window, then select-->，并选择<!--@
+--><strong><!--@Tools-->工具</strong> > <strong><!--@Developer tools-->开发者工具</strong><!--@.-->。</li>
+<li><!--@Right-click on any page element and select -->右键单击任意网页中的元素并选择<strong><!--@Inspect element-->审查元素</strong><!--@.-->。</li>
+</ul>
+
+
+<p><!--@There are several useful shortcuts for opening the DevTools:-->还有几个有用的快捷键可以打开开发者工具：</p>
+
+<ul>
+<li><!--@Use-->使用 <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">I</span><!--@ (or-->（或 Mac 中的 <span class="kbd">Cmd</span>+<span class="kbd">Opt</span>+<span class="kbd">I</span><!--@ on Mac) to open the DevTools.-->）打开开发者工具。</li>
+<li><!--@Use-->使用 <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">J</span><!--@ (or-->（或 Mac 中的 <span class="kbd">Cmd</span>+<span class="kbd">Opt</span>+<span class="kbd">J</span><!--@ on Mac) to open the DevTools and bring
+focus to the Console.-->）打开开发者工具，并切换至
+Console（控制台）面板。</li>
+<li><!--@Use-->使用 <span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">C</span><!--@ (or-->（或 Mac 中的 <span class="kbd">Cmd</span>+<span class="kbd">Shift</span>+<span class="kbd">C</span><!--@ on Mac) to open the DevTools in Inspect Element mode, or toggle Inspect Element mode if the DevTools are already open.</li>
+-->）以审查元素模式打开开发者工具，如果开发者工具已经打开则切换审查元素模式。</ul>
+
+
+<p><!--@For your day-to-day workflow, <a href="docs/shortcuts.html">learning the
+shortcuts</a> will save you time.-->
+在您日常的工作流程中，<a href="docs/shortcuts.html"
+>学习使用快捷键</a>可以节约您的时间。
+</p>
+
+<h2 id="devtools-window"><!--@The DevTools window-->开发者工具窗口</h2>
+
+<p><!--@The DevTools are organised into task-oriented groups in the toolbar at the top
+of the window. Each toolbar item and corresponding panel let you work with a
+specific type of page or app information, including DOM elements, resources, and
+sources.-->
+开发者工具按照任务分类来组织，窗口顶部的工具栏包含所有分类。工具栏中的每一项以及对应的面板可以使您关注某种类型的网页或应用信息，包括
+DOM 元素、资源和源代码。
+</p>
+
+<p><img  class="screenshot" src="images/devtools-window.png"/></p>
+
+<p><!--@Overall, there are eight main groups of tools available view Developer Tools:
+Elements, Resources, Network, Sources, Timeline, Profiles, Storage, Audits, and
+Console. You can use the -->
+总体说来，开发者工具包括八类主要工具：Elements（元素）、Resources（资源）、Network（网络）、Sources（源代码）、Timeline（时间线）、Profiles（性能分析）、Audits（审计）和
+Console（控制台）。您可以使用
+<span class="kbd">Ctrl</span>+<span class="kbd">[</span> and <span class="kbd">Ctrl</span>+<span class="kbd">]</span> <!--@shortcuts to move
+between panels.-->
+快捷键在面板间移动。
+</p>
+
+<h2 id="dom-and-styles"><!--@Inspecting the DOM and styles-->审查 DOM 和样式</h2>
+
+<p><!--@The <strong><a href="docs/dom-and-styles.html">Elements</a></strong> panel lets you see
+everything in one DOM tree, and allows inspection and on-the-fly editing of DOM
+elements. You will often visit the Elements tabs when you need to identify the
+HTML snippet for some aspect of the page. For example, you may be curious if an
+image has an HTML id attribute, and what that attribute's value is.-->
+<strong><a href="docs/dom-and-styles.html">Elements</a></strong>（元素）面板允许您查看整个
+DOM 树，还能审查和实时编辑 DOM 元素。当您需要寻找网页中某些部分的 HTML
+片段时，您会经常访问 Elements（元素）标签页。例如，您可能想知道某个图片有没有
+HTML id 属性及其属性值是什么。
+</p>
+<a href="docs/dom-and-styles.html">
+<p><img  class="screenshot" src="images/elements-panel.png"/></p>
+</a>
+<p><a href="docs/dom-and-styles.html"><!--@Read more about inspecting the DOM and styles-->阅读更多关于审查 DOM 和样式的内容</a></p>
+
+<h2 id="console"><!--@Working with the console-->使用控制台</h2>
+
+<p><!--@The JavaScript <a href="docs/console.md">Console</a> provides two
+primary functions for developers testing web pages and applications:-->
+JavaScript <a href="docs/console.md">控制台</a>为测试网页和应用的开发者提供两种主要功能：
+</p>
+
+<ul>
+<li><!--@A place to log diagnostic information using methods provided by the <a href="docs/console-api.md">Console
+API</a>, such as-->
+使用<a href="docs/console-api.md">控制台 API</a> 提供的方法，例如
+<a href="docs/console-api.md#consolelogobject-object">console.log()</a><!--@,
+or--> 或 <a href="docs/console-api.md#consoleprofilelabel">console.profile()</a><!--@.-->
+记录诊断信息。
+</li>
+<li><!--@A shell prompt where you can enter commands and interact with the document and
+the Chrome DevTools. You can evaluate expressions directly in the Console, and
+can also use the methods provided by the <a href="docs/commandline-api.md">Command Line
+API</a>, such as-->
+命令提示符，在其中您可以键入命令与文档和 Chrome
+开发者工具交互。您可以直接在控制台中为表达式求值，还可以使用<a
+href="docs/commandline-api.md">命令行 API</a> 提供的方法，例如用
+<a href="docs/commandline-api.md#selector">$()</a> <!--@command for
+selecting elements, or-->选择元素或
+<a href="docs/commandline-api.md#profilename">profile()</a> <!--@to start the
+CPU profiler.-->
+开始 CPU 性能分析。
+</li>
+</ul>
+
+<a href="docs/console.md">
+<p><img  class="screenshot" src="docs/console-files/evaluate-expressions.png"/></p>
+</a>
+
+
+<p><a href="docs/console.md"><!--@Read more about working with the console-->阅读更多关于控制台使用的内容</a></p>
+
+<h2 id="debugging-javascript"><!--@Debugging JavaScript-->JavaScript 调试</h2>
+
+<p><!--@As the <strong>complexity</strong> of JavaScript applications increase, developers need
+powerful debugging tools to help quickly discover the cause of an issue and fix
+it efficiently. The Chrome DevTools include a number of useful tools to help
+make <strong>debugging </strong>JavaScript less painful.-->
+随着 JavaScript
+应用程序<strong>复杂性</strong>的增加，开发者需要强大的调试工具迅速发现问题的原因并有效解决。Chrome
+开发者工具包含许多有用的工具，使您更轻松地<strong>调试</strong> JavaScript。
+</p>
+
+<a href="docs/javascript-debugging.html">
+<p><img  class="screenshot" src="images/javascript-debugging.png"/></p>
+</a>
+
+<p><a href="docs/javascript-debugging.html"><!--@Read more about how to debug JavaScript with the DevTools-->了解有关如何使用开发者工具调试
+JavaScript 的更多内容</a></p>
+
+<h2 id="improving-network-performance"><!--@Improving network performance-->提高网络性能</h2>
+
+<p><!--@The <strong>Network</strong> panel provides insights into resources that are requested and
+downloaded over the network in real time. Identifying and addressing those requests taking longer than expected is an essential step in optimizing your page.-->
+<strong>Network</strong>（网络）面板实时提供通过网络请求和下载的资源详情，找出花费时间长于预期的请求并解决这些问题是您优化网页的关键步骤。
+</p>
+
+<a href="docs/network.md">
+<p><img  class="screenshot" src="images/network-panel.png"/></p>
+</a>
+
+<p><a href="docs/network.md"><!--@Read more about how to improve your network performance-->阅读更多关于如何提高网络性能的内容</a></p>
+
+<h2 id="audits"><!--@Audits-->审计</h2>
+
+<p><!--@The Audit panel can analyze a page as it loads and provide suggestions and
+optimizations for decreasing page load time and increase perceived (and real)
+responsiveness. For further insight, we recommend also installing the-->
+Audits（审计）面板可以在网页加载时进行分析，并提供建议和优化方式，以便减少网页加载时间，提高用户察觉到（以及实际上）的响应速度。如果您希望更进一步的分析，我们还建议您安装
+<a href="https://developers.google.com/speed/pagespeed/">PageSpeed</a> <!--@extension.-->扩展程序。</p>
+
+<h2 id="timeline"><!--@Improving rendering performance-->提高渲染性能</h2>
+
+<p><!--@The <strong>Timeline</strong> panel gives you a complete overview of where time is spent when
+loading and using your web app or page. All events, from loading resources to
+parsing JavaScript, calculating styles, and repainting are plotted on a
+timeline.-->
+<strong>Timeline</strong>（时间线）面板为您提供加载和使用您的网上应用或网页时如何花费时间的完整概述，所有事件，从加载资源到分析 JavaScript、计算样式、重绘都会在时间线上表示出来。
+</p>
+
+<a href="docs/timeline.md">
+<p><img  class="screenshot" src="images/timeline-panel.png"/></p>
+</a>
+
+<p><a href="docs/timeline.md"><!--@Read more about how to improve rendering performance-->了解关于如何提高渲染性能的更多内容</a></p>
+
+<h2 id="javascript-performance"><!--@JavaScript &amp; CSS performance-->JavaScript 和 CSS 性能</h2>
+
+<p><!--@The <strong>Profiles</strong> panel lets you profile the execution time and memory usage of a
+web app or page. The <strong>Profiles</strong> panel includes a few profilers: a <strong>CPU
+profiler, </strong>a <strong>JavaScript profiler</strong> and a <strong>Heap profiler</strong>. These help you to
+understand where resources are being spent, and so help you to optimize your
+code:-->
+<strong>Profiles</strong>（性能分析）面板允许您分析网上应用或网页的执行时间和内存使用。<strong>Profiles</strong>（性能分析）面板包含几个性能分析工具：<strong>CPU
+性能分析器</strong>、<strong>JavaScript 性能分析器</strong> 和
+<strong>堆性能分析器</strong>。这些工具会帮助您理解资源在什么地方使用，便于您优化自己的代码：
+</p>
+
+<ul>
+<li><!--@The <strong>CPU profiler</strong> shows where execution time is spent in your page's
+JavaScript functions.-->
+<strong>CPU 性能分析器</strong>显示您的网页中哪些 JavaScript 函数花费时间执行。
+</li>
+<li><!--@The <strong>Heap profiler</strong> shows memory distribution by your page's JavaScript
+objects and related DOM nodes.-->
+<strong>堆性能分析器</strong>显示您的网页中 JavaScript 对象和相关 DOM
+节点的内存分布。
+</li>
+<li><!--@The <strong>JavaScript </strong>profile shows where execution time is spent in your scripts-->
+<strong>JavaScript</strong> 性能分析显示执行时间如何在您的脚本中花费。
+</li>
+</ul>
+
+<a href="docs/profiles.html">
+<p><img class="screenshot" src="images/profiles-panel.png"/></p>
+</a>
+
+<p><a href="docs/profiles.html"><!--@Read more about using how to improve JavaScript and CSS performance-->阅读更多有关如何提高 JavaScript 和 CSS 性能的内容</a></p>
+
+<h2 id="inspecting-storage"><!--@Inspecting storage-->审查存储区</h2>
+
+<p><!--@The <strong>Resources</strong> panel lets you inspect resources that are loaded in the
+inspected page. It lets you interact with HTML 5 Database, Local Storage,
+Cookies, AppCache, etc.-->
+<strong>Resources</strong>（资源）面板允许您审查网页中加载的资源，还可以与
+HTML5 数据库、本地存储、Cookie、AppCache 等交互。
+</p>
+
+<a href="docs/resource-panel.md">
+<p><img  class="screenshot" src="images/resources-panel.png"/></p>
+</a>
+
+<p><a href="docs/resource-panel.md"><!--@Read more about inspecting storage resources-->阅读有关审查存储区和资源的更多内容</a></p>
+
+
+<h2 id="further-reading"><!--@Further reading-->进一步的阅读</h2>
+
+<p><!--@There are several other areas of the DevTools documentation that you might find of benefit to review.
+These include:-->
+如下是开发者工具文档中其他几个方面，您看了之后可能会受益，包括：
+</p>
+
+<ul>
+<li><a href="docs/heap-profiling.html"><!--@Heap Profiling-->堆性能分析</a></li>
+<li><a href="docs/cpu-profiling.html"><!--@CPU Profiling-->CPU 性能分析</a></li>
+<li><a href="docs/mobile-emulation.html"><!--@Mobile Emulation-->移动平台模拟</a></li>
+<li><a href="docs/remote-debugging.html"><!--@Remote Debugging-->远程调试</a></li>
+<li><a href="docs/videos.html"><!--@DevTools Videos-->开发者工具视频</a></li>
+</ul>
+
+<h2 id="further-resources"><!--@Further resources-->更多资源</h2>
+
+
+<h3 id="get-more"><!--@Get more-->了解更多</h3>
+
+<p><!--@To more tips on the DevTools watch our regular show-->
+要想了解开发者工具的更多技巧请在 YouTube 上观看我们的
+<a href="https://www.youtube.com/watch?v=ktwJ-EDiZoU&amp;list=PLNYkxOF6rcIBQ8j3J_PyM8JLAGKqZRByw">The
+Breakpoint</a>
+<!--@on YouTube.-->演示。</p>
+
+<p><a href="https://www.youtube.com/watch?v=ktwJ-EDiZoU&amp;list=PLNYkxOF6rcIBQ8j3J_PyM8JLAGKqZRByw"><img class="screenshot" src="images/image08.png" width="370px"/></a></p>
+
+<p><!--@You can also follow us on-->您还可以在 <a href="https://twitter.com/ChromiumDev">@ChromiumDev</a> <!--@or ask a question using the -->上关注我们或使用<a href="https://groups.google.com/forum/?fromgroups#!forum/google-chrome-developer-tools"><!--@forums-->论坛</a><!--@.-->。</p>
+
+<p><a href="https://twitter.com/ChromiumDev"><img class="screenshot" src="images/image13.png" width="370px"/></a></p>
+
+<p><!--@or checkout the Google Chrome Developers-->还可以查看 Google Chrome 开发者的
+<a href="https://plus.google.com/+GoogleChromeDevelopers/posts">G+</a> <!--@page.-->网页。</p>
+
+<p><a href="https://plus.google.com/+GoogleChromeDevelopers/posts"><img  class="screenshot" src="images/image00.png" width="370px"/></a></p>
+
+<h3 id="take-the-course"><!--@Take the course-->参加课程</h3>
+<p><!--@Explore and master the DevTools with our free "Discover DevTools" course on-->在 <a href="http://discover-devtools.codeschool.com/">Code School</a><!--@.--> 上通过我们的“Discover DevTools”免费课程探索并掌握开发者工具的使用。</p>
+
+<p><a href="http://discover-devtools.codeschool.com/"><img src="images/image15.png" width="370px"/></a></p>
+
+<h3 id="get-involved"><!--@Get involved-->参与我们</h3>
+
+<p><!--@To submit a bug or a feature request on DevTools, please use issue tracker at
+<a href="http://crbug.com/">http://crbug.com</a>. Please also mention "DevTools" in the bug
+summary.-->
+如果要提交有关开发者工具的问题或特性请求，请使用位于
+<a href="http://crbug.com/">http://crbug.com</a> 的问题跟踪工具，同时请在问题概述中提及“DevTools”。
+</p>
+
+<p><a href="http://crbug.com/"><img  class="screenshot" src="images/image02.png" width="200px"/></a></p>
+
+<p><!--@Anyone can also help make the DevTools better be directly-->
+任何人都可以<a href="docs/contributing"><!--@contributing-->贡献</a><!--@ back to the source.-->代码直接改善开发者工具。</p>
+
+
+<h3 id="debugging-extensions"><!--@Debugging extensions-->调试扩展程序</h3>
+
+<p><!--@Looking to use the DevTools to debug Chrome extensions? Watch-->
+您正在寻找如何使用开发者工具调试 Chrome 扩展程序吗？请观看
+<a href="http://www.youtube.com/watch?v=IP0nMv_NI1s">Developing and
+Debugging extensions</a>（开发和调试扩展程序）或阅读<!--@ or read the-->
+<a href="/extensions/tut_debugging.html"><!--@Debugging-->调试</a><!--@
+tutorial.-->教程。</p>
+
+
+{{/partials.standard_devtools_article}}

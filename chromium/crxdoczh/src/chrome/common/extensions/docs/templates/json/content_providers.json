@@ -69,7 +69,7 @@
       "dir": "chrome/common/extensions/docs/static"
     },
     "serveFrom": "static"
-  }
+  },
   //"cr-native-client": {
   //  "chromium": {
   //    "dir": "native_client_sdk/doc_generated"
@@ -78,14 +78,17 @@
   //  "serveFrom": "native-client",
   //  "supportsTemplates": true
   //},
-  //"devtools-docs": {
-  //  "defaultExtensions": [".html", ".md"],
+  "devtools-docs": {
+    "defaultExtensions": [".html", ".md"],
   //  "gcs": {
   //    "bucket": "gs://chromedocs-devtools"
   //  },
-  //  "serveFrom": "devtools",
-  //  "supportsTemplates": true
-  //},
+    "chromium": {
+      "dir": "chrome/common/extensions/docs/devtools"
+    },
+    "serveFrom": "devtools",
+    "supportsTemplates": true
+  }
   //"multidevice-docs": {
   //  "defaultExtensions": [".html", ".md"],
   //  "gcs": {
