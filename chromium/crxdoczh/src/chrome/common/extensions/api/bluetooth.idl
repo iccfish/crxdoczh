@@ -131,7 +131,6 @@ namespace bluetooth {
   callback AddressCallback = void (DOMString result);
   callback BooleanCallback = void (boolean result);
   callback DataCallback = void (optional ArrayBuffer result);
-  callback DeviceCallback = void (Device device);
   callback DevicesCallback = void (Device[] result);
   callback NameCallback = void (DOMString result);
   callback OutOfBandPairingDataCallback = void (OutOfBandPairingData data);
@@ -140,22 +139,6 @@ namespace bluetooth {
   callback ServicesCallback = void(ServiceRecord[] result);
   callback SizeCallback = void (long result);
   callback SocketCallback = void (Socket result);
-
-  // <!--@Options for the getDevices function. If |profile| is not provided, all
-  // devices known to the system are returned.-->
-  // 在 getDevices 函数中使用的选项。如果没有提供
-  // <code>profile</code>，系统已知的所有设备都会返回。
-  dictionary GetDevicesOptions {
-    // <!--@Only devices providing |profile| will be returned.-->
-    // 只返回提供了 <code>profile</code> 的设备。
-    Profile? profile;
-
-    // <!--@Called for each matching device.  Note that a service discovery request
-    // must be made to each non-matching device before it can be definitively
-    // excluded.  This can take some time.-->
-    // 为每一个匹配的设备调用。注意必须首先向每一个不匹配的设备发出服务发现请求后才能确定地排除它们，这可能需要一些时间。
-    DeviceCallback deviceCallback;
-  };
 
   // <!--@Options for the getProfiles function.-->
   // getProfiles 函数中使用的选项。
@@ -229,14 +212,6 @@ namespace bluetooth {
     OutOfBandPairingData? data;
   };
 
-  // <!--@Options for the startDiscovery function.-->
-  // startDiscovery 函数中使用的选项。
-  dictionary StartDiscoveryOptions {
-    // <!--@Called for each device that is discovered.-->
-    // 每发现一个设备后调用。
-    DeviceCallback deviceCallback;
-  };
-
   // These functions all report failures via chrome.runtime.lastError.
   interface Functions {
     // <!--@Registers the JavaScript application as an implementation for the given
@@ -259,19 +234,12 @@ namespace bluetooth {
     // 调用时传递 $ref:AdapterState 对象，描述适配器状态。
     static void getAdapterState(AdapterStateCallback callback);
 
-    // <!--@Get a bluetooth devices known to the system.  Known devices are either
-    // currently paired, or have been paired in the past.-->
-    // 获取系统已知的蓝牙设备列表。已知设备为目前已配对或者以前配对过的设备。
-    // |options|  : <!--@Controls which devices are returned and provides
-    //              |deviceCallback|, which is called for each matching device.-->
-    // 控制返回哪些设备，并提供 <code>deviceCallback</code>，为每一个匹配的设备调用。
-    // |callback| : <!--@Called when the search is completed.
-    //              |options.deviceCallback| will not be called after
-    //              |callback| has been called.-->
-    // 搜索完成后调用。<code>callback</code>调用后就不会调用
-    // <code>options.deviceCallback</code> 了。
-    static void getDevices(GetDevicesOptions options,
-                           ResultCallback callback);
+    // <!--@Get a list of Bluetooth devices known to the system, including paired
+    // and recently discovered devices.-->
+    // 获取系统已知的蓝牙设备列表，包括已配对或以前发现的设备。
+    // |callback| : <!--@Called when the search is completed.-->
+    // 搜索完成后调用。
+    static void getDevices(DevicesCallback callback);
 
     // <!--@Returns the set of exported profiles for the device specified in options.
     // This function will not initiate a connection to the remote device.-->
@@ -340,19 +308,24 @@ namespace bluetooth {
     static void setOutOfBandPairingData(SetOutOfBandPairingDataOptions options,
                                         optional ResultCallback callback);
 
-    // <!--@Start discovery. Discovered devices will be returned via the
-    // |onDeviceDiscovered| callback.  Discovery will fail to start if it is
-    // already in progress.  Discovery can be resource intensive: stopDiscovery
+    // <!--@Start discovery. Newly discovered devices will be returned via the
+    // onDeviceAdded event. Previously discovered devices already known to
+    // the adapter must be obtained using getDevices and will only be updated
+    // using the |onDeviceChanged| event if information about them changes.
+    //
+    // Discovery will fail to start if this application has already called
+    // startDiscovery.  Discovery can be resource intensive: stopDiscovery
     // should be called as soon as possible.-->
-    // 开始发现，发现的设备会通过 <code>onDeviceDiscovered</code>
-    // 回调函数返回。如果已经在进行中，将无法开始发现。发现操作会消耗很多资源，可能的话应该尽快调用
-    // $ref:stopDiscovery。
-    // |options|  : <!--@The options for this function.-->
-    // 该函数的选项。
+    // 开始发现，新发现的设备通过 onDeviceAdded
+    // 事件返回。之前发现并且适配器已知的设备必须通过 getDevices
+    // 获取，如果设备的有关信息更改则会产生 onDeviceChanged 事件。
+    //
+    // 如果应用已经调用了 startDiscovery
+    // 则发现操作会失败。发现操作需要消耗很多资源：您应该尽快调用
+    // stopDiscovery。
     // |callback| : <!--@Called to indicate success or failure.-->
     // 调用时指示成功或失败。
     static void startDiscovery(
-        StartDiscoveryOptions options,
         optional ResultCallback callback);
 
     // <!--@Stop discovery.-->
@@ -369,6 +342,20 @@ namespace bluetooth {
     // |state| : <!--@The new state of the adapter.-->
     // 适配器的新状态。
     static void onAdapterStateChanged(AdapterState state);
+
+    // <!--@Fired when information about a new Bluetooth device is available.-->
+    // 新的蓝牙设备有关信息可用时产生。
+    static void onDeviceAdded(Device device);
+
+    // <!--@Fired when information about a known Bluetooth device has changed.-->
+    // 已知蓝牙设备的有关信息更改时产生。
+    static void onDeviceChanged(Device device);
+
+    // <!--@Fired when a Bluetooth device that was previously discovered has been
+    // out of range for long enough to be considered unavailable again, and
+    // when a paired device is removed.-->
+    // 之前发现的蓝牙设备很长时间不在范围内，视为不再可用时，或者配对的设备移除时产生。
+    static void onDeviceRemoved(Device device);
 
     // Fired when a connection has been made for a registered profile.
     // |socket| : The socket for the connection.

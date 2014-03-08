@@ -117,6 +117,14 @@
       }
     ]
   },
+  "gcm": {
+    "了解更多": [
+      {
+        "link": "cloudMessagingV2.html",
+        "text": "Google 云消息服务"
+      }
+    ]
+  },
   "identity": {
     "了解更多": [
       {

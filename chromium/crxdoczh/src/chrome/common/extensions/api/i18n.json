@@ -12,8 +12,8 @@
       {
         "name": "getAcceptLanguages",
         "type": "function",
-//@        "description": "Gets the accept-languages of the browser. This is different from the locale used by the browser; to get the locale, use <code>window.navigator.language</code>.",
-        "description": "获取浏览器可接受的语言。这和浏览器使用的语言不同，要获取这一语言，请使用 <code>window.navigator.language</code>。",
+//@        "description": "Gets the accept-languages of the browser. This is different from the locale used by the browser; to get the locale, use $ref:i18n.getUILanguage.",
+        "description": "获取浏览器可接受的语言。这和浏览器使用的语言不同，要获取这一语言，请使用 $ref:i18n.getUILanguage。",
         "parameters": [
           {
             "type": "function",
@@ -50,6 +50,19 @@
           "type": "string",
 //@          "description": "Message localized for current locale."
           "description": "用于当前语言的本地化消息。"
+        }
+      },
+      {
+        "name": "getUILanguage",
+        "type": "function",
+        "nocompile": true,
+//@        "description": "Gets the browser UI language of the browser. This is different from $ref:i18n.getAcceptLanguages which returns the preferred user languages.",
+        "description": "获取浏览器用户界面的语言，这和 $ref:i18n.getAcceptLanguages 不同，它返回用户首选的语言。",
+        "parameters": [],
+        "returns": {
+          "type": "string",
+//@          "description": "The browser UI language code such as en-US or fr-FR."
+          "description": "浏览器用户界面的语言代码，例如 en-US 或 fr-FR。"
         }
       }
     ],

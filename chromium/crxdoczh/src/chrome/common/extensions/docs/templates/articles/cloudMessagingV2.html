@@ -1,0 +1,515 @@
+<meta name="doc-family" content="apps">
+<h1 id="gcm"><!--@Google Cloud Messaging-->Google 云消息服务</h1>
+
+<p><!--@Google Cloud Messaging (GCM) is a service for both Android-powered device and
+Chrome instances to send and receive message data from servers. <a href="gcm.html">GCM Chrome
+API</a> allows the Chrome apps or extensions to access the GCM
+service for the signed-in Chrome users. The service works even if an app or
+extension isn't currently running. For example, calendar updates could be pushed
+to users even when their calendar app isn't open. -->
+Google 云消息服务（GCM）是一项用于 Android 设备和 Chrome
+应用的服务，可以向服务器发送和接收数据。<a href="gcm.html">GCM Chrome
+API</a> 允许 Chrome 应用或扩展程序以 Chrome 中登录用户的身份访问 GCM
+服务。即使应用或扩展程序不在运行时该服务也能正常工作，例如即使日历应用没有打开，日历更新也可以推送至用户。
+</p>
+
+<p><!--@To use both API and service, you must agree to the <a href="https://developers.google.com/terms/">Google APIs Terms of
+Service</a> and <a href="https://developers.google.com/cloud/terms/">Google Cloud Platform Terms
+of Service</a>.-->
+要使用这一 API 和服务，您必须同意
+<a href="https://developers.google.com/terms/">Google API 服务条款</a>和
+<a href="https://developers.google.com/cloud/terms/">Google Cloud
+平台服务条款</a>。
+</p>
+
+<p><!--@This document describes how to set up and use GCM. For additional information
+see the reference documentation for the <a href="gcm.html">GCM Chrome API</a> and
+the <a href="http://developer.android.com/google/gcm/index.html">GCM Service</a>. To get
+help with GCM or to give us feedback, please see
+<a href="#feedback">Feedback</a>.-->
+该文档描述了设置和使用 GCM 的方法，有关更多信息，请参见
+<a href="gcm.html">GCM Chrome API</a> 的参考文档和
+<a href="https://developer.android.com/google/gcm/index.html">GCM
+服务</a>。要想获取关于 GCM 的帮助或者给我们反馈，请参见<a
+href="#feedback">反馈</a>。
+</p>
+
+<p><!--@Please note that GCM Chrome API is experimental. It is only available to Chrome
+users on the dev channel.-->
+请注意 GCM Chrome API 是实验性的，仅在 Chrome 浏览器的 Dev 分支中可用。
+</p>
+
+<h2 id="enable_gcm"><!--@Enable GCM-->启用 GCM</h2>
+
+<p><!--@To use GCM for your app or extension, do the following:-->
+要想在您的应用或扩展程序中使用 GCM，请按照下列步骤操作：
+</p>
+
+<ol>
+<li><!--@Upload your app or extension client to the <a href="https://developers.google.com/chrome/web-store/docs/publish">Chrome Web
+Store</a>.-->
+将您的应用或扩展程序客户端上传至
+<a href="https://developers.google.com/chrome/web-store/docs/publish">Chrome
+网上应用店</a>。
+</li>
+<li><!--@A user installs your app or extension.-->用户安装了您的应用或扩展程序。</li>
+<li><!--@Your app or extension client requests a registration ID using $ref:gcm.register
+function and sends this ID to your server together with information
+identifying the user. For more details, please see <a href="#obtain_registration_id">Obtain registration
+ID</a>.-->
+您的应用或扩展程序客户端使用 $ref:gcm.register
+函数请求注册标识符，并将该标识符连同用户标识信息一起发送至您的服务器。有关更多详情，请参见<a
+href="#obtain_registration_id">获取注册标识符</a>。
+</li>
+</ol>
+
+<h2 id="receive_a_message"><!--@Receive a message-->接收消息</h2>
+
+<p><!--@At a glance, receiving a message works like this:-->粗略看来，接收消息的方式如下：</p>
+
+<ol>
+<li><!--@Your app or extension client should register a handler to receive the
+$ref:gcm.onMessage event.-->
+您的应用或扩展程序客户端应该注册处理程序，接收 $ref:gcm.onMessage 事件。
+</li>
+<li><!--@When your server sends a message to the user, it specifies all of the
+registration IDs that are related to that user and passes the message to the
+GCM service.-->
+当您的服务器向用户发送消息时，需要指定与用户相关的所有注册标识符，并将消息传递给
+GCM 服务。
+</li>
+<li><!--@GCM servers route the message to all instances of Chrome running apps or
+extensions with one of the registration IDs.-->
+GCM 服务器将消息转发至运行应用或扩展程序并具有指定注册标识符的所有 Chrome
+实例。
+</li>
+<li><!--@When the message arrives on the client, Chrome starts the app or extension,
+if it is not already running, and calls the registered handler to process the
+message.-->
+消息到达客户端时，Chrome
+浏览器启动应用或扩展程序（如果不在运行的话），并调用注册的处理程序处理消息。
+</li>
+</ol>
+
+<p><!--@For more details, please see <a href="#receive_messages">Receive messages</a>.-->
+有关更多详情，请参见<a href="#receive_messages">接收消息</a>。
+</p>
+
+<h2 id="send_a_message"><!--@Send a message-->发送消息</h2>
+
+<p><!--@At a glance, sending a message works like this:-->粗略看来，发送消息的方式如下：</p>
+
+<ol>
+<li><!--@Your app or extension generates a unique message ID, so that it is possible
+to find out which message failed to be queued or delivered.-->
+您的应用或扩展程序生成一个唯一的消息标识符，这样可以找出哪些消息不能放入队列或传递。
+</li>
+<li><!--@Your app or extension calls $ref:gcm.send function with an object containing
+message ID, destination ID that identifies the server, and data that consist
+of a list of key value pairs. In this step you can also provide an optional
+time-to-live for the message.-->
+您的应用或扩展程序调用 $ref:gcm.send 函数，传递一个对象，其中包含消息标识符、标志服务器的目标标识符以及由键值对列表组成的数据。在这一步中，您还可以提供可选的消息保留时间。
+</li>
+<li><!--@The callback passed to $ref:gcm.send function will be called to notify the
+result. Your app or extension should check $ref:runtime.lastError to find out if
+the message has been successfully queued for delivery. Please refer to <a href="#error_reference">Error
+reference</a> for possible error codes that could be
+returned.-->
+传递给 $ref:gcm.send 函数的回调函数用来提供结果，您的应用或扩展程序应该检查
+$ref:runtime.lastError
+判断消息是否成功放入队列等待投递。有关可能返回的错误代码，请参见<a
+href="#error_reference">错误参考</a>。
+</li>
+<li><!--@In cases that the queued message could not be delivered to the GCM server,
+like network error, a $ref:gcm.onSendError event will be fired. Your app or
+extension can listen to this event and react to it, e.g. by trying to resend
+the message. Please refer to <a href="#error_reference">Error reference</a> for
+possible error codes that could be returned.-->
+如果放入队列的消息由于 GCM 服务器（如网络错误）而无法投递，则会产生
+$ref:gcm.onSendError
+事件。您的应用或扩展程序可以监听该事件并作出反应，例如尝试再次发送消息。有关可能返回的错误代码，请参见<a
+href="#error_reference">错误参考</a>。
+</li>
+</ol>
+
+<p><!--@For more details, please see <a href="#send_messages">Send messages</a>.-->
+有关更多详情，请参见<a href="#send_messages">发送消息</a>。
+</p>
+
+<h2 id="set_up_project"><!--@Set up project-->设置项目</h2>
+
+<h3 id="create_google_api_project"><!--@Create Google API project-->创建
+Google API 项目</h3>
+
+<ol>
+<li><!--@Login to the <a href="https://cloud.google.com/console/project">Google Developers
+Console</a> using the same Google <br>
+Account that you will use to upload your app or extension.-->
+使用您上传应用或扩展程序的同一个账户登录
+<a href="https://cloud.google.com/console/project">Google
+开发者控制台</a>。
+</li>
+<li><!--@If you haven't created an API project yet, click <strong>Create Project</strong>.-->
+如果您还没有创建 API 项目，请单击 <strong>Create Project</strong>（创建项目）。
+</li>
+<li><!--@Supply a project name and click <strong>Create</strong>.-->
+输入项目名称并单击 <strong>Create</strong>（创建）。
+</li>
+<li><!--@Once the project has been created, a page appears that displays your project
+number. For example, <strong>Project Number: 670330094152</strong>.-->
+项目创建后，出现的网页中会显示您的项目编号，例如
+<strong>Project Number: 670330094152</strong>。
+</li>
+<li><!--@Copy down your project number. You will use it later on as the GCM sender ID.-->
+复制并记下您的项目编号，以后您将使用它作为 GCM 发送方标识符。
+</li>
+</ol>
+
+<h3 id="enable_the_gcm_service"><!--@Enable the GCM service-->启用 GCM 服务</h3>
+
+<ol>
+<li><!--@In the sidebar on the left, select <strong>APIs &amp; auth</strong>.-->
+在左边的侧边栏中选择 <strong>APIs &amp; auth</strong>（API 与认证）。
+</li>
+<li><!--@In the displayed list of APIs, turn the <strong>Google Cloud Messaging for
+Android</strong> toggle to ON.-->
+在显示的 API 列表中，将 <strong>Google Cloud Messaging for Android</strong>
+切换至 ON（开启）状态。
+</li>
+</ol>
+
+<h2 id="set_up_chrome_app_or_extension"><!--@Set up Chrome App or Extension-->设置 Chrome 应用或扩展程序</h2>
+
+<h3 id="add_permission_to_manifest"><!--@Add permission to manifest-->在清单文件中添加权限</h3>
+
+<p><!--@To use the gcm service, you must declare the <code>gcm</code> permission in
+<code>manifest.json</code>.-->
+您必须在 <code>manifest.json</code> 中声明 <code>gcm</code> 权限才能使用
+GCM 服务。
+</p>
+
+<pre data-filename="manifest.json"><code>
+"permissions": [
+  "gcm", "storage", ...
+]
+</code></pre>
+
+<p><!--@Please note that the <code>storage</code> permission is also provided here because the
+sample codes below needs to persist some data via the
+<a href="storage.html">chrome.storage</a> API.-->
+请注意，由于下列示例代码需要通过 <a href="storage.html">chrome.storage</a>
+API 保存一些数据，所以还提供了 <code>storage</code> 权限。
+</p>
+
+<h2 id="write_chrome_app_or_extension"><!--@Write Chrome App or Extension-->编写 Chrome 应用或扩展程序</h2>
+
+<h3 id="obtain_registration_id"><!--@Obtain registration ID-->获取注册标识符</h3>
+
+<p><!--@Your app or extension needs to register with GCM servers before it can receive
+messages. When an app or extension registers, it receives a registration ID.
+This is achieved by calling $ref:gcm.register and specifying a list of senders
+identified by project numbers from Google Developers Console. Your app or
+extension should pass a callback function to verify that the registration was
+successful. If successful, the received registration ID should be sent back to
+your application server in a secure way, for example, via https. Otherwise, your
+app or extension should handle the error identified by
+<code>chrome.runtime.lastError</code> and retry later.-->
+您的应用或扩展程序接收消息之前，需要与 GCM
+服务器注册。应用或扩展程序注册时，获得一个注册标识符。这一步通过
+$ref:gcm.register 调用实现，同时还需要指定发送方标识符，即 Google
+开发者控制台中的项目编号。您的应用或扩展程序应该传递一个回调函数，以便确认注册成功。如果成功的话，获得的注册标识符应该以安全的方式（例如使用
+https）发回您的应用程序服务器。否则，您的应用或扩展程序应该处理
+<code>chrome.runtime.lastError</code> 中指明的错误并在一段时间后重试。
+</p>
+
+<p><!--@If your app or extension wishes to receive messages from the different senders,
+it can call $ref:gcm.register again with the new sender list and the new
+registration ID will be returned.-->
+如果您的应用或扩展程序希望从不同的发送方接收消息，它可以再次调用
+$ref:gcm.register 并提供新的发送方列表，返回新的注册标识符。
+</p>
+
+<pre data-filename="background.js"><code>
+function registerCallback(registrationId) {
+  if (chrome.runtime.lastError) {
+    // 注册失败时处理错误并在一段时间后重试。
+    return;
+  }
+
+  // 将注册标识符发送至您的应用程序服务器。
+  sendRegistrationId(function(succeed) {
+    // 您的服务器接收到注册标识符后，设置标志，
+    // 这样下次应用启动时就不会重新注册。
+    if (succeed)
+      chrome.storage.local.set({registered: true});
+  });
+}
+
+function sendRegistrationId(callback) {
+  // 以安全的方式将注册标识符发送至您的应用程序服务器。
+}
+
+chrome.runtime.onStartup.addListener(function() {
+  chrome.storage.local.get("registered", function(result) {
+    // 如果已经注册则取消操作。
+    if (result["registered"])
+      return;
+
+    // 最多允许 100 个发送方。
+    var senderIds = ["Your-Sender-ID"];
+    chrome.gcm.register(senderIds, registerCallback);
+  });
+});
+</code></pre>
+
+<p><!--@If your app or extension is installed in different profiles and/or in different
+Chrome instances, each of them will receive a different registration ID.-->
+如果您的应用或扩展程序在不同的配置文件和/或不同的 Chrome
+实例中安装，其中的每一个都会获得不同的注册标识符。
+</p>
+
+<p><!--@Your app or extension is automatically unregistered from the GCM service when a
+user uninstalls it. You can't unregister using the GCM API.-->
+用户卸载您的应用或扩展程序时会自动取消 GCM 服务的注册，您不能使用 GCM API
+取消注册。
+</p>
+
+<h3 id="receive_messages"><!--@Receive messages-->接收消息</h3>
+
+<p><!--@When your server sends a message to the user, it specifies all of the
+registration IDs that are related to that user and passes the message to the GCM
+service. GCM servers route the message to all instances of Chrome running apps
+or extensions with one of the registration IDs. If your app or extension has
+been installed in more than one profiles in a single Chrome instance, all of
+them can receive messages independently based on their unique registration IDs.-->
+当您的服务器向用户发送消息时，它需要指定有关用户的所有注册标识符，并将消息传递给
+GCM 服务。GCM 服务器将消息转发至运行应用或扩展程序并具有指定注册标识符的所有
+Chrome 实例。如果您的应用或扩展程序在单一 Chrome
+实例的不同配置文件中安装，它们都能基于各自唯一的注册标识符独立地接收消息。
+</p>
+
+<p><!--@Messages from the server are delivered via the $ref:gcm.onMessage event. Your app
+or extension must register a handler to receive this event.-->
+来自服务器的消息通过 $ref:gcm.onMessage
+事件传递，您的应用或扩展程序必须注册处理程序接收该事件。
+</p>
+
+<pre data-filename="background.js"><code>
+chrome.gcm.onMessage.addListener(function(message) {
+  // 消息是一个对象，由键值对组成。
+});
+</code></pre>
+
+<p><!--@As long as Chrome is running, even if the extension or app is not running, it is
+woken up to deliver a message.-->
+只要 Chrome
+浏览器还在运行，即使扩展程序或应用不在运行，它也会被唤醒以便投递消息。
+</p>
+
+<h3 id="send_messages"><!--@Send messages-->发送消息</h3>
+
+<p><!--@To send messages upstream, your app or extension should call $ref:gcm.send with an
+object containing:-->
+要发送消息，您的应用或扩展程序应该调用
+$ref:gcm.send，并传递一个包含如下信息的对象：
+</p>
+
+<ul>
+<li><!--@Message ID that identifies the message when it fails to be queued or
+delivered. The message ID can be any kind of string. However, it is
+recommended to stay unique across the lifetime of your app or extension, even
+after it restarts. If you use the same message ID, there may be a chance that
+the previous message gets overridden. If an auto-increment counter is used to
+create the message ID, your app or extension should persist the counter value
+via <a href="storage.html">chrome.storage</a> API and restore it when the app
+reloads.-->
+消息标识符，在放入队列或投递失败时标志消息。消息标识符可以是任何字符串，但是建议在您的应用或扩展程序的整个生命周期内确保它的唯一性，即使在重新启动后。如果您使用相同的消息标识符，之前的消息有可能被覆盖。如果使用自增计数器创建消息标识符，您的应用或扩展程序应该使用
+<a href="storage.html">chrome.storage</a> API
+保存计数器值，并在应用重新载入时恢复它。
+</li>
+<li><!--@Destination ID that identifies the server. This is the project number from the
+Google Developers Console plus the suffix "@gcm.googleapis.com".-->
+目标标识符，标识服务器，即 Google 开发者控制台中的项目编号加上
+"@gcm.googleapis.com" 后缀。
+</li>
+<li><!--@Data that consist of a list of string-to-string key value pairs (up to 4KB
+total).-->
+由字符串-字符串键值对列表组成（总计不超过 4KB）。
+</li>
+<li><!--@Time-to-live (TTL, optional). This property value must be a duration from 0 to
+2,419,200 seconds (4 weeks) and it corresponds to the maximum period of time
+for which GCM will store and try to deliver the message. If this property is
+not set, it is default to the maximum value. When a TTL is set to 0, GCM will
+try to deliver the message immediately. If the immediate effort fails, the
+message will be discarded.-->
+留存时间（TTL，可选）。该属性值必须在 0～2,419,200 秒（4
+周）之间，对应于 GCM
+存储并尝试投递消息的最长时间。如果没有设置该属性则默认为最大值。如果 TTL
+设置为 0，GCM 立即尝试投递消息，如果投递失败则丢弃该消息。
+</li>
+</ul>
+
+<p><!--@When the callback passed in $ref:gcm.send is called without runtime error, it does
+not mean that the message was already delivered to the GCM server. Rather, it
+means that it was queued for delivery. If the message fails to reach the
+destination within the specified TTL period, for example due to network error,
+the $ref:gcm.onSendError will be fired.-->
+$ref:gcm.send 中的回调函数调用时如果没有运行时错误，这并不意味着消息已经投递到
+GCM 服务器，而是它已经放入队列等待投递。如果消息无法在指定的 TTL
+时间内到达目标，例如由于网络错误，则产生 $ref:gcm.onSendError 事件。
+</p>
+
+<pre data-filename="background.js"><code>
+// 在此处使用您自己的发送方标识符，即 Google 开发者
+// 控制台中获得的项目编号。
+var senderId = "Your-Sender-ID";
+
+// 确保消息标识符在您的应用的整个生命周期内唯一。实现
+// 这一点的一种方式就是使用自增计数器，并将计数值保存
+// 在本地存储中。
+
+// 消息标识符通过本地存储保存和恢复。
+var messageId = 0;
+chrome.storage.local.get("messageId", function(result) {
+  if (chrome.runtime.lastError)
+    return;
+  messageId = parseInt(result["messageId"]);
+  if (isNaN(messageId))
+    messageId = 0;
+});
+
+// 设置事件监听器，处理发送错误。
+chrome.gcm.onSendError.addListener(sendError);
+
+// 返回新的标识符标识消息。
+function getMessageId() {
+  messageId++;
+  chrome.storage.local.set({messageId: messageId});
+  return messageId.toString();
+}
+
+function sendMessage() {
+  var message = {
+    messageId: getMessageId(),
+    destinationId: senderId + "@gcm.googleapis.com",
+    timeToLive: 86400,    // 1 天
+    data: {
+      "key1": "value1",
+      "key2": "value2"
+    }
+  };
+  chrome.gcm.send(message, function(messageId) {
+    if (chrome.runtime.lastError) {
+      // 发生了一些错误，妥善处理或者再次发送。
+      return;
+    }
+
+    // 消息已接受，准备投递。如果消息无法到达目标
+    // 则产生 onSendError 事件。
+  });
+}
+
+function sendError(error) {
+  console.log("无法发送消息 " + error.messageId +
+      "：" + error.errorMessage);
+}
+</code></pre>
+
+<h3 id="messages_deleted_event"><!--@Messages deleted event-->消息删除事件</h3>
+
+<p><!--@GCM will store up to 100 non-collapsible messages. After that, all messages are
+discarded from GCM, and an event $ref:gcm.onMessagesDeleted will be fired, which
+tells the client that it falls behind. Your app or extension should respond by
+syncing with your application server to recover the discarded messages.-->
+GCM 最多存储 100 条不可折叠的消息，在此之后，所有消息都会被 GCM 丢弃，并产生
+$ref:gcm.onMessagesDeleted
+事件，告诉客户端消息滞后了。您的应用或扩展程序应该响应该事件，并与应用程序服务器同步，恢复丢弃的消息。
+</p>
+
+<pre data-filename="background.js"><code>
+chrome.gcm.onMessagesDeleted.addListener(messagesDeleted);
+
+function messagesDeleted() {
+  // 所有消息被 GCM 丢弃，与应用程序服务器同步，
+  // 从这种情况下恢复正常。
+}
+</code></pre>
+
+<h3 id="collapsible_messages"><!--@Collapsible messages-->可折叠的消息</h3>
+
+<p><!--@GCM messages are often a tickle, telling the app or extension to contact the
+server for fresh data. In GCM, it's possible to create collapsible messages for
+this situation, wherein new messages replace older ones. When a collapse key is
+provided and multiple messages are queued up in the GCM servers for the same
+user, only the last one with any given collapse key is delivered to your app or
+extension. As a result the <code>message</code> object passed to the $ref:gcm.onMessage event
+will contain a <code>collapseKey</code>field. For more details about sending collapsible
+messages, please refer to <a href="http://developer.android.com/google/gcm/adv.html#collapsible">GCM Advance
+Topics</a>.-->
+GCM 消息通常很简单，只是告诉应用或扩展程序从服务器获取新数据。这种情况下可以在
+GCM 中创建可折叠的消息，使新消息替代旧消息。当您提供了折叠键后，如果同一用户
+的多条消息放入 GCM
+服务器队列中，只有包含指定折叠键的最后一条消息才会传递到您的应用或扩展程序。这样传递给
+$ref:gcm.onMessage 事件的 <code>message</code> 对象包含 <code>collapseKey</code>
+字段。有关发送可折叠消息的更多详情，请参见
+<a href="https://developer.android.com/google/gcm/adv.html#collapsible">GCM
+高级主题</a>。
+</p>
+
+<h2 id="publish_your_app"><!--@Publish your app-->发布您的应用</h2>
+
+<p><!--@To use the GCM service, you must publish your app in the <a href="https://developers.google.com/chrome/web-store/docs/publish">Chrome Web
+Store</a>.-->
+要想使用 GCM 服务，您必须在
+<a href="https://developers.google.com/chrome/web-store/docs/publish">Chrome
+网上应用店</a>中发布您的应用。
+</p>
+
+<h2 id="error_reference"><!--@Error reference-->错误参考</h2>
+
+<p><!--@An error could occur when a gcm API function is called. Your app or extension
+should check $ref:runtime.lastError for more information in your callback. The
+error code will also be passed as a parameter to $ref:gcm.onSendError event.-->
+调用 GCM API 函数时可能会发生错误，您的应用或扩展程序应该在回调函数中检查
+$ref:runtime.lastError 获取更多信息，错误代码还会作为参数传递给
+$ref:gcm.onSendError 事件。
+</p>
+
+<p><!--@Here's a brief summary of the gcm errors:-->
+如下是 GCM 错误的简要概述：
+</p>
+
+<ul>
+<li><strong>Function was called with invalid parameters</strong><!--@: this could happen when gcm
+functions are called with bad parameters.-->（调用函数时传递的参数无效）：GCM
+函数调用时传递不正确的参数时就会发生该错误。</li>
+<li><strong>Profile was not signed in</strong><!--@: this could happen when gcm functions are called
+from a profile that was not signed in.-->（配置文件未登录）：GCM
+函数在未登录的配置文件中调用时就会发生该错误。</li>
+<li><strong>Asynchronous operation is pending</strong><!--@: this could happen when certain gcm
+function is called again without waiting for the callback passed in previous
+function to be called.-->（异步操作待定）：如果之前传递的回调函数还未调用时就再次调用某些
+GCM 函数则会发生该错误。</li>
+<li><strong>Network error occurred</strong><!--@: this could happen when GCM server fails to reach
+due to network problem, like losing Internet connection.-->（发生网络错误）：由于网络问题（例如 Internet 连接断开）无法连接到 GCM
+服务器时就会发生该错误。</li>
+<li><strong>Server error occurred</strong><!--@: this could happen when GCM server fails to reach
+due to server problem, like server busy.-->（发生服务器错误）：由于服务器问题（例如服务器忙）无法连接到
+GCM 服务器时就会发生该错误。</li>
+<li><strong>Time-to-live exceeded</strong><!--@: this could happen when a message could not be
+delivered within the specific time-to-live period.-->（超过留存期）：如果不能在指定的留存期内投递消息就会产生该错误。</li>
+<li><strong>Unknown error occurred</strong><!--@: this could happen due to any other internal
+errors.-->（发生未知错误）：任何其他内部错误都可能发生该错误。</li>
+</ul>
+
+<h2 id="feedback"><!--@Feedback-->反馈</h2>
+
+<p><!--@You can provide feedback about Google Cloud Messaging and the gcm API through
+the Google Group <a href="https://groups.google.com/forum/#!forum/gcm-for-chrome-v2-feedback">GCM for Chrome V2
+Feedback</a>.
+Use this group to ask for help, file bug reports, and request features.-->
+您可以通过 <a
+href="https://groups.google.com/forum/#!forum/gcm-for-chrome-v2-feedback">GCM
+for Chrome V2 Feedback</a> Google 网上论坛提供关于 Google 云消息服务及
+GCM API 的反馈，可以寻求帮助、报告问题、请求特性。
+</p>

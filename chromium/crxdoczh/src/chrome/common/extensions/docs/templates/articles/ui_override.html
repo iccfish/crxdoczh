@@ -1,0 +1,131 @@
+<h1><!--@Settings Overrides-->设置重写</h1>
+
+<p>
+<!--@Settings overrides are a way for extensions to override selected Chrome settings
+and user interface properties.-->
+扩展程序可以使用设置重写的方式修改 Chrome 浏览器设置和用户界面属性。
+</p>
+
+<h2 id="bookmarks"><!--@Bookmarks User Interface-->书签用户界面：</h2>
+<p>
+<!--@Register the settings you want to override in the
+<a href="manifest.html">extension manifest</a> like this:-->
+如下所示在<a href="manifest.html">扩展程序的清单文件</a>中注册您要重写的设置：
+</p>
+
+<pre>{
+  "name": "我的扩展程序",
+  ...
+<b>
+  "chrome_settings_overrides" : {
+    "bookmarks_ui": {
+      "remove_button": "true",
+      "remove_bookmark_shortcut": "true"
+    }
+  }</b>,
+  ...
+}</pre>
+
+<p>
+<ul>
+  <li>
+    <a href="#bookmarks_ui"><!--@Bookmark button-->书签按钮</a><!--@: the "star" button that is used
+    to bookmark pages. Extensions may remove this button using the settings
+    overrides, and optionally replace it with a browser action or page action.-->：用于为网页创建书签的“加星”按钮。扩展程序可以使用设置重写移除该按钮，还可以使用浏览器按钮或页面按钮替换它。
+  </li>
+
+  <li>
+    <a href="#bookmarks_ui"><!--@Bookmark shortcut-->书签快捷键</a><!--@: the shortcut key that is
+    used to bookmark a page (Ctrl-D on Windows). Extensions may remove this
+    shortcut via the settings overrides, and optionally bind their own command
+    to it using the <code>commands</code> section of the manifest.-->：用于为网页创建书签的快捷键（Windows
+    下为 Ctrl-D）。扩展程序可以通过设置重写取消快捷键，还能使用清单文件的
+    <code>commands</code> 部分绑定自己的命令。
+  </li>
+</ul>
+</p>
+
+<p class="note">
+<b><!--@Note:-->注意：</b><!--@ Settings overrides for <code>bookmarks_ui</code> are only enabled
+in the Chrome Dev release, and Chrome must be started with the
+<code>--enable-override-bookmarks-ui=1</code> command line flag to enable
+bookmarks user interface overrides.--><code>bookmarks_ui</code>
+的设置重写仅在
+Dev 分支的 Chrome 浏览器中启用，并且 Chrome 浏览器启动时必须指定
+<code>--enable-override-bookmarks-ui=1</code> 参数。
+</p>
+
+<h2 id="others"><!--@Homepage, Search Provider, and Startup Pages-->主页、搜索引擎和起始页</h2>
+<p>
+<!--@Here is an example how <a href="#homepage">homepage</a>, <a
+href="#search_provider">search provider</a> and <a href="#startup_pages">startup
+pages</a> can be modified in the <a href="manifest.html">extension
+manifest</a>.-->
+如下例子演示如何在<a href="manifest.html">扩展程序的清单文件</a>中修改<a
+href="#homepage">主页</a>、<a href="#search_provider">搜索引擎</a>和<a
+href="#startup_pages">起始页</a>。
+</p>
+
+<pre>{
+  "name": "我的扩展程序",
+  ...
+  "chrome_settings_overrides": {
+    "homepage": "http://www.homepage.com",
+    "search_provider": {
+        "name": "name.__MSG_url_domain__",
+        "keyword": "keyword.__MSG_url_domain__",
+        "search_url": "http://www.foo.__MSG_url_domain__/s?q={searchTerms}",
+        "favicon_url": "http://www.foo.__MSG_url_domain__/favicon.ico",
+        "suggest_url": "http://www.foo.__MSG_url_domain__/suggest?q={searchTerms}",
+        "instant_url": "http://www.foo.__MSG_url_domain__/instant?q={searchTerms}",
+        "image_url": "http://www.foo.__MSG_url_domain__/image?q={searchTerms}",
+        "search_url_post_params": "search_lang=__MSG_url_domain__",
+        "suggest_url_post_params": "suggest_lang=__MSG_url_domain__",
+        "instant_url_post_params": "instant_lang=__MSG_url_domain__",
+        "image_url_post_params": "image_lang=__MSG_url_domain__",
+        "alternate_urls": [
+          "http://www.moo.__MSG_url_domain__/s?q={searchTerms}",
+          "http://www.noo.__MSG_url_domain__/s?q={searchTerms}"
+        ],
+        "encoding": "UTF-8",
+        "is_default": true
+    },
+    "startup_pages": ["http://www.startup.com"]
+   },
+   "default_locale": "de",
+   ...
+}</pre>
+
+<p class="note">
+<b><!--@Note:-->注意：</b><!--@ Settings overrides for <code>homepage</code>,
+<code>search_provider</code>, and <code>startup_pages</code> are only enabled
+in the Chrome Dev release.-->
+<code>homepage</code>、<code>search_provider</code> 以及
+<code>startup_pages</code> 的设置重写只能在 Dev 分支的 Chrome 浏览器中使用。
+</p>
+
+<h2 id="reference"><!--@Reference-->参考</h2>
+<p>
+<!--@An extension can override one or more of the following properties in the
+manifest:-->
+扩展程序可以在清单文件中重写如下一个或多个属性：
+</p>
+
+<ul>
+{{#f:apis.manifestTypes.byName.ChromeSettingsOverrides.properties}}
+  <li>
+  <p id="{{f.name}}"><b><code>{{f.name}}</code> ({{+partials.variable_type type:f/}})</b></p>
+  <p>{{f.description}}</p>
+  {{?f.properties}}
+    <table>
+    <tr><th><!--@Type-->类型</th><th><!--@Attribute-->属性</th><th><!--@Description-->描述</th></tr>
+    {{+partials.type_item
+       title:f.strings.properties
+       display_name:display_name
+       items:f.properties
+       item_partial:(partials.parameter_full hideParamTOC:true)/}}
+    </table>
+  {{/}}
+{{/}}
+</ul>
+
