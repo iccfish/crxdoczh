@@ -1,0 +1,690 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Keyboard Shortcuts-->快捷键</h1>
+
+    <p>
+      <!--@The DevTools has several built-in shortcut keys that developers can use to save time in their day to day workflow. Outlined below is each shortcut and the corresponding key for each on Windows/Linux and Mac. While some shortcuts are globally available across all of the DevTools, others are specific to a single panel, and are broken up based on where it can be used.-->
+      开发者工具有一些内建的快捷键，开发者利用它们可以在日常工作中节约很多时间。下面列出了所有快捷键以及
+      Windows/Linux 和 Mac
+      平台上对应的按键。某些快捷键在整个开发者工具中都可以使用，而另外一些仅在某一个面板中有效，这些快捷键按照可以使用的位置分别列出。
+    </p>
+
+
+
+<div class="collapsible">
+      <h2 id="opening-devtools"> <!--@Opening DevTools-->打开开发者工具 </h2>
+
+      <p> <!--@To access the DevTools, on any web page or app in Google Chrome you can use one of these options:-->
+        要访问开发者工具，在 Google Chrome
+        浏览器中的任意网页或应用上，您可以使用以下任何一种方式：
+      </p>
+
+        <li> <!--@Open the -->打开浏览器窗口右上角的 <b>Chrome <!--@menu -->菜单</b> <img src="shortcuts-files/chrome-menu.png" alt="Chrome menu"><!--@ at the top-right of your browser window, then select <b>Tools</b> &gt; <b>Developer Tools</b>.-->，并选择<b>工具</b> &gt; <b>开发者工具</b>。</li>
+        <li> <!--@Right-click on any page element and select <b>Inspect Element</b>.-->右键单击网页中的任何元素并选择<b>审查元素</b>。</li>
+
+      <table>
+        <tbody>
+          <tr>
+            <th></th>
+            <th> Windows / Linux </th>
+            <th> Mac </th>
+          </tr>
+          <tr>
+            <td> <!--@Open Developer Tools-->打开开发者工具 </td>
+            <td> <span class="kbd">F12</span>, <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">I</span> </td>
+            <td> <span class="kbd">Cmd</span> + <span class="kbd">Opt</span> + <span class="kbd">I</span> </td>
+          </tr>
+          <tr>
+            <td> <!--@Open / switch from inspect element mode and browser window-->
+              打开/切换审查元素模式和浏览器窗口
+            </td>
+            <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">C</span> </td>
+            <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">C</span> </td>
+          </tr>
+          <tr>
+            <td> <!--@Open Developer Tools and bring focus to the console-->打开开发者工具并激活控制台 </td>
+            <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">J</span> </td>
+            <td> <span class="kbd">Cmd</span> + <span class="kbd">Opt</span> + <span class="kbd">J</span> </td>
+          </tr>
+          <tr>
+            <td> <!--@Inspect the Inspector (<em>undock first one and press</em>)-->审查开发者工具（<em>首先取消固定再按下快捷键</em>） </td>
+            <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">J</span> </td>
+            <td> <span class="kbd">Cmd</span> + <span class="kbd">Opt</span> + <span class="kbd">J</span> </td>
+          <tr>
+        </tbody>
+      </table>
+
+      <p> <!--@To open up the General Settings dialog type-->如果要打开常用设置对话框请在开发者工具窗口打开时按下 <span class="kbd">?</span> <!--@or-->或 <span class="kbd">F1</span><!--@ when the Developer Tools window is open. Press-->，按下 <span class="kbd">Esc</span> <!--@to close the settings dialog.-->关闭设置对话框。</p>
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="all-panels"> <!--@All Panels-->所有面板 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+            </tr>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Show General Settings dialog-->显示常用设置对话框 </td>
+              <td> <span class="kbd">?</span>, <span class="kbd">F1</span> </td>
+              <td> <span class="kbd">?</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Next panel-->下一个面板                     </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">]</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">]</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Previous panel-->上一个面板                 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">[</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">[</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Backward in panel History-->在面板历史记录中后退     </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Alt</span> + <span class="kbd">[</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Alt</span> + <span class="kbd">[</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Forward in panel history-->在面板历史记录中前进      </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Alt</span> + <span class="kbd">]</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Alt</span> + <span class="kbd">]</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Jump to panel 1-9 (<em>when enabled in General Settings</em>)-->跳转到面板 1～9（<em>如果在常用设置中启用的话</em>） </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">1-9</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">1-9</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Toggle Console / close settings dialog when open-->打开或关闭控制台/设置对话框打开时关闭它 </td>
+              <td> <span class="kbd">Esc</span> </td>
+              <td> <span class="kbd">Esc</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Refresh the page-->刷新网页               </td>
+              <td> <span class="kbd">F5</span>, <span class="kbd">Ctrl</span> + <span class="kbd">R</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">R</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Refresh the page ignoring cached content-->刷新网页，忽略缓存中的内容          </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">F5</span>, <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">R</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">R</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Text search within current file or panel-->在当前文件或面板中搜索文本 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">F</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">F</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Text search across all sources-->在所有源文件中搜索文本 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">F</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Alt</span> + <span class="kbd">F</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Search by filename (<em>except on Timeline</em>)-->根据文件名搜索（<em>除了 Timeline（时间线）</em>） </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">O</span>, <span class="kbd">Ctrl</span> + <span class="kbd">O</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">O</span>, <span class="kbd">Cmd</span> + <span class="kbd">O</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Restore default text size-->恢复默认字体大小      </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">0</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">0</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Zoom in-->放大                        </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">+</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">+</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Zoom out-->缩小                       </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">-</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">-</span> </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="elements-panel"> Elements<!--@ Panel-->（元素）面板 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Undo change-->撤销更改                    </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Z</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Z</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Redo change-->重复更改                    </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Y</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Y</span>, <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">Z</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Navigate-->导航                       </td>
+              <td> <span class="kbd">Up</span>, <span class="kbd">Down</span> </td>
+              <td> <span class="kbd">Up</span>, <span class="kbd">Down</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Expand / collapse node-->展开/折叠节点         </td>
+              <td> <span class="kbd">Right</span>, <span class="kbd">Left</span> </td>
+              <td> <span class="kbd">Right</span>, <span class="kbd">Left</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Expand node-->展开节点 </td>
+              <td> <span class="kbd"><!--@Single-click on tag-->单击标签</span> </td>
+              <td> <span class="kbd"><!--@Single-click on tag-->单击标签</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Edit attribute-->编辑属性 </td>
+              <td> <span class="kbd">Enter</span>, <span class="kbd"><!--@Double-click on attribute-->双击属性</span> </td>
+              <td> <span class="kbd">Enter</span>, <span class="kbd"><!--@Double-click on attribute-->双击属性</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Hide element-->隐藏元素                   </td>
+              <td> <span class="kbd">H</span> </td>
+              <td> <span class="kbd">H</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Toggle edit as HTML-->开启或关闭 HTML 编辑模式            </td>
+              <td> <span class="kbd">F2</span> </td>
+              <td>  </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p> <!--@Right-clicking an element you can:-->右键单击某个元素您可以： </p>
+
+          <li> <!--@Force element psuedo states: (<code>:active</code>, <code>:hover</code>, <code>:focus</code>, <code>:visited</code>)-->
+            强制设置元素的伪状态：（<code>:active</code>、<code>:hover</code>、<code>:focus</code>、<code>:visited</code>）
+          </li>
+          <li> <!--@Set breakpoints on the elements: (Subtree modifications, Attribute modification, Node removal)-->在元素上设置断点（Subtree modifications（子树更改）、Attribute modification（属性修改）、Node removal（节点移除））</li>
+          <!--@<li>Clear console</li>-->
+          <!--# No longer available. -->
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="styles-sidebar"> <!--@Styles Sidebar-->样式侧边栏 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Edit rule-->编辑规则 </td>
+              <td> <span class="kbd"><!--@Single-click-->单击</span> </td>
+              <td> <span class="kbd"><!--@Single-click-->单击</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Insert new property-->插入新属性 </td>
+              <td> <span class="kbd"><!--@Single-click on whitespace-->在空白处单击</span> </td>
+              <td> <span class="kbd"><!--@Single-click on whitespace-->在空白处单击</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Go to line of style rule property declaration in source-->进入源代码中样式规则属性声明所在的那一行 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd"><!--@Click on property-->单击属性</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd"><!--@Click on property-->单击属性</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Go to line of property value declaration in source-->进入源代码中属性值声明所在的那一行 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd"><!--@Click on property value-->单击属性值</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd"><!--@Click on property value-->单击属性值</span> </td>
+            </tr>
+            <!--@
+            <tr>
+              <td> Go to line of style rule property declaration in source </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Click on property</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Click on property</span> </td>
+            </tr>
+            <tr>
+              <td> Go to line of property value declaration in source </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Click on property value</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Click on property value</span> </td>
+            </tr>
+            --><!--# Duplicate -->
+            <tr>
+              <td> <!--@View auto-complete suggestions-->查看自动完成建议         </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Space</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Space</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Edit next / previous property-->编辑下一个/上一个属性          </td>
+              <td> <span class="kbd">Tab</span>, <span class="kbd">Shift</span> + <span class="kbd">Tab</span> </td>
+              <td> <span class="kbd">Tab</span>, <span class="kbd">Shift</span> + <span class="kbd">Tab</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Increment / decrement value-->使数值加/减 1            </td>
+              <td> <span class="kbd">Up</span>, <span class="kbd">Down</span> </td>
+              <td> <span class="kbd">Up</span>, <span class="kbd">Down</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Increment / decrement value by 10-->使数值加/减 10      </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Up</span>, <span class="kbd">Shift</span> + <span class="kbd">Down</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Up</span>, <span class="kbd">Shift</span> + <span class="kbd">Down</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Increment / decrement value by 10-->使数值加/减 10      </td>
+              <td> <span class="kbd">PgUp</span>, <span class="kbd">PgDown</span> </td>
+              <td> <span class="kbd">PgUp</span>, <span class="kbd">PgDown</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Increment / decrement value by 100-->使数值加/减 100     </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">PgUp</span>, <span class="kbd">Shift</span> + <span class="kbd">PgDown</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">PgUp</span>, <span class="kbd">Shift</span> + <span class="kbd">PgDown</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Increment / decrement value by 0.1-->使数值加/减 0.1     </td>
+              <td> <span class="kbd">Alt</span> + <span class="kbd">Up</span>, <span class="kbd">Alt</span> + <span class="kbd">Down</span> </td>
+              <td> <span class="kbd">Opt</span> + <span class="kbd">Up</span>, <span class="kbd">Opt</span> + <span class="kbd">Down</span> </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          <img src="shortcuts-files/toggle-element-state.png" alt="Element Pseudostates" />
+          <!--@Emulate an element's pseudo state (<code>:active</code>, <code>:hover</code>, <code>:focus</code>, <code>:visited</code>)-->
+          模拟元素的伪状态（<code>:active</code>、<code>:hover</code>、<code>:focus</code>、<code>:visited</code>）
+        </p>
+        <p>
+          <img src="shortcuts-files/new-style-rule.png" alt="Adding style selectors" />
+          <!--@Add new style selectors-->
+          添加新的样式选择器
+        </p>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="sources-panel"> Sources<!--@ Panel-->（源代码）面板 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Pause / resume script execution-->暂停/恢复脚本执行      </td>
+              <td> <span class="kbd">F8</span>, <span class="kbd">Ctrl</span> + <span class="kbd">\</span> </td>
+              <td> <span class="kbd">F8</span>, <span class="kbd">Cmd</span> + <span class="kbd">\</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Step over next function call-->单步执行完下一个函数调用         </td>
+              <td> <span class="kbd">F10</span>, <span class="kbd">Ctrl</span> + <span class="kbd">'</span> </td>
+              <td> <span class="kbd">F10</span>, <span class="kbd">Cmd</span> + <span class="kbd">'</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Step into next function call-->单步执行进入下一个函数调用         </td>
+              <td> <span class="kbd">F11</span>, <span class="kbd">Ctrl</span> + <span class="kbd">;</span> </td>
+              <td> <span class="kbd">F11</span>, <span class="kbd">Cmd</span> + <span class="kbd">;</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Step out of current function-->跳出当前函数         </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">F11</span>, <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">;</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">F11</span>, <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">;</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Select next call frame-->选择下一个调用帧               </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">.</span> </td>
+              <td> <span class="kbd">Opt</span> + <span class="kbd">.</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Select previous call frame-->选择上一个调用帧           </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">,</span> </td>
+              <td> <span class="kbd">Opt</span> + <span class="kbd">,</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Toggle breakpoint condition-->开启/关闭断点条件          </td>
+              <td> <span class="kbd"><!--@Click on line number-->单击行号</span>, <span class="kbd">Ctrl</span> + <span class="kbd">B</span> </td>
+              <td> <span class="kbd"><!--@Click on line number-->单击行号</span>, <span class="kbd">Cmd</span> + <span class="kbd">B</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Edit breakpoint condition-->编辑断点条件            </td>
+              <td> <span class="kbd"><!--@Right-click on line number-->右键单击行号</span> </td>
+              <td> <span class="kbd"><!--@Right-click on line number-->右键单击行号</span> </td>
+            </tr>
+            <!-- <tr>
+              <td> Delete text on current line </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">D</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">D</span> </td>
+            </tr> -->
+            <tr>
+              <td> <!--@Delete individual words-->删除单独的词 </td>
+              <td> <span class="kbd">Alt</span> + <span class="kbd">Delete</span> </td>
+              <td> <span class="kbd">Opt</span> + <span class="kbd">Delete</span> </td>
+            </tr>
+            <!--@
+            <tr>
+              <td> Delete individual words </td>
+              <td> <span class="kbd">Alt</span> + <span class="kbd">Delete</span> </td>
+              <td> <span class="kbd">Opt</span> + <span class="kbd">Delete</span> </td>
+            </tr>
+            -->
+            <tr>
+              <td> <!--@Save changes to local modifications-->将更改保存至本地修改区 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">S</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">S</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Go to line-->转到指定行号                           </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">G</span> </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">G</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Search by filename-->根据文件名搜索 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">O</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">O</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Jump to line number-->跳转至行号 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">P</span> + <span class="kbd">:&lt;<!--@number-->行号&gt;</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">P</span> + <span class="kbd">:&lt;<!--@number-->行号&gt;</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Go to member-->跳转至成员 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">O</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">O</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Toggle console and evaluate code selected in Sources panel-->打开控制台并执行源代码面板中选中的代码 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">E</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">E</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Run snippet-->运行代码片段 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Enter</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Toggle comment-->注释/取消注释指定代码 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">/</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">/</span> </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <img src="shortcuts-files/pause-on-exceptions-button.png" alt="Pause on Exception Button" />
+          <!--@Don't pause on exceptions-->遇到异常时不要暂停
+        </p>
+        <p>
+          <img src="shortcuts-files/pause-on-uncaught-exceptions-button.png" alt="Pause on All Exceptions" />
+          <!--@Pause on All exceptions (including those caught within try/catch blocks)-->
+          遇到所有异常时都暂停（包括 try/catch 块中捕获的异常）
+        </p>
+        <p>
+          <img src="shortcuts-files/pause-on-uncaught-errors-button.png" alt="Pause on Uncaught Exceptions" />
+          <!--@Pause on uncaught exceptions (usually the one you want)-->
+          遇到未捕获的异常时暂停（通常是您需要使用的）
+        </p>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="timeline-panel"> Timeline<!--@ Panel-->（时间线）面板 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Start / stop recording-->开始/停止记录       </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">E</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">E</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Save timeline data-->保存时间线数据           </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">S</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">S</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Load timeline data-->加载时间线数据           </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">O</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">O</span> </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="timeline-panel"> Profiles<!--@ Panel-->（性能分析）面板 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Start / stop recording-->开始/停止记录       </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">E</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">E</span> </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="console"> <!--@Console-->控制台 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Next suggestion-->下一个建议                      </td>
+              <td> <span class="kbd">Tab</span> </td>
+              <td> <span class="kbd">Tab</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Previous suggestion-->上一个建议                  </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Tab</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Tab</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Accept suggestion-->接受建议                    </td>
+              <td> <span class="kbd">Right</span> </td>
+              <td> <span class="kbd">Right</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Previous command / line-->上一条命令/上一行              </td>
+              <td> <span class="kbd">Up</span> </td>
+              <td> <span class="kbd">Up</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Next command / line-->下一条命令/下一行                  </td>
+              <td> <span class="kbd">Down</span> </td>
+              <td> <span class="kbd">Down</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Clear Console-->清除控制台                        </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">L</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">K</span>, <span class="kbd">Opt</span> + <span class="kbd">L</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Multi-line entry-->输入多行内容                      </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Enter</span> </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Return</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Execute-->运行                              </td>
+              <td> <span class="kbd">Enter</span> </td>
+              <td> <span class="kbd">Return</span> </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p> <!--@Right-clicking on console:-->右键单击控制台： </p>
+
+          <li> XMLHTTPRequest logging<!--@: Turn on to view the XHR log-->（记录 XMLHttpRequest 请求）：打开后查看 XHR 日志 </li>
+          <li> Preserve log upon navigation（导航时保留日志） </li>
+          <li> Filter<!--@: Hide and unhide messages from script files-->（过滤器）：隐藏或显示来自脚本文件的消息 </li>
+          <li> Clear console<!--@: Clear all console messages-->（清除控制台）：清除所有控制台消息 </li>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="screencasting"> <!--@Screencasting-->屏幕投影 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Pinch zoom in and out-->双指缩放       </td>
+              <td> <span class="kbd">Alt</span> + <span class="kbd">Scroll</span>,<span class="kbd">Ctrl</span> + <span class="kbd"><!--@Cick and drag with two fingers-->使用两只手指单击并拖动</span>  </td>
+              <td> <span class="kbd">Opt</span> + <span class="kbd">Scroll</span>, <span class="kbd">Cmd</span> + <span class="kbd"><!--@Cick and drag with two fingers-->使用两只手指单击并拖动</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Inspect element tool-->审查元素工具           </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">C</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">C</span> </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="emulation"> <!--@Emulation-->模拟 </h2>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Pinch zoom in and out-->双指缩放       </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Scroll</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">Scroll</span> </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <section>
+</div>
+<div class="collapsible">
+        <h2 id="other-shortcuts"> <!--@Other Chrome Shortcuts-->其他 Chrome 浏览器快捷键 </h2>
+
+        <p><!--@Here are some additional Chrome shortcuts which are useful for general use within the browser not specific to the DevTools. <a href="http://goo.gl/PsTNm">View all Chrome shortcuts</a> for Windows, Mac, and Linux.-->
+        如下是 Chrome
+        浏览器的其他一些快捷键，在一般的浏览器使用中非常有用，不仅仅局限于开发者工具。<a href="https://support.google.com/chrome/answer/157179?hl=zh-Hans&topic=25799&rd=1">查看 Windows、Mac 和 Linux
+        系统中所有 Chrome 浏览器快捷键</a>。
+        </p>
+
+        <table>
+          <tbody>
+            <tr>
+              <th></th>
+              <th> Windows / Linux </th>
+              <th> Mac </th>
+            </tr>
+            <tr>
+              <td> <!--@Find next-->查找下一个 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">G</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">G</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Find previous-->查找上一个 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">G</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">G</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Open a new window in Incognito mode-->在隐身模式中打开新窗口 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">N</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">N</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Toggle Bookmarks bar on and off-->打开/关闭书签栏 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">B</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">B</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@View the History page-->查看“历史记录”页面 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">H</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Y</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@View the Downloads page-->查看“下载”页面 </td>
+              <td> <span class="kbd">Ctrl</span> + <span class="kbd">J</span> </td>
+              <td> <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">J</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@View the Task Manager-->查看任务管理器 </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">ESC</span> </td>
+              <td> <span class="kbd">Shift</span> + <span class="kbd">ESC</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Next page in a tabs browsing history-->标签页历史记录中的下一个网页 </td>
+              <td> <span class="kbd">Alt</span> + <span class="kbd">Right</span> </td>
+              <td> <span class="kbd">Alt</span> + <span class="kbd">Right</span> </td>
+            </tr>
+            <tr>
+              <td> <!--@Previous page in a tabs browsing history-->标签页历史记录中的上一个网页 </td>
+              <td> <span class="kbd">Backspace</span>, <span class="kbd">Alt</span> + <span class="kbd">Left</span> </td>
+              <td> <span class="kbd">Backspace</span>, <span class="kbd">Alt</span> + <span class="kbd">Left</span> </td>
+             </tr>
+             <tr>
+               <td> <!--@Highlight content in the web address area-->高亮网址区域中的内容 </td>
+               <td> <span class="kbd">F6</span>, <span class="kbd">Ctrl</span> + <span class="kbd">L</span>, <span class="kbd">Alt</span> + <span class="kbd">D</span> </td>
+               <td> <span class="kbd">Cmd</span> + <span class="kbd">L</span>, <span class="kbd">Alt</span> + <span class="kbd">D</span> </td>
+             </tr>
+             <tr>
+               <td> <!--@Places a ? in the address bar for performing a keyword <br />
+                  search using your default search engine-->
+                  在地址栏中显示 ?，使用您的默认搜索引擎进行关键字搜索
+               </td>
+               <td> <span class="kbd">Ctrl</span> + <span class="kbd">K</span>, <span class="kbd">Ctrl</span> + <span class="kbd">E</span> </td>
+               <td> <span class="kbd">Cmd</span> + <span class="kbd">K</span>, <span class="kbd">Cmd</span> + <span class="kbd">E</span> </td>
+             </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+
+</div>
+{{/partials.standard_devtools_article}}
