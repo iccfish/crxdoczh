@@ -1,0 +1,840 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Debugging-->调试 JavaScript</h1>
+<p><!--@As the <strong>complexity</strong> of JavaScript applications increase, developers need
+powerful debugging tools to help quickly discover the cause of an issue and fix
+it efficiently. The Chrome DevTools include a number of useful tools to help
+make <strong>debugging</strong> JavaScript less painful.-->
+随着 JavaScript
+应用程序<strong>复杂性</strong>的增加，开发者需要强大的调试工具迅速发现问题的原因并有效解决。Chrome
+开发者工具包含许多有用的工具，使您更轻松地<strong>调试</strong> JavaScript。
+</p>
+
+<p><!--@In this section, we will walk through how to use these tools by debugging the
+<a href="http://closure-library.googlecode.com/svn/trunk/closure/goog/demos/hovercard.html">Google Closure hovercard
+demo</a>
+and other dynamic examples in this page.-->
+在这一部分中，我们将一步步演示如何使用这些工具调试
+<a href="http://closure-library.googlecode.com/svn/trunk/closure/goog/demos/hovercard.html">Google Closure hovercard
+演示</a>以及该网页中的其他动态例子。
+
+</p>
+
+<p class="note"><strong><!--@Note:-->注意：</strong><!--@ If you are a web developer and want to get the latest version of
+DevTools, you should use -->
+如果您是网页开发者，希望获取最新版本的开发者工具，您应该使用
+<a href="https://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a><!--@.-->。</p>
+
+
+
+<div class="collapsible">
+<h2 id="sources-panel"><!--@The Sources Panel-->Sources（源代码）面板</h2>
+
+<p><!--@The <strong>Sources</strong> panel lets you debug your JavaScript code. It provides a
+graphical interface to the <a href="https://code.google.com/p/v8/">V8</a> debugger. Follow the steps below to explore the
+<strong>Sources</strong> panel:-->
+<strong>Sources</strong>（源代码）面板允许您调试 JavaScript 代码，它为
+<a href="https://code.google.com/p/v8/">V8</a>
+调试器提供了一个图形界面。请遵循下面的步骤探索
+<strong>Sources</strong>（源代码）面板。
+</p>
+
+<li><!--@Open a site such as the-->打开某个网站，例如 <a href="http://closure-library.googlecode.com/svn/trunk/closure/goog/demos/hovercard.html">Google Closure hovercard <!--@demo
+page-->演示网页</a><!--@ or the-->或 <a href="http://todomvc.com/architecture-examples/angularjs/">TodoMVC</a> Angular <!--@app.-->应用。</li>
+<li><!--@Open the DevTools window.-->打开开发者工具窗口。</li>
+<li><!--@If it is not already selected, select <strong>Sources</strong>.-->如果还没有选中，选择 <strong>Sources</strong>（源代码）。</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/javascript-debugging-overview.jpg"/></div></p>
+
+<p><!--@The <strong>Sources</strong> panel lets you see all the scripts that are part of the
+inspected page. Standard controls to pause, resume, and step through code are
+provided below the panel selection icons. A button to force a pause at
+exceptions is located at the bottom of the window. Sources are visible in
+separate tabs and clicking <img src="javascript-debugging/image_1.png"/> opens the file navigator
+which will display all open scripts.-->
+<strong>Sources</strong>（源代码）面板允许您查看审查的网页包含的所有脚本。面板选择按钮下提供了暂停、恢复及单步执行代码的标准控制按钮，强制在异常发生时暂停的按钮也在此处。源代码在各自的标签页中显示，单击
+<img src="javascript-debugging/image_1.png">
+打开文件浏览器，里面会显示所有打开的脚本。
+</p>
+
+
+<h3 id="execution-control"><!--@Execution control-->执行控制</h3>
+
+<p><!--@The <strong>execution control</strong> buttons are located at the top of the side panels and allow you to step through code. The buttons available are:-->
+<strong>执行控制</strong>按钮位于侧面板的顶部，允许您单步执行代码。可用的按钮有：
+</p>
+
+<p><strong><img src="javascript-debugging/button_continue.jpg"/> Continue<!--@:-->（继续）：</strong><!--@ continues code execution until we encounter another breakpoint.-->继续执行代码，直到遇到新的断点。</p>
+<p><strong><img src="javascript-debugging/button_step_over.jpg"/> Step over<!--@:-->（逐过程）：</strong><!--@ step through code line-by-line to get insights into how each line affects the variables being updated. Should your code call another function, the debugger won't jump into its code, instead stepping over so that the focus remains on the current function.-->一行一行单步执行代码，了解每一行如何影响变量的更新。如果您的代码调用了另一个函数，调试器不会进入它的代码中，而是执行完，这样您可以将注意力集中在当前函数上。</p>
+<p><strong><img src="javascript-debugging/button_step_into.jpg"/> Step into<!--@:-->（逐语句）：</strong><!--@ like Step over, however clicking Step into at the function call will cause the debugger to move its execution to the first line in the functions definition.-->与逐过程类似，但是在函数调用的位置单击逐语句时调试器会将执行位置移动到函数定义中的第一行。</p>
+<p><strong><img src="javascript-debugging/button_stepout.jpg"/>Step out<!--@:-->（跳出）</strong><!--@ having stepped into a function, clicking this will cause the remainder of the function definition to be run and the debugger will move its execution to the parent function.-->如果已经单步执行到某个函数中，单击该按钮运行函数定义的剩余部分，同时调试器将执行位置移动到上一级函数中。</p>
+<p><strong><img src="javascript-debugging/button_disable.png"/>Toggle breakpoints<!--@:-->（开启/关闭断点）：</strong><!--@ toggles breakpoints on/off while leaving their enabled states intact.-->开启/关闭所有断点但不改变它们各自的启用状态。</p>
+
+<p><!--@There are also several related keyboard shortcuts available in the <strong>Sources</strong> panel:-->
+<strong>Sources</strong>（源代码）面板中还可以使用几个相关的快捷键：
+</p>
+
+<li><strong>Continue</strong><!--@: F8 or Command-/ (forward slash) on Mac or Control-/ (forward
+slash) on other platforms.-->（继续）：F8 或
+Mac 上的 Command-/（正斜杠）或其他平台上的 Control-/（正斜杠）。</li>
+<li><strong>Step over</strong><!--@: F10 or Command-' (apostrophe) on Mac or Control-' (apostrophe)
+on other platforms.-->（逐过程）：F10 或
+Mac 上的 Command-'（单引号）或其他平台上的 Control-'（单引号）。</li>
+<li><strong>Step into</strong><!--@: F11 or Command-; (semi-colon) on Mac or Control-; (semi-colon);
+on other platforms.-->（逐语句）：F11 或
+Mac 上的 Command-;（分号）或其他平台上的 Control-;（分号）。</li>
+<li><strong>Step out</strong><!--@: Shift-F11 or Shift-Command-; (semi-colon) on Mac or
+Shift-Control-; (semi-colon) on other platforms.-->（跳出）：Shift-F11 或
+Mac 上的 Shift-Command-;（分号）或其他平台上的 Shift-Control-;（分号）。</li>
+<li><strong>Next call frame</strong><!--@: Control-. (period) on all platforms.-->（下一个调用帧）：所有平台上都为 Control-.（句号）。</li>
+<li><strong>Previous call frame</strong><!--@: Control-, (comma) on all platforms.-->（下一个调用帧）：所有平台上都为 Control-,（逗号）。</li>
+
+
+<p><!--@For a walkthrough of other keyboard shortcuts supported, see <em><a href="shortcuts.html">Shortcuts</a></em>.-->
+有关支持的其他快捷键，请参见<em><a href="shortcuts.html">快捷键</a></em>。
+</p>
+
+
+</div>
+<div class="collapsible">
+<h2 id="breakpoints"><!--@Debugging With Breakpoints-->使用断点调试</h2>
+
+<p><!--@A breakpoint is an <strong>intentional</strong> stopping or pausing place in a script, put in
+place for debugging purposes. Let's look at <strong>debugging</strong>JavaScript using
+breakpoints set on JavaScript code and breakpoints targeted at UI and network
+aspects of an application.-->
+断点是脚本中<strong>有意</strong>停止或暂停的位置，为调试目的而存在。让我们看看如何使用
+JavaScript 代码中设置的断点以及应用程序用户界面和网络请求中设置的断点来<strong>调试</strong>
+JavaScript。
+</p>
+
+
+<h3 id="workflow"><!--@Workflow-->工作流程</h3>
+
+<p><!--@First, open the DevTools by hitting the-->首先按下 <strong>Control-Shift-I</strong> <!--@shortcut. Click the
+<strong>line gutter</strong> to set a breakpoint for that line of code, select another script
+and set another breakpoint.-->
+快捷键打开开发者工具，单击<strong>行号</strong>为指定行数的代码设置断点。选择另一个脚本，设置另一个断点。
+</p>
+<div class="screenshot"><img src="javascript-debugging/sources-view-region.jpg"/></div> <p>
+<!--@All the breakpoints you have set appear under <strong>Breakpoints</strong> in the right-hand
+sidebar. Breakpoints can be enabled or disabled using the checkboxes in this
+sidebar.-->
+您设置的所有断点都会在右侧边栏的
+<strong>Breakpoints</strong>（断点）部分显示，使用侧边栏中的复选框可以启用或禁用断点。
+</p>
+<div class="screenshot"><img src="javascript-debugging/sources-breakpoints-region.jpg"/></div> <p>
+<!--@Clicking on the entry jumps to the <strong>highlighted line</strong> in the source file. You
+can <strong>set</strong> one or more breakpoints in one or more scripts.-->
+单击某一项就会跳转到源文件中<strong>高亮的那一行</strong>。您可以在一个或多个脚本中<strong>设置</strong>一个或多个断点。
+</p>
+<div class="screenshot"><img src="javascript-debugging/multiple-breakpoints-region.jpg"/></div> <p>
+<!--@Delete a breakpoint by clicking the <strong>blue tag</strong> breakpoint indicator. The
+breakpoint indicator menu has several options including "Continue to here",
+"Edit Breakpoint", "Disable Breakpoint" and "Save As", which will save the file
+locally.-->
+单击<strong>蓝色标签</strong>的断点指示符可以删除断点。断点指示符菜单包含几个选项，有“Continue
+to here”（继续执行到此处为止）、“Edit Breakpoint”（编辑断点）和“Disable
+Breakpoint”（禁用断点）。
+<!--# No Save As -->
+</p>
+<div class="screenshot"><img src="javascript-debugging/continue-to-here-region.jpg"/></div> <p>
+<!--@Once you have set a breakpoint, you can right-click on the blue arrow tag
+indicator in the gutter line to set a <strong>conditional statement</strong> for that
+specific breakpoint. Type any expression and the breakpoint will pause only if
+the condition is true. The tag cycles through its three states of active,
+inactive, and removed.-->
+设置完断点后，您可以右键单击行号上蓝色箭头标签的指示符，设置指定断点的<strong>条件语句</strong>。您可以输入任意表达式，只有当条件为真时断点才会使程序暂停执行。断点标签可以在三种状态之间变换：活动、不活动和已删除。
+</p>
+ <div class="screenshot"><img src="javascript-debugging/conditional-breakpoint-region.jpg"/></div>
+<p>
+<!--@Click the <strong>Pause</strong> button then interact with your page.  -->
+单击<strong>暂停</strong>按钮，然后与您的网页交互。
+</p>
+<div class="screenshot"><img src="javascript-debugging/callstack-region.jpg"/></div> <p>
+<!--@While a script is paused, you can see the current call stack and in-scope
+variables in the right-hand side bar. The call stack displays the <strong>complete execution path</strong> that led to the point where code was paused, giving us insights into the code flaws that caused the error.-->
+脚本暂停时，您可以在右侧边栏中查看当前的调用堆栈和作用域内的变量。调用堆栈显示运行至代码暂停位置处的<strong>完整执行路径</strong>，可以使我们深入了解导致错误的代码缺陷。
+</p>
+
+<p><!--@You may also open up the console to experiment while paused. Hit the <span class="kbd">Esc</span> key to bring the console into view.-->
+您还可以在暂停状态下打开控制台进行实验，按下 <span class="kbd">Esc</span>
+就能使控制台出现在眼前。
+
+<aside class="special">
+  <!--@Remember: the console will be evaluating within the scope of where the debugger is currently paused.-->
+  牢记：控制台执行代码时处于调试器暂停位置所在的作用域中。
+  <p>
+  <div class="screenshot">
+    <img src="javascript-debugging/evaluate-while-paused.jpg">
+  </div>
+</p>
+
+</aside>
+
+
+<p><!--@Remember, if your code happens to be using a loop which fires every 20ms, you likely won't want the debugger to <strong>halt</strong> on each iteration. Using conditional statements/breakpoints can assist with this. In the below example, code execution will only break if the <code>minLevel</code> variable is greater than 2004, helping us avoid a number of additional clicks in the debugger.-->
+请注意，假如您的代码碰巧使用了一个每隔 20
+毫秒触发一次的循环，您可能不希望调试器每次循环时都<strong>停止</strong>，这种情况下您可以使用条件语句/断点。在下面的例子中，只有
+<code>minLevel</code> 变量大于 2004
+时代码执行才会中断，使我们不用再重复多次单击调试器中的按钮。
+</p>
+
+ <div class="screenshot"><img src="javascript-debugging/conditional.png"/></div>
+
+ <p class="note"><strong><!--@Note:-->注意：</strong><!--@ It may not be desirable to set breakpoints from the DevTools interface. Should you wish to launch the debugger from your code, you may use <a href="console.md#setting-breakpoints-in-javascript">the <code>debugger</code> keyword</a> to achieve this.-->有时候可能不方便在开发者工具界面中设置断点。如果您希望从代码中启动调试器，您可以使用
+<a href="console.md#setting-breakpoints-in-javascript"><code>debugger</code>
+关键字</a>实现这一点。</p>
+
+
+<h3 id="using-breakpoints"><!--@Using Breakpoints-->使用断点</h3>
+
+<p><!--@Make sure the <strong>Sources</strong> panel is open and select "script.js" from scripts
+drop-down-->
+确保 <strong>Sources</strong>（源代码）面板已经打开，并从脚本下拉菜单中选择“script.js”。
+</p>
+
+<li><!--@Set a breakpoint on line 8 by clicking the line gutter (you can use the
+<strong>Control-G</strong> shortcut to reveal a line in a large file)-->
+在第八行单击行号设置断点（在大文件中您可以使用
+<strong>Control-G</strong> 快捷键转到某一行）
+</li>
+<li><!--@Move your mouse over this page-->将鼠标移到网页上</li>
+<li><!--@You should stop on the breakpoint-->您会在断点处停下来</li>
+<li><!--@Hover over the source code to inspect local and global variables, function
+arguments etc.-->将鼠标悬停在源代码上，审查本地和全局变量、函数参数等</li>
+<li><!--@Delete the breakpoint by clicking the blue tag breakpoint indicator-->单击蓝色标签的断点指示符</li>
+<li><!--@Click the-->单击 <strong>Continue</strong><!--@ -->（继续）<img class="ui" src="javascript-debugging/image_9.png"/><!--@ button or hit--> 按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/live-editing-mouseout.jpg"/></div></p>
+
+
+
+<h4 id="breakpoints-dynamic-javascript"><!--@Breakpoints in Dynamic JavaScript-->动态 JavaScript 中的断点</h4>
+
+<a href="javascript-debugging/dynamicScript.js.md" style="display: none">
+  This is used to mark dynamicScript.js as used.</a>
+
+<script>
+function loadDynamicScript() {
+  var request = new XMLHttpRequest();
+  request.open('GET','javascript-debugging/dynamicScript.js', true);
+  request.send();
+  request.onreadystatechange = function() {
+    if (request.readyState != 4)
+      return;
+    eval(request.responseText);
+    document.getElementById("dynamicScriptFunctionButton").disabled = false;
+    document.getElementById("loadDynamicScriptButton").disabled = true;
+  }
+}
+</script>
+<li><button id="loadDynamicScriptButton" onclick="loadDynamicScript()"><!--@Load
+  dynamic script-->加载动态脚本</button></li>
+<li><!--@In the <strong>Sources</strong> panel select "dynamicScript.js" from scripts drop-down and
+set breakpoint on line 2-->
+在 <strong>Sources</strong>（源代码）面板中从脚本下拉菜单中选择“dynamicScript.js”并在第二行设置断点</li>
+  <li><button id="dynamicScriptFunctionButton" onclick=
+  "dynamicScriptFunction()" disabled><!--@Call function from dynamic
+  script-->调用动态脚本中的函数</button></li>
+<li><!--@You should stop on the breakpoint-->您应该在断点处中断</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_9.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+
+<p><div class="screenshot"><img src="javascript-debugging/dynamic-script.jpg"/></div></p>
+
+
+<p><strong><!--@Note:-->注：</strong><!--@ Notice the-->请注意
+dynamicScript.js 文件末尾 <code>"//# sourceURL=dynamicScript.js"</code> <!--@line at the end of
+dynamicScript.js file. This technique gives a name to a script created with eval, and will be discussed in more detail in the <a href="#source-maps">Source Maps</a> section. Breakpoints can be set in dynamic JavaScript only if it has a user supplied
+name.-->
+这一行，这种技术为 eval 创建的脚本提供了一个名称，更详细的讨论请参见<a
+href="#source-maps">源代码映射</a>部分。只有用户提供了名称后，您才能在动态
+JavaScript 中设置断点。
+</p>
+
+
+<h4 id="pause-on-next-statement"><!--@Pause on Next JavaScript Statement-->在下一条 JavaScript 语句处暂停</h4>
+
+<script>
+document.addEventListener("mouseover", onMouseOver, true);
+
+function onMouseOver(event) {
+  var target = event.target;
+  return "onMouseOver: " + target;
+}
+</script>
+<li><!--@Click the-->单击 <strong>Pause</strong>（暂停）<img class="ui" src="javascript-debugging/image_13.png"/> <!--@button-->按钮</li>
+<li><!--@Move your mouse over this section-->将您的鼠标移到这一部分</li>
+<li><!--@You should stop in <code>onMouseOver</code>
+  function-->
+  您会在 <code>onMouseOver</code> 函数中暂停
+</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_14.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+<p><div class="screenshot"><img src="javascript-debugging/continue-to-resume.jpg"/></div></p>
+
+
+
+<h4 id="pause-on-exceptions"><!--@Pause on Exceptions-->发生异常时暂停</h4>
+
+<script>
+function raiseAndCatchException() {
+  var element = document.createElement("div");
+  try {
+    document.body.appendChild(elemetn);
+  } catch(e) {
+    console.log(e);
+  }
+}
+</script>
+<li><!--@Click the-->单击窗口顶部的 <strong>Pause on exceptions</strong>（发生异常时暂停）<img class="ui" src="javascript-debugging/image_19.png"/><!--@button at the bottom of the window to switch to
+<strong>Pause on all exceptions</strong> mode-->
+按钮切换至<strong>发生所有异常时暂停</strong>模式。
+</li>
+<li><button onclick="raiseAndCatchException()"><!--@Raise
+  exception!-->产生异常！</button></li>
+<li><!--@You should stop in-->您应该在 <span class=
+  "source-code">raiseAndCatchException</span> <!--@function-->函数中停止</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_17.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+<p><div class="screenshot"><img src="javascript-debugging/append-child.jpg"/></div></p>
+
+
+
+<h4 id="pause-on-uncaught-exceptions"><!--@Pause on Uncaught Exceptions-->发生未捕获的异常时暂停</h4>
+
+<script>
+function raiseAndCatchException() {
+  var element = document.createElement("div");
+  try {
+    document.body.appendChild(elemetn);
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+function raiseException() {
+  throw 0;
+}
+</script>
+<li><!--@Click the-->再次单击 <strong>Pause on exceptions</strong>（发生异常时暂停）<img class="ui" src="javascript-debugging/image_19.png"/><!--@button again to switch to <strong>Pause on uncaught
+exceptions</strong> mode-->
+按钮切换至<strong>发生未捕获的异常时暂停</strong>模式
+</li>
+<li><button onclick="raiseAndCatchException()"><!--@Raise
+  exception!-->产生异常！</button></li>
+<li><!--@You should not stop in-->您不会在 raiseAndCatchException <!--@function since exception is
+caught-->函数中停止，因为该异常已经捕获</li>
+<li><button onclick="raiseException()"><!--@Raise uncaught exception!-->产生未捕获的异常！</button></li>
+<li><!--@You should stop in-->您应该在 <code>raiseException</code> <!--@function-->函数中停止</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_9.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/raise-exception.jpg"/></div></p>
+
+
+
+</div>
+<div class="collapsible">
+<h4 id="breakpoints-mutation-events"><!--@Breakpoints on DOM Mutation Events-->DOM 更改事件中的断点</h4>
+
+<script>
+function appendChildButtonClicked() {
+  var parentElement = document.getElementById("parent");
+  var childElement = document.createElement("div");
+  childElement.setAttribute("style",
+      "border: 2px solid; padding: 5px; margin: 5px; text-align: center; width: 120px");
+  childElement.textContent = "子元素";
+  parentElement.appendChild(childElement);
+}
+</script>
+<li><!--@Right click on the "Parent Element" below and select <strong>Inspect Element</strong> from
+context menu     -->
+右键单击下面的“父元素”并从右键菜单中选择<strong>审查元素</strong>
+<div id="parent" style="border: solid 2px; padding: 5px; margin: 5px; text-align: center; width: 140px"> <!--@Parent Element-->父元素 </div></li>
+<li><!--@Right click on the-->右键单击 <strong>Elements</strong><!--@' panel-->（元素）面板中的 <strong>&lt;div id="parent" ...></strong> <!--@element and
+select-->元素并选择 <strong>Break on Subtree Modifications</strong>（子树更改时中断）</li>
+<li><button onclick="appendChildButtonClicked()"><!--@Append child!-->附加子节点！</button></li>
+<li><!--@You should stop on-->您会在 <code>appendChild</code> <!--@function call-->函数调用上中断</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_9.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/append-child-element.jpg"/></div></p>
+
+
+
+</div>
+<div class="collapsible">
+<h4 id="breakpoints-on-xhr"><!--@Breakpoints on XHR-->XHR 断点</h4>
+
+<a href="javascript-debugging/data.txt.md" style="display: none">
+  This is used to mark data.txt as used.</a>
+
+<script>
+function retrieveData() {
+  var request = new XMLHttpRequest();
+  request.open('GET','javascript-debugging/data.txt', true);
+  request.send();
+}
+</script>
+<li><!--@Click the <strong>Add</strong> <img class="ui" src="javascript-debugging/image_24.png"/> button on <strong>XHR Breakpoints</strong> sidebar pane on the right side
+of <strong>Sources</strong> panel-->
+单击 <strong>Sources</strong>（源代码）面板右边侧边栏中
+<strong>XHR Breakpoints</strong>（XHR 断点）窗格内的
+<strong>Add</strong>（添加）<img class="ui" src="javascript-debugging/image_24.png"/>
+按钮
+</li>
+<li><!--@Type "data.txt" in text input and hit <strong>enter</strong>-->
+在文本框中输入“data.txt”并按<strong>回车</strong>
+</li>
+<li><button onclick="retrieveData()"><!--@Retrieve data.txt by XHR-->通过 XHR 获取 data.txt</button></li>
+<li><!--@You should stop on <code>send</code> function
+  call-->
+  您应该在 <code>send</code> 函数调用中停止
+</li>
+<li><!--@Right-click on the newly created breakpoint and select <strong>Remove Breakpoint</strong>
+context menu item-->
+右键单击新创建的断点并选择右键菜单项 <strong>Remove Breakpoint</strong>（删除断点）
+</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_25.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/request-send.jpg"/></div></p>
+
+
+<p><strong><!--@Note:-->注：</strong><!--@ To edit URL filter, double click on the XHR breakpoint entry in <strong>XHR Breakpoints</strong> sidebar pane. XHR breakpoint with empty URL filter will match any
+XHR.-->如果要编辑 URL 过滤器，请双击 <strong>XHR Breakpoints</strong>（XHR
+断点）侧边栏窗格中的 XHR 断点。URL 过滤器为空的 XHR 断点匹配所有 XHR。</p>
+
+
+</div>
+<div class="collapsible">
+<h4 id="breakpoints-on-javascript-event-listeners"><!--@Breakpoints on JavaScript Event Listeners-->JavaScript 事件监听器上的断点</h4>
+
+
+<script>
+window.addEventListener("load", onLoad, true);
+
+function onLoad() {
+  var hovermeElement = document.getElementById("hoverme");
+  hovermeElement.addEventListener("mouseover", hovermeMouseOver, true);
+  hovermeElement.addEventListener("mouseout", hovermeMouseOut, true);
+}
+
+function hovermeMouseOver(event) {
+  event.target.style.backgroundColor = "grey";
+}
+
+function hovermeMouseOut(event) {
+  event.target.style.backgroundColor = "white";
+}
+</script>
+<li><!--@Expand <strong>Event Listener Breakpoints</strong> sidebar pane on the right side of
+<strong>Scripts</strong> panel-->
+展开 <strong>Sources</strong>（源代码）面板右侧
+<strong>Event Listener Breakpoints</strong>（事件监听器断点）侧边栏窗格
+</li>
+<li><!--@Expand <strong>Mouse</strong> entry-->
+展开 <strong>Mouse</strong>（鼠标）项
+</li>
+<li><!--@Set a mouseout Event Listener breakpoint by clicking on the checkbox near the
+<strong>mouseout</strong> entry-->
+单击 <strong>mouseout</strong> 项旁边的复选框设置 mouseout 事件监听器断点
+</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/resumed.jpg"/></div></p>
+
+<li><!--@Move your mouse across the box below:-->移动您的鼠标，穿过下面的框</li>
+<li>  <div id="hoverme" style="border: solid 2px; padding: 5px; margin: 5px; text-align: center; width: 100px">
+      <!--@Hover me!-->移到此处！
+    </div></li>
+<li><!--@You should stop on <code>mouseout</code> event handler-->
+您应该在 <code>mouseout</code> 事件处理程序所在位置停止
+</li>
+<li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_28.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+<p><div class="screenshot"><img src="javascript-debugging/continue-to-resume.jpg"/></div></p>
+
+
+<p class="note"><b><!--@Note: Following events are supported-->注意：支持以下事件</b><br>
+&nbsp;&nbsp;<b>Keyboard<!--@:-->（键盘）：</b> keydown, keypress, keyup, textInput<br>
+&nbsp;&nbsp;<b>Mouse<!--@:-->（鼠标）：</b> click, dblclick, mousedown, mouseup, mouseover,
+mousemove, mouseout, mousewheel<br>
+&nbsp;&nbsp;<b>Control<!--@:-->（控制）：</b> resize, scroll, zoom, focus, blur, select,
+change, submit, reset<br>
+&nbsp;&nbsp;<b>Clipboard<!--@:-->（剪贴板）：</b> copy, cut, paste, beforecopy, beforecut,
+beforepaste<br>
+&nbsp;&nbsp;<b>Load<!--@:-->（加载）：</b> load, unload, abort, error<br>
+&nbsp;&nbsp;<b>DOM Mutation<!--@:-->（DOM 修改）：</b> DOMActivate, DOMFocusIn, DOMFocusOut,
+DOMAttrModified, DOMCharacterDataModified, DOMNodeInserted,
+DOMNodeInsertedIntoDocument, DOMNodeRemoved, DOMNodeRemovedFromDocument,
+DOMSubtreeModified, DOMContentLoaded<br>
+&nbsp;&nbsp;<b>Device<!--@:-->（设备）：</b> deviceorientation, devicemotion</p>
+
+
+
+</div>
+<div class="collapsible">
+<h2 id="liveedit"><!--@Live Editing-->即时编辑</h2>
+
+<p><!--@In <strong>Authoring And Workflow</strong>, we discussed how to make changes to scripts in
+the <strong>Sources</strong> panel. While at a breakpoint, it's also possible to live edit
+scripts by clicking into the main editor panel and making modifications.-->
+在<strong>编写与开发的工作流程</strong>中，我们讨论了如何在
+<strong>Sources</strong>（源代码）面板中修改脚本。断点中断时，也可以即时编辑脚本，只要单击主编辑器面板并进行修改即可。
+</p>
+
+<li><!--@Navigate to the Google Closure hovercard demo-->导航至 Google Closure hovercard 演示</li>
+<li><!--@In the Sources panel, open up "mouse.js" and use the Ctrl/Cmd + Shift + O to
+navigate to the onMouseOut() function-->
+在 <strong>Sources</strong>（源代码）面板中打开“mouse.js”并使用
+Ctrl/Cmd + Shift + O 导航至 onMouseOut() 函数
+</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/houseMouseOut.jpg"/></div></p>
+
+<li><!--@Click the <strong>pause</strong> button to pause debugging-->单击
+<strong>Pause</strong>（暂停）按钮暂停调试</li>
+<li><!--@Modify the function, adding a console.log('Moused out') to the end-->
+修改函数，在里面添加一行 console.log('Moused out');
+</li>
+<li><!--@Using the Cmd +S or Ctrl + S shortcuts will save these modifications. Make
+sure to Save As.-->
+使用 Cmd +S 或 Ctrl + S 快捷键会保存这些更改。确定已经保存。
+</li>
+<li><!--@Click the <strong>pause/resume</strong> button to resume execution-->
+单击 <strong>Pause/Resume</strong>（暂停/恢复）按钮继续执行
+</li>
+<li><!--@When you now hover out, the new message will be logged to the console-->
+当您鼠标指针移出时，新的消息会记录在控制台中
+</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/pause-resume-mouseout.jpg"/></div></p>
+
+<p><!--@This allows you to saved changes from within the DevTools without having to
+leave your browser.-->这种方式允许您在开发者工具中保存更改，而不需要离开浏览器。</p>
+
+
+</div>
+<div class="collapsible">
+<h2 id="exceptions"><!--@Exceptions-->异常</h2>
+
+<p><!--@Let's now look at how to deal with exceptions and stack traces using Chrome
+DevTools.-->
+让我们现在来看看如何使用 Chrome 开发者工具处理异常和堆栈跟踪。
+<br/>
+<!--@<strong>Exception handling</strong> is the process of responding to the occurrence of
+exceptions - exceptional situations that require special processing - often
+changing the normal flow of your JavaScript code's execution.-->
+<strong>异常处理</strong>即响应异常（需要特殊处理的异常情况）发生的过程，通常会改变您的 JavaScript 代码通常的执行流程。
+</p>
+
+<p class="note"><strong><!--@Note:-->注意：</strong><!--@ If you are a Web Developer and want to get the latest version of
+DevTools, you should use -->
+如果您是网页开发者，希望获取最新版本的开发者工具，您应该使用
+<a href="https://tools.google.com/dlpage/chromesxs">Google Chrome Canary</a><!--@.-->。</p>
+
+
+</div>
+<div class="collapsible">
+<h3 id="tracking-exceptions"><!--@Tracking exceptions-->追踪异常</h3>
+
+<p><!--@When something goes wrong, you can open the DevTools console (Ctrl+Shift+J /
+Cmd+Option+J) and find a number of JavaScript error messages there. Each message
+has a link to the file name with the line number you can navigate to.-->
+发生某个错误时，您可以打开开发者工具控制台（Ctrl+Shift+J /
+Cmd+Option+J），找到其中的一些 JavaScript
+错误消息。每一条消息都包含文件名与行号的链接，您可以导航至相应位置。
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/tracking-exceptions.jpg"/></div></p>
+
+
+<h4 id="viewing-exception-stack-trace"><!--@Viewing exception stack trace-->查看异常的堆栈跟踪</h4>
+
+<p><!--@There might be several execution paths that lead to the error and it's not
+always obvious which one of them has happened. <strong>Once DevTools window is
+opened</strong>, exceptions in the console are accompanied with the <strong>complete
+JavaScript call stacks</strong>. You can expand these console messages to see the stack
+frames and navigate to the corresponding locations in the code:-->
+导致错误的执行路径可能有好几种，有时其中哪一种发生了并不明显。<strong>一旦您打开了开发者工具</strong>，控制台中的异常就会包含<strong>完整的
+JavaScript 调用堆栈</strong>。您可以将这些控制台消息展开，查看堆栈帧并导航到代码中的相应位置。
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/exception-stack-trace.jpg"/></div></p>
+
+
+<h4 id="pause-on-exceptions"><!--@Pause on JavaScript exceptions-->发生
+JavaScript 异常时暂停</h4>
+
+<p><!--@You may also want to pause JavaScript execution next time exception is thrown
+and inspect its call stack, scope variables and state of your app. A tri-state
+stop button ( <img src="javascript-debugging/image_34.png"/> <!-- TODO: Fix alt text
+and URL -- ) at the bottom of the Scripts panel enables you to switch between
+different exception handling modes: you can choose to either pause on all
+exception or only on the uncaught ones or you can ignore exceptions altogether.-->
+下一次执行时，您可能希望在异常发生时暂停 JavaScript
+的执行，审查调用堆栈、作用域内的变量以及应用的状态。Sources（源代码）面板顶部的三态停止按钮（<img
+src="javascript-debugging/image_34.png"/>）允许您在不同的异常处理模式间切换：您可以选择在所有异常发生时暂停、仅在未捕获的异常发生时暂停或完全忽略异常。
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/pause-execution.jpg"/></div></p>
+
+
+</div>
+<div class="collapsible">
+<h3 id="printing-stack-traces"><!--@Printing stack traces-->输出堆栈跟踪</h3>
+
+<p><!--@Printing log messages to the DevTools console may be very helpful in
+understanding how your application behaves. You can make the log entries even
+more informative by including associated stack traces. There are several ways of
+doing that.-->
+在开发者工具的控制台中输出日志消息有助于您理解应用程序的行为方式。您可以在日志中包含堆栈跟踪，使之具有更充足的信息。有几种方式可以做到这一点。
+</p>
+
+
+<h4 id="error-stack">Error.stack</h4>
+
+<p><!--@Each Error object has a string property named stack that contains the stack
+trace:-->
+每一个 Error 对象都有一个字符串属性，名为 stack，包含堆栈跟踪：
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/error-stack.jpg"/></div></p>
+
+
+<h4 id="console-trace">console.trace()</h4>
+
+<p><!--@You can instrument your code with console.trace() calls that would print current
+JavaScript call stacks:-->
+您可以在代码中使用 console.trace() 调用，输出当前的 JavaScript 调用堆栈：
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/console-trace.jpg"/></div></p>
+
+
+<h4 id="console-assert">console.assert()</h4>
+
+<p><!--@There is also a way to place assertion in your JavaScript code. Just call
+console.assert() with the error condition as the first parameter. Whenever this
+expression evaluates to false you will see a corresponding console record:-->
+还有一种方法，可以在您的 JavaScript 代码中添加断言。只要调用
+console.assert()，第一个参数为错误条件，该表达式结果为 false
+时，您会在控制台中看到一条对应的记录：
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/console-assert.jpg"/></div></p>
+
+
+</div>
+<div class="collapsible">
+<h3 id="handling-exceptions-runtime"><!--@Handling exceptions at runtime using window.onerror-->使用 window.onerror 在运行时处理异常</h3>
+
+<p><!--@Chrome supports setting a handler function to window.onerror. Whenever a
+JavaScript exception is thrown in the window context and is not caught by any
+try/catch block, the function will be invoked with the exception's message, the
+URL of the file where the exception was thrown and the line number in that file
+passed as three arguments in that order. You may find it convenient to set an
+error handler that would collect information about uncaught exceptions and
+report it back to your server.-->
+Chrome 浏览器支持设置 window.onerror 的处理函数。在当前上下文中产生
+JavaScript 异常并且没有被 try/catch
+块捕获时，就会调用该函数，按顺序在三个参数中传递异常消息、产生异常的文件 URL
+和文件中的行号。您可能会发现设置错误处理程序可以方便地收集未捕获异常的有关信息，并将它报告至您的服务器上。
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/window-onerror.jpg"/></div></p>
+
+
+</div>
+<div class="collapsible">
+<h2 id="pretty-print"><!--@Pretty Print-->美化显示</h2>
+
+<p><!--@If you have trouble trying to read and debug minified JavaScript in the
+DevTools, a pretty printing option is available to make life easier. Here is how
+a minified script displayed in the tools might look prior to being displayed in
+the DevTools:-->
+如果您觉得在开发者工具中阅读和调试压缩后的 JavaScript
+很困难，我们提供了一个美化显示选项可以给您带来一些方便。如下是开发者工具中美化显示前某个压缩的脚本显示出来的样子：
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/pretty-print-off.jpg"/></div></p>
+
+<p><!--@And by clicking on the curly brace-->单击左下角的花括号 <img src="javascript-debugging/image_45.png"/> 美化显示（Pretty Print）<!--@("Pretty Print") icon in the bottom left
+corner, the JavaScript is transformed into a more human readable form. This is
+also more easy for debugging and setting breakpoints.-->按钮，JavaScript
+代码就转变为更易读的形式，这样调试和设置断点时也要容易一些。</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/pretty-print-on.jpg"/></div></p>
+
+
+
+</div>
+<div class="collapsible">
+<h2 id="source-maps"><!--@Source Maps-->源代码映射</h2>
+
+<p><!--@Have you ever found yourself wishing you could keep your client-side code
+readable and more importantly debuggable even after you've combined and minified
+it, without impacting performance? Well now you can through the magic of -->
+您是不是一直希望即使在客户端代码组合并压缩后仍然可读并且（更重要的）可以调试，而不会影响性能呢？现在您可以体验一下<a href="https://docs.google.com/document/d/1U1RGAehQwRypUTovF1KRlpiOFze0b-_2gc6fAH0KY0k/edit?hl=en_US&amp;pli=1&amp;pli=1"><!--@source
+maps-->源代码映射</a><!--@.-->的神奇之处。</p>
+
+<p><!--@Source Maps are a generic mapping format (that are JSON-based) which can be used by any processed file to create
+relations between files that are pre-processed and those that are post-processed. Of most relevance to us is that they can be used to map combined/minified scripts back to an unbuilt state for debugging.-->
+源代码映射文件是一种通用的映射格式（基于 JSON），可以用于任何处理后的文件，建立文件处理前与处理后之间的关系，对我们来说最重要的是它们可以用来将组合/压缩后的脚本映射回未编译的状态用于调试。
+</p>
+
+<p><!--@A source map itself can look as simple as the following:-->如下是一个简单的源代码映射文件：</p>
+
+<p>
+<pre>
+  {
+    version : 3,
+    file: "out.js",
+    sourceRoot : "",
+    sources: ["foo.js", "bar.js"],
+    names: ["src", "maps", "are", "fun"],
+    mappings: "AAgBC,SAAQ,CAAEA"
+}
+</pre>
+</p>
+<p>
+<!--@The idea is when you build for production, along with minifying and combining your
+JavaScript files, you generate a source map which holds information about your
+original files. When you query a certain line and column number in your
+generated JavaScript you can do a lookup in the source map which returns the
+original location. The DevTools can parse the source map automatically and make
+it appear as though you're running unminified and uncombined files.-->
+其中的思路是，当您建立产品、压缩和组合 JavaScript
+文件时，同时生成一个源代码映射文件，包含原文件的有关信息。当您查询生成的
+JavaScript 中某一行某一列时，可以查询源代码映射文件，返回原始位置。开发者工具可以自动分析源代码映射文件，并使一切像运行未压缩也未组合的文件一样。
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/source-mapping.jpg"/></div></p>
+
+<p><!--@Before you view the following real world implementation of Source Maps make sure
+you've enabled the Source Maps feature by clicking the settings cog in the dev
+tools panel and checking the "Enable source maps" option.-->
+在您接下去看源代码映射文件的实际实现前，确保您已经启用了源代码映射功能。请单击开发者工具面板中的设置齿轮，并选中“Enable source maps”（启用源代码映射）选项。
+</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/source-maps.jpg"/></div></p>
+
+<p><!--@Take a look at the special build of the <a href="http://dev.fontdragr.com">font dragr tool</a> in Chrome,
+with source mapping enabled, and you'll notice that the JavaScript isn't
+compiled and you can see all the individual JavaScript files it references. This
+is using source mapping, but behind the scenes actually running the compiled
+code. Any errors, logs and breakpoints will map to the dev code for awesome
+debugging! So in effect it gives you the illusion that you're running a dev site
+in production.-->
+请在 Chrome 浏览器中打开 <a href="http://dev.fontdragr.com">font dragr
+工具</a>的特别版，启用了源代码映射，您会注意到 JavaScript
+未编译，可以看到引用的每个 JavaScript
+文件。这就是使用了源代码映射功能，但是在背后运行的还是编译后的代码。所有错误、日志和断点都会映射到开发中的代码，调试起来很方便！所以实际上这种方式使您以为您在正式产品中运行着开发中的网站。
+</p>
+
+<h3 id="how-do-source-maps-work"><!--@How do Source Maps work?-->源代码映射怎样工作？</h3>
+
+<p><!--@Once you've combined and minified your JavaScript with a tool that supports
+outputting Source Maps, alongside it will exist a sourcemap file. At present,
+Closure Compiler and UglifyJS 2.0 are two such tools for achieving this but
+there are also tools available that support outputting Source Maps for
+CoffeeScript and SASS. A special comment is placed at the end of the file, signifying to the DevTools
+that a source map is available.-->
+当您使用支持源代码映射的工具组合并压缩 JavaScript
+时，同时还会产生一个源代码映射文件。目前，Closure Compiler 和 UglifyJS 2.0
+这两种工具就能实现这一点，此外还有其他工具可用，可以为 CoffeeScript 和 SASS
+输出源代码映射文件。文件末尾添加了一行特别的注释，告知开发者工具源代码映射可用。
+</p>
+
+<p><code>//# sourceMappingURL=/path/to/file.js.map</code></p>
+
+<p><!--@This enables DevTools to map calls back to their location in original source
+files. If you don't like the idea of the weird comment you can alternatively set
+a special header on your compiled JavaScript file:-->
+这样开发者工具就能将调用映射回原始源代码文件中的相应位置。如果您不喜欢使用这一行奇怪的注释，您也可以在已编译的 JavaScript 文件上设置特殊的标头：
+</p>
+
+<p><code>X-SourceMap: /path/to/file.js.map</code></p>
+
+<p><!--@Like the comment this will tell your source map consumer where to look for the
+source map associated with a JavaScript file. This header also gets around the
+issue of referencing Source Maps in languages that don't support single-line
+comments.-->
+与注释类似，这样可以使支持源代码映射的程序知道与 JavaScript
+文件关联的源代码映射文件在哪里。这一标头也间接解决了在不支持单行注释的语言中引用源代码映射文件的问题。
+</p>
+
+<h3 id="sourceurl-and-displayname-in-action"><!--@@sourceURL and displayName in action-->使用 # sourceURL 指定显示名称</h3>
+
+<p><!--@While not part of the source map spec the following convention allows you to
+make development much easier when working with evals.-->
+尽管不是源代码映射规范的一部分，下面这种惯例允许您在使用 eval
+时使开发过程更容易。
+</p>
+
+<p><!--@This helper looks very similar to the <code>//# sourceMappingURL</code> property and is
+actually mentioned in the source map V3 specifications. By including the
+following special comment in your code, which will be evaled, you can name evals
+so they appear as more logical names in your dev tools.-->
+这种指示符与 <code>//# sourceMappingURL</code>
+属性看起来非常类似，实际上也在源代码映射 V3 规范中提到了。在您使用 eval
+执行的代码中包含这一行特殊的注释后，您就可以为 eval
+脚本命名，这样在开发者工具中就会以更符合逻辑的名称出现。
+</p>
+
+<p><code>//# sourceURL=source.coffee</code></p>
+
+<p><strong><!--@Working with-->使用 sourceURL</strong></p>
+
+<li><!--@Navigate to the
+-->打开<strong><a href="http://www.thecssninja.com/demo/source_mapping/compile.html"><!--@demo-->演示</a></strong>。</li>
+<li><!--@Open the DevTools and go to the <strong>Sources</strong> panel.-->
+打开开发者工具并进入 Sources（源代码）面板。
+</li>
+<li><!--@Enter in a filename into the <em>Name your code:</em> input field.-->
+在 <em>Name your code:</em> 文本框中输入文件名。
+</li>
+<li><!--@Click on the-->单击 <strong>compile</strong> <!--@button.-->按钮。</li>
+<li><!--@An alert will appear with the evaluated sum from the CoffeeScript source-->CoffeeScript 中计算后的总和会在对话框中显示</li>
+<li><!--@If you expand the <em>Sources</em> sub-panel you will now see a new file with the
+custom filename you entered earlier. If you double-click to view this file it
+will contain the compiled JavaScript for our original source. On the last line
+however will be a <code>// @sourceURL</code> comment indicating what the original source
+file was. This can greatly help with debugging when working with language
+abstractions.-->
+如果您展开
+Sources（源代码）面板，您会看到一个新文件，包含您之前输入的自定义文件名。如果您双击查看该文件，它会包含我们原来的源代码编译后的
+JavaScript ，但最后一行为 <code>//# sourceURL</code>
+注释，表示原始的源文件是哪个。当您使用语言抽象层时，这种方式可以极大地帮助您进行调试。
+</li>
+
+
+<p><div class="screenshot"><img src="javascript-debugging/coffeescript.jpg"/></div></p>
+
+<p><h4 id="read-more"><!--@Read more-->阅读更多内容</h4></p>
+
+<ul>
+<li><!--@Conditional breakpoints-->条件断点
+<ul>
+<li><a href="http://www.randomthink.net/blog/2012/11/breakpoint-actions-in-javascript/">Breakpoint actions in
+JavaScript</a></li>
+</li></ul>
+<li><!--@Working With Source Maps-->使用源代码映射
+<ul>
+<li><a href="https://www.youtube.com/watch?feature=player_embedded&amp;v=HijZNR6kc9A">The Breakpoint: Source maps
+spectacular</a></li>
+<li><a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">HTML5 Rocks: An Introduction To JavaScript Source
+maps</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/tools-and-tips/source-maps-101/">NetTuts: Source Maps 101</a></li>
+<li><a href="https://github.com/ryanseddon/source-map/wiki/Source-maps%3A-languages%2C-tools-and-other-info">Source maps: languages, tools and other info</a></li>
+<li><a href="http://www.thecssninja.com/javascript/multi-level-sourcemaps">CSS Ninja: Multi-level Source
+maps</a></li>
+<li><a href="http://www.coffeescriptlove.com/2012/04/source-maps-for-coffeescript.html">Source maps for
+CoffeeScript</a></li>
+</li>
+</ul>
+
+</div>
+{{/partials.standard_devtools_article}}

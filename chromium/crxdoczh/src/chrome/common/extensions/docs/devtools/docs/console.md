@@ -362,7 +362,7 @@ JavaScript 控制台为测试网页和应用的开发者提供了两项主要功
 
 ![Timeline showing custom timestamp](console-files/timestamp2.png)
 
-### <!--@Setting breakpoints in JavaScript-->在 JavaScript 中设置断点 ###
+### <a name="setting-breakpoints-in-javascript"></a><!--@Setting breakpoints in JavaScript-->在 JavaScript 中设置断点 ###
 
 <!--@You can start a debugging session from your JavaScript code by calling the [`debugger`](console-api.md#debugger) command. For instance, in the following example the JavaScript debugger is opened when an object's `brightness()` function is invoked:-->
 您可以在 JavaScript 代码中调用 [`debugger`](console-api.md#debugger) 命令
