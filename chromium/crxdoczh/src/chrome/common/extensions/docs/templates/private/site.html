@@ -19,7 +19,11 @@
     <link href="{{static_zh_cn}}/css/print.css" rel="stylesheet" type="text/css" media="print">
     <link href="{{static_zh_cn}}/css/prettify.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    {{?is_devtools}}
+    <title>$(title) - Google Chrome 开发者工具文档（非官方中文版）</title>
+    {{:is_devtools}}
     <title>$(title) - Google Chrome {{platformTitle}}开发文档（非官方中文版）</title>
+    {{/is_devtools}}
   </head>
 
   <body>
