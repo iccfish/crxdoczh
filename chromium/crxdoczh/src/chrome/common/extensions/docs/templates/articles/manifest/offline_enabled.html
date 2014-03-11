@@ -8,3 +8,25 @@ on the New Tab page.-->
 浏览器检测到处于离线状态时，这一属性设为 true
 的应用会在“打开新的标签页”页面中高亮显示。
 </p>
+
+<p>
+<!--@As of Chrome 35, apps are assumed to be offline enabled and the default value
+of <code>"offline_enabled"</code> is <code>true</code> unless <code>"webview"</code>
+permission is requested. In this case, network connectivity is assumed to be
+required and <code>"offline_enabled"</code> defaults to <code>false</code>.-->
+从 Chrome 35 开始，除非请求了 <code>"webview"</code>
+权限，应用默认为可以在离线状态下工作，且 <code>"offline_enabled"</code>
+的默认值为 <code>true</code>。
+</p>
+
+<p>
+<!--@The <code>"offline_enabled"</code> value is also used to determine whether a
+network connectivity check will be performed when launching an app in <a href="/apps/manifest/kiosk_enabled">
+ChromeOS kiosk mode</a>. A network connectivity check will be performed when
+apps are not offline enabled, and app launching put on hold until the device
+obtains connectivity to the Internet.-->
+<code>"offline_enabled"</code> 属性值还用来决定以
+<a href="/apps/manifest/kiosk_enabled">ChromeOS
+的信息亭模式</a>启动应用时是否检查网络连接是否可用。如果应用不能在离线状态下工作则会检查网络连接，应用的启动也会暂停，直到设备连接到
+Internet。
+</p>

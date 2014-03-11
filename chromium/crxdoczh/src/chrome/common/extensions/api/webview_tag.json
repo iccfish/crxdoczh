@@ -136,6 +136,54 @@
         ]
       },
       {
+        "id": "FindCallbackResults",
+        "type": "object",
+//@        "description": "Contains all of the results of the find request.",
+        "description": "包含查找请求的所有结果。",
+        "properties": {
+          "numberOfMatches": {
+            "type": "integer",
+//@            "description": "The number of times <code>searchText</code> was matched on the page."
+            "description": "<code>searchText</code> 在网页中的匹配次数。"
+          },
+          "activeMatchOrdinal": {
+            "type": "integer",
+//@            "description": "The ordinal number of the current match."
+            "description": "当前匹配项的序号。"
+          },
+          "selectionRect": {
+            "$ref": "SelectionRect",
+//@            "description": "Describes a rectangle around the active match in screen coordinates."
+            "description": "以屏幕坐标表示当前匹配区域。"
+          },
+          "canceled": {
+            "type": "boolean",
+//@            "description": "Indicates whether this find request was canceled."
+            "description": "表示本次查找请求是否已经取消。"
+          }
+        }
+      },
+      {
+        "id": "FindOptions",
+        "type": "object",
+//@        "description": "Options for the find request.",
+        "description": "查找请求的选项。",
+        "properties": {
+          "backward": {
+            "type": "boolean",
+//@            "description": "Flag to find matches in reverse order. The default value is <code>false</code>.",
+            "description": "以相反顺序查找的标志，默认值为 <code>false</code>。",
+            "optional": true
+          },
+          "matchCase": {
+            "type": "boolean",
+//@            "description": "Flag to match with case-sensitivity. The default value is <code>false</code>.",
+            "description": "匹配时区分大小写的标志，默认值为 <code>false</code>。",
+            "optional": true
+          }
+        }
+      },
+      {
         "id": "NewWindow",
         "type": "object",
 //@        "description": "Interface attached to <code>newwindow</code> DOM events.",
@@ -279,6 +327,34 @@
         ]
       },
       {
+        "id": "SelectionRect",
+        "type": "object",
+//@        "description": "<p>Describes a rectangle in screen coordinates.</p><p>The containment semantics are array-like; that is, the coordinate <code>(left, top)</code> is considered to be contained by the rectangle, but the coordinate <code>(left + width, top)</code> is not.</p>",
+        "description": "<p>以屏幕坐标表示的矩形区域。</p><p>坐标是否包含在内的语义与数组类似，即 <code>(left, top)</code> 坐标认为包含在矩形区域内，而 <code>(left + width, top)</code> 则不包含在内。</p>",
+        "properties": {
+          "left": {
+            "type": "integer",
+//@            "description": "Distance from the left edge of the screen to the left edge of the rectangle."
+            "description": "屏幕左侧与矩形区域左侧之间的距离。"
+          },
+          "top": {
+            "type": "integer",
+//@            "description": "Distance from the top edge of the screen to the top edge of the rectangle."
+            "description": "屏幕上侧与矩形区域上侧之间的距离。"
+          },
+          "width": {
+            "type": "integer",
+//@            "description": "Width of the rectangle."
+            "description": "矩形区域的宽度。"
+          },
+          "height": {
+            "type": "integer",
+//@            "description": "Height of the rectangle."
+            "description": "矩形区域的高度。"
+          }
+        }
+      },
+      {
         "id": "WebRequestEventInteface",
         "type": "object",
 //@        "description": "Interface which provides access to webRequest events on the guest page. See the <a href=\"http://developer.chrome.com/extensions/webRequest.html\">chrome.webRequest</a> extensions API for details on webRequest life cycle and related concepts.<p>To illustrate how usage differs from the extensions webRequest API, consider the following example code which blocks any guest requests for URLs which match <code>*://www.evil.com/*</code>:</p><pre>webview.request.onBeforeRequest.addListener(\r  function(details) { return {cancel: true}; },\r  {urls: [\"*://www.evil.com/*\"]},\r  [\"blocking\"]);</pre><p>Additionally, this interface supports declarative webRequest rules through <code>onRequest</code> and <code>onMessage</code> events. See <a href=\"http://developer.chrome.com/extensions/declarativeWebRequest.html\">declarativeWebRequest</a> for API details.</p>Note that conditions and actions for declarative webview webRequests should be instantiated from their <code>chrome.webViewRequest.*</code> counterparts. The following example code declaratively blocks all requests to <code>\"example.com\"</code> on the webview <code>myWebview</code>:</p><pre>var rule = {\r  conditions: [\r    new chrome.webViewRequest.RequestMatcher({ url: { hostSuffix: 'example.com' } })\r  ],\r  actions: [ new chrome.webViewRequest.CancelRequest() ]\r};\rmyWebview.request.onRequest.addRules([rule]);</pre>",
@@ -361,6 +437,43 @@
                 "items": {"type": "any", "minimum": 0},
 //@                "description": "The result of the script in every injected frame."
                 "description": "插入的每一个框架中脚本的结果。"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "find",
+        "type": "function",
+//@        "description": "Initiates a find-in-page request.",
+        "description": "开始在网页中查找的请求。",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "searchText",
+//@            "description": "The string to find in the page."
+            "description": "需要在网页中查找的字符串。"
+          },
+          {
+            "$ref": "FindOptions",
+            "name": "options",
+            "optional": true,
+//@            "description": "Options for the find request."
+            "description": "查找请求的选项。"
+          },
+          {
+            "type": "function",
+            "name": "callback",
+//@            "description": "Called after all find results have been returned for this find request.",
+            "description": "本次查找请求的所有结果都返回后调用。",
+            "optional": true,
+            "parameters": [
+              {
+                "$ref": "FindCallbackResults",
+                "name": "results",
+//@                "description": "Contains all of the results of the find request. <code>results</code> can be omitted if it is not utilized in the callback function body; for example, if the callback is only used to discern when the find request has completed.",
+                "description": "包含本次查找请求的所有结果。如果回调函数体中未使用 <code>results</code> 则可以省略，例如如果回调函数只是用来检测查找请求什么时候完成。",
+                "optional": true
               }
             ]
           }
@@ -458,6 +571,22 @@
 //@        "description": "Stops loading the current &lt;webview> navigation if in progress.",
         "description": "停止加载当期 &lt;webview> 导航（如果正在进行的话）。",
         "parameters": []
+      },
+      {
+        "name": "stopFinding",
+        "type": "function",
+//@        "description": "Ends the current find session (clearing all highlighting) and cancels all find requests in progress.",
+        "description": "结束当前的查找会话（清除所有高亮标记），并取消所有正在进行的查找请求。",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "action",
+//@            "description": "Determines what to do with the active match after the find session has ended. <code>clear</code> will clear the highlighting over the active match; <code>keep</code> will keep the active match highlighted; <code>activate</code> will keep the active match highlighted and simulate a user click on that match. The default action is <code>keep</code>.",
+            "description": "决定查找会话结束后如何处理目前匹配的内容。<code>clear</code> 清除当前匹配内容上的高亮，<code>keep</code> 保留当前匹配内容的高亮状态，<code>activate</code> 保留当前匹配内容的高亮状态，并模拟用户单击匹配内容。默认的操作是 <code>keep</code>（保留）。",
+            "optional": true,
+            "enum": ["clear", "keep", "activate"]
+          }
+        ]
       },
       {
         "name": "terminate",
@@ -559,6 +688,50 @@
             "description": "表示退出原因的字符串。",
             "type": "string",
             "enum": ["normal", "abnormal", "crash", "kill"]
+          }
+        ]
+      },
+      {
+        "name": "findupdate",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when new find results are available for an active find request. This might happen multiple times for a single find request as matches are found.",
+        "description": "活动查找请求有新的查找结果可用时产生，随着匹配项被找到，一次查找请求可能会多次产生该事件。",
+        "parameters": [
+          {
+            "name": "searchText",
+            "type": "string",
+//@            "description": "The string that is being searched for in the page."
+            "description": "在网页中搜索的字符串。"
+          },
+          {
+            "name": "numberOfMatches",
+            "type": "integer",
+//@            "description": "The number of matches found for <code>searchText</code> on the page so far."
+            "description": "目前为止在网页中找到的 <code>searchText</code> 数目。"
+          },
+          {
+            "name": "activeMatchOrdinal",
+            "type": "integer",
+//@            "description": "The ordinal number of the current active match, if it has been found. This will be <code>0</code> until then."
+            "description": "当前匹配内容的序号，如果找到的话，找到之前则一直为 <code>0</code>。"
+          },
+          {
+            "name": "selectionRect",
+            "$ref": "SelectionRect",
+//@            "description": "Describes a rectangle around the active match, if it has been found, in screen coordinates."
+            "description": "以屏幕坐标表示当前匹配内容所在区域（如果找到的话）。"
+          },
+          {
+            "name": "canceled",
+            "type": "boolean",
+//@            "description": "Indicates whether the find request was canceled."
+            "description": "表示查找请求是否已经取消。"
+          },
+          {
+            "name": "finalUpdate",
+            "type": "string",
+//@            "description": "Indicates that all find requests have completed and that no more <code>findupdate</code> events will be fired until more find requests are made."
+            "description": "表示所有查找请求是否都已经完成，不会再产生 <code>findupdate</code> 事件，除非再次发出查找请求。"
           }
         ]
       },
