@@ -49,21 +49,21 @@ namespace bluetooth {
 
   dictionary Profile {
     // <!--@Unique profile identifier, e.g. 00001401-0000-1000-8000-00805F9B23FB-->
-    // 唯一的规范标识符，例如 00001401-0000-1000-8000-00805F9B23FB。
+    // 唯一的配置文件标识符，例如 00001401-0000-1000-8000-00805F9B23FB。
     DOMString uuid;
 
     // <!--@Human-readable name of the Profile, e.g. "Health Device"-->
-    // 可读的规范名称，例如“Health Device”。
+    // 可读的配置文件名称，例如“Health Device”（保健设备）。
     DOMString? name;
 
     // <!--@The RFCOMM channel id, used when the profile is to be exported to remote
     // devices.-->
-    // RFCOMM 通道标识符，当规范输出至远程设备时使用。
+    // RFCOMM 通道标识符，当配置文件输出至远程设备时使用。
     long? channel;
 
     // <!--@The LS2CAP PSM number, used when the profile is to be exported to remote
     // deviecs.-->
-    // LS2CAP PSM 编号，当规范输出至远程设备时使用。
+    // LS2CAP PSM 编号，当配置文件输出至远程设备时使用。
     long? psm;
 
     // <!--@Specifies whether pairing (and encryption) is required to be able to
@@ -77,15 +77,16 @@ namespace bluetooth {
 
     // <!--@Specifies whether this profile will be automatically connected if any
     // other profile of device also exporting this profile connects to the host.-->
+    // 指定导出该配置文件的其他设备连接到主机时，该配置文件是否会自动连接。
     boolean? autoConnect;
 
     // <!--@Specifies the implemented version of the profile.-->
-    // 指定规范的实现版本。
+    // 指定配置文件的实现版本。
     long? version;
 
     // <!--@Specifies the profile-specific bit field of features the implementation
     // supports.-->
-    // 指定实现支持的规范特定的特性位域。
+    // 指定实现支持的配置文件特定的特性位域。
     long? features;
   };
 
@@ -105,7 +106,7 @@ namespace bluetooth {
     Device device;
 
     // <!--@The remote Bluetooth profile associated with this socket.-->
-    // 与该套接字关联的远程蓝牙规范。
+    // 与该套接字关联的远程蓝牙配置文件。
     Profile profile;
 
     // <!--@An identifier for this socket that should be used with the
@@ -144,7 +145,7 @@ namespace bluetooth {
   // getProfiles 函数中使用的选项。
   dictionary GetProfilesOptions {
     // <!--@The remote Bluetooth device to retrieve the exported profiles list from.-->
-    // 要获取导出的规范列表的远程蓝牙设备。
+    // 要获取导出的配置文件列表的远程蓝牙设备。
     Device device;
   };
 
@@ -165,7 +166,7 @@ namespace bluetooth {
     Device device;
 
     // <!--@The connection is made to |profile|.-->
-    // 连接到 <code>profile</code> 规范。
+    // 连接到 <code>profile</code> 配置文件。
     Profile profile;
   };
 
@@ -217,13 +218,13 @@ namespace bluetooth {
     // <!--@Registers the JavaScript application as an implementation for the given
     // Profile; if a channel or PSM is specified, the profile will be exported
     // in the host's SDP and GATT tables and advertised to other devices.-->
-    // 将 JavaScript 应用程序注册为指定规范的实现。如果指定了通道或
-    // PSM，规范将输出至主机的 SDP 与 GATT 表，并广播到其他设备。
+    // 将 JavaScript 应用程序注册为指定配置文件的实现。如果指定了通道或
+    // PSM，配置文件将输出至主机的 SDP 与 GATT 表，并广播到其他设备。
     static void addProfile(Profile profile, ResultCallback callback);
 
     // <!--@Unregisters the JavaScript application as an implementation for the given
     // Profile; only the uuid field of the Profile object is used.-->
-    // 取消注册 JavaScript 应用程序，不作为指定规范的实现。Profile
+    // 取消注册 JavaScript 应用程序，不作为指定配置文件的实现。Profile
     // 对象中只使用 uuid 字段。
     static void removeProfile(Profile profile, ResultCallback callback);
 
@@ -243,7 +244,7 @@ namespace bluetooth {
 
     // <!--@Returns the set of exported profiles for the device specified in options.
     // This function will not initiate a connection to the remote device.-->
-    // 返回选项中指定设备导出的规范。该函数不会向远程设备发起连接。
+    // 返回选项中指定设备导出的配置文件。该函数不会向远程设备发起连接。
     static void getProfiles(GetProfilesOptions options,
                             ProfilesCallback callback);
 
@@ -357,8 +358,10 @@ namespace bluetooth {
     // 之前发现的蓝牙设备很长时间不在范围内，视为不再可用时，或者配对的设备移除时产生。
     static void onDeviceRemoved(Device device);
 
-    // Fired when a connection has been made for a registered profile.
-    // |socket| : The socket for the connection.
+    // <!--@Fired when a connection has been made for a registered profile.-->
+    // 注册的配置文件建立连接时产生。
+    // |socket| : <!--@The socket for the connection.-->
+    // 该连接的套接字。
     static void onConnection(Socket socket);
   };
 };

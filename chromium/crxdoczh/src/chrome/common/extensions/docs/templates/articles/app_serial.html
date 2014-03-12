@@ -6,10 +6,10 @@
 <p>
 <!--@This document describes how to use the <a href="serial.html">serial API</a> to read
 and write from serial devices. Chrome Apps can also connect to
-<a href="app_usb.html">USB</a> and <a href="bluetooth.html">Bluetooth</a> devices.-->
+<a href="app_usb.html">USB</a> and <a href="app_bluetooth.html">Bluetooth</a> devices.-->
 该文档描述如何使用<a href="serial.html">串行端口
 API</a>读取和写入串行端口设备，Chrome 应用还可以连接到
-<a href="app_usb.html">USB</a> 与<a href="bluetooth.html">蓝牙</a>设备。
+<a href="app_usb.html">USB</a> 与<a href="app_bluetooth.html">蓝牙</a>设备。
 </p>
 
 <p class="note">
@@ -110,7 +110,7 @@ chrome.serial.connect("/dev/ttyS01", {bitrate: 115200}, onConnect);
 <h2 id="disconnect"><!--@Disconnect from a serial port-->断开串行端口连接</h2>
 
 <p>
-<!--@When an app terminates, connections to serial ports that are not persistent 
+<!--@When an app terminates, connections to serial ports that are not persistent
 are automatically closed by the platform. However, if you want to disconnect
 while your app is still running, you can use the $ref:serial.disconnect method:-->
 您的应用终止时，平台会自动关闭非持久的串行端口连接。然而如果您希望在应用运行时就断开连接，您可以使用
@@ -133,9 +133,9 @@ chrome.serial.disconnect(connectionId, onDisconnect);
 <p>
 <!--@The serial API reads from the serial port and delivers the read bytes as an ArrayBuffer to event listeners.
 
-Every port that your application is connected to will generate read events to all listeners added through 
+Every port that your application is connected to will generate read events to all listeners added through
 <code>chrome.serial.onReceive.addListener(onReceiveCallback)</code>. If you are connected to more than one port at the
-same time, you may find the corresponding <code>connectionId</code> of an incoming read event in the callback parameter 
+same time, you may find the corresponding <code>connectionId</code> of an incoming read event in the callback parameter
 of $ref:serial.onReceive.-->
 串行端口 API 从串行端口读取数据并以 <code>ArrayBuffer</code>
 的方式将已读取的字节传递给事件监听器。您的应用连接的每一个端口都会产生读取事件，传递给通过

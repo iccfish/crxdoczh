@@ -38,8 +38,8 @@
   "bluetooth": {
     "了解更多": [
       {
-        "link": "app_usb.html",
-        "text": "访问硬件设备"
+        "link": "app_bluetooth.html",
+        "text": "蓝牙"
       }
     ]
   },

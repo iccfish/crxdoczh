@@ -1,0 +1,28 @@
+<h1><!--@Manifest - Bluetooth-->清单文件——蓝牙</h1>
+
+<p>
+<!--@The <code>bluetooth</code> manifest property declares which permissions are
+available for the $ref:bluetooth API.-->
+清单文件中的 <code>bluetooth</code> 属性声明 $ref:bluetooth API 有哪些权限。
+</p>
+
+<h2 id="manifest"><!--@Sample -->manifest.json 示例</h2>
+<pre data-filename="manifest.json">
+{
+  "name": "我的蓝牙{{platformTitle}}",
+  "bluetooth": {
+    // chrome.bluetooth.addProfile 权限：
+    // 应用程序允许发出和接收实现 UUID
+    // 0x1105 和 0x1106 配置文件的连接。
+    "profiles": [ "1105", "1106" ]
+  },
+  ...
+}
+</pre>
+
+<section>
+<h2 id="reference"><!--@Reference-->参考</h2>
+<p class="api_reference">
+{{+partials.type type:apis.manifestTypes.byName.bluetooth/}}
+</p>
+</section>

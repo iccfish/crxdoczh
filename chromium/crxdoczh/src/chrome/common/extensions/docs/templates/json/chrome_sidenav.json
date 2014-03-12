@@ -110,6 +110,10 @@
               {
                 "title": "网络通信",
                 "href": "/apps/app_network"
+              },
+              {
+                "title": "蓝牙",
+                "href": "/apps/app_bluetooth"
               }
             ]
           },
