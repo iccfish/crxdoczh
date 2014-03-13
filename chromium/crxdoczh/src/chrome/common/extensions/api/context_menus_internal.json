@@ -1,0 +1,114 @@
+// Copyright 2014 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+[
+  {
+    "namespace": "contextMenusInternal",
+//@    "description": "Use the <code>chrome.contextMenus</code> API to add items to Google Chrome's context menu. You can choose what types of objects your context menu additions apply to, such as images, hyperlinks, and pages.",
+    "description": "使用 <code>chrome.contextMenus</code> API 向 Google Chrome 浏览器的右键菜单添加项目。您可以选择您在右键菜单中添加的项目应用于哪些类型的对象，例如图片、超链接和页面。",
+    "types": [
+      {
+        "id": "OnClickData",
+        "type": "object",
+//@        "description": "Information sent when a context menu item is clicked.",
+        "description": "右键菜单项单击时发送的信息。",
+        "properties": {
+          "menuItemId": {
+            "choices": [
+              { "type": "integer" },
+              { "type": "string" }
+            ],
+//@            "description": "The ID of the menu item that was clicked."
+            "description": "单击的菜单项标识符。"
+          },
+          "parentMenuItemId": {
+            "choices": [
+              { "type": "integer" },
+              { "type": "string" }
+            ],
+            "optional": true,
+//@            "description": "The parent ID, if any, for the item clicked."
+            "description": "单击的菜单项的父菜单项标识符（如果有的话）。"
+          },
+          "mediaType": {
+            "type": "string",
+            "optional": true,
+//@            "description": "One of 'image', 'video', or 'audio' if the context menu was activated on one of these types of elements."
+            "description": "如果右键菜单在其中某一种类型的元素上激活则值为'image'、'video' 或 'audio'。"
+          },
+          "linkUrl": {
+            "type": "string",
+            "optional": true,
+//@            "description": "If the element is a link, the URL it points to."
+            "description": "如果元素是一个链接，指定它指向的 URL。"
+          },
+          "srcUrl": {
+            "type": "string",
+            "optional": true,
+//@            "description": "Will be present for elements with a 'src' URL."
+            "description": "如果元素的 src 属性指定了 URL 将会存在这一属性。"
+          },
+          "pageUrl": {
+            "type": "string",
+            "optional": true,
+//@            "description": "The URL of the page where the menu item was clicked. This property is not set if the click occured in a context where there is no current page, such as in a launcher context menu."
+            "description": "菜单项单击时所在页面的 URL。如果单击时所在上下文没有当前页面，例如在应用执行器的右键菜单中，则不会设置该属性。"
+          },
+          "frameUrl": {
+            "type": "string",
+            "optional": true,
+//@            "description": " The URL of the frame of the element where the context menu was clicked, if it was in a frame."
+            "description": "如果在框架中的话，则为单击后弹出右键菜单时框架元素的 URL。"
+          },
+          "selectionText": {
+            "type": "string",
+            "optional": true,
+//@            "description": "The text for the context selection, if any."
+            "description": "当前选中的文本（如果有的话）。"
+          },
+          "editable": {
+            "type": "boolean",
+//@            "description": "A flag indicating whether the element is editable (text input, textarea, etc.)."
+            "description": "一个标志，指定当前元素是否可以编辑（&lt;input type=\"text\"&gt;、&lt;textarea&gt; 等）。"
+          },
+          "wasChecked": {
+            "type": "boolean",
+            "optional": true,
+//@            "description": "A flag indicating the state of a checkbox or radio item before it was clicked."
+            "description": "表示单击前复选框或单选菜单项状态的标志。"
+          },
+          "checked": {
+            "type": "boolean",
+            "optional": true,
+//@            "description": "A flag indicating the state of a checkbox or radio item after it is clicked."
+            "description": "表示单击后复选框或单选菜单项状态的标志。"
+          }
+        }
+      }
+    ],
+    "events": [
+      {
+        "name": "onClicked",
+        "type": "function",
+//@        "description": "Fired when a context menu item is clicked.",
+        "description": "当右键菜单项单击时产生。",
+        "parameters": [
+          {
+            "name": "info",
+            "$ref": "OnClickData",
+//@            "description": "Information about the item clicked and the context where the click happened."
+            "description": "有关单击发生时的菜单项和上下文的信息。"
+          },
+          {
+            "name": "tab",
+            "$ref": "tabs.Tab",
+//@            "description": "The details of the tab where the click took place. If the click did not take place in a tab, this parameter will be missing.",
+            "description": "单击发生的标签页的细节。如果单击不在标签页中产生，将不会传递该参数。",
+            "optional": true
+          }
+        ]
+      }
+    ]
+  }
+]

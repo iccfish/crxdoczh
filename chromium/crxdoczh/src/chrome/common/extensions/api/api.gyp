@@ -5,7 +5,7 @@
 {
   'targets': [
     {
-      'target_name': 'api',
+      'target_name': 'chrome_api',
       'type': 'static_library',
       'sources': [
         '<@(schema_files)',
@@ -41,6 +41,8 @@
               'app_runtime.idl',
               'app_window.idl',
               'audio.idl',
+              'automation_internal.idl',
+              'automation.idl',
               'autotest_private.idl',
               'bluetooth.idl',
               'bookmark_manager_private.json',
@@ -51,6 +53,7 @@
               'command_line_private.json',
               'content_settings.json',
               'context_menus.json',
+              'context_menus_internal.json',
               'cookies.json',
               'debugger.json',
               'desktop_capture.json',
@@ -99,10 +102,6 @@
               'serial.idl',
               'sessions.json',
               'signed_in_devices.idl',
-              'socket.idl',
-              'sockets_tcp.idl',
-              'sockets_tcp_server.idl',
-              'sockets_udp.idl',
               'storage.json',
               'streams_private.idl',
               'sync_file_system.idl',
@@ -152,6 +151,7 @@
                 'tab_capture.idl',
                 'tabs.json',
                 'types.json',
+                'webview.json',
                 'web_navigation.json',
                 'web_request.json',
                 'windows.json',
