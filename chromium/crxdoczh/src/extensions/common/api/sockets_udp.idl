@@ -1,308 +1,436 @@
-// Copyright 2014 The Chromium Authors. All rights reserved.
+// Copyright 2013 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>chrome.sockets.udp</code> API to send and receive data over the
+// <!--@Use the <code>chrome.sockets.udp</code> API to send and receive data over the
 // network using UDP connections. This API supersedes the UDP functionality
-// previously found in the "socket" API.
+// previously found in the "socket" API.-->
+// 使用 <code>chrome.sockets.udp</code> API 使用 UDP
+// 连接通过网络发送和接收数据。该 API 是对原先套接字 API 中 UDP
+// 功能的增强。
 namespace sockets.udp {
-  // The socket properties specified in the <code>create</code> or
+  // <!--@The socket properties specified in the <code>create</code> or
   // <code>update</code> function. Each property is optional. If a property
   // value is not specified, a default value is used when calling
   // <code>create</code>, or the existing value if preserved when calling
-  // <code>update</code>.
+  // <code>update</code>.-->
+  // <code>create</code> 或 <code>update</code>
+  // 函数中指定的套接字属性。所有属性都是可选的，如果某个属性值未指定，调用
+  // <code>create</code> 时使用默认值，调用 <code>update</code>
+  // 时保留现有的值。
   dictionary SocketProperties {
-    // Flag indicating if the socket is left open when the event page of the
+    // <!--@Flag indicating if the socket is left open when the event page of the
     // application is unloaded (see
     // <a href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App
     // Lifecycle</a>). The default value is "false." When the application is
     // loaded, any sockets previously opened with persistent=true can be fetched
-    // with <code>getSockets</code>.
+    // with <code>getSockets</code>.-->
+    // 事件页面或应用程序关闭（参见<a href="app_lifecycle.html"
+    // >管理应用的生命周期</a>）时套接字是否保持打开，默认值为
+    // false。应用程序载入时，之前以 persistent: true 打开的套接字可以通过
+    // <code>getSockets</code> 获取。
     boolean? persistent;
 
-    // An application-defined string associated with the socket.
+    // <!--@An application-defined string associated with the socket.-->
+    // 与该套接字相关联的字符串，由应用定义。
     DOMString? name;
 
-    // The size of the buffer used to receive data. If the buffer is too small
-    // to receive the UDP packet, data is lost. The default value is 4096.
+    // <!--@The size of the buffer used to receive data. If the buffer is too small
+    // to receive the UDP packet, data is lost. The default value is 4096.-->
+    // 用于接收数据的缓冲区大小。如果缓冲区太小而无法接收某个 UDP
+    // 包，则会丢失数据。默认值为 4096。
     long? bufferSize;
   };
 
-  // Result of <code>create</code> call.
+  // <!--@Result of <code>create</code> call.-->
+  // <code>create</code> 调用的结果。
   dictionary CreateInfo {
-    // The ID of the newly created socket. Note that socket IDs created from
+    // <!--@The ID of the newly created socket. Note that socket IDs created from
     // this API are not compatible with socket IDs created from other APIs, such
-    // as the deprecated <code>$ref:socket</code> API.
+    // as the deprecated <code>$ref:socket</code> API.-->
+    // 新创建的套接字的标识符。注意，该 API 中创建的套接字标识符和其他 API
+    // 中创建的套接字标识符不兼容，例如弃用的 <code>$ref:socket</code> API。
     long socketId;
   };
 
-  // Callback from the <code>create</code> method.
-  // |createInfo| : The result of the socket creation.
+  // <!--@Callback from the <code>create</code> method.-->
+  // <code>create</code> 方法的回调函数。
+  // |createInfo| : <!--@The result of the socket creation.-->
+  // 套接字创建的结果。
   callback CreateCallback = void (CreateInfo createInfo);
 
-  // Callback from the <code>bind</code> method.
-  // |result| : The result code returned from the underlying network call.
-  // A negative value indicates an error.
+  // <!--@Callback from the <code>bind</code> method.-->
+  // <code>bind</code> 方法的结果。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用的结果，负值表示错误。
   callback BindCallback = void (long result);
 
-  // Result of the <code>send</code> method.
+  // <!--@Result of the <code>send</code> method.-->
+  // <code>send</code> 方法的结果。
   dictionary SendInfo {
-    // The result code returned from the underlying network call.
-    // A negative value indicates an error.
+    // <!--@The result code returned from the underlying network call.
+    // A negative value indicates an error.-->
+    // 底层网络调用返回的结果代码，负值表示错误。
     long resultCode;
 
-    // The number of bytes sent (if result == 0)
+    // <!--@The number of bytes sent (if result == 0)-->
+    // 已发送的字节数（如果 result 为 0）。
     long? bytesSent;
   };
 
-  // Callback from the <code>send</code> method.
-  // |sendInfo| : Result of the <code>send</code> method.
+  // <!--@Callback from the <code>send</code> method.-->
+  // <code>send</code> 方法的回调函数。
+  // |sendInfo| : <!--@Result of the <code>send</code> method.-->
+  // <code>send</code> 方法的结果。
   callback SendCallback = void (SendInfo sendInfo);
 
-  // Callback from the <code>close</code> method.
+  // <!--@Callback from the <code>close</code> method.-->
+  // <code>close</code> 方法的回调函数。
   callback CloseCallback = void ();
 
-  // Callback from the <code>update</code> method.
+  // <!--@Callback from the <code>update</code> method.-->
+  // <code>update</code> 方法的回调函数。
   callback UpdateCallback = void ();
 
-  // Callback from the <code>setPaused</code> method.
+  // <!--@Callback from the <code>setPaused</code> method.-->
+  // <code>setPaused</code> 方法的回调函数。
   callback SetPausedCallback = void ();
 
-  // Result of the <code>getInfo</code> method.
+  // <!--@Result of the <code>getInfo</code> method.-->
+  // <code>getInfo</code> 方法的结果。
   dictionary SocketInfo {
-    // The socket identifier.
+    // <!--@The socket identifier.->
+    // 套接字标识符。
     long socketId;
 
-    // Flag indicating whether the socket is left open when the application is
-    // suspended (see <code>SocketProperties.persistent</code>).
+    // <!--@Flag indicating whether the socket is left open when the application is
+    // suspended (see <code>SocketProperties.persistent</code>).-->
+    // 表示应用关闭时（参见
+    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态的标志。
     boolean persistent;
 
-    // Application-defined string associated with the socket.
+    // <!--@Application-defined string associated with the socket.-->
+    // 与套接字相关联的字符串，由应用定义。
     DOMString? name;
 
-    // The size of the buffer used to receive data. If no buffer size has been
-    // specified explictly, the value is not provided.
+    // <!--@The size of the buffer used to receive data. If no buffer size has been
+    // specified explictly, the value is not provided.-->
+    // 用于接收数据的缓冲区大小。如果没有明确指定缓冲区大小，则不提供该属性的值。
     long? bufferSize;
 
-    // Flag indicating whether the socket is blocked from firing onReceive
-    // events.
+    // <!--@Flag indicating whether the socket is blocked from firing onReceive
+    // events.-->
+    // 表示是否阻止套接字产生 onReceive 事件。
     boolean paused;
 
-    // If the underlying socket is bound, contains its local
-    // IPv4/6 address.
+    // <!--@If the underlying socket is bound, contains its local
+    // IPv4/6 address.-->
+    // 如果套接字已绑定，则包含它的本地 IPv4/6 地址。
     DOMString? localAddress;
 
-    // If the underlying socket is bound, contains its local port.
+    // <!--@If the underlying socket is bound, contains its local port.-->
+    // 如果套接字已绑定，则包含它的本地端口。
     long? localPort;
   };
 
-  // Callback from the <code>getInfo</code> method.
-  // |socketInfo| : Object containing the socket information.
+  // <!--@Callback from the <code>getInfo</code> method.-->
+  // <code>getInfo</code> 方法的回调函数。
+  // |socketInfo| : <!--@Object containing the socket information.-->
+  // 包含套接字信息的对象。
   callback GetInfoCallback = void (SocketInfo socketInfo);
 
-  // Callback from the <code>getSockets</code> method.
-  // |socketInfos| : Array of object containing socket information.
+  // <!--@Callback from the <code>getSockets</code> method.-->
+  // <code>getSockets</code> 方法的回调函数。
+  // |socketInfos| : <!--@Array of object containing socket information.-->
+  // 包含套接字信息的对象数组。
   callback GetSocketsCallback = void (SocketInfo[] socketInfos);
 
-  // Callback from the <code>joinGroup</code> method.
-  // |result| : The result code returned from the underlying network call.
-  // A negative value indicates an error.
+  // <!--@Callback from the <code>joinGroup</code> method.-->
+  // <code>joinGroup</code> 方法的回调函数。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用返回的结果代码，负值表示错误。
   callback JoinGroupCallback = void (long result);
 
-  // Callback from the <code>leaveGroup</code> method.
-  // |result| : The result code returned from the underlying network call.
-  // A negative value indicates an error.
+  // <!--@Callback from the <code>leaveGroup</code> method.-->
+  // <code>leaveGroup</code> 方法的回调函数。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用返回的结果代码，负值表示错误。
   callback LeaveGroupCallback = void (long result);
 
-  // Callback from the <code>setMulticastTimeToLive</code> method.
-  // |result| : The result code returned from the underlying network call.
-  // A negative value indicates an error.
+  // <!--@Callback from the <code>setMulticastTimeToLive</code> method.-->
+  // <code>setMulticastTimeToLive</code> 方法的回调函数。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用返回的结果代码，负值表示错误。
   callback SetMulticastTimeToLiveCallback = void (long result);
 
-  // Callback from the <code>setMulticastLoopbackMode</code> method.
-  // |result| : The result code returned from the underlying network call.
-  // A negative value indicates an error.
+  // <!--@Callback from the <code>setMulticastLoopbackMode</code> method.-->
+  // <code>setMulticastLoopbackMode</code> 方法的回调函数。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用返回的结果代码，负值表示错误。
   callback SetMulticastLoopbackModeCallback = void (long result);
 
-  // Callback from the <code>getJoinedGroupsCallback</code> method.
-  // |groups| : Array of groups the socket joined.
+  // <!--@Callback from the <code>getJoinedGroupsCallback</code> method.-->
+  // <code>getJoinedGroupsCallback</code> 方法的回调函数。
+  // |groups| : <!--@Array of groups the socket joined.-->
+  // 套接字加入的分组。
   callback GetJoinedGroupsCallback = void (DOMString[] groups);
 
-  // Data from an <code>onReceive</code> event.
+  // <!--@Data from an <code>onReceive</code> event.-->
+  // <code>onReceive</code> 事件的数据。
   dictionary ReceiveInfo {
-    // The socket ID.
+    // <!--@The socket ID.-->
+    // 套接字标识符。
     long socketId;
 
-    // The UDP packet content (truncated to the current buffer size).
+    // <!--@The UDP packet content (truncated to the current buffer size).-->
+    // UDP 数据包内容（可能会根据当前缓冲区大小而截断）。
     ArrayBuffer data;
 
-    // The address of the host the packet comes from.
+    // <!--@The address of the host the packet comes from.-->
+    // 数据包来源主机的地址。
     DOMString remoteAddress;
 
-     // The port of the host the packet comes from.
+     // <!--@The port of the host the packet comes from.-->
+     // 数据包来源主机的端口。
     long remotePort;
   };
 
-  // Data from an <code>onReceiveError</code> event.
+  // <!--@Data from an <code>onReceiveError</code> event.-->
+  // <code>onReceiveError</code> 事件的数据。
   dictionary ReceiveErrorInfo {
-    // The socket ID.
+    // <!--@The socket identifier.-->
+    // 套接字标识符。
     long socketId;
 
-     // The result code returned from the underlying recvfrom() call.
+    // <!--@The result code returned from the underlying recvfrom() call.-->
+    // 底层网络调用返回的结果代码。
     long resultCode;
   };
 
   interface Functions {
-    // Creates a UDP socket with the given properties.
-    // |properties| : The socket properties (optional).
-    // |callback| : Called when the socket has been created.
+    // <!--@Creates a UDP socket with the given properties.-->
+    // 创建具有指定属性的 UDP 套接字。
+    // |properties| : <!--@The socket properties (optional).-->
+    // 套接字属性（可选）。
+    // |callback| : <!--@Called when the socket has been created.-->
+    // 套接字创建后调用。
     static void create(optional SocketProperties properties,
                        CreateCallback callback);
 
-    // Updates the socket properties.
-    // |socketId| : The socket ID.
-    // |properties| : The properties to update.
-    // |callback| : Called when the properties are updated.
+    // <!--@Updates the socket properties.-->
+    // 更新套接字属性。
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |properties| : <!--@The properties to update.-->
+    // 要更新的属性。
+    // |callback| : <!--@Called when the properties are updated.-->
+    // 属性更新后调用。
     static void update(long socketId,
                        SocketProperties properties,
                        optional UpdateCallback callback);
 
-    // Pauses or unpauses a socket. A paused socket is blocked from firing
-    // <code>onReceive</code> events.
-    // |connectionId| : The socket ID.
-    // |paused| : Flag to indicate whether to pause or unpause.
-    // |callback| : Called when the socket has been successfully paused or
-    // unpaused.
+    // <!--@Pauses or unpauses a socket. A paused socket is blocked from firing
+    // <code>onReceive</code> events.-->
+    // 暂停或取消暂停套接字。暂停的套接字不会收到 <code>onReceive</code> 事件。
+    // |connectionId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |paused| : <!--@Flag to indicate whether to pause or unpause.-->
+    // 表示是暂停还是取消暂停的标志。
+    // |callback| : <!--@Called when the socket has been successfully paused or
+    // unpaused.-->
+    // 套接字暂停或取消暂停成功时调用。
     static void setPaused(long socketId,
                           boolean paused,
                           optional SetPausedCallback callback);
 
-    // Binds the local address and port for the socket. For a client socket, it
+    // <!--@Binds the local address and port for the socket. For a client socket, it
     // is recommended to use port 0 to let the platform pick a free port.
     //
     // Once the <code>bind</code> operation completes successfully,
     // <code>onReceive</code> events are raised when UDP packets arrive on the
-    // address/port specified -- unless the socket is paused.
+    // address/port specified -- unless the socket is paused.-->
+    // 为套接字绑定本机地址和端口。对于客户端套接字来说，建议使用端口 0
+    // 以便让平台选择一个空闲的端口。一旦 <code>bind</code>
+    // 操作成功完成，只要指定地址/端口上收到 UDP 数据包就会产生
+    // <code>onReceive</code> 事件，除非套接字已暂停。
     //
-    // |socketId| : The socket ID.
-    // |address| : The address of the local machine. DNS name, IPv4 and IPv6
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |address| : <!--@The address of the local machine. DNS name, IPv4 and IPv6
     // formats are supported. Use "0.0.0.0" to accept packets from all local
-    // available network interfaces.
-    // |port| : The port of the local machine. Use "0" to bind to a free port.
-    // |callback| : Called when the <code>bind</code> operation completes.
+    // available network interfaces.-->
+    // 本地计算机的地址，支持 DNS 名称、IPv4 和 IPv6 地址。使用 "0.0.0.0"
+    // 可以从所有本地可用的网络接口接收数据包。
+    // |port| : <!--@The port of the local machine. Use "0" to bind to a free port.-->
+    // 本地计算机的端口，使用 0 可以绑定至某个空闲端口。
+    // |callback| : <!--@Called when the <code>bind</code> operation completes.-->
+    // <code>bind</code> 操作完成时调用。
     static void bind(long socketId,
                      DOMString address,
                      long port,
                      BindCallback callback);
 
-    // Sends data on the given socket to the given address and port. The socket
-    // must be bound to a local port before calling this method.
-    // |socketId| : The socket ID.
-    // |data| : The data to send.
-    // |address| : The address of the remote machine.
-    // |port| : The port of the remote machine.
-    // |callback| : Called when the <code>send</code> operation completes.
+    // <!--@Sends data on the given socket to the given address and port. The socket
+    // must be bound to a local port before calling this method.-->
+    // 在指定套接字上向指定的地址和端口发送数据。调用该方法前，套接字必须绑定至某个本机端口。
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |data| : <!--@The data to send.-->
+    // 要发送的数据。
+    // |address| : <!--@The address of the remote machine.-->
+    // 远程计算机的地址。
+    // |port| : <!--@The port of the remote machine.-->
+    // 远程计算机的端口。
+    // |callback| : <!--@Called when the <code>send</code> operation completes.-->
+    // <code>send</code> 操作完成时调用。
     static void send(long socketId,
                      ArrayBuffer data,
                      DOMString address,
                      long port,
                      SendCallback callback);
 
-    // Closes the socket and releases the address/port the socket is bound to.
+    // <!--@Closes the socket and releases the address/port the socket is bound to.
     // Each socket created should be closed after use. The socket id is no
     // longer valid as soon at the function is called. However, the socket is
-    // guaranteed to be closed only when the callback is invoked.
-    // |socketId| : The socket ID.
-    // |callback| : Called when the <code>close</code> operation completes.
+    // guaranteed to be closed only when the callback is invoked.-->
+    // 关闭套接字，并释放套接字绑定的地址/端口。每一个创建的套接字在使用完成后都必须关闭。该函数调用后套接字标识符就失效，但是调用回调函数时才能保证套接字已经关闭。
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |callback| : <!--@Called when the <code>close</code> operation completes.-->
+    // <code>close</code> 操作完成时调用。
     static void close(long socketId,
                       optional CloseCallback callback);
 
-    // Retrieves the state of the given socket.
-    // |socketId| : The socket ID.
-    // |callback| : Called when the socket state is available.
+    // <!--@Retrieves the state of the given socket.-->
+    // 获取指定套接字的状态。
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |callback| : <!--@Called when the socket state is available.-->
+    // 套接字状态可用时调用。
     static void getInfo(long socketId,
                         GetInfoCallback callback);
 
-    // Retrieves the list of currently opened sockets owned by the application.
-    // |callback| : Called when the list of sockets is available.
+    // <!--@Retrieves the list of currently opened sockets owned by the application.-->
+    // 获取应用拥有的当前打开的套接字列表。
+    // |callback| : <!--@Called when the list of sockets is available.-->
+    // 套接字列表可用时调用。
     static void getSockets(GetSocketsCallback callback);
 
-    // Joins the multicast group and starts to receive packets from that group.
-    // The socket must be bound to a local port before calling this method.
-    // |socketId| : The socket ID.
-    // |address| : The group address to join. Domain names are not supported.
-    // |callback| : Called when the <code>joinGroup</code> operation completes.
+    // <!--@Joins the multicast group and starts to receive packets from that group.
+    // The socket must be bound to a local port before calling this method.-->
+    // 加入多播分组，开始接收来自指定分组的数据包。调用该方法前套接字必须绑定至某个本机端口。
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |address| : <!--@The group address to join. Domain names are not supported.-->
+    // 要加入的分组地址，不支持域名。
+    // |callback| : <!--@Called when the <code>joinGroup</code> operation completes.-->
+    // <code>joinGroup</code> 操作完成时调用。
     static void joinGroup(long socketId,
                           DOMString address,
                           JoinGroupCallback callback);
 
-    // Leaves the multicast group previously joined using
+    // <!--@Leaves the multicast group previously joined using
     // <code>joinGroup</code>. This is only necessary to call if you plan to
     // keep using the socketafterwards, since it will be done automatically by
-    // the OS when the socket is closed.
+    // the OS when the socket is closed.-->
+    // 离开之前通过 <code>joinGroup</code>
+    // 加入的多播分组。只有您还需要继续使用该套接字时才需要调用，套接字关闭时操作系统会自动进行该操作。
     //
-    // Leaving the group will prevent the router from sending multicast
+    // <!--@Leaving the group will prevent the router from sending multicast
     // datagrams to the local host, presuming no other process on the host is
-    // still joined to the group.
+    // still joined to the group.-->
+    // 离开分组后，如果主机上没有其他进程仍然加入该分组，路由器就不会将多播数据包发送至本地主机。
     //
-    // |socketId| : The socket ID.
-    // |address| : The group address to leave. Domain names are not supported.
-    // |callback| : Called when the <code>leaveGroup</code> operation completes.
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |address| : <!--@The group address to leave. Domain names are not supported.-->
+    // 要离开的分组地址，不支持域名。
+    // |callback| : <!--@Called when the <code>leaveGroup</code> operation completes.-->
+    // <code>leaveGroup</code> 操作完成时调用。
     static void leaveGroup(long socketId,
                            DOMString address,
                            LeaveGroupCallback callback);
 
-    // Sets the time-to-live of multicast packets sent to the multicast group.
+    // <!--@Sets the time-to-live of multicast packets sent to the multicast group.-->
+    // 设置发送至多播分组的多播数据包 TTL。
     //
-    // Calling this method does not require multicast permissions.
+    // <!--@Calling this method does not require multicast permissions.-->
+    // 调用该方法不需要多播权限。
     //
-    // |socketId| : The socket ID.
-    // |ttl| : The time-to-live value.
-    // |callback| : Called when the configuration operation completes.
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |ttl| : <!--@The time-to-live value.-->
+    // TTL 值。
+    // |callback| : <!--@Called when the configuration operation completes.-->
+    // 配置操作完成时调用。
     static void setMulticastTimeToLive(
         long socketId,
         long ttl,
         SetMulticastTimeToLiveCallback callback);
 
-    // Sets whether multicast packets sent from the host to the multicast group
-    // will be looped back to the host.
+    // <!--@Sets whether multicast packets sent from the host to the multicast group
+    // will be looped back to the host.-->
+    // 设置从主机到多播组的数据包是否要回环至主机。
     //
-    // Note: the behavior of <code>setMulticastLoopbackMode</code> is slightly
+    // <!--@Note: the behavior of <code>setMulticastLoopbackMode</code> is slightly
     // different between Windows and Unix-like systems. The inconsistency
     // happens only when there is more than one application on the same host
     // joined to the same multicast group while having different settings on
     // multicast loopback mode. On Windows, the applications with loopback off
     // will not RECEIVE the loopback packets; while on Unix-like systems, the
     // applications with loopback off will not SEND the loopback packets to
-    // other applications on the same host. See MSDN: http://goo.gl/6vqbj
+    // other applications on the same host. See MSDN: http://goo.gl/6vqbj-->
+    // 注意：<code>setMulticastLookbackMode</code> 在 Windows 与类 Unix
+    // 系统上的行为不同。只有当同一主机上不止一个应用程序加入了同一个多播组，并且多播回环模式的设置不同时才会出现这一不一致性。在
+    // Windows 中，关闭回环的应用程序不会<b>接受</b>到回环包；而在类 Unix
+    // 系统中，关闭回环的应用程序不会向同一主机上的其他应用程序<b
+    // >发送</b>回环包。请参见 MSDN：<a href="http://goo.gl/6vqbj"
+    // >http://goo.gl/6vqbj</a>。
     //
-    // Calling this method does not require multicast permissions.
+    // <!--@Calling this method does not require multicast permissions.-->
+    // 调用该方法不需要多播权限。
     //
-    // |socketId| : The socket ID.
-    // |enabled| : Indicate whether to enable loopback mode.
-    // |callback| : Called when the configuration operation completes.
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |enabled| : <!--@Indicate whether to enable loopback mode.-->
+    // 表示是否启用回环模式。
+    // |callback| : <!--@Called when the configuration operation completes.-->
+    // 配置操作完成后调用。
     static void setMulticastLoopbackMode(
         long socketId,
         boolean enabled,
         SetMulticastLoopbackModeCallback callback);
 
-    // Gets the multicast group addresses the socket is currently joined to.
-    // |socketId| : The socket ID.
-    // |callback| : Called with an array of strings of the result.
+    // <!--@Gets the multicast group addresses the socket is currently joined to.-->
+    // 获取套接字当前加入的多播分组地址。
+    // |socketId| : <!--@The socket ID.-->
+    // 套接字标识符。
+    // |callback| : <!--@Called with an array of strings of the result.-->
+    // 调用时传递字符串数据，表示结果。
     static void getJoinedGroups(long socketId,
                                 GetJoinedGroupsCallback callback);
   };
 
   interface Events {
-    // Event raised when a UDP packet has been received for the given socket.
-    // |info| : The event data.
+    // <!--@Event raised when a UDP packet has been received for the given socket.-->
+    // 指定套接字接收到 UDP 数据包时产生该事件。
+    // |info| : <!--@The event data.-->
+    // 事件数据。
     static void onReceive(ReceiveInfo info);
 
-    // Event raised when a network error occured while the runtime was waiting
+    // <!--@Event raised when a network error occured while the runtime was waiting
     // for data on the socket address and port. Once this event is raised, the
     // socket is paused and no more <code>onReceive</code> events will be raised
-    // for this socket until the socket is resumed.
-    // |info| : The event data.
+    // for this socket until the socket is resumed.-->
+    // 运行时在套接字地址和端口上等待数据时如果发生网络错误，就会产生该事件。一旦产生该事件后，套接字会暂停，该套接字不再产生
+    // <code>onReceive</code> 事件，直到套接字恢复。
+    // |info| : <!--@The event data.-->
+    // 事件数据。
     static void onReceiveError(ReceiveErrorInfo info);
   };
 };
