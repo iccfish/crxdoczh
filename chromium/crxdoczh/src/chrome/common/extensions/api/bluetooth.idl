@@ -7,6 +7,16 @@
 // 使用 <code>chrome.bluetooth</code> API 连接到蓝牙设备。所有函数都通过
 // chrome.runtime.lastError 报告错误。
 namespace bluetooth {
+  // <!--@Allocation authorities for Vendor IDs.-->
+  // 厂商标识符的分配机构。
+  enum VendorIdSource {bluetooth, usb};
+
+  // <!--@Common device types recognized by Chrome.-->
+  // Chrome 浏览器能识别的常见设备类型。
+  enum DeviceType {computer, phone, modem, audio, carAudio, video, peripheral,
+                   joystick, gamepad, keyboard, mouse, tablet,
+                   keyboardMouseCombo};
+
   dictionary AdapterState {
     // <!--@The address of the adapter, in the format 'XX:XX:XX:XX:XX:XX'.-->
     // 适配器的地址，格式为“XX:XX:XX:XX:XX:XX”。
@@ -37,6 +47,25 @@ namespace bluetooth {
     // <!--@The human-readable name of the device.-->
     // 可读的设备名称。
     DOMString? name;
+
+    // <!--@The class of the device, a bit-field defined by
+    // http://www.bluetooth.org/en-us/specification/assigned-numbers/baseband.-->
+    // 设备类型，以位域表示，参见
+    // <a href="https://www.bluetooth.org/zh-cn/specification/assigned-numbers/baseband">https://www.bluetooth.org/zh-cn/specification/assigned-numbers/baseband</a>。
+    long deviceClass;
+
+    // <!--@The Device ID record of the device, where available.-->
+    // 设备的设备标识符记录（如果可用）。
+    VendorIdSource? vendorIdSource;
+    long? vendorId;
+    long? productId;
+    long? deviceId;
+
+    // The type of the device, if recognized by Chrome. This is obtained from
+    // the |deviceClass| field and only represents a small fraction of the
+    // possible device types. When in doubt you should use the |deviceClass|
+    // field directly.
+    DeviceType? type;
 
     // <!--@Indicates whether or not the device is paired with the system.-->
     // 表示设备是否已和系统配对。
