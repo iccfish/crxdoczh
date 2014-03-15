@@ -157,7 +157,7 @@
             "description": "这一节点的子节点。"
           },
           "expanded": {
-            "optional": "true",
+            "optional": true,
             "type": "boolean",
 //@            "description": "Whether the node is expanded by default."
             "description": "这一节点默认情况下是否展开。"

@@ -134,7 +134,7 @@
               },
               "collapseKey": {
                 "type": "string",
-                "optional": "true",
+                "optional": true,
 //@                "desctription": "The collapse key of a message. See <a href='cloudMessagingV2#collapsible_messages'>Collapsible Messages</a> section of Cloud Messaging documentation for details."
                 "desctription": "消息的折叠键。有关详情请参见云消息文档的 <a href='cloudMessagingV2#collapsible_messages'>Collapsible Messages</a>（可折叠的消息）部分。"
               }

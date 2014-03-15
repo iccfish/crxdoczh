@@ -179,7 +179,7 @@
               },
               {
                 "name": "ruleIdentifiers",
-                "optional": "true",
+                "optional": true,
                 "type": "array",
                 "items": {"type": "string"},
 //@                "description": "If an array is passed, only rules with identifiers contained in this array are returned."
@@ -222,7 +222,7 @@
               },
               {
                 "name": "ruleIdentifiers",
-                "optional": "true",
+                "optional": true,
                 "type": "array",
                 "items": {"type": "string"},
 //@                "description": "If an array is passed, only rules with identifiers contained in this array are unregistered."

@@ -52,7 +52,7 @@ namespace bluetooth {
     // http://www.bluetooth.org/en-us/specification/assigned-numbers/baseband.-->
     // 设备类型，以位域表示，参见
     // <a href="https://www.bluetooth.org/zh-cn/specification/assigned-numbers/baseband">https://www.bluetooth.org/zh-cn/specification/assigned-numbers/baseband</a>。
-    long deviceClass;
+    long? deviceClass;
 
     // <!--@The Device ID record of the device, where available.-->
     // 设备的设备标识符记录（如果可用）。
