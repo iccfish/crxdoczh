@@ -1,4 +1,302 @@
 [
+   /* // NOT YET READY
+   {
+    "title": "开发者工具",
+     "items": [
+       {
+        "title": "了解基础知识",
+         "items": [
+           {
+            "title": "概述",
+            "href": "/devtools/index"
+          },
+          {
+            "title": "Authoring & Development Workflow",
+            "href": "/devtools/docs/authoring-development-workflow"
+          },
+          {
+            "title": "使用控制台",
+            "href": "/devtools/docs/console"
+          },
+          {
+            "title": "Tips & Tricks",
+            "href": "/devtools/docs/tips-and-tricks"
+          },
+          {
+            "title": "其他资源",
+            "href": "/devtools/docs/videos",
+            "items": [
+              {
+                "title": "Videos",
+                "href": "/devtools/docs/videos"
+              },
+              {
+                "title": "Blog Posts",
+                "href": "/devtools/docs/blog-posts"
+              },
+              {
+                "title": "Mailing List",
+                "href": "https://groups.google.com/forum/?fromgroups#!forum/google-chrome-developer-tools"
+              },
+              {
+                "title": "Contributing to DevTools",
+                "href": "/devtools/docs/contributing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "使用工具",
+        "items": [
+          {
+            "title": "审查和调整",
+            "href": "/devtools/docs/dom-and-styles",
+            "items": [
+              {
+                "title": "Editing Styles & DOM",
+                "href": "/devtools/docs/elements"
+              },
+              {
+                "title": "Working with CSS Preprocessors",
+                "href": "/devtools/docs/css-preprocessors"
+              },
+              {
+                "title": "Managing Application Storage",
+                "href": "/devtools/docs/resource-panel"
+              }
+            ]
+          },
+          {
+            "title": "调试 JavaScript",
+            "href": "/devtools/docs/javascript-debugging"
+          },
+          {
+            "title": "Mobile Emulation",
+            "href": "/devtools/docs/mobile-emulation"
+          },
+          {
+            "title": "Remote Debugging on Android",
+            "href": "/devtools/docs/remote-debugging"
+          }
+        ]
+      },
+      {
+        "title": "性能与性能分析",
+        "items": [
+          {
+            "title": "Evaluating Network Performance",
+            "href": "/devtools/docs/network"
+          },
+          {
+            "title": "使用时间线",
+            "href": "/devtools/docs/timeline"
+          },
+          {
+            "title": "Timeline Demo: Finding Forced Synchronous Layouts",
+            "href": "/devtools/docs/demos/too-much-layout/index"
+          },
+          {
+            "title": "Profiling JavaScript Performance",
+            "href": "/devtools/docs/cpu-profiling"
+          },
+          {
+            "title": "JavaScript Memory Profiling",
+            "href": "/devtools/docs/javascript-memory-profiling",
+            "items": [
+              {
+                "title": "JavaScript Memory Profiling",
+                "href": "/devtools/docs/javascript-memory-profiling"
+              },
+              {
+                "title": "Demos",
+                "href": "/devtools/docs/heap-profiling-summary"
+              }
+            ]
+          },
+          {
+            "title": "创建干净的测试环境",
+            "href": "/devtools/docs/clean-testing-environment"
+          }
+        ]
+      },
+      {
+        "title": "参考",
+        "items": [
+          {
+            "title": "Console API Reference",
+            "href": "/devtools/docs/console-api"
+          },
+          {
+            "title": "Command Line API Reference",
+            "href": "/devtools/docs/commandline-api"
+          },
+          {
+            "title": "DevTools Extensions API",
+            "href": "/devtools/docs/integrating",
+            "items": [
+              {
+                "title": "Integrating with DevTools",
+                "href": "/devtools/docs/integrating"
+              },
+              {
+                "title": "Sample DevTools Extensions",
+                "href": "/devtools/docs/sample-extensions"
+              },
+              {
+                "title": "Sample DevTools Protocol Clients",
+                "href": "/devtools/docs/debugging-clients"
+              }
+            ]
+          },
+          {
+            "title": "快捷键",
+            "href": "/devtools/docs/shortcuts"
+          },
+          {
+            "title": "Settings",
+            "href": "/devtools/docs/settings"
+          },
+          {
+            "title": "Remote Debugging Protocol",
+            "href": "/devtools/docs/debugger-protocol",
+            "items": [
+              {
+                "title": "Remote Debugging Protocol",
+                "href": "/devtools/docs/debugger-protocol"
+              },
+              {
+                "title": "Version 1.1",
+                "href": "/devtools/docs/protocol/1.1/index"
+              },
+              {
+                "title": "Version 1.0",
+                "href": "/devtools/docs/protocol/1.0/index"
+              },
+              {
+                "title": "Version .1",
+                "href": "/devtools/docs/protocol/0.1/index"
+              },
+              {
+                "title": "Tip-of-tree",
+                "href": "/devtools/docs/protocol/tot/index"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  */
+  /*
+  {
+    "title": "Multi-device",
+    "items": [
+      {
+        "title": "Getting Started",
+        "items": [
+          {
+            "title": "Chrome for a Multi-Device World",
+            "href": "/multidevice/index"
+          },
+          {
+            "title": "Data Compression Proxy",
+            "href": "/multidevice/data-compression"
+          },
+          {
+            "title": "User Agents",
+            "href": "/multidevice/user-agent"
+          },
+          {
+            "title": "Mobile Emulation",
+            "href": "/devtools/docs/mobile-emulation"
+          },
+          {
+            "title": "Remote Debugging",
+            "href": "/devtools/docs/remote-debugging"
+          },
+          {
+            "title": "FAQ",
+            "href": "/multidevice/faq"
+          }
+        ]
+      },
+      {
+        "title": "Chrome for Android",
+        "items": [
+          {
+            "title": "Overview",
+            "href": "/multidevice/android/overview"
+          },
+          {
+            "title": "Android Intents with Chrome",
+            "href": "/multidevice/android/intents"
+          },
+          {
+            "title": "Add to Homescreen",
+            "href": "/multidevice/android/installtohomescreen"
+          }
+        ]
+      },
+      {
+        "title": "Chrome WebView",
+        "items": [
+          {
+            "title": "WebView for Android",
+            "href": "/multidevice/webview/overview"
+          },
+          {
+            "title": "Getting Started",
+            "href": "/multidevice/webview/gettingstarted"
+          },
+          {
+            "title": "Pixel-Perfect UI",
+            "href": "/multidevice/webview/pixelperfect"
+          },
+          {
+            "title": "WebView Workflow",
+            "href": "/multidevice/webview/workflow"
+          },
+          {
+            "title": "Tips & Tricks",
+            "href": "/multidevice/webview/tipsandtricks"
+          }
+        ]
+      },
+      {
+        "title": "Chrome for iOS",
+        "items": [
+          {
+            "title": "Overview",
+            "href": "/multidevice/ios/overview"
+          },
+          {
+            "title": "Opening Links in Chrome",
+            "href": "/multidevice/ios/links"
+          },
+          {
+            "title": "Case Studies",
+            "href": "/multidevice/ios/case-studies",
+            "items": [
+              {
+                "title": "Case Studies",
+                "href": "/multidevice/ios/case-studies"
+              },
+              {
+                "title": "Pocket",
+                "href": "/multidevice/ios/pocket"
+              },
+              {
+                "title": "Feedly",
+                "href": "/multidevice/ios/feedly"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  */
   {
     "title": "平台",
     "items": [
@@ -693,7 +991,8 @@
             ]
           }
         ]
-      }*/
+      }
+      */
     ]
   }
 ]

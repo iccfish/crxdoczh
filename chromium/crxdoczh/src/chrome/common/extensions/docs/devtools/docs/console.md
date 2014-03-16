@@ -330,7 +330,7 @@ JavaScript 控制台为测试网页和应用的开发者提供了两项主要功
 注：您必须向 `console.time()` 和 `timeEnd()` 传递相同的字符串才能使定时器
 正常结束。
 
-### <!--@Marking the Timeline-->标记时间线
+### <a name="marking-the-timeline"></a><!--@Marking the Timeline-->标记时间线
 
 <!--@The [Timeline panel](timeline.md) gives you a complete overview of where time is spent when loading and using your web app or page. The [`console.timeStamp()`](console-api.md#consoletimestamplabel) method marks the Timeline at the moment it was executed. This provides an easy way to correlate events in your application with other browser-related events, such as layout or paints.-->
 [Timeline（时间线）面板](timeline.md)为您提供加载和使用您的网上应用或网页时
