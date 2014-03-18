@@ -158,17 +158,18 @@ namespace bluetooth {
   };
 
   callback AdapterStateCallback = void(AdapterState result);
-  callback AddressCallback = void (DOMString result);
-  callback BooleanCallback = void (boolean result);
-  callback DataCallback = void (optional ArrayBuffer result);
-  callback DevicesCallback = void (Device[] result);
-  callback NameCallback = void (DOMString result);
-  callback OutOfBandPairingDataCallback = void (OutOfBandPairingData data);
+  callback AddressCallback = void(DOMString result);
+  callback BooleanCallback = void(boolean result);
+  callback DataCallback = void(optional ArrayBuffer result);
+  callback DeviceCallback = void(Device result);
+  callback DevicesCallback = void(Device[] result);
+  callback NameCallback = void(DOMString result);
+  callback OutOfBandPairingDataCallback = void(OutOfBandPairingData data);
   callback ProfilesCallback = void(Profile[] result);
-  callback ResultCallback = void ();
+  callback ResultCallback = void();
   callback ServicesCallback = void(ServiceRecord[] result);
-  callback SizeCallback = void (long result);
-  callback SocketCallback = void (Socket result);
+  callback SizeCallback = void(long result);
+  callback SocketCallback = void(Socket result);
 
   // <!--@Options for the getProfiles function.-->
   // getProfiles 函数中使用的选项。
@@ -270,6 +271,14 @@ namespace bluetooth {
     // |callback| : <!--@Called when the search is completed.-->
     // 搜索完成后调用。
     static void getDevices(DevicesCallback callback);
+
+    // <!--@Get information about a Bluetooth device known to the system.-->
+    // 获取系统已知的蓝牙设备信息。
+    // |deviceAddress| : <!--@Address of device to get.-->
+    // 要获取的设备的地址。
+    // |callback| : <!--@Called with the Device object describing the device.-->
+    // 调用时传递 Device 对象描述设备。
+    static void getDevice(DOMString deviceAddress, DeviceCallback callback);
 
     // <!--@Returns the set of exported profiles for the device specified in options.
     // This function will not initiate a connection to the remote device.-->

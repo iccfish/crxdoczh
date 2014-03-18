@@ -1,5 +1,17 @@
+/*
+Crxdoczh specific notes:
+
+We do not provide translations for Multi-device, NaCl and Web Store (these
+technologies are not yet widely used or unavailable to many Chinese
+developers). They are removed from the navigation bar.
+
+Apps and Extensions are moved out of Platform into the top level.
+
+Items in Apps and Extensions are slightly reorganized to make the whole
+navigation menu look better.
+*/
 [
-   /* // NOT YET READY
+   //* // NOT YET READY
    {
     "title": "开发者工具",
      "items": [
@@ -85,7 +97,7 @@
         "title": "性能与性能分析",
         "items": [
           {
-            "title": "Evaluating Network Performance",
+            "title": "评估网络性能",
             "href": "/devtools/docs/network"
           },
           {
@@ -97,7 +109,7 @@
             "href": "/devtools/docs/demos/too-much-layout/index"
           },
           {
-            "title": "Profiling JavaScript Performance",
+            "title": "分析 JavaScript 性能",
             "href": "/devtools/docs/cpu-profiling"
           },
           {
@@ -187,7 +199,7 @@
       }
     ]
   },
-  */
+  /*/
   /*
   {
     "title": "Multi-device",
@@ -297,18 +309,23 @@
     ]
   },
   */
-  {
+      {
+    // # Beginning of Apps & Extensions top level items.
+    /*
     "title": "平台",
     "items": [
       {
+    */
+    // The indentation remains as is in purpose, which makes it easier to
+    // merge upstreaming changes.
         "title": "应用",
         "items": [
           {
-            "title": "什么是 Chrome 应用？",
+            "title": "了解基础知识",
             "href": "/apps/about_apps",
             "items": [
               {
-                "title": "创建您的第一个应用",
+                "title": "创建第一个应用",
                 "href": "/apps/first_app"
               },
               {
@@ -322,51 +339,49 @@
               {
                 "title": "内容安全策略",
                 "href": "/apps/contentSecurityPolicy"
+              },
+              {
+                "title": "通过代码实验室学习",
+                "href": "/apps/app_codelab1_setup",
+                "items": [
+                  {
+                    "title": "1、设置开发环境",
+                    "href": "/apps/app_codelab1_setup"
+                  },
+                  {
+                    "title": "2、创建基本应用",
+                    "href": "/apps/app_codelab2_basic"
+                  },
+                  {
+                    "title": "3、创建 MVC",
+                    "href": "/apps/app_codelab3_mvc"
+                  },
+                  {
+                    "title": "4、保存和获取数据",
+                    "href": "/apps/app_codelab5_data"
+                  },
+                  {
+                    "title": "5、管理应用的生命周期",
+                    "href": "/apps/app_codelab6_lifecycle"
+                  },
+                  {
+                    "title": "6、访问用户数据",
+                    "href": "/apps/app_codelab7_useridentification"
+                  },
+                  {
+                    "title": "7、访问网络资源",
+                    "href": "/apps/app_codelab8_webresources"
+                  },
+                  {
+                    "title": "8、发布应用",
+                    "href": "/apps/app_codelab_10_publishing"
+                  }
+                ]
               }
             ]
           },
-          {
-            "title": "通过代码实验室学习",
-            "href": "/apps/app_codelab1_setup",
-            "items": [
-              {
-                "title": "1、设置开发环境",
-                "href": "/apps/app_codelab1_setup"
-              },
-              {
-                "title": "2、创建基本应用",
-                "href": "/apps/app_codelab2_basic"
-              },
-              {
-                "title": "3、创建 MVC",
-                "href": "/apps/app_codelab3_mvc"
-              },
-              {
-                "title": "4、保存和获取数据",
-                "href": "/apps/app_codelab5_data"
-              },
-              {
-                "title": "5、管理应用的生命周期",
-                "href": "/apps/app_codelab6_lifecycle"
-              },
-              {
-                "title": "6、访问用户数据",
-                "href": "/apps/app_codelab7_useridentification"
-              },
-              {
-                "title": "7、访问网络资源",
-                "href": "/apps/app_codelab8_webresources"
-              },
-              {
-                "title": "8、发布应用",
-                "href": "/apps/app_codelab_10_publishing"
-              }
-            ]
-          },
-          {
-            "title": "示例",
-            "href": "/apps/samples"
-          },
+          // Learn with Codelab moved to Learn Basics
+          // Samples moved to Help
           {
             "title": "在云端开发",
             "href": "/apps/offline_apps",
@@ -442,7 +457,7 @@
                 "href": "/apps/publish_app"
               },
               {
-                "title": "通过您的应用获利",
+                "title": "通过应用获利",
                 "href": "/apps/google_wallet"
               },
               {
@@ -486,6 +501,10 @@
             "href": "/apps/faq",
             "items": [
               {
+                "title": "示例",
+                "href": "/apps/samples"
+              },
+              {
                 "title": "常见问题",
                 "href": "/apps/faq"
               },
@@ -508,6 +527,10 @@
             "title": "了解基础知识",
             "href": "/extensions/overview",
             "items": [
+              {
+                "title": "入门教程",
+                "href": "/extensions/getstarted"
+              },
               {
                 "title": "概述",
                 "href": "/extensions/overview"
@@ -534,14 +557,8 @@
               }
             ]
           },
-          {
-            "title": "入门教程",
-            "href": "/extensions/getstarted"
-          },
-          {
-            "title": "示例",
-            "href": "/extensions/samples"
-          },
+          // Get Started moved to Learn Basics
+          // Samples moved to Help
           {
             "title": "开发扩展程序",
             "href": "/extensions/tut_migration_to_manifest_v2",
@@ -648,6 +665,10 @@
             "title": "帮助",
             "href": "/extensions/faq",
             "items": [
+              {
+                "title": "示例",
+                "href": "/extensions/samples"
+              },
               {
                 "title": "常见问题",
                 "href": "/extensions/faq"
@@ -993,6 +1014,8 @@
         ]
       }
       */
+  /*
     ]
   }
+  */ // # End of Apps & Extensions top level items.
 ]

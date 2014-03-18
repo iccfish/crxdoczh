@@ -27,8 +27,8 @@
             "items": {"type": "string"}
           },
           "matches": {
-//@            "description": "<p>The URL patterns for <em>web pages</em> that are allowed to connect. <em>This does not affect content scripts.</em> If left empty or unspecified, no web pages can connect.</p><p>Patterns cannot include wildcard domains nor subdomains of (effective) top level domains; <code>*://google.com/*</code> and <code>http://*.chromium.org/*</code> are valid, while <code>&lt;all_urls&gt;</code>, <code>http://*/*</code>, <code>*://*.com/*</code>, and even <code>http://*.appspot.com/*</code> are not.</p>",
-            "description": "<p>允许连接的<em>网页</em>的 URL 匹配表达式，<em>并不会影响内容脚本。</em>如果为空或未指定，任何网页都不能连接。</p><p>表达式不能包含通配符域名，也不能包含（有效）顶级域名的子域名。例如 <code>*://google.com/*</code> 和 <code>http://*.chromium.org/*</code> 是有效的，但 <code>&lt;all_urls&gt;</code>、<code>http://*/*</code>、<code>*://*.com/*</code> 甚至是 <code>http://*.appspot.com/*</code> 就不行。</p>",
+//@            "description": "<p>The URL patterns for <em>web pages</em> that are allowed to connect. <em>This does not affect content scripts.</em> If left empty or unspecified, no web pages can connect.</p><p>Patterns cannot include wildcard domains nor subdomains of <a href=\"http://publicsuffix.org/list/\">(effective) top level domains</a>; <code>*://google.com/*</code> and <code>http://*.chromium.org/*</code> are valid, while <code>&lt;all_urls&gt;</code>, <code>http://*/*</code>, <code>*://*.com/*</code>, and even <code>http://*.appspot.com/*</code> are not.</p>",
+            "description": "<p>允许连接的<em>网页</em>的 URL 匹配表达式，<em>并不会影响内容脚本。</em>如果为空或未指定，任何网页都不能连接。</p><p>表达式不能包含通配符域名，也不能包含<a href=\"http://publicsuffix.org/list/\">（有效）顶级域名</a>的子域名。例如 <code>*://google.com/*</code> 和 <code>http://*.chromium.org/*</code> 是有效的，但 <code>&lt;all_urls&gt;</code>、<code>http://*/*</code>、<code>*://*.com/*</code> 甚至是 <code>http://*.appspot.com/*</code> 就不行。</p>",
             "optional": true,
             "type": "array",
             "items": {"type": "string"}

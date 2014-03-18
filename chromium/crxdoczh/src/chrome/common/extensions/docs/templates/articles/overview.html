@@ -637,7 +637,7 @@ and it can manipulate their DOMs.-->
 <h2 id="incognito"> <!--@Saving data and incognito mode-->保存数据和隐身模式 </h2>
 
 <p>
-<!--@Extensions can save data using
+<!--@Extensions can save data using the $ref:storage API,
 the HTML5 <a href="http://dev.w3.org/html5/webstorage/">web storage API</a>
 (such as <code>localStorage</code>)
 or by making server requests that result in saving data.
@@ -648,7 +648,8 @@ By default, extensions don't run in incognito windows.
 You need to consider what a user expects
 from your extension
 when the browser is incognito.-->
-扩展程序可以使用 <a href="http://dev.w3.org/html5/webstorage/">HTML5
+扩展程序可以使用 $ref:storage API、<a
+href="http://dev.w3.org/html5/webstorage/">HTML5
 网页存储 API</a>（例如 <code>localStorage</code>）或者向服务器发出请求保存数据。每当您要保存任何数据前，首先要考虑它是否来自隐身窗口。默认情况下，扩展程序不在隐身窗口中运行。当浏览器处于隐身模式时，您需要考虑用户对您的扩展程序的需求。
 </p>
 
