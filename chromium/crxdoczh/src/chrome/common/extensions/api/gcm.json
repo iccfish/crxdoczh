@@ -50,6 +50,21 @@
         ]
       },
       {
+        "name": "unregister",
+        "type": "function",
+//@        "description": "Unregisters the application from GCM.",
+        "description": "在 GCM 中取消注册应用。",
+        "parameters": [
+          {
+            "name": "callback",
+            "type": "function",
+//@            "description": "A function called after the unregistration completes. Unregistration was successful if $(ref:runtime.lastError) is not set.",
+            "description": "取消注册完成后调用，如果没有设置 $(ref:runtime.lastError) 的话取消注册成功。",
+            "parameters": []
+          }
+        ]
+      },
+      {
         "name": "send",
         "type": "function",
 //@        "description": "Sends a message according to its contents.",
