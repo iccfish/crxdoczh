@@ -74,6 +74,17 @@ namespace bluetooth {
     // <!--@Indicates whether the device is currently connected to the system.-->
     // 表示设备当前是否已连接到系统。
     boolean? connected;
+
+    // <!--@UUIDs of protocols, profiles and services advertised by the device.
+    // For classic Bluetooth devices, this list is obtained from EIR data and
+    // SDP tables. For Low Energy devices, this list is obtained from AD and
+    // GATT primary services. For dual mode devices this may be obtained from
+    // both.-->
+    // 设备支持的协议、配置文件和服务的
+    // UUID。对于传统蓝牙设备来说，这一列表可以从 EIR 数据和 SDP
+    // 表中获取。对于低功耗设备，可以从 AD 和 GATT
+    // 主服务获取。对于双模式设备，可以从这两者获取。
+    DOMString[]? uuids;
   };
 
   dictionary Profile {
@@ -165,28 +176,9 @@ namespace bluetooth {
   callback DevicesCallback = void(Device[] result);
   callback NameCallback = void(DOMString result);
   callback OutOfBandPairingDataCallback = void(OutOfBandPairingData data);
-  callback ProfilesCallback = void(Profile[] result);
   callback ResultCallback = void();
-  callback ServicesCallback = void(ServiceRecord[] result);
   callback SizeCallback = void(long result);
   callback SocketCallback = void(Socket result);
-
-  // <!--@Options for the getProfiles function.-->
-  // getProfiles 函数中使用的选项。
-  dictionary GetProfilesOptions {
-    // <!--@The remote Bluetooth device to retrieve the exported profiles list from.-->
-    // 要获取导出的配置文件列表的远程蓝牙设备。
-    Device device;
-  };
-
-  // <!--@Options for the getServices function.-->
-  // getServices 函数中使用的选项。
-  dictionary GetServicesOptions {
-    // <!--@The address of the device to inquire about. |deviceAddress| should be
-    // in the format 'XX:XX:XX:XX:XX:XX'.-->
-    // 要获取信息的设备地址。<code>deviceAddress</code> 的格式为“XX:XX:XX:XX:XX:XX”。
-    DOMString deviceAddress;
-  };
 
   // <!--@Options for the connect function.-->
   // connect 函数中使用的选项。
@@ -279,17 +271,6 @@ namespace bluetooth {
     // |callback| : <!--@Called with the Device object describing the device.-->
     // 调用时传递 Device 对象描述设备。
     static void getDevice(DOMString deviceAddress, DeviceCallback callback);
-
-    // <!--@Returns the set of exported profiles for the device specified in options.
-    // This function will not initiate a connection to the remote device.-->
-    // 返回选项中指定设备导出的配置文件。该函数不会向远程设备发起连接。
-    static void getProfiles(GetProfilesOptions options,
-                            ProfilesCallback callback);
-
-    // <!--@Get a list of services provided by a device.-->
-    // 获取设备提供的服务列表。
-    static void getServices(GetServicesOptions options,
-                            ServicesCallback callback);
 
     // <!--@Connect to a service on a device.-->
     // 连接到设备上的某个服务。

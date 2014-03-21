@@ -18,23 +18,24 @@
 <p>
   <!--@For Chrome Apps that use Bluetooth, add the
   <a href="manifest/bluetooth.html">bluetooth</a> entry to the manifest
-  and specify, if appropriate, the UUIDs of profiles you wish to implement.
+  and specify, if appropriate, the UUIDs of profiles, protocols or services
+  you wish to implement.
   For example:-->
   使用蓝牙的 Chrome 应用需要在清单文件中添加
-  <a href="manifest/bluetooth.html">bluetooth</a> 项，如果适用的话还需要指定您希望实现的配置文件。例如：
+  <a href="manifest/bluetooth.html">bluetooth</a> 项，如果适用的话还需要指定您希望实现的配置文件、协议或服务 UUID。例如：
 </p>
 
 <pre data-filename="manifest.json">
 "bluetooth": {
-  "profiles": [ "1105", "1106" ]
+  "uuids": [ "1105", "1106" ]
 }
 </pre>
 
 <p>
   <!--@To only access adapter state, discover nearby devices, and obtain basic
-  information about devices, omit the <code>profiles</code> list.-->
+  information about devices, omit the <code>uuids</code> list.-->
   如果只要访问适配器状态、发现附近的设备、获取设备的基本信息，可以省略
-  <code>profiles</code> 列表。
+  <code>uuids</code> 列表。
 </p>
 
 <h2 id="adapter_state"><!--@Obtaining adapter state-->获取适配器状态</h2>

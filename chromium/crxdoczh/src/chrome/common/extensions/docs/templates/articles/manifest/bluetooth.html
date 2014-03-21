@@ -12,9 +12,10 @@ available for the $ref:bluetooth API.-->
   "name": "我的蓝牙{{platformTitle}}",
   "bluetooth": {
     // chrome.bluetooth.addProfile 权限：
-    // 应用程序允许发出和接收实现 UUID
-    // 0x1105 和 0x1106 配置文件的连接。
-    "profiles": [ "1105", "1106" ]
+    // 对于使用 UUID 0x1105 和 0x1106 标识的
+    // 协议、配置文件或服务的设备，允许与应用
+    // 程序与之通信。
+    "uuids": [ "1105", "1106" ]
   },
   ...
 }

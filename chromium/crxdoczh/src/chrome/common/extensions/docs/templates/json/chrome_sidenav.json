@@ -11,7 +11,7 @@ Items in Apps and Extensions are slightly reorganized to make the whole
 navigation menu look better.
 */
 [
-   /* // NOT YET READY
+   //* // NOT YET READY
    {
     "title": "开发者工具",
      "items": [
@@ -109,15 +109,15 @@ navigation menu look better.
             "href": "/devtools/docs/demos/too-much-layout/index"
           },
           {
-            "title": "分析 JavaScript 性能",
+            "title": "JavaScript 性能分析",
             "href": "/devtools/docs/cpu-profiling"
           },
           {
-            "title": "JavaScript Memory Profiling",
+            "title": "JavaScript 内存性能分析",
             "href": "/devtools/docs/javascript-memory-profiling",
             "items": [
               {
-                "title": "JavaScript Memory Profiling",
+                "title": "JavaScript 内存性能分析",
                 "href": "/devtools/docs/javascript-memory-profiling"
               },
               {
