@@ -47,8 +47,8 @@
         "id": "FormattedValue",
         "type": "object",
         "additionalProperties": { "type": "any" },
-//@        "description": "A value returned from one of the formatters (a URL, code snippet etc), to be passed to <code>createResult()</code> or <code>addChild()</code>. See $ref:AuditResults.createSnippet and $ref:AuditResults.createURL."
-        "description": "由格式化（URL、代码片段等）函数返回的值，可以传递给 <code>createResult()</code> 或者 <code>addChild()</code>。参见 $ref:AuditResults.createSnippet 和 $ref:AuditResults.createURL。"
+//@        "description": "A value returned from one of the formatters (a URL, code snippet etc), to be passed to <code>createResult()</code> or <code>addChild()</code>. See $(ref:AuditResults.createSnippet) and $(ref:AuditResults.createURL)."
+        "description": "由格式化（URL、代码片段等）函数返回的值，可以传递给 <code>createResult()</code> 或者 <code>addChild()</code>。参见 $(ref:AuditResults.createSnippet) 和 $(ref:AuditResults.createURL)。"
       },
       {
         "id": "AuditResults",

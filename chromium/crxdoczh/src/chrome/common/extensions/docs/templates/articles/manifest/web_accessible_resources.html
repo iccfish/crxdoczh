@@ -28,12 +28,12 @@ etc.) as follows:-->
 <p>
 <!--@These resources would then be available in a webpage via the URL
 <code>chrome-extension://[PACKAGE ID]/[PATH]</code>, which can be generated with
-the $ref:runtime.getURL method. Whitelisted resources are served with appropriate
+the $(ref:runtime.getURL) method. Whitelisted resources are served with appropriate
 <a href="http://www.w3.org/TR/cors/">CORS</a> headers, so they're available via
 mechanisms like XHR.-->
 这些资源将可以通过 URL
 <code>chrome-extension://[扩展程序包的标识符]/[路径]</code>
-使用，URL 可以通过 $ref:runtime.getURL
+使用，URL 可以通过 $(ref:runtime.getURL)
 方法产生。加入白名单的资源将以合适的
 <a href="http://www.w3.org/TR/cors/">CORS</a>
 头信息提供，所以它们可以通过 XHR 之类的机制使用。
@@ -45,10 +45,10 @@ the resource is listed as web accessible. Note these corner cases:-->
 除非在网页可以访问的资源中列出，从网页来源到扩展程序资源的导航会被阻止。注意以下边缘情况：
 </p>
 <ul>
-<li><!--@When an extension uses the $ref:webRequest or $ref:declarativeWebRequest
+<li><!--@When an extension uses the $(ref:webRequest) or $(ref:declarativeWebRequest)
 APIs to redirect a public resource request to a resource that is not web
 accessible, such request is also blocked.-->
-扩展程序使用 $ref:webRequest 或 $ref:declarativeWebRequest API
+扩展程序使用 $(ref:webRequest) 或 $(ref:declarativeWebRequest) API
 将公共资源重定向至网页不能访问的资源时，这样的请求也会被阻止。
 </li>
 <li><!--@The above holds true even if the resource that is not web accessible is

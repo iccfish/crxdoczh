@@ -53,11 +53,11 @@ Store</a>.-->
 网上应用店</a>。
 </li>
 <li><!--@A user installs your app or extension.-->用户安装了您的应用或扩展程序。</li>
-<li><!--@Your app or extension client requests a registration ID using $ref:gcm.register
+<li><!--@Your app or extension client requests a registration ID using $(ref:gcm.register)
 function and sends this ID to your server together with information
 identifying the user. For more details, please see <a href="#obtain_registration_id">Obtain registration
 ID</a>.-->
-您的应用或扩展程序客户端使用 $ref:gcm.register
+您的应用或扩展程序客户端使用 $(ref:gcm.register)
 函数请求注册标识符，并将该标识符连同用户标识信息一起发送至您的服务器。有关更多详情，请参见<a
 href="#obtain_registration_id">获取注册标识符</a>。
 </li>
@@ -69,8 +69,8 @@ href="#obtain_registration_id">获取注册标识符</a>。
 
 <ol>
 <li><!--@Your app or extension client should register a handler to receive the
-$ref:gcm.onMessage event.-->
-您的应用或扩展程序客户端应该注册处理程序，接收 $ref:gcm.onMessage 事件。
+$(ref:gcm.onMessage) event.-->
+您的应用或扩展程序客户端应该注册处理程序，接收 $(ref:gcm.onMessage) 事件。
 </li>
 <li><!--@When your server sends a message to the user, it specifies all of the
 registration IDs that are related to that user and passes the message to the
@@ -104,29 +104,29 @@ message.-->
 to find out which message failed to be queued or delivered.-->
 您的应用或扩展程序生成一个唯一的消息标识符，这样可以找出哪些消息不能放入队列或传递。
 </li>
-<li><!--@Your app or extension calls $ref:gcm.send function with an object containing
+<li><!--@Your app or extension calls $(ref:gcm.send) function with an object containing
 message ID, destination ID that identifies the server, and data that consist
 of a list of key value pairs. In this step you can also provide an optional
 time-to-live for the message.-->
-您的应用或扩展程序调用 $ref:gcm.send 函数，传递一个对象，其中包含消息标识符、标志服务器的目标标识符以及由键值对列表组成的数据。在这一步中，您还可以提供可选的消息保留时间。
+您的应用或扩展程序调用 $(ref:gcm.send) 函数，传递一个对象，其中包含消息标识符、标志服务器的目标标识符以及由键值对列表组成的数据。在这一步中，您还可以提供可选的消息保留时间。
 </li>
-<li><!--@The callback passed to $ref:gcm.send function will be called to notify the
-result. Your app or extension should check $ref:runtime.lastError to find out if
+<li><!--@The callback passed to $(ref:gcm.send) function will be called to notify the
+result. Your app or extension should check $(ref:runtime.lastError) to find out if
 the message has been successfully queued for delivery. Please refer to <a href="#error_reference">Error
 reference</a> for possible error codes that could be
 returned.-->
-传递给 $ref:gcm.send 函数的回调函数用来提供结果，您的应用或扩展程序应该检查
-$ref:runtime.lastError
+传递给 $(ref:gcm.send) 函数的回调函数用来提供结果，您的应用或扩展程序应该检查
+$(ref:runtime.lastError)
 判断消息是否成功放入队列等待投递。有关可能返回的错误代码，请参见<a
 href="#error_reference">错误参考</a>。
 </li>
 <li><!--@In cases that the queued message could not be delivered to the GCM server,
-like network error, a $ref:gcm.onSendError event will be fired. Your app or
+like network error, a $(ref:gcm.onSendError) event will be fired. Your app or
 extension can listen to this event and react to it, e.g. by trying to resend
 the message. Please refer to <a href="#error_reference">Error reference</a> for
 possible error codes that could be returned.-->
 如果放入队列的消息由于 GCM 服务器（如网络错误）而无法投递，则会产生
-$ref:gcm.onSendError
+$(ref:gcm.onSendError)
 事件。您的应用或扩展程序可以监听该事件并作出反应，例如尝试再次发送消息。有关可能返回的错误代码，请参见<a
 href="#error_reference">错误参考</a>。
 </li>
@@ -207,7 +207,7 @@ API 保存一些数据，所以还提供了 <code>storage</code> 权限。
 
 <p><!--@Your app or extension needs to register with GCM servers before it can receive
 messages. When an app or extension registers, it receives a registration ID.
-This is achieved by calling $ref:gcm.register and specifying a list of senders
+This is achieved by calling $(ref:gcm.register) and specifying a list of senders
 identified by project numbers from Google Developers Console. Your app or
 extension should pass a callback function to verify that the registration was
 successful. If successful, the received registration ID should be sent back to
@@ -216,17 +216,17 @@ app or extension should handle the error identified by
 <code>chrome.runtime.lastError</code> and retry later.-->
 您的应用或扩展程序接收消息之前，需要与 GCM
 服务器注册。应用或扩展程序注册时，获得一个注册标识符。这一步通过
-$ref:gcm.register 调用实现，同时还需要指定发送方标识符，即 Google
+$(ref:gcm.register) 调用实现，同时还需要指定发送方标识符，即 Google
 开发者控制台中的项目编号。您的应用或扩展程序应该传递一个回调函数，以便确认注册成功。如果成功的话，获得的注册标识符应该以安全的方式（例如使用
 https）发回您的应用程序服务器。否则，您的应用或扩展程序应该处理
 <code>chrome.runtime.lastError</code> 中指明的错误并在一段时间后重试。
 </p>
 
 <p><!--@If your app or extension wishes to receive messages from the different senders,
-it can call $ref:gcm.register again with the new sender list and the new
+it can call $(ref:gcm.register) again with the new sender list and the new
 registration ID will be returned.-->
 如果您的应用或扩展程序希望从不同的发送方接收消息，它可以再次调用
-$ref:gcm.register 并提供新的发送方列表，返回新的注册标识符。
+$(ref:gcm.register) 并提供新的发送方列表，返回新的注册标识符。
 </p>
 
 <pre data-filename="background.js"><code>
@@ -288,9 +288,9 @@ Chrome 实例。如果您的应用或扩展程序在单一 Chrome
 实例的不同配置文件中安装，它们都能基于各自唯一的注册标识符独立地接收消息。
 </p>
 
-<p><!--@Messages from the server are delivered via the $ref:gcm.onMessage event. Your app
+<p><!--@Messages from the server are delivered via the $(ref:gcm.onMessage) event. Your app
 or extension must register a handler to receive this event.-->
-来自服务器的消息通过 $ref:gcm.onMessage
+来自服务器的消息通过 $(ref:gcm.onMessage)
 事件传递，您的应用或扩展程序必须注册处理程序接收该事件。
 </p>
 
@@ -308,10 +308,10 @@ woken up to deliver a message.-->
 
 <h3 id="send_messages"><!--@Send messages-->发送消息</h3>
 
-<p><!--@To send messages upstream, your app or extension should call $ref:gcm.send with an
+<p><!--@To send messages upstream, your app or extension should call $(ref:gcm.send) with an
 object containing:-->
 要发送消息，您的应用或扩展程序应该调用
-$ref:gcm.send，并传递一个包含如下信息的对象：
+$(ref:gcm.send)，并传递一个包含如下信息的对象：
 </p>
 
 <ul>
@@ -349,14 +349,14 @@ message will be discarded.-->
 </li>
 </ul>
 
-<p><!--@When the callback passed in $ref:gcm.send is called without runtime error, it does
+<p><!--@When the callback passed in $(ref:gcm.send) is called without runtime error, it does
 not mean that the message was already delivered to the GCM server. Rather, it
 means that it was queued for delivery. If the message fails to reach the
 destination within the specified TTL period, for example due to network error,
-the $ref:gcm.onSendError will be fired.-->
-$ref:gcm.send 中的回调函数调用时如果没有运行时错误，这并不意味着消息已经投递到
+the $(ref:gcm.onSendError) will be fired.-->
+$(ref:gcm.send) 中的回调函数调用时如果没有运行时错误，这并不意味着消息已经投递到
 GCM 服务器，而是它已经放入队列等待投递。如果消息无法在指定的 TTL
-时间内到达目标，例如由于网络错误，则产生 $ref:gcm.onSendError 事件。
+时间内到达目标，例如由于网络错误，则产生 $(ref:gcm.onSendError) 事件。
 </p>
 
 <pre data-filename="background.js"><code>
@@ -418,11 +418,11 @@ function sendError(error) {
 <h3 id="messages_deleted_event"><!--@Messages deleted event-->消息删除事件</h3>
 
 <p><!--@GCM will store up to 100 non-collapsible messages. After that, all messages are
-discarded from GCM, and an event $ref:gcm.onMessagesDeleted will be fired, which
+discarded from GCM, and an event $(ref:gcm.onMessagesDeleted) will be fired, which
 tells the client that it falls behind. Your app or extension should respond by
 syncing with your application server to recover the discarded messages.-->
 GCM 最多存储 100 条不可折叠的消息，在此之后，所有消息都会被 GCM 丢弃，并产生
-$ref:gcm.onMessagesDeleted
+$(ref:gcm.onMessagesDeleted)
 事件，告诉客户端消息滞后了。您的应用或扩展程序应该响应该事件，并与应用程序服务器同步，恢复丢弃的消息。
 </p>
 
@@ -442,7 +442,7 @@ server for fresh data. In GCM, it's possible to create collapsible messages for
 this situation, wherein new messages replace older ones. When a collapse key is
 provided and multiple messages are queued up in the GCM servers for the same
 user, only the last one with any given collapse key is delivered to your app or
-extension. As a result the <code>message</code> object passed to the $ref:gcm.onMessage event
+extension. As a result the <code>message</code> object passed to the $(ref:gcm.onMessage) event
 will contain a <code>collapseKey</code>field. For more details about sending collapsible
 messages, please refer to <a href="http://developer.android.com/google/gcm/adv.html#collapsible">GCM Advance
 Topics</a>.-->
@@ -450,7 +450,7 @@ GCM 消息通常很简单，只是告诉应用或扩展程序从服务器获取�
 GCM 中创建可折叠的消息，使新消息替代旧消息。当您提供了折叠键后，如果同一用户
 的多条消息放入 GCM
 服务器队列中，只有包含指定折叠键的最后一条消息才会传递到您的应用或扩展程序。这样传递给
-$ref:gcm.onMessage 事件的 <code>message</code> 对象包含 <code>collapseKey</code>
+$(ref:gcm.onMessage) 事件的 <code>message</code> 对象包含 <code>collapseKey</code>
 字段。有关发送可折叠消息的更多详情，请参见
 <a href="https://developer.android.com/google/gcm/adv.html#collapsible">GCM
 高级主题</a>。
@@ -468,11 +468,11 @@ Store</a>.-->
 <h2 id="error_reference"><!--@Error reference-->错误参考</h2>
 
 <p><!--@An error could occur when a gcm API function is called. Your app or extension
-should check $ref:runtime.lastError for more information in your callback. The
-error code will also be passed as a parameter to $ref:gcm.onSendError event.-->
+should check $(ref:runtime.lastError) for more information in your callback. The
+error code will also be passed as a parameter to $(ref:gcm.onSendError) event.-->
 调用 GCM API 函数时可能会发生错误，您的应用或扩展程序应该在回调函数中检查
-$ref:runtime.lastError 获取更多信息，错误代码还会作为参数传递给
-$ref:gcm.onSendError 事件。
+$(ref:runtime.lastError) 获取更多信息，错误代码还会作为参数传递给
+$(ref:gcm.onSendError) 事件。
 </p>
 
 <p><!--@Here's a brief summary of the gcm errors:-->

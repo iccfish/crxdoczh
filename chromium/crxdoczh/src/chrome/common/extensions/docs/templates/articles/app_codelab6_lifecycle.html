@@ -13,13 +13,13 @@ For example, if your app is an instant messenger, you might want your event page
 </p>
 
 <p><!--@For simpler apps, the event page listens to the app lifecycle events and reacts appropriately.
-There are two important lifecycle events, $ref:app.runtime.onLaunched and $ref:app.runtime.onRestarted.-->
+There are two important lifecycle events, $(ref:app.runtime.onLaunched) and $(ref:app.runtime.onRestarted).-->
 对于较小的应用，事件页面监听应用生命周期事件，并作出合理的反应。有两个重要的生命周期事件，包括
-$ref:app.runtime.onLaunched 和 $ref:app.runtime.onRestarted。
+$(ref:app.runtime.onLaunched) 和 $(ref:app.runtime.onRestarted)。
 </p>
 
 <h2 id="the_onlaunched"><!--@The -->onLaunched <!--@event-->事件</h2>
-<p><!--@The -->$ref:app.runtime.onLaunched <!--@event is the most important event.
+<p><!--@The -->$(ref:app.runtime.onLaunched) <!--@event is the most important event.
 It fires when the user clicks on your app&#39;s icon with the intent of launching it.
 For most simpler apps,
 the event page will listen for this event and open a window when it fires.
@@ -34,8 +34,8 @@ for the most common usage.-->
 
 <h3 id="windows_with_ids"><!--@Windows with IDs-->指定了标识符的窗口</h3>
 
-<p><!--@The $ref:app.window.create method can associate an ID to the window being opened. Currently, the most interesting use for this is to restore a window&#39;s width, height and location and its associated Developer Tools window, if opened, when the app is launched. -->
-$ref:app.window.create 方法可以将标识符和打开的窗口关联。目前，最有意思的用途是在应用执行时恢复窗口的宽度、高度和位置，以及与之关联的开发者工具窗口（如果打开的话）。
+<p><!--@The $(ref:app.window.create) method can associate an ID to the window being opened. Currently, the most interesting use for this is to restore a window&#39;s width, height and location and its associated Developer Tools window, if opened, when the app is launched. -->
+$(ref:app.window.create) 方法可以将标识符和打开的窗口关联。目前，最有意思的用途是在应用执行时恢复窗口的宽度、高度和位置，以及与之关联的开发者工具窗口（如果打开的话）。
 </p>
 
 <p><!--@Execute your app as it is now, move and resize the window,
@@ -63,12 +63,12 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
 <h2 id="the_onrestarted_event"><!--@The onRestarted event-->onRestarted 事件</h2>
 
-<!--@<p>The $ref:app.runtime.onRestarted event is not as essential as <code>onLaunched</code>,
+<!--@<p>The $(ref:app.runtime.onRestarted) event is not as essential as <code>onLaunched</code>,
 but it might be relevant to certain types of apps.
 This event is executed when the app is restarted, for example,
 when Chrome quits, restarts, and the app is launched again.
 You can use this event to restore a transient state. </p>-->
-<p>$ref:app.runtime.onRestarted 事件不像 <code>onLaunched</code>
+<p>$(ref:app.runtime.onRestarted) 事件不像 <code>onLaunched</code>
 那样重要，但是它可能和某些类型的应用相关。当应用重新启动时，例如当 Chrome
 浏览器退出、重新启动，再次运行应用时，将会执行该事件。您可以利用该事件恢复临时的状态。</p>
 
@@ -80,9 +80,9 @@ the user will want that data when the app is restarted.</p>-->
 <p>例如，如果您的应用有一个表单，包含多个字段，您不会在用户输入时就保存部分的表单。如果用户特意退出您的应用，他们不一定希望保留这部分数据。如果
 Chrome 运行时环境由于用户意图以外的原因重新启动，在应用重新启动时用户可能还需要这些数据。</p>
 
-<!--@<p>Let&#39;s change our code to save the Todo input field in $ref:storage as the user types,
+<!--@<p>Let&#39;s change our code to save the Todo input field in $(ref:storage) as the user types,
 only restoring it if the <code>onRestarted</code> event is triggered.</p>-->
-<p>让我们更改我们的代码，将待办事项输入字段保存在 $ref:storage
+<p>让我们更改我们的代码，将待办事项输入字段保存在 $(ref:storage)
 中，只有在 <code>onRestarted</code> 事件触发时才恢复它。</p>
 
 <p class="note"><b><!--@Note:-->注意：</b><!--@
@@ -125,7 +125,7 @@ chrome.app.runtime.onRestarted.addListener(function() {
 function runApp(readInitialState) {
   chrome.app.window.create(&#39;index.html&#39;,
     {id: &#39;mainwindow&#39;, bounds: {width: 500, height: 309} },
-    // the create callback gets a reference to the AppWindow obj 
+    // the create callback gets a reference to the AppWindow obj
     function(win) {
       // when the callback is executed, the DOM is loaded but no script was
       // loaded yet. So, let&#39;s attach to the load event.
@@ -151,7 +151,7 @@ function runApp(readInitialState) {
 
   <header tabindex="0" data-value="angular">Angular</header>
   <header tabindex="0" data-value="js">JavaScript</header>
-  
+
   <content>
     <pre data-filename="controller.js">
 var newTodoInput = null;
@@ -187,7 +187,7 @@ window.addEventListener(&#39;load&#39;, function() {
   window.clearInitialState = function() {
     chrome.storage.local.set({'newtodo': null});
   }
-   
+
   window.setInitialState = function() {
     chrome.storage.local.get('newtodo', function(data) {
       if (newTodoInput && data && data.newtodo) {
@@ -196,13 +196,13 @@ window.addEventListener(&#39;load&#39;, function() {
       }
     });
   };
-     
+
   var saveTransientState = function() {
     chrome.storage.local.set({'newtodo': newTodoInput.value});
   };
 
   newTodoInput.addEventListener('keypress' , function() {
-    saveTransientState();    
+    saveTransientState();
   })
     </pre>
 

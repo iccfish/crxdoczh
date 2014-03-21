@@ -24,7 +24,7 @@ If your app uses its own server to authenticate users, you will need to use the 
 <p class="note">
 <b>API <!--@Samples: -->示例：</b><!--@
 Want to play with the code?
-Check out 
+Check out
 <a href="https://github.com/GoogleChrome/chrome-app-samples#_feature_identity">these samples</a>,
 in particular the
 <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/identity#readme">identity sample</a>.-->
@@ -220,8 +220,8 @@ Here's the sample "oauth2" for the
 
 <p>
 <!--@You are now ready to get the auth token by calling
-$ref:identity.getAuthToken.-->
-现在您已经准备好获取令牌，可以调用 $ref:identity.getAuthToken 了。
+$(ref:identity.getAuthToken).-->
+现在您已经准备好获取令牌，可以调用 $(ref:identity.getAuthToken) 了。
 </p>
 
 <pre>
@@ -289,10 +289,10 @@ on <code>chrome://identity-internals</code>.-->
 when non-expired access tokens will stop working. API calls using the
 token will start returning with an HTTP status code 401. If you detect
 that this has happened, you can remove the invalid token from Chrome's
-cache by calling $ref:identity.removeCachedAuthToken.-->
+cache by calling $(ref:identity.removeCachedAuthToken).-->
 在某些情况下，例如用户更改了他们的密码，未过期的访问令牌会停止工作，使用该令牌的
 API 调用会开始返回 HTTP 状态码 401。如果您检测到这一情况，您可以调用
-$ref:identity.removeCachedAuthToken 将无效的令牌从 Chrome 浏览器的缓存中移除。
+$(ref:identity.removeCachedAuthToken) 将无效的令牌从 Chrome 浏览器的缓存中移除。
 </p>
 
 <p>

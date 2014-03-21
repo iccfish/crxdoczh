@@ -84,29 +84,29 @@ namespace syncFileSystem {
     // 信息仍然可用，但文件不再存在。
     [instanceOf=Entry] object fileEntry;
 
-    // <!--@Resulting file status after $ref:onFileStatusChanged event.
+    // <!--@Resulting file status after $(ref:onFileStatusChanged) event.
     // The status value can be <code>'synced'</code>,
     // <code>'pending'</code> or <code>'conflicting'</code>.-->
-    // $ref:onFileStatusChanged 事件发生后的文件状态，状态值可以为
+    // $(ref:onFileStatusChanged) 事件发生后的文件状态，状态值可以为
     // <code>'synced'</code>（已同步）、<code>'pending'</code>（待定）或
     // <code>'conflicting'</code>（冲突）。
     FileStatus status;
 
-    // <!--@Sync action taken to fire $ref:onFileStatusChanged event.
+    // <!--@Sync action taken to fire $(ref:onFileStatusChanged) event.
     // The action value can be
     // <code>'added'</code>, <code>'updated'</code> or <code>'deleted'</code>.
     // Only applies if status is <code>'synced'</code>.-->
-    // 产生 $ref:onFileStatusChanged 事件时执行的同步操作，操作值可以为
+    // 产生 $(ref:onFileStatusChanged) 事件时执行的同步操作，操作值可以为
     // <code>'added'</code>（添加）、<code>'updated'</code>（更新）或
     // <code>'deleted'</code>（删除）。只有当状态为
     // <code>'synced'</code>（已同步）时才适用。
     SyncAction? action;
 
-    // <!--@Sync direction for the $ref:onFileStatusChanged event.
+    // <!--@Sync direction for the $(ref:onFileStatusChanged) event.
     // Sync direction value can be
     // <code>'local_to_remote'</code> or <code>'remote_to_local'</code>.
     // Only applies if status is <code>'synced'</code>.-->
-    // 本次 $ref:onFileStatusChanged 事件的方向，同步方向值可以为
+    // 本次 $(ref:onFileStatusChanged) 事件的方向，同步方向值可以为
     // <code>'local_to_remote'</code>（本地到远程）或 
     // <code>'remote_to_local'</code>（远程到本地）。只有当状态为
     // <code>'synced'</code> 时才适用。
@@ -225,13 +225,13 @@ namespace syncFileSystem {
     static void getUsageAndQuota([instanceOf=DOMFileSystem] object fileSystem,
                                  QuotaAndUsageCallback callback);
 
-    // <!--@Returns the $ref:FileStatus for the given <code>fileEntry</code>.
+    // <!--@Returns the $(ref:FileStatus) for the given <code>fileEntry</code>.
     // The status value can be <code>'synced'</code>,
     // <code>'pending'</code> or <code>'conflicting'</code>.
     // Note that <code>'conflicting'</code> state only happens when
     // the service's conflict resolution policy is set to <code>'manual'</code>.-->
     // 返回指定 <code>fileEntry</code>（文件项）的
-    // $ref:FileStatus （文件状态），状态值可以为
+    // $(ref:FileStatus) （文件状态），状态值可以为
     // <code>'synced'</code>（已同步）、<code>'pending'</code>（待定）或
     // <code>'conflicting'</code>（冲突）。注意，只有当服务的冲突解决策略设置为
     // <code>'manual'</code>（手动）时，才会发生
@@ -239,10 +239,10 @@ namespace syncFileSystem {
     static void getFileStatus([instanceOf=Entry] object fileEntry,
                               GetFileStatusCallback callback);
 
-    // <!--@Returns each $ref:FileStatus for the given <code>fileEntry</code> array.
+    // <!--@Returns each $(ref:FileStatus) for the given <code>fileEntry</code> array.
     // Typically called with the result from dirReader.readEntries().-->
     // 返回指定 <code>fileEntry</code>（文件项）数组的每一个
-    // $ref:FileStatus（文件状态），调用时通常传递
+    // $(ref:FileStatus)（文件状态），调用时通常传递
     // dirReader.readEntries() 的结果。
     static void getFileStatuses(object[] fileEntries,
                                 GetFileStatusesCallback callback);

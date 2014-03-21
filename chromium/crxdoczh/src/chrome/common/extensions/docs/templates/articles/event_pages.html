@@ -90,8 +90,8 @@ that will cause the event page to load:-->
 <a href="messaging.html">sends a message.</a>-->
 内容脚本或其他扩展程序<a href="messaging.html">发送消息</a>。
 <li><!--@Another view in the extension (for example, a popup) calls
-<code>$ref:runtime.getBackgroundPage</code>.-->
-扩展程序中的其他视图调用了 <code>$ref:runtime.getBackgroundPage</code>。
+<code>$(ref:runtime.getBackgroundPage)</code>.-->
+扩展程序中的其他视图调用了 <code>$(ref:runtime.getBackgroundPage)</code>。
 </ul>
 
 <p>
@@ -120,14 +120,14 @@ extension appears in the list of processes.-->
 <p>
 <!--@Once the event page has been idle a short time
 (a few seconds), the
-<code>$ref:runtime.onSuspend</code>
+<code>$(ref:runtime.onSuspend)</code>
 event is dispatched. The event page has a few more seconds to handle this
 event before it is forcibly unloaded. If during this time an event occurs which
 would normally cause the event page to be loaded, the suspend is canceled
-and the <code>$ref:runtime.onSuspendCanceled</code> event is dispatched.-->
-一旦事件页面保持一段时间（几秒钟）的空闲状态，将触发 $ref:runtime.onSuspend
+and the <code>$(ref:runtime.onSuspendCanceled)</code> event is dispatched.-->
+一旦事件页面保持一段时间（几秒钟）的空闲状态，将触发 $(ref:runtime.onSuspend)
 事件。事件页面在强制卸载之前，还有几秒钟的时间来处理该事件。如果在这段时间内产生了通常会使事件页面载入的事件，卸载操作将取消，并产生
-<code>$ref:runtime.onSuspendCanceled</code> 事件。
+<code>$(ref:runtime.onSuspendCanceled)</code> 事件。
 </p>
 
 <h2 id="registration"><!--@Event registration-->事件注册</h2>
@@ -147,10 +147,10 @@ removeListener 移除所有的监听器，Chrome
 <!--@Because the listeners themselves only exist in the context of the
 event page, you must use <code>addListener</code> each time the event
 page loads; only doing so at
-<code>$ref:runtime.onInstalled</code>
+<code>$(ref:runtime.onInstalled)</code>
 by itself is insufficient.-->
 因为监听器本身只在事件页面的环境中存在，您必须每次在事件页面加载时使用
-<code>addListener</code>，仅仅在 $ref:runtime.onInstalled 这么做是不够的。
+<code>addListener</code>，仅仅在 $(ref:runtime.onInstalled) 这么做是不够的。
 </p>
 
 <p>
@@ -185,14 +185,14 @@ Checker</a> extension.-->
   API，例如<a href="notifications.html">通知</a>。
 
   <li><!--@If your extension uses,
-  <code>$ref:extension.getBackgroundPage</code>,
+  <code>$(ref:extension.getBackgroundPage)</code>,
   switch to
-  <code>$ref:runtime.getBackgroundPage</code>
+  <code>$(ref:runtime.getBackgroundPage)</code>
   instead. The newer method is asynchronous so that it can start the event
   page if necessary before returning it.-->
   如果您的扩展程序使用
-  <code>$ref:extension.getBackgroundPage</code>，请改用
-  <code>$ref:runtime.getBackgroundPage</code>。新方法是异步的，所以如果有必要的话它可以在返回前启动事件页面。
+  <code>$(ref:extension.getBackgroundPage)</code>，请改用
+  <code>$(ref:runtime.getBackgroundPage)</code>。新方法是异步的，所以如果有必要的话它可以在返回前启动事件页面。
 </ol>
 </p>
 
@@ -212,13 +212,13 @@ Checker</a> extension.-->
 
   <li><!--@If you need to do some initialization when your extension is
   installed or upgraded, listen to the
-  <code>$ref:runtime.onInstalled</code>
+  <code>$(ref:runtime.onInstalled)</code>
   event. This is a good place to register for
   <a href="declarativeWebRequest.html">declarativeWebRequest</a> rules,
   <a href="contextMenus.html">contextMenu</a> entries, and other such
   one-time initialization.-->
   如果您的扩展程序安装或升级时需要做一些初始化，请监听
-  $ref:runtime.onInstalled 事件。这里很适合注册<a href="declarativeWebRequest.html"
+  $(ref:runtime.onInstalled) 事件。这里很适合注册<a href="declarativeWebRequest.html"
   >声明式网络请求</a>规则、<a href="contextMenus.html">右键菜单</a>项以及其他类似的一次性初始化。
 
   <li><!--@If you need to keep runtime state in memory throughout a browser
@@ -229,19 +229,19 @@ Checker</a> extension.-->
 
   <li><!--@Use <a href="events.html#filtered">event filters</a> to restrict
   your event notifications to the cases you care about. For example, if
-  you listen to the <code>$ref:tabs.onUpdated</code>
+  you listen to the <code>$(ref:tabs.onUpdated)</code>
   event, try using the
-  <code>$ref:webNavigation.onCompleted</code>
+  <code>$(ref:webNavigation.onCompleted)</code>
   event with filters instead (the tabs API does not support filters).
   That way, your event page will only be loaded for events that
   interest you.-->
   使用<a href="events.html#filtered">事件过滤器</a>将事件通知限制为您关心的那些。例如，如果您监听
-  <code>$ref:tabs.onUpdated</code> 事件，尝试改用
-  <code>$ref:webNavigation.onCompleted</code> 事件并使用过滤器（标签页 API
+  <code>$(ref:tabs.onUpdated)</code> 事件，尝试改用
+  <code>$(ref:webNavigation.onCompleted)</code> 事件并使用过滤器（标签页 API
   不支持过滤器），这样，您的事件页面仅在您感兴趣的事件产生时才会加载。
 
   <li><!--@Listen to the-->如果您在事件页面卸载之前需要做最后的清理，请监听
-  <code>$ref:runtime.onSuspend</code>
+  <code>$(ref:runtime.onSuspend)</code>
   <!--@event if you need to do last second cleanup before your event page
   is shut down. However, we recommend persisting periodically instead.
   That way if your extension crashes without receiving
@@ -256,19 +256,19 @@ Checker</a> extension.-->
 
   <li><!--@If you're using the <a href="contextMenus.html">context menus</a> API,
   pass a string <code>id</code> parameter to
-  <code>$ref:contextMenus.create</code>,
+  <code>$(ref:contextMenus.create)</code>,
   and use the
-  <code>$ref:contextMenus.onClicked</code>
+  <code>$(ref:contextMenus.onClicked)</code>
   callback instead of an <code>onclick</code> parameter to
-  <code>$ref:contextMenus.create</code>.-->
+  <code>$(ref:contextMenus.create)</code>.-->
   如果您使用<a href="contextMenus.html">右键菜单 API</a>，请向
-  <code>$ref:contextMenus.create</code> 传递一个字符串的
-  <code>id</code>参数，并使用 <code>$ref:contextMenus.onClicked</code>
-  回调函数代替 <code>$ref:contextMenus.create</code> 的
+  <code>$(ref:contextMenus.create)</code> 传递一个字符串的
+  <code>id</code>参数，并使用 <code>$(ref:contextMenus.onClicked)</code>
+  回调函数代替 <code>$(ref:contextMenus.create)</code> 的
   <code>onclick</code> 参数。
 
   <li><!--@Remember to test that your event page works properly when it is unloaded
-  and then reloaded, which only happens after several seconds of inactivity. 
+  and then reloaded, which only happens after several seconds of inactivity.
   Common mistakes include doing unnecessary work at page load time (when it
   should only be done when the extension is installed); setting an alarm at
   page load time (which resets any previous alarm); or not adding event

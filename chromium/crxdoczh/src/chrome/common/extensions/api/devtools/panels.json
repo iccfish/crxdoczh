@@ -357,8 +357,8 @@
               {
                 "name": "resource",
                 "$ref": "devtools.inspectedWindow.Resource",
-//@                "description": "A $ref:devtools.inspectedWindow.Resource object for the resource that was clicked."
-                "description": "单击的资源对应的 $ref:devtools.inspectedWindow.Resource 对象。"
+//@                "description": "A $(ref:devtools.inspectedWindow.Resource) object for the resource that was clicked."
+                "description": "单击的资源对应的 $(ref:devtools.inspectedWindow.Resource) 对象。"
               }
             ]
           }

@@ -75,8 +75,8 @@
             "name": "callback",
             "optional": true,
             "parameters": [],
-//@            "description": "Called once the attach operation succeeds or fails. Callback receives no arguments. If the attach fails, $ref:runtime.lastError will be set to the error message."
-            "description": "附加操作成功或失败后调用。回调函数不接受参数，如果附加失败，$ref:runtime.lastError 会设置为错误消息。"
+//@            "description": "Called once the attach operation succeeds or fails. Callback receives no arguments. If the attach fails, $(ref:runtime.lastError) will be set to the error message."
+            "description": "附加操作成功或失败后调用。回调函数不接受参数，如果附加失败，$(ref:runtime.lastError) 会设置为错误消息。"
           }
         ]
       },
@@ -97,8 +97,8 @@
             "name": "callback",
             "optional": true,
             "parameters": [],
-//@            "description": "Called once the detach operation succeeds or fails. Callback receives no arguments. If the detach fails, $ref:runtime.lastError will be set to the error message."
-            "description": "脱离操作成功或失败后调用。回调函数不接受参数，如果脱离失败，$ref:runtime.lastError 会设置为错误消息。"
+//@            "description": "Called once the detach operation succeeds or fails. Callback receives no arguments. If the detach fails, $(ref:runtime.lastError) will be set to the error message."
+            "description": "脱离操作成功或失败后调用。回调函数不接受参数，如果脱离失败，$(ref:runtime.lastError) 会设置为错误消息。"
           }
         ]
       },
@@ -142,8 +142,8 @@
                 "description": "包含响应的 JSON 对象。响应的结构取决于方法，在远程调试协议中定义。"
               }
             ],
-//@            "description": "Response body. If an error occurs while posting the message, the callback will be called with no arguments and $ref:runtime.lastError will be set to the error message."
-            "description": "响应正文。如果发送消息时产生错误，将不传递参数调用这一回调函数，并将 $ref:runtime.lastError 设置为错误消息。"
+//@            "description": "Response body. If an error occurs while posting the message, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
+            "description": "响应正文。如果发送消息时产生错误，将不传递参数调用这一回调函数，并将 $(ref:runtime.lastError) 设置为错误消息。"
           }
         ]
       },

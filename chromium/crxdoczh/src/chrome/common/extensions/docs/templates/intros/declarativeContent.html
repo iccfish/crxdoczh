@@ -2,7 +2,7 @@
 
 <p>
 <!--@The Declarative Content API allows you to show your extension's
-$ref:[pageAction page action] depending on the URL of a web page and
+$(ref:pageAction page action) depending on the URL of a web page and
 the CSS selectors its content matches, without needing to take a <a
 href="declare_permissions.html#host-permissions">host permission</a> or
 inject a <a href="content_scripts.html">content script</a>.  Use the
@@ -10,7 +10,7 @@ inject a <a href="content_scripts.html">content script</a>.  Use the
 to interact with a page after the user clicks on your page action.-->
 声明式内容 API 允许您根据网页的 URL
 和它的内容匹配的 CSS
-选择器来显示您的扩展程序的$ref:[pageAction 页面按钮]，而不需要拥有<a
+选择器来显示您的扩展程序的$(ref:pageAction 页面按钮)，而不需要拥有<a
 href="declare_permissions.html#host-permissions">主机权限</a>或插入<a
 href="content_scripts.html">内容脚本</a>。为了在用户单击您的页面按钮后能够与网页交互，请使用
 <a href="activeTab.html">activeTab</a> 权限。
@@ -19,32 +19,32 @@ href="content_scripts.html">内容脚本</a>。为了在用户单击您的页面
 <p>
 <!--@If you need more precise control over when your page action appears or
 you need to change its appearance to match the current tab before the
-user clicks on it, you'll have to keep using the $ref:pageAction API.-->
-如果您需要更精确地控制什么时候显示您的页面按钮，或者需要在用户单击它之前更改它的外观以匹配当前标签页，您还是需要继续使用$ref:[pageAction 页面按钮] API。
+user clicks on it, you'll have to keep using the $(ref:pageAction) API.-->
+如果您需要更精确地控制什么时候显示您的页面按钮，或者需要在用户单击它之前更改它的外观以匹配当前标签页，您还是需要继续使用$(ref:pageAction 页面按钮) API。
 </p>
 
 <h2 id="rules"><!--@Rules-->规则</h2>
 
 <p><!--@As a <a href="events.html#declarative">declarative API</a>, this
 API lets you register rules on the
-<code>$ref:onPageChanged</code> $ref:[events.Event event] object which
-take an action (currently just <code>$ref:ShowPageAction</code>) when
+<code>$(ref:onPageChanged)</code> $(ref:events.Event event) object which
+take an action (currently just <code>$(ref:ShowPageAction)</code>) when
 a set of conditions, represented as a
-<code>$ref:[PageStateMatcher]</code>, are met.-->
+<code>$(ref:PageStateMatcher)</code>, are met.-->
 作为一种<a href="events.html#declarative">声明式 API</a>，该 API 让您在
-<code>$ref:onPageChanged</code>
-$ref:[events.Event 事件对象]上注册规则，当一系列由
-<code>$ref:PageStateMatcher</code>
+<code>$(ref:onPageChanged)</code>
+$(ref:events.Event 事件对象)上注册规则，当一系列由
+<code>$(ref:PageStateMatcher)</code>
 表示的条件满足时执行某个操作（目前只有
-<code>$ref:ShowPageAction</code>）。
+<code>$(ref:ShowPageAction)</code>）。
 </p>
 
 <p>
-<!--@The <code>$ref:PageStateMatcher</code> matches web pages if and only
+<!--@The <code>$(ref:PageStateMatcher)</code> matches web pages if and only
 if all listed criteria are met. The following rule would show a page
 action for pages on <code>https://www.google.com/</code> when a
 password field is present on it:-->
-当且仅当列出的所有条件都满足时，<code>$ref:PageStateMatcher</code>
+当且仅当列出的所有条件都满足时，<code>$(ref:PageStateMatcher)</code>
 才会匹配网页。当 <code>https://www.google.com/</code>
 上的页面存在密码字段时，以下规则将为该页面显示页面按钮：
 </p>
@@ -52,12 +52,12 @@ password field is present on it:-->
 <pre>
 var rule1 = {
   conditions: [
-    new $ref:[PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
-      $ref:[PageStateMatcher.pageUrl pageUrl]: { $ref:[events.UrlFilter.hostEquals hostEquals]: 'www.google.com', $ref:[events.UrlFilter.schemes schemes]: ['https'] },
-      $ref:[PageStateMatcher.css css]: ["input[type='password']"]
+    new $(ref:PageStateMatcher chrome.declarativeContent.PageStateMatcher)({
+      $(ref:PageStateMatcher.pageUrl pageUrl): { $(ref:events.UrlFilter.hostEquals hostEquals): 'www.google.com', $(ref:events.UrlFilter.schemes schemes): ['https'] },
+      $(ref:PageStateMatcher.css css): ["input[type='password']"]
     })
   ],
-  actions: [ new $ref:[ShowPageAction chrome.declarativeContent.ShowPageAction]() ]
+  actions: [ new $(ref:ShowPageAction chrome.declarativeContent.ShowPageAction)() ]
 };
 </pre>
 
@@ -75,15 +75,15 @@ specified actions:-->
 <pre>
 var rule2 = {
   conditions: [
-    new $ref:[PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
-      $ref:[PageStateMatcher.pageUrl pageUrl]: { $ref:[events.UrlFilter.hostEquals hostEquals]: 'www.google.com', $ref:[events.UrlFilter.schemes schemes]: ['https'] },
-      $ref:[PageStateMatcher.css css]: ["input[type='password']"]
+    new $(ref:PageStateMatcher chrome.declarativeContent.PageStateMatcher)({
+      $(ref:PageStateMatcher.pageUrl pageUrl): { $(ref:events.UrlFilter.hostEquals hostEquals): 'www.google.com', $(ref:events.UrlFilter.schemes schemes): ['https'] },
+      $(ref:PageStateMatcher.css css): ["input[type='password']"]
     })<strong>,
-    new $ref:[PageStateMatcher chrome.declarativeContent.PageStateMatcher]({
-      $ref:[PageStateMatcher.css css]: ["video"]
+    new $(ref:PageStateMatcher chrome.declarativeContent.PageStateMatcher)({
+      $(ref:PageStateMatcher.css css): ["video"]
     })</strong>
   ],
-  actions: [ new $ref:[ShowPageAction chrome.declarativeContent.ShowPageAction]() ]
+  actions: [ new $(ref:ShowPageAction chrome.declarativeContent.ShowPageAction)() ]
 };
 </pre>
 
@@ -92,9 +92,9 @@ var rule2 = {
 browser restarts, so register them as follows:-->在浏览器重新启动后也将保留，所以请按照下面的方式注册它们：
 </p>
 <pre>
-$ref:[runtime.onInstalled chrome.runtime.onInstalled].addListener(function(details) {
-  $ref:[onPageChanged chrome.declarativeContent.onPageChanged].<a href="events.html#removingrules">removeRules</a>(undefined, function() {
-    $ref:[onPageChanged chrome.declarativeContent.onPageChanged].<a href="events.html#addingrules">addRules</a>([rule2]);
+$(ref:runtime.onInstalled chrome.runtime.onInstalled).addListener(function(details) {
+  $(ref:onPageChanged chrome.declarativeContent.onPageChanged).<a href="events.html#removingrules">removeRules</a>(undefined, function() {
+    $(ref:onPageChanged chrome.declarativeContent.onPageChanged).<a href="events.html#addingrules">addRules</a>([rule2]);
   });
 });
 </pre>
@@ -119,7 +119,7 @@ page action.-->
 
 <h2 id="css-matching">CSS <!--@Matching-->匹配</h2>
 
-<p>$ref:PageStateMatcher.css <!--@conditions must be
+<p>$(ref:PageStateMatcher.css) <!--@conditions must be
 <i><a href="http://www.w3.org/TR/selectors4/#compound">compound selectors</a></i>,
 meaning that you can't
 include <a href="http://www.w3.org/community/webed/wiki/CSS/Selectors#Combinators">combinators</a>

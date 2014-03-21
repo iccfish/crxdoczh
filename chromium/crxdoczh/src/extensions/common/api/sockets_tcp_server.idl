@@ -40,10 +40,10 @@ namespace sockets.tcpServer {
   dictionary CreateInfo {
     // <!--@The ID of the newly created server socket. Note that socket IDs created
     // from this API are not compatible with socket IDs created from other APIs,
-    // such as the deprecated <code>$ref:socket</code> API.-->
+    // such as the deprecated <code>$(ref:socket)</code> API.-->
     // 新创建的服务器套接字的标识符。注意，该 API
     // 中创建的套接字标识符和其他 API
-    // 中创建的套接字标识符不兼容，例如弃用的 <code>$ref:socket</code> API。
+    // 中创建的套接字标识符不兼容，例如弃用的 <code>$(ref:socket)</code> API。
     long socketId;
   };
 

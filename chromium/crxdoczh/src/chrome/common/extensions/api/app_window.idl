@@ -201,28 +201,28 @@ namespace app.window {
     BoundsSpecification? outerBounds;
 
     // Default width of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? defaultWidth;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? defaultWidth;
 
     // Default height of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? defaultHeight;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? defaultHeight;
 
     // Default X coordinate of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? defaultLeft;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? defaultLeft;
 
     // Default Y coordinate of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? defaultTop;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? defaultTop;
 
     // Width of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? width;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? width;
 
     // Height of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? height;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? height;
 
     // X coordinate of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? left;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? left;
 
     // Y coordinate of the window.
-    [nodoc, deprecated="请使用 $ref:BoundsSpecification。"] long? top;
+    [nodoc, deprecated="请使用 $(ref:BoundsSpecification)。"] long? top;
 
     // <!--@Minimum width of the window.-->
     // 窗口的最小宽度。
@@ -402,8 +402,8 @@ namespace app.window {
     // 隐藏窗口，如果窗口已经可见则什么都不做。
     static void hide();
 
-    // <!--@Get the window's inner bounds as a $ref:ContentBounds object.-->
-    // 获取窗口内部的大小与位置，以 $ref:ContentBounds 对象表示。
+    // <!--@Get the window's inner bounds as a $(ref:ContentBounds) object.-->
+    // 获取窗口内部的大小与位置，以 $(ref:ContentBounds) 对象表示。
     [nocompile] static ContentBounds getBounds();
 
     // <!--@Set the window's inner bounds.-->
@@ -490,12 +490,12 @@ namespace app.window {
                        optional CreateWindowOptions options,
                        optional CreateWindowCallback callback);
 
-    // <!--@Returns an $ref:AppWindow object for the
+    // <!--@Returns an $(ref:AppWindow) object for the
     // current script context (ie JavaScript 'window' object). This can also be
     // called on a handle to a script context for another page, for example:
     // otherWindow.chrome.app.window.current().-->
     // 返回当前脚本上下文（即 JavaScript window 对象）的
-    // $ref:AppWindow 对象。这也可以在另一个页面的脚本上下文句柄上调用，例如
+    // $(ref:AppWindow) 对象。这也可以在另一个页面的脚本上下文句柄上调用，例如
     // otherWindow.chrome.app.window.current()。
     [nocompile] static AppWindow current();
     [nocompile, nodoc] static void initializeAppWindow(object state);
@@ -505,9 +505,9 @@ namespace app.window {
     // 获取所有当前创建的应用窗口数组。该方法在 Chrome 33 中新增。
     [nocompile] static AppWindow[] getAll();
 
-    // <!--@Gets an $ref:AppWindow with the given id. If no window with the given id
+    // <!--@Gets an $(ref:AppWindow) with the given id. If no window with the given id
     // exists null is returned. This method is new in Chrome 33.-->
-    // 获取指定标识符的 $ref:AppWindow 对象，如果没有指定标识符的窗口则返回
+    // 获取指定标识符的 $(ref:AppWindow) 对象，如果没有指定标识符的窗口则返回
     // null。该方法在 Chrome 33 中新增。
     [nocompile] static AppWindow get(DOMString id);
   };

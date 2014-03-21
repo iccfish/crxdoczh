@@ -62,9 +62,9 @@ To get help with GCM or to give us feedback, see <a href="#feedback">Feedback</a
   </li>
   <li><!--@When the app or extension starts,
   it needs to register a handler to receive the
-  $ref:pushMessaging.onMessage event.-->
+  $(ref:pushMessaging.onMessage) event.-->
   当应用或扩展程序启动时，它需要注册一个处理函数接收
-  $ref:pushMessaging.onMessage 事件。
+  $(ref:pushMessaging.onMessage) 事件。
   </li>
   <li><!--@When the message arrives on the client,
   Chrome starts the app or extension, if it is not already running,
@@ -79,7 +79,7 @@ To get help with GCM or to give us feedback, see <a href="#feedback">Feedback</a
 the Chrome Web Store assigns your newly published app
 or extension a unique app ID.
 When a user installs your app or extension,
-the client needs to call $ref:pushMessaging.getChannelId.
+the client needs to call $(ref:pushMessaging.getChannelId).
 The push messaging service returns a channel ID to the client;
 this ID is specifically linked to your app ID and to the user.
 Whatever method your client uses to send the channel ID to the server,
@@ -89,7 +89,7 @@ the client could send an XHR request
 to a RESTful API on your server.-->
 再深入一点来看，Chrome
 网上应用店为您新发布的应用或扩展程序指派一个唯一的应用标识符。当用户安装您的应用或扩展程序时，客户端需要调用
-$ref:pushMessaging.getChannelId。消息推送服务为客户端返回通道标识符，该标识符专门链接到您的应用程序标识符以及用户。无论您的客户端用什么方法向服务器发送通道标识符，都必须确保安全（例如使用
+$(ref:pushMessaging.getChannelId)。消息推送服务为客户端返回通道标识符，该标识符专门链接到您的应用程序标识符以及用户。无论您的客户端用什么方法向服务器发送通道标识符，都必须确保安全（例如使用
 https）。例如，客户端可以向您服务器上的 RESTful API 发送一个 XHR 请求。
 </p>
 
@@ -120,7 +120,7 @@ OAuth 2.0
 
 <p>
 <!--@Any messages sent are delivered
-to all instances of that application installed 
+to all instances of that application installed
 in a Chrome profile signed in as that user.
 The most recent message sent on each subchannel is automatically queued
 for delivery to instances of Chrome which are not connected to the push
@@ -334,11 +334,11 @@ Your app or extension needs to send this value
 to its application server so that the server
 can trigger push messages back.
 To get the user's channel ID,
-call $ref:pushMessaging.getChannelId.
+call $(ref:pushMessaging.getChannelId).
 Use the callback function
 to send the channel ID back to your app or extension.-->
 与电子邮件地址类似，通道标识符用来标志您的应用或扩展程序的某个用户并向他们发送消息。您的应用或扩展程序需要将这一值发送给应用程序服务器，以便让服务器触发推送消息。要获取用户的通道标识符，请调用
-$ref:pushMessaging.getChannelId，它使用回调函数向您的应用或扩展程序返回通道标识符：
+$(ref:pushMessaging.getChannelId)，它使用回调函数向您的应用或扩展程序返回通道标识符：
 </p>
 
 <pre>
@@ -349,7 +349,7 @@ chrome.pushMessaging.getChannelId(boolean interactive, function ChannelIdCallbac
 <!--@When the <code>interactive</code> flag is set to true,
 the user is asked to log in if they haven't already done so
 with a warning dialog that looks something like this:
-"You must log into Chrome for the Calendar extension to receive push messages. 
+"You must log into Chrome for the Calendar extension to receive push messages.
 Log in now?"-->
 当 <code>interactive</code> 标志设为 true
 时，如果用户还没有登录则要求登录，并显示类似于这样的警告对话框：“您必须登录
@@ -605,11 +605,11 @@ href="packaging.html">打包</a>。您的应用或扩展程序不需要运行，
   </li>
 
   <li><!--@Get the channel ID at install time using
-  {{?is_apps}}$ref:app.runtime.onLaunched.{{/is_apps}}
-  {{^is_apps}}$ref:runtime.onInstalled.{{/is_apps}}-->
+  {{?is_apps}}$(ref:app.runtime.onLaunched).{{/is_apps}}
+  {{^is_apps}}$(ref:runtime.onInstalled).{{/is_apps}}-->
   使用
-{{?is_apps}}$ref:app.runtime.onLaunched{{/is_apps}}
-{{^is_apps}}$ref:runtime.onInstalled{{/is_apps}}
+{{?is_apps}}$(ref:app.runtime.onLaunched){{/is_apps}}
+{{^is_apps}}$(ref:runtime.onInstalled){{/is_apps}}
 在安装的时候获取通道标识符。
   </li>
 
@@ -692,7 +692,7 @@ downloaded_app_dir，然后以未打包扩展程序的方式从 original_app_dir
 
   <li><!--@Install your app or extension from the Chrome Web Store.-->从
   Chrome 网上应用店安装您的应用或扩展程序。</li>
-  
+
   <li><!--@Get the key from the installed app or extension:-->
   从已安装的应用或扩展程序获取 key：
 
@@ -736,7 +736,7 @@ Chrome
 
 <p><!--@You can provide feedback about Google Cloud Messaging
 and the pushMessaging API through the Google Group
-<a target="_blank" href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM for Chrome feedback</a>. 
+<a target="_blank" href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM for Chrome feedback</a>.
 Use this group to ask for help, file bug reports, and request features.-->
 您可以通过
 <a target="_blank" href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM for Chrome feedback</a>

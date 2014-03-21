@@ -28,12 +28,12 @@ namespace downloads {
   enum FilenameConflictAction {uniquify, overwrite, prompt};
 
   [inline_doc] dictionary FilenameSuggestion {
-    // <!--@The $ref:DownloadItem's new target $ref:DownloadItem.filename, as a path
+    // <!--@The $(ref:DownloadItem)'s new target $(ref:DownloadItem.filename), as a path
     // relative to the user's default Downloads directory, possibly containing
     // subdirectories. Absolute paths, empty paths, and paths containing
     // back-references ".." will be ignored.-->
-    // $ref:DownloadItem（下载项）新的目标
-    // $ref:DownloadItem.filename（文件名），以相对于用户默认下载目录的路径表示，可以包含子目录。绝对路径、空路径以及包含父目录引用“..”的路径将被忽略。
+    // $(ref:DownloadItem)（下载项）新的目标
+    // $(ref:DownloadItem.filename)（文件名），以相对于用户默认下载目录的路径表示，可以包含子目录。绝对路径、空路径以及包含父目录引用“..”的路径将被忽略。
     DOMString filename;
 
     // <!--@The action to take if <code>filename</code> already exists.-->
@@ -75,9 +75,9 @@ namespace downloads {
     // <!--@A file path relative to the Downloads directory to contain the downloaded
     // file, possibly containing subdirectories. Absolute paths, empty paths,
     // and paths containing back-references ".." will cause an error.
-    // $ref:onDeterminingFilename allows suggesting a filename after the file's
+    // $(ref:onDeterminingFilename) allows suggesting a filename after the file's
     // MIME type and a tentative filename have been determined.-->
-    // 相对于下载文件夹的路径，包含下载得到的文件，可以包含子目录。绝对路径、空路径以及包含向前引用“..”的路径会导致错误。$ref:onDeterminingFilename
+    // 相对于下载文件夹的路径，包含下载得到的文件，可以包含子目录。绝对路径、空路径以及包含向前引用“..”的路径会导致错误。$(ref:onDeterminingFilename)
     // 允许在文件 MIME 类型和待定文件名确定后推荐文件名。
     DOMString? filename;
 
@@ -252,20 +252,20 @@ namespace downloads {
 
     // <!--@Whether the downloaded file still exists. This information may be out of
     // date because Chrome does not automatically watch for file removal. Call
-    // $ref:search() in order to trigger the check for file existence. When the
+    // $(ref:search)() in order to trigger the check for file existence. When the
     // existence check completes, if the file has been deleted, then an
-    // $ref:onChanged event will fire. Note that $ref:search() does not wait
+    // $(ref:onChanged) event will fire. Note that $(ref:search)() does not wait
     // for the existence check to finish before returning, so results from
-    // $ref:search() may not accurately reflect the file system. Also,
-    // $ref:search() may be called as often as necessary, but will not check for
+    // $(ref:search)() may not accurately reflect the file system. Also,
+    // $(ref:search)() may be called as often as necessary, but will not check for
     // file existence any more frequently than once every 10 seconds.-->
     // 下载的文件是否还存在，该信息可能不是最新的，因为 Chrome
     // 浏览器不会自动检测文件的删除。要检查文件是否存在，请调用
-    // $ref:[search search()]。存在性检查完后，如果文件已删除，会产生
-    // $ref:onChanged 事件。注意 $ref:[search search()]
-    // 不会等到存在性检查完成后再返回，所以 $ref:[search search()]
+    // $(ref:search search&#40;&#41;)。存在性检查完后，如果文件已删除，会产生
+    // $(ref:onChanged) 事件。注意 $(ref:search search&#40;&#41;)
+    // 不会等到存在性检查完成后再返回，所以 $(ref:search search&#40;&#41;)
     // 的结果不一定能准确地反映文件系统的情况。此外，尽管可以频繁调用
-    // $ref:[search search()]，但是检查文件存在性的频率不会高于每 10 秒一次。
+    // $(ref:search search&#40;&#41;)，但是检查文件存在性的频率不会高于每 10 秒一次。
     boolean exists;
 
     // <!--@The identifier for the extension that initiated this download if this
@@ -281,7 +281,7 @@ namespace downloads {
   };
 
   [inline_doc] dictionary DownloadQuery {
-    // <!--@This array of search terms limits results to $ref:DownloadItem whose
+    // <!--@This array of search terms limits results to $(ref:DownloadItem) whose
     // <code>filename</code> or <code>url</code> contain all of the search terms
     // that do not begin with a dash '-' and none of the search terms that do
     // begin with a dash.-->
@@ -290,79 +290,79 @@ namespace downloads {
     // 包含所有不以减号（'-'）开始的搜索条目并且不包含所有以减号（'-'）开始的搜索条目。
     DOMString[]? query;
 
-    // <!--@Limits results to $ref:DownloadItem that
+    // <!--@Limits results to $(ref:DownloadItem) that
     // started before the given ms since the epoch.-->
     // 将结果限制为下载开始时间在给定时间（以 1970 年 1 月 1
     // 日午夜以来所经过的毫秒数表示）之前的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     DOMString? startedBefore;
 
-    // <!--@Limits results to $ref:DownloadItem that
+    // <!--@Limits results to $(ref:DownloadItem) that
     // started after the given ms since the epoch.-->
     // 将结果限制为下载开始时间在给定时间（以 1970 年 1 月 1
     // 日午夜以来所经过的毫秒数表示）之后的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     DOMString? startedAfter;
 
-    // <!--@Limits results to $ref:DownloadItem that ended before the given ms since the
+    // <!--@Limits results to $(ref:DownloadItem) that ended before the given ms since the
     // epoch.-->
     // 将结果限制为下载结束时间在给定时间（以 1970 年 1 月 1
     // 日午夜以来所经过的毫秒数表示）之前的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     DOMString? endedBefore;
 
-    // <!--@Limits results to $ref:DownloadItem that ended after the given ms since the
+    // <!--@Limits results to $(ref:DownloadItem) that ended after the given ms since the
     // epoch.-->
     // 将结果限制为下载结束时间在给定时间（以 1970 年 1 月 1
     // 日午夜以来所经过的毫秒数表示）之后的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     DOMString? endedAfter;
 
-    // <!--@Limits results to $ref:DownloadItem whose
+    // <!--@Limits results to $(ref:DownloadItem) whose
     // <code>totalBytes</code> is greater than the given integer.-->
     // 将结果限制为 <code>totalBytes</code> 大于指定整数的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     double? totalBytesGreater;
 
-    // <!--@Limits results to $ref:DownloadItem whose
+    // <!--@Limits results to $(ref:DownloadItem) whose
     // <code>totalBytes</code> is less than the given integer.-->
     // 将结果限制为 <code>totalBytes</code> 小于指定整数的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     double? totalBytesLess;
 
-    // <!--@Limits results to $ref:DownloadItem whose
+    // <!--@Limits results to $(ref:DownloadItem) whose
     // <code>filename</code> matches the given regular expression.-->
     // 将结果限制为 <code>filename</code> 匹配指定正则表达式的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     DOMString? filenameRegex;
 
-    // <!--@Limits results to $ref:DownloadItem whose
+    // <!--@Limits results to $(ref:DownloadItem) whose
     // <code>url</code> matches the given regular expression.-->
     // 将结果限制为 <code>url</code> 匹配指定正则表达式的
-    // $ref:DownloadItem。
+    // $(ref:DownloadItem)。
     DOMString? urlRegex;
 
-    // <!--@The maximum number of matching $ref:DownloadItem returned. Defaults to
-    // 1000. Set to 0 in order to return all matching $ref:DownloadItem. See
-    // $ref:search for how to page through results.-->
-    // 返回匹配 $ref:DownloadItem（下载项）的最大数目，默认为 1000，设置为 0
-    // 则返回所有匹配的 $ref:DownloadItem（下载项）。有关如何为结果分页，请参见
-    // $ref:search。
+    // <!--@The maximum number of matching $(ref:DownloadItem) returned. Defaults to
+    // 1000. Set to 0 in order to return all matching $(ref:DownloadItem). See
+    // $(ref:search) for how to page through results.-->
+    // 返回匹配 $(ref:DownloadItem)（下载项）的最大数目，默认为 1000，设置为 0
+    // 则返回所有匹配的 $(ref:DownloadItem)（下载项）。有关如何为结果分页，请参见
+    // $(ref:search)。
     long? limit;
 
-    // <!--@Set elements of this array to $ref:DownloadItem properties in order to
+    // <!--@Set elements of this array to $(ref:DownloadItem) properties in order to
     // sort search results. For example, setting
-    // <code>orderBy=['startTime']</code> sorts the $ref:DownloadItem by their
+    // <code>orderBy=['startTime']</code> sorts the $(ref:DownloadItem) by their
     // start time in ascending order. To specify descending order, prefix with a
     // hyphen: '-startTime'.-->
-    // 将该数组的元素设置为 $ref:DownloadItem
+    // 将该数组的元素设置为 $(ref:DownloadItem)
     // 的属性，为搜索结果排序。例如，设置
     // <code>orderBy: ['startTime']</code>
     // 将使下载项按开始时间升序排列。如果要降序排列，请在前面使用连字符：'-startTime'。
     DOMString[]? orderBy;
 
-    // <!--@The <code>id</code> of the $ref:DownloadItem to query.-->
-    // 要查询的 $ref:DownloadItem 的标识符。
+    // <!--@The <code>id</code> of the $(ref:DownloadItem) to query.-->
+    // 要查询的 $(ref:DownloadItem) 的标识符。
     long? id;
 
     // <!--@Absolute URL.-->
@@ -440,11 +440,11 @@ namespace downloads {
   };
 
   // <!--@Encapsulates a change in a DownloadItem.-->
-  // 包含 $ref:DownloadItem 的更改。
+  // 包含 $(ref:DownloadItem) 的更改。
   [inline_doc] dictionary DownloadDelta {
-    // <!--@The <code>id</code> of the $ref:DownloadItem
+    // <!--@The <code>id</code> of the $(ref:DownloadItem)
     // that changed.-->
-    // 更改的 $ref:DownloadItem 的标识符。
+    // 更改的 $(ref:DownloadItem) 的标识符。
     long id;
 
     // <!--@The change in <code>url</code>, if any.-->
@@ -525,36 +525,36 @@ namespace downloads {
     // <code>filename</code> and <code>saveAs</code> are specified, then the
     // Save As dialog will be displayed, pre-populated with the specified
     // <code>filename</code>. If the download started successfully,
-    // <code>callback</code> will be called with the new $ref:DownloadItem's
+    // <code>callback</code> will be called with the new $(ref:DownloadItem)'s
     // <code>downloadId</code>. If there was an error starting the download,
     // then <code>callback</code> will be called with
-    // <code>downloadId=undefined</code> and $ref:runtime.lastError will contain
+    // <code>downloadId=undefined</code> and $(ref:runtime.lastError) will contain
     // a descriptive string. The error strings are not guaranteed to remain
-    // backwards compatible between releases. Extensions must not parse it.
+    // backwards compatible between releases. Extensions must not parse it.-->
     // 下载某个 URL。如果该 URL 使用 HTTP[S]
     // 协议，请求会包含当前为主机名设置的所有 Cookie。如果同时指定了
     // <code>filename</code> 与 <code>saveAs</code>
     // 属性，则会显示另存为对话框，并且初始文件名为指定的
     // <code>filename</code>。如果下载成功开始，将调用
-    // <code>callback</code>，并传递新的 $ref:DownloadItem（下载项目）的
+    // <code>callback</code>，并传递新的 $(ref:DownloadItem)（下载项目）的
     // <code>downloadId</code>。如果开始下载时发生了错误，将调用
     // <code>callback</code>，并传递 <code>downloadId: undefined</code>，并且
-    // $ref:runtime.lastError
+    // $(ref:runtime.lastError)
     // 包含描述性文字。错误字符串并不能保证在不同版本之间保持向后的兼容性，扩展程序决不能分析它。
     // |options|: <!--@What to download and how.-->
     // 下载的内容与方式。
-    // |callback|: <!--@Called with the id of the new $ref:DownloadItem.-->
-    // 调用时传递新的 $ref:DownloadItem 的标识符。
+    // |callback|: <!--@Called with the id of the new $(ref:DownloadItem).-->
+    // 调用时传递新的 $(ref:DownloadItem) 的标识符。
     static void download(DownloadOptions options,
                          optional DownloadCallback callback);
 
-    // <!--@Find $ref:DownloadItem. Set <code>query</code> to the empty object to get
-    // all $ref:DownloadItem. To get a specific $ref:DownloadItem, set only the
+    // <!--@Find $(ref:DownloadItem). Set <code>query</code> to the empty object to get
+    // all $(ref:DownloadItem). To get a specific $(ref:DownloadItem), set only the
     // <code>id</code> field. To page through a large number of items, set
     // <code>orderBy: ['-startTime']</code>, set <code>limit</code> to the
     // number of items per page, and set <code>startedAfter</code> to the
     // <code>startTime</code> of the last item from the last page.-->
-    // 寻找 $ref:DownloadItem（下载项）。将
+    // 寻找 $(ref:DownloadItem)（下载项）。将
     // <code>query</code>
     // 设置为空对象可以获取所有下载项。要获得某个特定的下载项，只要设置
     // <code>id</code> 字段。要为大量项目分页，请设置
@@ -564,9 +564,9 @@ namespace downloads {
     static void search(DownloadQuery query, SearchCallback callback);
 
     // <!--@Pause the download. If the request was successful the download is in a
-    // paused state. Otherwise $ref:runtime.lastError contains an error message.
+    // paused state. Otherwise $(ref:runtime.lastError) contains an error message.
     // The request will fail if the download is not active.-->
-    // 暂停下载。如果请求成功，下载项将进入暂停状态。否则，$ref:runtime.lastError
+    // 暂停下载。如果请求成功，下载项将进入暂停状态。否则，$(ref:runtime.lastError)
     // 将包含错误消息。如果下载项不处于活动状态，该调用会失败。
     // |downloadId|: <!--@The id of the download to pause.-->
     // 要暂停的下载项标识符。
@@ -575,9 +575,9 @@ namespace downloads {
     static void pause(long downloadId, optional NullCallback callback);
 
     // <!--@Resume a paused download. If the request was successful the download is
-    // in progress and unpaused. Otherwise $ref:runtime.lastError contains an
+    // in progress and unpaused. Otherwise $(ref:runtime.lastError) contains an
     // error message. The request will fail if the download is not active.-->
-    // 恢复已暂停的下载。如果请求成功，下载项将继续进行，不再处于暂停状态。否则，$ref:runtime.lastError
+    // 恢复已暂停的下载。如果请求成功，下载项将继续进行，不再处于暂停状态。否则，$(ref:runtime.lastError)
     // 将包含错误消息。如果下载项不处于活动状态，该调用会失败。
     // |downloadId|: <!--@The id of the download to resume.-->
     // 要恢复的下载项标识符。
@@ -595,17 +595,17 @@ namespace downloads {
     static void cancel(long downloadId, optional NullCallback callback);
 
     // <!--@Retrieve an icon for the specified download. For new downloads, file
-    // icons are available after the $ref:onCreated event has been received. The
+    // icons are available after the $(ref:onCreated) event has been received. The
     // image returned by this function while a download is in progress may be
     // different from the image returned after the download is complete. Icon
     // retrieval is done by querying the underlying operating system or toolkit
     // depending on the platform. The icon that is returned will therefore
     // depend on a number of factors including state of the download, platform,
     // registered file types and visual theme. If a file icon cannot be
-    // determined, $ref:runtime.lastError will contain an error message.-->
+    // determined, $(ref:runtime.lastError) will contain an error message.-->
     // 获取指定下载项的图标。对于新的下载项，文件图标将在
-    // $ref:onCreated
-    // 事件收到后才可用。在下载进行时该函数返回的图像可能与下载完成后返回的图像不同。获取图标的方式取决于平台，通过查询下层操作系统或工具包的方式进行。因此，返回的图标取决于各种因素，包括下载状态、平台、已注册的文件类型以及视觉主题。如果无法确定文件图标，$ref:runtime.lastError
+    // $(ref:onCreated)
+    // 事件收到后才可用。在下载进行时该函数返回的图像可能与下载完成后返回的图像不同。获取图标的方式取决于平台，通过查询下层操作系统或工具包的方式进行。因此，返回的图标取决于各种因素，包括下载状态、平台、已注册的文件类型以及视觉主题。如果无法确定文件图标，$(ref:runtime.lastError)
     // 将会包含错误消息。
     // |downloadId|: <!--@The identifier for the download.-->
     // 下载项的标识符。
@@ -615,16 +615,16 @@ namespace downloads {
                             optional GetFileIconOptions options,
                             GetFileIconCallback callback);
 
-    // <!--@Open the downloaded file now if the $ref:DownloadItem is complete;
-    // otherwise returns an error through $ref:runtime.lastError. Requires the
+    // <!--@Open the downloaded file now if the $(ref:DownloadItem) is complete;
+    // otherwise returns an error through $(ref:runtime.lastError). Requires the
     // <code>"downloads.open"</code> permission in addition to the
-    // <code>"downloads"</code> permission. An $ref:onChanged event will fire
+    // <code>"downloads"</code> permission. An $(ref:onChanged) event will fire
     // when the item is opened for the first time.-->
-    // 如果 $ref:DownloadItem（下载项）已完成则立即打开下载的文件，否则通过
-    // $ref:runtime.lastError 返回错误。该方法除了需要
+    // 如果 $(ref:DownloadItem)（下载项）已完成则立即打开下载的文件，否则通过
+    // $(ref:runtime.lastError) 返回错误。该方法除了需要
     // <code>"downloads"</code> 权限外还需要
     // <code>"downloads.open"</code> 权限。项目第一次打开时将产生
-    // $ref:onChanged 事件。
+    // $(ref:onChanged) 事件。
     // |downloadId|: <!--@The identifier for the downloaded file.-->
     // 已下载文件的标识符。
     static void open(long downloadId);
@@ -639,36 +639,36 @@ namespace downloads {
     // 在文件管理器中显示默认的下载文件夹。
     static void showDefaultFolder();
 
-    // <!--@Erase matching $ref:DownloadItem from history without deleting the
-    // downloaded file. An $ref:onErased event will fire for each
-    // $ref:DownloadItem that matches <code>query</code>, then
+    // <!--@Erase matching $(ref:DownloadItem) from history without deleting the
+    // downloaded file. An $(ref:onErased) event will fire for each
+    // $(ref:DownloadItem) that matches <code>query</code>, then
     // <code>callback</code> will be called.-->
     // 从历史记录中删除匹配的
-    // $ref:DownloadItem（下载项），但不会删除已下载的文件，匹配
-    // <code>query</code> 的每一个 $ref:DownloadItem 都会产生一次
-    // $ref:onErased 事件，然后调用 <code>callback</code>。
+    // $(ref:DownloadItem)（下载项），但不会删除已下载的文件，匹配
+    // <code>query</code> 的每一个 $(ref:DownloadItem) 都会产生一次
+    // $(ref:onErased) 事件，然后调用 <code>callback</code>。
     static void erase(DownloadQuery query, optional EraseCallback callback);
 
-    // <!--@Remove the downloaded file if it exists and the $ref:DownloadItem is
-    // complete; otherwise return an error through $ref:runtime.lastError.-->
+    // <!--@Remove the downloaded file if it exists and the $(ref:DownloadItem) is
+    // complete; otherwise return an error through $(ref:runtime.lastError).-->
     // 如果文件存在并且i
-    // $ref:DownloadItem（下载项）已完成，则删除已下载的文件，否则通过
-    // $ref:runtime.lastError 返回错误。
+    // $(ref:DownloadItem)（下载项）已完成，则删除已下载的文件，否则通过
+    // $(ref:runtime.lastError) 返回错误。
     static void removeFile(long downloadId, optional NullCallback callback);
 
     // <!--@Prompt the user to accept a dangerous download. Does not automatically
     // accept dangerous downloads. If the download is accepted, then an
-    // $ref:onChanged event will fire, otherwise nothing will happen.  When all
+    // $(ref:onChanged) event will fire, otherwise nothing will happen.  When all
     // the data is fetched into a temporary file and either the download is not
     // dangerous or the danger has been accepted, then the temporary file is
     // renamed to the target filename, the |state| changes to 'complete', and
-    // $ref:onChanged fires.-->
+    // $(ref:onChanged) fires.-->
     // 提示用户接受有风险的下载，不会自动接受有风险的下载。如果下载项被接受，将产生
-    // $ref:onChanged
+    // $(ref:onChanged)
     // 事件，否则什么都不会发生。当所有数据都获取至临时文件后，如果下载项没有风险或者已被接受，该临时文件将被重命名为目标文件名，<code>state</code>
-    // 更改为 'complete'，并产生 $ref:onChanged 事件。
-    // |downloadId|: <!--@The identifier for the $ref:DownloadItem.-->
-    // $ref:DownloadItem 的标识符。
+    // 更改为 'complete'，并产生 $(ref:onChanged) 事件。
+    // |downloadId|: <!--@The identifier for the $(ref:DownloadItem).-->
+    // $(ref:DownloadItem) 的标识符。
     // |callback|: <!--@Called when the danger prompt dialog closes.-->
     // 风险提示对话框关闭时调用。
     static void acceptDanger(long downloadId, optional NullCallback callback);
@@ -683,47 +683,47 @@ namespace downloads {
     // with the current browser profile. The shelf will be disabled as long as
     // at least one extension has disabled it. Enabling the shelf while at least
     // one other extension has disabled it will return an error through
-    // $ref:runtime.lastError. Requires the <code>"downloads.shelf"</code>
+    // $(ref:runtime.lastError). Requires the <code>"downloads.shelf"</code>
     // permission in addition to the <code>"downloads"</code> permission.-->
     // 启用或禁用窗口底部与当前浏览器的用户配置文件相关联的灰色下载框，只要有至少一个扩展程序禁用它则下载框就会被禁用，在其他扩展程序禁用下载框时启用它会导致错误，通过
-    // $ref:runtime.lastError 返回。除了 <code>"downloads"</code>
+    // $(ref:runtime.lastError) 返回。除了 <code>"downloads"</code>
     // 权限以外还需要 <code>"downloads.shelf"</code> 权限。
     static void setShelfEnabled(boolean enabled);
   };
 
   interface Events {
-    // <!--@This event fires with the $ref:DownloadItem object when a download
+    // <!--@This event fires with the $(ref:DownloadItem) object when a download
     // begins.-->
-    // 下载开始时产生该事件，并传递 $ref:DownloadItem 对象。
+    // 下载开始时产生该事件，并传递 $(ref:DownloadItem) 对象。
     static void onCreated(DownloadItem downloadItem);
 
     // <!--@Fires with the <code>downloadId</code> when a download is erased from
     // history.-->
     // 当下载项从历史记录中删除时产生，并传递 <code>downloadId</code>。
-    // |downloadId|: <!--@The <code>id</code> of the $ref:DownloadItem that was
+    // |downloadId|: <!--@The <code>id</code> of the $(ref:DownloadItem) that was
     // erased.-->
-    // 已删除的 $ref:DownloadItem 的 <code>id</code>。
+    // 已删除的 $(ref:DownloadItem) 的 <code>id</code>。
     static void onErased(long downloadId);
 
-    // <!--@When any of a $ref:DownloadItem's properties except
+    // <!--@When any of a $(ref:DownloadItem)'s properties except
     // <code>bytesReceived</code> and <code>estimatedEndTime</code> changes,
     // this event fires with the <code>downloadId</code> and an object
     // containing the properties that changed.-->
     // 除 <code>bytesReceived</code> 和 <code>estimatedEndTime</code>
     // 以外，当某个
-    // $ref:DownloadItem（下载项）的任何属性更改时，会产生该事件，并传递
+    // $(ref:DownloadItem)（下载项）的任何属性更改时，会产生该事件，并传递
     // <code>downloadId</code> 以及描述属性更改的对象。
     static void onChanged(DownloadDelta downloadDelta);
 
     // <!--@During the filename determination process, extensions will be given the
-    // opportunity to override the target $ref:DownloadItem.filename. Each
+    // opportunity to override the target $(ref:DownloadItem.filename). Each
     // extension may not register more than one listener for this event. Each
     // listener must call <code>suggest</code> exactly once, either
     // synchronously or asynchronously. If the listener calls
     // <code>suggest</code> asynchronously, then it must return
     // <code>true</code>. If the listener neither calls <code>suggest</code>
     // synchronously nor returns <code>true</code>, then <code>suggest</code>
-    // will be called automatically. The $ref:DownloadItem will not complete
+    // will be called automatically. The $(ref:DownloadItem) will not complete
     // until all listeners have called <code>suggest</code>. Listeners may call
     // <code>suggest</code> without any arguments in order to allow the download
     // to use <code>downloadItem.filename</code> for its filename, or pass a
@@ -733,25 +733,25 @@ namespace downloads {
     // <code>suggestion</code> object to <code>suggest</code> wins. In order to
     // avoid confusion regarding which extension will win, users should not
     // install extensions that may conflict. If the download is initiated by
-    // $ref:download and the target filename is known before the MIME type and
+    // $(ref:download) and the target filename is known before the MIME type and
     // tentative filename have been determined, pass <code>filename</code> to
-    // $ref:download instead.-->
+    // $(ref:download) instead.-->
     // 在确定文件名的过程中，扩展程序有机会修改目标
-    // $ref:DownloadItem.filename（文件名）。每一个扩展程序不能为该事件注册一个以上的监听器，每个监听器必须恰好调用一次
+    // $(ref:DownloadItem.filename)（文件名）。每一个扩展程序不能为该事件注册一个以上的监听器，每个监听器必须恰好调用一次
     // <code>suggest</code>，既可以是同步地，也可以是异步地。如果监听器异步地调用
     // <code>suggest</code>，它必须返回 <code>true</code>。如果监听器既没有同步地调用
     // <code>suggest</code>，也没有返回 <code>true</code>，则会自动调用
     // <code>suggest</code>。在所有监听器调用 <code>suggest</code>
-    // 前，$ref:DownloadItem（下载项）不会完成。监听器应该不传递任何参数调用
+    // 前，$(ref:DownloadItem)（下载项）不会完成。监听器应该不传递任何参数调用
     // <code>suggest</code>，允许下载项使用 <code>downloadItem.filename</code>
     // 作为它的文件名，或者向 <code>suggest</code> 传递一个
     // <code>suggestion</code>
     // 对象，修改目标文件名。如果不止一个扩展程序修改文件名，最后安装并且向
     // <code>suggest</code> 传递 <code>suggestion</code>
     // 对象的扩展程序优先。为了避免哪个扩展程序优先造成的混淆，用户不应该安装可能会导致冲突的扩展程序。如果下载由
-    // $ref:download 发起，并且在 MIME
+    // $(ref:download) 发起，并且在 MIME
     // 类型和待定文件名确定前就指定了文件名，请将 <code>filename</code>
-    // 传递给 $ref:download。
+    // 传递给 $(ref:download)。
     [maxListeners=1] static void onDeterminingFilename(
         DownloadItem downloadItem, SuggestFilenameCallback suggest);
   };

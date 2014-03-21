@@ -267,8 +267,8 @@ URL 请求详情的词典，词典中的信息取决于具体事件类型以及
 <p><!--@If the optional <code>opt_extraInfoSpec</code> array contains the string
 <code>'blocking'</code> (only allowed for specific events), the callback
 function is handled synchronously. That means that the request is blocked until
-the callback function returns. In this case, the callback can return a 
-  $ref:webRequest.BlockingResponse that determines the further
+the callback function returns. In this case, the callback can return a
+  $(ref:webRequest.BlockingResponse) that determines the further
 life cycle of the request. Depending on the context, this response allows
 cancelling or redirecting a request (<code>onBeforeRequest</code>), cancelling a
 request or modifying headers (<code>onBeforeSendHeaders</code>,
@@ -276,17 +276,17 @@ request or modifying headers (<code>onBeforeSendHeaders</code>,
 (<code>onAuthRequired</code>).-->
 如果可选的 <code>opt_extraInfoSpec</code> 数组包含 <code>'blocking'</code>
 字符串（仅允许用于特定事件），回调函数将以同步方式处理。这意味着请求将阻塞，直到回调函数返回。在这一种情况下，回调函数可以返回
-$ref:webRequest.BlockingResponse
+$(ref:webRequest.BlockingResponse)
 对象，确定这一请求进一步的生命周期。取决于当前上下文，这一响应允许取消或重定向某个请求（<code
 >OnBeforeRequest</code>），取消请求或修改头信息（<code
 >onBeforeSendHeaders</code>），或者提供认证凭据（<code
 >onAuthRequired</code>）。
 </p>
 
-<p><!--@The $ref:webRequest.RequestFilter
+<p><!--@The $(ref:webRequest.RequestFilter)
 <code>filter</code> allows limiting the requests for which events are
 triggered in various dimensions:-->
-$ref:webRequest.RequestFilter 类型的 <code>filter</code>
+$(ref:webRequest.RequestFilter) 类型的 <code>filter</code>
 参数允许通过不同的方式限制为哪些请求产生事件：
 <dl>
   <dt>URLs</dt>
@@ -298,11 +298,11 @@ $ref:webRequest.RequestFilter 类型的 <code>filter</code>
   <dd><!--@Request types such as <code>main_frame</code> (a document that is loaded
   for a top-level frame), <code>sub_frame</code> (a document that is loaded for
   an embedded frame), and <code>image</code> (an image on a web site).
-  See $ref:webRequest.RequestFilter.-->
+  See $(ref:webRequest.RequestFilter).-->
   请求类型，例如 <code>"main_frame"</code>（为顶层框架加载的文档）、<code
   >"sub_frame"</code>（为内嵌框架加载的文档）和
   <code>"image"</code>（网站上的图片）。请参见
-  $ref:webRequest.RequestFilter。
+  $(ref:webRequest.RequestFilter)。
   </dd>
   <dt><!--@Tab ID-->标签页标识符</dt>
   <dd><!--@The identifier for one tab.-->某个标签页的标识符。</dd>

@@ -42,8 +42,8 @@ href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo#readm
 
 <p>
 <!--@To get a list of paths associated with available serial ports,
-use the <code>$ref:serial.getDevices</code> method. <b>Note:</b> not all serial ports are available. The API uses heuristics to only expose serial devices that are expected to be safe.-->
-要获取可用串行端口的路径列表，请使用 <code>$ref:serial.getDevices</code>
+use the <code>$(ref:serial.getDevices)</code> method. <b>Note:</b> not all serial ports are available. The API uses heuristics to only expose serial devices that are expected to be safe.-->
+要获取可用串行端口的路径列表，请使用 <code>$(ref:serial.getDevices)</code>
 方法。<b>注意：</b>并不是所有的串行端口都可用。该 API
 采用启发式的方式，只暴露被视为安全的串行端口设备。
 </p>
@@ -60,8 +60,8 @@ chrome.serial.getDevices(onGetDevices);
 <h2 id="opening"><!--@Connecting to a serial device-->连接到串行端口设备</h2>
 
 <p>
-<!--@If you know the path associated with the serial port, you can connect to it using the <code>$ref:serial.connect</code> method:-->
-如果您知道串行端口的路径，您可以使用 <code>$ref:serial.connect</code> 方法打开它用于读写：
+<!--@If you know the path associated with the serial port, you can connect to it using the <code>$(ref:serial.connect)</code> method:-->
+如果您知道串行端口的路径，您可以使用 <code>$(ref:serial.connect)</code> 方法打开它用于读写：
 </p>
 
 <pre>
@@ -75,22 +75,22 @@ chrome.serial.connect(path, options, callback)
   </tr>
   <tr>
     <td>path&nbsp;(string)</td>
-    <td><!--@If the path associated with your device's port is unknown, you can use the <code>$ref:serial.getDevices</code> method.-->
-      如果与您的设备端口相关联的路径名未知，您可以使用 <code>$ref:serial.getDevices</code> 方法。
+    <td><!--@If the path associated with your device's port is unknown, you can use the <code>$(ref:serial.getDevices)</code> method.-->
+      如果与您的设备端口相关联的路径名未知，您可以使用 <code>$(ref:serial.getDevices)</code> 方法。
     </td>
   </tr>
   <tr>
     <td>options&nbsp;(object)</td>
-    <td><!--@Parameter object with several configuration values. See details at $ref:serial.ConnectionOptions-->
-    包含多个配置值的参数对象，有关详情请参见 $ref:serial.ConnectionOptions。
+    <td><!--@Parameter object with several configuration values. See details at $(ref:serial.ConnectionOptions)-->
+    包含多个配置值的参数对象，有关详情请参见 $(ref:serial.ConnectionOptions)。
     </td>
   </tr>
   <tr>
     <td>callback</td>
-    <td><!--@Invoked when the port has been successfully opened. The callback will be called with one parameter, <code>connectionInfo</code>, that has several important values. See details at $ref:serial.ConnectionInfo.-->
+    <td><!--@Invoked when the port has been successfully opened. The callback will be called with one parameter, <code>connectionInfo</code>, that has several important values. See details at $(ref:serial.ConnectionInfo).-->
     端口成功打开后调用。调用回调函数时将传递一个参数
     <code>connectionInfo</code>，包含几个重要的值，有关详情请参见
-    $ref:serial.ConnectionInfo。
+    $(ref:serial.ConnectionInfo)。
     </td>
   </tr>
 </table>
@@ -112,9 +112,9 @@ chrome.serial.connect("/dev/ttyS01", {bitrate: 115200}, onConnect);
 <p>
 <!--@When an app terminates, connections to serial ports that are not persistent
 are automatically closed by the platform. However, if you want to disconnect
-while your app is still running, you can use the $ref:serial.disconnect method:-->
+while your app is still running, you can use the $(ref:serial.disconnect) method:-->
 您的应用终止时，平台会自动关闭非持久的串行端口连接。然而如果您希望在应用运行时就断开连接，您可以使用
-$ref:serial.disconnect 方法。
+$(ref:serial.disconnect) 方法。
 </p>
 
 <pre>
@@ -136,11 +136,11 @@ chrome.serial.disconnect(connectionId, onDisconnect);
 Every port that your application is connected to will generate read events to all listeners added through
 <code>chrome.serial.onReceive.addListener(onReceiveCallback)</code>. If you are connected to more than one port at the
 same time, you may find the corresponding <code>connectionId</code> of an incoming read event in the callback parameter
-of $ref:serial.onReceive.-->
+of $(ref:serial.onReceive).-->
 串行端口 API 从串行端口读取数据并以 <code>ArrayBuffer</code>
 的方式将已读取的字节传递给事件监听器。您的应用连接的每一个端口都会产生读取事件，传递给通过
 <code>chrome.serial.onReceive.addListener(onReceiveCallback)</code>
-添加的监听器。如果您同时连接到多个端口，您可以在 $ref:serial.onReceive
+添加的监听器。如果您同时连接到多个端口，您可以在 $(ref:serial.onReceive)
 的回调函数参数中找到对应的 <code>connectionId</code>。
 </p>
 <p>
@@ -214,10 +214,10 @@ var convertStringToArrayBuffer=function(str) {
 <p>
 <!--@The Serial API has several other features. You can, for example, set a connection to persistent, so it can receive data
 even when your app is not running, or you can update connection parameters on the fly, like bitrate, timeouts, control signals, and many others
- with the $ref:serial.update method. See the full reference of the $ref:serial API for more information.-->
+ with the $(ref:serial.update) method. See the full reference of the $(ref:serial) API for more information.-->
  串行端口 API
  还有一些其他功能。例如，您可以将连接设置为持久存在，这样即使您的应用不在运行，它仍然可以接收数据。使用
-$ref:serial.update
+$(ref:serial.update)
 方法，您还可以随时更新连接参数，例如比特率、超时、控制信号等等。有关更多信息请参见
-$ref:serial API 的完整参考。
+$(ref:serial) API 的完整参考。
 </p>

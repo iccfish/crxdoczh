@@ -21,7 +21,7 @@ it's done in the <a href="overview.html#contentScripts">content scripts</a>.-->
 <a href="extension.html">chrome.extension</a> API，其他扩展程序 API
 对开发者工具窗口中的页面不可用，但是您可以向您的扩展程序的后台网页发送请求，调用这些 API，与您在<a href="overview.html#contentScripts">内容脚本</a>中所做的类似。
 </p><p>
-<!--@You can use the <code>$ref:devtools.panels.setOpenResourceHandler
+<!--@You can use the <code>$(ref:devtools.panels.setOpenResourceHandler)
 </code> method to install a
 callback function that handles user requests to open a resource (typically,
 a click on a resource link in the Developer Tools window). At most one of the
@@ -30,7 +30,7 @@ Settings dialog) either the default behavior or an extension to handle resource
 open requests. If an extension calls <code>setOpenResourceHandler()</code>
 multiple times, only the last handler is retained.-->
 您可以使用
-<code>$ref:devtools.panels.setOpenResourceHandler</code>
+<code>$(ref:devtools.panels.setOpenResourceHandler)</code>
 方法安装一个回调函数，处理用户打开资源的请求（典型例子为在开发者工具窗口中单击资源链接）。已安装的处理函数中最多只有一个会被调用，用户可以指定（使用开发者工具的设置对话框）使用默认行为或者让扩展程序来处理资源打开的请求。如果扩展程序多次调用了
 <code>setOpenResourceHandler()</code>，只会保留最后一个处理函数。
 </p>

@@ -106,7 +106,7 @@ API 读取和写入用户选择的任何照片。
 apps can save and synchronize data
 on a user's Google Drive
 so that the same data can be available across different clients.
-For example, a 
+For example, a
 <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/syncfs-editor">cloud-backed text editor</a>
 app can automatically sync new text files to a user's Google Drive account.
 When the user opens the text editor in a new client,
@@ -158,7 +158,7 @@ they expect a 'choose file' button
 and standard file-chooser.
 If your app makes heavy use of file-handing,
 you should also implement drag-and-drop
-(see below and also check out 
+(see below and also check out
 <a href="http://www.html5rocks.com/tutorials/dnd/basics/">Native HTML5 Drag and Drop</a>).-->
 用户期望以习惯的方式选择文件，至少他们期望一个“选择文件”按钮以及标准的文件选择器。如果您的应用大量使用文件选择，您还应该实现拖放支持（参见如下内容以及<a
 href="http://www.html5rocks.com/zh/tutorials/dnd/basics/">本机 HTML5 拖放</a>）。
@@ -263,7 +263,7 @@ writes the selected file to it.-->
 
     chosenFileEntry.file(function(file) {
       writer.write(file);
-    });   
+    });
   }, errorHandler);
 });
 </pre>
@@ -285,7 +285,7 @@ chrome.fileSystem.chooseEntry({type: 'saveFile'}, function(writableFileEntry) {
       writer.onwriteend = function(e) {
         console.log('write complete');
       };
-      writer.write(new Blob(['1234567890'], {type: 'text/plain'}));  
+      writer.write(new Blob(['1234567890'], {type: 'text/plain'}));
     }, errorHandler);
 });
 </pre>
@@ -327,11 +327,11 @@ to store and sync persistent data.-->
 
 <p>
 <!--@To initiate syncable file storage in your app,
-simply call $ref:[syncFileSystem.requestFileSystem].
+simply call $(ref:syncFileSystem.requestFileSystem).
 This method returns a syncable filesystem backed by Google Drive,
 for example:-->
 要在您的应用中请求同步文件存储，只要调用
-$ref:syncFileSystem.requestFileSystem。该方法返回一个由 Google
+$(ref:syncFileSystem.requestFileSystem)。该方法返回一个由 Google
 云端硬盘支持的同步文件系统。例如：
 </p>
 
@@ -345,9 +345,9 @@ chrome.syncFileSystem.requestFileSystem(function (fs) {
 <h3 id="file-status"><!--@About file sync status-->关于文件同步状态</h3>
 
 <p>
-<!--@Use $ref:[syncFileSystem.getFileStatus] to get the sync status
+<!--@Use $(ref:syncFileSystem.getFileStatus) to get the sync status
 for a current file:-->
-使用 $ref:syncFileSystem.getFileStatus 获取当前文件的同步状态：
+使用 $(ref:syncFileSystem.getFileStatus) 获取当前文件的同步状态：
 </p>
 
 <pre>
@@ -375,17 +375,17 @@ that haven't been fetched yet.-->
 not yet synchronized to Google Drive.
 If the app is running online,
 local changes are (almost) immediately synchronized to Google Drive, and the
-$ref:[syncFileSystem.onFileStatusChanged]
+$(ref:syncFileSystem.onFileStatusChanged)
 event is fired with the <code>'synced'</code> status
 (see below for more details).-->
 'pending' 意味着文件有待定的更改，还未同步到 Google
 云端硬盘。如果应用以在线模式运行，本地更改（几乎）会立即同步到 Google
-云端硬盘，并将产生 $ref:syncFileSystem.onFileStatusChanged 事件，传递
+云端硬盘，并将产生 $(ref:syncFileSystem.onFileStatusChanged) 事件，传递
 <code>'synced'</code> 状态（更多详情请往下阅读）。
 </p>
 
 <p>
-<!--@The $ref:[syncFileSystem.onFileStatusChanged]
+<!--@The $(ref:syncFileSystem.onFileStatusChanged)
 is fired when a file's status changes to <code>'conflicting'</code>.
 'Conflicting' means there are conflicting changes
 on both the local storage and Google Drive.
@@ -393,13 +393,13 @@ A file can be in this state only if the conflict resolution policy
 is set to <code>'manual'</code>.  The default policy is
 <code>'last_write_win'</code> and conflicts are automatically resolved
 by simple last-write-win policy.  The system's conflict resolution policy
-can be changed by $ref:[syncFileSystem.setConflictResolutionPolicy].-->
+can be changed by $(ref:syncFileSystem.setConflictResolutionPolicy).-->
 当文件状态更改为 <code>'conflicting'</code> 时也会产生
-$ref:syncFileSystem.onFileStatusChanged 事件。'conflicting'
+$(ref:syncFileSystem.onFileStatusChanged) 事件。'conflicting'
 意味着本地存储和 Google 云端硬盘之间的更改有冲突。只有当冲突解决策略设置为
 <code>'manual'</code>（手动）时文件才有可能处于这种状态，默认策略是
 <code>'last_write_win'</code>（最后写入优先），冲突会按照最后写入优先的策略自动解决。系统的冲突解决策略可以通过
-$ref:[syncFileSystem.setConflictResolutionPolicy] 修改。
+$(ref:syncFileSystem.setConflictResolutionPolicy) 修改。
 </p>
 
 <p>
@@ -423,7 +423,7 @@ with the <code>'synced'</code> status.-->
 
 <p>
 <!--@The
-$ref:[syncFileSystem.onFileStatusChanged]
+$(ref:syncFileSystem.onFileStatusChanged)
 event is fired when the sync status of a file changes.
 For example,
 assume a file has pending changes and is in the 'pending' state.
@@ -434,7 +434,7 @@ and uploads the change to Google Drive,
 the service fires the <code>onFileStatusChanged</code> event
 with following values:-->
 当文件的同步状态更改时，例如假设文件有待定的更改并处于 'pending'
-状态，会产生 $ref:syncFileSystem.onFileStatusChanged
+状态，会产生 $(ref:syncFileSystem.onFileStatusChanged)
 事件。应用可能已经处于离线状态，所以更改还未被同步。当同步服务检测到本地更改并将更改上传到
 Google 云端硬盘时，该服务会产生 <code>onFileStatusChanged</code>
 事件，并传递下列值： <code>{ fileEntry: <em>文件的文件项</em>, status: 'synced', action: 'updated',
@@ -481,7 +481,7 @@ Any music found gets synced to that client:-->
 <pre>
 chrome.syncFileSystem.onFileStatusChanged.addListener(function(fileInfo) {
   if (fileInfo.status === 'synced') {
-    if (fileInfo.direction === 'remote_to_local') { 
+    if (fileInfo.direction === 'remote_to_local') {
       if (fileInfo.action === 'added') {
         db.add(fileInfo.fileEntry);
       } else if (fileInfo.action === 'deleted') {
@@ -499,7 +499,7 @@ chrome.syncFileSystem.onFileStatusChanged.addListener(function(fileInfo) {
 query the app's local sandboxed directory
 or the usage bytes returned by-->
 要检查该 API 使用的数据量，查询应用在本地经过沙盒屏蔽的目录，或
-$ref:[syncFileSystem.getUsageAndQuota]<!--@:-->
+$(ref:syncFileSystem.getUsageAndQuota)<!--@:-->
 返回的占用字节数：
 </p>
 

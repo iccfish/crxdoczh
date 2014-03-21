@@ -56,14 +56,14 @@ href="browserAction.html">浏览器按钮</a>）时能够临时访问当前活�
   "version": "2.0",
   <b>"permissions": [
     "activeTab"
-  ],</b> 
+  ],</b>
   "background": {
     "scripts": ["background.js"],
     "persistent": false
-  },  
+  },
   "browser_action": {
     "default_title": "Make this page red"
-  },  
+  },
   "manifest_version": 2
 }
 </pre>
@@ -75,7 +75,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   console.log('Turning ' + tab.url + ' red!');
   chrome.tabs.executeScript({
     code: 'document.body.style.backgroundColor="red"'
-  }); 
+  });
 });
 </pre>
 
@@ -103,8 +103,8 @@ href="contextMenus.html">右键菜单项</a>的网络剪辑扩展程序，该扩
 <!--@While the <code>activeTab</code> permission is enabled for a tab, an extension can:-->
 当 <code>activeTab</code> 权限为某个标签页启用时，扩展程序可以：
 <ul>
-  <li><!--@Call-->对该标签页调用 <code>$ref:tabs.executeScript</code> <!--@or-->或 <code>$ref:tabs.insertCSS</code><!--@on that tab.-->。
-  <li><!--@Get the URL, title, and favicon for that tab via an API that returns a-->通过返回 <code>$ref:tabs.Tab</code> <!--@object (essentially,-->
+  <li><!--@Call-->对该标签页调用 <code>$(ref:tabs.executeScript)</code> <!--@or-->或 <code>$(ref:tabs.insertCSS)</code><!--@on that tab.-->。
+  <li><!--@Get the URL, title, and favicon for that tab via an API that returns a-->通过返回 <code>$(ref:tabs.Tab)</code> <!--@object (essentially,-->
   对象的 API 获取该标签页的 URL、标题及收藏夹图标（本质上
   <code>activeTab</code> <!--@grants the-->临时授予了 <code><a href="tabs.html#manifest">tabs</a></code> <!--@permission temporarily).-->权限）。
 </ul>

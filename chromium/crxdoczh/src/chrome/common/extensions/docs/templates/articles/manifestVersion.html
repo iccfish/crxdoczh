@@ -213,13 +213,13 @@
           <!--@The <code>icons</code> property of <code>browser_action</code> has
           been removed. Use <a href="browserAction.html#manifest">
             the <code>default_icon</code> property
-          </a> or $ref:browserAction.setIcon instead.-->
+          </a> or $(ref:browserAction.setIcon) instead.-->
           <code>browser_action</code>
           的
           <code>icons</code>
           属性已移除，请改用
           <a href="browserAction.html#manifest"><code>default_icon</code></a>
-          属性或者 $ref:browserAction.setIcon。
+          属性或者 $(ref:browserAction.setIcon)。
         </p>
       </li>
       <li>
@@ -227,13 +227,13 @@
           <!--@The <code>name</code> property of <code>browser_action</code> has been
           removed. Use <a href="browserAction.html#manifest">
             the <code>default_title</code> property
-          </a> or $ref:browserAction.setTitle instead.-->
+          </a> or $(ref:browserAction.setTitle) instead.-->
           <code>browser_action</code>
           的
           <code>name</code>
           属性已移除，请改用
           <a href="browserAction.html#manifest"><code>default_title</code></a>
-          属性或者 $ref:browserAction.setTitle。
+          属性或者 $(ref:browserAction.setTitle)。
         </p>
       </li>
       <li>
@@ -241,13 +241,13 @@
           <!--@The <code>popup</code> property of <code>browser_action</code> has
           been removed. Use <a href="browserAction.html#manifest">
             the <code>default_popup</code> property
-          </a> or $ref:browserAction.setPopup instead.-->
+          </a> or $(ref:browserAction.setPopup) instead.-->
           <code>browser_action</code>
           的
           <code>popup</code>
           属性已移除，请改用
           <a href="browserAction.html#manifest"><code>default_popup</code></a>
-          属性或者 $ref:browserAction.setPopup。
+          属性或者 $(ref:browserAction.setPopup)。
         </p>
       </li>
       <li>
@@ -287,13 +287,13 @@
           <!--@The <code>icons</code> property of <code>page_action</code> has been
           removed. Use <a href="pageAction.html#manifest">
             the <code>default_icon</code> property
-          </a> or $ref:pageAction.setIcon instead.-->
+          </a> or $(ref:pageAction.setIcon) instead.-->
           <code>page_action</code>
           的
           <code>icons</code>
           属性已移除，请改用
           <a href="pageAction.html#manifest"><code>default_icon</code></a>
-          属性或者 $ref:pageAction.setIcon。
+          属性或者 $(ref:pageAction.setIcon)。
         </p>
       </li>
       <li>
@@ -301,13 +301,13 @@
           <!--@The <code>name</code> property of <code>page_action</code> has been
           removed. Use <a href="pageAction.html#manifest">
             the <code>default_title</code> property
-          </a> or $ref:pageAction.setTitle instead.-->
+          </a> or $(ref:pageAction.setTitle) instead.-->
           <code>page_action</code>
           的
           <code>name</code>
           属性已移除，请改用
           <a href="pageAction.html#manifest"><code>default_title</code></a>
-          属性或者 $ref:pageAction.setTitle。
+          属性或者 $(ref:pageAction.setTitle)。
         </p>
       </li>
       <li>
@@ -315,13 +315,13 @@
           <!--@The <code>popup</code> property of <code>page_action</code> has been
           removed. Use <a href="pageAction.html#manifest">
             the <code>default_popup</code> property
-          </a> or $ref:pageAction.setPopup instead.-->
+          </a> or $(ref:pageAction.setPopup) instead.-->
           <code>page_action</code>
           的
           <code>popup</code>
           属性已移除，请改用
           <a href="pageAction.html#manifest"><code>default_popup</code></a>
-          属性或者 $ref:pageAction.setPopup。
+          属性或者 $(ref:pageAction.setPopup)。
         </p>
       </li>
       <li>
@@ -349,13 +349,13 @@
       <code>chrome.extension.getTabContentses</code> <!--@(!!!) and-->和
       <code>chrome.extension.getExtensionTabs</code> <!--@are gone. Use-->
       已消失，请改用
-      $ref:[extension.getViews chrome.extension.getViews({ "type": "tab" })]<!--@ instead.-->。
+      $(ref:extension.getViews chrome.extension.getViews&#40;{ "type": "tab" }&#41;)<!--@ instead.-->。
     </p>
   </li>
   <li>
     <p>
       <code>Port.tab</code> <!--@is gone. Use-->已消失，请改用
-      $ref:runtime.Port.sender<!--@
+      $(ref:runtime.Port.sender)<!--@
       instead.-->。
     </p>
   </li>

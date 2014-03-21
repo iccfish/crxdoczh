@@ -152,9 +152,9 @@ chrome.declarativeWebRequest.onRequest.addRules([rule2]);
 individually because each of these operations recreates internal data
 structures.  This re-creation is computationally expensive but facilitates a
 very fast URL matching algorithm for hundreds of thousands of URLs. The
-<a href="events.html#performance">Performance section</a> of the $ref:[events
-Events] API provides further performance tips.-->您始终应该一次性批量注册或取消注册规则，而不是单独进行，因为每一次这样的操作都需要重新创建内部的数据结构，这一重新创建的过程需要大量的计算，但是可以利用一种极快的
-URL 匹配算法，用于几十万个 URL。$ref:[events 事件] API
+<a href="events.html#performance">Performance section</a> of the $(ref:events
+Events) API provides further performance tips.-->您始终应该一次性批量注册或取消注册规则，而不是单独进行，因为每一次这样的操作都需要重新创建内部的数据结构，这一重新创建的过程需要大量的计算，但是可以利用一种极快的
+URL 匹配算法，用于几十万个 URL。$(ref:events 事件) API
 的<a href="events.html#performance">性能部分</a>提供了进一步的性能提示。
 </p>
 

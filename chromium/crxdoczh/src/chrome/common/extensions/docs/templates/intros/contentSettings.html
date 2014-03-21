@@ -89,21 +89,21 @@ in the hostname.-->优先级更低，因为尽管它指定了端口和协议，�
 <p>
 <!--@The URL taken into account when deciding which content setting to apply depends
 on the content type. For example, for
-$ref:contentSettings.notifications settings are
+$(ref:contentSettings.notifications) settings are
 based on the URL shown in the omnibox. This URL is called the "primary" URL.-->
 当决定应用哪些内容设置时考虑的 URL
 取决于内容类型。例如，对于
-$ref:contentSettings.notifications（通知）来说，设置基于多功能框中显示的
+$(ref:contentSettings.notifications)（通知）来说，设置基于多功能框中显示的
 URL，这一 URL 称为“主要”URL。
 </p>
 <p>
 <!--@Some content types can take additional URLs into account. For example,
 whether a site is allowed to set a
-$ref:contentSettings.cookies is decided based on the URL
+$(ref:contentSettings.cookies) is decided based on the URL
 of the HTTP request (which is the primary URL in this case) as well as the URL
 shown in the omnibox (which is called the "secondary" URL).-->
 某些内容类型会考虑额外的 URL。例如，某一站点是否允许设置
-$ref:[contentSettings.cookies Cookie] 取决于 HTTP 请求的
+$(ref:contentSettings.cookies Cookie) 取决于 HTTP 请求的
 URL（在这种情况下为主要 URL）以及多功能框中显示的 URL（称为“辅助”URL）。
 </p>
 <p>
@@ -139,13 +139,13 @@ is ordered by precedence:-->
 <p>
 <!--@Resource identifiers allow you to specify content settings for specific
 subtypes of a content type. Currently, the only content type that supports
-resource identifiers is $ref:contentSettings.plugins,
+resource identifiers is $(ref:contentSettings.plugins),
 where a resource identifier identifies a specific plug-in. When applying content
 settings, first the settings for the specific plug-in are checked. If there are
 no settings found for the specific plug-in, the general content settings for
 plug-ins are checked.-->
 资源标识符允许您为某种内容类型特定的子类型指定内容设置。当前，支持资源标识符的内容类型只有
-p$ref:contentSettings.plugins（插件），其中资源标识符标识某个插件。当应用内容设置时，首先检查用于特定插件的设置。如果没有找到用于插件的设置，将检查用于所有插件的通用设置。
+p$(ref:contentSettings.plugins)（插件），其中资源标识符标识某个插件。当应用内容设置时，首先检查用于特定插件的设置。如果没有找到用于插件的设置，将检查用于所有插件的通用设置。
 </p>
 <p>
 <!--@For example, if a content setting rule has the resource identifier
@@ -159,11 +159,11 @@ it takes precedence over a rule without a resource identifier and the pattern
 </p>
 <p>
 <!--@You can get a list of resource identifiers for a content type by calling the
-$ref:contentSettings.ContentSetting.getResourceIdentifiers method. The returned list
+$(ref:contentSettings.ContentSetting.getResourceIdentifiers) method. The returned list
 can change with the set of installed plug-ins on the user's machine, but Chrome
 tries to keep the identifiers stable across plug-in updates.-->
 您可以通过调用
-$ref:contentSettings.ContentSetting.getResourceIdentifiers
+$(ref:contentSettings.ContentSetting.getResourceIdentifiers)
 方法获得某一内容类型的所有资源标识符。返回的列表可能会随着用户计算机上安装的插件而变化，但是
 Chrome 浏览器会尽可能保持标识符在插件更新前后的稳定。
 </p>

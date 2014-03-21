@@ -2,8 +2,8 @@
 
 <p><!--@An extension can register itself as a speech engine. By doing so, it
 can intercept some or all calls to functions such as
-$ref:tts.speak and
-$ref:tts.stop
+$(ref:tts.speak) and
+$(ref:tts.stop)
 and provide an alternate implementation.
 Extensions are free to use any available web technology
 to provide speech, including streaming audio from a server, HTML5 audio,
@@ -11,7 +11,7 @@ Native Client, or Flash. An extension could even do something different
 with the utterances, like display closed captions in a pop-up window or
 send them as log messages to a remote server.-->
 扩展程序可以将自己注册为语音引擎，这样，它就能处理部分或所有诸如
-$ref:tts.speak 和 $ref:tts.stop
+$(ref:tts.speak) 和 $(ref:tts.stop)
 的函数调用，提供替代的实现。扩展程序可以自由地使用任何可用的网络技术提供语音，包括来自服务器的音频流、HTML5 音频、Native Client 或
 Flash。扩展程序甚至可以做一些除朗读之外的事，例如在弹出式窗口中显示内容或者向远程服务器发送日志消息。
 </p>
@@ -146,10 +146,10 @@ not sent by the speech engine; they are generated automatically by Chrome.-->
 
 <p><!--@Text-to-speech clients can get the voice information from your
 extension's manifest by calling
-$ref:tts.getVoices,
+$(ref:tts.getVoices),
 assuming you've registered speech event listeners as described below.-->
 如果您已经处理了如下描述的语音事件的话，文本语音转换客户端可以通过调用
-$ref:tts.getVoices 从您的扩展程序的清单文件获取语音信息。
+$(ref:tts.getVoices) 从您的扩展程序的清单文件获取语音信息。
 </p>
 
 <h2 id="handling_speech_events"><!--@Handling speech events-->处理语音事件</h2>

@@ -334,13 +334,13 @@ Any extension can have an options page,
 which lets users customize how the extension works.
 Another type of special page is the override page.
 And finally, you can
-use $ref:tabs.create
+use $(ref:tabs.create)
 or <code>window.open()</code>
 to display any other HTML files that are in the extension.-->
 扩展程序可以包含普通的 HTML
 网页，用来显示扩展程序的用户界面。例如，浏览器按钮可以包含弹出菜单，通过
 HTML 文件实现。任何一个扩展程序都可以有选项页面，让用户自定义扩展程序的工作方式。另外一种特殊页面是替代页面。最后，您可以使用
-$ref:tabs.create 或 <code>window.open()</code>
+$(ref:tabs.create) 或 <code>window.open()</code>
 来显示扩展程序中的任何其他 HTML 文件。
 </p>
 
@@ -460,14 +460,14 @@ that allow tight integration with the browser.
 For example, any extension or web app can use the
 standard <code>window.open()</code> method to open a URL.
 But if you want to specify which window that URL should be displayed in,
-your extension can use the Chrome-only 
-$ref:tabs.create
+your extension can use the Chrome-only
+$(ref:tabs.create)
 method instead.-->
 扩展程序除了能够使用网页和应用可以使用的所有 API 外，还能使用仅用于
 Chrome 浏览器的 API（通常称为 <em>chrome.* API</em>）来更好地与浏览器集成。例如，任何扩展程序或网上应用可以使用标准的
 <code>window.open()</code>
 方法来打开一个网页，但是如果您想指定网页应该显示在哪个窗口中，您的扩展程序就可以使用仅用于
-Chrome 浏览器的 $ref:tabs.create 方法。
+Chrome 浏览器的 $(ref:tabs.create) 方法。
 </p>
 
 <h3 id="sync"> <!--@Asynchronous vs. synchronous methods-->异步方法与同步方法的区别 </h3>
@@ -494,9 +494,9 @@ Synchronous methods never have a callback
 because they don't return until they've completed all their work.
 Often, synchronous methods have a return type.
 Consider the
-$ref:runtime.getURL method:-->
+$(ref:runtime.getURL) method:-->
 也有一些 chrome.* 方法是<b>同步的</b>。同步的方法没有回调参数，因为它们只有当所有操作完成后才返回。通常，同步方法有返回值类型。考虑
-$ref:runtime.getURL 方法：
+$(ref:runtime.getURL) 方法：
 </p>
 
 <p>
@@ -520,11 +520,11 @@ URL，不进行任何其他异步操作。
 <!--@Say you want to navigate
 the user's currently selected tab to a new URL.
 To do this, you need to get the current tab's ID
-(using $ref:tabs.query)
+(using $(ref:tabs.query))
 and then make that tab go to the new URL
-(using $ref:tabs.update).-->
-假设您想在用户当前选定的标签页中打开新的页面。要想这么做，您首先需要获得当前标签页的标识符（使用 $ref:tabs.query），然后使该标签转到指定的新的
-URL（使用 $ref:tabs.update）。
+(using $(ref:tabs.update)).-->
+假设您想在用户当前选定的标签页中打开新的页面。要想这么做，您首先需要获得当前标签页的标识符（使用 $(ref:tabs.query)），然后使该标签转到指定的新的
+URL（使用 $(ref:tabs.update)）。
 </p>
 
 <p>
@@ -631,13 +631,13 @@ the first page can invoke functions on the other pages,
 and it can manipulate their DOMs.-->
 要获得扩展程序中的网页，请使用
 <a href="extension.html"><code>chrome.extension</code></a>
-方法，例如 $ref:extension.getViews 和 $ref:extension.getBackgroundPage。一旦一个网页引用了扩展程序中的其他网页，第一个网页可以执行其他网页上的函数，并且可以操纵它们的 DOM。
+方法，例如 $(ref:extension.getViews) 和 $(ref:extension.getBackgroundPage)。一旦一个网页引用了扩展程序中的其他网页，第一个网页可以执行其他网页上的函数，并且可以操纵它们的 DOM。
 </p>
 
 <h2 id="incognito"> <!--@Saving data and incognito mode-->保存数据和隐身模式 </h2>
 
 <p>
-<!--@Extensions can save data using the $ref:storage API,
+<!--@Extensions can save data using the $(ref:storage) API,
 the HTML5 <a href="http://dev.w3.org/html5/webstorage/">web storage API</a>
 (such as <code>localStorage</code>)
 or by making server requests that result in saving data.
@@ -648,7 +648,7 @@ By default, extensions don't run in incognito windows.
 You need to consider what a user expects
 from your extension
 when the browser is incognito.-->
-扩展程序可以使用 $ref:storage API、<a
+扩展程序可以使用 $(ref:storage) API、<a
 href="http://dev.w3.org/html5/webstorage/">HTML5
 网页存储 API</a>（例如 <code>localStorage</code>）或者向服务器发出请求保存数据。每当您要保存任何数据前，首先要考虑它是否来自隐身窗口。默认情况下，扩展程序不在隐身窗口中运行。当浏览器处于隐身模式时，您需要考虑用户对您的扩展程序的需求。
 </p>
@@ -677,11 +677,11 @@ don't store it if it's from an incognito window.-->
 <p>
 <!--@To detect whether a window is in incognito mode,
 check the <code>incognito</code> property of the relevant
-$ref:tabs.Tab or
-$ref:windows.Window object.
+$(ref:tabs.Tab) or
+$(ref:windows.Window) object.
 For example:-->
-要确定窗口是否处于隐身模式，检查相关的 $ref:tabs.Tab 或
-$ref:windows.Window 对象的 <code>icognito</code> 属性。例如：
+要确定窗口是否处于隐身模式，检查相关的 $(ref:tabs.Tab) 或
+$(ref:windows.Window) 对象的 <code>icognito</code> 属性。例如：
 </p>
 
 <pre>

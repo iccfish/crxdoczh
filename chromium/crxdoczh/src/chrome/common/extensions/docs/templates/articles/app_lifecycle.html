@@ -90,7 +90,7 @@ when your application is launched in any way:-->
 </p>
 
 <pre data-filename="background.js">
-chrome.app.runtime.onLaunched.addListener(function() { 
+chrome.app.runtime.onLaunched.addListener(function() {
   // 告诉您的应用执行的内容与方式。
 });
 </pre>
@@ -183,7 +183,7 @@ to store and update local settings
 </p>
 
 <pre data-filename="background.js">
-chrome.runtime.onInstalled.addListener(function() { 
+chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.local.set(object items, function callback);
 });
 </pre>
@@ -207,11 +207,11 @@ you should store user settings
 so that if users reinstall your app,
 their information is still available for reuse.
 Using the Storage API
-($ref:storage.sync),
+($(ref:storage.sync)),
 user data can be automatically synced
 with Chrome sync.-->
 至少，您应该存储用户设置，以便用户重新安装您的应用后，它们的信息仍然可以重新使用。使用存储
-API（$ref:storage.sync），用户数据可以自动通过 Chrome 浏览器的同步功能同步。
+API（$(ref:storage.sync)），用户数据可以自动通过 Chrome 浏览器的同步功能同步。
 </p>
 
 <h3 id="clean-up"><!--@Clean-up before app closes-->应用关闭前的清理</h3>
@@ -238,7 +238,7 @@ Keep the clean-up tasks synchronous and simple.-->
 </p>
 
 <pre data-filename="background.js">
-chrome.runtime.onSuspend.addListener(function() { 
+chrome.runtime.onSuspend.addListener(function() {
   // 做一些简单的清理任务。
 });
 </pre>

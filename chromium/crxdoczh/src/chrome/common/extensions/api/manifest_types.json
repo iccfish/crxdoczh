@@ -277,8 +277,8 @@
       {
         "id": "bluetooth",
         "type": "object",
-//@        "description": "The <code>bluetooth</code> manifest property give permission to an app to use the $ref:bluetooth API. A list of UUIDs can be optionally specified to enable communication with devices.",
-        "description": "清单文件中的 <code>bluetooth</code> 属性为应用提供权限，以便使用 $ref:bluetooth API。您可以指定一系列 UUID，允许您的应用与指定设备通信。",
+//@        "description": "The <code>bluetooth</code> manifest property give permission to an app to use the $(ref:bluetooth) API. A list of UUIDs can be optionally specified to enable communication with devices.",
+        "description": "清单文件中的 <code>bluetooth</code> 属性为应用提供权限，以便使用 $(ref:bluetooth) API。您可以指定一系列 UUID，允许您的应用与指定设备通信。",
         "properties": {
           "uuids": {
 //@            "description": "The <code>uuids</code> manifest property declares the list of protocols, profiles and services that an app can communicate using.",

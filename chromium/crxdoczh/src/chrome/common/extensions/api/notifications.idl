@@ -60,28 +60,28 @@ namespace notifications {
 
   dictionary NotificationOptions {
     // <!--@Which type of notification to display.
-    // <em>Required for $ref:notifications.create</em> method.-->
+    // <em>Required for $(ref:notifications.create)</em> method.-->
     // 要显示哪种类型的通知，<em>调用
-    // $ref:notifications.create 方法时必须指定</em>。
+    // $(ref:notifications.create) 方法时必须指定</em>。
     TemplateType? type;
 
     // <!--@Sender's avatar, app icon, or a thumbnail for image notifications.
-    // <em>Required for $ref:notifications.create</em> method.-->
+    // <em>Required for $(ref:notifications.create)</em> method.-->
     // 发送方的图标、应用图标或图片通知的缩略图，<em>调用
-    // $ref:notifications.create 方法时必须指定</em>。
+    // $(ref:notifications.create) 方法时必须指定</em>。
     DOMString? iconUrl;
     [nodoc] NotificationBitmap? iconBitmap;
 
     // <!--@Title of the notification (e.g. sender name for email).
-    // <em>Required for $ref:notifications.create</em> method.-->
+    // <em>Required for $(ref:notifications.create)</em> method.-->
     // 通知标题（例如邮件发送者的姓名），<em>调用
-    // $ref:notifications.create 方法时必须指定</em>。
+    // $(ref:notifications.create) 方法时必须指定</em>。
     DOMString? title;
 
     // <!--@Main notification content.
-    // <em>Required for $ref:notifications.create</em> method.-->
+    // <em>Required for $(ref:notifications.create)</em> method.-->
     // 通知的主要内容，<em>调用
-    // $ref:notifications.create 方法时必须指定</em>。
+    // $(ref:notifications.create) 方法时必须指定</em>。
     DOMString? message;
 
     // <!--@Alternate notification content with a lower-weight font.-->
@@ -156,8 +156,8 @@ namespace notifications {
     // <!--@Updates an existing notification.-->
     // 更新已有的通知。
     // |notificationId|: <!--@The id of the notification to be updated. This is
-    // returned by $ref:notifications.create method.-->
-    // 要更新的通知标识符，由 $ref:notifications.create 方法返回。
+    // returned by $(ref:notifications.create) method.-->
+    // 要更新的通知标识符，由 $(ref:notifications.create) 方法返回。
     // |options|: <!--@Contents of the notification to update to.-->
     // 更新后的通知内容。
     // |callback|: <!--@Called to indicate whether a matching notification existed.-->
@@ -169,8 +169,8 @@ namespace notifications {
     // <!--@Clears the specified notification.-->
     // 清除指定的通知。
     // |notificationId|: <!--@The id of the notification to be cleared. This is
-    // returned by $ref:notifications.create method.-->
-    // 要清除的通知标识符，由 $ref:notifications.create 方法返回。
+    // returned by $(ref:notifications.create) method.-->
+    // 要清除的通知标识符，由 $(ref:notifications.create) 方法返回。
     // |callback|: <!--@Called to indicate whether a matching notification existed.-->
     // 调用时指示是否存在匹配的通知。
     static void clear(DOMString notificationId, ClearCallback callback);

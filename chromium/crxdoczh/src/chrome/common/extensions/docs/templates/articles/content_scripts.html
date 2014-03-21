@@ -360,11 +360,11 @@ href="xhr.html#requesting-permission">主机权限</a>，并且还需要用到
 <p>
 <!--@Once you have permissions set up,
 you can inject JavaScript into a page by calling
-$ref:tabs.executeScript.
+$(ref:tabs.executeScript).
 To inject CSS, use
-$ref:tabs.insertCSS.-->
-一旦您拥有了相应的权限，您可以通过调用 $ref:tabs.executeScript 向页面插入
-JavaScript 代码。要插入 CSS 代码，请使用 $ref:tabs.insertCSS。
+$(ref:tabs.insertCSS).-->
+一旦您拥有了相应的权限，您可以通过调用 $(ref:tabs.executeScript) 向页面插入
+JavaScript 代码。要插入 CSS 代码，请使用 $(ref:tabs.insertCSS)。
 </p>
 
 <p>
@@ -382,7 +382,7 @@ and executing the script.-->
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.executeScript({
     code: 'document.body.style.backgroundColor="red"'
-  }); 
+  });
 });
 </pre>
 <pre data-filename="manifest.json">
@@ -563,7 +563,7 @@ window.setTimeout(function() {
 You can use the result
 just like you would any other URL,
 as the following code shows.-->
-使用 $ref:extension.getURL 获得扩展程序的文件 URL，您可以像任何其他 URL
+使用 $(ref:extension.getURL) 获得扩展程序的文件 URL，您可以像任何其他 URL
 一样使用获得的结果，如以下代码所示。
 </p>
 

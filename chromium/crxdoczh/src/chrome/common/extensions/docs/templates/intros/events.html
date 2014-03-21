@@ -26,29 +26,29 @@ is always a function that you define to handle the event,
 but the parameters to the function depend on
 which event you're handling.
 Checking the documentation for
-$ref:alarms.onAlarm,
+$(ref:alarms.onAlarm),
 you can see that the function has a single parameter:
-an $ref:alarms.Alarm object
+an $(ref:alarms.Alarm) object
 that has details about the elapsed alarm.-->
 如这一例子所示，您使用 <code>addListener()</code>
 注册来接收通知。<code>addListener()</code>
 的参数总是一个您定义的处理事件的函数，但是函数的参数取决于您处理的事件。参考
-$ref:alarms.onAlarm 的文档，您会看到该函数有一个参数：包含已触发定时器的
-$ref:alarms.Alarm 对象。
+$(ref:alarms.onAlarm) 的文档，您会看到该函数有一个参数：包含已触发定时器的
+$(ref:alarms.Alarm) 对象。
 </p>
 
 <!--@Example APIs using Events:
-$ref:alarms,
+$(ref:alarms),
 {{?is_apps}}
-$ref:app.runtime,
-$ref:app.window,
+$(ref:app.runtime),
+$(ref:app.window),
 {{/is_apps}}
-$ref:i18n,
-$ref:identity,
-$ref:runtime.
+$(ref:i18n),
+$(ref:identity),
+$(ref:runtime).
 Most <a href="api_index.html">chrome APIs</a> do.-->
 使用事件的 API
-有很多，例如：$ref:alarms、{{?is_apps}}$ref:app.runtime、$ref:app.window、{{/is_apps}}$ref:i18n、$ref:identity、$ref:runtime，大部分
+有很多，例如：$(ref:alarms)、{{?is_apps}}$(ref:app.runtime)、$(ref:app.window)、{{/is_apps}}$(ref:i18n)、$(ref:identity)、$(ref:runtime)，大部分
 <a href="api_index.html">Chrome API</a> 都是如此。
 
 {{^is_apps}}
@@ -114,13 +114,13 @@ var rule = {
 don't call a callback function when events happen but test whether any
 registered rule has at least one fulfilled condition and execute the actions
 associated with this rule. Event objects supporting the declarative API have
-three relevant methods: $ref:events.Event.addRules,
-$ref:events.Event.removeRules, and
-$ref:events.Event.getRules.-->
-$ref:[events.Event 事件对象]可以支持规则。这样的事件对象在事件发生时不调用回调函数，而是测试已注册的规则中是否有至少一个满足的条件，并执行与该规则相关联的操作。支持声明式
+three relevant methods: $(ref:events.Event.addRules),
+$(ref:events.Event.removeRules), and
+$(ref:events.Event.getRules).-->
+$(ref:events.Event 事件对象)可以支持规则。这样的事件对象在事件发生时不调用回调函数，而是测试已注册的规则中是否有至少一个满足的条件，并执行与该规则相关联的操作。支持声明式
 API
-的事件对象有三个有关方法：$ref:events.Event.addRules、$ref:events.Event.removeRules
-以及 $ref:events.Event.getRules。
+的事件对象有三个有关方法：$(ref:events.Event.addRules)、$(ref:events.Event.removeRules)
+以及 $(ref:events.Event.getRules)。
 </p>
 
 <h3 id="addingrules"><!--@Adding rules-->添加规则</h3>
@@ -144,8 +144,8 @@ contains an array of inserted rules appearing in the same order as in the passed
 <code>rule_list</code> where the optional parameters <code>id</code> and
 <code>priority</code> were filled with the generated values. If any rule is
 invalid, e.g., because it contained an invalid condition or action, none of the
-rules are added and the 
-  $ref:runtime.lastError variable is set when
+rules are added and the
+  $(ref:runtime.lastError) variable is set when
 the callback function is called. Each rule in <code>rule_list</code> must
 contain a unique identifier that is not currently used by another rule or an
 empty identifier.-->
@@ -153,7 +153,7 @@ empty identifier.-->
 <code>rule_list</code> 中相同，可选参数 <code>id</code> 和
 <code>priority</code>
 将用生成的值填充。如果某条规则无效，例如因为它包含无效的条件或操作，所有的规则都不会添加，并且
-$ref:runtime.lastError 变量将在回调函数调用时设置。
+$(ref:runtime.lastError) 变量将在回调函数调用时设置。
 <code>rule_list</code>
 中的每条规则都必须包含其他规则当前没有使用的唯一标志符，或者为空标志符。
 </p>
@@ -161,12 +161,12 @@ $ref:runtime.lastError 变量将在回调函数调用时设置。
 <p class="note">
 <!--@<strong>Note:</strong> Rules are persistent across browsing sessions. Therefore,
 you should install rules during extension installation time using the
-<code>$ref:runtime.onInstalled</code>
+<code>$(ref:runtime.onInstalled)</code>
 event. Note that this event is also triggered when an extension is updated.
 Therefore, you should first clear previously installed rules and then register
 new rules.-->
 <strong>注意：</strong>规则在浏览器会话间持久存在，所以您应该使用
-<code>$ref:runtime.onInstalled</code>
+<code>$(ref:runtime.onInstalled)</code>
 在扩展程序安装期间安装规则。注意该事件在扩展程序更新时也会触发，所以您应该首先清除之前安装的规则并注册新规则。
 </p>
 
@@ -249,8 +249,8 @@ var rule1 = {...};
 var rule2 = {...};
 chrome.declarativeWebRequest.onRequest.addRules([rule1, rule2]);</pre>
   <li><!--@Prefer substring matching over matching using regular expressions in a
-  $ref:events.UrlFilter.  Substring based matching is extremely fast.-->
-  在 $ref:events.UrlFilter
+  $(ref:events.UrlFilter).  Substring based matching is extremely fast.-->
+  在 $(ref:events.UrlFilter)
   中优先选择子串匹配，而不是正则表达式，基于子串的匹配非常快。
   <p><!--@Instead of-->请不要使用</p>
   <pre>
@@ -330,10 +330,10 @@ event in the "filters" section.-->
 
 <p><!--@When matching URLs (as in the example above), event filters support the same
 URL matching capabilities as expressible with a
-  $ref:events.UrlFilter, except for scheme and port
+  $(ref:events.UrlFilter), except for scheme and port
 matching.-->
 当匹配 URL 时（如上如例子所示），除了协议与端口的匹配，事件过滤器支持与
-$ref:events.UrlFilter 相同的 URL 匹配能力。
+$(ref:events.UrlFilter) 相同的 URL 匹配能力。
 </p>
 
 </div>

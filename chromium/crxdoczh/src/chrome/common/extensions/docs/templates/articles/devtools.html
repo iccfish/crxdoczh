@@ -11,9 +11,9 @@ of DevTools-specific extension APIs:-->
 API：</p>
 
 <ul>
-<li><code>$ref:devtools.inspectedWindow</code></li>
-<li><code>$ref:devtools.network</code></a></li>
-<li><code>$ref:devtools.panels</code></a></li>
+<li><code>$(ref:devtools.inspectedWindow)</code></li>
+<li><code>$(ref:devtools.network)</code></a></li>
+<li><code>$(ref:devtools.panels)</code></a></li>
 </ul>
 
 <p><!--@A DevTools extension is structured like any other extension: it can have a
@@ -42,32 +42,32 @@ API 以及有限的扩展程序 API。具体说来，开发者工具网页可以
 
 <ul>
 
-<li><!--@Create and interact with panels using the <code>$ref:devtools.panels</code>
+<li><!--@Create and interact with panels using the <code>$(ref:devtools.panels)</code>
 APIs.-->
-使用 <code>$ref:devtools.panels</code> API 创建面板并与之交互。
+使用 <code>$(ref:devtools.panels)</code> API 创建面板并与之交互。
 </li>
 
 <li><!--@Get information about the inspected window and evaluate code in the inspected
-window using the <code>$ref:devtools.inspectedWindow</code> APIs.-->
-使用 <code>$ref:devtools.inspectedWindow</code> API
+window using the <code>$(ref:devtools.inspectedWindow)</code> APIs.-->
+使用 <code>$(ref:devtools.inspectedWindow)</code> API
 获取审查窗口的有关信息，并在审查的窗口中执行代码。
 </li>
 
-<li><!--@Get information about network requests using the <code>$ref:devtools.network</code>
+<li><!--@Get information about network requests using the <code>$(ref:devtools.network)</code>
 APIs.-->
-使用 <code>$ref:devtools.network</code> API 获取网络请求的有关信息。
+使用 <code>$(ref:devtools.network)</code> API 获取网络请求的有关信息。
 </li>
 
 </ul>
 
 <p><!--@The DevTools page cannot use most of the extensions APIs directly.  It has
-access to the same subset of the <code>$ref:extension</code> 
-and <code>$ref:runtime</code>
+access to the same subset of the <code>$(ref:extension)</code>
+and <code>$(ref:runtime)</code>
 APIs that a content script has access to. Like a content script, a DevTools page
 can communicate with the background page using <a href="messaging.html">Message Passing</a>.
 For an example, see <a href="#injecting">Injecting a Content Script</a>.-->
 开发者工具网页不能直接使用大部分扩展程序 API，和内容脚本一样只能访问部分
-<code>$ref:extension</code> 和 <code>$ref:runtime</code>
+<code>$(ref:extension)</code> 和 <code>$(ref:runtime)</code>
 API。与内容脚本类似，开发者工具网页可以使用<a href="messaging.html"
 >消息传递</a>与后台网页通信，有关例子请参见<a href="#injecting"
 >插入内容脚本</a>。
@@ -94,14 +94,14 @@ field in the extension manifest:-->
 <p><!--@An instance of the <code>devtools_page</code> specified in your extension's
 manifest is created for every DevTools window opened. The page may add other
 extension pages as panels and sidebars to the DevTools window using the
-<code>$ref:devtools.panels</code> API.-->
+<code>$(ref:devtools.panels)</code> API.-->
 每打开一个开发者工具窗口，都会创建一个您的扩展程序清单文件中指定的
-<code>devtools_page</code>。该网页可以使用 <code>$ref:devtools.panels</code>
+<code>devtools_page</code>。该网页可以使用 <code>$(ref:devtools.panels)</code>
 API 添加其他扩展程序网页，作为开发者工具窗口中的面板和侧边栏。
 </p>
 
 <p class="note"><!--@The <code>devtools_page</code> field must point to an HTML page.
-This differs from the <code>background</code> field, used for specifying a background page, 
+This differs from the <code>background</code> field, used for specifying a background page,
 which lets you specify JavaScript files directly.-->
 <code>devtools_page</code> 字段必须指向 HTML 网页，这一点与
 指定后台网页的 <code>background</code> 字段不同，它允许您直接指定 JavaScript
@@ -196,27 +196,27 @@ chrome.devtools.panels.elements.createSidebarPane("我的侧边栏",
 <ul>
 
 <li><p><!--@HTML content. Call
-<code>$ref:[devtools.panels.ExtensionSidebarPane.setPage setPage]</code> to specify
+<code>$(ref:devtools.panels.ExtensionSidebarPane.setPage setPage)</code> to specify
 an HTML page to display in the pane.-->
 HTML 内容：调用
-<code>$ref:[devtools.panels.ExtensionSidebarPane.setPage setPage]</code>
+<code>$(ref:devtools.panels.ExtensionSidebarPane.setPage setPage)</code>
 指定窗格中显示的 HTML 网页。
 </p></li>
 
 
 <li><p><!--@JSON data. Pass a JSON object to
-<code>$ref:[devtools.panels.ExtensionSidebarPane.setObject setObject]</code>.-->
+<code>$(ref:devtools.panels.ExtensionSidebarPane.setObject setObject)</code>.-->
 JSON 数据：向
-<code>$ref:[devtools.panels.ExtensionSidebarPane.setObject setObject]</code>
+<code>$(ref:devtools.panels.ExtensionSidebarPane.setObject setObject)</code>
 传递一个 JSON 对象。
 </p></li>
 
 <li><p><!--@JavaScript expression.  Pass an expression to
-<code>$ref:[devtools.panels.ExtensionSidebarPane.setExpression setExpression]</code>.
+<code>$(ref:devtools.panels.ExtensionSidebarPane.setExpression setExpression)</code>.
 DevTools evaluates the expression in the context of the inspected page, and
 displays the return value.-->
 JavaScript 表达式：向
-<code>$ref:[devtools.panels.ExtensionSidebarPane.setExpression setExpression]</code>
+<code>$(ref:devtools.panels.ExtensionSidebarPane.setExpression setExpression)</code>
 传递一个表达式，开发者工具会在审查的网页上下文中对表达式进行求值，然后显示返回值。
 </p></li>
 
@@ -239,16 +239,16 @@ the different components of a DevTools extension.-->
 
 <h3 id="injecting"><!--@Injecting a Content Script-->插入内容脚本</h3>
 
-<p><!--@The DevTools page can't call <code>$ref:tabs.executeScript</code> directly.
+<p><!--@The DevTools page can't call <code>$(ref:tabs.executeScript)</code> directly.
 To inject a content script from the DevTools page, you must retrieve the ID
-of the inspected window's tab using the <code>$ref:inspectedWindow.tabId</code>
+of the inspected window's tab using the <code>$(ref:inspectedWindow.tabId)</code>
 property and send a message to the background page. From the background page,
-call <code>$ref:tabs.executeScript</code> to inject the script.-->
+call <code>$(ref:tabs.executeScript)</code> to inject the script.-->
 开发者工具网页不能直接调用
-<code>$ref:tabs.executeScript</code>。如果要从开发者工具网页中插入内容脚本，您必须先使用
-<code>$ref:inspectedWindow.tabId</code>
+<code>$(ref:tabs.executeScript)</code>。如果要从开发者工具网页中插入内容脚本，您必须先使用
+<code>$(ref:inspectedWindow.tabId)</code>
 获取审查窗口的标签页标识符，然后向后台网页发送消息。在后台网页中，调用
-<code>$ref:tabs.executeScript</code> 插入脚本。
+<code>$(ref:tabs.executeScript)</code> 插入脚本。
 </p>
 
 <p class="note"><!--@If a content script has already been injected, you can add
@@ -305,10 +305,10 @@ chrome.runtime.onConnect.addListener(function(devToolsConnection) {
 
 <h3 id="evaluating-js"><!--@Evaluating JavaScript in the Inspected Window-->在审查的窗口中执行 JavaScript</h3>
 
-<p><!--@You can use the <code>$ref:inspectedWindow.eval</code> method to execute
+<p><!--@You can use the <code>$(ref:inspectedWindow.eval)</code> method to execute
 JavaScript code in the context of the inspected page. You can invoke the
 <code>eval</code> method from a DevTools page, panel or sidebar pane.-->
-您可以使用 <code>$ref:inspectedWindow.eval</code> 方法在审查的网页上下文中执行
+您可以使用 <code>$(ref:inspectedWindow.eval)</code> 方法在审查的网页上下文中执行
 JavaScript 代码，您可以在开发者工具网页、面板或侧边栏网页中调用
 <code>eval</code> 方法。
 </p>
@@ -337,24 +337,24 @@ additional content scripts.-->
 
 <p class="warning"><!--@The <code>eval</code> method is powerful when used in the right
 context and dangerous when used inappropriately. Use the
-<code>$ref:tabs.executeScript</code> method if you don't need access to the
+<code>$(ref:tabs.executeScript)</code> method if you don't need access to the
 JavaScript context of the inspected page. For detailed cautions and a comparison
-of the two methods, see <code>$ref:inspectedWindow</code>.-->
+of the two methods, see <code>$(ref:inspectedWindow)</code>.-->
 如果在正确的情况下使用，<code>eval</code>
 方法是很有用的，但是不恰当的使用也是很危险的。如果您不需要访问审查网页的
-JavaScript 上下文，请使用 <code>$ref:tabs.executeScript</code>
+JavaScript 上下文，请使用 <code>$(ref:tabs.executeScript)</code>
 方法。有关详细的注意事项以及两种方法的比较，请参见
-<code>$ref:inspectedWindow</code>。
+<code>$(ref:inspectedWindow)</code>。
 </p>
 
 <h3 id="selected-element"><!--@Passing the Selected Element to a Content Script-->将选定元素传递给内容脚本</h3>
 
 <p><!--@The content script doesn't have direct access to the current selected element.
-However, any code you execute using <code>$ref:inspectedWindow.eval</code> has
-access to the DevTools console and command-line APIs. For example, in evaluated code 
+However, any code you execute using <code>$(ref:inspectedWindow.eval)</code> has
+access to the DevTools console and command-line APIs. For example, in evaluated code
 you can use <code>$0</code> to access the selected element.-->
 内容脚本并不能直接访问当前选定元素，但是您使用
-<code>$ref:inspectedWindow.eval</code>
+<code>$(ref:inspectedWindow.eval)</code>
 执行的代码能够使用开发者工具的控制台与命令行
 API。例如，在求值的代码中您可以使用 <code>$0</code> 访问选定元素。
 </p>
@@ -368,9 +368,9 @@ an argument.-->
 在内容脚本中创建一个方法，以选定元素为参数。
 </li>
 
-<li><!--@Call the method from the DevTools page using <code>$ref:inspectedWindow.eval</code>
+<li><!--@Call the method from the DevTools page using <code>$(ref:inspectedWindow.eval)</code>
 with the <code>useContentScriptContext: true</code> option. -->
-使用 <code>$ref:inspectedWindow.eval</code>，指定
+使用 <code>$(ref:inspectedWindow.eval)</code>，指定
 <code>useContentScriptContext: true</code>
 选项，从开发者工具网页中调用该方法。
 </li>
@@ -409,11 +409,11 @@ the background page. -->
 </p>
 
 <p><!--@When sending a message <em>to</em> a content script, the background page can use
-the <code>$ref:tabs.sendMessage</code> method, which directs a message to the
+the <code>$(ref:tabs.sendMessage)</code> method, which directs a message to the
 content scripts in a specific tab, as shown in
 <a href="#injecting">Injecting a Content Script</a>.-->
 <em>向</em>内容脚本发送消息时，后台网页可以使用
-<code>$ref:tabs.sendMessage</code>
+<code>$(ref:tabs.sendMessage)</code>
 方法，将消息发送至指定标签页中的内容脚本，如<a href="#injecting"
 >插入内容脚本</a>部分所述。
 </p>
@@ -440,7 +440,7 @@ chrome.runtime.onConnect.addListener(function (port) {
           connections[message.tabId] = port;
           return;
         }
-	
+
 	// 其他消息的处理
     }
 
@@ -498,14 +498,14 @@ backgroundPageConnection.postMessage({
 <h3 id="detecting-open-close"><!--@Detecting When DevTools Opens and Closes-->检测开发者工具何时打开何时关闭</h3>
 
 <p><!--@If your extension needs to track whether the DevTools window is open, you can
-add an $ref:[runtime.onConnect onConnect] listener to the background page, and call
-$ref:[runtime.connect connect] from the DevTools page. Since each tab can have its
+add an $(ref:runtime.onConnect onConnect) listener to the background page, and call
+$(ref:runtime.connect connect) from the DevTools page. Since each tab can have its
 own DevTools window open, you may receive multiple connect events. To track whether
 any DevTools window is open, you need to count the connect and disconnect events as
 shown below:-->
 如果您的扩展程序需要跟踪开发者工具窗口是否打开，您可以在后台网页中添加
-$ref:[runtime.onConnect onConnect] 监听器，并在开发者工具网页中调用
-$ref:[runtime.connect connect]。由于每一个标签页都可以打开各自的开发者工具窗口，您可能会收到多个连接事件。要跟踪是否有打开的开发者工具窗口，您需要统计连接与断开连接事件的次数，如下所示：
+$(ref:runtime.onConnect onConnect) 监听器，并在开发者工具网页中调用
+$(ref:runtime.connect connect)。由于每一个标签页都可以打开各自的开发者工具窗口，您可能会收到多个连接事件。要跟踪是否有打开的开发者工具窗口，您需要统计连接与断开连接事件的次数，如下所示：
 </p>
 
 <pre data-filename="background.js">

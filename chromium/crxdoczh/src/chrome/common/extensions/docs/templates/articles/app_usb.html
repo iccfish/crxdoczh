@@ -51,7 +51,7 @@ USB API 要求清单文件中包含 "usb" 权限：
   <a href="http://en.wikipedia.org/wiki/Device_fingerprint">finger-printing</a>,
   you must declare all the device types you want to access in the manifest file.
   Each type of USB device corresponds to a vendor id/product id (VID/PID) pair.
-  You can use $ref:usb.getDevices to enumerate devices by their VID/PID
+  You can use $(ref:usb.getDevices) to enumerate devices by their VID/PID
   pair.
 </p>
 <p>
@@ -60,7 +60,7 @@ USB API 要求清单文件中包含 "usb" 权限：
   example below:-->
 此外，为了防止<a href="http://en.wikipedia.org/wiki/Device_fingerprint"
 >收集指纹信息</a>，您必须在清单文件中声明需要访问的所有设备类型。每一种 USB
-设备对应制造商标识符与产品标识符（VID/PID），您可以使用 $ref:usb.getDevices
+设备对应制造商标识符与产品标识符（VID/PID），您可以使用 $(ref:usb.getDevices)
 根据 VID/PID 对枚举设备。
 </p>
 
@@ -84,8 +84,8 @@ USB API 要求清单文件中包含 "usb" 权限：
 
 <p>
 <!--@  To determine whether one or more specific devices are connected to a user's
-  system, use the $ref:usb.getDevices method:-->
-要确定一个或多个设备是否连接到用户的系统，请使用 $ref:usb.getDevices 方法：
+  system, use the $(ref:usb.getDevices) method:-->
+要确定一个或多个设备是否连接到用户的系统，请使用 $(ref:usb.getDevices) 方法：
 </p>
 
 <pre>
@@ -156,7 +156,7 @@ chrome.usb.getDevices({"vendorId": vendorId, "productId": productId}, onDeviceFo
 <!--@Once the <code>Device</code> objects are returned, you can open a device using
 usb.openDevice to obtain a connection handle. You can only
 communicate with USB devices using connection handles.-->
-返回 <code>Device</code> 对象后，您就可以使用 $ref:usb.openDevice
+返回 <code>Device</code> 对象后，您就可以使用 $(ref:usb.openDevice)
 打开设备并获取一个连接句柄。您必须通过连接句柄与 USB 设备通信。
 </p>
 
@@ -167,8 +167,8 @@ communicate with USB devices using connection handles.-->
   </tr>
   <tr>
     <td>device</td>
-    <td><!--@Object received in $ref:usb.getDevices callback.-->
-      $ref:usb.getDevices 回调函数中接收到的对象。
+    <td><!--@Object received in $(ref:usb.getDevices) callback.-->
+      $(ref:usb.getDevices) 回调函数中接收到的对象。
     </td>
   </tr>
   <tr>
@@ -201,20 +201,20 @@ On Linux (other than Chrome OS), once an interface of a device is locked down by
 the OS, the whole device is locked down (because all the interfaces shares the
 same device file), even if the other interfaces of the device can be used in
 theory. On Chrome OS, you can request access to unlocked interfaces using the
-$ref:usb.requestAccess method. If permitted, the permission broker will
+$(ref:usb.requestAccess) method. If permitted, the permission broker will
 unlock the device file for you.-->
 并不是任何设备都能成功打开。通常操作系统会锁定许多类型的 USB
 设备（例如键盘和鼠标、大容量存储设备、网络摄像头等等），它们不能由用户应用程序占有。在
 Linux 中（除了
 Chrome OS），一旦设备的某一接口被操作系统锁定，即使该设备的其他接口理论上可以使用，整个设备都将锁定（因为所有接口共享同一设备文件）。在
-Chrome OS 中，您可以使用 $ref:usb.requestAccess
+Chrome OS 中，您可以使用 $(ref:usb.requestAccess)
 方法请求访问解锁的设备。如果允许，权限控制器会为您解锁设备。
 </p>
 
 <p>
-<!--@To simplify the opening process, you can use the $ref:usb.findDevices
+<!--@To simplify the opening process, you can use the $(ref:usb.findDevices)
 method, which enumerates, requests access, and opens devices in one call:-->
-为了简化打开设备的过程，您可以使用 $ref:usb.findDevices
+为了简化打开设备的过程，您可以使用 $(ref:usb.findDevices)
 方法，通过一次调用就能枚举、请求访问并打开设备：
 </p>
 
@@ -352,8 +352,8 @@ chrome.usb.controlTransfer(connectionHandle, transferInfo, transferCallback)
   </tr>
   <tr>
     <td>connectionHandle</td>
-    <td><!--@Object received in $ref:usb.openDevice callback.-->
-    $ref:usb.openDevice 回调函数中接收的对象。
+    <td><!--@Object received in $(ref:usb.openDevice) callback.-->
+    $(ref:usb.openDevice) 回调函数中接收的对象。
     </td>
   </tr>
   <tr>
@@ -451,10 +451,10 @@ chrome.usb.controlTransfer(connectionHandle, transferInfo, optionalCallback);
 <p><!--@Isochronous transfers are the most complex type of USB transfer. They are
   commonly used for streams of data, like video and sound. To initiate an
   isochronous transfer (either inbound or outbound), you must use
-  the $ref:usb.isochronousTransfer method:-->
+  the $(ref:usb.isochronousTransfer) method:-->
 同步传输是最复杂的 USB
 传输类型，通常用于数据流，例如视频与声音。要开始同步传输（无论是传入还是传出），您必须使用
-$ref:usb.isochronousTransfer 方法：
+$(ref:usb.isochronousTransfer) 方法：
 </p>
 
 <pre>
@@ -470,8 +470,8 @@ chrome.usb.isochronousTransfer(connectionHandle, isochronousTransferInfo, transf
   </tr>
   <tr>
     <td>connectionHandle</td>
-    <td><!--@Object received in $ref:usb.openDevice callback.-->
-    $ref:usb.openDevice 回调函数中接收的对象。
+    <td><!--@Object received in $(ref:usb.openDevice) callback.-->
+    $(ref:usb.openDevice) 回调函数中接收的对象。
     </td>
   </tr>
   <tr>
@@ -513,7 +513,7 @@ chrome.usb.isochronousTransfer(connectionHandle, isochronousTransferInfo, transf
       of data the host is expecting in response. -->只有当
       direction 为 "in" 时才使用，通知设备主机期望的响应包含的数据量。
       <br/>
-      
+
       <!--@Should be AT LEAST <code>packets</code> &times; <code>packetLength</code>.-->
       <b>至少</b>应该是 <code>packets</code> &times; <code>packetLength</code>。
       <br/>
@@ -580,9 +580,9 @@ chrome.usb.isochronousTransfer(connectionHandle, isoTransferInfo, optionalCallba
 
 <p><!--@Bulk transfers are commonly used to transfer a large amount of
   non-time-sensitive data in a reliable way.
-  $ref:usb.bulkTransfer has three parameters:-->
+  $(ref:usb.bulkTransfer) has three parameters:-->
 大块传输是通常用于以可靠的方式传输大量数据的 USB
-传输类型。$ref:usb.bulkTransfer 方法包含三个参数：
+传输类型。$(ref:usb.bulkTransfer) 方法包含三个参数：
 </p>
 
 <pre>
@@ -598,8 +598,8 @@ chrome.usb.bulkTransfer(connectionHandle, transferInfo, transferCallback);
   </tr>
   <tr>
     <td>connectionHandle</td>
-    <td><!--@Object received in $ref:usb.openDevice callback.-->
-      $ref:usb.openDevice 回调函数中接收到的对象。
+    <td><!--@Object received in $(ref:usb.openDevice) callback.-->
+      $(ref:usb.openDevice) 回调函数中接收到的对象。
     </td>
   </tr>
   <tr>
@@ -671,9 +671,9 @@ var transferInfo = {
   the device periodically, sending interrupt IN transfers that will make the
   device send data back if there is anything in the interrupt queue (maintained
   by the device).
-  $ref:usb.interruptTransfer has three parameters:-->
+  $(ref:usb.interruptTransfer) has three parameters:-->
 中断传输用于少量时间敏感的数据。由于所有 USB
-通信都由主机启动，主机代码通常会周期性地查询设备，发送中断输入传输，如果中断队列（由设备维护）不为空的话使设备发回数据。$ref:usb.interruptTransfer
+通信都由主机启动，主机代码通常会周期性地查询设备，发送中断输入传输，如果中断队列（由设备维护）不为空的话使设备发回数据。$(ref:usb.interruptTransfer)
 方法包含三个参数：
 </p>
 
@@ -690,8 +690,8 @@ chrome.usb.interruptTransfer(connectionHandle, transferInfo, transferCallback);
   </tr>
   <tr>
     <td>connectionHandle</td>
-    <td><!--@Object received in $ref:usb.openDevice callback.-->
-    $ref:usb.openDevice 的回调函数中接收到的对象。
+    <td><!--@Object received in $(ref:usb.openDevice) callback.-->
+    $(ref:usb.openDevice) 的回调函数中接收到的对象。
     </td>
   </tr>
   <tr>
@@ -815,8 +815,8 @@ access. We recommend that you provide instructions to end-users and link to the
 href="#caveats">注意事项</a>部分作为解释。
 </p>
 
-<p><!--@On Chrome OS, simply call $ref:usb.requestAccess. The permission
+<p><!--@On Chrome OS, simply call $(ref:usb.requestAccess). The permission
   broker does this for you.-->
 在 Chrome OS 中，您只需要调用
-$ref:usb.requestAccess，权限控制器会为您完成这一步。
+$(ref:usb.requestAccess)，权限控制器会为您完成这一步。
 </p>

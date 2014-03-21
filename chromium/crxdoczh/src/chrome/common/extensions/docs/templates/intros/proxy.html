@@ -21,13 +21,13 @@ For example:-->
 
 <p>
 <!--@Proxy settings are defined in a
-$ref:proxy.ProxyConfig object. Depending on
+$(ref:proxy.ProxyConfig) object. Depending on
 Chrome's proxy settings, the settings may contain
-$ref:proxy.ProxyRules or a 
-  $ref:proxy.PacScript.-->
-代理服务器设置定义在 $ref:proxy.ProxyConfig 对象中。取决于 Chrome
-浏览器的代理服务器设置，设置可以包含 $ref:proxy.ProxyRules 对象或者一个
-$ref:proxy.PacScript 对象。
+$(ref:proxy.ProxyRules) or a 
+  $(ref:proxy.PacScript).-->
+代理服务器设置定义在 $(ref:proxy.ProxyConfig) 对象中。取决于 Chrome
+浏览器的代理服务器设置，设置可以包含 $(ref:proxy.ProxyRules) 对象或者一个
+$(ref:proxy.PacScript) 对象。
 </p>
 
 <h3 id="proxy_modes"><!--@Proxy modes-->代理服务器模式</h3>
@@ -63,26 +63,26 @@ ProxyConfig 对象的 <code>mode</code> 属性决定 Chrome
   <dt><code>pac_script</code></dt>
   <dd><!--@In <code>pac_script</code> mode the proxy configuration is determined by
   a PAC script that is either retrieved from the URL specified in the
-  $ref:proxy.PacScript object or
+  $(ref:proxy.PacScript) object or
   taken literally from the <code>data</code> element specified in the
-  $ref:proxy.PacScript object.
+  $(ref:proxy.PacScript) object.
   Besides this, this mode allows no further parameters in the
   <code>ProxyConfig</code> object.-->
   在 <code>pac_script</code> 模式下代理服务器配置由一个 PAC
-  脚本确定，它既可以从 $ref:proxy.PacScript 对象中指定的 URL
-  获取，也可以直接来自 $ref:proxy.PacScript 对象中的 <code>data</code>
+  脚本确定，它既可以从 $(ref:proxy.PacScript) 对象中指定的 URL
+  获取，也可以直接来自 $(ref:proxy.PacScript) 对象中的 <code>data</code>
   属性。除此之外，使用该模式时不允许 <code>ProxyConfig</code>
   对象中包含其他任何参数。
   </dd>
 
   <dt><code>fixed_servers</code></dt>
   <dd><!--@In <code>fixed_servers</code> mode the proxy configuration is codified in
-  a $ref:proxy.ProxyRules
+  a $(ref:proxy.ProxyRules)
   object. Its structure is described in <a href="#proxy_rules">Proxy rules</a>.
   Besides this, the <code>fixed_servers</code> mode allows no further parameters
   in the <code>ProxyConfig</code> object.-->
   在 <code>fixed_servers</code> 模式下代理服务器配置通过一个
-  $ref:proxy.ProxyRules
+  $(ref:proxy.ProxyRules)
   对象指定。它的结构将在<a href="#proxy_rules"
   >代理服务器</a>规则部分描述。除此之外，<code>fixed_servers</code>
   模式时不允许 <code>ProxyConfig</code> 对象中包含其他任何参数。
@@ -107,7 +107,7 @@ ProxyConfig 对象的 <code>mode</code> 属性决定 Chrome
 <h3 id="proxy_rules"><!--@Proxy rules-->代理服务器规则</h3>
 
 <p>
-<!--@The--> $ref:proxy.ProxyRules <!--@object can contain
+<!--@The--> $(ref:proxy.ProxyRules) <!--@object can contain
 either a <code>singleProxy</code> attribute or a subset of
 <code>proxyForHttp</code>, <code>proxyForHttps</code>, <code>proxyForFtp</code>,
 and <code>fallbackProxy</code>.-->
@@ -138,11 +138,11 @@ HTTP、HTTPS 或 FTP 之外的另一种协议，则使用
 
 <p>
 <!--@A proxy server is configured in a
-$ref:proxy.ProxyServer object. The connection
+$(ref:proxy.ProxyServer) object. The connection
 to the proxy server (defined by the <code>host</code> attribute) uses the
 protocol defined in the <code>scheme</code> attribute. If no <code>scheme</code>
 is specified, the proxy connection defaults to <code>http</code>.-->
-代理服务器在 $ref:proxy.ProxyServer 对象中配置。连接到代理服务器（由
+代理服务器在 $(ref:proxy.ProxyServer) 对象中配置。连接到代理服务器（由
 <code>host</code> 属性定义）时使用定义在 <code>scheme</code>
 属性中的协议。如果没有指定 <code>scheme</code>，代理服务器连接默认使用
 <code>http</code>。
@@ -150,9 +150,9 @@ is specified, the proxy connection defaults to <code>http</code>.-->
 
 <p>
 <!--@If no <code>port</code> is defined in a
-$ref:proxy.ProxyServer object, the port is
+$(ref:proxy.ProxyServer) object, the port is
 derived from the scheme. The default ports are:-->
-如果 $ref:proxy.ProxyServer 对象中没有定义 <code>port</code>
+如果 $(ref:proxy.ProxyServer) 对象中没有定义 <code>port</code>
 属性，端口将使用协议的默认值。默认端口分别为：
 <table>
   <tr><th><!--@Scheme-->协议</th><th><!--@Port-->端口</th></tr>

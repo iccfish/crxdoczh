@@ -108,10 +108,10 @@ and a <a href="#popups">popup</a>.-->
 <p><!--@To set the icon,
   use the <b>default_icon</b> field of <b>browser_action</b>
   in the <a href="#manifest">manifest</a>,
-  or call the $ref:browserAction.setIcon method.-->
+  or call the $(ref:browserAction.setIcon) method.-->
   要设置图标，请使用<a href="#manifest">清单文件</a>中
   <b>browser_action</b> 部分的 <b>default_icon</b> 属性，或者调用
-  $ref:browserAction.setIcon 方法。
+  $(ref:browserAction.setIcon) 方法。
   </p>
 
 <p><!--@To properly display icon when screen pixel density (ratio
@@ -131,11 +131,11 @@ and a <a href="#popups">popup</a>.-->
 <!--@To set the tooltip,
 use the <b>default_title</b> field of <b>browser_action</b>
 in the <a href="#manifest">manifest</a>,
-or call the $ref:browserAction.setTitle method.
+or call the $(ref:browserAction.setTitle) method.
 You can specify locale-specific strings for the <b>default_title</b> field;
 see <a href="i18n.html">Internationalization</a> for details.-->
 要设置工具提示，使用<a href="#manifest">清单文件</a>中 <b>browser_action</b>
-部分的 <b>default_title</b> 属性，或者调用 $ref:browserAction.setTitle
+部分的 <b>default_title</b> 属性，或者调用 $(ref:browserAction.setTitle)
 方法。对于 <b>default_title</b>
 属性，您可以指定区域相关的字符串，有关更多细节请参考<a href="i18n.html"
 >国际化支持</a>。
@@ -158,8 +158,8 @@ see <a href="i18n.html">Internationalization</a> for details.-->
 
 <p>
 <!--@Set the text and color of the badge using-->分别调用
-$ref:browserAction.setBadgeText <!--@and-->和
-$ref:browserAction.setBadgeBackgroundColor<!--@,
+$(ref:browserAction.setBadgeText) <!--@and-->和
+$(ref:browserAction.setBadgeBackgroundColor)<!--@,
 respectively.-->
 设置徽章的内容和颜色。
 
@@ -180,11 +180,11 @@ respectively.-->
 create an HTML file with the popup's contents.
 Specify the HTML file in the <b>default_popup</b> field of <b>browser_action</b>
 in the <a href="#manifest">manifest</a>, or call the
-$ref:browserAction.setPopup method.-->
+$(ref:browserAction.setPopup) method.-->
   要向您的浏览器按钮添加弹出内容，请创建一个 HTML
   文件存放弹出内容，并在<a href="#manifest">清单文件</a>中
   <b>browser_action</b> 部分的 <b>default_popup</b> 属性指定该 HTML
-  文件或者调用 $ref:browserAction.setPopup 方法。
+  文件或者调用 $(ref:browserAction.setPopup) 方法。
 </p>
 
 <h2 id="tips"><!--@Tips-->提示</h2>
