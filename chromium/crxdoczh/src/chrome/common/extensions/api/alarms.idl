@@ -55,6 +55,7 @@ namespace alarms {
 
   callback AlarmCallback = void (Alarm alarm);
   callback AlarmListCallback = void (Alarm[] alarms);
+  callback ClearCallback = void (boolean wasCleared);
 
   interface Functions {
     // <!--@Creates an alarm.  Near the time(s) specified by <var>alarmInfo</var>,
@@ -116,11 +117,11 @@ namespace alarms {
     // 清除指定名称的定时器。
     // |name|: <!--@The name of the alarm to clear. Defaults to the empty string.-->
     // 要清除的定时器名称，默认为空字符串。
-    static void clear(optional DOMString name);
+    static void clear(optional DOMString name, optional ClearCallback callback);
 
     // <!--@Clears all alarms.-->
     // 清除所有定时器。
-    static void clearAll();
+    static void clearAll(optional ClearCallback callback);
   };
 
   interface Events {
