@@ -6,7 +6,46 @@
   {
     "namespace": "webstore",
 //@    "description": "Use the <code>chrome.webstore</code> API to initiate app and extension installations \"inline\" from your site.",
-    "description": "使用 <code>chrome.webstore</code> API 从您的站点上“内嵌”安装应用程序与扩展程序。",
+    "description": "使用 <code>chrome.webstore</code> API 从您的网站上“内嵌”安装应用与扩展程序。",
+    "types": [
+      {
+        "id": "InstallStage",
+        "type": "string",
+        "enum": ["installing", "downloading"],
+//@        "description": "Enum used to indicate the stage of the installation process. 'downloading' indicates that the necessary files are being downloaded, and 'installing' indicates that the files are downloaded and are being actively installed."
+        "description": "表示安装阶段的枚举值，'downloading' 表示正在下载所需文件，'installing' 表示下载的文件正在安装。"
+      }
+    ],  // types
+    "events": [
+      {
+        "name": "onInstallStageChanged",
+//@        "description": "Fired when an inline installation enters a new InstallStage. In order to receive notifications about this event, listeners must be registered before the inline installation begins.",
+        "description": "内嵌安装进入新的安装阶段时产生。为了接收该事件的通知，您应该在内嵌安装开始前注册监听器。",
+        "type": "function",
+        "parameters": [
+          {
+            "name": "stage",
+            "$ref": "InstallStage",
+//@            "description": "The InstallStage that just began."
+            "description": "刚刚开始的安装阶段。"
+          }
+        ]
+      },  // onInstallStageChanged
+      {
+        "name": "onDownloadProgress",
+//@        "description": "Fired periodically with the download progress of an inline install. In order to receive notifications about this event, listeners must be registered before the inline installation begins.",
+        "description": "内嵌安装下载过程中周期性地产生该事件。为了接收该事件的通知，您应该在内嵌安装开始前注册监听器。",
+        "type": "function",
+        "parameters": [
+          {
+            "name": "percentDownloaded",
+            "type": "number",
+//@            "description": "The progress of the download, between 0 and 1. 0 indicates no progress; 1.0 indicates complete."
+            "description": "下载进度，在 0～1 之间，0 表示还没开始，1.0 表示已经完成。"
+          }
+        ]
+      }  // onDownloadProgress
+    ],  // events
     "functions": [
       {
         "name": "install",
@@ -17,7 +56,7 @@
             "type": "string",
             "optional": true,
 //@            "description": "If you have more than one <code>&lt;link&gt;</code> tag on your page with the <code>chrome-webstore-item</code> relation, you can choose which item you'd like to install by passing in its URL here. If it is omitted, then the first (or only) link will be used. An exception will be thrown if the passed in URL does not exist on the page."
-            "description": "如果在您的关系为 <code>chrome-webstore-item</code> 的页面上有一个以上的 <code>&lt;link&gt;</code> 标签，您可以在这里传递 URL 选择您希望安装的项目。如果省略的话，则使用第一个（或唯一一个）链接。如果传递的 URL 在页面中不存在则会引发异常。"
+            "description": "如果您的网页中包含多于一个关系为 <code>chrome-webstore-item</code> 的 <code>&lt;link&gt;</code> 标签，您可以在这里传递 URL 选择您希望安装的项目。如果省略的话，则使用第一个（或唯一一个）链接。如果传递的 URL 在页面中不存在则会引发异常。"
           },
           {
             "name": "successCallback",
@@ -25,7 +64,7 @@
             "optional": true,
             "parameters": [],
 //@            "description": "This function is invoked when inline installation successfully completes (after the dialog is shown and the user agrees to add the item to Chrome). You may wish to use this to hide the user interface element that prompted the user to install the app or extension."
-            "description": "当内嵌安装成功完成时（已经显示确认对话框并且用户同意将该项目添加至 Chrome 浏览器）调用此函数。您可能希望使用它来隐藏提示用户安装应用程序或扩展程序的用户界面元素。"
+            "description": "当内嵌安装成功完成时（已经显示确认对话框并且用户同意将该项目添加至 Chrome 浏览器）调用此函数。您可以使用它隐藏提示用户安装应用程序或扩展程序的用户界面元素。"
           },
           {
             "name": "failureCallback",
@@ -36,14 +75,14 @@
                 "name": "error",
                 "type": "string",
 //@                "description": "The failure detail. You may wish to inspect or log this for debugging purposes, but you should not rely on specific strings being passed back."
-                "description": "失败的详情。您可能希望为了调试目的检查或记录它，但是您不应该依赖于传递过来的特定字符串。"
+                "description": "失败的详情。您可以为调试目的检查或记录它，但是您不应该依赖于传递过来的特定字符串。"
               }
             ],
 //@            "description": "This function is invoked when inline installation does not successfully complete. Possible reasons for this include the user canceling the dialog, the linked item not being found in the store, or the install being initiated from a non-verified site."
-            "description": "如果内嵌安装没有成功完成时调用此函数。可能的原因包括用户取消了确认对话框，链接的项目无法在网上应用店中找到，或者安装由未经过验证的站点进行。"
+            "description": "内嵌安装没有成功完成时调用此函数。可能的原因包括用户取消了确认对话框，链接的项目无法在网上应用店中找到，或者安装由未经过验证的站点进行。"
           }
         ]
       }  // install
-    ]
+    ]  // functions
   }  // webstore
 ]
