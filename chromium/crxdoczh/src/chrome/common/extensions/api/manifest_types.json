@@ -47,7 +47,7 @@
 //@        "description": "Chrome settings which can be overriden by an extension.",
         "description": "可以由扩展程序重写的 Chrome 浏览器设置。",
         "properties": {
-          // TODO(wittman): Remove for M36.
+          // TODO(wittman): Remove for M37.
           "bookmarks_ui": {
             "type": "object",
 //@            "description": "Settings to permit bookmarks user interface customization by extensions.",
@@ -65,6 +65,12 @@
                 "type": "boolean",
 //@                "description": "If <code>true</code>, the built-in \"Bookmark this page...\" shortcut key is removed and the extension is permitted to override the shortcut by binding it in the commands section of the manifest. The corresponding menu item is also removed or overridden as well.",
                 "description": "如果为 <code>true</code>，内建的“为当前网页创建书签...”快捷键将取消，并允许扩展程序在清单文件的 commands 部分绑定该快捷键，相应的菜单项也会删除或重写。",
+                "optional": true
+              },
+              "remove_bookmark_open_pages_shortcut": {
+                "type": "boolean",
+                "nodoc": true,
+                "description": "[Private] If <code>true</code>, the built-in \"Bookmark open pages...\" shortcut key and corresponding menu item is removed.",
                 "optional": true
               },
               "hide_bookmark_button": {
@@ -197,6 +203,12 @@
                 "type": "boolean",
 //@                "description": "If <code>true</code>, the built-in \"Bookmark this page...\" shortcut key is removed and the extension is permitted to override the shortcut by binding it in the commands section of the manifest.",
                 "description": "如果为 <code>true</code>，内建的“为当前网页创建书签...”快捷键将取消，并允许扩展程序在清单文件的 commands 部分绑定该快捷键。",
+                "optional": true
+              },
+              "remove_bookmark_open_pages_shortcut": {
+                "type": "boolean",
+                "nodoc": true,
+                "description": "[Private] If <code>true</code>, the built-in \"Bookmark open pages...\" shortcut key and corresponding menu item is removed.",
                 "optional": true
               }
             }

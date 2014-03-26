@@ -5,8 +5,8 @@
 [
   {
     "namespace": "permissions",
-//@    "description": "Use the <code>chrome.permissions</code> API to request <a href=\"#manifest\">declared optional permissions</a> at run time rather than install time, so users understand why the permissions are needed and grant only those that are necessary.",
-    "description": "使用 <code>chrome.permissions</code> API 在运行时而不是安装时请求<a href=\"#manifest\">声明的可选权限</a>，这样用户可以理解为什么需要这些权限，并且仅在必要时授予这些权限。",
+//@    "description": "Use the <code>chrome.permissions</code> API to request <a href='permissions#manifest'>declared optional permissions</a> at run time rather than install time, so users understand why the permissions are needed and grant only those that are necessary.",
+    "description": "使用 <code>chrome.permissions</code> API 在运行时而不是安装时请求<a href='permissions#manifest'>声明的可选权限</a>，这样用户可以理解为什么需要这些权限，并且仅在必要时授予这些权限。",
     "types": [
       {
         "id": "Permissions",

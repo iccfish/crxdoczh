@@ -39,6 +39,10 @@ users on the dev channel.-->
 请注意 GCM Chrome API 是实验性的，仅在 Chrome 浏览器的 Dev 分支中可用。
 </p>
 
+<p class="note"><strong>API <!--@Samples-->示例</strong><!--@: Want to play with the code? Check out the-->：想要试试这些代码吗？请参见
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/gcm-notifications">gcm-notifications</a>
+<!--@sample.-->示例。</p>
+
 <h2 id="enable_gcm"><!--@Enable GCM-->启用 GCM</h2>
 
 <p><!--@To use GCM for your app or extension, do the following:-->
@@ -268,10 +272,28 @@ Chrome instances, each of them will receive a different registration ID.-->
 实例中安装，其中的每一个都会获得不同的注册标识符。
 </p>
 
+<p><!--@Your app or extension could call $(ref:gcm.unregister) to revoke the registration ID.
+The unregistration should only be done in rare cases, such as if your app or
+extension does not want to receive further messages, or the registration ID is
+suspected to be compromised.-->
+您的应用或扩展程序可以调用 $(ref:gcm.unregister)
+撤销注册标识符。只有在罕见的情况下才应该撤销注册，例如如果您的应用或扩展程序不希望继续接收消息，或者注册标识符可能遭到攻击。</p>
+
+<pre data-filename="background.js"><code>
+function unregisterCallback() {
+  if (chrome.runtime.lastError) {
+    // 取消注册失败时，处理错误并且
+    // 过一段时间后重试。
+    return;
+  }
+}
+
+chrome.gcm.unregister(unregisterCallback);
+</code></pre>
+
 <p><!--@Your app or extension is automatically unregistered from the GCM service when a
-user uninstalls it. You can't unregister using the GCM API.-->
-用户卸载您的应用或扩展程序时会自动取消 GCM 服务的注册，您不能使用 GCM API
-取消注册。
+user uninstalls it.-->
+用户卸载您的应用或扩展程序时会自动取消 GCM 服务的注册。
 </p>
 
 <h3 id="receive_messages"><!--@Receive messages-->接收消息</h3>
@@ -505,11 +527,11 @@ errors.-->（发生未知错误）：任何其他内部错误都可能发生该�
 <h2 id="feedback"><!--@Feedback-->反馈</h2>
 
 <p><!--@You can provide feedback about Google Cloud Messaging and the gcm API through
-the Google Group <a href="https://groups.google.com/forum/#!forum/gcm-for-chrome-v2-feedback">GCM for Chrome V2
+the Google Group <a href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM for Chrome
 Feedback</a>.
 Use this group to ask for help, file bug reports, and request features.-->
 您可以通过 <a
-href="https://groups.google.com/forum/#!forum/gcm-for-chrome-v2-feedback">GCM
-for Chrome V2 Feedback</a> Google 网上论坛提供关于 Google 云消息服务及
+href="https://groups.google.com/forum/#!forum/gcm-for-chrome-feedback">GCM
+for Chrome Feedback</a> Google 网上论坛提供关于 Google 云消息服务及
 GCM API 的反馈，可以寻求帮助、报告问题、请求特性。
 </p>

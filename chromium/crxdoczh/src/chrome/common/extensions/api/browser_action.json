@@ -5,8 +5,8 @@
 [
   {
     "namespace": "browserAction",
-//@    "description": "Use browser actions to put icons in the main Google Chrome toolbar, to the right of the address bar. In addition to its <a href='#icon'>icon</a>, a browser action can also have a <a href='#tooltip'>tooltip</a>, a <a href='#badge'>badge</a>, and a <a href = '#popups'>popup</a>.",
-    "description": "使用浏览器按钮可以在 Google Chrome 浏览器主窗口中地址栏右侧的工具栏中添加图标。除了<a href='#icon'>图标</a>，浏览器按钮还可以有<a href='#tooltip'>工具提示</a>、<a href='#badge'>徽章</a>和<a href='#popups'>弹出内容</a>。",
+//@    "description": "Use browser actions to put icons in the main Google Chrome toolbar, to the right of the address bar. In addition to its <a href='browserAction#icon'>icon</a>, a browser action can also have a <a href='browserAction#tooltip'>tooltip</a>, a <a href='browserAction#badge'>badge</a>, and a <a href='browserAction#popups'>popup</a>.",
+    "description": "使用浏览器按钮可以在 Google Chrome 浏览器主窗口中地址栏右侧的工具栏中添加图标。除了<a href='browserAction#icon'>图标</a>，浏览器按钮还可以有<a href='browserAction#tooltip'>工具提示</a>、<a href='browserAction#badge'>徽章</a>和<a href='browserAction#popups'>弹出内容</a>。",
     "types": [
       {
         "id": "ColorArray",

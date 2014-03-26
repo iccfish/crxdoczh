@@ -101,3 +101,44 @@ code.-->
 '_execute_page_action'（执行页面按钮）命令为打开您的扩展程序的弹出内容而保留，它们通常不会产生您可以处理的事件。如果您需要在弹出内容打开时进行处理，考虑在弹出内容的代码中监听
 'onDomReady' 事件。
 </p>
+
+<h2 id="usage"><!--@Scope-->范围</h2>
+<p><!--@By default, Commands are scoped to the Chrome browser, which means that while
+the browser does not have focus, the shortcut will be inactive. On desktop
+Chrome, Commands can instead have global scope and will then also work while
+Chrome does *not* have focus. NOTE: The exception here is ChromeOS, where global
+commands are not allowed at the moment.-->
+默认情况下，命令的范围仅限于 Chrome
+浏览器，也就是说浏览器没有焦点时，快捷键不活动。在桌面版 Chrome
+浏览器上，命令的范围可以是全局的，即使 Chrome
+浏览器<b>没有焦点</b>时仍然可以使用。注：Chrome OS
+除外，目前还不允许全局命令。</p>
+
+<p><!--@The user is free to designate any shortcut as global using the UI in
+chrome://extensions \ Keyboard Shortcuts, but the extension developer is limited
+to specifying only Ctrl+Shift+[0..9] as global shortcuts. This is to minimize
+the risk of overriding shortcuts in other applications since if, for example,
+Alt+P were to be allowed as global, the printing shortcut might not work in
+other applications.-->
+用户可以在 chrome://extensions &gt;
+快捷键用户界面中使用任意快捷键作为全局快捷键，但是扩展程序开发者在全局快捷键中只能指定
+Ctrl+Shift+[0..9]。这样是为了尽可能避免与其他应用程序中的快捷键重复，例如，如果允许将
+Alt+P 作为全局快捷键，其他应用程序中的打印快捷键就不能正常使用。</p>
+
+<p><!--@Example:-->例如：</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  "commands": {
+    "toggle-feature-foo": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+5"
+      },
+      "description": "开启/关闭某项功能",
+      <b>"global": true</b>
+    }
+  },
+  ...
+}</pre>
