@@ -131,7 +131,6 @@
       {
         "name": "setUninstallURL",
         "type": "function",
-        "unpriviledged": true,
 //@        "description": "Sets the URL to be visited upon uninstallation. This may be used to clean up server-side data, do analytics, and implement surveys. Maximum 255 characters.",
         "description": "设置卸载时访问的 URL，可以用来清理服务器上的数据、进行分析以及实现调查。最多不能超过 255 个字符。",
         "parameters": [
@@ -147,7 +146,6 @@
 //@        "description": "Reloads the app or extension.",
         "description": "重新加载应用或扩展程序。",
         "type": "function",
-        "nocompile": true,
         "parameters": []
       },
       {
@@ -190,7 +188,6 @@
 //@        "description": "Restart the ChromeOS device when the app runs in kiosk mode. Otherwise, it's no-op.",
         "description": "如果应用在信息亭模式下运行，则重新启动 Chrome OS 设备，否则不进行任何操作。",
         "type": "function",
-        "nocompile": true,
         "parameters": []
       },
       {

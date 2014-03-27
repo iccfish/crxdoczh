@@ -235,8 +235,8 @@
             "type": "object",
             "properties": {
               "contextID": {
-//@                "description": "ID of the context where the key events will be sent",
-                "description": "发送键盘事件的上下文标识符。",
+//@                "description": "ID of the context where the key events will be sent, or zero to send key events to non-input field.",
+                "description": "发送键盘事件的上下文标识符，如果要向非输入字段发送键盘事件则设为 0。",
                 "type": "integer"
               },
               "keyData": {

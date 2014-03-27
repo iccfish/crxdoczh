@@ -77,8 +77,8 @@
           "redirectUrl": {
             "type": "string",
             "optional": true,
-//@            "description": "Only used as a response to the onBeforeRequest event. If set, the original request is prevented from being sent and is instead redirected to the given URL."
-            "description": "仅用于 onBeforeRequest 事件的返回值。如果设置了这一属性，将阻止原始请求的发送，并重定向至指定的 URL。"
+//@            "description": "Only used as a response to the onBeforeRequest and onHeadersReceived events. If set, the original request is prevented from being sent/completed and is instead redirected to the given URL. Redirections to non-HTTP schemes such as data: are allowed. Redirects initiated by a redirect action use the original request method for the redirect, with one exception: If the redirect is initiated at the onHeadersReceived stage, then the redirect will be issued using the GET method."
+            "description": "仅用于 onBeforeRequest 和 onHeadersReceived 事件的返回值。如果设置了该属性，就会阻止原始请求的发送/完成，并重定向至指定的 URL。允许重定向至非 HTTP 协议的 URL，例如 data:。重定向操作产生的重定向通常使用原来的请求方法，以下情况例外：如果在 onHeadersReceived 阶段产生了重定向，重定向请求将使用 GET 方法发出。"
           },
           "requestHeaders": {
             "$ref": "HttpHeaders",
