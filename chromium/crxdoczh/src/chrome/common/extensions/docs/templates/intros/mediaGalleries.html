@@ -139,31 +139,62 @@ to read all the media files from galleries that the user selected.-->
 
 <p><!--@If present, the user's iTunes library can be accessed as a media gallery.
 In addition to the media files in the library, the "iTunes Music Library.xml"
-file is also presented. Regardless of where the music files are actually on the
-disk (and where the xml file says they are), they are mapping into an
-Artist/Album/Track hierarchy like iTunes does by default.  This mapping doesn't
-always work perfectly, so there are two things to note for Apps trying to match
-the xml file with files in the gallery. If the filenames for tracks within an
-album are not unique, they will be uniquified by adding the track id in
-parentheses before the extension, and if there is a colon or a slash in the
-artist, album, or track name, they are turned into underscore characters.-->
+file is also presented.-->
 如果存在，用户的 iTunes 库可以作为媒体库访问。除了库中的媒体文件，“iTunes
-Music Library.xml”文件也会存在。无论音乐文件在磁盘上的什么位置（以及 XML
-文件中包含的位置），默认情况下它们都会被映射至艺术家/唱片集/音轨这样的结构。这一种映射方式有时候并不完美，所以如果应用需要将
+Music Library.xml”文件也会存在。</p>
+<p><!--@Regardless of where the music files are actually on the disk (and where
+the xml file says they are), they are mapped into an Artist/Album/Track
+hierarchy like iTunes does by default.  This mapping doesn't always work
+perfectly, so there are two things to note for Apps trying to match the
+xml file with files in the gallery.-->
+无论音乐文件在磁盘上的什么位置（以及 XML
+文件中包含的位置），默认情况下它们都会被映射至艺术家/唱片集/音轨这样的结构。这种映射方式有时候并不完美，所以如果应用需要将
 XML
-文件与媒体库中的文件配对的话，需要注意两点。如果唱片集中的音轨文件名不唯一，在扩展名之前会加上包含括号的音轨号，使它们唯一。如果艺术家、唱片集或音轨名称中包含冒号或斜杠，它们会变成下划线。
+文件与媒体库中的文件配对的话，需要注意两点。</p>
+<p><!--@If the filenames for tracks within an album are not unique, they will be
+uniquified by adding the track id in parentheses before the extension, and
+if there is a colon or a slash in the artist, album, or track name, they are
+turned into underscore characters.-->
+如果唱片集中的音轨文件名不唯一，在扩展名之前会加上包含括号的音轨号，使它们唯一。如果艺术家、唱片集或音轨名称中包含冒号或斜杠，它们会变成下划线。
 </p>
 
 <h2 id="Picasa">Picasa</h2>
 
 <p><!--@If present, the user's Picasa library can also be accessed as a media
 gallery. Directories on the filesystem scanned by Picasa are presented under
-folders/. Picasa Albums are presented under albums/. Albums and Folders that
-have duplicate names and dates will be uniquified using an incrementing
-integer in parenthesis before the extension. Duplicate filenames within the
-same Album will also be uniquified using an incrementing integer in parenthesis
-before the extension.-->
+folders/. Picasa Albums are presented under albums/.-->
 如果存在的话，用户的 Picasa 库也可以作为媒体库访问。Picasa
 扫描的文件系统目录呈现在 folders/ 中，Picasa 相册呈现在 albums/
-中。如果相册和文件夹具有相同的名称与日期，在扩展名前会加上包含括号的增量整数，使它们唯一。同一相册中如果有相同的文件名，也会在扩展名前加上包含括号的增量整数使之唯一。
+中。</p>
+<p><!--@Albums and Folders that have duplicate names and dates will be uniquified
+using an incrementing integer in parenthesis before the extension.-->
+如果相册和文件夹具有相同的名称与日期，在扩展名前会加上包含括号的增量整数，使它们唯一。</p>
+<p><!--@Duplicate filenames within the same Album will also be uniquified using an
+incrementing integer in parenthesis before the extension.-->
+同一相册中如果有相同的文件名，也会在扩展名前加上包含括号的增量整数使之唯一。
 </p>
+
+<h2 id="iPhoto">iPhoto</h2>
+
+<p><!--@If present, the user's iPhoto library can be accessed as a media gallery.
+The files are structured within a subdirectory called "Albums/". Within that
+subdirectory, each album in the user's iPhoto library will appear as a
+subdirectory by name, and contain file entries for the photos in that album.-->
+如果存在的话，用户的 iPhoto
+库也可以作为媒体库访问。这些文件存放在名为“Albums/”的子目录中。在这一子目录中，用户 iPhoto 库中的每一个相册都按照各自的名称以子目录形式呈现，并且包含相册中的照片对应的文件项。
+</p>
+<p><!--@Duplicate album names or image filenames with albums will get a
+disambiguating suffix like "(NN)" where NN is a unique number.-->
+如果相册名重复或相册中图片文件名重复，在文件名后就会附加不重复的后缀，如“(NN)”，其中
+NN 是唯一的数值。</p>
+<p><!--@Any items appearing in multiple albums in iPhoto will appear in all those
+albums in the gallery.-->
+在 iPhoto 的多个相册中出现的项目也会在媒体库中对应相册中出现。</p>
+<p><!--@If the user has modified any images within an album, there will be an
+additional subdirectory called "originals/" within the album directory, which
+will then contain the original image, which will have the same filename as
+the file in the album itself. The file as it appears in the album directory,
+though, will be the one the user has invested time cropping, rotating, or
+otherwise editing.-->
+如果用户修改了相册中的图片，相册目录中就会有另外一个名为“originals/”的子目录，包含原始的图片，与相册中的文件名相同，而出现在相册目录中的文件则是用户进行裁剪、旋转等编辑操作之后的图片。</p>
+
