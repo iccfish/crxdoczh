@@ -5,7 +5,7 @@
 {
   'targets': [
     {
-      'target_name': 'extensions_api',
+      'target_name': 'apps_api',
       'type': 'static_library',
       'sources': [
         '<@(schema_files)',
@@ -22,20 +22,14 @@
         ],
         # TODO: Eliminate these on Android. See crbug.com/305852.
         'schema_files': [
-          'dns.idl',
-          'extensions_manifest_types.json',
-          'socket.idl',
-          'sockets_tcp.idl',
-          'sockets_tcp_server.idl',
-          'sockets_udp.idl',
-          'storage.json',
+          'app_runtime.idl',
         ],
-        'cc_dir': 'extensions/common/api',
-        'root_namespace': 'extensions::core_api',
-        'impl_dir': 'extensions/browser/api',
+        'cc_dir': 'apps/common/api',
+        'root_namespace': 'apps::api',
+        'impl_dir': 'apps/browser/api',
       },
       'dependencies': [
-        '<(DEPTH)/skia/skia.gyp:skia',
+        # None yet, but some may need to be added as more APIs move in.
       ],
     },
   ],

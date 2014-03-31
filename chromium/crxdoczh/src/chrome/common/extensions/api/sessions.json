@@ -121,6 +121,14 @@
         ]
       }
     ],
+    "events": [
+      {
+        "name": "onChanged",
+//@        "description": "Fired when recently closed tabs and/or windows are changed. This event does not monitor synced sessions changes.",
+        "description": "最近关闭的标签页和/或窗口更改时产生。不能使用该事件监控同步会话更改。",
+        "type": "function"
+      }
+    ],
     "properties": {
       "MAX_SESSION_RESULTS": {
         "value": 25,
