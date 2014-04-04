@@ -151,6 +151,11 @@ namespace mediaGalleries {
     DOMString? language;
     DOMString? title;
     long? track;
+
+    // <!--@A dictionary of all the metadata in the media file. This metadata is in
+    // string form, and neither the key nor value is normalized.-->
+    // 包含媒体文件中所有元数据的词典，元数据以字符串形式表示，键与值都未经过正规化。
+    object rawTags;
   };
 
   callback MediaMetadataCallback = void (MediaMetadata metadata);
