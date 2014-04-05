@@ -504,6 +504,28 @@
         "parameters": []
       },
       {
+        "name": "getZoom",
+	"type": "function",
+//@        "description": "Gets the current zoom factor.",
+        "description": "获取当前缩放比例。",
+	"parameters": [
+	  {
+            "type": "function",
+            "name": "callback",
+//@            "description": "Called after the current zoom factor is retreived.",
+            "description": "获取当前缩放比例后调用。",
+            "parameters": [
+              {
+                "type": "number",
+                "name": "zoomFactor",
+//@                "description": "The current zoom factor."
+                "description": "当前缩放比例。"
+              }
+            ]
+	  }
+        ]
+      },
+      {
         "name": "go",
         "type": "function",
 //@        "description": "Navigates to a history entry using a history index relative to the current navigation. If the requested navigation is impossible, this method has no effect.",
@@ -564,6 +586,28 @@
 //@            "description": "The user agent string to use."
             "description": "要使用的用户代理字符串。"
           }
+        ]
+      },
+      {
+        "name": "setZoom",
+        "type": "function",
+//@        "description": "Changes the zoom factor of the page. This zoom will persist for the page's origin, even after navigation.",
+        "description": "更改网页的当前缩放比例。同样网页来源的缩放比例会保存下来，即使导航之后仍然继续使用。",
+        "parameters": [
+          {
+            "type": "number",
+            "name": "zoomFactor",
+//@            "description" : "The new zoom factor."
+            "description" : "新的缩放比例。"
+          },
+	  {
+            "type": "function",
+            "name": "callback",
+//@            "description": "Called after the page has been zoomed.",
+            "description": "网页缩放后调用。",
+            "optional": true,
+            "parameters": []
+	  }
         ]
       },
       {
@@ -966,6 +1010,26 @@
 //@            "description": "Chrome's internal ID of the process that has become unresponsive.",
             "description": "失去响应的进程所对应的 Chrome 浏览器内部标识符。",
             "type": "integer"
+          }
+        ]
+      },
+      {
+        "name": "zoomchange",
+        "options": { "supportsDom": true },
+//@        "description": "Fired when the page's zoom changes.",
+        "description": "网页缩放比例更改时产生。",
+        "parameters": [
+          {
+            "name": "oldZoomFactor",
+            "type": "number",
+//@            "description": "The page's previous zoom factor."
+            "description": "网页原来的缩放比例。"
+          },
+          {
+            "name": "newZoomFactor",
+            "type": "number",
+//@            "description": "The new zoom factor that the page was zoomed to."
+            "description": "网页缩放之后的新缩放比例。"
           }
         ]
       }
