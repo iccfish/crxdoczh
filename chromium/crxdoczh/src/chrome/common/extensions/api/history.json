@@ -92,7 +92,7 @@
             "type": "object",
             "properties": {
 //@              "url": {"type": "string", "description": "The URL for which to retrieve visit information.  It must be in the format as returned from a call to history.search."}
-              "url": {"type": "string", "description": "需要获取信息的 URL，必须与 $ref:history.search 调用的返回值具有相同的形式。"}
+              "url": {"type": "string", "description": "需要获取信息的 URL，必须与 $(ref:history.search) 调用的返回值具有相同的形式。"}
             }
           },
           {

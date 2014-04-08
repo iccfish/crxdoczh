@@ -75,7 +75,7 @@ namespace system.storage {
     // <!--@Get the storage information from the system. The argument passed to the
     // callback is an array of StorageUnitInfo objects.-->
     // 从系统获取存储信息，传递给回调函数的参数为
-    // $ref:StorageUnitInfo 对象的数组。
+    // $(ref:StorageUnitInfo) 对象的数组。
     static void getInfo(StorageInfoCallback callback);
 
     // <!--@Ejects a removable storage device.-->

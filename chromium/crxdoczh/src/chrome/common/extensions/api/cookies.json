@@ -162,7 +162,7 @@
             "parameters": [
               {
 //@                "name": "cookie", "$ref": "Cookie", "optional": true, "description": "Contains details about the cookie that's been set.  If setting failed for any reason, this will be \"null\", and \"chrome.runtime.lastError\" will be set."
-                "name": "cookie", "$ref": "Cookie", "optional": true, "description": "包含已经设置的 Cookie 详情。如果由于任何原因操作失败，则为 null，并设置 $ref:runtime.lastError。"
+                "name": "cookie", "$ref": "Cookie", "optional": true, "description": "包含已经设置的 Cookie 详情。如果由于任何原因操作失败，则为 null，并设置 $(ref:runtime.lastError)。"
               }
             ]
           }
@@ -198,7 +198,7 @@
                 "name": "details",
                 "type": "object",
 //@                "description": "Contains details about the cookie that's been removed.  If removal failed for any reason, this will be \"null\", and \"chrome.runtime.lastError\" will be set.",
-                "description": "包含已经删除的 Cookie 详情。如果由于任何原因删除操作失败，则该参数为 null，并设置 $ref:runtime.lastError。",
+                "description": "包含已经删除的 Cookie 详情。如果由于任何原因删除操作失败，则该参数为 null，并设置 $(ref:runtime.lastError)。",
                 "optional": true,
                 "properties": {
 //@                  "url": {"type": "string", "description": "The URL associated with the cookie that's been removed."},
@@ -248,7 +248,7 @@
 //@              "cookie": {"$ref": "Cookie", "description": "Information about the cookie that was set or removed."},
               "cookie": {"$ref": "Cookie", "description": "有关设置或删除的 Cookie 信息。"},
 //@              "cause": {"min_version": "12.0.707.0", "type": "string", "enum": ["evicted", "expired", "explicit", "expired_overwrite", "overwrite"], "description": "The underlying reason behind the cookie's change. If a cookie was inserted, or removed via an explicit call to \"chrome.cookies.remove\", \"cause\" will be \"explicit\". If a cookie was automatically removed due to expiry, \"cause\" will be \"expired\". If a cookie was removed due to being overwritten with an already-expired expiration date, \"cause\" will be set to \"expired_overwrite\".  If a cookie was automatically removed due to garbage collection, \"cause\" will be \"evicted\".  If a cookie was automatically removed due to a \"set\" call that overwrote it, \"cause\" will be \"overwrite\". Plan your response accordingly."}
-              "cause": {"min_version": "12.0.707.0", "type": "string", "enum": ["evicted", "expired", "explicit", "expired_overwrite", "overwrite"], "description": "Cookie 更改的原因。<br>如果是添加 Cookie，或者通过显式调用 $ref:cookies.remove 方法删除，则为 \"explicit\"。<br>如果 Cookie 由于过期被自动删除，则为 \"expired_overwrite\"。如果 Cookie 由于垃圾收集自动删除，则为 \"evicted\"。<br>如果 Cookie 由于 $ref:cookies.set 方法的调用被覆盖而自动删除，则为 \"overwrite\"。<br>您应该根据这一参数作出相应的回应。"}
+              "cause": {"min_version": "12.0.707.0", "type": "string", "enum": ["evicted", "expired", "explicit", "expired_overwrite", "overwrite"], "description": "Cookie 更改的原因。<br>如果是添加 Cookie，或者通过显式调用 $(ref:cookies.remove) 方法删除，则为 \"explicit\"。<br>如果 Cookie 由于过期被自动删除，则为 \"expired_overwrite\"。如果 Cookie 由于垃圾收集自动删除，则为 \"evicted\"。<br>如果 Cookie 由于 $(ref:cookies.set) 方法的调用被覆盖而自动删除，则为 \"overwrite\"。<br>您应该根据这一参数作出相应的回应。"}
             }
           }
         ]

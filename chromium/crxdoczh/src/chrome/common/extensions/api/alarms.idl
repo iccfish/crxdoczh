@@ -37,7 +37,7 @@ namespace alarms {
 
     // <!--@Length of time in minutes after which the <code>onAlarm</code> event
     // should fire.-->
-    // 以分钟为单位的时间长度，在指定时间之后将产生 $ref:alarms.onAlarm 事件。
+    // 以分钟为单位的时间长度，在指定时间之后将产生 $(ref:alarms.onAlarm) 事件。
     //
     // <!-- TODO: need minimum=0 -->
     double? delayInMinutes;
@@ -62,7 +62,7 @@ namespace alarms {
     // the <code>onAlarm</code> event is fired. If there is another alarm with
     // the same name (or no name if none is specified), it will be cancelled and
     // replaced by this alarm.-->
-    // 创建定时器，在 <var>alarmInfo</var> 指定的时间前后将产生 $ref:alarms.onAlarm
+    // 创建定时器，在 <var>alarmInfo</var> 指定的时间前后将产生 $(ref:alarms.onAlarm)
     // 事件。如果已经存在具有相同名称（或者如果没指定而没有名称）另一个定时器，它将会被取消，并由这一定时器取代。
     //
     // <!--@In order to reduce the load on the user's machine, Chrome limits alarms

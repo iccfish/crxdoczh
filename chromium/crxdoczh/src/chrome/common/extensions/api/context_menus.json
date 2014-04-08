@@ -12,7 +12,7 @@
         "name": "create",
         "type": "function",
 //@        "description": "Creates a new context menu item. Note that if an error occurs during creation, you may not find out until the creation callback fires (the details will be in chrome.runtime.lastError).",
-        "description": "创建一个新的右键菜单项。注意，如果创建过程中发生错误，您可能要等到回调函数调用时才能得知（详情可从 $ref:runtime.lastError 获得）",
+        "description": "创建一个新的右键菜单项。注意，如果创建过程中发生错误，您可能要等到回调函数调用时才能得知（详情可从 $(ref:runtime.lastError) 获得）",
         "returns": {
           "choices": [
             { "type": "integer" },
@@ -118,7 +118,7 @@
             "name": "callback",
             "optional": true,
 //@            "description": "Called when the item has been created in the browser. If there were any problems creating the item, details will be available in chrome.runtime.lastError.",
-            "description": "当菜单项已经在浏览器中创建后调用。如果创建过程中出现任何错误，详情可从 $ref:runtime.lastError 获得。",
+            "description": "当菜单项已经在浏览器中创建后调用。如果创建过程中出现任何错误，详情可从 $(ref:runtime.lastError) 获得。",
             "parameters": []
           }
         ]

@@ -13,7 +13,7 @@
         "id": "FileHandlerExecuteEventDetails",
         "type": "object",
 //@        "description": "Event details payload for fileBrowserHandler.onExecute event.",
-        "description": "$ref:fileBrowserHandler.onExecute 事件的详情。",
+        "description": "$(ref:fileBrowserHandler.onExecute) 事件的详情。",
         "properties": {
           "entries": {
             "type": "array",

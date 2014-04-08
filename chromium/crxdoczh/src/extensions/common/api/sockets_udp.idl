@@ -106,8 +106,8 @@ namespace sockets.udp {
 
     // <!--@Flag indicating whether the socket is left open when the application is
     // suspended (see <code>SocketProperties.persistent</code>).-->
-    // 表示应用关闭时（参见
-    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态的标志。
+    // 应用关闭时（参见
+    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态。
     boolean persistent;
 
     // <!--@Application-defined string associated with the socket.-->

@@ -145,7 +145,7 @@
             "name": "callback",
             "optional": true,
 //@            "description": "Called when the operation completes with a boolean indicating if the text was accepted or not. On failure, chrome.runtime.lastError is set.",
-            "description": "当操作完成时调用，传递一个布尔值，表示文本是否被接受。如果调用失败，将设置 $ref:runtime.lastError。",
+            "description": "当操作完成时调用，传递一个布尔值，表示文本是否被接受。如果调用失败，将设置 $(ref:runtime.lastError)。",
             "parameters": [
               {
                 "name": "success",
@@ -177,7 +177,7 @@
             "name": "callback",
             "optional": true,
 //@            "description": "Called when the operation completes with a boolean indicating if the text was accepted or not. On failure, chrome.runtime.lastError is set.",
-            "description": "当操作完成时调用，传递一个布尔值，表示文本是否被接受。如果调用失败，将设置 $ref:runtime.lastError。",
+            "description": "当操作完成时调用，传递一个布尔值，表示文本是否被接受。如果调用失败，将设置 $(ref:runtime.lastError)。",
             "parameters": [
               {
                 "name": "success",
@@ -214,7 +214,7 @@
             "name": "callback",
             "optional": true,
 //@            "description": "Called when the operation completes with a boolean indicating if the text was accepted or not. On failure, chrome.runtime.lastError is set.",
-            "description": "当操作完成时调用，传递一个布尔值，表示文本是否被接受。如果调用失败，将设置 $ref:runtime.lastError。",
+            "description": "当操作完成时调用，传递一个布尔值，表示文本是否被接受。如果调用失败，将设置 $(ref:runtime.lastError)。",
             "parameters": [
               {
                 "name": "success",

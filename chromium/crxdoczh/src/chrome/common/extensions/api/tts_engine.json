@@ -6,7 +6,7 @@
   {
     "namespace": "ttsEngine",
 //@    "description": "Use the <code>chrome.ttsEngine</code> API to implement a text-to-speech(TTS) engine using an extension. If your extension registers using this API, it will receive events containing an utterance to be spoken and other parameters when any extension or Chrome App uses the <a href='tts.html'>tts</a> API to generate speech. Your extension can then use any available web technology to synthesize and output the speech, and send events back to the calling function to report the status.",
-    "description": "使用 <code>chrome.ttsEngine</code> API 用扩展程序实现文字语音转换（TTS）引擎。如果您的扩展程序注册了这一 API，当任何扩展程序或 Chrome 应用使用 $ref:tts 模块朗读时，它会收到事件，包含要朗读的内容以及其他参数。您的扩展程序可以使用任何可用的网络技术合成并输出语音，并向调用方发送事件报告状态。",
+    "description": "使用 <code>chrome.ttsEngine</code> API 用扩展程序实现文字语音转换（TTS）引擎。如果您的扩展程序注册了这一 API，当任何扩展程序或 Chrome 应用使用 $(ref:tts) 模块朗读时，它会收到事件，包含要朗读的内容以及其他参数。您的扩展程序可以使用任何可用的网络技术合成并输出语音，并向调用方发送事件报告状态。",
     "functions": [
       {
         "name": "sendTtsEvent",
@@ -31,7 +31,7 @@
         "name": "onSpeak",
         "type": "function",
 //@        "description": "Called when the user makes a call to tts.speak() and one of the voices from this extension's manifest is the first to match the options object.",
-        "description": "当用户发出 $ref:tts.speak 调用并且扩展程序的清单文件中的任何一种语音首先匹配 options 对象时产生。",
+        "description": "当用户发出 $(ref:tts.speak) 调用并且扩展程序的清单文件中的任何一种语音首先匹配 options 对象时产生。",
         "parameters": [
           {
             "type": "string",
@@ -43,7 +43,7 @@
             "type": "object",
             "name": "options",
 //@            "description": "Options specified to the tts.speak() method.",
-            "description": "$ref:tts.speak 方法指定的选项。",
+            "description": "$(ref:tts.speak) 方法指定的选项。",
             "properties": {
               "voiceName": {
                 "type": "string",
@@ -110,7 +110,7 @@
         "name": "onStop",
         "type": "function",
 //@        "description": "Fired when a call is made to tts.stop and this extension may be in the middle of speaking. If an extension receives a call to onStop and speech is already stopped, it should do nothing (not raise an error). If speech is in the paused state, this should cancel the paused state."
-        "description": "当发出 $ref:tts.stop 调用时发生，扩展程序可能正在朗读。如果扩展程序收到这一事件但是朗读已经结束，它应该什么都不做（而不是产生错误）。如果语音正处于暂停状态，它应该取消暂停状态。"
+        "description": "当发出 $(ref:tts.stop) 调用时发生，扩展程序可能正在朗读。如果扩展程序收到这一事件但是朗读已经结束，它应该什么都不做（而不是产生错误）。如果语音正处于暂停状态，它应该取消暂停状态。"
       },
       {
         "name": "onPause",

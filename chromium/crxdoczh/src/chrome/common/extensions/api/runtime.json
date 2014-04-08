@@ -213,7 +213,7 @@
         ],
         "returns": {
           "$ref": "Port",
-//@          "description": "Port through which messages can be sent and received. The port's $ref:[runtime.Port onDisconnect] event is fired if the extension/app does not exist. "
+//@          "description": "Port through which messages can be sent and received. The port's $(ref:runtime.Port onDisconnect) event is fired if the extension/app does not exist. "
           "description": "用来与扩展程序发送和接受消息的端口。如果扩展程序不存在则引发该端口的 $(ref:runtime.Port.onDisconnect) 事件。"
         }
       },

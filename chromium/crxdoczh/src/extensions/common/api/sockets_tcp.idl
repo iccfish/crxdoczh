@@ -25,8 +25,8 @@ namespace sockets.tcp {
     // Lifecycle</a>). The default value is "false." When the application is
     // loaded, any sockets previously opened with persistent=true can be fetched
     // with <code>getSockets</code>.-->
-    // 表示应用的事件页面卸载（参见<a href="app_lifecycle.html"
-    // >管理应用的生命周期</a>）时是否使套接字保持打开状态的标志，默认值为
+    // 应用的事件页面卸载（参见<a href="app_lifecycle.html"
+    // >管理应用的生命周期</a>）时是否使套接字保持打开状态，默认值为
     // <code>false</code>。应用载入时，之前使用 <code>persistent: true</code>
     // 打开的套接字可以通过 <code>getSockets</code> 获取。
     boolean? persistent;
@@ -122,8 +122,8 @@ namespace sockets.tcp {
 
     // <!--@Flag indicating whether the socket is left open when the application is
     // suspended (see <code>SocketProperties.persistent</code>).-->
-    // 表示应用关闭时（参见
-    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态的标志。
+    // 应用关闭时（参见
+    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态。
     boolean persistent;
 
     // <!--@Application-defined string associated with the socket.-->
@@ -342,7 +342,7 @@ namespace sockets.tcp {
 
   interface Events {
     // <!--@Event raised when data has been received for a given socket.-->
-    // 套接字接收到数据时产生的事件。
+    // 套接字接收到数据时产生该事件。
     // |info| : <!--@The event data.-->
     // 事件数据。
     static void onReceive(ReceiveInfo info);
@@ -352,7 +352,7 @@ namespace sockets.tcp {
     // socket is set to <code>paused</code> and no more <code>onReceive</code>
     // events are raised for this socket.-->
     // 运行时等待该套接字地址和端口上的数据时如果发生网络错误则产生该事件。一旦产生该事件后，套接字将设置为
-    // <code>paused</code> 状态，不再产生 <code>onReceive</code> 事件。
+    // <code>paused</code>（暂停）状态，不再产生 <code>onReceive</code> 事件。
     // |info| : <!--@The event data.-->
     // 事件数据。
     static void onReceiveError(ReceiveErrorInfo info);
