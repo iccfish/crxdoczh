@@ -8,7 +8,6 @@
 // Note that specifying "web_page", "blessed_web_page", or "all" as a context
 // type will require manually updating chrome/renderer/resources/dispatcher.cc.
 
-
 {
   "accessibilityFeatures": [{
     "platforms": ["chromeos"],
