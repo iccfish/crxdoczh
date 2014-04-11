@@ -2,11 +2,11 @@
 
 <p>
 <!--@You must declare the "declarativeWebRequest" permission in the
-<a href="manifest.html">extension manifest</a> to use this API,
-along with <a href="declare_permissions.html">host permissions</a>.-->
-您必须在<a href="manifest.html">扩展程序的清单文件</a>中声明
+<a href="manifest">extension manifest</a> to use this API,
+along with <a href="declare_permissions">host permissions</a>.-->
+您必须在<a href="manifest">扩展程序的清单文件</a>中声明
 "declarativeWebRequest" 权限和<a
-href="declare_permissions.html">主机权限</a>才能使用这一
+href="declare_permissions">主机权限</a>才能使用这一
 API。
 </p>
 
@@ -63,9 +63,9 @@ extension has, than such an extension may set up a rule to-->
 
 <p>
 <!--@The Declarative Web Request API follows the concepts of the <a
-  href="events.html#declarative">Declarative API</a>. You can register rules to
+  href="events#declarative">Declarative API</a>. You can register rules to
 the <code>chrome.declarativeWebRequest.onRequest</code> event object.-->
-声明式网络请求 API 遵循<a href="events.html#declarative">声明式 API</a>
+声明式网络请求 API 遵循<a href="events#declarative">声明式 API</a>
 的概念，您可以向 <code>chrome.declarativeWebRequest.onRequest</code>
 事件对象注册规则。
 </p>
@@ -152,10 +152,10 @@ chrome.declarativeWebRequest.onRequest.addRules([rule2]);
 individually because each of these operations recreates internal data
 structures.  This re-creation is computationally expensive but facilitates a
 very fast URL matching algorithm for hundreds of thousands of URLs. The
-<a href="events.html#performance">Performance section</a> of the $(ref:events
+<a href="events#performance">Performance section</a> of the $(ref:events
 Events) API provides further performance tips.-->您始终应该一次性批量注册或取消注册规则，而不是单独进行，因为每一次这样的操作都需要重新创建内部的数据结构，这一重新创建的过程需要大量的计算，但是可以利用一种极快的
 URL 匹配算法，用于几十万个 URL。$(ref:events 事件) API
-的<a href="events.html#performance">性能部分</a>提供了进一步的性能提示。
+的<a href="events#performance">性能部分</a>提供了进一步的性能提示。
 </p>
 
 
@@ -163,12 +163,12 @@ URL 匹配算法，用于几十万个 URL。$(ref:events 事件) API
 
 <p>
 <!--@The Declarative Web Request API follows the
-<a href="webRequest.html#life_cycle">Life cycle model for web requests</a> of
-the <a href="webRequest.html">Web Request API</a>. This means that conditions
+<a href="webRequest#life_cycle">Life cycle model for web requests</a> of
+the <a href="webRequest">Web Request API</a>. This means that conditions
 can only be tested at specific stages of a web request and, likewise, actions
 can also only be executed at specific stages. The following tables list the
 request stages that are compatible with conditions and actions.-->
-声明式网络请求 API 遵循<a href="webRequest.html#life_cycle">网络请求 API
+声明式网络请求 API 遵循<a href="webRequest#life_cycle">网络请求 API
 的生命周期模型</a>，这意味着条件只能在网络请求的特定阶段测试，同样地，操作也只能在特定阶段执行。下表列出了与条件和操作兼容的请求阶段。
 </p>
 
@@ -255,10 +255,10 @@ because request headers cannot be set any more by the time the content type has 
 
 <p>
 <!--@Rules can be associated with priorities as described in the
-<a href="events.html#declarative">Events API</a>. This mechanism can be used
+<a href="events#declarative">Events API</a>. This mechanism can be used
 to express exceptions. The following example will block all requests to
 images named "evil.jpg" except on the server "myserver.com".-->
-规则中可以包含优先级，如<a href="events.html#declarative">事件 API</a>
+规则中可以包含优先级，如<a href="events#declarative">事件 API</a>
 中所述，这种机制可以用来表达例外。如下例子将阻止除了来自服务器
 "myserver.com" 以外所有名称为 "evil.jpg" 的图片请求，。
 </p>

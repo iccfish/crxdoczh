@@ -7,24 +7,24 @@ reload the page,
 or obtain the list of resources within the page.-->
 与审查的窗口交互：获得审查页面的标签页标识符，在审查窗口的上下文中执行代码，重新加载页面，或者获取页面中所有资源的列表。
 </p><p>
-<!--@See <a href="devtools.html">DevTools APIs summary</a> for
+<!--@See <a href="devtools">DevTools APIs summary</a> for
 general introduction to using Developer Tools APIs.-->
 有关使用开发者工具 API 的一般信息请参见<a
-href="devtools.html">开发者工具 API 概述</a>。
+href="devtools">开发者工具 API 概述</a>。
 </p>
 
 <h2 id="overview"><!--@Overview-->概述</h2>
 <p>
 <!--@The <code>$(ref:devtools.inspectedWindow.tabId tabId)</code> property
 provides the tab identifier that you can use with the
-<a href="tabs.html"><code>chrome.tabs.*</code></a> API calls.
+<a href="tabs"><code>chrome.tabs.*</code></a> API calls.
 However, please note that <code>chrome.tabs.*</code> API is not
 exposed to the Developer Tools extension pages due to security considerations
 &mdash; you will need to pass the tab ID to the background page and invoke
 the <code>chrome.tabs.*</code> API functions from there.-->
 <code>$(ref:devtools.inspectedWindow.tabId tabId)</code>
 属性提供标签页标识符，您可以在调用
-<a href="tabs.html"><code>chrome.tabs.*</code></a> API
+<a href="tabs"><code>chrome.tabs.*</code></a> API
 时使用。然而，值得注意的是，出于安全考虑，<code>chrome.tabs.*</code> API
 对开发者工具扩展程序网页不可用，您需要向后台网页传递标签页标识符，并在那儿调用
 <code>chrome.tabs.*</code> API 函数。
@@ -167,7 +167,7 @@ chrome.devtools.inspectedWindow.eval(
 
 <p>
 <!--@You can find more examples that use Developer Tools APIs in
-<a href="samples.html#devtools">Samples</a>.-->
-您可以在<a href="samples.html#devtools">示例</a>中找到使用开发者工具 API
+<a href="samples#devtools">Samples</a>.-->
+您可以在<a href="samples#devtools">示例</a>中找到使用开发者工具 API
 的更多例子。
 </p>

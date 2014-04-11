@@ -12,9 +12,9 @@ A popup is below the icon.-->
 
 <p>
 <!--@If you want to create an icon that isn't always visible,
-use a <a href="pageAction.html">page action</a>
+use a <a href="pageAction">page action</a>
 instead of a browser action.-->
-如果您想创建一个不是永远可见的图标，请使用<a href="pageAction.html"
+如果您想创建一个不是永远可见的图标，请使用<a href="pageAction"
 >页面按钮</a>，而不是浏览器按钮。
 </p>
 
@@ -22,9 +22,9 @@ instead of a browser action.-->
 
 <p>
 <!--@Register your browser action in the
-<a href="manifest.html">extension manifest</a>
+<a href="manifest">extension manifest</a>
 like this:-->
-如下所示在<a href="manifest.html"
+如下所示在<a href="manifest"
 >扩展程序的清单文件</a>中注册您的浏览器按钮：
 </p>
 
@@ -133,11 +133,11 @@ use the <b>default_title</b> field of <b>browser_action</b>
 in the <a href="#manifest">manifest</a>,
 or call the $(ref:browserAction.setTitle) method.
 You can specify locale-specific strings for the <b>default_title</b> field;
-see <a href="i18n.html">Internationalization</a> for details.-->
+see <a href="i18n">Internationalization</a> for details.-->
 要设置工具提示，使用<a href="#manifest">清单文件</a>中 <b>browser_action</b>
 部分的 <b>default_title</b> 属性，或者调用 $(ref:browserAction.setTitle)
 方法。对于 <b>default_title</b>
-属性，您可以指定区域相关的字符串，有关更多细节请参考<a href="i18n.html"
+属性，您可以指定区域相关的字符串，有关更多细节请参考<a href="i18n"
 >国际化支持</a>。
 </p>
 
@@ -200,8 +200,8 @@ $(ref:browserAction.setPopup) method.-->
     对于适用于大多数页面的功能<b>请使用</b>浏览器按钮。
   <li><!--@<b>Don't</b> use browser actions for features
     that make sense for only a few pages.
-    Use <a href="pageAction.html">page actions</a> instead.-->
-    对于仅适用于少数页面的内容<b>请不要</b>使用浏览器按钮，而应该使用<a href="pageAction.html">页面按钮</a>。
+    Use <a href="pageAction">page actions</a> instead.-->
+    对于仅适用于少数页面的内容<b>请不要</b>使用浏览器按钮，而应该使用<a href="pageAction">页面按钮</a>。
   <li><!--@<b>Do</b> use big, colorful icons that make the most of
     the 19x19-pixel space.
     Browser action icons should seem a little bigger
@@ -232,6 +232,6 @@ $(ref:browserAction.setPopup) method.-->
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/browserAction/">examples/api/browserAction</a>
 <!--@directory.
 For other examples and for help in viewing the source code, see
-<a href="samples.html">Samples</a>.-->
-目录中找到使用浏览器按钮的简单例子。有关其他示例和查看源代码的帮助，请参见<a href="samples.html">示例</a>。
+<a href="samples">Samples</a>.-->
+目录中找到使用浏览器按钮的简单例子。有关其他示例和查看源代码的帮助，请参见<a href="samples">示例</a>。
 </p>

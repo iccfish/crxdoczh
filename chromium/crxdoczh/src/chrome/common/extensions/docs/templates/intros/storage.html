@@ -24,8 +24,8 @@ with the following key differences:-->
   </li>
   <li><!--@A user's extension settings can be persisted
   even when using
-  <a href="manifest/incognito.html">split incognito behavior</a>.-->
-  即使使用<a href="manifest/incognito.html">分离式隐身行为</a>，用户的扩展程序设置也会保留。
+  <a href="manifest/incognito">split incognito behavior</a>.-->
+  即使使用<a href="manifest/incognito">分离式隐身行为</a>，用户的扩展程序设置也会保留。
   </li>
   <li><!--@It's asynchronous with bulk read and write operations, and therefore
   faster than the blocking and serial <code>localStorage API</code>.-->
@@ -38,18 +38,18 @@ with the following key differences:-->
   </li>
   <li><!--@Enterprise policies configured by the administrator for the extension
   can be read (using <code>storage.managed</code> with a
-  <a href="manifest/storage.html">schema</a>).-->
+  <a href="manifest/storage">schema</a>).-->
   可以读取管理员为扩展程序配置的企业策略（使用 <code>storage.managed</code>
-  和<a href="manifest/storage.html">架构</a>）。
+  和<a href="manifest/storage">架构</a>）。
   </li>
 </ul>
 
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
 <p><!--@You must declare the "storage" permission in the <a
-  href="manifest.html">extension manifest</a>
+  href="manifest">extension manifest</a>
   to use the storage API.
   For example:-->
-  您必须在<a href="manifest.html">扩展程序的清单文件</a>中声明
+  您必须在<a href="manifest">扩展程序的清单文件</a>中声明
   "storage" 权限才能使用存储 API。例如：
 </p>
 <pre data-filename="manifest.json">

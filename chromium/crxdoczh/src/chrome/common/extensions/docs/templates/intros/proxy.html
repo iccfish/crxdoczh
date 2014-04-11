@@ -1,9 +1,9 @@
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
 <p><!--@You must declare the "proxy" permission
-in the <a href="manifest.html">extension manifest</a>
+in the <a href="manifest">extension manifest</a>
 to use the proxy settings API.
 For example:-->
-您必须在<a href="manifest.html">扩展程序的清单文件</a>中声明
+您必须在<a href="manifest">扩展程序的清单文件</a>中声明
 "proxy"（代理服务器）权限来使用代理服务器设置 API。例如：
 </p>
 <pre data-filename="manifest.json">
@@ -242,10 +242,10 @@ derived from the scheme. The default ports are:-->
 foobar.com and uses direct connections for all other protocols. The settings
 apply to regular and incognito windows, as incognito windows inherit settings
 from regular windows. Please also consult the <a
-  href="types.html#ChromeSetting">Types API</a> documentation.-->
+  href="types#ChromeSetting">Types API</a> documentation.-->
 以下代码为除了 foobar.com 以外的所有 HTTP 连接设置 SOCKS 5
 代理，并为所有其他协议使用直接连接。这些设置应用于普通窗口和隐身窗口，因为隐身窗口从普通窗口继承设置。同时请参见<a
-href="types.html#ChromeSetting">类型 API</a> 文档。
+href="types#ChromeSetting">类型 API</a> 文档。
 </p>
 
 <pre>
@@ -288,9 +288,9 @@ chrome.proxy.settings.set(
 <p>
 <!--@The next snippet queries the currently effective proxy settings. The effective
 proxy settings can be determined by another extension or by a policy. See the <a
-  href="types.html#ChromeSetting">Types API</a> documentation for details.-->
+  href="types#ChromeSetting">Types API</a> documentation for details.-->
 下一个代码片段查询当前有效的代理服务器设置，有效代理服务器设置可以由另一个扩展程序或者其他策略确定。有关细节请参见<a
-href="types.html#ChromeSetting">类型 API</a>。
+href="types#ChromeSetting">类型 API</a>。
 </p>
 
 <pre>

@@ -4,7 +4,7 @@
 will contain an array of <code>$(ref:tabs.Tab)</code> objects.
 
 You must declare the <code>"tabs"</code> permission in your
-<a href="manifest.html">manifest</a> if you require access to the
+<a href="manifest">manifest</a> if you require access to the
 <code>$(ref:tabs.Tab.url url)</code>,
 <code>$(ref:tabs.Tab.title title)</code>, or
 <code>$(ref:tabs.Tab.favIconUrl favIconUrl)</code> properties of
@@ -16,7 +16,7 @@ For example:-->
 <code>$(ref:tabs.Tab.url url)</code>、<code>$(ref:tabs.Tab.title title)</code>
 或
 <code>$(ref:tabs.Tab.favIconUrl favIconUrl)</code>
-属性，您必须在<a href="manifest.html">清单文件</a>中声明
+属性，您必须在<a href="manifest">清单文件</a>中声明
 <code>"tabs"</code> 权限。例如：
 </p>
 
@@ -57,10 +57,10 @@ the call, no matter what the topmost window is.-->
 例如，假设一个扩展程序在一个 HTML 文件中创建了几个标签页或窗口，该 HTML 文件中又调用了 $(ref:tabs.query)。当前窗口是包含发出调用的页面的窗口，无论顶层窗口是哪一个。
 </p>
 
-<p><!--@In the case of the <a href="event_pages.html">event page</a>,
+<p><!--@In the case of the <a href="event_pages">event page</a>,
 the value of the current window falls back to the last active window. Under some
 circumstances, there may be no current window for background pages.-->
-而在<a href="event_pages.html">事件页面</a>中，当前窗口的值则是最后一个活动的窗口。在某些情况下，后台页面可能没有当前窗口。
+而在<a href="event_pages">事件页面</a>中，当前窗口的值则是最后一个活动的窗口。在某些情况下，后台页面可能没有当前窗口。
 </p>
 
 <h2 id="examples"><!--@ Examples -->例子</h2>
@@ -80,9 +80,9 @@ of the
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/">inspector</a>
 example.
 For other examples and for help in viewing the source code, see
-<a href="samples.html">Samples</a>.-->
+<a href="samples">Samples</a>.-->
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/">inspector</a>
 例子的
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/tabs_api.html?content-type=text/plain">tabs_api.html</a>
-文件中。有关其他例子以及查看源代码的帮助，请参见<a href="samples.html">示例</a>。
+文件中。有关其他例子以及查看源代码的帮助，请参见<a href="samples">示例</a>。
 </p>

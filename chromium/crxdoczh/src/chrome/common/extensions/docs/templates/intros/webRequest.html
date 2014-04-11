@@ -1,14 +1,15 @@
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
 <p><!--@You must declare the "webRequest" permission in the <a
-  href="manifest.html">extension manifest</a> to use the web request
-API, along with <a href="declare_permissions.html">host permissions</a>
+  href="manifest">extension manifest</a> to use the web request
+API, along with <a href="declare_permissions">host permissions</a>
 for any hosts whose network requests you want to access. If you want to
 use the web request API in a blocking fashion, you need to request
 the "webRequestBlocking" permission in addition.
 For example:-->
 要使用网络请求 API，您必须在<a
- href="manifest.html">扩展程序的清单文件</a>中声明 "webRequest"
- 权限，以及您需要访问网络请求的所有主机的主机权限。如果您需要以阻塞方式使用网络请求
+ href="manifest">扩展程序的清单文件</a>中声明 "webRequest"
+ 权限，以及您需要访问网络请求的所有主机的<a
+ href="declare_permissions#host-permissions">主机权限</a>。如果您需要以阻塞方式使用网络请求
  API，您还需要另外请求 "webRequestBlocking" 权限。例如：
 </p>
 <pre data-filename="manifest.json">
@@ -166,9 +167,10 @@ complete nor stable.-->
 <p>
 <!--@The webRequest API only exposes requests that the extension has
 permission to see, given its
-<a href="declare_permissions.html">host permissions</a>.
+<a href="declare_permissions">host permissions</a>.
 Moreover, only the following schemes are accessible:-->
-只有扩展程序具有相应的主机权限时，网络请求 API
+只有扩展程序具有相应的<a
+href="declare_permissions#host-permissions">主机权限</a>时，网络请求 API
 才会暴露相关的请求。此外，只能访问下列协议的请求：<!--@
 <code>http://</code>,
 <code>https://</code>,
@@ -226,12 +228,12 @@ HTTP 重定向或 HTTP 认证时，多个 HTTP
 <h3 id="subscription"><!--@Registering event listeners-->注册事件监听器</h3>
 
 <p><!--@To register an event listener for a web request, you use a variation on the
-<a href="events.html">usual <code>addListener()</code> function</a>.
+<a href="events">usual <code>addListener()</code> function</a>.
 In addition to specifying a callback function,
 you have to specify a filter argument and you may specify an optional extra info
 argument.-->
 要为网络请求注册事件处理函数，您使用通常
-<code>addListener()</code>
+$(ref:events.Event.addListener <code>addListener&#40;&#41;</code>)
 函数的一种变形。除了指定回调函数，您还必须指定过滤器参数，另外您还可以指定一个可选的额外信息参数。
 </p>
 
@@ -291,7 +293,7 @@ $(ref:webRequest.RequestFilter) 类型的 <code>filter</code>
 参数允许通过不同的方式限制为哪些请求产生事件：
 <dl>
   <dt>URLs</dt>
-  <dd><a href="match_patterns.html">URL
+  <dd><a href="match_patterns">URL
   <!--@ patterns-->匹配表达式</a><!--@ such as
   <code>*://www.google.com/foo*bar</code>.
   -->，例如 <code>*://www.google.com/foo*bar</code>。</dd>
@@ -426,5 +428,5 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
 </pre>
 
 <p><!--@ For more example code, see the -->有关更多示例代码，请参见<a
-href="samples.html#webrequest"><!--@web request
+href="samples#webrequest"><!--@web request
 samples-->网络请求示例</a><!--@.-->。</p>

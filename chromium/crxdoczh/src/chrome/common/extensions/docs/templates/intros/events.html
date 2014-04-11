@@ -46,10 +46,10 @@ $(ref:app.window),
 $(ref:i18n),
 $(ref:identity),
 $(ref:runtime).
-Most <a href="api_index.html">chrome APIs</a> do.-->
+Most <a href="api_index">chrome APIs</a> do.-->
 使用事件的 API
 有很多，例如：$(ref:alarms)、{{?is_apps}}$(ref:app.runtime)、$(ref:app.window)、{{/is_apps}}$(ref:i18n)、$(ref:identity)、$(ref:runtime)，大部分
-<a href="api_index.html">Chrome API</a> 都是如此。
+<a href="api_index">Chrome API</a> 都是如此。
 
 {{^is_apps}}
 <div class="doc-family extensions">
@@ -65,11 +65,11 @@ JavaScript 引擎中求值，因而减少了来回的延迟，并提供极高的
 </p>
 
 <p><!--@Declarative event handlers are used for example in the <a
-href="declarativeWebRequest.html">Declarative Web Request API</a> and <a
-href="declarativeContent.html">Declarative Content API</a>. This page describes
+href="declarativeWebRequest">Declarative Web Request API</a> and <a
+href="declarativeContent">Declarative Content API</a>. This page describes
 the underlying concepts of all declarative event handlers.-->
-声明式事件处理程序在诸如<a href="declarativeWebRequest.html">声明式网络请求
-API</a> 与 <a href="declarativeContent.html">声明式内容
+声明式事件处理程序在诸如<a href="declarativeWebRequest">声明式网络请求
+API</a> 与 <a href="declarativeContent">声明式内容
 API</a>中使用，该网页描述所有声明式事件处理程序背后的概念。
 </p>
 
@@ -110,7 +110,7 @@ var rule = {
 <h3 id="eventobjects"><!--@Event objects-->事件对象</h3>
 
 <p>
-<!--@<a href="events.html">Event objects</a> may support rules. These event objects
+<!--@<a href="events">Event objects</a> may support rules. These event objects
 don't call a callback function when events happen but test whether any
 registered rule has at least one fulfilled condition and execute the actions
 associated with this rule. Event objects supporting the declarative API have
@@ -293,10 +293,11 @@ chrome.declarativeWebRequest.onRequest.addRules([rule]);</pre>
 <p><!--@Filtered events are a mechanism that allows listeners to specify a subset of
 events that they are interested in. A listener that makes use of a filter won't
 be invoked for events that don't pass the filter, which makes the listening
-code more declarative and efficient - an <a href="event_pages.html">event
+code more declarative and efficient - an <a href="event_pages">event
   page</a> page need not be woken up to handle events it doesn't care
 about.-->
-事件过滤是一种让监听者指定感兴趣的事件子集的机制。利用过滤器的监听者不会为不符合过滤规则的事件调用，使监听代码更具有声明性也更高效——事件页面也不必为了处理它不关心的事件而唤醒。
+事件过滤是一种让监听者指定感兴趣的事件子集的机制。利用过滤器的监听者不会为不符合过滤规则的事件调用，使监听代码更具有声明性也更高效——<a
+href="event_pages">事件页面</a>也不必为了处理它不关心的事件而唤醒。
 </p>
 
 <p><!--@Filtered events are intended to allow a transition from manual filtering

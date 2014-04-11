@@ -1,11 +1,11 @@
 <h2 id="manifest"><!--@Manifest-->清单文件</h2>
 <p>
 <!--@All <code>chrome.webNavigation</code> methods and events require you to declare
-the "webNavigation" permission in the <a href="manifest.html">extension
+the "webNavigation" permission in the <a href="manifest">extension
 manifest</a>.
 For example:-->
 所有 <code>chrome.webNavigation</code>
-方法和事件要求您在<a href="manifest.html">扩展程序的清单文件</a>中声明
+方法和事件要求您在<a href="manifest">扩展程序的清单文件</a>中声明
 "webNavigation" 权限。例如：
 </p>
 
@@ -29,8 +29,8 @@ For example:-->
 <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/webNavigation/">examples/api/webNavigation</a>
 <!--@directory.
 For other examples and for help in viewing the source code, see
-<a href="samples.html">Samples</a>.-->
-目录中找到使用网页导航模块的简单例子。有关其他例子以及查看源代码的帮助，请参见<a href="samples.html">示例</a>。
+<a href="samples">Samples</a>.-->
+目录中找到使用网页导航模块的简单例子。有关其他例子以及查看源代码的帮助，请参见<a href="samples">示例</a>。
 </p>
 
 <h2 id="event_order"><!--@Event order-->事件顺序</h2>
@@ -92,11 +92,11 @@ href="https://support.google.com/chrome/bin/answer.py?answer=177873">Chrome
 <h2 id="relation_to_webRequest"><!--@Relation to webRequest events-->与网络请求事件间的关系</h2>
 <p>
 <!--@There is no defined ordering between events of the <a
-href="webRequest.html">webRequest API</a> and the events of the
+href="webRequest">webRequest API</a> and the events of the
 webNavigation API. It is possible that webRequest events are still received for
 frames that already started a new navigation, or that a navigation only
 proceeds after the network resources are already fully loaded.-->
-在<a href="webRequest.html">网络请求 API</a> 与网页导航 API
+在<a href="webRequest">网络请求 API</a> 与网页导航 API
 产生的事件之间没有确定的顺序。已经开始新导航的框架可能还会收到网络请求事件，或者也可能导航仅在网络资源完全加载后才继续进行。
 </p>
 <p>
@@ -110,13 +110,13 @@ the state of the network stack which is generally opaque to the user.-->
 <p>
 <!--@Not all navigating tabs correspond to actual tabs in Chrome's UI, e.g., a tab
 that is being pre-rendered. Such tabs are not accessible via the
-<a href="tabs.html">tabs API</a> nor can you request information about them via
+<a href="tabs">tabs API</a> nor can you request information about them via
 <code>webNavigation.getFrame</code> or <code>webNavigation.getAllFrames</code>.
 Once such a tab is swapped in, an <code>onTabReplaced</code> event is fired and
 they become accessible via these APIs.-->
 并不是所有正在导航的标签页都对应于 Chrome 
 浏览器用户界面中的真实标签页，例如预呈现标签页。这样的标签页不能通过<a
-href="tabs.html">标签页 API</a> 访问，您也不能通过
+href="tabs">标签页 API</a> 访问，您也不能通过
 <code>webRequest.getFrame</code> 或 <code>webRequest.getAllFrames</code>
 请求有关信息。一旦这样的标签页交换进来，将产生 <code>onTabReplced</code>
 事件，并且它们也可以通过这些 API 访问了。
@@ -169,12 +169,12 @@ case, you will receive repeated <code>onBeforeNavigate</code> and
 <!--@The webNavigation API's <code>onCommitted</code> event has a
 <code>transitionType</code> and a <code>transitionQualifiers</code> property.
 The <em>transition type</em> is the same as used in the <a
-href="history.html#transition_types">history API</a> describing how the browser
+href="history#transition_types">history API</a> describing how the browser
 navigated to this particular URL. In addition, several <em>transition
 qualifiers</em> can be returned that further define the navigation.-->
 网页导航 API 的 <code>onCommitted</code> 事件包含
 <code>transitionType</code> 与 <code>transitionQualifiers</code>
-属性。过渡类型与<a href="history.html#transition_types">历史记录 API</a>
+属性。过渡类型与<a href="history#transition_types">历史记录 API</a>
 中所使用的相同，描述浏览器如何导航至这一特定的 URL。此外，还会返回几种过渡限定符，进一步定义本次导航。
 </p>
 <p>
