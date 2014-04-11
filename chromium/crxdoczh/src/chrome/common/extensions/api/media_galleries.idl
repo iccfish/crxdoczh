@@ -73,6 +73,8 @@ namespace mediaGalleries {
       void ([instanceOf=DOMFileSystem] object[] mediaFileSystems,
             DOMString selectedFileSystemName);
 
+  callback DropPermissionForMediaFileSystemCallback = void (boolean wasDropped);
+
   [inline_doc] dictionary MediaFileSystemMetadata {
     // <!--@The name of the file system.-->
     // 文件系统的名称。
@@ -175,6 +177,12 @@ namespace mediaGalleries {
     // 向用户显示选择文件夹对话框，并将选定目录添加为媒体库。如果用户取消对话框，selectedFileSystemName
     // 为空。需要用户操作才能显示对话框，如果没有用户操作，调用回调函数时就像用户取消操作一样。
     static void addUserSelectedFolder(AddUserFolderCallback callback);
+
+    // <!--@Give up access to a given media gallery.-->
+    // 放弃指定媒体库的访问权限。
+    static void dropPermissionForMediaFileSystem(
+        DOMString galleryId,
+        optional DropPermissionForMediaFileSystemCallback callback);
 
     // <!--@Start a scan of the user's hard disks for directories containing media.
     // The scan may take a long time so progress and completion is communicated

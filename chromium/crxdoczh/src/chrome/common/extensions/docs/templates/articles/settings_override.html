@@ -54,6 +54,44 @@ in the Chrome Dev release.-->
 <code>startup_pages</code> 的设置重写只能在 Dev 分支的 Chrome 浏览器中使用。
 </p>
 
+<h2 id="customizing"><!--@Customizing values-->自定义值</h2>
+<p><!--@Values in the manifest can be customized in the following ways:-->清单文件中的值可以以下列方式自定义：</p>
+<ul>
+  <li>
+  <!--@All values of the <code>search_provider</code>, <code>homepage</code> and
+  <code>startup_pages</code> properties can be localized using the
+  $(ref:i18n chrome.i18n API).-->
+  <code>search_provider</code>、<code>homepage</code> 和
+  <code>startup_pages</code> 属性可以使用 $(ref:i18n chrome.i18n API)
+  本地化。
+  </li>
+  <li>
+  <!--@For <a href="http://developer.chrome.com/extensions/external_extensions">external extensions</a>,
+  the <code>search_provider</code>, <code>homepage</code> and
+  <code>startup_pages</code> URL values can be parametrized using a registry key.
+  A new registry entry should be created next to the "update_url" key (see
+  instructions <a href="http://developer.chrome.com/extensions/external_extensions#registry">here</a>).
+  The value name is "install_parameter", the value data is an arbitrary string:-->
+  对于<a
+  href="external_extensions">外部扩展程序</a>来说，<code
+  >search_provider</code>、<code>homepage</code> 和 <code>startup_pages</code>
+  的 URL 值可以使用注册表中指定的参数。在“update_url”（参见<a
+  href="external_extensions#registry">这里</a>的说明）所在位置创建新的注册表项，名为“install_parameters”，值数据为任意字符串：
+  <pre>{
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "install_parameter": "值"
+  }</pre>
+  <!--@All occurrences of the substring "__PARAM__" in the manifest URLs will be
+  substituted with the "install_parameter" value. If “install_parameter” is
+  absent, occurrences of "__PARAM__" are removed. Note that "__PARAM__" cannot
+  be part of the hostname. It needs to occur after the first '/' in the URL.-->
+  清单文件 URL 中所有字串 "__PARAM__"
+  都会替换成“install_parameter”值。如果没有指定“install_parameters”，"__PARAM__"
+  全都会被删除。注意，"__PARAM__" 不能是主机名的一部分，必须在 URL
+  中第一个“/”之后出现。
+  </li>
+</ul>
+
 <h2 id="reference"><!--@Reference-->参考</h2>
 <p>
 <!--@An extension can override one or more of the following properties in the
