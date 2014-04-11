@@ -2,12 +2,12 @@
 
 
 <p>
-<!--@The <a href="app_architecture.html#security">Chrome Apps security model</a> disallows
+<!--@The <a href="app_architecture#security">Chrome Apps security model</a> disallows
 external content in iframes and
 the use of inline scripting and <code>eval()</code>.
 You can override these restrictions,
 but your external content must be isolated from the app.-->
-<a href="app_architecture.html#security">Chrome 应用的安全模型</a>不允许
+<a href="app_architecture#security">Chrome 应用的安全模型</a>不允许
 iframe 中的外部内容，也不允许使用内嵌脚本与
 <code>eval()</code>。您可以覆盖这些限制，但是您的外部内容必须与应用程序隔离。
 </p>
@@ -34,12 +34,12 @@ Check out the-->想试试这些代码吗？请参见
 <h2 id="external"><!--@Referencing external resources-->引用外部资源</h2>
 
 <p>
-<!--@The <a href="contentSecurityPolicy.html">Content Security Policy</a> used by apps disallows
+<!--@The <a href="contentSecurityPolicy">Content Security Policy</a> used by apps disallows
 the use of many kinds of remote URLs, so you can't directly reference external
 images, stylesheets, or fonts from an app page. Instead, you can use use
 cross-origin XMLHttpRequests to fetch these resources,
 and then serve them via <code>blob:</code> URLs.-->
-应用使用的<a href="contentSecurityPolicy.html">内容安全策略</a>不允许多种类型的远程
+应用使用的<a href="contentSecurityPolicy">内容安全策略</a>不允许多种类型的远程
 URL，所以您不能从应用页面中直接引用外部图像、样式表或字体。相反，您可以使用跨站
 XMLHttpRequest 获取这些资源，并通过 <code>blob:</code> URL 来使用它们。
 </p>
@@ -82,9 +82,9 @@ xhr.onload = function(e) {
 xhr.send();
 </pre>
 
-<p><!--@You may want to <a href="offline_apps.html#saving-locally">save</a>
+<p><!--@You may want to <a href="offline_apps#saving-locally">save</a>
 these resources locally, so that they are available offline.-->
-您可能希望在本地<a href="offline_apps.html#saving-locally"
+您可能希望在本地<a href="offline_apps#saving-locally"
 >保存</a>这些资源，这样它们在离线状态下也可以使用。
 </p>
 
@@ -153,9 +153,9 @@ These pages are then exempt from their Content Security Policy.
 Sandboxed pages can use iframes, inline scripting,
 and <code>eval()</code>.
 Check out the manifest field description for
-<a href="manifest/sandbox.html">sandbox</a>.-->
+<a href="manifest/sandbox">sandbox</a>.-->
 沙盒功能允许指定页面在经过沙盒屏蔽的唯一来源中运行，这些页面就不受内容安全策略的限制。经过沙盒屏蔽的页面可以使用 iframe、内嵌脚本以及
-<code>eval()</code>。请查阅 <a href="manifest/sandbox.html">sandbox</a>
+<code>eval()</code>。请查阅 <a href="manifest/sandbox">sandbox</a>
 清单文件字段的描述。
 </p>
 

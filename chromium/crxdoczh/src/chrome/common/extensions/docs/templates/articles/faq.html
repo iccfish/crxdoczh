@@ -94,8 +94,8 @@ try the-->
   Now you can reload extensions,
   load an unpacked directory of files as if it were a packaged extension,
   and more. For a complete tutorial, see
-  <a href="/extensions/getstarted.html">Getting Started</a>.-->
-  并从<b>工具(L)</b>菜单选择<b>扩展程序(E)</b>。如果“开发者模式”未选中，单击复选框选中它。现在您可以重新加载扩展程序、加载未打包的目录中的文件，就像加载已打包的扩展程序那样，还有更多。有关完整的教程，请参见<a href="getstarted.html">入门</a>。
+  <a href="/extensions/getstarted">Getting Started</a>.-->
+  并从<b>工具(L)</b>菜单选择<b>扩展程序(E)</b>。如果“开发者模式”未选中，单击复选框选中它。现在您可以重新加载扩展程序、加载未打包的目录中的文件，就像加载已打包的扩展程序那样，还有更多。有关完整的教程，请参见<a href="getstarted">入门</a>。
 </p>
 {{/is_apps}}
 
@@ -107,7 +107,7 @@ try the-->
   scripting. Because Chrome supports HTML5 and CSS3, developers can
   use the latest open web technologies such as canvas and CSS animations in
   their extensions. Extensions also have access to several
-  <a href="/extensions/api_other.html">JavaScript APIs</a>
+  <a href="/extensions/api_other">JavaScript APIs</a>
   that help perform functions like JSON encoding and interacting with the
   browser.-->
   编写扩展程序与开发者创建网站一样，使用相同的标准网络技术。HTML
@@ -115,7 +115,7 @@ try the-->
   用于脚本。由于 Chrome 浏览器支持 HTML5 和
   CSS3，开发者可以在扩展程序中使用最新的网络技术，例如画布和
   CSS 动画。扩展程序也可以访问一些
-  <a href="api_other.html">JavaScript
+  <a href="api_other">JavaScript
   API</a>，帮助进行诸如 JSON
   编码以及与浏览器交互的功能。
 </p>
@@ -187,10 +187,10 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 <h3 id="faq-dev-02"><!--@Can extensions make cross-domain Ajax requests?-->扩展程序能否发起跨域 Ajax 请求？</h3>
 <p>
   <!--@Yes. Extensions can make cross-domain requests.  See
-  <a href="/extensions/xhr.html">this page</a>
+  <a href="/extensions/xhr">this page</a>
   for more information.-->
   可以，扩展程序能够发出跨域请求。有关更多信息，请参见<a
-  href="xhr.html">这一页面</a>。
+  href="xhr">这一页面</a>。
 </p>
 
 <h3 id="faq-dev-03"><!--@Can extensions use 3rd party web services?-->扩展程序能否使用第三方网络服务？</h3>
@@ -235,7 +235,7 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
   浏览器实现了<a href="http://dev.w3.org/html5/webdatabase/">客户端
   SQL 数据库</a>，您也可以使用。从 Chrome 20
   开始，扩展程序还能使用
-  <a href="storage.html">chrome.storage</a> API
+  <a href="storage">chrome.storage</a> API
   存储数据，并且还可以自动同步。
 </p>
 
@@ -253,46 +253,46 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 
 <h3 id="faq-dev-06"><!--@Can extensions load DLLs?-->扩展程序能否加载 DLL？</h3>
 <p>
-  <!--@Yes, using the <a href="npapi.html">NPAPI interface</a>.
+  <!--@Yes, using the <a href="npapi">NPAPI interface</a>.
   Because of the possibility for abuse, though, we will review your extension
   before hosting it in the Chrome Web Store.-->
-  可以，只要使用 <a href="npapi.html">NPAPI 接口</a>。然而由于可能的滥用行为，我们在
+  可以，只要使用 <a href="npapi">NPAPI 接口</a>。然而由于可能的滥用行为，我们在
   Chrome 网上应用店中托管您的扩展程序前要先审核。
 </p>
 
 <h3 id="faq-dev-05"><!--@Can extensions create UI outside of the rendered web page?-->扩展程序能否在呈现的网页外创建用户界面？</h3>
 <p>
   <!--@Yes, your extension may add buttons to the Chrome browser's user interface.
-  See <a href="browserAction.html">browser actions</a> and
-  <a href="pageAction.html">page actions</a> for more information.-->
+  See <a href="browserAction">browser actions</a> and
+  <a href="pageAction">page actions</a> for more information.-->
   可以。您的扩展程序可以向 Chrome
   浏览器的用户界面添加按钮，有关更多信息请参见<a
-  href="browserAction.html">浏览器按钮和<a
-  href="pageAction.html">页面按钮</a>。
+  href="browserAction">浏览器按钮和<a
+  href="pageAction">页面按钮</a>。
 </p>
 <p>
   <!--@An extension may also create popup notifications, which exist outside of the
-  browser window.  See the <a href="desktop_notifications.html">desktop
+  browser window.  See the <a href="desktop_notifications">desktop
     notifications</a> documentation for more details.-->
-    扩展程序也可以创建弹出通知，在浏览器窗口外存在。有关更多详情请参见<a href="desktop_notifications.html">桌面通知</a>文档。
+    扩展程序也可以创建弹出通知，在浏览器窗口外存在。有关更多详情请参见<a href="desktop_notifications">桌面通知</a>文档。
 </p>
 
 <h3 id="faq-interact-chrome"><!--@Can extensions listen to clicks on Chrome tabs and
   navigation buttons?-->扩展程序能否监听 Chrome 标签页以及导航按钮的点击？</h3>
 <p>
   <!--@No.  Extensions are limited to listening to the events described in the <a
-    href="api_index.html">API documentation</a>.-->
+    href="api_index">API documentation</a>.-->
   不能。扩展程序仅限于监听
-  <a href="api_index.html">API 文档</a>中描述的事件。
+  <a href="api_index">API 文档</a>中描述的事件。
 </p>
 
 <h3 id="faq-dev-11"><!--@Can two extensions communicate with each other?-->两个扩展程序能否互相通信？</h3>
 <p>
   <!--@Yes, extensions may pass messages to other extensions. See the
-  <a href="messaging.html#external">message passing documentation</a>
+  <a href="messaging#external">message passing documentation</a>
   for more information.-->
   可以。扩展程序可以向其他扩展程序传递消息，有关更多信息请参见<a
-  href="messaging.html#external">消息传递文档</a>。
+  href="messaging#external">消息传递文档</a>。
 </p>
 
 {{^is_apps}}
@@ -302,11 +302,11 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
   <a href="http://www.google.com/analytics/">Google Analytics</a> to track
   usage.  However, you must modify the tracking code to pull
   an HTTPS version of the Google Analytics library.  See
-  <a href="tut_analytics.html">this tutorial</a> for more information on doing
+  <a href="tut_analytics">this tutorial</a> for more information on doing
   this.-->
   可以。由于扩展程序就像网站一样，它们可以使用
   Google Analytics（分析）来跟踪使用情况。然而，您需要修改所有的追踪代码，使用
-  HTTPS 版本的 Google Analytics（分析）库。有关更多信息请参见<a href="tut_analytics.html">这一教程</a>。
+  HTTPS 版本的 Google Analytics（分析）库。有关更多信息请参见<a href="tut_analytics">这一教程</a>。
 </p>
 {{/is_apps}}
 
@@ -330,12 +330,12 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 </p>
 
 <p>
-  <!--@The reason that <a href="override.html">replacing the content</a>
+  <!--@The reason that <a href="override">replacing the content</a>
   hosted at these URLs entirely is
   allowed is because it forces an extension developer to implement all of the
   functionality they want without depending on the browser's internal implementation
   to stay the same.-->
-  <a href="override.html">替换托管于这些 URL
+  <a href="override">替换托管于这些 URL
   上的内容</a>是允许的，因为这样扩展程序的开发者不得不实现他们需要的所有功能，而不会依赖于浏览器的内部实现保持不变。
 </p>
 {{/is_apps}}
@@ -390,7 +390,7 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 <p>
   <!--@Extensions can store up to 5MB of data in localStorage.-->
   扩展程序最多可以在本地存储中储存 5MB 数据。如果使用
-  <a href="storage.html">chrome.storage</a> API 并在清单文件中指定了
+  <a href="storage">chrome.storage</a> API 并在清单文件中指定了
   "unlimitedStorage" 权限则不受这一限制。
 </p>
 
@@ -398,12 +398,12 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 <h3 id="faq-dev-10"><!--@How do I create an options menu for my application?-->我应该如何为我的应用创建一个选项菜单？</h3>
 <p>
   <!--@You can let users set options for your extension by creating an
-  <a href="/extensions/options.html">options page</a>,
+  <a href="/extensions/options">options page</a>,
   which is a simple HTML page that will be loaded when a user clicks the
   "options" button for your extension. This page can read and write settings
   to localStorage, or even send options to a web server so that they can be
   persisted across browsers.-->
-  您可以通过创建一个<a href="options.html">选项页面</a>让用户为您的扩展程序设置选项。选项页面是一个简单的
+  您可以通过创建一个<a href="options">选项页面</a>让用户为您的扩展程序设置选项。选项页面是一个简单的
   HTML 页面，当用户单击您的扩展程序的“选项”链接时加载。这一页面可以从本地存储中读写数据，甚至可以将选项发送至网络服务器，以便在不同的浏览器中使用。
 </p>
 {{/is_apps}}
@@ -412,10 +412,10 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 <p>
   <!--@Chrome's built-in developer tools can be used to debug extensions
   as well as web pages. See this
-  <a href="/extensions/tut_debugging.html ">tutorial on debugging extensions</a>
+  <a href="/extensions/tut_debugging">tutorial on debugging extensions</a>
   for more information.-->
   Chrome 浏览器内建的开发者工具可以用来调试扩展程序和网页，有关更多信息请参见<a
-  href="tut_debugging.html">有关调试扩展程序的教程</a>。
+  href="tut_debugging">有关调试扩展程序的教程</a>。
 </p>
 
 <h3 id="faq-dev-16"><!--@Why do wildcard matches not work for top level domains
@@ -459,10 +459,10 @@ cros,beta,#.#.###.#,#.#.###.#,mm/dd/yy,mm/dd/yy,#####,#####,#####</pre>
 <h3 id="faq-management"><!--@Why does the management API not fire events when my
   extension is installed/uninstalled?-->为什么当我的扩展程序安装或卸载时管理 API 不产生事件？</h3>
 <p>
-  <!--@The <a href="management.html">management API</a> was intended to help create
+  <!--@The <a href="management">management API</a> was intended to help create
   new tab page replacement extensions.  It was not intended to fire
   install/uninstall events for the current extension.-->
-  <a href="management.html">管理 API</a>
+  <a href="management">管理 API</a>
   的目的是帮助您创建替代“打开新的标签页”页面的扩展程序，而不是为当前扩展程序产生安装/卸载事件。
 </p>
 

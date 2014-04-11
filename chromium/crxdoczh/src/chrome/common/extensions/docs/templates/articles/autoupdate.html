@@ -13,10 +13,10 @@ Chrome 网上应用店发布您的扩展程序的更新版本。
 </p>
 
 <p><!--@If you want to host somewhere other than the store, keep reading.
-You should also read <a href="hosting.html">Hosting</a> and
-<a href="packaging.html">Packaging</a>.-->
+You should also read <a href="hosting">Hosting</a> and
+<a href="packaging">Packaging</a>.-->
 如果您想在网上应用店以外的地方托管您的扩展程序，请继续读下去。您还应该阅读<a
-href="hosting.html">托管</a>以及<a href="packaging.html">打包</a>。
+href="hosting">托管</a>以及<a href="packaging">打包</a>。
 </p>
 
 <p class="warning"><b><!--@Warning:-->警告：</b><!--@
@@ -38,11 +38,11 @@ However, extensions hosted on the Chrome Web Store are updated
 via the Chrome update mechanism which developers do not control.
 Extension developers should be careful about updating extensions
 that have a dependency on the native binary
-(for example, legacy extensions using <a href="npapi.html">NPAPI</a>).-->
+(for example, legacy extensions using <a href="npapi">NPAPI</a>).-->
 以前支持网上应用店以外的扩展程序时，可以一次性更新原生二进制文件和扩展程序。而现在，Chrome
 网上应用店中托管的扩展程序通过 Chrome
 浏览器的更新机制更新，开发者并不能控制。扩展程序开发者在更新依赖于原生二进制文件的扩展程序（例如使用
-<a href="npapi.html">NPAPI</a> 的旧式扩展程序）时要特别注意。
+<a href="npapi">NPAPI</a> 的旧式扩展程序）时要特别注意。
 </p>
 
 <h2 id="overview"><!--@Overview-->概述</h2>
@@ -59,7 +59,7 @@ URL。浏览器会对每一个扩展程序的更新 URL 发出请求，查询更
 
 <h2 id="update_url"><!--@Update-->更新 URL</h2>
 <p><!--@If you're hosting your own extension or app, you need to add the "update_url" field to your-->如果您要托管自己的扩展程序，您需要在您的
-<a href="manifest.html"><code>manifest.json</code></a><!--@ file,
+<a href="manifest"><code>manifest.json</code></a><!--@ file,
 like this:-->
 文件中添加 "update_url" 属性，如下所示：
 </p>
@@ -101,10 +101,10 @@ and <strong>&lt;updatecheck></strong> elements of the update manifest:-->
 
 <p><b>appid</b><br>
 <!--@The extension or app ID, generated based on a hash of the public key,
-as described in <a href="packaging.html">Packaging</a>. You can find the
+as described in <a href="packaging">Packaging</a>. You can find the
 ID of an extension or Chrome App by going to the Extensions page (<b>chrome://extensions</b>).-->
 扩展程序或 Chrome 应用标识符，基于公共密钥的散列值生成，如<a
-href="packaging.html">打包</a>部分所述。您可以进入扩展程序页面（<b
+href="packaging">打包</a>部分所述。您可以进入扩展程序页面（<b
 >chrome://extensions</b>）找到您的扩展程序标识符。
 </p>
 {{?is_apps}}

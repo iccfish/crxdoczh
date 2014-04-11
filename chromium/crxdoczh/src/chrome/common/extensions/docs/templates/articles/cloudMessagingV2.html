@@ -2,13 +2,13 @@
 <h1 id="gcm"><!--@Google Cloud Messaging-->Google 云消息服务</h1>
 
 <p><!--@Google Cloud Messaging (GCM) is a service for both Android-powered device and
-Chrome instances to send and receive message data from servers. <a href="gcm.html">GCM Chrome
+Chrome instances to send and receive message data from servers. <a href="gcm">GCM Chrome
 API</a> allows the Chrome apps or extensions to access the GCM
 service for the signed-in Chrome users. The service works even if an app or
 extension isn't currently running. For example, calendar updates could be pushed
 to users even when their calendar app isn't open. -->
 Google 云消息服务（GCM）是一项用于 Android 设备和 Chrome
-应用的服务，可以向服务器发送和接收数据。<a href="gcm.html">GCM Chrome
+应用的服务，可以向服务器发送和接收数据。<a href="gcm">GCM Chrome
 API</a> 允许 Chrome 应用或扩展程序以 Chrome 中登录用户的身份访问 GCM
 服务。即使应用或扩展程序不在运行时该服务也能正常工作，例如即使日历应用没有打开，日历更新也可以推送至用户。
 </p>
@@ -23,12 +23,12 @@ of Service</a>.-->
 </p>
 
 <p><!--@This document describes how to set up and use GCM. For additional information
-see the reference documentation for the <a href="gcm.html">GCM Chrome API</a> and
+see the reference documentation for the <a href="gcm">GCM Chrome API</a> and
 the <a href="http://developer.android.com/google/gcm/index.html">GCM Service</a>. To get
 help with GCM or to give us feedback, please see
 <a href="#feedback">Feedback</a>.-->
 该文档描述了设置和使用 GCM 的方法，有关更多信息，请参见
-<a href="gcm.html">GCM Chrome API</a> 的参考文档和
+<a href="gcm">GCM Chrome API</a> 的参考文档和
 <a href="https://developer.android.com/google/gcm/index.html">GCM
 服务</a>。要想获取关于 GCM 的帮助或者给我们反馈，请参见<a
 href="#feedback">反馈</a>。
@@ -200,8 +200,8 @@ GCM 服务。
 
 <p><!--@Please note that the <code>storage</code> permission is also provided here because the
 sample codes below needs to persist some data via the
-<a href="storage.html">chrome.storage</a> API.-->
-请注意，由于下列示例代码需要通过 <a href="storage.html">chrome.storage</a>
+<a href="storage">chrome.storage</a> API.-->
+请注意，由于下列示例代码需要通过 <a href="storage">chrome.storage</a>
 API 保存一些数据，所以还提供了 <code>storage</code> 权限。
 </p>
 
@@ -343,10 +343,10 @@ recommended to stay unique across the lifetime of your app or extension, even
 after it restarts. If you use the same message ID, there may be a chance that
 the previous message gets overridden. If an auto-increment counter is used to
 create the message ID, your app or extension should persist the counter value
-via <a href="storage.html">chrome.storage</a> API and restore it when the app
+via <a href="storage">chrome.storage</a> API and restore it when the app
 reloads.-->
 消息标识符，在放入队列或投递失败时标志消息。消息标识符可以是任何字符串，但是建议在您的应用或扩展程序的整个生命周期内确保它的唯一性，即使在重新启动后。如果您使用相同的消息标识符，之前的消息有可能被覆盖。如果使用自增计数器创建消息标识符，您的应用或扩展程序应该使用
-<a href="storage.html">chrome.storage</a> API
+<a href="storage">chrome.storage</a> API
 保存计数器值，并在应用重新载入时恢复它。
 </li>
 <li><!--@Destination ID that identifies the server. This is the project number from the

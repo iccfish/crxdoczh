@@ -3,20 +3,21 @@
 
 <p>
   <!--@Chrome's extension system enforces a fairly strict default
-  <a href='../extensions/contentSecurityPolicy.html'>
+  <a href='../extensions/contentSecurityPolicy'>
     <strong>Content Security Policy (CSP)</strong>
   </a>. The policy restrictions are straightforward: script must be moved
   out-of-line into separate JavaScript files, inline event handlers must be
   converted to use <code>addEventListener</code>, and <code>eval()</code> is
   disabled. Chrome Apps have an
-  <a href='contentSecurityPolicy.html'>even more strict
+  <a href='contentSecurityPolicy'>even more strict
   policy</a>, and we're quite happy with the security properties these policies
   provide.-->
   Chrome 浏览器的扩展程序系统默认情况下强制实施相当严格的<a
-  href='contentSecurityPolicy.html'><strong>内容安全策略（CSP）</strong></a>。这些策略限制非常直白：内嵌脚本必须移动至单独的
+  href='contentSecurityPolicy'><strong>内容安全策略（CSP）</strong></a>。这些策略限制非常直白：内嵌脚本必须移动至单独的
   JavaScript 文件，内嵌的事件处理函数必须转换为使用
   <code>addEventListener</code>，并且 <code>eval()</code> 已禁用。Chrome
-  浏览器的应用具有更严格的策略，然而我们对于这些策略提供的安全特性相当满意。
+  浏览器的应用具有<a href='contentSecurityPolicy'
+  >更严格的策略</a>，然而我们对于这些策略提供的安全特性相当满意。
 </p>
 
 <p>
@@ -85,13 +86,13 @@
 
 <p>
   <!--@If you'd like to dive straight into code, please grab the
-  <a href='/extensions/samples.html#sandboxed-frame'>sandboxing
+  <a href='/extensions/samples#sandboxed-frame'>sandboxing
   sample extension and take off</a>. It's a working example of a tiny messaging
   API built on top of the <a href='http://handlebarsjs.com'>Handlebars</a>
   templating library, and it should give you everything you need to get going.
   For those of you who'd like a little more explanation, let's walk through that
   sample together here.-->
-  如果您想直接深入代码，请参考<a href='samples.html#sandboxed-frame'
+  如果您想直接深入代码，请参考<a href='samples#sandboxed-frame'
   >沙箱示例扩展程序</a>。这一可以正常工作的例子包含基于
   <a href='http://handlebarsjs.com'>Handlebars</a>
   模板库构建的短小精悍的消息
@@ -126,7 +127,7 @@
   <!--@In order to do something interesting with the sandboxed file, we need to load
   it in a context where it can be addressed by the extension's code. Here,
   <a href='/extensions/examples/howto/sandbox/sandbox.html'>sandbox.html</a>
-  has been loaded into the extension's <a href='event_pages.html'>Event
+  has been loaded into the extension's <a href='event_pages'>Event
   Page</a> (<a href='/extensions/examples/howto/sandbox/eventpage.html'>eventpage.html</a>)
   via an <code>iframe</code>. <a href='/extensions/examples/howto/sandbox/eventpage.js'>eventpage.js</a>
   contains code that sends a message into the sandbox whenever the browser
@@ -136,7 +137,7 @@
   properties: <code>context</code> and <code>command</code>. We'll dive into
   both in a moment.-->
   为了通过受沙箱保护的文件做一些有意义的事，我们需要在扩展程序代码可以访问的环境中加载它。在该示例中，<a href='examples/howto/sandbox/sandbox.html'>sandbox.html</a>
-  通过 <code>iframe</code> 在扩展程序的<a href="event_pages.html"
+  通过 <code>iframe</code> 在扩展程序的<a href="event_pages"
   >事件页面</a>（<a href='examples/howto/sandbox/eventpage.html'
   >eventpage.html</a>）中加载。每当浏览器按钮单击时，<a href='examples/howto/sandbox/eventpage.js'>eventpage.js</a>
   中包含的代码会找到页面中的 <code>iframe</code>，并在它的
@@ -242,7 +243,7 @@ chrome.browserAction.onClicked.addListener(function() {
 <p>
   <!--@Back in the Event Page, we'll receive this message, and do something
   interesting with the <code>html</code> data we've been passed. In this case,
-  we'll just echo it out via a <a href='desktop_notifications.html'>Desktop
+  we'll just echo it out via a <a href='desktop_notifications'>Desktop
   Notification</a>, but it's entirely possible to use this HTML safely as part
   of the extension's UI. Inserting it via <code>innerHTML</code> doesn't pose a
   significant security risk, as even a complete compromise of the sandboxed code
@@ -250,7 +251,7 @@ chrome.browserAction.onClicked.addListener(function() {
   plugin content into the high-permission extension context.-->
   回到事件页面，我们会接收到该消息，并利用传递给我们的 <code>html</code>
   数据做一些有意义的事。在这一例子中，我们只是通过<a
-  href="desktop_notifications.html">桌面通知</a>显示它，但是完全可能安全地使用这一
+  href="desktop_notifications">桌面通知</a>显示它，但是完全可能安全地使用这一
   HTML 作为扩展程序用户界面的一部分。通过 <code>innerHTML</code>
   将其插入并没有严重的安全风险，即使是通过某些巧妙的攻击完全利用沙箱中的代码，也不可能向高权限的扩展程序环境插入危险的脚本或插件内容。
 </p>

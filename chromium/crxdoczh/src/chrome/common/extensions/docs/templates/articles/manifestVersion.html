@@ -14,27 +14,27 @@
 <p>
 {{?is_apps}}
   <!--@Applications are simply bundles of resources, wrapped
-  up with a <a href="manifest.html"><code>manifest.json</code></a> file that
+  up with a <a href="manifest"><code>manifest.json</code></a> file that
   describes the package's contents. The format of this file is generally stable,
   but occasionally breaking changes must be made to address important issues.
   Developers should specify which version of the manifest specification their
   package targets by setting a <code>manifest_version</code> key in their
   manifests.-->
   应用只不过是经过打包的资源，外加一个
-  <a href="manifest.html"><code>manifest.json</code></a>
+  <a href="manifest"><code>manifest.json</code></a>
   文件描述包的内容。该文件的格式大体上是稳定的，但是偶尔需要重大更改，解决重大问题。开发者应该在清单文件中设置
 <code>manifest_version</code>
 属性，指定他们的包使用的清单文件规范的版本。
 {{:is_apps}}
   <!--@Extensions, themes, and applications are simply bundles of resources, wrapped
-  up with a <a href="manifest.html"><code>manifest.json</code></a> file that
+  up with a <a href="manifest"><code>manifest.json</code></a> file that
   describes the package's contents. The format of this file is generally stable,
   but occasionally breaking changes must be made to address important issues.
   Developers should specify which version of the manifest specification their
   package targets by setting a <code>manifest_version</code> key in their
   manifests.-->
   扩展程序、主题背景以及应用只不过是打包的资源，另外附带一个
-<a href="manifest.html"><code>manifest.json</code></a>
+<a href="manifest"><code>manifest.json</code></a>
 文件，描述包的内容。该文件的格式大体上是稳定的，但是偶尔需要重大更改，解决重大问题。开发者应该在清单文件中设置
 <code>manifest_version</code>
 属性，指定他们的包使用的清单文件规范的版本。
@@ -59,10 +59,10 @@
 <p>
   <!--@Manifest version 1 only applied to extensions and hosted apps, not
   Chrome Apps.  It
-  was <a href="../extensions/manifestVersion.html">deprecated</a> in
+  was <a href="../extensions/manifestVersion">deprecated</a> in
   Chrome 18.-->
   清单文件版本 1 只适用于扩展程序与托管应用，不适用于 Chrome 应用，在
-  Chrome 18 中<a href="../extensions/manifestVersion.html">弃用</a>。
+  Chrome 18 中<a href="../extensions/manifestVersion">弃用</a>。
 </p>
 {{:is_apps}}
 <p>
@@ -149,11 +149,11 @@
       <!--@A content security policy is set to <code>`script-src 'self'
       chrome-extension-resource:; object-src 'self'</code> by default. This has
       a variety of impacts on developers, described at length in the
-      <a href="../extensions/contentSecurityPolicy.html">
+      <a href="../extensions/contentSecurityPolicy">
       <code>content_security_policy</code></a> documentation.-->
       内容安全策略默认情况下设置为
       <code>"script-src 'self' chrome-extension-resource:; object-src 'self'"</code>。这会对开发人员产生一系列影响，在
-      <a href="../extensions/contentSecurityPolicy.html"><code>content_security_policy</code></a>
+      <a href="../extensions/contentSecurityPolicy"><code>content_security_policy</code></a>
       文档中详细描述。
     </p>
   </li>
@@ -163,14 +163,14 @@
       websites (as the <code>src</code> of an image, or a <code>script</code>
       tag). If you want a website to be able to load a resource contained in
       your package, you'll need to explicitly whitelist it via the
-      <a href="manifest/web_accessible_resources.html">
+      <a href="manifest/web_accessible_resources">
         <code>web_accessible_resources</code>
       </a> manifest attribute. This is particularly relevant for extensions that
       build up an interface on a website via injected content scripts.-->
       扩展程序包的资源默认情况下不再可用于外部网站（作为图片的
       <code>src</code> 属性或者 <code>script</code>
       标签）。如果您希望网站能够加载您的扩展程序包中的资源，您需要通过
-      <a href="manifest.html#web_accessible_resources"><code>web_accessible_resources</code></a>
+      <a href="manifest/web_accessible_resources"><code>web_accessible_resources</code></a>
       清单文件属性明确将它列入白名单。这对于通过插入的内容脚本在网页上建立界面的扩展程序特别有用。
     </p>
   </li>
@@ -179,13 +179,13 @@
       <!--@The <code>background_page</code> property has been replaced with a
       <code>background</code> property that contains <em>either</em> a
       <code>scripts</code> or <code>page</code> property. Details are available
-      in the <a href="event_pages.html">Event Pages</a> documentation.-->
+      in the <a href="event_pages">Event Pages</a> documentation.-->
       <code>background_page</code>
       属性已经由
       <code>background</code>
       属性取代，它包含
       <code>scripts</code> 或 <code>page</code>
-      属性中的任意一个，详情在<a href="event_pages.html">事件页面</a>文档中可用。
+      属性中的任意一个，详情在<a href="event_pages">事件页面</a>文档中可用。
     </p>
   </li>
   <li>
@@ -195,7 +195,7 @@
         <p>
           <!--@The <code>browser_actions</code> key in the manifest, and the
           <code>chrome.browserActions</code> API are gone. Use the singular
-          <a href="browserAction.html">
+          <a href="browserAction">
             <code>browser_action</code> and <code>chrome.browserAction</code>
           </a> instead.-->
           清单文件中的
@@ -203,7 +203,7 @@
           键以及
           <code>chrome.browserActions</code> API
           已经消失，请改用单数形式的
-          <a href="browserAction.html"><code>browser_action</code>
+          <a href="browserAction"><code>browser_action</code>
           以及
           <code>chrome.browserAction</code></a>。
         </p>
@@ -211,42 +211,42 @@
       <li>
         <p>
           <!--@The <code>icons</code> property of <code>browser_action</code> has
-          been removed. Use <a href="browserAction.html#manifest">
+          been removed. Use <a href="browserAction#manifest">
             the <code>default_icon</code> property
           </a> or $(ref:browserAction.setIcon) instead.-->
           <code>browser_action</code>
           的
           <code>icons</code>
           属性已移除，请改用
-          <a href="browserAction.html#manifest"><code>default_icon</code></a>
+          <a href="browserAction#manifest"><code>default_icon</code></a>
           属性或者 $(ref:browserAction.setIcon)。
         </p>
       </li>
       <li>
         <p>
           <!--@The <code>name</code> property of <code>browser_action</code> has been
-          removed. Use <a href="browserAction.html#manifest">
+          removed. Use <a href="browserAction#manifest">
             the <code>default_title</code> property
           </a> or $(ref:browserAction.setTitle) instead.-->
           <code>browser_action</code>
           的
           <code>name</code>
           属性已移除，请改用
-          <a href="browserAction.html#manifest"><code>default_title</code></a>
+          <a href="browserAction#manifest"><code>default_title</code></a>
           属性或者 $(ref:browserAction.setTitle)。
         </p>
       </li>
       <li>
         <p>
           <!--@The <code>popup</code> property of <code>browser_action</code> has
-          been removed. Use <a href="browserAction.html#manifest">
+          been removed. Use <a href="browserAction#manifest">
             the <code>default_popup</code> property
           </a> or $(ref:browserAction.setPopup) instead.-->
           <code>browser_action</code>
           的
           <code>popup</code>
           属性已移除，请改用
-          <a href="browserAction.html#manifest"><code>default_popup</code></a>
+          <a href="browserAction#manifest"><code>default_popup</code></a>
           属性或者 $(ref:browserAction.setPopup)。
         </p>
       </li>
@@ -269,7 +269,7 @@
         <p>
           <!--@The <code>page_actions</code> key in the manifest, and the
           <code>chrome.pageActions</code> API are gone. Use the singular
-          <a href="pageAction.html">
+          <a href="pageAction">
             <code>page_action</code> and <code>chrome.pageAction</code>
           </a> instead.-->
           清单文件中的
@@ -277,7 +277,7 @@
           键以及
           <code>chrome.pageActions</code> API
           已经消失，请改用单数形式的
-          <a href="pageAction.html"><code>page_action</code>
+          <a href="pageAction"><code>page_action</code>
           以及
           <code>chrome.pageAction</code></a>。
         </p>
@@ -285,42 +285,42 @@
       <li>
         <p>
           <!--@The <code>icons</code> property of <code>page_action</code> has been
-          removed. Use <a href="pageAction.html#manifest">
+          removed. Use <a href="pageAction#manifest">
             the <code>default_icon</code> property
           </a> or $(ref:pageAction.setIcon) instead.-->
           <code>page_action</code>
           的
           <code>icons</code>
           属性已移除，请改用
-          <a href="pageAction.html#manifest"><code>default_icon</code></a>
+          <a href="pageAction#manifest"><code>default_icon</code></a>
           属性或者 $(ref:pageAction.setIcon)。
         </p>
       </li>
       <li>
         <p>
           <!--@The <code>name</code> property of <code>page_action</code> has been
-          removed. Use <a href="pageAction.html#manifest">
+          removed. Use <a href="pageAction#manifest">
             the <code>default_title</code> property
           </a> or $(ref:pageAction.setTitle) instead.-->
           <code>page_action</code>
           的
           <code>name</code>
           属性已移除，请改用
-          <a href="pageAction.html#manifest"><code>default_title</code></a>
+          <a href="pageAction#manifest"><code>default_title</code></a>
           属性或者 $(ref:pageAction.setTitle)。
         </p>
       </li>
       <li>
         <p>
           <!--@The <code>popup</code> property of <code>page_action</code> has been
-          removed. Use <a href="pageAction.html#manifest">
+          removed. Use <a href="pageAction#manifest">
             the <code>default_popup</code> property
           </a> or $(ref:pageAction.setPopup) instead.-->
           <code>page_action</code>
           的
           <code>popup</code>
           属性已移除，请改用
-          <a href="pageAction.html#manifest"><code>default_popup</code></a>
+          <a href="pageAction#manifest"><code>default_popup</code></a>
           属性或者 $(ref:pageAction.setPopup)。
         </p>
       </li>
@@ -339,9 +339,9 @@
   <li>
     <p>
       <!--@The <code>chrome.self</code> API has been removed. Use
-      <a href="extension.html"><code>chrome.extension</code></a> instead.-->
+      <a href="extension"><code>chrome.extension</code></a> instead.-->
       <code>chrome.self</code> API 已移除，请改用
-      <a href="extension.html"><code>chrome.extension</code></a>。
+      <a href="extension"><code>chrome.extension</code></a>。
     </p>
   </li>
   <li>

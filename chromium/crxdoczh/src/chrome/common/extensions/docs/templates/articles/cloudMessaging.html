@@ -25,12 +25,12 @@ Google Cloud Messaging for Chrome（GCM，用于 Chrome 浏览器的 Google
 
 <p><!--@This document describes how to set up and use GCM.
 For additional information see the reference documentation
-for the <a href="pushMessaging.html">pushMessaging Chrome API</a> and the
-<a href="gcm_server.html">GCM service</a>.
+for the <a href="pushMessaging">pushMessaging Chrome API</a> and the
+<a href="gcm_server">GCM service</a>.
 To get help with GCM or to give us feedback, see <a href="#feedback">Feedback</a>.-->
 该文档描述了设置和使用 GCM 的方法。如果您想了解更多内容，请阅读
-<a href="pushMessaging.html">pushMessaging Chrome API</a> 以及
-<a href="gcm_server.html">GCM
+<a href="pushMessaging">pushMessaging Chrome API</a> 以及
+<a href="gcm_server">GCM
 服务</a>。如果需要帮助或者向我们提供反馈，请参见<a href="#feedback">反馈</a>。
 </p>
 
@@ -530,9 +530,9 @@ function showPushMessage(message) {
 <!--@You need to add the "notifications" permission
 to <code>manifest.json</code>
 to use text notifications
-(see <a href="desktop_notifications.html">Desktop Notifications</a>):-->
+(see <a href="desktop_notifications">Desktop Notifications</a>):-->
 您需要在 <code>manifest.json</code> 中添加 "notifications"
-权限才能使用文字通知（参见<a href="desktop_notifications.html">桌面通知</a>）：
+权限才能使用文字通知（参见<a href="desktop_notifications">桌面通知</a>）：
 </p>
 
 <pre data-filename="manifest.json">
@@ -594,14 +594,14 @@ and operational errors (for example, push messaging service is currently down).-
 </p>
 
 <ol>
-  <li><!--@<a href="packaging.html">Package</a> a test version of
+  <li><!--@<a href="packaging">Package</a> a test version of
   your app or extension on the Extensions management page
   (chrome://extensions).
   Your app or extension doesn't need to be running; it just needs
   to be installed.-->
   在扩展程序管理页面（在您的浏览器中进入
 <strong>chrome://extensions</strong>）上将您的应用或扩展程序的测试版本<a
-href="packaging.html">打包</a>。您的应用或扩展程序不需要运行，只要已安装就可以。
+href="packaging">打包</a>。您的应用或扩展程序不需要运行，只要已安装就可以。
   </li>
 
   <li><!--@Get the channel ID at install time using
@@ -644,7 +644,7 @@ pushMessaging API，但是所有者检查失败了，它会收到 HTTP 状态码
 <!--@One circumstance in which the ownership check commonly fails is when you are
 developing an app and you run the app without uploading it and re-downloading
 it from the Chrome Web Store. In this situation your app may not have a
-<a href="manifest/key.html">key</a> field in its manifest.json file.
+<a href="manifest/key">key</a> field in its manifest.json file.
 The <code>key</code> field gives an app its Chrome Web Store ID
 (a 32 character alphabetic code, such as "bafimiidcfafikaonocgmmcpbbhfjjik").
 If you run a version of your app without a key, the app will use a
@@ -657,7 +657,7 @@ the downloaded key, and the app's ID would appear to be different than
 the ID of the downloaded app.-->
 所有者检查失败的一种常见情况是您正在开发一个应用，您没有将它上传并重新从
 Chrome 网上应用店上下载下来运行。在这种情况下，您的应用的 manifest.json
-文件中可能没有 <a href="manifest/key.html">key</a> 字段。<code>key</code>
+文件中可能没有 <a href="manifest/key">key</a> 字段。<code>key</code>
 字段为应用指定了它的 Chrome 网上应用店标识符（一个包含 32
 个字母的代码，例如“bafimiidcfafikaonocgmmcpbbhfjjik”）。如果您运行的应用没有
 key，应用会使用随机生成的标识符，不会和 Chrome 网上应用店中的应用标识符匹配。例如，如果您从 original_app_dir 目录将您的应用上传至 Chrome

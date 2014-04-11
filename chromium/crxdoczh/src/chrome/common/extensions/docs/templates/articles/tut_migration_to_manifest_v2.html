@@ -3,11 +3,11 @@
 <p>
 <!--@Manifest version 1 was deprecated in Chrome 18,
 and support will be phased out according to the
-<a href="manifestVersion.html#manifest-v1-support-schedule">manifest version 1 support schedule</a>.
+<a href="manifestVersion#manifest-v1-support-schedule">manifest version 1 support schedule</a>.
 The changes from version 1 to version 2
 fall under two broad categories:
 API changes and Security changes. -->
-清单文件版本 1 在 Chrome 18 中弃用，对它的支持将根据<a href="manifestVersion.html#manifest-v1-support-schedule">清单文件版本 1 支持计划</a>逐渐减少。从版本 1 到版本 2 的更改分为两大类：API 更改和安全性更改。
+清单文件版本 1 在 Chrome 18 中弃用，对它的支持将根据<a href="manifestVersion#manifest-v1-support-schedule">清单文件版本 1 支持计划</a>逐渐减少。从版本 1 到版本 2 的更改分为两大类：API 更改和安全性更改。
 </p>
 
 <p>
@@ -80,8 +80,8 @@ followed by more detailed summaries of what these changes mean and why they were
       </li>
       <li><!--@Add a <code>persistent</code> property and set it
         to <code>false</code> to convert your background page
-        to an <a href="event_pages.html">event page</a>-->
-        添加 <code>persistent</code> 属性，并将它设置为 <code>false</code>，将您的后台网页转换为<a href="event_pages.html">事件页面</a>。
+        to an <a href="event_pages">event page</a>-->
+        添加 <code>persistent</code> 属性，并将它设置为 <code>false</code>，将您的后台网页转换为<a href="event_pages">事件页面</a>。
       </li>
     </ul>
 </ul>
@@ -112,7 +112,7 @@ followed by more detailed summaries of what these changes mean and why they were
     您的扩展程序会向网页中插入需要访问包含在扩展程序包内的资源（例如图片与脚本）的内容脚本吗？
   </li>
     <ul>
-      <li><!--@Define the-->定义 <a href="manifest/web_accessible_resources.html">web_accessible_resources</a>
+      <li><!--@Define the-->定义 <a href="manifest/web_accessible_resources">web_accessible_resources</a>
         <!--@property and list the resources
         (and optionally a separate Content Security Policy for those resources).-->
         属性，并列出这些资源（以及可选的单独用于这些资源的内容安全策略）。
@@ -120,7 +120,7 @@ followed by more detailed summaries of what these changes mean and why they were
     </ul>
   <li><!--@Does your extension embed external Web pages?-->您的扩展程序嵌入外部网页吗？</li>
     <ul>
-      <li><!--@Define the-->定义 <a href="manifest/sandbox.html">sandbox</a> <!--@property.-->属性。</li>
+      <li><!--@Define the-->定义 <a href="manifest/sandbox">sandbox</a> <!--@property.-->属性。</li>
     </ul>
   <li><!--@Is your code or library using <code>eval()</code>, new <code>Function()</code>,
     <code>innerHTML</code>, <code>setTimeout()</code>, or otherwise passing strings
@@ -237,7 +237,7 @@ API 用新的来代替。
 
 <ul>
   <li><!--@The--> <code>background_page</code> <!--@property has been replaced
-    by-->属性已替换为 <a href="background_pages.html">background</a><!--@.-->。</li>
+    by-->属性已替换为 <a href="background_pages">background</a><!--@.-->。</li>
   <li><!--@The--> <code>chrome.self</code> <!--@property has been removed,
     use-->属性已移除，请使用 <code>chrome.extension</code><!--@.-->。</li>
   <li><!--@The--> <code>Port.tab</code> <!--@property has been replaced
@@ -253,20 +253,20 @@ API 用新的来代替。
 <!--@There are a number of security-related changes
 that accompany the move from manifest version 1 to version 2.
 Many of these changes stem from Chrome’s adoption of
-<a href="contentSecurityPolicy.html">Content Security Policy</a>;
+<a href="contentSecurityPolicy">Content Security Policy</a>;
 you should read more about this policy to understand its implications.-->
-清单文件版本 1 到版本 2 的转换伴随着一系列安全性相关的更改。许多这些更改来源于 Chrome 浏览器对<a href="contentSecurityPolicy.html">内容安全策略</a>的采用，您应该了解这一策略的更多信息来理解它带来的影响。
+清单文件版本 1 到版本 2 的转换伴随着一系列安全性相关的更改。许多这些更改来源于 Chrome 浏览器对<a href="contentSecurityPolicy">内容安全策略</a>的采用，您应该了解这一策略的更多信息来理解它带来的影响。
 </p>
 
 <h3 id="inline_scripts"><!--@Inline scripts and event handlers disallowed-->禁止使用内嵌脚本和事件处理器</h3>
 
 <p>
-<!--@Due to the use of <a href="contentSecurityPolicy.html">Content Security Policy</a>,
+<!--@Due to the use of <a href="contentSecurityPolicy">Content Security Policy</a>,
 you can no longer use &lt;script> tags that are inline with the HTML content.
 These must be moved to external JS files.
 In addition, inline event handlers are also not supported.
 For example, suppose you had the following code in your extension:-->
-由于<a href="contentSecurityPolicy.html">内容安全策略</a>的使用，您不能继续使用
+由于<a href="contentSecurityPolicy">内容安全策略</a>的使用，您不能继续使用
 HTML 内容中内嵌的 &lt;script&gt; 标签，它们必须移动至外部的 JS
 文件中去。此外，内嵌的事件处理器也不支持。例如，假设您的扩展程序中有如下代码：
 </p>
@@ -339,7 +339,7 @@ that can be used externally or come from an external source. -->
 that are used in content scripts that are injected into web pages,
 you need to use the-->
 如果您的扩展程序插入网页中的内容脚本嵌入资源（例如图片、脚本、CSS 样式等），您需要使用
-<a href="manifest/web_accessible_resources.html">web_accessible_resources</a> <!--@property
+<a href="manifest/web_accessible_resources">web_accessible_resources</a> <!--@property
 to whitelist these resources so that external Web pages can use them:-->
 属性将这些资源加入白名单，这样外部网页才能使用它们：
 </p>
@@ -428,8 +428,8 @@ chrome.* API。为了在新的内容安全策略下使用 <code>eval()</code> �
 
 <p>
 <!--@For more details on how to do this,
-see the <a href="sandboxingEval.html">Sandboxing Eval</a> documentation.-->
-有关如何做这些的更多详情，请参见<a href="sandboxingEval.html">受沙箱保护的
+see the <a href="sandboxingEval">Sandboxing Eval</a> documentation.-->
+有关如何做这些的更多详情，请参见<a href="sandboxingEval">受沙箱保护的
 eval 文档</a>。
 </p>
 
@@ -439,16 +439,16 @@ eval 文档</a>。
 <!--@The changes in manifest version 2 are designed to guide developers
 toward building more secure and robustly-architected extensions and apps.
 To see a complete list of changes from manifest version 1 to version 2,
-see the <a href="manifestVersion.html">manifest file</a> documentation.
+see the <a href="manifestVersion">manifest file</a> documentation.
 For more information about using sandboxing to isolate unsafe code,
-read the <a href="sandboxingEval.html">sandboxing eval</a> article.
+read the <a href="sandboxingEval">sandboxing eval</a> article.
 You can learn more about Content Security Policy
 by visiting our extensions-related tutorial and a
 <a href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">good introduction on HTML5Rocks</a>.-->
 清单文件版本 2 带来的更改是为了引导开发人员建立更安全、架构更健壮的扩展程序和应用。要查看清单文件版本
-1 至版本 2 的完整更改列表，请参见<a href="manifestVersion.html"
+1 至版本 2 的完整更改列表，请参见<a href="manifestVersion"
 >清单文件版本文档</a>。有关使用沙箱隔离不安全代码的更多信息，请阅读<a
-href="sandboxingEval.html">受沙箱保护的 eval</a>
+href="sandboxingEval">受沙箱保护的 eval</a>
 文章。您可以访问我们与扩展程序相关的教程以及
 <a href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">HTML5Rocks 上一个很棒的简介</a>（英文）了解有关内容安全策略的更多内容。
 </p>

@@ -6,26 +6,26 @@ of sending or receiving data.
 Starting with the basics,
 you should use an MVC framework to help you design and implement your app
 so that data is completely separate from the app's view on that data
-(see <a href="app_frameworks.html">MVC Architecture</a>).-->
+(see <a href="app_frameworks">MVC Architecture</a>).-->
 几乎应用开发的每一方面都会涉及到一些数据的发送与接收。从最基本的开始，您应该使用
 MVC 框架来帮助您设计和实现您的应用，以便使数据完全与应用的数据视图分离（参见
-<a href="app_frameworks.html">MVC 架构</a>）。
+<a href="app_frameworks">MVC 架构</a>）。
 </p>
 
 <p>
 <!--@You also need to think about how data is handled when your app is offline
-(see <a href="offline_apps.html">Offline First</a>).
+(see <a href="offline_apps">Offline First</a>).
 This doc briefly introduces the storage options
 for sending, receiving, and saving data locally;
 the remainder of the doc shows you how
 to use Chrome's File System and Sync File System APIs
-(see also <a href="fileSystem.html">fileSystem API</a> and
-<a href="syncFileSystem.html">syncFileSystem API</a>).-->
-您还需要考虑当您的应用离线时（参见<a href="offline_apps.html"
+(see also <a href="fileSystem">fileSystem API</a> and
+<a href="syncFileSystem">syncFileSystem API</a>).-->
+您还需要考虑当您的应用离线时（参见<a href="offline_apps"
 >首先考虑离线</a>）如何处理数据。该文档简要地介绍了用于在本地发送、接收和保存数据的存储选择，文档的剩下部分向您演示了如何使用
 Chrome 浏览器的文件系统 API 和同步文件系统
-API（请参见<a href="fileSystem.html">文件系统
-API</a> 和<a href="syncFileSystem.html">同步文件系统 API</a>）。
+API（请参见<a href="fileSystem">文件系统
+API</a> 和<a href="syncFileSystem">同步文件系统 API</a>）。
 </p>
 
 <p class="note">
@@ -46,24 +46,24 @@ Check out the-->
 to send and receive data.
 For external data (resources, web pages),
 you need to be aware of the
-<a href="contentSecurityPolicy.html">Content Security Policy (CSP)</a>.
+<a href="contentSecurityPolicy">Content Security Policy (CSP)</a>.
 Similar to Chrome Extensions,
 you can use
-<a href="app_external.html#external">cross-origin XMLHttpRequests</a>
+<a href="app_external">cross-origin XMLHttpRequests</a>
 to communicate with remote servers.
 You can also isolate external pages,
 so that the rest of your app is secure
-(see <a href="app_external.html#webview">Embed external web pages</a>).-->
+(see <a href="app_external#webview">Embed external web pages</a>).-->
 Chrome 应用可以使用很多不同的机制发送和接收数据。对于外部数据（资源、网页），您需要意识到<a
-href="contentSecurityPolicy.html">内容安全策略（CSP）</a>的存在。与
-Chrome 扩展程序类似，您可以使用<a href="app_external.html#external">跨站
+href="contentSecurityPolicy">内容安全策略（CSP）</a>的存在。与
+Chrome 扩展程序类似，您可以使用<a href="app_external#external">跨站
 XMLHttpRequest</a> 与远程服务器通信。您还可以隔离外部页面，以确保您的应用的其他部分是安全的（参见<a
-href="app_external.html#webview">嵌入外部网页</a>）。
+href="app_external#webview">嵌入外部网页</a>）。
 </p>
 
 <p>
 <!--@When saving data locally,
-you can use the <a href="storage.html">Chrome Storage API</a>
+you can use the <a href="storage">Chrome Storage API</a>
 to save small amounts of string data and
 IndexedDB to save structured data.
 With IndexedDB, you can persist JavaScript objects
@@ -74,7 +74,7 @@ For all other types of data,
 like binary data,
 use the Filesystem and Sync Filesystem APIs.-->
 需要在本地保存数据时，您可以使用
-<a href="storage.html">Chrome 浏览器的存储 API</a>
+<a href="storage">Chrome 浏览器的存储 API</a>
 来保存少量字符串数据，并使用 IndexedDB
 保存结构化的数据。通过 IndexedDB，您可以将 JavaScript
 对象持久存储在对象存储区中并使用存储区的索引查询数据（要了解更多内容，请参见

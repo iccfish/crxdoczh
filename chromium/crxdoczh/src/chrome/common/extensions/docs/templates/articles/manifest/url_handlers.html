@@ -1,12 +1,12 @@
 <h1 id="url_handlers">url_handlers</h1>
 
 <p>
-<!--@Used by <a href="../app_lifecycle.html#eventpage">packaged apps</a>
+<!--@Used by <a href="../app_lifecycle#eventpage">packaged apps</a>
 to specify URL patterns the app wants to intercept and handle. An app can
 define multiple URL handlers under this manifest entry, each having an identifier,
 a URL pattern, and a title.
 Here's an example of how to specify <code>url_handlers</code>:-->
-由<a href="../app_lifecycle.html#eventpage"
+由<a href="../app_lifecycle#eventpage"
 >打包应用</a>使用，指定应用希望拦截并处理的 URL
 匹配表达式。应用可以在这一清单文件项中定义多个 URL
 处理程序，每一个处理程序都应该有标识符、名称和标题。如下是指定
@@ -57,12 +57,12 @@ cannot be verified).-->
 <!--@Upon successful registration and installation, an app will be launched for all
 matching navigations inside browser tabs as well as other apps. The app will
 receive a new kind of the
-<a href="../app_runtime.html#event-onLaunched">app.runtime.onLaunched</a>
+<a href="../app_runtime#event-onLaunched">app.runtime.onLaunched</a>
 event, with the launchData
 object containing the matched handler's identifier (such as "view_foo_presentation"
 above), the URL being navigated to, and the referrer's URL.-->
 注册并安装成功后，浏览器标签页以及其他应用内所有匹配的导航都会启动应用。应用会收到一种新的
-<a href="../app_runtime.html#event-onLaunched">app.runtime.onLaunched</a>
+<a href="../app_runtime#event-onLaunched">app.runtime.onLaunched</a>
 事件，它的 launchData 对象包含匹配的处理程序标识符（例如上面的
 "view_foo_presentation"）、导航至的 URL 以及引用 URL。
 </p>

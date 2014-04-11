@@ -8,9 +8,9 @@ Chrome Apps are structured similarly to extensions
 so current developers will recognize the manifest and packaging methods.
 When you're done,
 you'll just need to produce a zip file of your code and assets
-in order to <a href="publish_app.html">publish</a> your app.-->
+in order to <a href="publish_app">publish</a> your app.-->
 该教程引导您创建您的第一个 Chrome 应用。Chrome
-应用在结构上与扩展程序类似，所以目前的开发人员会发现熟悉的清单文件与打包方式。当您完成后，您只需要为您的代码与其他资源产生一个 zip 文件，以便<a href="publish_app.html">发布</a>您的应用。
+应用在结构上与扩展程序类似，所以目前的开发人员会发现熟悉的清单文件与打包方式。当您完成后，您只需要为您的代码与其他资源产生一个 zip 文件，以便<a href="publish_app">发布</a>您的应用。
 </p>
 
 <p>
@@ -50,10 +50,10 @@ Check out the-->想试试这些代码吗？请参见
 
 <p>
 <!--@First create your <code>manifest.json</code> file
-(<a href="manifest.html">Formats: Manifest Files</a>
+(<a href="manifest">Formats: Manifest Files</a>
 describes this manifest in detail):-->
 首先创建您的 <code>manifest.json</code>
-文件（<a href="manifest.html">格式：清单文件</a>详细描述了该清单文件）：
+文件（<a href="manifest">格式：清单文件</a>详细描述了该清单文件）：
 </p>
 
 <pre data-filename="manifest.json">
@@ -73,7 +73,7 @@ describes this manifest in detail):-->
 <p class="note">
 <b><!--@Important:-->重要提示：</b><!--@
 Chrome Apps <b>must</b> use
--->Chrome 应用<b>必须</b>使用<a href="manifestVersion.html"><!--@manifest version 2-->清单文件版本 2</a><!--@.-->。
+-->Chrome 应用<b>必须</b>使用<a href="manifestVersion"><!--@manifest version 2-->清单文件版本 2</a><!--@.-->。
 </p>
 
 <h2 id="two"><!--@Step 2: Create the background script-->第二步：创建后台脚本</h2>
@@ -98,13 +98,13 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
 <p>
 <!--@In the above sample code,
-the <a href="app_lifecycle.html#lifecycle">onLaunched event</a>
+the <a href="app_lifecycle#lifecycle">onLaunched event</a>
 will be fired when the user starts the app.
 It then immediately opens a window for the app of the specified width and height.
 Your background script may contain additional listeners,
 windows, post messages, and launch data,
 all of which are used by the event page to manage the app.-->
-在以上示例代码中，<a href="app_lifecycle.html#lifecycle">onLaunched
+在以上示例代码中，<a href="app_lifecycle#lifecycle">onLaunched
 事件</a>将会在用户启动应用时产生，接着它立刻为应用打开一个指定宽度与高度的窗口。您的后台脚本可以包含额外的监听器、窗口、传递消息及执行数据，这些都由事件页面使用，以管理应用。
 </p>
 

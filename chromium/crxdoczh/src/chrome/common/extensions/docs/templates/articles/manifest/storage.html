@@ -29,10 +29,10 @@ for examples from Chrome itself.-->
 
 <p>
 <!--@After declaring the policies they can be read from the
-<a href="../storage.html#property-managed">storage.managed</a> API.
+<a href="../storage#property-managed">storage.managed</a> API.
 It's up to the {{platform}} to enforce the policies configured
 by the administrator.-->
-策略声明后，可以通过 $(ref:storage.managed) API 读取。强制实施管理员配置的策略是{{platformTitle}}的职责。
+策略声明后，可以通过 <a href="../storage#property-managed">storage.managed</a> API 读取。强制实施管理员配置的策略是{{platformTitle}}的职责。
 </p>
 
 <h2 id="manifest"><!--@Sample-->示例 manifest.json</h2>
@@ -57,15 +57,15 @@ within the {{platform}} that contains the policy schema.-->
 <p>
 <!--@Chrome will then load these policies from the underlying operating system
 and from Google Apps for signed-in users. The
-<a href="../storage.html#event-onChanged">storage.onChanged</a>
+<a href="../storage#event-onChanged">storage.onChanged</a>
 event is fired whenever a policy change is detected, including while
 the browser wasn't running if the {{platform}} uses
-<a href="../event_pages.html">event pages</a>.
+<a href="../event_pages">event pages</a>.
 You can verify the policies that Chrome loaded at
 <a href="chrome://policy">chrome://policy</a>.-->
 Chrome 浏览器会从下层操作系统加载这些策略，对于已登录的用户还会从 Google
 Apps 加载策略。每当检测到策略更改时就会产生 $(ref:storage.onChanged)
-事件，如果{{platformTitle}}使用<a href="../event_pages.html"
+事件，如果{{platformTitle}}使用<a href="../event_pages"
 >事件页面</a>的话，还包括浏览器不在运行的时候。您可以在
 <b>chrome://policy</b> 检查 Chrome 浏览器加载的策略。
 </p>

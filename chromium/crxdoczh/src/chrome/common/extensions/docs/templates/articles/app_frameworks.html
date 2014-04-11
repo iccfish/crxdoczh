@@ -142,8 +142,8 @@ If the data needs to be persistent, it also makes an async save to the server.
 In rich client-side web app development such as Chrome Apps,
 keeping the data persistent in local storage is also crucial.
 In this case, the controller also handles saving the data
-to the client-side storage such as <a href="app_storage.html">FileSystem API</a>.-->
-在待办事项网络应用中，当用户选中项目将它标记为已完成时，单击事件将转发至控制器。控制器修改模型，将项目标记为已完成。如果数据需要持久保存，它将同时向服务器发出一个异步保存的请求。在富客户端网络应用开发，例如 Chrome 应用中，保持数据在本地持久存储也是至关重要的。在这种情况下，控制器也要进行处理，将数据保存到客户端存储区，例如<a href="app_storage.html">文件系统 API</a>。
+to the client-side storage such as <a href="app_storage">FileSystem API</a>.-->
+在待办事项网络应用中，当用户选中项目将它标记为已完成时，单击事件将转发至控制器。控制器修改模型，将项目标记为已完成。如果数据需要持久保存，它将同时向服务器发出一个异步保存的请求。在富客户端网络应用开发，例如 Chrome 应用中，保持数据在本地持久存储也是至关重要的。在这种情况下，控制器也要进行处理，将数据保存到客户端存储区，例如<a href="app_storage">文件系统 API</a>。
 </p>
 
 <p>
@@ -241,14 +241,14 @@ This is interesting in the modern web app design
 because you often interact with more than one persistent data layer
 such as a remote server and browser’s local storage.
 Chrome Apps provides both
-<a href="storage.html">Chrome Storage API</a> and
-<a href="fileSystem.html">HTML 5 fileSystem API</a> for client side storage.-->
+<a href="storage">Chrome Storage API</a> and
+<a href="fileSystem">HTML 5 fileSystem API</a> for client side storage.-->
 适配器或代理从存储区接收请求，并将它转换为对您的持久数据层（例如
 JSON API）进行的适当操作。这种方式在现代网络应用设计中十分有意义，因为您经常与不止一个持久数据层交互，例如远程服务器与浏览器的本地存储区。Chrome
 应用为客户端存储提供了
-<a href="storage.html">Chrome 浏览器的存储 API</a>
+<a href="storage">Chrome 浏览器的存储 API</a>
 与
-<a href="fileSystem.html">HTML5 文件系统 API</a>。
+<a href="fileSystem">HTML5 文件系统 API</a>。
 </p>
 
 <p><!--@Pros:-->优势：</p>
@@ -358,20 +358,20 @@ constructing all of the matching views and controllers for that screen.-->
 
 <p>
 <!--@MVC is crucial to designing Chrome Apps.
-We recommend the following <a href="contentSecurityPolicy.html">CSP&ndash;Compliant</a> MVC frameworks
+We recommend the following <a href="contentSecurityPolicy">CSP&ndash;Compliant</a> MVC frameworks
 for writing secure and scalable Chrome Apps:-->
-MVC 对于设计 Chrome 应用是至关重要的。我们推荐如下<a href="app_csp.html">遵循
+MVC 对于设计 Chrome 应用是至关重要的。我们推荐如下<a href="contentSecurityPolicy">遵循
 CSP（内容安全策略）</a>的 MVC 框架，用于编写安全而且可伸缩的 Chrome
 应用：
 </p>
 
 <ul>
   <li><a href="http://angularjs.org/">AngularJS</a>
-  （<a href="https://github.com/GoogleChrome/textdrive-app">Text Drive <!--@Reference App-->参考应用</a> 和 <a href="angular_framework.html"><!--@Build Apps with AngularJS tutorial-->用 AngularJS 建立应用的教程</a>）</li>
+  （<a href="https://github.com/GoogleChrome/textdrive-app">Text Drive <!--@Reference App-->参考应用</a> 和 <a href="angular_framework"><!--@Build Apps with AngularJS tutorial-->用 AngularJS 建立应用的教程</a>）</li>
   <li><a href="http://www.kendoui.com/">Kendo UI</a>
   （<a href="https://github.com/GoogleChrome/kendo-photo-booth-app">Photo Booth <!--@Reference App-->参考应用</a>）</li>
   <li><a href="http://www.sencha.com/">Sencha</a>
-  （<a href="https://github.com/GoogleChrome/sencha-video-player-app">Video Player <!--@Reference App-->参考应用</a> 和 <a href="sencha_framework.html"><!--@Build Apps with Sencha Ext JS tutorial-->用 Sencha Ext JS 建立应用程序的教程</a>）</li>
+  （<a href="https://github.com/GoogleChrome/sencha-video-player-app">Video Player <!--@Reference App-->参考应用</a> 和 <a href="sencha_framework"><!--@Build Apps with Sencha Ext JS tutorial-->用 Sencha Ext JS 建立应用程序的教程</a>）</li>
 </ul>
 
 <h2 id="resources"><!--@Useful resources-->有用的资源</h2>

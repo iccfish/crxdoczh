@@ -1,9 +1,9 @@
 <h1 id="lab_8_web_resources"><!--@Access Web Resources-->访问网络资源</h1>
 
 <p>Chrome <!--@Apps have a strict
-<a href="contentSecurityPolicy.html">Content Security Policy</a>
+<a href="contentSecurityPolicy">Content Security Policy</a>
 which will not let the user execute code or load resources that are hosted remotely.-->
-应用有一项严格的<a href="contentSecurityPolicy.html">内容安全策略</a>，不会让用户执行或加载远程托管的代码和资源。
+应用有一项严格的<a href="contentSecurityPolicy">内容安全策略</a>，不会让用户执行或加载远程托管的代码和资源。
 </p>
 
 <p><!--@Many applications, however, need to be able to load and display content from a remote location. A News Reader, for example, needs to display remote content inline or load and show images from a remote URL.-->
@@ -18,11 +18,11 @@ which will not let the user execute code or load resources that are hosted remot
 
 <p><!--@Chrome Apps offer developers the ability
 to securely render third-party content in the <code>&lt;webview&gt;</code> tag.
-A <a href="webview_tag.html">webview</a>
+A <a href="webview_tag">webview</a>
 is like an iframe that you can control with greater flexibility and added security.
 It runs in a separate sandboxed process and can&#39;t communicate directly with the application.-->
 Chrome 应用为开发者提供了在 <code>&lt;webview&gt;</code>
-标签中安全渲染第三方内容的能力。<a href="webview_tag.html">webview</a>
+标签中安全渲染第三方内容的能力。<a href="tags/webview">webview</a>
 就像 iframe
 一样，但是您能够更灵活地控制它，并具有额外的安全性。它在单独的经过沙盒屏蔽的进程中运行，不能直接与应用通信。
 </p>
@@ -175,7 +175,7 @@ and launch the app from a new tab.-->
 
 <p class="note"><b></b> Refused to load the image &#39;http://angularjs.org/img/AngularJS-large.png&#39; because it violates the following Content Security Policy directive: &quot;img-src &#39;self&#39; data: chrome-extension-resource:&quot;.（拒绝加载图片 &#39;http://angularjs.org/img/AngularJS-large.png&#39;，因为它违反了以下内容安全策略的指示：&quot;img-src &#39;self&#39; data: chrome-extension-resource:&quot;。）</p>
 
-<p><!--@Chrome apps cannot load any external resource directly in the DOM, because of the -->由于<a href="contentSecurityPolicy.html"><!--@CSP restrictions-->内容安全策略的限制</a>，Chrome 应用不能直接在 DOM 中加载任何外部资源。</p>
+<p><!--@Chrome apps cannot load any external resource directly in the DOM, because of the -->由于<a href="contentSecurityPolicy"><!--@CSP restrictions-->内容安全策略的限制</a>，Chrome 应用不能直接在 DOM 中加载任何外部资源。</p>
 
 <p><!--@To avoid this restriction, you can use XHR requests, grab the blob corresponding to the remote file and use it appropriately.
 For example, <code>&lt;img&gt;</code> tags can use a blob URL.
@@ -508,7 +508,7 @@ One feature we didn&#39;t mention here is that webviews can communicate with you
 标签允许您在您的应用中包含一个受控的浏览器。例如，如果您的应用有一部分不兼容
 CSP，而且您没有精力马上迁移，您可以使用它。我们没有在这里提到的一个特性是
 webview 可以使用异步的
-<a href="app_external.html#postMessage">postMessages</a><!--@.-->
+<a href="app_external#postMessage">postMessages</a><!--@.-->
 和您的应用（或反过来）通信。</p></li>
 <li><p><!--@Loading resources like images from the web is not straightforward compared to a standard web page.
 But it&#39;s not too different from traditional native platforms, where you need to handle the resource download and, only when it is correctly downloaded, you can render it in the UI. We have also developed <a href="https://github.com/GoogleChrome/apps-resource-loader">a sample library</a> to asynchronously handle resource loading from XHR calls. Feel free to use it in your projects.-->
@@ -519,12 +519,12 @@ But it&#39;s not too different from traditional native platforms, where you need
 <h2 id="you_should_also_read"><!--@You should also read-->您还应该阅读</h2>
 
 <ul>
-<li><a href="webview_tag.html">Webview <!--@Tag-->标签 API</a> <!--@reference-->参考</li>
-<li><a href="app_external.html"><!--@Embed Content-->嵌入内容</a><!--@ tutorial-->教程</li>
+<li><a href="tags/webview">Webview <!--@Tag-->标签 API</a> <!--@reference-->参考</li>
+<li><a href="app_external"><!--@Embed Content-->嵌入内容</a><!--@ tutorial-->教程</li>
 </ul>
 
 <h2 id="what_39_s_next_"><!--@What's next?-->接下来做什么？</h2>
 
-<p><!--@In-->在 <a href="app_codelab_10_publishing.html">8 - <!--@Publish App-->发布应用</a><!--@,
+<p><!--@In-->在 <a href="app_codelab_10_publishing">8 - <!--@Publish App-->发布应用</a><!--@,
 we finish off with instructions on how to publish your app in the Chrome Web Store.-->中，我们将告诉您如何在 Chrome 网上应用店中发布您的应用，结束实验。
 </p>

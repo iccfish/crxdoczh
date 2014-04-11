@@ -11,7 +11,7 @@ Chrome 33（Beta 与 Stable 分支）开始强制实施以下更改：
 <ul>
   <li><!--@Users can only install extensions hosted in the Chrome Web store, except for installs via
 <a href="https://support.google.com/chrome/a/answer/188453">enterprise policy</a>
-or <a href="http://developer.chrome.com/extensions/getstarted.html#unpacked">developer mode</a>.-->
+or <a href="http://developer.chrome.com/extensions/getstarted#unpacked">developer mode</a>.-->
     用户只能安装托管在 Chrome 网上应用店中的扩展程序，除非使用<a
     href="https://support.google.com/chrome/a/answer/188453"
     >企业策略</a>或<a href="getstarted#unpacked">开发者模式</a>。
@@ -20,7 +20,7 @@ or <a href="http://developer.chrome.com/extensions/getstarted.html#unpacked">dev
 <a href="https://support.google.com/chrome/answer/2811969">hard-disabled</a>
 (i.e the user cannot enable these extensions again), except for installs via
 <a href="https://support.google.com/chrome/a/answer/188453">enterprise policy</a>
-or <a href="http://developer.chrome.com/extensions/getstarted.html#unpacked">developer mode</a>.-->
+or <a href="http://developer.chrome.com/extensions/getstarted#unpacked">developer mode</a>.-->
     之前已经安装但没有在 Chrome 网上应用店中托管的扩展程序将<a
     href="https://support.google.com/chrome/answer/2811969"
     、>强制禁用</a>（即用户无法再启用这些扩展程序），除非使用<a
@@ -99,7 +99,7 @@ by unlisting the extension from the Chrome Web Store.-->
 </h2>
 
 <p><!--@No. You can still load unpacked extensions in
-<a href="http://developer.chrome.com/extensions/getstarted.html#unpacked">developer mode</a>
+<a href="http://developer.chrome.com/extensions/getstarted#unpacked">developer mode</a>
 on Windows.
 Also, you can continue to develop extensions on Chrome Dev channel/Canary,
 where these changes are not effective.-->
@@ -144,12 +144,12 @@ the following deployment options will be supported:-->
 </p>
 
 <ul><li><!--@For OSX and Linux, extensions can be installed via a
-<a href="http://developer.chrome.com/extensions/external_extensions.html#preferences">preferences JSON file</a>.-->
+<a href="http://developer.chrome.com/extensions/external_extensions#preferences">preferences JSON file</a>.-->
 对于 OSX 与 Linux 来说，可以通过<a href="external_extensions#preferences"
 >首选项 JSON 文件</a>安装扩展程序。
 </li>
 <li><!--@For Windows, extensions can be installed via the
-<a href="http://developer.chrome.com/extensions/external_extensions.html#registry">Windows registry</a>.
+<a href="http://developer.chrome.com/extensions/external_extensions#registry">Windows registry</a>.
 In the Windows registry,
 ensure that the update_url registry key points to the following URL:
 <a href="https://clients2.google.com/service/update2/crx">https://clients2.google.com/service/update2/crx</a>.
@@ -186,9 +186,9 @@ However, extensions hosted on the Chrome Web Store are updated via the Chrome up
 which developers do not control.
 Extension developers should be careful about updating extensions that have a dependency on the native application binary
 (for example, extensions using
-<a href="https://developer.chrome.com/extensions/messaging.html#native-messaging">native messaging</a>
+<a href="https://developer.chrome.com/extensions/messaging#native-messaging">native messaging</a>
 or legacy extensions using
-<a href="http://developer.chrome.com/extensions/npapi.html">NPAPI</a>).-->
+<a href="http://developer.chrome.com/extensions/npapi">NPAPI</a>).-->
 以前支持网上应用店以外的扩展程序时，第三方应用程序的二进制文件和自动安装的扩展程序可以一起更新。但是，Chrome
 网上应用店中托管的扩展程序是通过 Chrome
 更新机制更新的，开发者无法控制。扩展程序开发者更新依赖于原生应用程序二进制文件（例如使用<a

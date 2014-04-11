@@ -19,9 +19,9 @@
 <h1><!--@The--> activeTab <!--@permission-->权限</h1>
 
 <p>
-<!--@The--> <code>activeTab</code> <!--@permission gives an extension temporary access to the currently active tab when the user <em>invokes</em> the extension - for example by clicking its <a href="browserAction.html">browser action</a>. Access to the tab lasts until the tab is navigated or closed.-->
+<!--@The--> <code>activeTab</code> <!--@permission gives an extension temporary access to the currently active tab when the user <em>invokes</em> the extension - for example by clicking its <a href="browserAction">browser action</a>. Access to the tab lasts until the tab is navigated or closed.-->
 权限使扩展程序在用户<em>调用</em>扩展程序（例如单击<a
-href="browserAction.html">浏览器按钮</a>）时能够临时访问当前活动的标签页，对标签页的访问将一直持续到标签页导航或关闭。
+href="browserAction">浏览器按钮</a>）时能够临时访问当前活动的标签页，对标签页的访问将一直持续到标签页导航或关闭。
 </p>
 
 <p>
@@ -45,8 +45,8 @@ href="browserAction.html">浏览器按钮</a>）时能够临时访问当前活�
 <h2 id="example"><!--@Example-->例子</h2>
 
 <p>
-<!--@See the <a href="samples.html#page-redder">Page Redder</a> sample extension:-->
-参见 <a href="samples.html#page-redder">Page Redder</a>
+<!--@See the <a href="samples#page-redder">Page Redder</a> sample extension:-->
+参见 <a href="samples#page-redder">Page Redder</a>
 示例扩展程序：
 </p>
 
@@ -82,9 +82,9 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 <h2 id="motivation"><!--@Motivation-->目的</h2>
 
 <p>
-<!--@Consider a web clipping extension that has a <a href="browserAction.html">browser action</a> and <a href="contextMenus.html">context menu item</a>. This extension may only really need to access tabs when its browser action is clicked, or when its context menu item is executed.-->
-考虑一个包含<a href="browserAction.html">浏览器按钮</a>及<a
-href="contextMenus.html">右键菜单项</a>的网络剪辑扩展程序，该扩展程序只有在浏览器按钮单击或右键菜单项执行时才需要访问标签页。
+<!--@Consider a web clipping extension that has a <a href="browserAction">browser action</a> and <a href="contextMenus">context menu item</a>. This extension may only really need to access tabs when its browser action is clicked, or when its context menu item is executed.-->
+考虑一个包含<a href="browserAction">浏览器按钮</a>及<a
+href="contextMenus">右键菜单项</a>的网络剪辑扩展程序，该扩展程序只有在浏览器按钮单击或右键菜单项执行时才需要访问标签页。
 </p>
 
 <p>
@@ -106,7 +106,7 @@ href="contextMenus.html">右键菜单项</a>的网络剪辑扩展程序，该扩
   <li><!--@Call-->对该标签页调用 <code>$(ref:tabs.executeScript)</code> <!--@or-->或 <code>$(ref:tabs.insertCSS)</code><!--@on that tab.-->。
   <li><!--@Get the URL, title, and favicon for that tab via an API that returns a-->通过返回 <code>$(ref:tabs.Tab)</code> <!--@object (essentially,-->
   对象的 API 获取该标签页的 URL、标题及收藏夹图标（本质上
-  <code>activeTab</code> <!--@grants the-->临时授予了 <code><a href="tabs.html#manifest">tabs</a></code> <!--@permission temporarily).-->权限）。
+  <code>activeTab</code> <!--@grants the-->临时授予了 <code><a href="tabs#manifest">tabs</a></code> <!--@permission temporarily).-->权限）。
 </ul>
 </p>
 
@@ -115,10 +115,10 @@ href="contextMenus.html">右键菜单项</a>的网络剪辑扩展程序，该扩
 <p>
 <!--@The following user gestures enable-->如下用户操作启用 <code>activeTab</code>:
 <ul>
-  <li><!--@Executing a -->执行<a href="browserAction.html"><!--@browser action-->浏览器按钮</a>
-  <li><!--@Executing a -->执行<a href="pageAction.html"><!--@page action-->页面按钮</a>
-  <li><!--Executing a -->执行<a href="contextMenus.html"><!--@context menu item-->右键菜单项</a>
-  <li><!--Executing a keyboard shortcut from the -->通过<a href="commands.html"><!--@commands-->命令 API</a> 执行键盘快捷键
-  <li><!--Accepting a suggestion from the -->通过<a href="omnibox.html"><!--@omnibox-->多功能框 API</a> 接受建议
+  <li><!--@Executing a -->执行<a href="browserAction"><!--@browser action-->浏览器按钮</a>
+  <li><!--@Executing a -->执行<a href="pageAction"><!--@page action-->页面按钮</a>
+  <li><!--Executing a -->执行<a href="contextMenus"><!--@context menu item-->右键菜单项</a>
+  <li><!--Executing a keyboard shortcut from the -->通过<a href="commands"><!--@commands-->命令 API</a> 执行键盘快捷键
+  <li><!--Accepting a suggestion from the -->通过<a href="omnibox"><!--@omnibox-->多功能框 API</a> 接受建议
 </ul>
 </p>

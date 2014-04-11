@@ -22,20 +22,20 @@
   extension enables you to carefully consider the resources that your extension
   requires, and to ask the browser to ensure that those are the only resources
   your extension has access to. These policies provide security over and above
-  the <a href="declare_permissions.html">host permissions</a> your extension
+  the <a href="declare_permissions">host permissions</a> your extension
   requests; they're an additional layer of protection, not a replacement.-->
-  大体上，CSP 以白名单/黑名单的机制对您的扩展程序加载或执行的资源起作用。为您的扩展程序定义一项合理的策略使您可以仔细考虑您的扩展程序需要的资源，并且使浏览器确保您的扩展程序只能访问指定的那些资源。这些策略提供了比您的扩展程序请求的<a href="declare_permissions.html">主机权限</a>更高的安全性，它们是额外的保护层，而不是替代品。
+  大体上，CSP 以白名单/黑名单的机制对您的扩展程序加载或执行的资源起作用。为您的扩展程序定义一项合理的策略使您可以仔细考虑您的扩展程序需要的资源，并且使浏览器确保您的扩展程序只能访问指定的那些资源。这些策略提供了比您的扩展程序请求的<a href="declare_permissions">主机权限</a>更高的安全性，它们是额外的保护层，而不是替代品。
 </p>
 
 <p>
   <!--@On the web, such a policy is defined via an HTTP header or <code>meta</code>
   element. Inside Chrome's extension system, neither is an appropriate
   mechanism. Instead, an extension's policy is defined via the extension's
-  <a href="manifest.html"><code>manifest.json</code></a> file as follows:-->
+  <a href="manifest"><code>manifest.json</code></a> file as follows:-->
   在网页中，这样的策略通过 HTTP 头信息或者
   <code>meta</code> 元素定义。在 Chrome
   浏览器的扩展程序系统中，这些都不是合适的方式。扩展程序的策略通过扩展程序的
-  <a href="manifest.html"><code>manifest.json</code></a>
+  <a href="manifest"><code>manifest.json</code></a>
   文件定义，如下所示：
 </p>
 
@@ -62,13 +62,13 @@
 <h2 id="restrictions"><!--@Default Policy Restrictions-->默认策略限制</h2>
 
 <p>
-  <!--@Packages that do not define a <a href="manifestVersion.html">
+  <!--@Packages that do not define a <a href="manifestVersion">
     <code>manifest_version</code>
   </a> have no default content security policy. Those that select
   <code>manifest_version</code> 2, have a default content security policy
   of:-->
   没有定义
-  <a href="manifestVersion.html"><code>manifest_version</code></a>（清单文件版本） 的扩展程序包没有默认的内容安全策略，而选择
+  <a href="manifestVersion"><code>manifest_version</code></a>（清单文件版本） 的扩展程序包没有默认的内容安全策略，而选择
   <code>manifest_version</code> 2
   的扩展程序具有如下默认的内容安全策略：
 </p>
@@ -120,10 +120,10 @@ function() { return foo &amp;&amp; foo.bar &amp;&amp; foo.bar.baz };
   malicious third-party. It does, however, require you to write your code with a
   clean separation between content and behavior (which you should of course do
   anyway, right?). An example might make this clearer. You might try to write a
-  <a href="browserAction.html#popups">Browser Action's popup</a> as a single
+  <a href="browserAction#popups">Browser Action's popup</a> as a single
   <code>popup.html</code> containing:-->
   第一个限制使您不可能意外地执行任何恶意的第三方提供的脚本，彻底消除了一大部分的跨站脚本攻击。然而，这也确实要求您在编写代码时清晰地将内容与行为分开（这也是您当然应该做的吧？）。举一个例子可能会更加清楚，您可能想要编写一个包含如下内容的
-  <code>popup.html</code>，作为<a href="browserAction.html#popups">浏览器按钮的弹出内容</a>：
+  <code>popup.html</code>，作为<a href="browserAction#popups">浏览器按钮的弹出内容</a>：
 </p>
 
 <pre data-filename="popup.html">
@@ -378,10 +378,10 @@ function main() {
 <p>
   <!--@Making use of Google Analytics is the canonical example for this sort of
   policy definition. It's common enough that we've provided an Analytics
-  boilerplate of sorts in the <a href="samples.html#event-tracking-with-google-analytics">Event Tracking
+  boilerplate of sorts in the <a href="samples#event-tracking-with-google-analytics">Event Tracking
   with Google Analytics</a> sample extension, and a
-<a href="tut_analytics.html">brief tutorial</a> that goes into more detail.-->
-利用 Google Analytics（分析）是这一种策略定义的典型例子，这样的情况很常见，所以我们在<a href="samples.html#event-tracking-with-google-analytics">利用 Google Analytics（分析）追踪事件</a>的示例扩展程序中提供了简单例子，并在<a href="tut_analytics.html">简明教程</a>中提供了更多详情。
+<a href="tut_analytics">brief tutorial</a> that goes into more detail.-->
+利用 Google Analytics（分析）是这一种策略定义的典型例子，这样的情况很常见，所以我们在<a href="samples#event-tracking-with-google-analytics">利用 Google Analytics（分析）追踪事件</a>的示例扩展程序中提供了简单例子，并在<a href="tut_analytics">简明教程</a>中提供了更多详情。
 </p>
 
 <h3 id="relaxing-eval"><!--@Evaluated JavaScript-->JavaScript 求值</h3>
@@ -414,9 +414,9 @@ function main() {
   allows in order to increase security at the expense of convenience. To specify
   that your extension can only load resources of <em>any</em> type (images, etc)
   from its own package, for example, a policy of <code>default-src 'self'</code>
-  would be appropriate. The <a href="samples.html#mappy">Mappy</a> sample
+  would be appropriate. The <a href="samples#mappy">Mappy</a> sample
   extension is a good example of an extension that's been locked down above and
   beyond the defaults.-->
   您当然也可以以带来更多不便为代价，使用您的扩展程序允许的更严格的策略，来增强安全性。例如，要指定您的扩展程序只能从自己的包中加载<em>所有</em>类型（如图片等）的资源，可以使用这样的策略：<code>default_src 'self'</code>。<a
-href="samples.html#mappy">Mappy</a> 示例扩展程序就是使用的策略比默认设置更加严格的例子。
+href="samples#mappy">Mappy</a> 示例扩展程序就是使用的策略比默认设置更加严格的例子。
 </p>

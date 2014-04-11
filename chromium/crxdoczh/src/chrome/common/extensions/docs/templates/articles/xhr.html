@@ -42,11 +42,11 @@ unless the extension has requested the appropriate cross-origin permissions.-->
 <h2 id="requesting-permission"><!--@Requesting cross-origin permissions-->请求跨站权限</h2>
 
 <p><!--@By adding hosts or host match patterns (or both) to the
-<a href="declare_permissions.html">permissions</a> section of the
-<a href="manifest.html">manifest</a> file, the extension can request access to
+<a href="declare_permissions">permissions</a> section of the
+<a href="manifest">manifest</a> file, the extension can request access to
 remote servers outside of its origin.-->
-通过向<a href="manifest.html">清单文件</a>的
-<a href="declare_permissions.html">permissions</a>
+通过向<a href="manifest">清单文件</a>的
+<a href="declare_permissions">permissions</a>
 部分添加主机或主机匹配表达式，扩展程序可以请求访问位于自己的来源外的远程服务器。
 </p>
 
@@ -83,10 +83,10 @@ like these:-->
 <p>
 <!--@A match pattern of "http://*/" allows HTTP access to all reachable domains.
 Note that here,
-match patterns are similar to <a href="match_patterns.html">content script
+match patterns are similar to <a href="match_patterns">content script
 match patterns</a>,
 but any path information following the host is ignored.-->
-"http://*/" 这一匹配表达式允许所有可及域名的访问。注意，这里的匹配表达式和<a href="match_patterns.html">内容脚本匹配表达式</a>类似，但是主机后的任何路径信息都将被忽略。
+"http://*/" 这一匹配表达式允许所有可及域名的访问。注意，这里的匹配表达式和<a href="match_patterns">内容脚本匹配表达式</a>类似，但是主机后的任何路径信息都将被忽略。
 </p>
 
 <p><!--@Also note that access is granted both by host and by scheme. If an extension
@@ -173,7 +173,7 @@ prefer HTTPS whenever possible.-->
 <h3 id="interaction-with-csp"><!--@Interaction with Content Security Policy-->与内容安全策略的关系</h3>
 
 <p>
-<!--@If you modify the default <a href="contentSecurityPolicy.html">Content
+<!--@If you modify the default <a href="contentSecurityPolicy">Content
 Security Policy</a> for apps or extensions by adding a
 <code>content_security_policy</code> attribute to your manifest, you'll need to
 ensure that any hosts to which you'd like to connect are allowed. While the
@@ -181,7 +181,7 @@ default policy doesn't restrict connections to hosts, be careful when explicitly
 adding either the <code>connect-src</code> or <code>default-src</code>
 directives.-->
 如果您在您的清单文件中添加 <code>content_security_policy</code>
-属性修改了应用或扩展程序默认的<a href="contentSecurityPolicy.html"
+属性修改了应用或扩展程序默认的<a href="contentSecurityPolicy"
 >内容安全策略</a>，您需要确保您需要连接的所有主机都受到允许。尽管默认策略不限制连接到哪些主机，当您显式添加
 <code>connect-src</code> 或 <code>default-src</code> 指示符时要特别注意。
 </p>

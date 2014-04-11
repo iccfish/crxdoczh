@@ -29,9 +29,9 @@ Chrome 应用程序本身具有以下特性：
   </li>
   <li> <!--@Your app can <b>save and optionally sync</b>
     small amounts of data using the
-    <a href="storage.html">Chrome Storage API</a>.-->
+    <a href="storage">Chrome Storage API</a>.-->
     您的应用可以使用
-    <a href="storage.html">Chrome 浏览器的存储 API</a>
+    <a href="storage">Chrome 浏览器的存储 API</a>
     <b>保存并可选地同步</b>少量数据。
   </li>
   <li> <!--@Your app can <b>detect changes in connectivity</b>
@@ -120,15 +120,15 @@ Your offline-enabled app should follow these rules:-->
     If the resource is remote,
     you can't specify it in your HTML.
     Instead, get the data using <code>XMLHttpRequest</code>
-    (see <a href="app_external.html#external">Referencing external resources</a>).
+    (see <a href="app_external#external">Referencing external resources</a>).
     Then either refer to the data with a blob URL
     or (better yet) save and then load the data using the
-    <a href="app_storage.html">Filesystem API</a>.-->
+    <a href="app_storage">Filesystem API</a>.-->
     所有 <b>CSS样式</b>、<b>图片</b>和<b>字体</b>可以一开始就在应用程序包中，也可以在远程
     URL 上。如果资源是远程的，您不能在您的 HTML 中指定它，而需要使用
     <code>XMLHttpRequest</code> 获取数据（参见<a
-    href="app_external.html#external">引用外部资源</a>），然后通过
-    Blob URL 或者（更好的）通过<a href="app_storage.html">文件系统 API</a>
+    href="app_external#external">引用外部资源</a>），然后通过
+    Blob URL 或者（更好的）通过<a href="app_storage">文件系统 API</a>
     保存并加载数据。
 
     <p class="note">
@@ -163,17 +163,17 @@ streaming or partial buffering.-->
 you can create an &lt;webview> tag.
 Its contents can be remote,
 but it has no direct access to the Chrome app APIs
-(see <a href="app_external.html#webview">Embed external web pages</a>).-->
+(see <a href="app_external#webview">Embed external web pages</a>).-->
 要提供一个受沙箱保护的 iframe，您可以创建一个
 &lt;object&gt; 标签，它的内容可以来自远程，但是它不能直接访问
-Chrome 浏览器的应用 API（参见<a href="app_external.html#webview">嵌入外部网页</a>）。
+Chrome 浏览器的应用 API（参见<a href="app_external#webview">嵌入外部网页</a>）。
 </p>
 
 <p>
 <!--@Some of the restrictions on Chrome Apps are enforced by the 
-<a href="contentSecurityPolicy.html">Content Security Policy (CSP)</a>
+<a href="contentSecurityPolicy">Content Security Policy (CSP)</a>
 which is always the following and cannot be changed for Chrome Apps:-->
-对 Chrome 应用的部分限制由<a href="contentSecurityPolicy.html"
+对 Chrome 应用的部分限制由<a href="contentSecurityPolicy"
 >内容安全策略（CSP）</a>强制实施， Chrome
 应用的策略永远是如下内容，不能修改：
 </p>
@@ -194,8 +194,8 @@ media-src *;
 <!--@It is assumed that your app behaves well offline. If it doesn't, you should
 advertise that fact, so that its launch icon is dimmed when the user is offline.
 To do so, set <code>offline_enabled</code> to <code>false</code> in the
-<a href="manifest.html">app manifest file</a>:-->
-默认情况下假定您的应用在离线状态下能很好地工作。如果不是这样，您应该使用户了解这一事实，以便用户离线时执行图标可以暗色显示。如果要这么做，请在应用的<a href="manifest.html">清单文件</a>中将
+<a href="manifest">app manifest file</a>:-->
+默认情况下假定您的应用在离线状态下能很好地工作。如果不是这样，您应该使用户了解这一事实，以便用户离线时执行图标可以暗色显示。如果要这么做，请在应用的<a href="manifest">清单文件</a>中将
 <code>offline_enabled</code> 设置为 <code>false</code>。
 </p>
 
@@ -212,8 +212,8 @@ To do so, set <code>offline_enabled</code> to <code>false</code> in the
 
 <p>
 <!--@The following table shows your options for saving data locally
-(see also <a href="app_storage.html">Manage Data</a>).-->
-下表展示了您在本地保存数据的几种选择（请参见<a href="app_storage.html">管理数据</a>）。
+(see also <a href="app_storage">Manage Data</a>).-->
+下表展示了您在本地保存数据的几种选择（请参见<a href="app_storage">管理数据</a>）。
 </p>
 
 <table class="simple">
@@ -236,7 +236,7 @@ To do so, set <code>offline_enabled</code> to <code>false</code> in the
   <td> <!--@Enables fast searches on data.
        Use with the-->
        能够快速搜索数据，请与
-       <a href="declare_permissions.html">unlimitedStorage <!--@permission-->权限</a><!--@.-->
+       <a href="declare_permissions">unlimitedStorage <!--@permission-->权限</a><!--@.-->
        一起使用。
   </td>
 </tr>
@@ -246,7 +246,7 @@ To do so, set <code>offline_enabled</code> to <code>false</code> in the
   <td> <!--@Provides a sandboxed area where you can store files.
        Use with the-->
        提供一个您可以储存文件并受沙箱保护的区域，请与
-       <a href="declare_permissions.html">unlimitedStorage <!--@permission-->权限</a><!--@.-->
+       <a href="declare_permissions">unlimitedStorage <!--@permission-->权限</a><!--@.-->
        一起使用。
   </td>
 </tr>
@@ -270,7 +270,7 @@ API 以异步方式处理数据。
 <p>
 <!--@In general, how you save data remotely is up to you,
 but some frameworks and APIs can help
-(see <a href="app_frameworks.html">MVC Architecture</a>).
+(see <a href="app_frameworks">MVC Architecture</a>).
 If you use the Chrome Storage API,
 then all syncable data
 is automatically synced
@@ -281,7 +281,7 @@ they'll be prompted to sign in.
 However, note that the user's synced data
 is deleted if the user uninstalls your app.-->
 总的说来，如何在远程保存数据取决于您，但是一些框架与
-API 可能会有所帮助（参见 <a href="app_frameworks.html">MVC
+API 可能会有所帮助（参见 <a href="app_frameworks">MVC
 架构</a>）。如果您使用 Chrome 浏览器的存储
 API，那么所有可同步的数据都将在应用在线并且用户登录至
 Chrome
@@ -307,11 +307,11 @@ if they reinstall your app.-->
 <!--@Using an MVC framework can help you design and implement your app
 so that the data is completely separate from the app's
 view on the data.
-See <a href="app_frameworks.html">MVC Architecture</a>
+See <a href="app_frameworks">MVC Architecture</a>
 for a list of MVC frameworks.-->
 使用 MVC
 框架可以帮助您设计与实现您的应用，使数据与应用的数据视图完全分离。请参见
-<a href="app_frameworks.html">MVC 架构</a>了解 MVC 框架列表。
+<a href="app_frameworks">MVC 架构</a>了解 MVC 框架列表。
 </p>
 
 <p>

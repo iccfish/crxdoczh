@@ -8,7 +8,7 @@ is a good starting point.
 That document covers the broader web platform view of CSP;
 Chrome App CSP isn't as flexible.
 You should also read the
-<a href="/extensions/contentSecurityPolicy.html">Chrome extension Content Security Policy</a>,
+<a href="/extensions/contentSecurityPolicy">Chrome extension Content Security Policy</a>,
 as it's the foundation for the Chrome App CSP.
 For brevity's sake,
 we don't repeat the same information here.-->
@@ -16,7 +16,7 @@ we don't repeat the same information here.-->
 href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/"
 >内容安全策略简介</a>（英文）是一个很好的起点，它更广泛地包含了以网络平台的角度看待
 CSP 的内容，而 Chrome 应用的 CSP 并没有那么灵活。您还应该阅读
-<a href="../extensions/contentSecurityPolicy.html">Chrome 扩展程序的内容安全策略</a>，这是
+<a href="/extensions/contentSecurityPolicy">Chrome 扩展程序的内容安全策略</a>，这是
 Chrome 应用 CSP 的基础。为了简明起见，我们不会在这里重复同样的内容。
 </p>
 
@@ -132,12 +132,12 @@ that you want to do ‘eval’ things to.
 Sandboxing lifts CSP on the content that you specify.
 If you want to use the very powerful Chrome APIs in your Chrome App,
 your sandboxed content can't directly interact with these APIs
-(see <a href="app_external.html#sandboxing">Sandbox local content</a>).-->
+(see <a href="app_external#sandboxing">Sandbox local content</a>).-->
 您将需要使用沙盒功能将您需要 eval
 的所有内容隔离出来，沙盒功能解除了您指定的内容的 CSP
 限制。如果您希望在您的 Chrome 应用中使用强大的 Chrome
 API，经过沙盒屏蔽的内容不能直接与这些 API
-交互（参见<a href="app_external.html#sandboxing">用沙盒保护本地内容</a>）。
+交互（参见<a href="app_external#sandboxing">用沙盒保护本地内容</a>）。
 </p>
 
 <h3 id="remote_resources"><!--@Access remote resources-->访问远程资源</h3>
@@ -146,10 +146,10 @@ API，经过沙盒屏蔽的内容不能直接与这些 API
 <!--@You can fetch remote resources via <code>XMLHttpRequest</code>
 and serve them via <code>blob:</code>, <code>data:</code>,
 or <code>filesystem:</code> URLs
-(see <a href="app_external.html#external">Referencing external resources</a>).-->
+(see <a href="app_external#external">Referencing external resources</a>).-->
 您可以通过 <code>XMLHttpRequest</code> 获取远程资源，并通过
 <code>blob:</code>、<code>data:</code> 或 <code>filesystem:</code> URL
-访问它们（参见<a href="app_external.html#external">引用外部资源</a>）。
+访问它们（参见<a href="app_external#external">引用外部资源</a>）。
 </p>
 
 <p>
@@ -163,8 +163,8 @@ because they have good fallback behavior when offline or under spotty connectivi
 <p>
 <!--@Instead of using an iframe,
 you can call out to an external URL using an object tag
-(see <a href="app_external.html#webview">Embed external web pages</a>).-->
+(see <a href="app_external#webview">Embed external web pages</a>).-->
 您不能使用 iframe，而应该使用对象标签调用外部
-URL（参见<a href="app_external.html#webview">嵌入外部网页</a>）。
+URL（参见<a href="app_external#webview">嵌入外部网页</a>）。
 </p>
 

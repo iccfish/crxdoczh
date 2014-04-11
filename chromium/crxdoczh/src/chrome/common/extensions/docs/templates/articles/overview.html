@@ -4,10 +4,10 @@
 <p>
 <!--@Once you've finished this page
 and the
-<a href="getstarted.html">Getting Started</a> tutorial,
+<a href="getstarted">Getting Started</a> tutorial,
 you'll be all set to start writing extensions.-->
 当您看完该页面以及<a
-href="getstarted.html">入门</a>教程后，您已经准备好开始编写扩展程序了。
+href="getstarted">入门</a>教程后，您已经准备好开始编写扩展程序了。
 </p>
 
 <h2 id="what"><!--@The basics-->基础</h2>
@@ -18,25 +18,25 @@ CSS, JavaScript, images, and anything else you need&mdash;that
 adds functionality to the Google Chrome browser.
 Extensions are essentially web pages,
 and they can use all the
-<a href="api_other.html">APIs that the browser provides to web pages</a>,
+<a href="api_other">APIs that the browser provides to web pages</a>,
 from XMLHttpRequest to JSON to HTML5.-->
 扩展程序由一些文件（包括
 HTML、CSS、JavaScript、图片以及其他任何您需要的文件）经过 zip 打包得到，为
 Google Chrome 浏览器增加功能。扩展程序本质上是网页，它们可以利用<a
-href="api_other.html">浏览器为网页提供的所有 API</a>，例如
+href="api_other">浏览器为网页提供的所有 API</a>，例如
 XMLHttpRequest、JSON、HTML 5 等等。
 </p>
 
 <p>
 <!--@Extensions can interact with web pages or servers using
-<a href="content_scripts.html">content scripts</a> or
-<a href="xhr.html">cross-origin XMLHttpRequests</a>.
+<a href="content_scripts">content scripts</a> or
+<a href="xhr">cross-origin XMLHttpRequests</a>.
 Extensions can also interact programmatically
 with browser features such as
-<a href="bookmarks.html">bookmarks</a>
-and <a href="tabs.html">tabs</a>.-->
-扩展程序可以通过<a href="content_scripts.html">内容脚本</a>或<a
-href="xhr.html">跨站 XMLHttpRequest</a> 与网页或者服务器交互，扩展程序也可以以编程方式与浏览器功能（例如<a href="bookmarks.html">书签</a>和<a href="tabs.html">标签页</a>交互）。
+<a href="bookmarks">bookmarks</a>
+and <a href="tabs">tabs</a>.-->
+扩展程序可以通过<a href="content_scripts">内容脚本</a>或<a
+href="xhr">跨站 XMLHttpRequest</a> 与网页或者服务器交互，扩展程序也可以以编程方式与浏览器功能（例如<a href="bookmarks">书签</a>和<a href="tabs">标签页</a>交互）。
 </p>
 
 <h3 id="extension-ui"><!--@Extension UIs-->扩展程序的用户界面</h3>
@@ -44,15 +44,15 @@ href="xhr.html">跨站 XMLHttpRequest</a> 与网页或者服务器交互，扩�
 <p>
 <!--@Many extensions&mdash;but not Chrome Apps&mdash;add
 UI to Google Chrome in the form of
-<a href="browserAction.html">browser actions</a>
-or <a href="pageAction.html">page actions</a>.
+<a href="browserAction">browser actions</a>
+or <a href="pageAction">page actions</a>.
 Each extension can have at most one browser action or page action.
 Choose a <b>browser action</b> when the extension is relevant to most pages.
 Choose a <b>page action</b> when the extension's icon
 should appear or disappear,
 depending on the page.-->
-许多扩展程序（但不包括 Chrome 应用）以<a href="browserAction.html"
->浏览器按钮</a>或<a href="pageAction.html">页面按钮</a>的形式向
+许多扩展程序（但不包括 Chrome 应用）以<a href="browserAction"
+>浏览器按钮</a>或<a href="pageAction">页面按钮</a>的形式向
 Google Chrome
 浏览器增加用户界面，每个扩展程序最多能有一个浏览器按钮或页面按钮。当扩展程序与大部分网页相关时选择使用<b>浏览器按钮</b>，当扩展程序的图标显示还是消失取决于具体网页时选择使用<b>页面按钮</b>。
 </p>
@@ -78,29 +78,29 @@ Google Chrome
 
 <tr>
   <td>
-    <!--@This <a href="samples.html#google-mail-checker">Google Mail Checker extension</a>
+    <!--@This <a href="samples#google-mail-checker">Google Mail Checker extension</a>
     uses a <em>browser action</em>
     (icon in the toolbar).-->
-    这一<a href="samples.html#google-mail-checker">Google Mail Checker
+    这一<a href="samples#google-mail-checker">Google Mail Checker
     扩展程序</a>使用<em
     >浏览器按钮</em>（工具栏中的图标）。
   </td>
   <td>
-    <!--@This <a href="samples.html#mappy">Mappy extension</a>
+    <!--@This <a href="samples#mappy">Mappy extension</a>
     uses a <em>page action</em>
     (icon in the address bar)
     and <em>content script</em>
     (code injected into a web page).-->
-    这一<a href="samples.html#mappy">Mappy 扩展程序</a>使用<em
+    这一<a href="samples#mappy">Mappy 扩展程序</a>使用<em
     >页面按钮</em>（地址栏中的图标）以及<em>内容脚本</em>（插入网页的代码）。
   </td>
   <td>
-    <!--@This <a href="samples.html#news-reader">News Reader extension</a>
+    <!--@This <a href="samples#news-reader">News Reader extension</a>
     features a browser action that,
     when clicked,
     shows a <em>popup</em>.-->
     单击时显示<em>弹出菜单</em>的浏览器按钮是这一<a
-    href="samples.html#news-reader">新闻阅读器扩展程序</a>的特色。
+    href="samples#news-reader">新闻阅读器扩展程序</a>的特色。
   </td>
 </tr>
 </table>
@@ -110,12 +110,12 @@ Google Chrome
 such as adding to the Chrome context menu,
 providing an options page,
 or using a content script that changes how pages look.
-See the <a href="devguide.html">Developer's Guide</a>
+See the <a href="devguide">Developer's Guide</a>
 for a complete list of extension features,
 with links to implementation details
 for each one.-->
 扩展程序（以及 Chrome 应用）也可以以其他形式呈现用户界面，例如在 Chrome
-浏览器的右键菜单中添加内容，提供选项页面，或者利用内容脚本更改页面的显示方式。有关完整的扩展程序功能以及每一种功能的实现细节，请参见<a href="devguide.html">开发者指南</a>。
+浏览器的右键菜单中添加内容，提供选项页面，或者利用内容脚本更改页面的显示方式。有关完整的扩展程序功能以及每一种功能的实现细节，请参见<a href="devguide">开发者指南</a>。
 </p>
 
 <h2 id="files"><!--@Files-->文件</h2>
@@ -143,13 +143,13 @@ If you upload your extension using the
 <a href="https://chrome.google.com/webstore/developer/dashboard">Chrome Developer Dashboard</a>,
 the <code>.crx</code> file is created for you.
 For details on distributing extensions,
-see <a href="hosting.html">Hosting</a>.-->
+see <a href="hosting">Hosting</a>.-->
 当您编写您的扩展程序时，您将所有这些文件放在一个文件夹中。当您发布您的扩展程序时，该文件夹的内容将被压缩成一个特殊的
 ZIP 文件，以 <code>.crx</code> 为后缀。如果您通过
 <a href="https://chrome.google.com/webstore/developer/dashboard">Chrome
 开发者信息中心</a>上传您的扩展程序，该 <code>.crx</code>
 文件会自动为您创建。有关发布扩展的细节，请参见<a
-href="hosting.html">托管</a>。
+href="hosting">托管</a>。
 </p>
 
 
@@ -209,10 +209,10 @@ the ID will change again when you package the extension.
 If your extension's code
 needs to specify the full path to a file within the extension,
 you can use the <code>@@extension_id</code>
-<a href="i18n.html#overview-predefined">predefined message</a>
+<a href="i18n#overview-predefined">predefined message</a>
 to avoid hardcoding the ID during development.-->
 当您编写扩展程序时（打包之前），扩展程序标识符可能会更改。特别地，如果您从另一个目录加载未打包的扩展程序，它的标识符会改变，当您打包扩展程序时会再次改变。如果您的扩展程序代码需要指定扩展程序中某个文件的完整路径，您可以使用
-<code>@@extension_id</code> 这一<a href="i18n.html#overview-predefined"
+<code>@@extension_id</code> 这一<a href="i18n#overview-predefined"
 >预定义消息</a>，避免开发过程中硬编码标识符。
 </p>
 
@@ -260,8 +260,8 @@ that uses information from google.com:-->
 
 <p>
 <!--@For details, see
-<a href="manifest.html">Manifest Files</a>.-->
-有关更多细节，请参见<a href="manifest.html">清单文件</a>。
+<a href="manifest">Manifest Files</a>.-->
+有关更多细节，请参见<a href="manifest">清单文件</a>。
 </p>
 
 <h2 id="arch"><!--@Architecture-->架构</h2>
@@ -303,14 +303,14 @@ JavaScript 代码。
 
 <p>
 <!--@There are two types of background pages:
-<a href="background_pages.html">persistent background pages</a>,
-and <a href="event_pages.html">event pages</a>. Persistent
+<a href="background_pages">persistent background pages</a>,
+and <a href="event_pages">event pages</a>. Persistent
 background pages, as the name suggests, are always open.
 Event pages are opened and closed as needed. Unless you absolutely
 need your background page to run all the time, prefer to use
 an event page.-->
-后台网页分两种：<a href="background_pages.html"
->持久运行的后台网页</a>与<a href="event_pages.html"
+后台网页分两种：<a href="background_pages"
+>持续运行的后台网页</a>与<a href="event_pages"
 >事件页面</a>。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。
 </p>
 
@@ -318,10 +318,10 @@ an event page.-->
   This could build on a figure that shows the process architecture. -->
 
 <p>
-<!--@See <a href="event_pages.html">Event Pages</a>
-and <a href="background_pages.html">Background Pages</a>
+<!--@See <a href="event_pages">Event Pages</a>
+and <a href="background_pages">Background Pages</a>
 for more details.-->
-有关更多细节，请参见<a href="event_pages.html">事件页面</a>与<a href="background_pages.html">后台网页</a>。
+有关更多细节，请参见<a href="event_pages">事件页面</a>与<a href="background_pages">后台网页</a>。
 </p>
 
 <h3 id="pages"><!--@UI pages-->用户界面网页</h3>
@@ -376,12 +376,12 @@ because the popup can invoke functions on the background page.-->
  alt="A browser window containing a browser action that's displaying a popup. The popup's HTML file (popup.html) can communicate with the extension's background page (background.html)." />
 
 <p>
-<!--@See <a href="browserAction.html">Browser Actions</a>,
-<a href="options.html">Options</a>,
-<a href="override.html">Override Pages</a>,
+<!--@See <a href="browserAction">Browser Actions</a>,
+<a href="options">Options</a>,
+<a href="override">Override Pages</a>,
 and the <a href="#pageComm">Communication between pages</a> section
 for more details.-->
-有关更多细节，请参见<a href="browserAction.html">浏览器按钮</a>、<a href="options.html">选项</a>、<a href="override.html">替代页面</a>和<a href="#pageComm">页面间通信</a>这些部分。
+有关更多细节，请参见<a href="browserAction">浏览器按钮</a>、<a href="options">选项</a>、<a href="override">替代页面</a>和<a href="#pageComm">页面间通信</a>这些部分。
 </p>
 
 
@@ -445,8 +445,8 @@ asking a content script to change the appearance of its browser page.-->
 
 <p>
 <!--@For more information,
-see <a href="content_scripts.html">Content Scripts</a>.-->
-有关更多信息，请参见<a href="content_scripts.html">内容脚本</a>。
+see <a href="content_scripts">Content Scripts</a>.-->
+有关更多信息，请参见<a href="content_scripts">内容脚本</a>。
 </p>
 
 
@@ -599,10 +599,10 @@ since we don't do anything about the results of the update.-->
 
 <p>
 <!--@For more information, see the
-<a href="api_index.html">chrome.* API docs</a>
+<a href="api_index">chrome.* API docs</a>
 and watch this video:-->
 有关更多信息，请参见
-<a href="api_index.html">chrome.* API 文档</a>并观看以下视频（英文）：
+<a href="api_index">chrome.* API 文档</a>并观看以下视频（英文）：
 </p>
 
 <p>
@@ -622,7 +622,7 @@ the pages can make direct function calls to each other.-->
 
 <p>
 <!--@To find pages in the extension, use
-<a href="extension.html"><code>chrome.extension</code></a>
+<a href="extension"><code>chrome.extension</code></a>
 methods such as
 <code>getViews()</code> and
 <code>getBackgroundPage()</code>.
@@ -630,7 +630,7 @@ Once a page has a reference to other pages within the extension,
 the first page can invoke functions on the other pages,
 and it can manipulate their DOMs.-->
 要获得扩展程序中的网页，请使用
-<a href="extension.html"><code>chrome.extension</code></a>
+<a href="extension"><code>chrome.extension</code></a>
 方法，例如 $(ref:extension.getViews) 和 $(ref:extension.getBackgroundPage)。一旦一个网页引用了扩展程序中的其他网页，第一个网页可以执行其他网页上的函数，并且可以操纵它们的 DOM。
 </p>
 
@@ -707,10 +707,10 @@ Here are some ideas for where to go next:-->
 </p>
 
 <ul>
-  <li> <a href="getstarted.html"><!--@Tutorial: Getting Started-->教程：入门</a> </li>
-  <li> <a href="tut_debugging.html"><!--@Tutorial: Debugging-->教程：调试</a> </li>
-  <li> <a href="devguide.html"><!--@Developer's Guide-->开发者指南</a> </li>
-  <li> <a href="samples.html"><!--@Samples-->示例</a> </li>
+  <li> <a href="getstarted"><!--@Tutorial: Getting Started-->教程：入门</a> </li>
+  <li> <a href="tut_debugging"><!--@Tutorial: Debugging-->教程：调试</a> </li>
+  <li> <a href="devguide"><!--@Developer's Guide-->开发者指南</a> </li>
+  <li> <a href="samples"><!--@Samples-->示例</a> </li>
   <li> <a href="https://www.youtube.com/view_play_list?p=CA101D6A85FE9D4B"><!--@Videos-->视频（英文）</a><!--@,
     such as
     -->，例如<a href="https://www.youtube.com/watch?v=B4M_a7xejYI&feature=PlayList&p=CA101D6A85FE9D4B&index=6"><!--@Extension Message Passing-->扩展程序的消息传递</a>

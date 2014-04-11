@@ -89,10 +89,10 @@ Chrome 应用只能有一个“事件页面”。
 
 <p>
 <!--@For detailed instructions on how to use the programming model,
-see <a href="app_lifecycle.html">Manage App Lifecycle</a>.
+see <a href="app_lifecycle">Manage App Lifecycle</a>.
 Here's a brief summary of the Chrome App lifecyle
 to get you started:-->
-有关如何使用编程模型的详细指示，请参见<a href="app_lifecycle.html">管理应用的生命周期</a>。如下是
+有关如何使用编程模型的详细指示，请参见<a href="app_lifecycle">管理应用的生命周期</a>。如下是
 Chrome 应用生命周期的简要概述，帮助您入门：
 </p>
 
@@ -107,9 +107,9 @@ Chrome 应用生命周期的简要概述，帮助您入门：
     <!-- Simple width tweak to make the table more readable. -->
     <td style="width:4em"><!--@Installation-->安装</td>
     <td><!--@User chooses to install the app and explicitly accepts the
-    	<a href="declare_permissions.html">permissions</a>.-->
+    	<a href="declare_permissions">permissions</a>.-->
         用户选择安装应用程序并明确接受<a
-        href="declare_permissions.html">权限</a>。
+        href="declare_permissions">权限</a>。
     </td>
   </tr>
   <tr>
@@ -118,21 +118,22 @@ Chrome 应用生命周期的简要概述，帮助您入门：
       the 'launch' event fires,
       and app pages open in windows.
       You 
-      <a href="app_lifecycle.html#eventpage">create the windows</a>
+      <a href="app_lifecycle#eventpage">create the windows</a>
       that your app requires,
       how they look, and how they communicate
       with the event page and with other windows.-->
       加载事件页面，产生 'launch'
-      事件，并在窗口中打开应用的页面。您可以创建您的应用需要的窗口，并指定它们的外观以及它们与事件页面和其他窗口的通信方式。
+      事件，并在窗口中打开应用的页面。您可以<a
+      href="app_lifecycle#eventpage">创建应用需要的窗口</a>，并指定它们的外观以及它们与事件页面和其他窗口的通信方式。
     </td>
   </tr>
   <tr>
     <td><!--@Termination-->终止</td>
     <td><!--@User can terminate apps at any time
       and app can be quickly restored to previous state.
-      <a href="app_lifecycle.html#local_settings">Stashing data</a>
+      <a href="app_lifecycle#local_settings">Stashing data</a>
     	protects against data loss.-->
-        用户可以在任何时候终止应用，应用可以迅速恢复到原来的状态。<a href="app_lifecycle.html#preventing_loss">储存数据</a>可以避免数据丢失。
+        用户可以在任何时候终止应用，应用可以迅速恢复到原来的状态。<a href="app_lifecycle#preventing_loss">储存数据</a>可以避免数据丢失。
     </td>
   </tr>
   <tr>
@@ -160,13 +161,13 @@ Chrome 应用生命周期的简要概述，帮助您入门：
 <!--@The Chrome Apps security model protects users
 by ensuring their information is managed
 in a safe and secure manner.
-<a href="contentSecurityPolicy.html">Comply with CSP</a>
+<a href="contentSecurityPolicy">Comply with CSP</a>
 includes detailed information on how to comply with content security policy.
 This policy blocks dangerous scripting
 reducing cross-site scripting bugs
 and protecting users against man-in-the-middle attacks.-->
 Chrome 应用的安全模型通过确保信息的安全管理来保护用户。<a
-href="contentSecurityPolicy.html">遵循 CSP（内容安全策略）</a>包含了如何遵循内容安全策略的详细信息，该策略阻止了危险的脚本代码，减少跨站脚本漏洞并保护用户免受中间人攻击。
+href="contentSecurityPolicy">遵循 CSP（内容安全策略）</a>包含了如何遵循内容安全策略的详细信息，该策略阻止了危险的脚本代码，减少跨站脚本漏洞并保护用户免受中间人攻击。
 </p>
 
 <p>
@@ -200,13 +201,13 @@ All external processes are isolated from the app.
 Since iframes run in the same process as the surrounding page,
 they can only be used to load other app pages.
 You can use the <code>object</code> tag to
-<a href="app_external.html">embed external content</a>;
+<a href="app_external">embed external content</a>;
 this content runs in a separate process from the app.-->
 Chrome 应用也重用了 Chrome
 扩展程序的进程隔离，并进一步将存储区与外部内容隔离。每一个应用都有自己私有的存储区，不能访问其他应用的存储区或您在浏览器中使用的网站的个人数据（例如
 Cookie）。所有外部进程都与应用隔离。由于
 iframe
-与包含页面运行在同一进程中，它们只能用来加载其他应用页面。您可以使用对象标签来<a href="app_external.html">嵌入外部内容</a>，这些内容会在与应用分开的进程中运行。
+与包含页面运行在同一进程中，它们只能用来加载其他应用页面。您可以使用对象标签来<a href="app_external">嵌入外部内容</a>，这些内容会在与应用分开的进程中运行。
 </p>
 
 <p>

@@ -1,13 +1,13 @@
 <h1 id="lab_5_manage_data"><!--@Save and Fetch Data-->保存和获取数据</h1>
 
-<p><!--@The <a href="app_codelab3_mvc.html">sample from Lab 3</a>
+<p><!--@The <a href="app_codelab3_mvc">sample from Lab 3</a>
 uses a static array of Todos.
 Every time your app restarts,
 whatever you&#39;ve changed is lost.
 In this section, we will save every change using
-<a href="storage.html">chrome.storage.sync</a>.-->
-<a href="app_codelab3_mvc.html">实验三中的示例</a>使用静态数组存放待办事项，每次您的应用重新启动后，您的更改都会丢失。在这一部分，我们将使用
-<a href="storage.html">chrome.storage.sync</a>
+<a href="storage">chrome.storage.sync</a>.-->
+<a href="app_codelab3_mvc">实验三中的示例</a>使用静态数组存放待办事项，每次您的应用重新启动后，您的更改都会丢失。在这一部分，我们将使用
+<a href="storage">chrome.storage.sync</a>
 保存所有更改
 </p>
 
@@ -434,11 +434,11 @@ and launch the app from a new tab:
 
 <h2 id="challenge_"><!--@Challenge-->挑战</h2>
 
-<p><!--@The current code only saves the file reference, but it doesn&#39;t open the file. Using the <a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">HTML5 Filesystem API</a>, save the file contents in a sandboxed filesystem. When the Todo item is archived, remove the corresponding file from the sandboxed filesystem. Add an &quot;open&quot; link on each Todo that has an associated file. When the item is clicked and the file exists in the sandboxed filesystem, use the Chrome App <a href="fileSystem.html">Filesystem API</a> to request a writable FileEntry from the user. Save the file data from the sandboxed filesystem into that entry.-->
+<p><!--@The current code only saves the file reference, but it doesn&#39;t open the file. Using the <a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">HTML5 Filesystem API</a>, save the file contents in a sandboxed filesystem. When the Todo item is archived, remove the corresponding file from the sandboxed filesystem. Add an &quot;open&quot; link on each Todo that has an associated file. When the item is clicked and the file exists in the sandboxed filesystem, use the Chrome App <a href="fileSystem">Filesystem API</a> to request a writable FileEntry from the user. Save the file data from the sandboxed filesystem into that entry.-->
 当前的代码只保存了文件引用，但是它并没有打开文件。使用
 <a href="http://www.html5rocks.com/en/tutorials/file/filesystem/">HTML 5
 文件系统 API</a>，将文件内容保存在经过沙盒屏蔽的文件系统中。当待办事项完成后，从经过沙盒屏蔽的文件系统中删除相应的文件。在每一个与文件关联的待办事项上添加一个“打开”链接，单击项目后，如果文件在经过沙盒屏蔽的文件系统中存在，则使用
-Chrome 应用的<a href="fileSystem.html">文件系统 API</a>向用户请求可写的
+Chrome 应用的<a href="fileSystem">文件系统 API</a>向用户请求可写的
 FileEntry（文件项），将经过沙盒屏蔽的文件系统中的文件数据保存至文件项。
 </p>
 
@@ -450,16 +450,16 @@ Eric Bidelman 的
 <h2 id="takeaways_"><!--@Takeaways:-->更多信息</h2>
 
 <ul>
-<li><p><!--@Use-->使用 <a href="storage.html">chrome.storage.sync</a><!--@ to save small data that you need to be sync&#39;ed among devices, like configuration options, application state, etc. The sync is automatic, as long as the same user is logged into Chrome on all devices.-->
+<li><p><!--@Use-->使用 <a href="storage">chrome.storage.sync</a><!--@ to save small data that you need to be sync&#39;ed among devices, like configuration options, application state, etc. The sync is automatic, as long as the same user is logged into Chrome on all devices.-->
 保存您需要在不同设备间同步的少量数据，例如配置选项、应用程序状态等等。同步是自动的，只要所有设备上都是同一个用户登录 Chrome。
 </p></li>
 <li><p><!--@Chrome Apps support almost all HTML5 APIs, such as drag and drop.
 HTML Filesystem API is also supported, with extra features from the Chrome App&#39;s
-<a href="fileSystem.html">Filesystem API</a>,
+<a href="fileSystem">Filesystem API</a>,
 like asking the user to pick files on her local disk for read and write.
 The vanilla HTML5 Filesystem API only allows access to a sandboxed filesystem.-->
 Chrome 应用支持几乎所有 HTML5 API，例如拖放。HTML 文件系统 API
-也支持，同时还有来自 Chrome 应用<a href="fileSystem.html">文件系统
+也支持，同时还有来自 Chrome 应用<a href="fileSystem">文件系统
 API 扩展</a>的额外特性，例如让用户在本地磁盘上选择文件进行读写，而普通的
 HTML5 文件系统 API 只允许访问经过沙盒屏蔽的文件系统。
 </p></li>
@@ -467,11 +467,11 @@ HTML5 文件系统 API 只允许访问经过沙盒屏蔽的文件系统。
 
 <h2 id="you_should_also_read"><!--@You should also read-->您还应该阅读</h2>
 
-<p><a href="app_storage.html"><!--@Manage Data-->管理数据</a><!--@ tutorial-->教程</p>
+<p><a href="app_storage"><!--@Manage Data-->管理数据</a><!--@ tutorial-->教程</p>
 
 <h2 id="what_39_s_next_"><!--@What&#39;s next?-->接下来做什么？</h2>
 
-<p><!--@In-->在 <a href="app_codelab6_lifecycle.html">5 - <!--@Manage App Lifecycle-->管理应用的生命周期</a><!--@,
+<p><!--@In-->在 <a href="app_codelab6_lifecycle">5 - <!--@Manage App Lifecycle-->管理应用的生命周期</a><!--@,
 you will learn the basics of the Chrome App lifecycle. -->
 中，您将会学习 Chrome 应用生命周期的基础知识。
 </p>

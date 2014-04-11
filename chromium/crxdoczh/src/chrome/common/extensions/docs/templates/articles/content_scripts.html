@@ -38,7 +38,7 @@ They <b>cannot</b>:-->
     <!--@Use chrome.* APIs
     (except for parts of-->
     调用 chrome.* API（除了
-    <a href="extension.html"><code>chrome.extension</code></a><!--@)-->
+    <a href="extension"><code>chrome.extension</code></a><!--@)-->
     中的一部分）
   </li>
   <li>
@@ -56,10 +56,10 @@ They <b>cannot</b>:-->
 Content scripts can <em>indirectly</em> use the chrome.* APIs,
 get access to extension data,
 and request extension actions
-by exchanging <a href="messaging.html">messages</a>
+by exchanging <a href="messaging">messages</a>
 with their parent extension.
 Content scripts can also
-make <a href="xhr.html">cross-site XMLHttpRequests</a>
+make <a href="xhr">cross-site XMLHttpRequests</a>
 to the same sites as their parent extensions,
 and they can
 <a href="#host-page-communication">communicate with web pages</a>
@@ -68,9 +68,9 @@ For more insight into what content scripts can and can't do,
 learn about the
 <a href="#execution-environment">execution environment</a>.-->
 这些限制并不如看上去那么糟糕，内容脚本可以<em>间接地</em>通过与所属扩展程序交换<a
-href="messaging.html">消息</a>的方式，来使用 chrome.*
+href="messaging">消息</a>的方式，来使用 chrome.*
 API、访问扩展程序数据并请求扩展程序完成操作。内容脚本也可以像所属扩展程序一样向拥有主机权限的站点发出<a
-href="xhr.html">跨站 XMLHttpRequest</a>，另外也可以使用共享的 DOM <a
+href="xhr">跨站 XMLHttpRequest</a>，另外也可以使用共享的 DOM <a
 href="#host-page-communication">与网页通信</a>。有关内容脚本能做什么与不能做什么的更多内部细节，请参见<a
 href="#execution-environment">执行环境</a>。
 </p>
@@ -79,11 +79,11 @@ href="#execution-environment">执行环境</a>。
 
 <p><!--@If your content script's code should always be injected,
 register it in the
-<a href="manifest.html">extension manifest</a>
+<a href="manifest">extension manifest</a>
 using the <code>content_scripts</code> field,
 as in the following example.-->
 如果您的内容脚本代码每一次都需要插入到网页中，请在<a
-href="manifest.html">扩展程序的清单文件</a>中使用
+href="manifest">扩展程序的清单文件</a>中使用
 <code>content_scripts</code> 字段注册它，如以下例子所示：
 </p>
 
@@ -105,10 +105,10 @@ href="manifest.html">扩展程序的清单文件</a>中使用
 <p>
 <!--@If you want to inject the code only sometimes,
 use the
-<a href="declare_permissions.html"><code>permissions</code></a> field instead,
+<a href="declare_permissions"><code>permissions</code></a> field instead,
 as described in <a href="#pi">Programmatic injection</a>.-->
 如果您只是有时需要插入代码，应该使用
-<a href="declare_permissions.html">permissions</a>
+<a href="declare_permissions">permissions</a>
 字段，如<a href="#pi">以编程方式插入</a>部分所述。
 </p>
 
@@ -146,12 +146,12 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     <td>array of strings</td>
     <td><em><!--@Required.-->必选。</em>
     <!--@Specifies which pages this content script will be injected into.
-    See <a href="match_patterns.html">Match Patterns</a>
+    See <a href="match_patterns">Match Patterns</a>
     for more details on the syntax of these strings
     and <a href="#match-patterns-globs">Match patterns and globs</a>
     for information on how to exclude URLs.-->
     指定内容脚本要插入到哪些页面中去。有关这些字符串语法的更多细节请参见<a
-    href="match_patterns.html">匹配表达式</a>，有关如何排除 URL
+    href="match_patterns">匹配表达式</a>，有关如何排除 URL
     的信息请参见<a href="#match-patterns-globs">匹配表达式和范围</a>。
     </td>
   </tr>
@@ -161,12 +161,12 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     <td><em><!--@Optional.-->可选。</em>
     <!--@Excludes pages that this content script would otherwise be
     injected into.
-    See <a href="match_patterns.html">Match Patterns</a>
+    See <a href="match_patterns">Match Patterns</a>
     for more details on the syntax of these strings
     and <a href="#match-patterns-globs">Match patterns and globs</a>
     for information on how to exclude URLs.-->
     排除不需要插入内容脚本的页面。有关这些字符串语法的更多细节请参见<a
-    href="match_patterns.html">匹配表达式</a>，有关如何排除 URL
+    href="match_patterns">匹配表达式</a>，有关如何排除 URL
     的信息请参见<a href="#match-patterns-globs">匹配表达式和范围</a>。
     </td>
   </tr>
@@ -306,7 +306,7 @@ Because the <code>matches</code> property is required, <code>exclude_matches</co
 <p>
 <!--@Glob properties follow a different, more flexible syntax than <a href="match_patterns.html">match patterns</a>.  Acceptable glob strings are URLs that may contain "wildcard" asterisks and question marks. The asterisk (*) matches any string of any length (including the empty string); the question mark (?) matches any single character.-->
 范围（glob）属性与<a
-href="match_patterns.html">匹配表达式</a>相比遵循不同并且更灵活的语法。所有含有“通配符”星号和问号的
+href="match_patterns">匹配表达式</a>相比遵循不同并且更灵活的语法。所有含有“通配符”星号和问号的
 URL
 都是可接受的范围字符串，星号（*）匹配任意长度的字符串（包括空字符串），问号（?）匹配任意单个字符。
 </p>
@@ -345,16 +345,16 @@ only when the user clicks a browser action's icon.-->
 <p>
 <!--@To insert code into a page,
 your extension must have
-<a href="xhr.html#requesting-permission">cross-origin permissions</a>
+<a href="xhr#requesting-permission">cross-origin permissions</a>
 for the page.
 It also must be able to use the <code>chrome.tabs</code> module.
 You can get both kinds of permission
 using the manifest file's
-<a href="declare_permissions.html">permissions</a> field.-->
+<a href="declare_permissions">permissions</a> field.-->
 要向页面中插入代码，您的扩展程序必须拥有该页面的<a
-href="xhr.html#requesting-permission">主机权限</a>，并且还需要用到
+href="xhr#requesting-permission">主机权限</a>，并且还需要用到
 <code>chrome.tabs</code> 模块。您可以使用清单文件中的
-<a href="declare_permissions.html">permissions</a> 字段获得这些权限。
+<a href="declare_permissions">permissions</a> 字段获得这些权限。
 </p>
 
 <p>
@@ -519,7 +519,7 @@ the HTTP content might have been corrupted by a network <a
 href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">"man-in-the-middle"</a>
 if the user is on a hostile network.-->
 当您编写内容脚本时，您应该注意两个安全问题。首先，注意不要向您插入内容脚本的网站引入安全隐患。例如，如果您的内容脚本从另一个网站接收内容（例如通过发出
-<a href="xhr.html">XMLHttpRequest</a>），一定要注意把内容插入当前页面前过滤可能的<a href="https://en.wikipedia.org/wiki/Cross-site_scripting"
+<a href="xhr">XMLHttpRequest</a>），一定要注意把内容插入当前页面前过滤可能的<a href="https://en.wikipedia.org/wiki/Cross-site_scripting"
 >跨站脚本攻击</a>。例如，首选 innerText 而不是 innerHTML 插入内容。当您在
 HTTPS 页面上获取来自 HTTP 的内容时要特别小心，因为如果用户在不安全的网络环境中，HTTP 内容可能会因为网络中的<a
 href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack"
@@ -578,19 +578,19 @@ document.getElementById("someImage").src = imgURL;
 
 <p>
 <!--@You can find many
-<a href="samples.html#script">examples that use content scripts</a>.
+<a href="samples#script">examples that use content scripts</a>.
 A simple example of communication via messages is in the
-<a href="samples.html#message-timer">Message Timer</a>.
-See <a href="samples.html#page-redder">Page Redder</a> and
-<a href="samples.html#email-this-page-(by-google)">Email This Page</a>
+<a href="samples#message-timer">Message Timer</a>.
+See <a href="samples#page-redder">Page Redder</a> and
+<a href="samples#email-this-page-(by-google)">Email This Page</a>
 for examples of programmatic injection.-->
-您可以找到很多<a href="samples.html#script"
+您可以找到很多<a href="samples#script"
 >使用内容脚本的例子</a>。一个简单的通过消息通信的例子在<a
-href="samples.html#message-timer"
+href="samples#message-timer"
 >Message Timer</a>中，有关以编程方式插入的例子请参见<a
-href="samples.html#page-redder"
+href="samples#page-redder"
 >Page Redder</a>和<a
-href="samples.html#email-this-page-(by-google)"
+href="samples#email-this-page-(by-google)"
 >Email this page (by Google)</a>。
 </p>
 
