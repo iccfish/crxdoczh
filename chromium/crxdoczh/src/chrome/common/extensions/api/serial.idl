@@ -39,12 +39,12 @@ namespace serial {
   dictionary ConnectionOptions {
     // <!--@Flag indicating whether or not the connection should be left open when
     // the application is suspended (see
-    // <a href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App
+    // <a href="http://developer.chrome.com/apps/app_lifecycle">Manage App
     // Lifecycle</a>). The default value is "false." When the application is
     // loaded, any serial connections previously opened with persistent=true
     // can be fetched with <code>getConnections</code>.-->
     // 应用关闭时连接是否应该保持打开状态（参见<a
-    // href="app_lifecycle.html">Chrome 应用的生命周期</a>），默认值为
+    // href="app_lifecycle">Chrome 应用的生命周期</a>），默认值为
     // <code>false</code>。应用加载时，之前使用 <code>persistent: true</code>
     // 打开的串口连接可以通过 <code>getConnections</code> 获取。
     boolean? persistent;

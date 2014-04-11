@@ -113,8 +113,8 @@
         "name": "connect",
         "nocompile": true,
         "type": "function",
-//@        "description": "Connects to the content script(s) in the specified tab. The $(ref:runtime.onConnect) event is fired in each content script running in the specified tab for the current extension. For more details, see <a href='messaging.html'>Content Script Messaging</a>.",
-        "description": "连接到指定标签页中的内容脚本，这样当前扩展程序在指定标签页中运行的每一个内容脚本都会产生 $(ref:runtime.onConnect) 事件。有关更多详情，请参见<a href='messaging.html'>内容脚本的消息传递</a>。",
+//@        "description": "Connects to the content script(s) in the specified tab. The $(ref:runtime.onConnect) event is fired in each content script running in the specified tab for the current extension. For more details, see <a href='messaging'>Content Script Messaging</a>.",
+        "description": "连接到指定标签页中的内容脚本，这样当前扩展程序在指定标签页中运行的每一个内容脚本都会产生 $(ref:runtime.onConnect) 事件。有关更多详情，请参见<a href='messaging'>内容脚本的消息传递</a>。",
         "parameters": [
           {
             "type": "integer",
@@ -214,8 +214,8 @@
             "name": "windowId",
             "minimum": -2,
             "optional": true,
-//@            "description": "Defaults to the <a href='windows.html#current-window'>current window</a>."
-            "description": "默认为<a href='windows.html#current-window'>当前窗口</a>。"
+//@            "description": "Defaults to the <a href='windows#current-window'>current window</a>."
+            "description": "默认为<a href='windows#current-window'>当前窗口</a>。"
           },
           {
             "type": "function",
@@ -239,8 +239,8 @@
             "name": "windowId",
             "minimum": -2,
             "optional": true,
-//@            "description": "Defaults to the <a href='windows.html#current-window'>current window</a>."
-            "description": "默认为<a href='windows.html#current-window'>当前窗口</a>。"
+//@            "description": "Defaults to the <a href='windows#current-window'>current window</a>."
+            "description": "默认为<a href='windows#current-window'>当前窗口</a>。"
             },
           {
             "type": "function",
@@ -265,8 +265,8 @@
                 "type": "integer",
                 "minimum": -2,
                 "optional": true,
-//@                "description": "The window to create the new tab in. Defaults to the <a href='windows.html#current-window'>current window</a>."
-                "description": "创建新标签页的窗口，默认为<a href='windows.html#current-window'>当前窗口</a>。"
+//@                "description": "The window to create the new tab in. Defaults to the <a href='windows#current-window'>current window</a>."
+                "description": "创建新标签页的窗口，默认为<a href='windows#current-window'>当前窗口</a>。"
               },
               "index": {
                 "type": "integer",
@@ -385,8 +385,8 @@
               "currentWindow": {
                 "type": "boolean",
                 "optional": true,
-//@                "description": "Whether the tabs are in the <a href='windows.html#current-window'>current window</a>."
-                "description": "标签页是否在<a href='windows.html#current-window'>当前窗口</a>中。"
+//@                "description": "Whether the tabs are in the <a href='windows#current-window'>current window</a>."
+                "description": "标签页是否在<a href='windows#current-window'>当前窗口</a>中。"
               },
               "lastFocusedWindow": {
                 "type": "boolean",
@@ -410,15 +410,15 @@
               "url": {
                 "type": "string",
                 "optional": true,
-//@                "description": "Match tabs against a <a href='match_patterns.html'>URL pattern</a>. Note that fragment identifiers are not matched."
-                "description": "匹配标签页的 <a href='match_patterns.html'>URL 表达式</a>。注意：片段标识符不会匹配。"
+//@                "description": "Match tabs against a <a href='match_patterns'>URL pattern</a>. Note that fragment identifiers are not matched."
+                "description": "匹配标签页的 <a href='match_patterns'>URL 表达式</a>。注意：片段标识符不会匹配。"
               },
               "windowId": {
                 "type": "integer",
                 "optional": true,
                 "minimum": -2,
-//@                "description": "The ID of the parent window, or $(ref:windows.WINDOW_ID_CURRENT) for the <a href='windows.html#current-window'>current window</a>."
-                "description": "父窗口标识符，或者为 $(ref:windows.WINDOW_ID_CURRENT)，表示<a href='windows.html#current-window'>当前窗口</a>。"
+//@                "description": "The ID of the parent window, or $(ref:windows.WINDOW_ID_CURRENT) for the <a href='windows#current-window'>current window</a>."
+                "description": "父窗口标识符，或者为 $(ref:windows.WINDOW_ID_CURRENT)，表示<a href='windows#current-window'>当前窗口</a>。"
               },
               "windowType": {
                 "type": "string",
@@ -503,8 +503,8 @@
             "name": "tabId",
             "minimum": 0,
             "optional": true,
-//@            "description": "Defaults to the selected tab of the <a href='windows.html#current-window'>current window</a>."
-            "description": "默认为<a href='windows.html#current-window'>当前窗口</a>的选定标签页。"
+//@            "description": "Defaults to the selected tab of the <a href='windows#current-window'>current window</a>."
+            "description": "默认为<a href='windows#current-window'>当前窗口</a>的选定标签页。"
           },
           {
             "type": "object",
@@ -671,8 +671,8 @@
             "name": "tabId",
             "minimum": 0,
             "optional": true,
-//@            "description": "Defaults to the active tab of the <a href='windows.html#current-window'>current window</a>."
-            "description": "默认为<a href='windows.html#current-window'>当前窗口</a>的活动标签页。"
+//@            "description": "Defaults to the active tab of the <a href='windows#current-window'>current window</a>."
+            "description": "默认为<a href='windows#current-window'>当前窗口</a>的活动标签页。"
           },
           {
             "type": "function",
@@ -691,16 +691,16 @@
       {
         "name": "captureVisibleTab",
         "type": "function",
-//@        "description": "Captures the visible area of the currently active tab in the specified window. You must have <a href='declare_permissions.html'>host permission</a> for the URL displayed by the tab.",
-        "description": "捕捉指定窗口中当前活动标签页的可见区域，您必须拥有标签页中打开的 URL 的<a href='declare_permissions.html'>主机权限</a>。",
+//@        "description": "Captures the visible area of the currently active tab in the specified window. You must have <a href='declare_permissions'>host permission</a> for the URL displayed by the tab.",
+        "description": "捕捉指定窗口中当前活动标签页的可见区域，您必须拥有标签页中打开的 URL 的<a href='declare_permissions'>主机权限</a>。",
         "parameters": [
           {
             "type": "integer",
             "name": "windowId",
             "minimum": -2,
             "optional": true,
-//@            "description": "The target window. Defaults to the <a href='windows.html#current-window'>current window</a>."
-            "description": "目标窗口，默认为<a href='windows.html#current-window'>当前窗口</a>。"
+//@            "description": "The target window. Defaults to the <a href='windows#current-window'>current window</a>."
+            "description": "目标窗口，默认为<a href='windows#current-window'>当前窗口</a>。"
           },
           {
             "$ref": "types.ImageDetails",
@@ -718,8 +718,8 @@
       {
         "name": "executeScript",
         "type": "function",
-//@        "description": "Injects JavaScript code into a page. For details, see the <a href='content_scripts.html#pi'>programmatic injection</a> section of the content scripts doc.",
-        "description": "在页面中插入 JavaScript 代码。有关更多详情，请参节内容脚本文档中<a href='content_scripts.html#pi'>以编程方式插入</a>部分。",
+//@        "description": "Injects JavaScript code into a page. For details, see the <a href='content_scripts#pi'>programmatic injection</a> section of the content scripts doc.",
+        "description": "在页面中插入 JavaScript 代码。有关更多详情，请参节内容脚本文档中<a href='content_scripts#pi'>以编程方式插入</a>部分。",
         "parameters": [
 //@          {"type": "integer", "name": "tabId", "minimum": 0, "optional": true, "description": "The ID of the tab in which to run the script; defaults to the active tab of the current window."},
           {"type": "integer", "name": "tabId", "minimum": 0, "optional": true, "description": "运行脚本的标签页标识符，默认为当前窗口的活动标签页。"},
@@ -751,8 +751,8 @@
       {
         "name": "insertCSS",
         "type": "function",
-//@        "description": "Injects CSS into a page. For details, see the <a href='content_scripts.html#pi'>programmatic injection</a> section of the content scripts doc.",
-        "description": "向一个页面中插入CSS。有关更多详情，请参节内容脚本文档中<a href='content_scripts.html#pi'>以编程方式插入</a>部分。",
+//@        "description": "Injects CSS into a page. For details, see the <a href='content_scripts#pi'>programmatic injection</a> section of the content scripts doc.",
+        "description": "向一个页面中插入CSS。有关更多详情，请参节内容脚本文档中<a href='content_scripts#pi'>以编程方式插入</a>部分。",
         "parameters": [
 //@          {"type": "integer", "name": "tabId", "minimum": 0, "optional": true, "description": "The ID of the tab in which to insert the CSS; defaults to the active tab of the current window."},
           {"type": "integer", "name": "tabId", "minimum": 0, "optional": true, "description": "要插入CSS的标签页标识符，默认为当前窗口的活动标签页。"},

@@ -5,8 +5,8 @@
 [
   {
     "namespace": "history",
-//@    "description": "Use the <code>chrome.history</code> API to interact with the browser's record of visited pages. You can add, remove, and query for URLs in the browser's history. To override the history page with your own version, see <a href='override.html'>Override Pages</a>.",
-    "description": "使用 <code>chrome.history</code> API 与浏览器的历史记录交互，您可以添加、删除、通过 URL 查询浏览器的历史记录。如果您想要使用您自己的版本替换默认的历史记录页面，请参见<a href='override.html'>替代页面</a>。",
+//@    "description": "Use the <code>chrome.history</code> API to interact with the browser's record of visited pages. You can add, remove, and query for URLs in the browser's history. To override the history page with your own version, see <a href='override'>Override Pages</a>.",
+    "description": "使用 <code>chrome.history</code> API 与浏览器的历史记录交互，您可以添加、删除、通过 URL 查询浏览器的历史记录。如果您想要使用您自己的版本替换默认的历史记录页面，请参见<a href='override'>替代页面</a>。",
     "types": [
       {
         "id": "HistoryItem",

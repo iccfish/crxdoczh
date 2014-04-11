@@ -27,8 +27,8 @@
             "description": "可读性较好的资源描述。"
           }
         },
-//@        "description": "The only content type using resource identifiers is $(ref:contentSettings.plugins). For more information, see <a href=\"contentSettings.html#resource-identifiers\">Resource Identifiers</a>."
-        "description": "使用资源标识符的内容类型只有 $(ref:contentSettings.plugins)（插件）。有关更多信息，请参见<a href=\"contentSettings.html#resource-identifiers\">资源标识符</a>。"
+//@        "description": "The only content type using resource identifiers is $(ref:contentSettings.plugins). For more information, see <a href=\"contentSettings#resource-identifiers\">Resource Identifiers</a>."
+        "description": "使用资源标识符的内容类型只有 $(ref:contentSettings.plugins)（插件）。有关更多信息，请参见<a href=\"contentSettings#resource-identifiers\">资源标识符</a>。"
       },
       {
         "id": "ContentSetting",
@@ -128,13 +128,13 @@
                 "properties": {
                   "primaryPattern": {
                     "type": "string",
-//@                    "description": "The pattern for the primary URL. For details on the format of a pattern, see <a href='contentSettings.html#patterns'>Content Setting Patterns</a>."
-                    "description": "主要 URL 的匹配表达式。有关匹配表达式的格式细节，请参见<a href='contentSettings.html#patterns'>内容设置的匹配表达式</a>。"
+//@                    "description": "The pattern for the primary URL. For details on the format of a pattern, see <a href='contentSettings#patterns'>Content Setting Patterns</a>."
+                    "description": "主要 URL 的匹配表达式。有关匹配表达式的格式细节，请参见<a href='contentSettings#patterns'>内容设置的匹配表达式</a>。"
                   },
                   "secondaryPattern": {
                     "type": "string",
-//@                    "description": "The pattern for the secondary URL. Defaults to matching all URLs. For details on the format of a pattern, see <a href='contentSettings.html#patterns'>Content Setting Patterns</a>.",
-                    "description": "辅助 URL 的匹配表达式，默认匹配所有 URL。有关匹配表达式的格式详情，请参见<a href='contentSettings.html#patterns'>内容设置的匹配表达式</a>。",
+//@                    "description": "The pattern for the secondary URL. Defaults to matching all URLs. For details on the format of a pattern, see <a href='contentSettings#patterns'>Content Setting Patterns</a>.",
+                    "description": "辅助 URL 的匹配表达式，默认匹配所有 URL。有关匹配表达式的格式详情，请参见<a href='contentSettings#patterns'>内容设置的匹配表达式</a>。",
                     "optional": true
                   },
                   "resourceIdentifier": {

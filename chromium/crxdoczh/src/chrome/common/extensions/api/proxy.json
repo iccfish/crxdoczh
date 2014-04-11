@@ -5,8 +5,8 @@
 [
   {
     "namespace": "proxy",
-//@    "description": "Use the <code>chrome.proxy</code> API to manage Chrome's proxy settings. This API relies on the <a href='types.html#ChromeSetting'>ChromeSetting prototype of the type API</a> for getting and setting the proxy configuration.",
-    "description": "使用 <code>chrome.proxy</code> API 管理 Chrome 浏览器的代理服务器设置。该模块依赖于<a href='types.html#ChromeSetting'>类型 API 中的 ChromeSetting 原型</a>，用于获取和设置代理服务器配置。",
+//@    "description": "Use the <code>chrome.proxy</code> API to manage Chrome's proxy settings. This API relies on the <a href='types#ChromeSetting'>ChromeSetting prototype of the type API</a> for getting and setting the proxy configuration.",
+    "description": "使用 <code>chrome.proxy</code> API 管理 Chrome 浏览器的代理服务器设置。该模块依赖于<a href='types#ChromeSetting'>类型 API 中的 ChromeSetting 原型</a>，用于获取和设置代理服务器配置。",
     "types": [
       {
         "id": "ProxyServer",

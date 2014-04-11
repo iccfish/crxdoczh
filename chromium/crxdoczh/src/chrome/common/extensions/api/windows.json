@@ -60,8 +60,8 @@
       },
       "WINDOW_ID_CURRENT": {
         "value": -2,
-//@        "description": "The windowId value that represents the <a href='windows.html#current-window'>current window</a>."
-        "description": "代表<a href='windows.html#current-window'>当前窗口</a>的windowId值。"
+//@        "description": "The windowId value that represents the <a href='windows#current-window'>current window</a>."
+        "description": "代表<a href='windows#current-window'>当前窗口</a>的windowId值。"
       }
     },
     "functions": [

@@ -5,8 +5,8 @@
 [
   {
     "namespace": "declarativeWebRequest",
-//@    "description": "Use the <code>chrome.declarativeWebRequest</code> API to intercept, block, or modify requests in-flight. It is significantly faster than the <a href='webRequest.html'><code>chrome.webRequest</code> API</a> because you can register rules that are evaluated in the browser rather than the JavaScript engine with reduces roundtrip latencies and allows higher efficiency.",
-    "description": "使用 <code>chrome.declarativeWebRequest</code> API 实时地拦截、阻止或者修改请求，它比 <a href='webRequest.html'><code>chrome.webRequest</code> API</a> 要快得多，因为您注册的规则在浏览器而不是 JavaScript 引擎中求值，这样就减少了来回延迟并且可以获得极高的效率。",
+//@    "description": "Use the <code>chrome.declarativeWebRequest</code> API to intercept, block, or modify requests in-flight. It is significantly faster than the <a href='webRequest'><code>chrome.webRequest</code> API</a> because you can register rules that are evaluated in the browser rather than the JavaScript engine with reduces roundtrip latencies and allows higher efficiency.",
+    "description": "使用 <code>chrome.declarativeWebRequest</code> API 实时地拦截、阻止或者修改请求，它比 <a href='webRequest'><code>chrome.webRequest</code> API</a> 要快得多，因为您注册的规则在浏览器而不是 JavaScript 引擎中求值，这样就减少了来回延迟并且可以获得极高的效率。",
     "types": [
       {
         "id": "HeaderFilter",

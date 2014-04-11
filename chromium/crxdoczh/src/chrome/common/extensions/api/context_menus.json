@@ -95,8 +95,8 @@
                 "type": "array",
                 "items": {"type": "string"},
                 "optional": true,
-//@                "description": "Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see <a href='match_patterns.html'>Match Patterns</a>."
-                "description": "让您将该菜单项限制在 URL 匹配给定表达式的文档中显示。（也适用于框架。）有关表达式的格式的详情，请参见<a href='match_patterns.html'>匹配表达式</a>。"
+//@                "description": "Lets you restrict the item to apply only to documents whose URL matches one of the given patterns. (This applies to frames as well.) For details on the format of a pattern, see <a href='match_patterns'>Match Patterns</a>."
+                "description": "让您将该菜单项限制在 URL 匹配给定表达式的文档中显示。（也适用于框架。）有关表达式的格式的详情，请参见<a href='match_patterns'>匹配表达式</a>。"
               },
               "targetUrlPatterns": {
                 "type": "array",

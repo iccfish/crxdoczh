@@ -5,8 +5,8 @@
 [
   {
     "namespace":"management",
-//@    "description": "The <code>chrome.management</code> API provides ways to manage the list of extensions/apps that are installed and running. It is particularly useful for extensions that <a href='override.html'>override</a> the built-in New Tab page.",
-    "description": "<code>chrome.management</code> API 可以用来管理已经安装并且正在运行的扩展程序或应用，它对于<a href='override.html'>替代</a>内建的“打开新的标签页”页面的扩展程序特别有用。",
+//@    "description": "The <code>chrome.management</code> API provides ways to manage the list of extensions/apps that are installed and running. It is particularly useful for extensions that <a href='override'>override</a> the built-in New Tab page.",
+    "description": "<code>chrome.management</code> API 可以用来管理已经安装并且正在运行的扩展程序或应用，它对于<a href='override'>替代</a>内建的“打开新的标签页”页面的扩展程序特别有用。",
     "types": [
       {
         "id": "IconInfo",
@@ -47,8 +47,8 @@
             "type": "string"
           },
           "version": {
-//@            "description": "The <a href='manifest/version.html'>version</a> of this extension, app, or theme.",
-            "description": "扩展程序、应用或主题背景的<a href='manifest/version.html'>版本</a>。",
+//@            "description": "The <a href='manifest/version'>version</a> of this extension, app, or theme.",
+            "description": "扩展程序、应用或主题背景的<a href='manifest/version'>版本</a>。",
             "type": "string"
           },
           "mayDisable": {
@@ -110,8 +110,8 @@
             "type": "string"
           },
           "icons": {
-//@            "description": "A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the <a href='manifest/icons.html'>manifest documentation on icons</a> for more details.",
-            "description": "图标信息列表。注意这只反映声明在清单文件中的信息，URL 指定的实际图像可能比声明的更大或更小，所以您引用这些图像时可能要考虑在 <img> 标签中显式使用 width 和 height 属性。有关更多细节，请参见<a href='manifest/icons.html'>清单文件：icons</a>。",
+//@            "description": "A list of icon information. Note that this just reflects what was declared in the manifest, and the actual image at that url may be larger or smaller than what was declared, so you might consider using explicit width and height attributes on img tags referencing these images. See the <a href='manifest/icons'>manifest documentation on icons</a> for more details.",
+            "description": "图标信息列表。注意这只反映声明在清单文件中的信息，URL 指定的实际图像可能比声明的更大或更小，所以您引用这些图像时可能要考虑在 <img> 标签中显式使用 width 和 height 属性。有关更多细节，请参见<a href='manifest/icons'>清单文件：icons</a>。",
             "type": "array",
             "optional": true,
             "items": {
@@ -191,8 +191,8 @@
       },
       {
         "name": "getPermissionWarningsById",
-//@        "description": "Returns a list of <a href='permission_warnings.html'>permission warnings</a> for the given extension id.",
-        "description": "返回指定扩展程序标识符所对应的<a href='permission_warnings.html'>权限警告</a>列表。",
+//@        "description": "Returns a list of <a href='permission_warnings'>permission warnings</a> for the given extension id.",
+        "description": "返回指定扩展程序标识符所对应的<a href='permission_warnings'>权限警告</a>列表。",
         "parameters": [
           { "name": "id",
             "type": "string",
@@ -215,8 +215,8 @@
       },
       {
         "name": "getPermissionWarningsByManifest",
-//@        "description": "Returns a list of <a href='permission_warnings.html'>permission warnings</a> for the given extension manifest string. Note: This function can be used without requesting the 'management' permission in the manifest.",
-        "description": "返回指定扩展程序清单文件字符串对应的<a href='permission_warnings.html'>权限警告</a>列表。注意，这一函数不需要在清单文件中请求 \"management\"（管理）权限就可以使用。",
+//@        "description": "Returns a list of <a href='permission_warnings'>permission warnings</a> for the given extension manifest string. Note: This function can be used without requesting the 'management' permission in the manifest.",
+        "description": "返回指定扩展程序清单文件字符串对应的<a href='permission_warnings'>权限警告</a>列表。注意，这一函数不需要在清单文件中请求 \"management\"（管理）权限就可以使用。",
         "parameters": [
           {
             "name": "manifestStr",

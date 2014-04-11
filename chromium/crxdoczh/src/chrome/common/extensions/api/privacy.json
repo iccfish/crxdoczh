@@ -5,8 +5,8 @@
 [
   {
     "namespace": "privacy",
-//@    "description": "Use the <code>chrome.privacy</code> API to control usage of the features in Chrome that can affect a user's privacy. This API relies on the <a href='types.html#ChromeSetting'>ChromeSetting prototype of the type API</a> for getting and setting Chrome's configuration.",
-    "description": "使用 <code>chrome.privacy</code> API 控制 Chrome 浏览器中可能会影响用户隐私的特性。这一模块依赖于<a href='types.html#ChromeSetting'>类型 API 中的 ChromeSettings 原型</a>，用于获取和设置 Chrome 浏览器的配置。",
+//@    "description": "Use the <code>chrome.privacy</code> API to control usage of the features in Chrome that can affect a user's privacy. This API relies on the <a href='types#ChromeSetting'>ChromeSetting prototype of the type API</a> for getting and setting Chrome's configuration.",
+    "description": "使用 <code>chrome.privacy</code> API 控制 Chrome 浏览器中可能会影响用户隐私的特性。这一模块依赖于<a href='types#ChromeSetting'>类型 API 中的 ChromeSettings 原型</a>，用于获取和设置 Chrome 浏览器的配置。",
     "properties": {
       "network": {
         "type": "object",

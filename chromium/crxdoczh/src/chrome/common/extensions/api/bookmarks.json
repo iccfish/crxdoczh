@@ -5,8 +5,8 @@
 [
   {
     "namespace": "bookmarks",
-//@    "description": "Use the <code>chrome.bookmarks</code> API to create, organize, and otherwise manipulate bookmarks. Also see <a href='override.html'>Override Pages</a>, which you can use to create a custom Bookmark Manager page.",
-    "description": "使用 <code>chrome.bookmarks</code> API 创建、组织以及通过其他方式操纵书签。您也可以参见<a href='override.html'>替代页面</a>，通过它您可以创建一个自定义的书签管理器页面。",
+//@    "description": "Use the <code>chrome.bookmarks</code> API to create, organize, and otherwise manipulate bookmarks. Also see <a href='override'>Override Pages</a>, which you can use to create a custom Bookmark Manager page.",
+    "description": "使用 <code>chrome.bookmarks</code> API 创建、组织以及通过其他方式操纵书签。您也可以参见<a href='override'>替代页面</a>，通过它您可以创建一个自定义的书签管理器页面。",
     "properties": {
       "MAX_WRITE_OPERATIONS_PER_HOUR": {
         "value": 100,
