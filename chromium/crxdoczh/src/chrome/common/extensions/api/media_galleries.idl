@@ -73,7 +73,7 @@ namespace mediaGalleries {
       void ([instanceOf=DOMFileSystem] object[] mediaFileSystems,
             DOMString selectedFileSystemName);
 
-  callback DropPermissionForMediaFileSystemCallback = void (boolean wasDropped);
+  callback DropPermissionForMediaFileSystemCallback = void ();
 
   [inline_doc] dictionary MediaFileSystemMetadata {
     // <!--@The name of the file system.-->
@@ -134,6 +134,11 @@ namespace mediaGalleries {
     long? height;
     long? width;
 
+    // <!--@Defined for images only.-->
+    // 图片会包含这些属性。
+    double? xResolution;
+    double? yResolution;
+
     // <!--@Defined for audio and video. In seconds.-->
     // 音频和视频会包含该属性，以秒为单位。
     double? duration;
@@ -142,8 +147,18 @@ namespace mediaGalleries {
     // 图片和视频会包含该属性，以度为单位。
     long? rotation;
 
-    // <!--@Generic metadata tags.-->
-    // 通用元数据标签。
+    // <!--@Defined for images only.-->
+    // 图片会包含这些属性。
+    DOMString? cameraMake;
+    DOMString? cameraModel;
+    double? exposureTimeSeconds;
+    boolean? flashFired;
+    double? fNumber;
+    double? focalLengthMm;
+    double? isoEquivalent;
+
+    // <!--@Defined for audio and video only.-->
+    // 音频和视频会包含这些属性。
     DOMString? album;
     DOMString? artist;
     DOMString? comment;
