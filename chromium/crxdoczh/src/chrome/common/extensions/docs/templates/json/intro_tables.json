@@ -2,7 +2,7 @@
   "alarms": {
     "了解更多": [
       {
-        "link": "event_pages.html",
+        "link": "event_pages",
         "text": "事件页面"
       }
     ]
@@ -10,7 +10,7 @@
   "app_runtime": {
     "了解更多": [
       {
-        "link": "app_lifecycle.html",
+        "link": "app_lifecycle",
         "text": "管理应用的生命周期"
       },
       {
@@ -22,11 +22,11 @@
   "app_window": {
     "了解更多": [
       {
-        "link": "about_apps.html#look",
+        "link": "about_apps#look",
         "text": "应用的外观"
       },
       {
-        "link": "app_lifecycle.html",
+        "link": "app_lifecycle",
         "text": "管理应用的生命周期"
       },
       {
@@ -38,7 +38,7 @@
   "bluetooth": {
     "了解更多": [
       {
-        "link": "app_bluetooth.html",
+        "link": "app_bluetooth",
         "text": "蓝牙"
       }
     ]
@@ -50,7 +50,7 @@
         "text": "\"cookies\""
       },
       {
-        "link": "declare_permissions.html#host-permissions",
+        "link": "declare_permissions#host-permissions",
         "text": "主机权限"
       }
     ]
@@ -58,11 +58,11 @@
   "declarativeContent": {
     "了解更多": [
       {
-        "link": "events.html",
+        "link": "events",
         "text": "声明事件"
       },
       {
-        "link": "activeTab.html",
+        "link": "activeTab",
         "text": "activeTab"
       }
     ]
@@ -74,7 +74,7 @@
         "text": "\"declarativeWebRequest\""
       },
       {
-        "link": "declare_permissions.html#host-permissions",
+        "link": "declare_permissions#host-permissions",
         "text": "主机权限"
       }
     ]
@@ -104,11 +104,11 @@
     ],
     "了解更多": [
       {
-        "link": "app_storage.html",
+        "link": "app_storage",
         "text": "管理数据"
       },
       {
-        "link": "angular_framework.html",
+        "link": "angular_framework",
         "text": "用 AngularJS 建立应用"
       },
       {
@@ -120,7 +120,7 @@
   "gcm": {
     "了解更多": [
       {
-        "link": "cloudMessagingV2.html",
+        "link": "cloudMessagingV2",
         "text": "Google 云消息服务"
       }
     ]
@@ -128,7 +128,7 @@
   "identity": {
     "了解更多": [
       {
-        "link": "app_identity.html",
+        "link": "app_identity",
         "text": "认证用户"
       }
     ]
@@ -165,7 +165,7 @@
   "permissions": {
     "了解更多": [
       {
-        "link": "declare_permissions.html",
+        "link": "declare_permissions",
         "text": "声明权限"
       }
     ]
@@ -173,11 +173,11 @@
   "pushMessaging": {
     "了解更多": [
       {
-        "link": "cloudMessaging.html",
+        "link": "cloudMessaging",
         "text": "用于 Chrome 浏览器的 Google 云消息服务"
       },
       {
-        "link": "gcm_server.html",
+        "link": "gcm_server",
         "text": "GCM 服务的 API参考"
       }
     ]
@@ -185,11 +185,11 @@
   "runtime": {
     "了解更多": [
       {
-        "link": "app_lifecycle.html",
+        "link": "app_lifecycle",
         "text": "管理应用的生命周期"
       },
       {
-        "link": "event_pages.html",
+        "link": "event_pages",
         "text": "事件页面"
       }
     ]
@@ -197,7 +197,7 @@
   "serial": {
     "了解更多": [
       {
-        "link": "app_usb.html",
+        "link": "app_usb",
         "text": "访问硬件设备"
       }
     ]
@@ -214,11 +214,11 @@
     ],
     "了解更多": [
       {
-        "link": "app_network.html",
+        "link": "app_network",
         "text": "网络通信"
       },
       {
-        "link": "sencha_framework.html",
+        "link": "sencha_framework",
         "text": "用 Sencha ExtJS 建立应用"
       },
       {
@@ -246,7 +246,7 @@
   "syncFileSystem": {
     "了解更多": [
       {
-        "link": "app_storage.html",
+        "link": "app_storage",
         "text": "管理数据"
       },
       {
@@ -273,7 +273,7 @@
   "usb": {
     "了解更多": [
       {
-        "link": "app_usb.html",
+        "link": "app_usb",
         "text": "访问硬件设备"
       }
     ]
@@ -285,7 +285,7 @@
         "text": "\"webRequest\""
       },
       {
-        "link": "declare_permissions.html#host-permissions",
+        "link": "declare_permissions#host-permissions",
         "text": "主机权限"
       }
     ]
