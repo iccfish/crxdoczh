@@ -148,7 +148,7 @@ namespace app.window {
   // (Currently experimental, Ash only).
   [nodoc] enum WindowType { shell, panel };
 
-  dictionary CreateWindowOptions {
+  [noinline_doc] dictionary CreateWindowOptions {
     // <!--@Id to identify the window. This will be used to remember the size
     // and position of the window and restore that geometry when a window
     // with the same id is later opened.
@@ -175,8 +175,8 @@ namespace app.window {
     // <code>innerBounds</code> 和 <code>outerBounds</code>
     // 设置同样的属性值会导致错误。
     //
-    // <!--@Currently only available on the Dev channel from Chrome 35.-->
-    // 目前仅在 Chrome 35 或更高版本的 Dev 分支中可用。
+    // <!--@This property is new in Chrome 36.-->
+    // 该属性在 Chrome 36 中新增。
     BoundsSpecification? innerBounds;
 
     // <!--@Used to specify the initial position, initial size and constraints of the
@@ -196,8 +196,8 @@ namespace app.window {
     // <code>innerBounds</code> 和 <code>outerBounds</code>
     // 设置同样的属性值会导致错误。
     //
-    // <!--@Currently only available on the Dev channel from Chrome 35.-->
-    // 目前仅在 Chrome 35 或更高版本的 Dev 分支中可用。
+    // <!--@This property is new in Chrome 36.-->
+    // 该属性在 Chrome 36 中新增。
     BoundsSpecification? outerBounds;
 
     // Default width of the window.
@@ -226,19 +226,19 @@ namespace app.window {
 
     // <!--@Minimum width of the window.-->
     // 窗口的最小宽度。
-    long? minWidth;
+    [deprecated="请使用 innerBounds 或 outerBounds。"] long? minWidth;
 
     // <!--@Minimum height of the window.-->
     // 窗口的最小高度。
-    long? minHeight;
+    [deprecated="请使用 innerBounds 或 outerBounds。"] long? minHeight;
 
     // <!--@Maximum width of the window.-->
     // 窗口的最大宽度。
-    long? maxWidth;
+    [deprecated="请使用 innerBounds 或 outerBounds。"] long? maxWidth;
 
     // <!--@Maximum height of the window.-->
     // 窗口的最大高度。
-    long? maxHeight;
+    [deprecated="请使用 innerBounds 或 outerBounds。"] long? maxHeight;
 
     // Type of window to create.
     [nodoc] WindowType? type;
@@ -263,7 +263,7 @@ namespace app.window {
     // before, the remembered bounds of the window will be used instead.-->
     // 窗口中内容的大小与位置（不包括标题栏）。如果同时指定了
     // id，并且以前显示过匹配标识符的窗口，则会使用记录下来的窗口大小与位置。
-    ContentBounds? bounds;
+    [deprecated="请使用 innerBounds 或 outerBounds。"] ContentBounds? bounds;
 
     // <!--@Enable window background transparency.
     // Only supported in ash. Requires experimental API permission.-->
@@ -404,11 +404,11 @@ namespace app.window {
 
     // <!--@Get the window's inner bounds as a $(ref:ContentBounds) object.-->
     // 获取窗口内部的大小与位置，以 $(ref:ContentBounds) 对象表示。
-    [nocompile] static ContentBounds getBounds();
+    [nocompile, deprecated="请使用 innerBounds 或 outerBounds。"] static ContentBounds getBounds();
 
     // <!--@Set the window's inner bounds.-->
     // 设置窗口内部的大小与位置。
-    [nocompile] static void setBounds(ContentBounds bounds);
+    [nocompile, deprecated="请使用 innerBounds 或 outerBounds。"] static void setBounds(ContentBounds bounds);
 
     // Set the app icon for the window (experimental).
     // Currently this is only being implemented on Ash.
@@ -449,16 +449,16 @@ namespace app.window {
 
     // <!--@The position, size and constraints of the window's content, which does
     // not include window decorations.
-    // Currently only available on the Dev channel from Chrome 35.-->
-    // 窗口内容的位置、大小和约束，不包括窗口边框。目前仅在 Chrome 35 Dev
-    // 分支及更高版本中可用。
+    // This property is new in Chrome 36.-->
+    // 窗口内容的位置、大小和约束，不包括窗口边框。该属性在
+    // Chrome 36 中新增。
     Bounds innerBounds;
 
     // <!--@The position, size and constraints of the window, which includes window
     // decorations, such as the title bar and frame.
-    // Currently only available on the Dev channel from Chrome 35.-->
-    // 窗口的位置、大小和约束，包括窗口标题栏和边框。目前仅在 Chrome 35 Dev
-    // 分支及更高版本中可用。
+    // This property is new in Chrome 36.-->
+    // 窗口的位置、大小和约束，包括窗口标题栏和边框。该属性在
+    // Chrome 36 中新增。
     Bounds outerBounds;
   };
 
@@ -469,14 +469,19 @@ namespace app.window {
     // be used.-->
     // 窗口的大小与位置可以以几种不同的方式指定。最简单的选择是什么都不指定，这种情况下会使用默认大小与平台相关的位置。
     //
-    // <!--@Another option is to use the <code>bounds</code> property, which will put
-    // the window at the specified coordinates with the specified size. If the
-    // window has a frame, it's total size will be the size given plus the size
-    // of the frame; that is, the size in bounds is the content size, not the
-    // window size.-->
-    // 另一种选择是使用 <code>bounds</code>
-    // 属性，这样窗口总是会放在指定位置并且具有指定大小。如果窗口有边框，它的总大小是指定大小加上边框的大小。也就是说，bounds
-    // 中的大小是内容大小，而不是窗口大小。
+    // <!--@To set the position, size and constraints of the window, use the
+    // <code>innerBounds</code> or <code>outerBounds</code> properties. Inner
+    // bounds do not include window decorations. Outer bounds include the
+    // window's title bar and frame. Note that the padding between the inner and
+    // outer bounds is determined by the OS. Therefore setting the same property
+    // for both inner and outer bounds is considered an error (for example,
+    // setting both <code>innerBounds.left</code> and
+    // <code>outerBounds.left</code>).-->
+    // 要设置窗口的位置、大小和约束，您可以使用 <code>innerBounds</code> 或
+    // <code>outerBounds</code> 属性。<code>innerBounds</code>
+    // 不包括窗口的装饰部分，而 <code>outerBounds</code>
+    // 包括窗口的标题栏和边框。注意，内界与外界之间的填充部分由操作系统决定，所以同时设置内外界是错误的（例如同时设置
+    // <code>innerBounds.left</code> 和 <code>outerBounds.left</code> ）。
     //
     // <!--@To automatically remember the positions of windows you can give them ids.
     // If a window has an id, This id is used to remember the size and position
@@ -485,7 +490,7 @@ namespace app.window {
     // window with the same id. If you need to open a window with an id at a
     // location other than the remembered default, you can create it hidden,
     // move it to the desired location, then show it.-->
-    // 如果要自动记录窗口的位置，您可以为它们提供标识符。如果窗口有标识符，该标识符将在窗口移动或调整大小时用于记录它的大小和位置。以后打开具有同样标识符的窗口时使用这一大小和位置，而不是指定的大小和位置。如果您需要打开一个具有标识符的窗口，并且使用不同于记录的默认位置，您可以使它创建时隐藏，将它移动到期望的位置，然后显示它。
+    // 如果要自动记录窗口的位置，您可以为它们提供标识符。如果窗口有标识符，该标识符将在窗口移动或调整大小时用于记录它的大小和位置。以后打开具有同样标识符的窗口时使用记录的大小和位置，而不是指定的大小和位置。如果您需要打开一个具有标识符的窗口，并且使用不同于记录的默认位置，您可以使它创建时隐藏，将它移动到期望的位置，然后显示它。
     static void create(DOMString url,
                        optional CreateWindowOptions options,
                        optional CreateWindowCallback callback);
