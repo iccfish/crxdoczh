@@ -20,28 +20,36 @@ namespace app.window {
   };
 
   dictionary BoundsSpecification {
-    // The X coordinate of the content or window.
+    // <!--@The X coordinate of the content or window.-->
+    // 内容或窗口的 X 坐标。
     long? left;
 
-    // The Y coordinate of the content or window.
+    // <!--@The Y coordinate of the content or window.-->
+    // 内容或窗口的 Y 坐标。
     long? top;
 
-    // The width of the content or window.
+    // <!--@The width of the content or window.-->
+    // 内容或窗口的宽度。
     long? width;
 
-    // The height of the content or window.
+    // <!--@The height of the content or window.-->
+    // 内容或窗口的高度。
     long? height;
 
-    // The minimum width of the content or window.
+    // <!--@The minimum width of the content or window.-->
+    // 内容或窗口的最小宽度。
     long? minWidth;
 
-    // The minimum height of the content or window.
+    // <!--@The minimum height of the content or window.-->
+    // 内容或窗口的最小高度。
     long? minHeight;
 
-    // The maximum width of the content or window.
+    // <!--@The maximum width of the content or window.-->
+    // 内容或窗口的最大宽度。
     long? maxWidth;
 
-    // The maximum height of the content or window.
+    // <!--@The maximum height of the content or window.-->
+    // 内容或窗口的最大高度。
     long? maxHeight;
   };
 
