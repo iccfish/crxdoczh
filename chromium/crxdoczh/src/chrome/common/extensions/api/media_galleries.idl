@@ -124,6 +124,16 @@ namespace mediaGalleries {
   callback MediaFileSystemsMetadataCallback =
       void (MediaFileSystemMetadata[] metadata);
 
+  dictionary StreamInfo {
+    // <!--@Describes format of container or codec of stream, i.e. "mp3", "h264".-->
+    // 描述媒体流的容器或编解码器格式，即 "mp3"、"h264" 等。
+    DOMString type;
+    
+    // <!--@An unfiltered string->string dictionary of tags for the stream.-->
+    // 媒体流的标签，以未经过滤的字符串->字符串词典的形式表示。
+    object tags;
+  };
+
   dictionary MediaMetadata {
     // <!--@The browser sniffed mime type.-->
     // 浏览器检测到的 MIME 类型。
@@ -169,10 +179,10 @@ namespace mediaGalleries {
     DOMString? title;
     long? track;
 
-    // <!--@A dictionary of all the metadata in the media file. This metadata is in
-    // string form, and neither the key nor value is normalized.-->
-    // 包含媒体文件中所有元数据的词典，元数据以字符串形式表示，键与值都未经过正规化。
-    object rawTags;
+    // <!--@All the metadata in the media file. For formats with multiple streams,
+    // stream order will be preserved. Container metadata is the first element.-->
+    // 包含媒体文件中所有元数据的词典。如果文件格式包含多个媒体流，则按照媒体流的顺序表示，第一个元素是容器元数据。
+    StreamInfo[] rawTags;
   };
 
   callback MediaMetadataCallback = void (MediaMetadata metadata);

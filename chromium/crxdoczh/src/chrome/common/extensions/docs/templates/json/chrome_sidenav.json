@@ -325,6 +325,10 @@ navigation menu look better.
             "href": "/apps/about_apps",
             "items": [
               {
+                "title": "什么是 Chrome 应用？",
+                "href": "/apps/about_apps"
+              },
+              {
                 "title": "创建第一个应用",
                 "href": "/apps/first_app"
               },
@@ -385,7 +389,7 @@ navigation menu look better.
           {
             "title": "在云端开发",
             "href": "/apps/offline_apps",
-      "items": [
+            "items": [
               {
                 "title": "首先考虑离线",
                 "href": "/apps/offline_apps"
@@ -455,6 +459,10 @@ navigation menu look better.
               {
                 "title": "发布您的应用",
                 "href": "/apps/publish_app"
+              },
+              {
+                "title": "在移动设备上运行 Chrome 应用",
+                "href": "/apps/chrome_apps_on_mobile"
               },
               {
                 "title": "通过应用获利",
