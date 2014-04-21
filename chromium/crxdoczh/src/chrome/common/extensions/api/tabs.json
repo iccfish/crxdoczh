@@ -533,7 +533,8 @@
                 "deprecated": "请使用 <em>highlighted</em>。",
                 "type": "boolean",
                 "optional": true,
-                "description": "Whether the tab should be selected."
+//@                "description": "Whether the tab should be selected."
+                "description": "标签页是否选中。"
               },
               "pinned": {
                 "type": "boolean",
@@ -635,7 +636,7 @@
                 "type": "boolean",
                 "optional": true,
 //@                "description": "Whether using any local cache. Default is false."
-                "description": "是否使用本地缓存，默认为 false。"
+                "description": "是否跳过本地缓存，默认为 false，即使用本地缓存。"
               }
             }
           },
@@ -682,7 +683,7 @@
                 "type": "string",
                 "name": "language",
 //@                "description": "An ISO language code such as <code>en</code> or <code>fr</code>. For a complete list of languages supported by this method, see <a href='http://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc'>kLanguageInfoTable</a>. The 2nd to 4th columns will be checked and the first non-NULL value will be returned except for Simplified Chinese for which zh-CN will be returned. For an unknown language, <code>und</code> will be returned."
-                "description": "ISO 语言代码，例如 <code>en</code> 或 <code>fr</code>。有关该方法支持的所有语言的完整列表，请参见 <a href='http://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc'>kLanguageInfoTable</a>，将检查第二列到第四列并返回第一个非 NULL 值（除了简体中文返回 zh-CN），未知语言将返回 <code>und</code>。"
+                "description": "ISO 语言代码，例如 <code>en</code> 或 <code>fr</code>。有关该方法支持的所有语言的完整列表，请参见 <a href='https://src.chromium.org/viewvc/chrome/trunk/src/third_party/cld/languages/internal/languages.cc'>kLanguageInfoTable</a>，将检查第二列到第四列并返回第一个非 NULL 值（除了简体中文返回 zh-CN），未知语言将返回 <code>und</code>。"
               }
             ]
           }
@@ -692,7 +693,7 @@
         "name": "captureVisibleTab",
         "type": "function",
 //@        "description": "Captures the visible area of the currently active tab in the specified window. You must have <a href='declare_permissions'>host permission</a> for the URL displayed by the tab.",
-        "description": "捕捉指定窗口中当前活动标签页的可见区域，您必须拥有标签页中打开的 URL 的<a href='declare_permissions'>主机权限</a>。",
+        "description": "捕捉指定窗口中当前活动标签页的可见区域，您必须拥有 \"<all_urls>\" 或当前活动标签页的 \"activeTab\" 权限才能使用该方法。",
         "parameters": [
           {
             "type": "integer",
