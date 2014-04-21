@@ -564,7 +564,7 @@
         "name": "onImportBegan",
         "type": "function",
 //@        "description": "Fired when a bookmark import session is begun.  Expensive observers should ignore onCreated updates until onImportEnded is fired.  Observers should still handle other notifications immediately.",
-        "description": "开始导入书签时产生。复杂的事件处理函数在这一事件产生后不应该再处理 onCreate 事件，直到 onImportEnded 事件产生，在此过程中其他事件仍然应该立即处理。",
+        "description": "开始导入书签时产生。复杂的事件处理函数在这一事件产生后不应该再处理 onCreated 事件，直到 onImportEnded 事件产生，在此过程中其他事件仍然应该立即处理。",
         "parameters": []
       },
       {
