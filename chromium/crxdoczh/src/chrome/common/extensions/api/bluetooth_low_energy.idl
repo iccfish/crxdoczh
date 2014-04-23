@@ -1,0 +1,299 @@
+// Copyright 2014 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// <!--@The <code>chrome.bluetoothLowEnergy</code> API is used to communicate with
+// Bluetooth Smart (Low Energy) devices.-->
+// <code>chrome.bluetoothLowEnergy</code> API
+// 用来与蓝牙智能（低耗能）设备通信。
+namespace bluetoothLowEnergy {
+  // <!--@Values representing the possible properties of a characteristic.-->
+  // 表示可能的特征属性值。
+  enum CharacteristicProperty {broadcast, read, writeWithoutResponse, write,
+                               notify, indicate, authenticatedSignedWrites,
+                               extendedProperties, reliableWrite,
+                               writeableAuxiliaries};
+
+  // <!--@Represents a peripheral's Bluetooth GATT Service, a collection of
+  // characteristics and relationships to other services that encapsulate
+  // the behavior of part of a device.-->
+  // 代表外围蓝牙 GATT 服务，包含特征以及和其他服务的关系，构成了设备的行为部分。
+  dictionary Service {
+    // <!--@The UUID of the service, e.g. 0000180d-0000-1000-8000-00805f9b34fb.-->
+    // 服务的 UUID，例如 0000180d-0000-1000-8000-00805f9b34fb。
+    DOMString uuid;
+
+    // <!--@Indicates whether the type of this service is primary or secondary.-->
+    // 表示服务类型是主要的还是辅助的。
+    boolean isPrimary;
+
+    // <!--@Indicates whether this service represents a local service hosted by the
+    // application and available to other peripherals, or a remote service
+    // hosted and received from a remote peripheral.-->
+    // 该服务是否代表应用程序托管的本地服务，其他外设也能使用；或者是远程外设托管和接收的远程服务。
+    boolean isLocal;
+
+    // <!--@Returns the identifier assigned to this service. Use the instance ID to
+    // distinguish between services from a peripheral with the same UUID and
+    // to make function calls that take in a service identifier. Present, if
+    // this instance represents a remote service.-->
+    // 返回分配给该服务的标识符，使用实例标识符区分相同 UUID
+    // 外设中的不同服务，调用接收服务标识符的函数时也要使用。如果该实例代表远程服务的话就存在该属性。
+    DOMString? instanceId;
+
+    // <!--@The remote peripheral that the GATT service belongs to. Present, if this
+    // instance represents a remote service.-->
+    // GATT 服务属于哪个远程外设，如果该实例代表远程服务的话就存在该属性。
+    bluetooth.Device? device;
+  };
+
+  // <!--@Represents a GATT characteristic, which is a basic data element that
+  // provides further information about a peripheral's service.-->
+  // 表示 GATT 特征，这是一种基本的数据元素，进一步提供外设服务的有关信息。
+  dictionary Characteristic {
+    // <!--@The UUID of the characteristic, e.g.
+    // 00002a37-0000-1000-8000-00805f9b34fb.-->
+    // 特征的 UUID，例如 00002a37-0000-1000-8000-00805f9b34fb。
+    DOMString uuid;
+
+    // <!--@Indicates whether this characteristic represents a local characteristic
+    // hosted by the application and available to other peripherals, or a remote
+    // characteristic hosted and received from a remote peripheral.-->
+    // 该特征是否代表应用程序托管的本地特征，其他外设也能使用；或者是远程外设托管和接收的远程特征。
+    boolean isLocal;
+
+    // <!--@The GATT service this characteristic belongs to.-->
+    // 该特征属于哪个 GATT 服务。
+    Service service;
+
+    // <!--@The properties of this characteristic.-->
+    // 该特征的属性。
+    CharacteristicProperty[] properties;
+
+    // <!--@Returns the identifier assigned to this characteristic. Use the instance
+    // ID to distinguish between characteristics from a peripheral with the same
+    // UUID and to make function calls that take in a characteristic identifier.
+    // Present, if this instance represents a remote characteristic.-->
+    // 返回分配给该特征的标识符，使用实例标识符区分相同 UUID
+    // 外设中的不同特征，调用接收特征标识符的函数时也要使用。如果该实例代表远程特征的话就存在该属性。
+    DOMString? instanceId;
+
+    // <!--@The currently cached characteristic value. This value gets updated when
+    // the value of the characteristic is read, written, or updated via a
+    // notification or indication. For local characteristics, this is the value
+    // that will be returned upon requests from remote peripherals by default.-->
+    // 目前缓存的特征值，读取、写入或通过通知或指示的方式更新特征值时也会更新该属性。对于本地特征来说，该属性的值就是默认情况下远程外设请求返回的值。
+    ArrayBuffer? value;
+  };
+
+  // <!--@Represents a GATT characteristic descriptor, which provides further
+  // information about a characteristic's value.-->
+  // 表示 GATT 特征描述符，进一步提供特征值的有关信息。
+  dictionary Descriptor {
+    // <!--@The UUID of the characteristic descriptor, e.g.
+    // 00002902-0000-1000-8000-00805f9b34fb.-->
+    // 特征描述符的 UUID，例如 00002902-0000-1000-8000-00805f9b34fb。
+    DOMString uuid;
+
+    // <!--@Indicates whether this descriptor represents a local descriptor
+    // hosted by the application and available to other peripherals, or a remote
+    // descriptor hosted and received from a remote peripheral.-->
+    // 该描述符是否代表应用程序托管的本地描述符，其他外设也能使用；或者是远程外设托管和接收的远程描述符。
+    boolean isLocal;
+
+    // <!--@The GATT characteristic this descriptor belongs to.-->
+    // 该描述符属于哪个 GATT 特征。
+    Characteristic characteristic;
+
+    // <!--@Returns the identifier assigned to this descriptor. Use the instance ID
+    // to distinguish between descriptors from a peripheral with the same UUID
+    // and to make function calls that take in a descriptor identifier. Present,
+    // if this instance represents a remote characteristic.-->
+    // 返回分配给该描述符的标识符，使用实例标识符区分相同 UUID
+    // 外设中的不同描述符，调用接收描述符标识符的函数时也要使用。如果该实例代表远程特征的话就存在该属性。
+    DOMString? instanceId;
+
+    // <!--@The currently cached descriptor value. This value gets updated when
+    // the value of the descriptor is read or written. For local descriptors,
+    // this is the value that will be returned upon requests from remote
+    // peripherals by default.-->
+    // 目前缓存的描述符值，读取、写入或通过通知或指示的方式更新描述符值时也会更新该属性。对于本地描述符来说，该属性的值就是默认情况下远程外设请求返回的值。
+    ArrayBuffer? value;
+  };
+
+  callback CharacteristicCallback = void(Characteristic result);
+  callback CharacteristicsCallback = void(Characteristic[] result);
+  callback DescriptorCallback = void(Descriptor result);
+  callback DescriptorsCallback = void(Descriptor[] result);
+  callback ResultCallback = void();
+  callback ServiceCallback = void(Service result);
+  callback ServicesCallback = void(Service[] result);
+
+  // <!--@These functions all report failures via chrome.runtime.lastError.-->
+  // 这些函数都通过 chrome.runtime.lastError 报告失败。
+  interface Functions {
+    // <!--@Get the GATT service with the given instance ID.-->
+    // 获取指定实例标识符的 GATT 服务。
+    // |serviceId| : <!--@The instance ID of the requested GATT service.-->
+    // 请求的 GATT 服务的实例标识符。
+    // |callback| : <!--@Called with the requested Service object.-->
+    // 调用时传递请求的 Service 对象。
+    static void getService(DOMString serviceId, ServiceCallback callback);
+
+    // <!--@Get all the GATT services that were discovered on the remote device with
+    // the given device address.-->
+    // 获取指定设备地址的远程设备上发现的所有 GATT 服务。
+    // |deviceAddress| : <!--@The Bluetooth Address of the remote device whose GATT
+    // services should be returned.-->
+    // 要返回 GATT 服务的远程设备蓝牙地址。
+    // |callback| : <!--@Called with the list of requested Service objects.-->
+    // 调用时传递请求的 Service 对象列表。
+    static void getServices(DOMString deviceAddress, ServicesCallback callback);
+
+    // <!--@Get the GATT characteristic with the given instance ID that belongs to
+    // the given GATT service, if the characteristic exists.-->
+    // 获取属于指定 GATT 服务、具有指定实例标识符的 GATT 特征（如果特征存在的话）。
+    // |characteristicId| : <!--@The instance ID of the requested GATT
+    // characteristic.-->
+    // 请求的 GATT 特征的实例标识符。
+    // |callback| : <!--@Called with the requested Characteristic object.-->
+    // 调用时传递请求的 Characteristic 对象。
+    static void getCharacteristic(DOMString characteristicId,
+                                  CharacteristicCallback callback);
+
+    // <!--@Get a list of all discovered GATT characteristics that belong to the
+    // given service.-->
+    // 获取发现的属于指定服务的所有 GATT 特征。
+    // |serviceId| : <!--@The instance ID of the GATT service whose characteristics
+    // should be returned.-->
+    // 要返回特征的 GATT 服务实例标识符。
+    // |callback| : <!--@Called with the list of characteristics that belong to the
+    // given service.-->
+    // 调用时传递属于指定服务的特征列表。
+    static void getCharacteristics(DOMString serviceId,
+                                   CharacteristicsCallback callback);
+
+    // <!--@Get a list of GATT services that are included by the given service.-->
+    // 获取指定服务包含的 GATT 服务列表。
+    // |serviceId| : <!--@The instance ID of the GATT service whose included
+    // services should be returned.-->
+    // 要返回包含服务的 GATT 服务实例标识符。
+    // |callback| : <!--@Called with the list of GATT services included from the
+    // given service.-->
+    // 调用时传递指定服务包含的 GATT 服务列表。
+    static void getIncludedServices(DOMString serviceId,
+                                    ServicesCallback callback);
+
+    // <!--@Get the GATT characteristic descriptor with the given instance ID.-->
+    // 获取指定实例标识符对应的 GATT 特征描述符。
+    // |descriptorId| : <!--@The instance ID of the requested GATT characteristic
+    // descriptor.-->
+    // 要请求 GATT 特征描述符的实例标识符。
+    // |callback| : <!--@Called with the requested Descriptor object.-->
+    // 调用时传递请求的 Descriptor 对象。
+    static void getDescriptor(DOMString descriptorId,
+                              DescriptorCallback callback);
+
+    // <!--@Get a list of GATT characteristic descriptors that belong to the given
+    // characteristic.-->
+    // 获取属于指定特征的 GATT 特征描述符列表。
+    // |characteristicId| : <!--@The instance ID of the GATT characteristic whose
+    // descriptors should be returned.-->
+    // 要返回描述符的 GATT 特征实例标识符。
+    // |callback| : <!--@Called with the list of descriptors that belong to the given
+    // characteristic.-->
+    // 调用时传递属于指定特征的描述符列表。
+    static void getDescriptors(DOMString characteristicId,
+                               DescriptorsCallback callback);
+
+    // <!--@Retrieve the value of a specified characteristic from a remote
+    // peripheral. This function will fail if the characteristic is local.-->
+    // 从远程外设获取指定特征的值，如果特征是本地的则该函数会失败。
+    // |characteristicId| : <!--@The instance ID of the GATT characteristic whose
+    // value should be read from the remote device.-->
+    // 要从远程设备读取的 GATT 特征实例标识符。
+    // |callback| : <!--@Called with the Characteristic object whose value was
+    // requested. The <code>value</code> field of the returned Characteristic
+    // object contains the result of the read request.-->
+    // 调用时返回请求的 Characteristic 对象，返回的 Characteristic
+    // 对象中 <code>value</code> 字段包含读取请求的结果。
+    static void readCharacteristicValue(DOMString characteristicId,
+                                        CharacteristicCallback callback);
+
+    // <!--@Write the value of a specified characteristic from a remote peripheral.
+    // This function will fail if the characteristic is local.-->
+    // 从远程外设写入指定特征的值，如果特征是本地的则该函数会失败。
+    // |characteristicId| : <!--@The instance ID of the GATT characteristic whose
+    // value should be written to.-->
+    // 要写入 GATT 特征值的实例标识符。
+    // |value| : <!--@The value that should be sent to the remote characteristic as
+    // part of the write request.-->
+    // 作为写入请求的一部分发送给远程特征的值。
+    // |callback| : <!--@Called when the write request has completed.-->
+    // 写入请求完成后调用。
+    static void writeCharacteristicValue(DOMString characteristicId,
+                                         ArrayBuffer value,
+                                         ResultCallback callback);
+
+    // <!--@Retrieve the value of a specified characteristic descriptor from a remote
+    // peripheral. This function will fail if the descriptor is local.-->
+    // 从远程外设获取指定特征描述符的值，如果描述符是本地的则该函数会失败。
+    // |descriptorId| : <!--@The instance ID of the GATT characteristic descriptor
+    // whose value should be read from the remote device.-->
+    // 要从远程设备读取的 GATT 特征实例标识符。
+    // |callback| : <!--@Called with the Descriptor object whose value was requested.
+    // The <code>value</code> field of the returned Descriptor object contains
+    // the result of the read request.-->
+    // 调用时传递请求值的 Descriptor 对象，返回的 Descriptor 中
+    // <code>value</code> 字段包含读取请求的结果。
+    static void readDescriptorValue(DOMString descriptorId,
+                                    DescriptorCallback callback);
+
+    // <!--@Write the value of a specified characteristic descriptor from a remote
+    // peripheral. This function will fail if the descriptor is local.-->
+    // 从远程外设写入指定特征描述符的值，如果描述符是本地的则该函数会失败。
+    // |descriptorId| : <!--@The instance ID of the GATT characteristic descriptor
+    // whose value should be written to.-->
+    // 要写入的 GATT 特征描述符的实例标识符。
+    // |value| : <!--@The value that should be sent to the remote descriptor as part
+    // of the write request.-->
+    // 作为写入请求的一部分发送给远程描述符的值。
+    // |callback| : <!--@Called when the write request has completed.-->
+    // 写入请求完成时调用。
+    static void writeDescriptorValue(DOMString descriptorId,
+                                     ArrayBuffer value,
+                                     ResultCallback callback);
+  };
+
+  interface Events {
+    // <!--@Fired whan a new GATT service has been discovered on a remote device.-->
+    // 远程设备上发现新的 GATT 服务时产生。
+    // |service| : <!--@The GATT service that was added.-->
+    // 添加的 GATT 服务。
+    static void onServiceAdded(Service service);
+
+    // <!--@Fired when the state of a remote GATT service changes. This involves any
+    // characteristics and/or descriptors that get added or removed from the
+    // service, as well as "ServiceChanged" notifications from the remote
+    // device.-->
+    // 远程 GATT 服务状态更改时产生，包括服务的特征和/或描述符添加或移除，还有来自远程设备“ServiceChanged”通知。
+    // |service| : <!--@The GATT service whose state has changed.-->
+    // 状态更改的 GATT 服务。
+    static void onServiceChanged(Service service);
+
+    // <!--@Fired when a GATT service that was previously discovered on a remote
+    // device has been removed.-->
+    // 之前在远程设备上发现的 GATT 服务移除时产生。
+    // |service| : <!--@The GATT service that was removed.-->
+    // 移除的 GATT 服务。
+    static void onServiceRemoved(Service service);
+
+    // <!--@Fired when the value of a remote GATT characteristic changes, either as
+    // a result of a read or write request, or a value change notification or
+    // indication.-->
+    // 远程 GATT 特征值更改时产生，无论是由于读取或写入请求，还是值更改通知或指示。
+    // |characteristic| : <!--@The GATT characteristic whose value has changed.-->
+    // 值更改的 GATT 特征。
+    static void onCharacteristicValueChanged(Characteristic characteristic);
+  };
+};

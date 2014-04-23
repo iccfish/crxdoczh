@@ -49,16 +49,20 @@ namespace system.storage {
   };
 
   [inline_doc] enum EjectDeviceResultCode {
-    // The ejection command is successful -- the application can prompt the user
-    // to remove the device.
+    // <!--@The ejection command is successful -- the application can prompt the user
+    // to remove the device.-->
+    // 弹出命令成功完成，应用程序可以提示用户拔出设备。
     success,
-    // The device is in use by another application. The ejection did not
+    // <!--@The device is in use by another application. The ejection did not
     // succeed; the user should not remove the device until the other
-    // application is done with the device.
+    // application is done with the device.-->
+    // 另一个应用程序正在使用该设备，弹出命令没有成功，用户不应该拔出设备，而应该等另一个应用程序使用完该设备。
     in_use,
-    // There is no such device known.
+    // <!--@There is no such device known.-->
+    // 指定设备不存在。
     no_such_device,
-    // The ejection command failed.
+    // <!--@The ejection command failed.-->
+    // 弹出命令失败。
     failure
   };
 
@@ -70,8 +74,6 @@ namespace system.storage {
       StorageAvailableCapacityInfo info);
 
   interface Functions {
-    // Get the storage information from the system. The argument passed to the
-    // callback is an array of StorageUnitInfo objects.
     // <!--@Get the storage information from the system. The argument passed to the
     // callback is an array of StorageUnitInfo objects.-->
     // 从系统获取存储信息，传递给回调函数的参数为
