@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 // <!--@Use the <code>system.cpu</code> API to query CPU metadata.-->
-// 使用 <code>systemInfo.cpu</code> API 查询 CPU 元数据。
+// 使用 <code>chrome.system.cpu</code> API 查询 CPU 元数据。
 namespace system.cpu {
 
   // <!--@Counters for assessing CPU utilization.  Each field is monotonically

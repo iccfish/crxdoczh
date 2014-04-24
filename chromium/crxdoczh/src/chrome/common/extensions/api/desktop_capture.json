@@ -6,7 +6,7 @@
   {
     "namespace": "desktopCapture",
 //@    "description": "Desktop Capture API that can be used to capture content of screen, individual windows or tabs.",
-    "description": "桌面捕获 API 可以用于捕获屏幕、单个窗口或标签页的内容。",
+    "description": "桌面捕获 API 可用于捕获屏幕、单个窗口或标签页的内容。",
     "types": [
       {
         "id": "DesktopCaptureSourceType",

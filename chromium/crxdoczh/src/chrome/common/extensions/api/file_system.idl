@@ -8,8 +8,8 @@
 // example, a text editor app can use the API to read and write local documents.
 // All failures are notified via chrome.runtime.lastError.-->
 // 使用 <code>chrome.fileSystem</code> API
-// 创建、读取、浏览与写入用户本地文件系统中经过沙盒屏蔽的一个区域。使用该
-// API，Chrome 应用可以读取和写入用户选定的位置，例如文本编辑应用可以使用该
+// 在用户本地文件系统中经过沙盒屏蔽的范围内创建、读取、浏览、写入文件。使用该
+// API，Chrome 应用可以在用户选定的位置读取和写入文件，例如文本编辑器应用可以使用该
 // API 读取和写入本地文档。所有失败信息都通过 $(ref:runtime.lastError) 通知。
 namespace fileSystem {
   dictionary AcceptOption {

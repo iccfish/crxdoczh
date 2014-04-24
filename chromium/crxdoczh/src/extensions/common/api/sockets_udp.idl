@@ -5,9 +5,9 @@
 // <!--@Use the <code>chrome.sockets.udp</code> API to send and receive data over the
 // network using UDP connections. This API supersedes the UDP functionality
 // previously found in the "socket" API.-->
-// 使用 <code>chrome.sockets.udp</code> API 使用 UDP
-// 连接通过网络发送和接收数据。该 API 是对原先套接字 API 中 UDP
-// 功能的增强。
+// 使用 <code>chrome.sockets.udp</code> API 通过 UDP
+// 连接在网络中发送和接收数据。该 API 增强了原来套接字 API 中的 UDP
+// 功能。
 namespace sockets.udp {
   // <!--@The socket properties specified in the <code>create</code> or
   // <code>update</code> function. Each property is optional. If a property

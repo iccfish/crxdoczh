@@ -6,7 +6,7 @@
   {
     "namespace": "extension",
 //@    "description": "The <code>chrome.extension</code> API has utilities that can be used by any extension page. It includes support for exchanging messages between an extension and its content scripts or between extensions, as described in detail in <a href='messaging'>Message Passing</a>.",
-    "description": "<code>chrome.extension</code> API 包含任何扩展程序页面都能使用的实用方法。它包括在扩展程序和内容脚本之间或者两个扩展程序之间交换消息的支持，这一部分内容在<a href='messaging'>消息传递</a>中详细描述。",
+    "description": "<code>chrome.extension</code> API 包含任何扩展程序页面都能使用的实用方法。它包括在扩展程序和内容脚本之间或者两个扩展程序之间交换消息的支持，<a href='messaging'>消息传递</a>中详细描述了这些内容。",
     "compiler_options": {
       "implemented_in": "chrome/browser/extensions/api/module/module.h"
     },

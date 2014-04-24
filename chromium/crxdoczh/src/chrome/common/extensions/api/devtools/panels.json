@@ -6,7 +6,7 @@
   {
     "namespace": "devtools.panels",
 //@    "description": "Use the <code>chrome.devtools.panels</code> API to integrate your extension into Developer Tools window UI: create your own panels, access existing panels, and add sidebars.",
-    "description": "使用 <code>chrome.devtools.panels</code> API将您的扩展程序整合到开发者工具窗口用户界面中：创建您自己的面板、访问现有的面板以及添加侧边栏。",
+    "description": "使用 <code>chrome.devtools.panels</code> API将您的扩展程序整合到开发者工具窗口的用户界面中：创建您自己的面板、访问现有的面板，还可以添加侧边栏。",
     "nocompile": true,
     "types": [
       {

@@ -5,7 +5,7 @@
 // <!--@Use the <code>chrome.bluetooth</code> API to connect to a Bluetooth
 // device. All functions report failures via chrome.runtime.lastError.-->
 // 使用 <code>chrome.bluetooth</code> API 连接到蓝牙设备。所有函数都通过
-// chrome.runtime.lastError 报告错误。
+// $(ref:runtime.lastError) 报告错误。
 namespace bluetooth {
   // <!--@Allocation authorities for Vendor IDs.-->
   // 厂商标识符的分配机构。

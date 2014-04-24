@@ -2,7 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// <!--@The--> <code>chrome.system.memory</code> API<!--@.-->。
+// <!--@The <code>chrome.system.memory</code> API.-->
+// 使用 <code>chrome.system.memory</code> API 获取内存信息。
 namespace system.memory {
 
   dictionary MemoryInfo {

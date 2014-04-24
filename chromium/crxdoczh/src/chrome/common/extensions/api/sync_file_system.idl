@@ -11,7 +11,7 @@
 // 使用 <code>chrome.syncFileSystem</code> API 在 Google
 // 云端硬盘上保存和同步数据。该 API
 // <em>并不是</em>用来访问存储在 Google
-// 云端硬盘上的任何用户文档的，它提供了应用专用的可同步存储，用于离线和缓存用途，这样同样的数据就可以在不同的客户端间使用。有关使用该
+// 云端硬盘上的任何用户文档的，它提供了应用专用的可同步存储区，用于离线和缓存用途，这样同样的数据就可以在不同的客户端间使用。有关使用该
 // API 的更多信息，请阅读<a href="app_storage">管理数据</a>。
 namespace syncFileSystem {
   enum SyncAction {

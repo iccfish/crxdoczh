@@ -6,7 +6,7 @@
   {
     "namespace": "webstore",
 //@    "description": "Use the <code>chrome.webstore</code> API to initiate app and extension installations \"inline\" from your site.",
-    "description": "使用 <code>chrome.webstore</code> API 从您的网站上“内嵌”安装应用与扩展程序。",
+    "description": "使用 <code>chrome.webstore</code> API 在您的网站上“内嵌”安装应用与扩展程序。",
     "types": [
       {
         "id": "InstallStage",

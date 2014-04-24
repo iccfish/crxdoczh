@@ -6,7 +6,7 @@
   {
     "namespace": "webRequest",
 //@    "description": "Use the <code>chrome.webRequest</code> API to observe and analyze traffic and to intercept, block, or modify requests in-flight.",
-    "description": "使用 <code>chrome.webRequest</code> API 监控与分析流量，还可以实时地拦截、阻止或者修改请求。",
+    "description": "使用 <code>chrome.webRequest</code> API 监控与分析流量，还可以实时地拦截、阻止或修改请求。",
     "properties": {
       "MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES": {
         "value": 20,

@@ -6,7 +6,7 @@
   {
     "namespace": "devtools.inspectedWindow",
 //@    "description": "Use the <code>chrome.devtools.inspectedWindow</code> API to interact with the inspected window: obtain the tab ID for the inspected page, evaluate the code in the context of the inspected window, reload the page, or obtain the list of resources within the page.",
-    "description": "使用 <code>chrome.devtools.inspectedWindow</code> API 与审查的窗口交互：获得审查页面的标签页标识符，在审查窗口的上下文中执行代码，重新加载页面，或者获取页面中所有资源的列表。",
+    "description": "使用 <code>chrome.devtools.inspectedWindow</code> API 与审查的窗口交互：获得审查网页的标签页标识符，在审查窗口的上下文中执行代码，重新加载网页，或者获取网页中所有资源的列表。",
     "nocompile": true,
     "types": [
       {

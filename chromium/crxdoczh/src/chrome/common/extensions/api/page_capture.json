@@ -6,7 +6,7 @@
   {
     "namespace": "pageCapture",
 //@    "description": "Use the <code>chrome.pageCapture</code> API to save a tab as MHTML.",
-    "description": "使用 <code>chrome.pageCapture</code> API 将一个标签页保存为 MHTML。",
+    "description": "使用 <code>chrome.pageCapture</code> API 将标签页保存为 MHTML。",
     "functions": [
       {
         "name": "saveAsMHTML",

@@ -6,8 +6,8 @@
 // network using TCP and UDP connections. <b>Note:</b> Starting with Chrome 33,
 // this API is deprecated in favor of the $(ref:sockets.udp), $(ref:sockets.tcp) and
 // $(ref:sockets.tcpServer) APIs.-->
-// 使用 <code>chrome.socket</code> API 使用 TCP 和 UDP
-// 连接通过网络发送和接收数据。<b>注意：</b>从 Chrome 33 开始该 API
+// 使用 <code>chrome.socket</code> API 通过 TCP 和 UDP
+// 连接在网络中发送和接收数据。<b>注意：</b>从 Chrome 33 开始该 API
 // 弃用，您应该改用 $(ref:sockets.udp)、$(ref:sockets.tcp) 和
 // $(ref:sockets.tcpServer) API。
 namespace socket {

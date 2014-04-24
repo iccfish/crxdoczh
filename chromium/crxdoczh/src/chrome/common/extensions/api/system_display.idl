@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// <!--@Use the-->使用 <code>system.display</code> API <!--@to query display metadata.-->查询显示器的元数据。
+// <!--@Use the-->使用 <code>chrome.system.display</code> API <!--@to query display metadata.-->查询显示器的元数据。
 namespace system.display {
 
   dictionary Bounds {

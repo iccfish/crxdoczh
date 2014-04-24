@@ -6,7 +6,7 @@
   {
     "namespace": "commands",
 //@    "description": "Use the commands API to add keyboard shortcuts that trigger actions in your extension, for example, an action to open the browser action or send a command to the extension.",
-    "description": "使用命令 API 添加快捷键，触发您的扩展程序中的操作，例如打开浏览器按钮或向扩展程序发送命令。",
+    "description": "使用命令 API 添加快捷键，以便触发扩展程序中的操作，例如打开浏览器按钮或向扩展程序发送命令。",
     "types": [
       {
         "id": "Command",

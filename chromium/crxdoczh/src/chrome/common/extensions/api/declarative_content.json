@@ -6,7 +6,7 @@
   {
     "namespace": "declarativeContent",
 //@    "description": "Use the <code>chrome.declarativeContent</code> API to take actions depending on the content of a page, without requiring permission to read the page's content.",
-    "description": "使用 <code>chrome.declarativeContent</code> API 根据网页内容采取行动，而不需要读取页面内容的权限。",
+    "description": "使用 <code>chrome.declarativeContent</code> API 根据网页内容进行某些操作，而不需要读取网页内容的权限。",
     "types": [
       {
         "id": "PageStateMatcher",

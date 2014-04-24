@@ -6,7 +6,7 @@
   {
     "namespace": "topSites",
 //@    "description": "Use the <code>chrome.topSites</code> API to access the top sites that are displayed on the new tab page.",
-    "description": "使用 <code>chrome.topSites</code> API 访问“打开新的标签页”页面中的显示的“常去网站”。",
+    "description": "使用 <code>chrome.topSites</code> API 访问“打开新的标签页”页面中显示的“常去网站”。",
     "types": [
       {
         "id": "MostVisitedURL",

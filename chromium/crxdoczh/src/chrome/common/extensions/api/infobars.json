@@ -6,7 +6,7 @@
   {
     "namespace": "infobars",
 //@    "description": "Use the <code>chrome.infobars</code> API to add a horizontal panel just above a tab's contents. See the screenshot below.",
-    "description": "使用 <code>chrome.infobars</code> API 在标签页内容的正上方添加一个水平面板，如以下屏幕截图所示。",
+    "description": "使用 <code>chrome.infobars</code> API 在标签页内容的正上方添加一个水平面板",
     "compiler_options": {
       "implemented_in": "chrome/browser/infobars/infobar_extension_api.h"
     },

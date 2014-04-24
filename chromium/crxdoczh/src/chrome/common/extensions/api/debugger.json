@@ -6,7 +6,7 @@
   {
     "namespace": "debugger",
 //@    "description": "The <code>chrome.debugger</code> API serves as an alternate transport for Chrome's <a href='http://code.google.com/chrome/devtools/docs/remote-debugging.html'>remote debugging protocol</a>. Use <code>chrome.debugger</code> to attach to one or more tabs to instrument network interaction, debug JavaScript, mutate the DOM and CSS, etc. Use the Debuggee <code>tabId</code> to target tabs with sendCommand and route events by <code>tabId</code> from onEvent callbacks.",
-    "description": "<code>chrome.debugger</code> API 是 <a href='https://developers.google.com/chrome-developer-tools/docs/remote-debugging'>Chrome 远程调试协议</a>（英文）的另一种消息传输方式。使用 <code>chrome.debugger</code> 可以附加到一个或多个标签页，以便查看网络交互、调试 JavaScript、改变 DOM 和 CSS 等等。使用调试对象的标签页标识符来指定 sendCommand 的目标标签页，并在 onEvent 的回调函数中通过标签页标识符分发事件。",
+    "description": "<code>chrome.debugger</code> API 是 <a href='https://developers.google.com/chrome-developer-tools/docs/remote-debugging'>Chrome 远程调试协议</a>（英文）的另一种消息传输方式。<code>chrome.debugger</code> 可以附加到一个或多个标签页，以便记录网络交互、调试 JavaScript、改变 DOM 和 CSS 等等。使用调试对象的标签页标识符指定 sendCommand 的目标标签页，并在 onEvent 的回调函数中通过标签页标识符分发事件。",
     "types": [
       {
         "id": "Debuggee",

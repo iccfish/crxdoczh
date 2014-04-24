@@ -6,7 +6,7 @@
   {
     "namespace": "tabs",
 //@    "description": "Use the <code>chrome.tabs</code> API to interact with the browser's tab system. You can use this API to create, modify, and rearrange tabs in the browser.",
-    "description": "使用 <code>chrome.tabs</code> API 与浏览器的标签页系统交互。您可以使用该 API 创建、修改和重新排列浏览器中的标签页。",
+    "description": "使用 <code>chrome.tabs</code> API 与浏览器标签页交互。您可以使用该 API 创建、修改或重新排列浏览器中的标签页。",
     "types": [
       {
         "id": "Tab",
