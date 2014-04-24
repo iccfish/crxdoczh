@@ -76,6 +76,35 @@
             "description": "该节点的所有子节点（已排序）。"
           }
         }
+      },
+      {
+        "id": "CreateDetails",
+//@        "description": "Object passed to the create() function.",
+        "description": "传递给 create() 函数的对象。",
+        "inline_doc": true,
+        "type": "object",
+        "properties": {
+          "parentId": {
+            "type": "string",
+            "serialized_type": "int64",
+            "optional": true,
+//@            "description": "Defaults to the Other Bookmarks folder."
+            "description": "默认为“其他书签”文件夹。"
+          },
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "optional": true
+          },
+          "title": {
+            "type": "string",
+            "optional": true
+          },
+          "url": {
+            "type": "string",
+            "optional": true
+          }
+        }
       }
     ],
     "functions": [
@@ -274,30 +303,8 @@
         "description": "在指定的上一级文件夹下创建新的书签或文件夹。如果 url 为 null 或者省略，则创建文件夹。",
         "parameters": [
           {
-            "type": "object",
-            "name": "bookmark",
-            "properties": {
-              "parentId": {
-                "type": "string",
-                "serialized_type": "int64",
-                "optional": true,
-//@                "description": "Defaults to the Other Bookmarks folder."
-                "description": "默认为“其他书签”文件夹。"
-              },
-              "index": {
-                "type": "integer",
-                "minimum": 0,
-                "optional": true
-              },
-              "title": {
-                "type": "string",
-                "optional": true
-              },
-              "url": {
-                "type": "string",
-                "optional": true
-              }
-            }
+            "$ref": "CreateDetails",
+            "name": "bookmark"
           },
           {
             "type": "function",
