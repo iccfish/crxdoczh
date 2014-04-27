@@ -693,7 +693,7 @@
         "name": "captureVisibleTab",
         "type": "function",
 //@        "description": "Captures the visible area of the currently active tab in the specified window. You must have <a href='declare_permissions'>host permission</a> for the URL displayed by the tab.",
-        "description": "捕捉指定窗口中当前活动标签页的可见区域，您必须拥有 \"<all_urls>\" 或当前活动标签页的 \"activeTab\" 权限才能使用该方法。",
+        "description": "捕捉指定窗口中当前活动标签页的可见区域，您必须拥有 \"&lt;all_urls&gt;\" 或当前活动标签页的 \"activeTab\" 权限才能使用该方法。",
         "parameters": [
           {
             "type": "integer",
