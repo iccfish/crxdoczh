@@ -174,8 +174,7 @@ CSP（内容安全策略）的限制，但是您也不能使用一些很棒的�
 <h3 id="inline_scripts"><!--@Use inline scripts in sandbox-->在沙盒中使用内嵌脚本</h3>
 
 <p>
-<!--@Here's a sample sandboxed page
-which uses an inline script and <code>eval()</code>:-->
+<!--@Here's a sample sandboxed page which uses an inline script and <code>eval()</code>:-->
 如下是一个经过沙盒屏蔽的页面示例，使用了内嵌脚本与
 <code>eval()</code>：
 </p>
@@ -185,8 +184,7 @@ which uses an inline script and <code>eval()</code>:-->
   &lt;body&gt;
     &lt;h1&gt;Woot&lt;/h1&gt;
     &lt;script&gt;
-      document.write('这是内嵌脚本。&lt;br&gt;');
-      eval('document.write(\'这是使用了 eval 的内嵌脚本。\');');
+      eval('console.log(\'这是使用了 eval 的内嵌脚本。\')');
     &lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;

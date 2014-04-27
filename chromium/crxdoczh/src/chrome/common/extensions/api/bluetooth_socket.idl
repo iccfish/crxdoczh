@@ -1,0 +1,481 @@
+// Copyright 2014 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// <!--@Use the <code>chrome.bluetoothSocket</code> API to send and receive data
+// to Bluetooth devices using RFCOMM and L2CAP connections.-->
+// 使用 <code>chrome.bluetoothSocket</code> API 通过 RFCOMM 和 L2CAP
+// 连接向蓝牙设备接收和发送数据。
+namespace bluetoothSocket {
+  // <!--@The socket properties specified in the $ref:create or $ref:update
+  // function. Each property is optional. If a property value is not specified,
+  // a default value is used when calling $ref:create, or the existing value is
+  // preserved when calling $ref:update.-->
+  // $(ref:create) 或 $(ref:update)
+  // 函数中指定的套接字属性，每个属性都是可选的。如果某个属性值未指定，调用
+  // $(ref:create) 时使用默认值，调用 $(ref:update) 时使用现有的值。
+  dictionary SocketProperties {
+    // <!--@Flag indicating whether the socket is left open when the event page of
+    // the application is unloaded (see <a
+    // href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App
+    // Lifecycle</a>). The default value is <code>false.</code> When the
+    // application is loaded, any sockets previously opened with persistent=true
+    // can be fetched with $ref:getSockets.-->
+    // 应用的事件页面卸载（参见<a href="app_lifecycle"
+    // >管理应用的生命周期</a>）时是否使套接字保持打开状态，默认值为
+    // <code>false</code>。应用加载后，之前使用 <code>persistent: true</code>
+    // 打开的套接字可以通过 $(ref:getSockets) 获取。
+    boolean? persistent;
+
+    // <!--@An application-defined string associated with the socket.-->
+    // 与套接字相关联的字符串，由应用定义。
+    DOMString? name;
+
+    // <!--@The size of the buffer used to receive data. The default value is 4096.-->
+    // 用于接收数据的缓冲区大小，默认值为 4096。
+    long? bufferSize;
+  };
+
+  // <!--@Result of <code>create</code> call.-->
+  // <code>create</code> 调用的结果。
+  dictionary CreateInfo {
+    // <!--@The ID of the newly created socket. Note that socket IDs created
+    // from this API are not compatible with socket IDs created from other APIs,
+    // such as the <code>$(ref:sockets.tcp)</code> API.-->
+    // 新创建套接字的标识符。注意，该 API 中创建的套接字标识符和其他 API
+    // 中创建的套接字标识符不兼容，例如 <code>$(ref:sockets.tcp)</code> API。
+    long socketId;
+  };
+
+  // <!--@Callback from the <code>create</code> method.-->
+  // <code>create</code> 方法的回调函数。
+  // |createInfo| : <!--@The result of the socket creation.-->
+  // 套接字创建的结果。
+  callback CreateCallback = void (CreateInfo createInfo);
+
+  // <!--@Callback from the <code>update</code> method.-->
+  // <code>update</code> 方法的回调函数。
+  callback UpdateCallback = void ();
+
+  // <!--@Callback from the <code>setPaused</code> method.-->
+  // <code>setPaused</code> 方法的回调函数。
+  callback SetPausedCallback = void ();
+
+  // <!--@Callback from the <code>listenUsingRfcomm</code>,
+  // <code>listenUsingInsecureRfcomm</code> and
+  // <code>listenUsingL2cap</code> methods.-->
+  // <code>listenUsingRfcomm</code>、<code>listenUsingInsecureRfcomm</code>
+  // 和 <code>listenUsingL2cap</code>
+  // 方法的回调函数。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用返回的结果代码，负值表示错误。
+  callback ListenCallback = void (long result);
+
+  // <!--@Callback from the <code>connect</code> method.-->
+  // <code>connect</code> 方法的回调函数。
+  // |result| : <!--@The result code returned from the underlying network call.
+  // A negative value indicates an error.-->
+  // 底层网络调用返回的结果代码，负值表示错误。
+  callback ConnectCallback = void (long result);
+
+  // <!--@Callback from the <code>disconnect</code> method.-->
+  // <code>disconnect</code> 方法的回调函数。
+  callback DisconnectCallback = void ();
+
+  // <!--@Callback from the <code>close</code> method.-->
+  // <code>close</code> 方法的回调函数。
+  callback CloseCallback = void ();
+
+  enum SendError {
+    // <!--@No error occurred.-->
+    // 没有发生错误。
+    success,
+
+    // <!--@The connection was disconnected.-->
+    // 连接已经断开。
+    disconnected,
+
+    // <!--@A system error occurred and the connection may be unrecoverable.-->
+    // 发生系统错误，连接可能无法恢复。
+    system_error
+  };
+
+  // <!--@Result of the <code>send</code> method.-->
+  // <code>send</code> 方法的结果。
+  dictionary SendInfo {
+    // <!--@The error message.-->
+    // 错误消息。
+    DOMString errorMessage;
+
+    // <!--@An error code indicating what went wrong.-->
+    // 表示错误信息的错误码。
+    SendError error;
+
+    // <!--@The number of bytes sent (if result == 0)-->
+    // 发送的字节数（如果 result == 0 的话）。
+    long? bytesSent;
+  };
+
+  // <!--@Callback from the <code>send</code> method.-->
+  // <code>send</code> 方法的回调函数。
+  // |sendInfo| : <!--@Result of the <code>send</code> method.-->
+  // <code>send</code> 方法的结果。
+  callback SendCallback = void (SendInfo sendInfo);
+
+  // <!--@Result of the <code>getInfo</code> method.-->
+  // <code>getInfo</code> 方法的结果。
+  dictionary SocketInfo {
+    // <!--@The socket identifier.-->
+    // 套接字标识符。
+    long socketId;
+
+    // <!--@Flag indicating if the socket remains open when the event page of the
+    // application is unloaded (see <code>SocketProperties.persistent</code>).
+    // The default value is "false".-->
+    // 应用关闭时（参见
+    // <code>SocketProperties.persistent</code>）套接字是否保持打开状态。
+    boolean persistent;
+
+    // <!--@Application-defined string associated with the socket.-->
+    // 与套接字相关联的字符串，由应用定义。
+    DOMString? name;
+
+    // <!--@The size of the buffer used to receive data. If no buffer size has been
+    // specified explictly, the value is not provided.-->
+    // 用于接收数据的缓冲区大小。如果没有明确指定缓冲区大小，则不提供该属性的值。
+    long? bufferSize;
+
+    // <!--@Flag indicating whether a connected socket blocks its peer from sending
+    // more data, or whether connection requests on a listening socket are
+    // dispatched through the <code>onAccept</code> event or queued up in the
+    // listen queue backlog.
+    // See <code>setPaused</code>. The default value is "false".-->
+    // 表示已连接的套接字是否阻止对方发送更多数据，或者正在监听的套接字上的连接请求是通过
+    // <code>onAccept</code> 事件分发还是放入监听后备队列中。请参见
+    // <code>setPaused</code>，默认值为 <code>false</code>。
+    boolean paused;
+
+    // <!--@Flag indicating whether the socket is connected to a remote peer.-->
+    // 表示套接字是否已经连接到远程计算机。
+    boolean connected;
+
+    // <!--@If the underlying socket is connected, contains the Bluetooth address of
+    // the device it is connected to.-->
+    // 如果下层套接字已连接，则包含连接设备的蓝牙地址。
+    DOMString? address;
+
+    // <!--@If the underlying socket is connected, contains information about the
+    // service UUID it is connected to, otherwise if the underlying socket is
+    // listening, contains information about the service UUID it is listening
+    // on.-->
+    // 如果下层套接字已连接，则包含连接的服务 UUID
+    // 相关信息；如果下层套接字处于监听状态，则包含正在监听的服务 UUID。
+    DOMString? uuid;
+  };
+
+  // <!--@Callback from the <code>getInfo</code> method.-->
+  // <code>getInfo</code> 方法的回调函数。
+  // |socketInfo| : <!--@Object containing the socket information.-->
+  // 包含套接字信息的对象。
+  callback GetInfoCallback = void (SocketInfo socketInfo);
+
+  // <!--@Callback from the <code>getSockets</code> method.-->
+  // <code>getSockets</code> 方法的回调函数。
+  // |socketInfos| : <!--@Array of object containing socket information.-->
+  // 包含套接字信息的对象数组。
+  callback GetSocketsCallback = void (SocketInfo[] sockets);
+
+  // <!--@Data from an <code>onAccept</code> event.-->
+  // 来自 <code>onAccept</code> 事件的数据。
+  dictionary AcceptInfo {
+    // <!--@The server socket identifier.-->
+    // 服务器的套接字标识符。
+    long socketId;
+
+    // <!--@The client socket identifier, i.e. the socket identifier of the newly
+    // established connection. This socket identifier should be used only with
+    // functions from the <code>chrome.bluetoothSocket</code> namespace. Note
+    // the client socket is initially paused and must be explictly un-paused by
+    // the application to start receiving data.-->
+    // 客户端的套接字标识符，即新建立的连接对应的套接字标识符，该套接字标识符只能在
+    // <code>chrome.bluetoothSocket</code>
+    // 命名空间的函数中使用。注意，客户端套接字一开始处于暂停状态，应用必须显式取消暂停才能开始接收数据。
+    long clientSocketId;
+  };
+
+  enum AcceptError {
+    // <!--@A system error occurred and the connection may be unrecoverable.-->
+    // 发生系统错误，连接可能无法恢复。
+    system_error
+  };
+
+  // <!--@Data from an <code>onAcceptError</code> event.-->
+  // 来自 <code>onAcceptError</code> 事件的数据。
+  dictionary AcceptErrorInfo {
+    // <!--@The server socket identifier.-->
+    // 服务器的套接字标识符。
+    long socketId;
+
+    // <!--@The error message.-->
+    // 错误消息。
+    DOMString errorMessage;
+
+    // <!--@An error code indicating what went wrong.-->
+    // 表示错误信息的错误码。
+    AcceptError error;
+  };
+
+  // <!--@Data from an <code>onReceive</code> event.-->
+  // 来自 <code>onReceive</code> 事件的数据。
+  dictionary ReceiveInfo {
+    // <!--@The socket identifier.-->
+    // 套接字标识符。
+    long socketId;
+
+    // <!--@The data received, with a maxium size of <code>bufferSize</code>.-->
+    // 接收到的数据，最大大小为 <code>bufferSize</code>。
+    ArrayBuffer data;
+  };
+
+  enum ReceiveError {
+    // <!--@The connection was disconnected.-->
+    // 连接已经断开。
+    disconnected,
+
+    // <!--@A system error occurred and the connection may be unrecoverable.-->
+    // 发生系统错误，连接可能无法恢复。
+    system_error
+  };
+
+  // <!--@Data from an <code>onReceiveError</code> event.-->
+  // 来自 <code>onReceiveError</code> 事件的数据。
+  dictionary ReceiveErrorInfo {
+    // <!--@The socket identifier.-->
+    // 套接字标识符。
+    long socketId;
+
+    // <!--@The error message.-->
+    // 错误消息。
+    DOMString errorMessage;
+
+    // <!--@An error code indicating what went wrong.-->
+    // 表示错误信息的错误码。
+    ReceiveError error;
+  };
+
+  // <!--@These functions all report failures via chrome.runtime.lastError.-->
+  // 这些函数都通过 $(ref:runtime.lastError) 报告错误。
+  interface Functions {
+    // <!--@Creates a Bluetooth socket.-->
+    // 创建蓝牙套接字。
+    // |properties| : <!--@The socket properties (optional).-->
+    // 套接字属性（可选）。
+    // |callback| : <!--@Called when the socket has been created.-->
+    // 套接字创建后调用。
+    static void create(optional SocketProperties properties,
+                       CreateCallback callback);
+
+    // <!--@Updates the socket properties.-->
+    // 更新套接字属性。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |properties| : <!--@The properties to update.-->
+    // 要更新的属性。
+    // |callback| : <!--@Called when the properties are updated.-->
+    // 属性更新后调用。
+    static void update(long socketId,
+                       SocketProperties properties,
+                       optional UpdateCallback callback);
+
+    // <!--@Enables or disables a connected socket from receiving messages from its
+    // peer, or a listening socket from accepting new connections. The default
+    // value is "false". Pausing a connected socket is typically used by an
+    // application to throttle data sent by its peer. When a connected socket
+    // is paused, no <code>onReceive</code>event is raised. When a socket is
+    // connected and un-paused, <code>onReceive</code> events are raised again
+    // when messages are received. When a listening socket is paused, new
+    // connections are accepted until its backlog is full then additional
+    // connection requests are refused. <code>onAccept</code> events are raised
+    // only when the socket is un-paused.-->
+    // 允许或阻止已连接的套接字从对方接收消息，或者正在监听的套接字接受新连接，默认值为
+    // <code>false</code>。应用通常使用暂停套接字的方式限制对方发送的数据。已连接的套接字暂停后不会产生
+    // <code>onReceive</code>
+    // 事件，套接字已连接并且取消暂停时，接收到消息后就会产生
+    // <code>onReceive</code> 事件。正在监听的套接字暂停后，还会接受新连接，直到后备队列已满，接下来其他连接请求就会被拒绝。只有套接字不处于暂停状态时才会产生
+    // <code>onAccept</code> 事件。
+    static void setPaused(long socketId,
+                          boolean paused,
+                          optional SetPausedCallback callback);
+
+    // <!--@Listen for connections using the RFCOMM protocol.-->
+    // 使用 RFCOMM 协议监听套接字。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |uuid| : <!--@Service UUID to listen on.-->
+    // 要监听的服务 UUID。
+    // |channel| : <!--@RFCOMM channel id to listen on. Zero may be specified to
+    // allocate an unused channel.-->
+    // 要监听的 RFCOMM 通道，如果为零，则分配某个未用的通道。
+    // |backlog| : <!--@Length of the socket's listen queue. The default value
+    // depends on the operating system's host subsystem.-->
+    // 套接字监听队列长度，默认值取决于操作系统主机子系统。
+    // |callback| : <!--@Called when listen operation completes.-->
+    // 监听操作完成后调用。
+    static void listenUsingRfcomm(long socketId,
+                                  DOMString uuid,
+                                  long channel,
+                                  optional long backlog,
+                                  ListenCallback callback);
+
+    // <!--@Listens for connections from Bluetooth 1.0 and 2.0 devices using the
+    // RFCOMM protocol without requiring encryption or authentication on the
+    // socket.-->
+    // 使用 RFCOMM 协议监听蓝牙 1.0 和 2.0 设备发出的连接，而不需要在套接字上进行加密或认证。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |uuid| : <!--@Service UUID to listen on.-->
+    // 要监听的服务 UUID。
+    // |channel| : <!--@RFCOMM channel id to listen on. Zero may be specified to
+    // allocate an unused channel.-->
+    // 要监听的 RFCOMM 通道，如果为零，则分配某个未用的通道。
+    // |backlog| : <!--@Length of the socket's listen queue. The default value
+    // depends on the operating system's host subsystem.-->
+    // 套接字监听队列长度，默认值取决于操作系统主机子系统。
+    // |callback| : <!--@Called when listen operation completes.-->
+    // 监听操作完成后调用。
+    static void listenUsingInsecureRfcomm(long socketId,
+                                          DOMString uuid,
+                                          long channel,
+                                          optional long backlog,
+                                          ListenCallback callback);
+
+    // <!--@Listen for connections using the L2CAP protocol.-->
+    // 使用 L2CAP 协议监听连接。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |uuid| : <!--@Service UUID to listen on.-->
+    // 要监听的服务 UUID。
+    // |psm| : <!--@L2CAP PSM to listen on. Zero may be specified to allocate an
+    // unused PSM.-->
+    // 要监听的 L2CAP PSM，如果为零，则分配某个未用的 PSM。
+    // |backlog| : <!--@Length of the socket's listen queue. The default value
+    // depends on the operating system's host subsystem.-->
+    // 套接字监听队列长度，默认值取决于操作系统主机子系统。
+    // |callback| : <!--@Called when listen operation completes.-->
+    // 监听操作完成后调用。
+    static void listenUsingL2cap(long socketId,
+                                 DOMString uuid,
+                                 long psm,
+                                 optional long backlog,
+                                 ListenCallback callback);
+
+    // <!--@Connects the socket to a remote Bluetooth device. When the
+    // <code>connect</code> operation completes successfully,
+    // <code>onReceive</code> events are raised when data is received from the
+    // peer. If a network error occur while the runtime is receiving packets,
+    // a <code>onReceiveError</code> event is raised, at which point no more
+    // <code>onReceive</code> event will be raised for this socket until the
+    // <code>setPaused(false)</code> method is called.-->
+    // 将套接字连接到远程蓝牙设备。<code>connect</code>
+    // 操作成功完成后，从对方接收到数据时就会产生 <code>onReceive</code>
+    // 事件。如果运行时接收数据包时发生网络错误，则会产生
+    // <code>onReceiveError</code> 事件，并且从这时候开始不会再次产生
+    // <code>onReceive</code> 事件，直到您调用 <code>setPaused(false)</code> 方法。
+
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |address| : <!--@The address of the Bluetooth device.-->
+    // 蓝牙设备地址。
+    // |uuid| : <!--@The UUID of the service to connect to.-->
+    // 要连接的服务 UUID。
+    // |callback| : <!--@Called when the connect attempt is complete.-->
+    // 连接尝试完成后调用。
+    static void connect(long socketId,
+                        DOMString address,
+                        DOMString uuid,
+                        ConnectCallback callback);
+
+    // <!--@Disconnects the socket. The socket identifier remains valid.-->
+    // 断开套接字的连接，套接字标识符仍然有效。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |callback| : <!--@Called when the disconnect attempt is complete.-->
+    // 断开连接的尝试完成后调用。
+    static void disconnect(long socketId,
+                           optional DisconnectCallback callback);
+
+    // <!--@Disconnects and destroys the socket. Each socket created should be
+    // closed after use. The socket id is no longer valid as soon at the
+    // function is called. However, the socket is guaranteed to be closed only
+    // when the callback is invoked.-->
+    // 断开连接并释放套接字，创建的所有套接字使用完之后都必须释放。一旦调用该函数，套接字标识符就不再有效。但是只有调用回调函数时，套接字才确保已经关闭。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |callback| : <!--@Called when the <code>close</code> operation completes.-->
+    // <code>close</code> 操作完成后调用。
+    static void close(long socketId,
+                      optional CloseCallback callback);
+
+    // <!--@Sends data on the given Bluetooth socket.-->
+    // 在指定蓝牙套接字上发送数据。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |data| : <!--@The data to send.-->
+    // 要发送的数据。
+    // |callback| : <!--@Called with the number of bytes sent.-->
+    // 调用时传递发送的字节数。
+    static void send(long socketId,
+                     ArrayBuffer data,
+                     optional SendCallback callback);
+
+    // <!--@Retrieves the state of the given socket.-->
+    // 获取指定套接字的状态。
+    // |socketId| : <!--@The socket identifier.-->
+    // 套接字标识符。
+    // |callback| : <!--@Called when the socket state is available.-->
+    // 套接字状态可用时调用。
+    static void getInfo(long socketId,
+                        GetInfoCallback callback);
+
+    // <!--@Retrieves the list of currently opened sockets owned by the application.-->
+    // 获取应用拥有的当前打开的套接字列表。
+    // |callback| : <!--@Called when the list of sockets is available.-->
+    // 套接字列表可用时调用。
+    static void getSockets(GetSocketsCallback callback);
+  };
+
+  interface Events {
+    // <!--@Event raised when a connection has been established for a given socket.-->
+    // 某个套接字上建立连接时产生。
+    // |info| : <!--@The event data.-->
+    // 事件数据。
+    static void onAccept(AcceptInfo info);
+
+    // <!--@Event raised when a network error occurred while the runtime was waiting
+    // for new connections on the given socket. Once this event is raised, the
+    // socket is set to <code>paused</code> and no more <code>onAccept</code>
+    // events are raised for this socket.-->
+    // 运行时在某个套接字上等待新连接时如果发生网络错误则产生该事件。一旦产生了该事件，套接字将设置为暂停状态（<code>paused</code>），而且不会再产生
+    // <code>onAccept</code> 事件。
+    // |info| : <!--@The event data.-->
+    // 事件数据。
+    static void onAcceptError(AcceptErrorInfo info);
+
+    // <!--@Event raised when data has been received for a given socket.-->
+    // 某个套接字上接收到数据时产生。
+    // |info| : <!--@The event data.-->
+    // 事件数据。
+    static void onReceive(ReceiveInfo info);
+
+    // <!--@Event raised when a network error occured while the runtime was waiting
+    // for data on the socket. Once this event is raised, the socket is set to
+    // <code>paused</code> and no more <code>onReceive</code> events are raised
+    // for this socket.-->
+    // 运行时等待该套接字上的数据时如果发生网络错误则产生该事件。一旦产生该事件后，套接字将设置为
+    // <code>paused</code>（暂停）状态，不再产生 <code>onReceive</code> 事件。
+    // |info| : <!--@The event data.-->
+    // 事件数据。
+    static void onReceiveError(ReceiveErrorInfo info);
+  };
+};

@@ -27,7 +27,7 @@ namespace sockets.tcp {
     // with <code>getSockets</code>.-->
     // 应用的事件页面卸载（参见<a href="app_lifecycle"
     // >管理应用的生命周期</a>）时是否使套接字保持打开状态，默认值为
-    // <code>false</code>。应用载入时，之前使用 <code>persistent: true</code>
+    // <code>false</code>。应用加载时，之前使用 <code>persistent: true</code>
     // 打开的套接字可以通过 <code>getSockets</code> 获取。
     boolean? persistent;
 
@@ -123,7 +123,7 @@ namespace sockets.tcp {
     // <!--@Flag indicating whether the socket is left open when the application is
     // suspended (see <code>SocketProperties.persistent</code>).-->
     // 应用关闭时（参见
-    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态。
+    // <code>SocketProperties.persistent</code>）套接字是否保持打开状态。
     boolean persistent;
 
     // <!--@Application-defined string associated with the socket.-->
@@ -142,7 +142,7 @@ namespace sockets.tcp {
     boolean paused;
 
     // <!--@Flag indicating whether the socket is connected to a remote peer.-->
-    // 表示套接字是否已经连接到远程计算机的标志。
+    // 表示套接字是否已经连接到远程计算机。
     boolean connected;
 
     // <!--@If the underlying socket is connected, contains its local IPv4/6 address.-->
@@ -227,7 +227,7 @@ namespace sockets.tcp {
     // connected and un-paused, <code>onReceive</code> events are raised again
     // when messages are received.-->
     // 允许或阻止应用从远程计算机接收消息，默认值为
-    // <code>false</code>。应用通常使用暂停套接字的方式限制远程计算机发送的数据。套接字暂停时不会产生
+    // <code>false</code>。应用通常使用暂停套接字的方式限制远程计算机发送的数据。套接字暂停后不会产生
     // <code>onReceive</code>
     // 事件，套接字已连接并且取消暂停时，接收到消息后就会产生
     // <code>onReceive</code> 事件。
@@ -275,8 +275,8 @@ namespace sockets.tcp {
     // 将套接字连接到远程计算机。<code>connect</code>
     // 操作成功完成后，从对方接收到数据时就会产生 <code>onReceive</code>
     // 事件。如果运行时接收数据包时发生网络错误，则会产生
-    // 事件 <code>onReceiveError</code>，并且从这时候开始不会再次产生
-    // <code>onReceive</code> 事件，直到您调用 <code>resume</code> 方法。
+    // <code>onReceiveError</code> 事件，并且从这时候开始不会再次产生
+    // <code>onReceive</code> 事件，直到您调用 <code>setPaused(false)</code> 方法。
     // |socketId| : <!--@The socket identifier.-->
     // 套接字标识符。
     // |peerAddress| : <!--@The address of the remote machine. DNS name, IPv4 and

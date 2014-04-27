@@ -26,7 +26,7 @@ namespace sockets.tcpServer {
     // with <code>getSockets</code>.-->
     // 应用的事件页面卸载（参见<a href="app_lifecycle"
     // >管理应用的生命周期</a>）时是否使套接字保持打开状态，默认值为
-    // <code>false</code>。应用载入时，之前使用 <code>persistent: true</code>
+    // <code>false</code>。应用加载时，之前使用 <code>persistent: true</code>
     // 打开的套接字可以通过 <code>getSockets</code> 获取。
     boolean? persistent;
 
@@ -87,7 +87,7 @@ namespace sockets.tcpServer {
     // application is unloaded (see <code>SocketProperties.persistent</code>).
     // The default value is "false".-->
     // 应用关闭时（参见
-    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态。默认值为
+    // <code>SocketProperties.persistent</code>）套接字是否保持打开状态。默认值为
     // <code>false</code>。
     boolean persistent;
 

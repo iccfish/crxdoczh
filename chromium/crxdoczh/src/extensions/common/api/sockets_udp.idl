@@ -27,7 +27,7 @@ namespace sockets.udp {
     // with <code>getSockets</code>.-->
     // 事件页面或应用程序关闭（参见<a href="app_lifecycle"
     // >管理应用的生命周期</a>）时套接字是否保持打开，默认值为
-    // false。应用程序载入时，之前以 persistent: true 打开的套接字可以通过
+    // false。应用程序加载时，之前以 persistent: true 打开的套接字可以通过
     // <code>getSockets</code> 获取。
     boolean? persistent;
 
@@ -107,7 +107,7 @@ namespace sockets.udp {
     // <!--@Flag indicating whether the socket is left open when the application is
     // suspended (see <code>SocketProperties.persistent</code>).-->
     // 应用关闭时（参见
-    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态。
+    // <code>SocketProperties.persistent</code>）套接字是否保持打开状态。
     boolean persistent;
 
     // <!--@Application-defined string associated with the socket.-->
