@@ -139,7 +139,7 @@
                 "optional": true,
                 "additionalProperties": { "type": "any" },
 //@                "description": "JSON object with the response. Structure of the response varies depending on the method name and is defined by the 'returns' attribute of the command description in the remote debugging protocol."
-                "description": "包含响应的 JSON 对象。响应的结构取决于方法名称，在远程调试协议中由命令描述的"returns"属性定义。"
+                "description": "包含响应的 JSON 对象。响应的结构取决于方法名称，在远程调试协议中由命令描述的“returns”属性定义。"
               }
             ],
 //@            "description": "Response body. If an error occurs while posting the message, the callback will be called with no arguments and $(ref:runtime.lastError) will be set to the error message."
@@ -194,7 +194,7 @@
             "optional": true,
             "additionalProperties": { "type": "any" },
 //@            "description": "JSON object with the parameters. Structure of the parameters varies depending on the method name and is defined by the 'parameters' attribute of the event description in the remote debugging protocol."
-            "description": "包含参数的 JSON 对象。响应的结构取决于方法名称，在远程调试协议中由命令描述的"
+            "description": "包含参数的 JSON 对象。响应的结构取决于方法名称，在远程调试协议中由命令描述的“returns”属性定义。"
           }
         ]
       },
