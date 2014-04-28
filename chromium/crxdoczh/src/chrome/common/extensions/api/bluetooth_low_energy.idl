@@ -41,10 +41,10 @@ namespace bluetoothLowEnergy {
     // 外设中的不同服务，调用接收服务标识符的函数时也要使用。如果该实例代表远程服务的话就存在该属性。
     DOMString? instanceId;
 
-    // <!--@The remote peripheral that the GATT service belongs to. Present, if this
-    // instance represents a remote service.-->
-    // GATT 服务属于哪个远程外设，如果该实例代表远程服务的话就存在该属性。
-    bluetooth.Device? device;
+    // <!--@The device address of the remote peripheral that the GATT service belongs
+    // to. Present, if this instance represents a remote service.-->
+    // GATT 服务所属远程外设的设备地址，如果该实例代表远程服务的话就存在该属性。
+    DOMString? deviceAddress;
   };
 
   // <!--@Represents a GATT characteristic, which is a basic data element that
