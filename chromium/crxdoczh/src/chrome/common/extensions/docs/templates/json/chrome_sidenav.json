@@ -39,15 +39,15 @@ navigation menu look better.
             "href": "/devtools/docs/videos",
             "items": [
               {
-                "title": "Videos",
+                "title": "视频",
                 "href": "/devtools/docs/videos"
               },
               {
-                "title": "Blog Posts",
+                "title": "博客文章",
                 "href": "/devtools/docs/blog-posts"
               },
               {
-                "title": "Mailing List",
+                "title": "邮件列表",
                 "href": "https://groups.google.com/forum/?fromgroups#!forum/google-chrome-developer-tools"
               },
               {
@@ -144,19 +144,19 @@ navigation menu look better.
             "href": "/devtools/docs/commandline-api"
           },
           {
-            "title": "DevTools Extensions API",
+            "title": "开发者工具扩展程序 API",
             "href": "/devtools/docs/integrating",
             "items": [
               {
-                "title": "Integrating with DevTools",
+                "title": "与开发者工具集成",
                 "href": "/devtools/docs/integrating"
               },
               {
-                "title": "Sample DevTools Extensions",
+                "title": "开发者工具扩展程序示例",
                 "href": "/devtools/docs/sample-extensions"
               },
               {
-                "title": "Sample DevTools Protocol Clients",
+                "title": "开发者工具协议客户端示例",
                 "href": "/devtools/docs/debugging-clients"
               }
             ]
