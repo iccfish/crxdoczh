@@ -53,8 +53,8 @@
 //@        "description": "Details of the script or CSS to inject. Either the code or the file property must be set, but both may not be set at the same time.",
         "description": "要插入的脚本或 CSS 的详情。必须设置 code 和 file 属性中的某一个，而且不能同时设置。",
         "properties": {
-//@          "code": {"type": "string", "optional": true, "description": "JavaScript or CSS code to inject."},
-          "code": {"type": "string", "optional": true, "description": "要插入的 JavaScript 或 CSS 代码。"},
+//@          "code": {"type": "string", "optional": true, "description": "JavaScript or CSS code to inject.<br><br><b>Warning:</b><br>Be careful using the <code>code</code> parameter. Incorrect use of it may open your extension to <a href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">cross site scripting</a> attacks."},
+          "code": {"type": "string", "optional": true, "description": "要插入的 JavaScript 或 CSS 代码。<br><br><b>警告：</b><br>使用 <code>code</code> 参数时要特别小心，不恰当的使用可能会使您的扩展程序遭到<a href=\"https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC\">跨站脚本</a>攻击。"},
 //@          "file": {"type": "string", "optional": true, "description": "JavaScript or CSS file to inject."},
           "file": {"type": "string", "optional": true, "description": "要插入的 JavaScript 或 CSS 文件。"},
 //@          "allFrames": {"type": "boolean", "optional": true, "description": "If allFrames is <code>true</code>, implies that the JavaScript or CSS should be injected into all frames of current page. By default, it's <code>false</code> and is only injected into the top frame."},

@@ -71,8 +71,8 @@
           "code": {
             "type": "string",
             "optional": true,
-//@            "description": "JavaScript or CSS code to inject."
-            "description": "要插入的 JavaScript 或 CSS 代码。"
+//@            "description": "JavaScript or CSS code to inject.<br><br><b>Warning:</b><br>Be careful using the <code>code</code> parameter. Incorrect use of it may open your app to <a href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">cross site scripting</a> attacks."
+            "description": "要插入的 JavaScript 或 CSS 代码。<br><br><b>警告：</b><br>使用 <code>code</code> 参数时要特别小心，不恰当的使用可能会使您的应用遭到<a href=\"https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC\">跨站脚本</a>攻击。"
           },
           "file": {
             "type": "string",
