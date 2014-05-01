@@ -74,10 +74,7 @@ namespace bluetoothSocket {
 
   // <!--@Callback from the <code>connect</code> method.-->
   // <code>connect</code> 方法的回调函数。
-  // |result| : <!--@The result code returned from the underlying network call.
-  // A negative value indicates an error.-->
-  // 底层网络调用返回的结果代码，负值表示错误。
-  callback ConnectCallback = void (long result);
+  callback ConnectCallback = void ();
 
   // <!--@Callback from the <code>disconnect</code> method.-->
   // <code>disconnect</code> 方法的回调函数。
@@ -87,41 +84,11 @@ namespace bluetoothSocket {
   // <code>close</code> 方法的回调函数。
   callback CloseCallback = void ();
 
-  enum SendError {
-    // <!--@No error occurred.-->
-    // 没有发生错误。
-    success,
-
-    // <!--@The connection was disconnected.-->
-    // 连接已经断开。
-    disconnected,
-
-    // <!--@A system error occurred and the connection may be unrecoverable.-->
-    // 发生系统错误，连接可能无法恢复。
-    system_error
-  };
-
-  // <!--@Result of the <code>send</code> method.-->
-  // <code>send</code> 方法的结果。
-  dictionary SendInfo {
-    // <!--@The error message.-->
-    // 错误消息。
-    DOMString errorMessage;
-
-    // <!--@An error code indicating what went wrong.-->
-    // 表示错误信息的错误码。
-    SendError error;
-
-    // <!--@The number of bytes sent (if result == 0)-->
-    // 发送的字节数（如果 result == 0 的话）。
-    long? bytesSent;
-  };
-
   // <!--@Callback from the <code>send</code> method.-->
   // <code>send</code> 方法的回调函数。
-  // |sendInfo| : <!--@Result of the <code>send</code> method.-->
-  // <code>send</code> 方法的结果。
-  callback SendCallback = void (SendInfo sendInfo);
+  // |bytesSent| : <!--@The number of bytes sent.-->
+  // 发送的字节数。
+  callback SendCallback = void (long bytesSent);
 
   // <!--@Result of the <code>getInfo</code> method.-->
   // <code>getInfo</code> 方法的结果。
@@ -207,7 +174,11 @@ namespace bluetoothSocket {
   enum AcceptError {
     // <!--@A system error occurred and the connection may be unrecoverable.-->
     // 发生系统错误，连接可能无法恢复。
-    system_error
+    system_error,
+
+    // <!--@The socket is not listening.-->
+    // 套接字未处于监听状态。
+    not_listening
   };
 
   // <!--@Data from an <code>onAcceptError</code> event.-->
@@ -245,7 +216,11 @@ namespace bluetoothSocket {
 
     // <!--@A system error occurred and the connection may be unrecoverable.-->
     // 发生系统错误，连接可能无法恢复。
-    system_error
+    system_error,
+
+    // <!--@The socket has not been connected.-->
+    // 套接字未连接。
+    not_connected
   };
 
   // <!--@Data from an <code>onReceiveError</code> event.-->

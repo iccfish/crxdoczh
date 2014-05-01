@@ -23,7 +23,7 @@ navigation menu look better.
             "href": "/devtools/index"
           },
           {
-            "title": "Authoring & Development Workflow",
+            "title": "编写和开发的工作流程",
             "href": "/devtools/docs/authoring-development-workflow"
           },
           {
@@ -70,11 +70,11 @@ navigation menu look better.
                 "href": "/devtools/docs/elements"
               },
               {
-                "title": "Working with CSS Preprocessors",
+                "title": "与 CSS 预处理器协作",
                 "href": "/devtools/docs/css-preprocessors"
               },
               {
-                "title": "Managing Application Storage",
+                "title": "管理应用程序存储",
                 "href": "/devtools/docs/resource-panel"
               }
             ]
@@ -121,7 +121,7 @@ navigation menu look better.
                 "href": "/devtools/docs/javascript-memory-profiling"
               },
               {
-                "title": "Demos",
+                "title": "演示",
                 "href": "/devtools/docs/heap-profiling-summary"
               }
             ]

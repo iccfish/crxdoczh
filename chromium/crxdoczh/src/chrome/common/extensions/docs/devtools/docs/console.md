@@ -379,7 +379,7 @@ JavaScript 控制台为测试网页和应用的开发者提供了两项主要功
 
 ![Example of using debugger command](console-files/debugger.png)
 
-<aside class="special">
+<aside class="note">
 <!--@An interesting technique of using conditional breakpoints was explored by Brian Arnold in <a href="http://www.randomthink.net/blog/2012/11/breakpoint-actions-in-javascript/">Breakpoint Actions in JavaScript</a>.-->
 Brian Arnold 的 
 <a href="http://www.randomthink.net/blog/2012/11/breakpoint-actions-in-javascript/">Breakpoint Actions in JavaScript</a> 
