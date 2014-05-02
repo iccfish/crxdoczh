@@ -11,7 +11,7 @@ Items in Apps and Extensions are slightly reorganized to make the whole
 navigation menu look better.
 */
 [
-   /* // NOT YET READY
+   //* // NOT YET READY
    {
     "title": "开发者工具",
      "items": [
@@ -170,11 +170,11 @@ navigation menu look better.
             "href": "/devtools/docs/settings"
           },
           {
-            "title": "Remote Debugging Protocol",
+            "title": "远程调试协议",
             "href": "/devtools/docs/debugger-protocol",
             "items": [
               {
-                "title": "Remote Debugging Protocol",
+                "title": "远程调试协议",
                 "href": "/devtools/docs/debugger-protocol"
               },
               {

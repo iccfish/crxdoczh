@@ -339,6 +339,25 @@
             "parameters": []
           }
         ]
+      },
+      {
+        "name": "createAppShortcut",
+//@        "description": "Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created. Note: This function is only available to Chrome users on the dev channel.",
+        "description": "显示选项，为应用创建快捷方式。在 Mac 中，只能创建打包应用的快捷方式。注意：该函数仅对 Dev 分支的 Chrome 用户可用。",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+//@            "description": "This should be the id from an app item of $(ref:management.ExtensionInfo)."
+            "description": "来自 $(ref:management.ExtensionInfo) 应用项目的 id 属性。"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true,
+            "parameters":  []
+          }
+        ]
       }
     ],
     "events": [
