@@ -141,11 +141,31 @@ namespace app.window {
     // 用于禁用嵌套元素上的这一样式。<br>
     DOMString? type;
     // <!--@Allows the frame color to be set. Frame coloring is only available if the
-    // frame type is <code>chrome</code>.
+    // frame type is <code>chrome</code>.<br>
     // Frame coloring is experimental and only available in dev channel.-->
     // 允许设置边框颜色，只有边框类型为 <code>chrome</code>
-    // 时才能设置边框颜色。边框颜色的设置是实验性的，仅在 Dev 分支中可用。
+    // 时才能设置边框颜色。<br>边框颜色的设置是实验性的，仅在 Dev 分支中可用。
     DOMString? color;
+    // <!--@Allows the frame color of the window when active to be set. Frame
+    // coloring is only available if the frame type is <code>chrome</code>.<br>
+    // Frame coloring is only available if the frame type is
+    // <code>chrome</code>.<br>
+    // Frame coloring is experimental and only available in dev channel.-->
+    // 允许设置窗口处于活动状态时的边框颜色，只有当边框类型为
+    // <code>chrome</code> 时边框颜色才能设置。<br>边框颜色的设置是实验性的，仅在
+    // Dev 分支中可用。
+    DOMString? activeColor;
+    // <!--@Allows the frame color of the window when inactive to be set differently
+    // to the active color. Frame
+    // coloring is only available if the frame type is <code>chrome</code>.<br>
+    // <code>inactiveColor</code> must be used in conjunction with <code>
+    // color</code>.<br>
+    // Frame coloring is experimental and only available in dev channel.-->
+    // 允许设置窗口处于不活动状态时的边框颜色，只有当边框类型为
+    // <code>chrome</code> 时边框颜色才能设置。<code>inactiveColor</code>
+    // 必须和 <code>color</code> 同时使用。<br>边框颜色的设置是实验性的，仅在
+    // Dev 分支中可用。
+    DOMString? inactiveColor;
   };
 
   // <!--@State of a window: normal, fullscreen, maximized, minimized.-->
@@ -439,7 +459,8 @@ namespace app.window {
 
     // Accessors for testing.
     [nodoc] boolean hasFrameColor;
-    [nodoc] long frameColor;
+    [nodoc] long activeFrameColor;
+    [nodoc] long inactiveFrameColor;
 
     // <!--@Set whether the window should stay above most other windows. Requires the
     // <code>"app.window.alwaysOnTop"</code> permission.-->

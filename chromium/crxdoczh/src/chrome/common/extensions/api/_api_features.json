@@ -140,6 +140,10 @@
     "dependencies": ["permission:brailleDisplayPrivate"],
     "contexts": ["blessed_extension"]
   },
+  "browser": {
+    "dependencies": ["permission:browser"],
+    "contexts": ["blessed_extension"]
+  },
   "browserAction": {
     "dependencies": ["manifest:browser_action"],
     "contexts": ["blessed_extension"]
@@ -643,12 +647,6 @@
   "sessions": {
     "dependencies": ["permission:sessions"],
     "contexts": ["blessed_extension"]
-  },
-  // TODO(jamescook): Move this to app_shell _api_features.json once that file
-  // exists.
-  "shell": {
-    "contexts": ["blessed_extension"],
-    "extension_types": ["platform_app"]
   },
   "signedInDevices": {
     "dependencies": ["permission:signedInDevices"],
