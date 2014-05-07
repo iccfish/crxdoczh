@@ -325,13 +325,13 @@ namespace app.window {
 
     // <!--@If true, the window will stay above most other windows. If there are
     // multiple windows of this kind, the currently focused window will be in
-    // the foreground. Requires the <code>"app.window.alwaysOnTop"</code>
+    // the foreground. Requires the <code>"alwaysOnTopWindows"</code>
     // permission. Defaults to false.<br>
     // Call <code>setAlwaysOnTop()</code> on the window to change this property
     // after creation.<br>-->
     // 如果为
     // true，窗口会保持在其他大部分窗口之上。如果有多个这样的窗口，当前具有焦点的窗口会在前台。需要
-    // <code>"app.window.alwaysOnTop"</code> 权限，默认为 false。创建窗口后调用
+    // <code>"alwaysOnTopWindows"</code> 权限，默认为 false。创建窗口后调用
     // <code>setAlwaysOnTop</code> 修改该属性。
     boolean? alwaysOnTop;
 
@@ -365,11 +365,10 @@ namespace app.window {
     // <!--@Fullscreens the window.<br>
     // The user will be able to restore the window by pressing ESC. An
     // application can prevent the fullscreen state to be left when ESC is
-    // pressed by requesting the <b>app.window.fullscreen.overrideEsc</b>
-    // permission and canceling the event by calling .preventDefault(), like
-    // this:<br>-->
+    // pressed by requesting the <b>overrideEscFullscreen</b> permission and
+    // canceling the event by calling .preventDefault(), like this:<br>-->
     // 使窗口进入全屏状态。<br>
-    // 用户可以按下 Esc 键恢复窗口。如果应用请求 <b>app.window.fullscreen.overrideEsc</b>
+    // 用户可以按下 Esc 键恢复窗口。如果应用请求 <b>overrideEscFullscreen</b>
     // 权限，并调用 .preventDefault()
     // 取消事件，就能避免离开全屏状态，如下所示：<br>
     // <code>window.onKeyDown = function(e) { if (e.keyCode == 27 /* ESC */) {
@@ -463,8 +462,8 @@ namespace app.window {
     [nodoc] long inactiveFrameColor;
 
     // <!--@Set whether the window should stay above most other windows. Requires the
-    // <code>"app.window.alwaysOnTop"</code> permission.-->
-    // 设置窗口是否应该前端显示。需要 <code>"app.window.alwaysOnTop"</code>
+    // <code>"alwaysOnTopWindows"</code> permission.-->
+    // 设置窗口是否应该前端显示。需要 <code>"alwaysOnTopWindows"</code>
     // 权限。
     static void setAlwaysOnTop(boolean alwaysOnTop);
 
