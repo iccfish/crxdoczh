@@ -1,6 +1,10 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
+// Copyright 2014 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
+
+// Note: Many of these functions and events are implemented by hand and should
+// not elicit any code generation from the schema compiler. These items are
+// marked "nocompile."
 
 [
   {
@@ -32,6 +36,7 @@
       {
         "id": "MessageSender",
         "type": "object",
+        "nocompile": true,
 //@        "description": "An object containing information about the script context that sent a message or request.",
         "description": "包含有关发送消息或请求的脚本上下文信息的对象。",
         "properties": {
@@ -43,6 +48,32 @@
           "url": {"type": "string", "optional": true, "description": "打开连接的页面或框架 URL（如果有的话），<strong>只有</strong>当连接从标签页或内容脚本打开时才会存在这一属性。"},
 //@          "tlsChannelId": {"type": "string", "optional": true, "description": "The TLS channel ID of the web page that opened the connection, if requested by the extension or app, and if available."}
           "tlsChannelId": {"type": "string", "optional": true, "description": "如果扩展程序或应用请求该属性并且可用，则为打开连接的网页的 TLS 通道标识符。"}
+        }
+      },
+      {
+        "id": "PlatformInfo",
+        "type": "object",
+//@        "description": "An object containing information about the current platform.",
+        "description": "包含当前平台相关信息的对象。",
+        "properties": {
+          "os": {
+            "type": "string",
+//@                    "description": "The operating system chrome is running on.",
+            "description": "当前运行 Chrome 浏览器的操作系统。",
+            "enum": ["mac", "win", "android", "cros", "linux", "openbsd"]
+          },
+          "arch": {
+            "type": "string",
+            "enum": ["arm", "x86-32", "x86-64"],
+//@                    "description": "The machine's processor architecture."
+            "description": "计算机的处理器架构。"
+          },
+          "nacl_arch" : {
+//@                    "description": "The native client architecture. This may be different from arch on some platforms.",
+            "description": "Native Client 架构，在某些平台上可能和 arch 不同。",
+            "type": "string",
+            "enum": ["arm", "x86-32", "x86-64"]
+          }
         }
       }
     ],
@@ -326,27 +357,7 @@
             "parameters": [
               {
                 "name": "platformInfo",
-                "type": "object",
-                "properties": {
-                  "os": {
-                    "type": "string",
-//@                    "description": "The operating system chrome is running on.",
-                    "description": "当前运行 Chrome 浏览器的操作系统。",
-                    "enum": ["mac", "win", "android", "cros", "linux", "openbsd"]
-                  },
-                  "arch": {
-                    "type": "string",
-                    "enum": ["arm", "x86-32", "x86-64"],
-//@                    "description": "The machine's processor architecture."
-                    "description": "计算机的处理器架构。"
-                  },
-                  "nacl_arch" : {
-//@                    "description": "The native client architecture. This may be different from arch on some platforms.",
-                    "description": "Native Client 架构，在某些平台上可能和 arch 不同。",
-                    "type": "string",
-                    "enum": ["arm", "x86-32", "x86-64"]
-                  }
-                }
+                "$ref": "PlatformInfo"
               }
             ]
           }
@@ -483,6 +494,7 @@
         "options": {
           "unmanaged": true
         },
+        "nocompile": true,
 //@        "description": "Fired when a message is sent from either an extension process or a content script.",
         "description": "当消息从扩展程序进程或者内容脚本中发送时产生。",
         "parameters": [
@@ -514,6 +526,7 @@
         "options": {
           "unmanaged": true
         },
+        "nocompile": true,
 //@        "description": "Fired when a message is sent from another extension/app. Cannot be used in a content script.",
         "description": "当消息从另一个扩展程序/应用发送时产生。不能在内容脚本中使用。",
         "parameters": [
