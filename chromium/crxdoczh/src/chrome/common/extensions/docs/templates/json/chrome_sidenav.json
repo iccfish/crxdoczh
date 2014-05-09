@@ -548,6 +548,11 @@ navigation menu look better.
                 "href": "/extensions/hosting_changes"
               },
               {
+                "title": "扩展程序质量准测的常见问题",
+                "href": "/extensions/single_purpose"
+              },
+
+              {
                 "title": "事件页面",
                 "href": "/extensions/event_pages"
               },

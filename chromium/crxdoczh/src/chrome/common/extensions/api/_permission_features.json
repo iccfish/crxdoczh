@@ -16,9 +16,6 @@
 // Google employees: please update http://go/chrome-api-whitelist to map
 // hashes back to ids.
 
-// If you add a new platform_app permission please update the "stubs_app" test:
-// chrome/test/data/extensions/api_test/stubs_app/manifest.json
-
 {
   "accessibilityFeatures.modify": {
     "channel": "dev",
@@ -378,7 +375,9 @@
     "whitelist": [
       "2FC374607C2DF285634B67C64A2E356C607091C3",  // Quickoffice
       "3727DD3E564B6055387425027AD74C58784ACC15",  // Quickoffice internal
-      "12E618C3C6E97495AAECF2AC12DEB082353241C6"   // QO component extension
+      "12E618C3C6E97495AAECF2AC12DEB082353241C6",  // QO component extension
+      "D5736E4B5CF695CB93A2FB57E4FDC6E5AFAB6FE2",  // http://crbug.com/312900
+      "D57DE394F36DC1C3220E7604C575D29C51A6C495"   // http://crbug.com/319444
     ]
   }],
   "fileSystem.directory": [{
@@ -398,7 +397,9 @@
     "whitelist": [
       "2FC374607C2DF285634B67C64A2E356C607091C3",  // Quickoffice
       "3727DD3E564B6055387425027AD74C58784ACC15",  // Quickoffice internal
-      "12E618C3C6E97495AAECF2AC12DEB082353241C6"   // QO component extension
+      "12E618C3C6E97495AAECF2AC12DEB082353241C6",  // QO component extension
+      "D5736E4B5CF695CB93A2FB57E4FDC6E5AFAB6FE2",  // http://crbug.com/312900
+      "D57DE394F36DC1C3220E7604C575D29C51A6C495"   // http://crbug.com/319444
     ]
   }],
   "fileSystemProvider": {
