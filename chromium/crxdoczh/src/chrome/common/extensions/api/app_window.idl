@@ -142,29 +142,29 @@ namespace app.window {
     DOMString? type;
     // <!--@Allows the frame color to be set. Frame coloring is only available if the
     // frame type is <code>chrome</code>.<br>
-    // Frame coloring is experimental and only available in dev channel.-->
+    // Frame coloring is new in Chrome 36.-->
     // 允许设置边框颜色，只有边框类型为 <code>chrome</code>
-    // 时才能设置边框颜色。<br>边框颜色的设置是实验性的，仅在 Dev 分支中可用。
+    // 时才能设置边框颜色。<br>边框颜色在 Chrome 36 中新增。
     DOMString? color;
     // <!--@Allows the frame color of the window when active to be set. Frame
     // coloring is only available if the frame type is <code>chrome</code>.<br>
     // Frame coloring is only available if the frame type is
     // <code>chrome</code>.<br>
-    // Frame coloring is experimental and only available in dev channel.-->
+    // Frame coloring is new in Chrome 36.-->
     // 允许设置窗口处于活动状态时的边框颜色，只有当边框类型为
-    // <code>chrome</code> 时边框颜色才能设置。<br>边框颜色的设置是实验性的，仅在
-    // Dev 分支中可用。
+    // <code>chrome</code> 时边框颜色才能设置。<br>边框颜色在 Chrome 36
+    // 中新增。
     DOMString? activeColor;
     // <!--@Allows the frame color of the window when inactive to be set differently
     // to the active color. Frame
     // coloring is only available if the frame type is <code>chrome</code>.<br>
     // <code>inactiveColor</code> must be used in conjunction with <code>
     // color</code>.<br>
-    // Frame coloring is experimental and only available in dev channel.-->
+    // Frame coloring is new in Chrome 36.-->
     // 允许设置窗口处于不活动状态时的边框颜色，只有当边框类型为
     // <code>chrome</code> 时边框颜色才能设置。<code>inactiveColor</code>
-    // 必须和 <code>color</code> 同时使用。<br>边框颜色的设置是实验性的，仅在
-    // Dev 分支中可用。
+    // 必须和 <code>color</code> 同时使用。<br>边框颜色在 Chrome 36
+    // 中新增。
     DOMString? inactiveColor;
   };
 
@@ -277,13 +277,13 @@ namespace app.window {
     // draggability to the app's window. <code>-webkit-app-region: drag</code>
     // can be used to mark regions draggable. <code>no-drag</code> can be used
     // to disable this style on nested elements.<br>
-    // Use of <code>FrameOptions</code> is only supported in dev channel.-->
+    // Use of <code>FrameOptions</code> is new in M36.-->
     // 框架类型：'none' 或 'chrome'（默认为 'chrome'）。如果使用
     // 'none'，可以通过 CSS 属性 <code>-webkit-app-region</code>
     // 设置应用窗口的拖放特性。<code>-webkit-app-region: drag</code>
     // 可以将区域标志为可拖放的，而 <code>no-drag</code>
     // 可以用来在嵌套元素上禁用该样式。<br>
-    // 只有在 Dev 分支中才能使用 FrameOptions 对象。
+    // 在 Chrome 36 或更高版本中可以使用 FrameOptions 对象。
     (DOMString or FrameOptions)? frame;
 
     // <!--@Size and position of the content in the window (excluding the titlebar).

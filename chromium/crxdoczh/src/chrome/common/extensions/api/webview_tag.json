@@ -36,28 +36,16 @@
         "properties": {
 //@          "appcache": { "type": "boolean", "optional": true, "description": "Websites' appcaches." },
           "appcache": { "type": "boolean", "optional": true, "description": "网站的应用程序缓存。" },
-//@          "cache": { "type": "boolean", "optional": true, "description": "The partition's cache. Note: This clears the entire cache regardless of the age passed to <code>clearData</code>." },
-          "cache": { "type": "boolean", "optional": true, "description": "浏览器缓存。注意：这会清除所有缓存内容，无论传递给 <code>clearData</code> 的时间是什么。" },
 //@          "cookies": { "type": "boolean", "optional": true, "description": "The partition's cookies." },
           "cookies": { "type": "boolean", "optional": true, "description": "分区的 Cookie。" },
-//@          "downloads": { "type": "boolean", "optional": true, "description": "The partition's download list." },
-          "downloads": { "type": "boolean", "optional": true, "description": "分区的下载项列表。" },
 //@          "fileSystems": { "type": "boolean", "optional": true, "description": "Websites' filesystems." },
           "fileSystems": { "type": "boolean", "optional": true, "description": "网站的文件系统。" },
-//@          "formData": { "type": "boolean", "optional": true, "description": "The partition's stored form data." },
-          "formData": { "type": "boolean", "optional": true, "description": "分区存储的表单数据。" },
 //@          "history": { "type": "boolean", "optional": true, "description": "The partition's history." },
           "history": { "type": "boolean", "optional": true, "description": "分区的历史记录。" },
 //@          "indexedDB": { "type": "boolean", "optional": true, "description": "Websites' IndexedDB data." },
           "indexedDB": { "type": "boolean", "optional": true, "description": "网站的 IndexedDB 数据。" },
 //@          "localStorage": { "type": "boolean", "optional": true, "description": "Websites' local storage data." },
           "localStorage": { "type": "boolean", "optional": true, "description": "网站的本地存储数据。" },
-//@          "serverBoundCertificates": { "type": "boolean", "optional": true, "description": "Server-bound certificates." },
-          "serverBoundCertificates": { "type": "boolean", "optional": true, "description": "服务器绑定的证书。" },
-//@          "pluginData": { "type": "boolean", "optional": true, "description": "Plugins' data." },
-          "pluginData": { "type": "boolean", "optional": true, "description": "插件数据。" },
-//@          "passwords": { "type": "boolean", "optional": true, "description": "Stored passwords." },
-          "passwords": { "type": "boolean", "optional": true, "description": "保存的密码。" },
 //@          "webSQL": { "type": "boolean", "optional": true, "description": "Websites' WebSQL data." }
           "webSQL": { "type": "boolean", "optional": true, "description": "网站的 WebSQL 数据。" }
         }
