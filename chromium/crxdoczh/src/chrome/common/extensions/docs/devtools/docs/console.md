@@ -56,7 +56,7 @@ JavaScript 控制台为测试网页和应用的开发者提供了两项主要功
 
 ![Console split-view](console-files/console-split-view.png)
 
-### <!--@Clearing the console history-->清除控制台历史记录
+### <a name="clearing-the-console-history"></a><!--@Clearing the console history-->清除控制台历史记录
 
 <!--@To clear the console's history, do one of the following:-->
 要清除控制台历史记录，您可以使用以下任意一种方式：
@@ -490,7 +490,7 @@ Profiles（性能分析）面板中显示 JavaScript 对象。
 注：您还可以右键单击控制台中的任意元素，并选择 **Reveal in Elements Panel**
 （在元素面板中显示）。
 
-### <!--@Monitoring events-->监控事件
+### <a name="monitoring-events"></a><!--@Monitoring events-->监控事件
 
 <!--@The [`monitorEvents()`](commandline-api.md#monitoreventsobject-events) command monitors an object for one or more specified events. When an event occurs on the monitored object, the corresponding Event object is logged to the Console. You specify the object and the events you want to monitor on that object. For example, the following code enables event monitoring for every "resize" event on the global window object.-->
 [`monitorEvents()`](commandline-api.md#monitoreventsobject-events) 命令
@@ -524,10 +524,10 @@ Profiles（性能分析）面板中显示 JavaScript 对象。
 
     unmonitorEvents(window);
 
-### <!--@Controlling the CPU profiler-->控制 CPU 性能分析器
+### <a name="controlling-the-cpu-profiler"></a><!--@Controlling the CPU profiler-->控制 CPU 性能分析器
 
 <!--@You can create JavaScript CPU profiles from the command line with the [`profile()`](commandline-api.md#profilename) and [`profileEnd()`](commandline-api.md#profileendname) commands. You can optionally specify a name that's applied to the profile you create.-->
-您可以在命令行中使用[`profile()`](commandline-api.md#profilename) 和 
+您可以在命令行中使用 [`profile()`](commandline-api.md#profilename) 和 
 [`profileEnd()`](commandline-api.md#profileendname) 命令创建 JavaScript CPU 
 性能分析报告。您可以指定可选的名称，应用于您创建的性能分析报告。
 
