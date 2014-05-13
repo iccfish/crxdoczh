@@ -195,6 +195,13 @@ namespace syncFileSystem {
     // href"http://www.w3.org/TR/file-system-api/#widl-DirectoryEntry-createReader-DirectoryReader"
     // >创建新的
     // DirectoryReader</a>），但是不能在里面创建目录。在同一个应用中多次调用该方法会返回指向同一个文件系统的同一个句柄。
+    //
+    // <!--@Note this call can fail. For example, if the user is not signed in to
+    // Chrome or if there is no network operation. To handle these errors it is
+    // important chrome.runtime.lastError is checked in the callback.-->
+    // 注意，该调用可能会失败。例如，如果用户没有登录到 Chrome
+    // 或者没有网络连接。为了处理这些错误，您一定要在回调函数中检查
+    // $(ref:runtime.lastError)。
     static void requestFileSystem(GetFileSystemCallback callback);
 
     // <!--@Sets the default conflict resolution policy

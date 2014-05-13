@@ -121,6 +121,15 @@ namespace identity {
     // <code>https://&lt;app-id&gt;.chromiumapp.org/*</code> 的 URL
     // 时，窗口会关闭，最终的重定向 URL 会传递给 <var>callback</var> 函数。
     //
+    // <!--@For a good user experience it is important interactive auth flows are
+    // initiated by UI in your app explaining what the authorization is for.
+    // Failing to do this will cause your users to get authorization requests
+    // - or even Chrome sign in screens if they are not signed in - with
+    // no context. In particular, do not launch an interactive auth flow when
+    // your app is first launched.-->
+    // 为了有更好的用户体验，交互式认证流程应该通过应用中的用户界面发起，并解释认证原因。如果您不这样做，您的用户看到认证请求时没有任何上下文，如果未登录的话甚至还会出现
+    // Chrome 登录屏幕。尤其注意，不要在应用第一次启动时开始交互式认证流程。
+    //
     // |details| : <!--@WebAuth flow options.-->
     // WebAuth 流程选项。
     // |callback| : <!--@Called with the URL redirected back to your application.-->

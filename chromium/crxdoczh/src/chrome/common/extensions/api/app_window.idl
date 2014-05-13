@@ -550,8 +550,13 @@ namespace app.window {
     // 当窗口改变大小时产生。
     [nocompile] static void onBoundsChanged();
 
-    // <!--@Fired when the window is closed.-->
-    // 当窗口关闭时产生。
+    // <!--@Fired when the window is closed. Note, this should be listened to from
+    // a window other than the window being closed, for example from the
+    // background page. This is because the window being closed will be in the
+    // process of being torn down when the event is fired, which means not all
+    // APIs in the window's script context will be functional.-->
+    // 当窗口关闭时产生。注意，您应该在正在关闭的窗口之外的其他窗口监听该事件，例如在后台网页中。因为窗口关闭并产生该事件时正处于销毁的过程中，并不是所有
+    // API 在窗口的脚本上下文中都能正常工作。
     [nocompile] static void onClosed();
 
     // <!--@Fired when the window is fullscreened.-->

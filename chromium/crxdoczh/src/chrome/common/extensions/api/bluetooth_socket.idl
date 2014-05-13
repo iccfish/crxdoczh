@@ -67,10 +67,7 @@ namespace bluetoothSocket {
   // <code>listenUsingRfcomm</code>、<code>listenUsingInsecureRfcomm</code>
   // 和 <code>listenUsingL2cap</code>
   // 方法的回调函数。
-  // |result| : <!--@The result code returned from the underlying network call.
-  // A negative value indicates an error.-->
-  // 底层网络调用返回的结果代码，负值表示错误。
-  callback ListenCallback = void (long result);
+  callback ListenCallback = void ();
 
   // <!--@Callback from the <code>connect</code> method.-->
   // <code>connect</code> 方法的回调函数。
