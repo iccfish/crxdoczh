@@ -456,6 +456,11 @@
     "dependencies": ["permission:identity"],
     "contexts": ["blessed_extension"]
   },
+  "identity.getAccounts": {
+    "channel": "dev",
+    "dependencies": ["permission:identity"],
+    "contexts": ["blessed_extension"]
+  },
   "identityPrivate": {
     "dependencies": ["permission:identityPrivate"],
     "contexts": ["blessed_extension"]
@@ -650,6 +655,10 @@
   "syncFileSystem": {
     "dependencies": ["permission:syncFileSystem"],
     "contexts": ["blessed_extension"]
+  },
+  "syncedNotificationsPrivate": {
+    "contexts": ["blessed_extension"],
+    "dependencies": ["permission:syncedNotificationsPrivate"]
   },
   "systemIndicator": {
     "dependencies": ["manifest:system_indicator"],

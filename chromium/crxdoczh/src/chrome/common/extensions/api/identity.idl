@@ -64,10 +64,18 @@ namespace identity {
   };
 
   callback GetAuthTokenCallback = void (optional DOMString token);
+  callback GetAccountsCallback = void (AccountInfo[] accounts);
   callback InvalidateAuthTokenCallback = void ();
   callback LaunchWebAuthFlowCallback = void (optional DOMString responseUrl);
 
   interface Functions {
+    // <!--@Retrieves a list of AccountInfo objects describing the accounts
+    // present on the profile.<br>
+    // <code>getAccounts</code> is only supported on dev channel.-->
+    // 获取 AccountInfo 对象列表，描述配置文件中存在的账户。<br>
+    // <code>getAccounts</code> 目前仅在 Dev 分支中支持。
+    static void getAccounts(GetAccountsCallback callback);
+
     // <!--@Gets an OAuth2 access token using the client ID and scopes
     // specified in the <a
     // href="app_identity#update_manifest"><code>oauth2</code>

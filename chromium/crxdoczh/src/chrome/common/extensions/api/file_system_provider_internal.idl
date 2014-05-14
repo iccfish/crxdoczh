@@ -48,6 +48,32 @@ namespace fileSystemProviderInternal {
         long fileSystemId,
         long requestId,
         fileSystemProvider.ProviderError error);
+
+    // Internal. Success callback of the <code>onOpenFileRequested</code> event.
+    // Must be called, when opening succeeds.
+    static void openFileRequestedSuccess(
+        long fileSystemId,
+        long requestId);
+
+    // Internal. Error callback of the <code>onOpenFileRequested</code> event.
+    // Must be called when opening fails.
+    static void openFileRequestedError(
+        long fileSystemId,
+        long requestId,
+        fileSystemProvider.ProviderError error);
+
+    // Internal. Success callback of the <code>onCloseFileRequested</code>
+    // event. Must be called, when closing succeeds.
+    static void closeFileRequestedSuccess(
+        long fileSystemId,
+        long requestId);
+
+    // Internal. Error callback of the <code>onCloseFileRequested</code> event.
+    // Must be called when closing fails.
+    static void closeFileRequestedError(
+        long fileSystemId,
+        long requestId,
+        fileSystemProvider.ProviderError error);
   };
 };
 
