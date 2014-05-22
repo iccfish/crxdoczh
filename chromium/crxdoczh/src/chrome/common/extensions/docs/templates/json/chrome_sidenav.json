@@ -11,7 +11,7 @@ Items in Apps and Extensions are slightly reorganized to make the whole
 navigation menu look better.
 */
 [
-   /* // NOT YET READY
+   //* // NOT YET READY
    {
     "title": "开发者工具",
      "items": [
@@ -23,7 +23,7 @@ navigation menu look better.
             "href": "/devtools/index"
           },
           {
-            "title": "编写和开发的工作流程",
+            "title": "开发工作流程",
             "href": "/devtools/docs/authoring-development-workflow"
           },
           {
@@ -66,8 +66,8 @@ navigation menu look better.
             "href": "/devtools/docs/dom-and-styles",
             "items": [
               {
-                "title": "Editing Styles & DOM",
-                "href": "/devtools/docs/elements"
+                "title": "编辑样式和 DOM",
+                "href": "/devtools/docs/dom-and-styles"
               },
               {
                 "title": "与 CSS 预处理器协作",
@@ -90,6 +90,10 @@ navigation menu look better.
           {
             "title": "Android 远程调试",
             "href": "/devtools/docs/remote-debugging"
+          },
+          {
+            "title": "通过工作空间保存更改",
+            "href": "/devtools/docs/workspaces"
           }
         ]
       },
@@ -105,7 +109,7 @@ navigation menu look better.
             "href": "/devtools/docs/timeline"
           },
           {
-            "title": "Timeline Demo: Finding Forced Synchronous Layouts",
+            "title": "Timeline Demo: Layout Thrashing",
             "href": "/devtools/docs/demos/too-much-layout/index"
           },
           {
@@ -125,10 +129,6 @@ navigation menu look better.
                 "href": "/devtools/docs/heap-profiling-summary"
               }
             ]
-          },
-          {
-            "title": "创建干净的测试环境",
-            "href": "/devtools/docs/clean-testing-environment"
           }
         ]
       },
@@ -136,11 +136,11 @@ navigation menu look better.
         "title": "参考",
         "items": [
           {
-            "title": "Console API Reference",
+            "title": "控制台 API 参考",
             "href": "/devtools/docs/console-api"
           },
           {
-            "title": "Command Line API Reference",
+            "title": "命令行 API 参考",
             "href": "/devtools/docs/commandline-api"
           },
           {
@@ -166,7 +166,7 @@ navigation menu look better.
             "href": "/devtools/docs/shortcuts"
           },
           {
-            "title": "Settings",
+            "title": "设置",
             "href": "/devtools/docs/settings"
           },
           {

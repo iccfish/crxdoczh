@@ -38,11 +38,20 @@ graphical interface to the <a href="https://code.google.com/p/v8/">V8</a> debugg
 <strong>Sources</strong>（源代码）面板。
 </p>
 
+<<<<<<< HEAD
+<ul>
+<li>Open a site such as the <a href="http://closure-library.googlecode.com/svn/trunk/closure/goog/demos/hovercard.html">Google Closure hovercard demo
+page</a> or the <a href="http://todomvc.com/architecture-examples/angularjs/">TodoMVC</a> Angular app.</li>
+<li>Open the DevTools window.</li>
+<li>If it is not already selected, select <strong>Sources</strong>.</li>
+</ul>
+=======
 <li><!--@Open a site such as the-->打开某个网站，例如 <a href="http://closure-library.googlecode.com/svn/trunk/closure/goog/demos/hovercard.html">Google Closure hovercard <!--@demo
 page-->演示网页</a><!--@ or the-->或 <a href="http://todomvc.com/architecture-examples/angularjs/">TodoMVC</a> Angular <!--@app.-->应用。</li>
 <li><!--@Open the DevTools window.-->打开开发者工具窗口。</li>
 <li><!--@If it is not already selected, select <strong>Sources</strong>.-->如果还没有选中，选择 <strong>Sources</strong>（源代码）。</li>
 
+>>>>>>> legacy/zh_CN
 
 <p><div class="screenshot"><img src="javascript-debugging/javascript-debugging-overview.jpg"/></div></p>
 
@@ -64,11 +73,26 @@ which will display all open scripts.-->
 <strong>执行控制</strong>按钮位于侧面板的顶部，允许您单步执行代码。可用的按钮有：
 </p>
 
+<<<<<<< HEAD
+<ul>
+<li><strong>Continue</strong>: F8 or Command-/ (forward slash) on Mac or Control-/ (forward
+slash) on other platforms.</li>
+<li><strong>Step over</strong>: F10 or Command-' (apostrophe) on Mac or Control-' (apostrophe)
+on other platforms.</li>
+<li><strong>Step into</strong>: F11 or Command-; (semi-colon) on Mac or Control-; (semi-colon);
+on other platforms.</li>
+<li><strong>Step out</strong>: Shift-F11 or Shift-Command-; (semi-colon) on Mac or
+Shift-Control-; (semi-colon) on other platforms.</li>
+<li><strong>Next call frame</strong>: Control-. (period) on all platforms.</li>
+<li><strong>Previous call frame</strong>: Control-, (comma) on all platforms.</li>
+</ul>
+=======
 <p><strong><img src="javascript-debugging/button_continue.jpg"/> Continue<!--@:-->（继续）：</strong><!--@ continues code execution until we encounter another breakpoint.-->继续执行代码，直到遇到新的断点。</p>
 <p><strong><img src="javascript-debugging/button_step_over.jpg"/> Step over<!--@:-->（逐过程）：</strong><!--@ step through code line-by-line to get insights into how each line affects the variables being updated. Should your code call another function, the debugger won't jump into its code, instead stepping over so that the focus remains on the current function.-->一行一行单步执行代码，了解每一行如何影响变量的更新。如果您的代码调用了另一个函数，调试器不会进入它的代码中，而是执行完，这样您可以将注意力集中在当前函数上。</p>
 <p><strong><img src="javascript-debugging/button_step_into.jpg"/> Step into<!--@:-->（逐语句）：</strong><!--@ like Step over, however clicking Step into at the function call will cause the debugger to move its execution to the first line in the functions definition.-->与逐过程类似，但是在函数调用的位置单击逐语句时调试器会将执行位置移动到函数定义中的第一行。</p>
 <p><strong><img src="javascript-debugging/button_stepout.jpg"/>Step out<!--@:-->（跳出）</strong><!--@ having stepped into a function, clicking this will cause the remainder of the function definition to be run and the debugger will move its execution to the parent function.-->如果已经单步执行到某个函数中，单击该按钮运行函数定义的剩余部分，同时调试器将执行位置移动到上一级函数中。</p>
 <p><strong><img src="javascript-debugging/button_disable.png"/>Toggle breakpoints<!--@:-->（开启/关闭断点）：</strong><!--@ toggles breakpoints on/off while leaving their enabled states intact.-->开启/关闭所有断点但不改变它们各自的启用状态。</p>
+>>>>>>> legacy/zh_CN
 
 <p><!--@There are also several related keyboard shortcuts available in the <strong>Sources</strong> panel:-->
 <strong>Sources</strong>（源代码）面板中还可以使用几个相关的快捷键：
@@ -194,6 +218,18 @@ drop-down-->
 确保 <strong>Sources</strong>（源代码）面板已经打开，并从脚本下拉菜单中选择“script.js”。
 </p>
 
+<<<<<<< HEAD
+<ul>
+<li>Set a breakpoint on line 8 by clicking the line gutter (you can use the
+<strong>Control-G</strong> shortcut to reveal a line in a large file)</li>
+<li>Move your mouse over this page</li>
+<li>You should stop on the breakpoint</li>
+<li>Hover over the source code to inspect local and global variables, function
+arguments etc.</li>
+<li>Delete the breakpoint by clicking the blue tag breakpoint indicator</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_9.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+=======
 <li><!--@Set a breakpoint on line 8 by clicking the line gutter (you can use the
 <strong>Control-G</strong> shortcut to reveal a line in a large file)-->
 在第八行单击行号设置断点（在大文件中您可以使用
@@ -205,6 +241,7 @@ drop-down-->
 arguments etc.-->将鼠标悬停在源代码上，审查本地和全局变量、函数参数等</li>
 <li><!--@Delete the breakpoint by clicking the blue tag breakpoint indicator-->单击蓝色标签的断点指示符</li>
 <li><!--@Click the-->单击 <strong>Continue</strong><!--@ -->（继续）<img class="ui" src="javascript-debugging/image_9.png"/><!--@ button or hit--> 按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/live-editing-mouseout.jpg"/></div></p>
@@ -213,7 +250,7 @@ arguments etc.-->将鼠标悬停在源代码上，审查本地和全局变量、
 
 <h4 id="breakpoints-dynamic-javascript"><!--@Breakpoints in Dynamic JavaScript-->动态 JavaScript 中的断点</h4>
 
-<a href="javascript-debugging/dynamicScript.js.md" style="display: none">
+<a href="javascript-debugging/dynamicScript.js" style="display: none">
   This is used to mark dynamicScript.js as used.</a>
 
 <script>
@@ -230,6 +267,19 @@ function loadDynamicScript() {
   }
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li><button id="loadDynamicScriptButton" onclick="loadDynamicScript()">Load
+  dynamic script</button></li>
+<li>In the <strong>Sources</strong> panel select "dynamicScript.js" from scripts drop-down and
+set breakpoint on line 2</li>
+  <li><button id="dynamicScriptFunctionButton" onclick=
+  "dynamicScriptFunction()" disabled>Call function from dynamic
+  script</button></li>
+<li>You should stop on the breakpoint</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_9.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+=======
 <li><button id="loadDynamicScriptButton" onclick="loadDynamicScript()"><!--@Load
   dynamic script-->加载动态脚本</button></li>
 <li><!--@In the <strong>Sources</strong> panel select "dynamicScript.js" from scripts drop-down and
@@ -240,6 +290,7 @@ set breakpoint on line 2-->
   script-->调用动态脚本中的函数</button></li>
 <li><!--@You should stop on the breakpoint-->您应该在断点处中断</li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_9.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 
 <p><div class="screenshot"><img src="javascript-debugging/dynamic-script.jpg"/></div></p>
 
@@ -264,6 +315,16 @@ function onMouseOver(event) {
   return "onMouseOver: " + target;
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li>Click the <strong>Pause</strong> <img class="ui" src="javascript-debugging/image_13.png"/> button</li>
+<li>Move your mouse over this section</li>
+<li>You should stop in <code>onMouseOver</code>
+  function</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_14.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+
+=======
 <li><!--@Click the-->单击 <strong>Pause</strong>（暂停）<img class="ui" src="javascript-debugging/image_13.png"/> <!--@button-->按钮</li>
 <li><!--@Move your mouse over this section-->将您的鼠标移到这一部分</li>
 <li><!--@You should stop in <code>onMouseOver</code>
@@ -271,6 +332,7 @@ function onMouseOver(event) {
   您会在 <code>onMouseOver</code> 函数中暂停
 </li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_14.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 <p><div class="screenshot"><img src="javascript-debugging/continue-to-resume.jpg"/></div></p>
 
 
@@ -287,6 +349,18 @@ function raiseAndCatchException() {
   }
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li>Click the <strong>Pause on exceptions</strong> <img class="ui" src="javascript-debugging/image_19.png"/>button at the bottom of the window to switch to
+<strong>Pause on all exceptions</strong> mode</li>
+<li><button onclick="raiseAndCatchException()">Raise
+  exception!</button></li>
+<li>You should stop in <span class=
+  "source-code">raiseAndCatchException</span> function</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_17.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+
+=======
 <li><!--@Click the-->单击窗口顶部的 <strong>Pause on exceptions</strong>（发生异常时暂停）<img class="ui" src="javascript-debugging/image_19.png"/><!--@button at the bottom of the window to switch to
 <strong>Pause on all exceptions</strong> mode-->
 按钮切换至<strong>发生所有异常时暂停</strong>模式。
@@ -296,6 +370,7 @@ function raiseAndCatchException() {
 <li><!--@You should stop in-->您应该在 <span class=
   "source-code">raiseAndCatchException</span> <!--@function-->函数中停止</li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_17.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 <p><div class="screenshot"><img src="javascript-debugging/append-child.jpg"/></div></p>
 
 
@@ -316,6 +391,19 @@ function raiseException() {
   throw 0;
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li>Click the <strong>Pause on exceptions</strong> <img class="ui" src="javascript-debugging/image_19.png"/>button again to switch to <strong>Pause on uncaught
+exceptions</strong> mode</li>
+<li><button onclick="raiseAndCatchException()">Raise
+  exception!</button></li>
+<li>You should not stop in raiseAndCatchException function since exception is
+caught</li>
+<li><button onclick="raiseException()">Raise uncaught exception!</button></li>
+<li>You should stop in <code>raiseException</code> function</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_9.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+=======
 <li><!--@Click the-->再次单击 <strong>Pause on exceptions</strong>（发生异常时暂停）<img class="ui" src="javascript-debugging/image_19.png"/><!--@button again to switch to <strong>Pause on uncaught
 exceptions</strong> mode-->
 按钮切换至<strong>发生未捕获的异常时暂停</strong>模式
@@ -327,6 +415,7 @@ caught-->函数中停止，因为该异常已经捕获</li>
 <li><button onclick="raiseException()"><!--@Raise uncaught exception!-->产生未捕获的异常！</button></li>
 <li><!--@You should stop in-->您应该在 <code>raiseException</code> <!--@function-->函数中停止</li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_9.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/raise-exception.jpg"/></div></p>
@@ -347,6 +436,17 @@ function appendChildButtonClicked() {
   parentElement.appendChild(childElement);
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li>Right click on the "Parent Element" below and select <strong>Inspect Element</strong> from
+context menu     <div id="parent" style="border: solid 2px; padding: 5px; margin: 5px; text-align: center; width: 140px"> Parent Element </div></li>
+<li>Right click on the <strong>Elements</strong>' panel <strong><div id="parent" ...></strong> element and
+select <strong>Break on Subtree Modifications</strong></li>
+<li><button onclick="appendChildButtonClicked()">Append child!</button></li>
+<li>You should stop on <code>appendChild</code> function call</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_9.png"/>  button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+=======
 <li><!--@Right click on the "Parent Element" below and select <strong>Inspect Element</strong> from
 context menu     -->
 右键单击下面的“父元素”并从右键菜单中选择<strong>审查元素</strong>
@@ -356,6 +456,7 @@ select-->元素并选择 <strong>Break on Subtree Modifications</strong>（子�
 <li><button onclick="appendChildButtonClicked()"><!--@Append child!-->附加子节点！</button></li>
 <li><!--@You should stop on-->您会在 <code>appendChild</code> <!--@function call-->函数调用上中断</li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_9.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/append-child-element.jpg"/></div></p>
@@ -376,6 +477,19 @@ function retrieveData() {
   request.send();
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li>Click the <strong>Add</strong> <img class="ui" src="javascript-debugging/image_24.png"/> button on <strong>XHR Breakpoints</strong> sidebar pane on the right side
+of <strong>Sources</strong> panel</li>
+<li>Type "data.txt" in text input and hit <strong>enter</strong></li>
+<li><button onclick="retrieveData()">Retrieve data.txt by XHR</button></li>
+<li>You should stop on <code>send</code> function
+  call</li>
+<li>Right-click on the newly created breakpoint and select <strong>Remove Breakpoint</strong>
+context menu item</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_25.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+=======
 <li><!--@Click the <strong>Add</strong> <img class="ui" src="javascript-debugging/image_24.png"/> button on <strong>XHR Breakpoints</strong> sidebar pane on the right side
 of <strong>Sources</strong> panel-->
 单击 <strong>Sources</strong>（源代码）面板右边侧边栏中
@@ -396,6 +510,7 @@ context menu item-->
 右键单击新创建的断点并选择右键菜单项 <strong>Remove Breakpoint</strong>（删除断点）
 </li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_25.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/request-send.jpg"/></div></p>
@@ -428,6 +543,15 @@ function hovermeMouseOut(event) {
   event.target.style.backgroundColor = "white";
 }
 </script>
+<<<<<<< HEAD
+<ul>
+<li>Expand <strong>Event Listener Breakpoints</strong> sidebar pane on the right side of
+<strong>Scripts</strong> panel</li>
+<li>Expand <strong>Mouse</strong> entry</li>
+<li>Set a mouseout Event Listener breakpoint by clicking on the checkbox near the
+<strong>mouseout</strong> entry</li>
+</ul>
+=======
 <li><!--@Expand <strong>Event Listener Breakpoints</strong> sidebar pane on the right side of
 <strong>Scripts</strong> panel-->
 展开 <strong>Sources</strong>（源代码）面板右侧
@@ -440,18 +564,31 @@ function hovermeMouseOut(event) {
 <strong>mouseout</strong> entry-->
 单击 <strong>mouseout</strong> 项旁边的复选框设置 mouseout 事件监听器断点
 </li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/resumed.jpg"/></div></p>
 
+<<<<<<< HEAD
+<ul>
+<li>Move your mouse across the box below:</li>
+=======
 <li><!--@Move your mouse across the box below:-->移动您的鼠标，穿过下面的框</li>
+>>>>>>> legacy/zh_CN
 <li>  <div id="hoverme" style="border: solid 2px; padding: 5px; margin: 5px; text-align: center; width: 100px">
       <!--@Hover me!-->移到此处！
     </div></li>
+<<<<<<< HEAD
+<li>You should stop on <code>mouseout</code> event handler</li>
+<li>Click the <strong>Continue</strong> <img class="ui" src="javascript-debugging/image_28.png"/> button or hit <strong>F8</strong> in DevTools window to resume</li>
+</ul>
+
+=======
 <li><!--@You should stop on <code>mouseout</code> event handler-->
 您应该在 <code>mouseout</code> 事件处理程序所在位置停止
 </li>
 <li><!--@Click the-->单击 <strong>Continue</strong>（继续）<img class="ui" src="javascript-debugging/image_28.png"/> <!--@button or hit-->按钮或者在开发者工具窗口中按下 <strong>F8</strong> <!--@in DevTools window to resume-->继续执行</li>
+>>>>>>> legacy/zh_CN
 <p><div class="screenshot"><img src="javascript-debugging/continue-to-resume.jpg"/></div></p>
 
 
@@ -470,7 +607,9 @@ DOMNodeInsertedIntoDocument, DOMNodeRemoved, DOMNodeRemovedFromDocument,
 DOMSubtreeModified, DOMContentLoaded<br>
 &nbsp;&nbsp;<b>Device<!--@:-->（设备）：</b> deviceorientation, devicemotion</p>
 
-
+</div>
+<div class="collapsible">
+<h2 id="long-resume">The Long Resume</h2>
 
 </div>
 <div class="collapsible">
@@ -483,16 +622,34 @@ scripts by clicking into the main editor panel and making modifications.-->
 <strong>Sources</strong>（源代码）面板中修改脚本。断点中断时，也可以即时编辑脚本，只要单击主编辑器面板并进行修改即可。
 </p>
 
+<<<<<<< HEAD
+<ul>
+<li>Navigate to the Google Closure hovercard demo</li>
+<li>In the Sources panel, open up "mouse.js" and use the Ctrl/Cmd + Shift + O to
+navigate to the onMouseOut() function</li>
+</ul>
+=======
 <li><!--@Navigate to the Google Closure hovercard demo-->导航至 Google Closure hovercard 演示</li>
 <li><!--@In the Sources panel, open up "mouse.js" and use the Ctrl/Cmd + Shift + O to
 navigate to the onMouseOut() function-->
 在 <strong>Sources</strong>（源代码）面板中打开“mouse.js”并使用
 Ctrl/Cmd + Shift + O 导航至 onMouseOut() 函数
 </li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/houseMouseOut.jpg"/></div></p>
 
+<<<<<<< HEAD
+<ul>
+<li>Click the <strong>pause</strong> button to pause debugging</li>
+<li>Modify the function, adding a console.log('Moused out') to the end</li>
+<li>Using the Cmd +S or Ctrl + S shortcuts will save these modifications. Make
+sure to Save As.</li>
+<li>Click the <strong>pause/resume</strong> button to resume execution</li>
+<li>When you now hover out, the new message will be logged to the console</li>
+</ul>
+=======
 <li><!--@Click the <strong>pause</strong> button to pause debugging-->单击
 <strong>Pause</strong>（暂停）按钮暂停调试</li>
 <li><!--@Modify the function, adding a console.log('Moused out') to the end-->
@@ -508,6 +665,7 @@ sure to Save As.-->
 <li><!--@When you now hover out, the new message will be logged to the console-->
 当您鼠标指针移出时，新的消息会记录在控制台中
 </li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/pause-resume-mouseout.jpg"/></div></p>
@@ -788,6 +946,16 @@ so they appear as more logical names in your dev tools.-->
 
 <p><strong><!--@Working with-->使用 sourceURL</strong></p>
 
+<<<<<<< HEAD
+<ul>
+<li>Navigate to the
+<strong><a href="http://www.thecssninja.com/demo/source_mapping/compile.html">demo</a></strong></li>
+<li>Open the DevTools and go to the <strong>Sources</strong> panel.</li>
+<li>Enter in a filename into the <em>Name your code:</em> input field.</li>
+<li>Click on the <strong>compile</strong> button.</li>
+<li>An alert will appear with the evaluated sum from the CoffeeScript source</li>
+<li>If you expand the <em>Sources</em> sub-panel you will now see a new file with the
+=======
 <li><!--@Navigate to the
 -->打开<strong><a href="http://www.thecssninja.com/demo/source_mapping/compile.html"><!--@demo-->演示</a></strong>。</li>
 <li><!--@Open the DevTools and go to the <strong>Sources</strong> panel.-->
@@ -799,21 +967,34 @@ so they appear as more logical names in your dev tools.-->
 <li><!--@Click on the-->单击 <strong>compile</strong> <!--@button.-->按钮。</li>
 <li><!--@An alert will appear with the evaluated sum from the CoffeeScript source-->CoffeeScript 中计算后的总和会在对话框中显示</li>
 <li><!--@If you expand the <em>Sources</em> sub-panel you will now see a new file with the
+>>>>>>> legacy/zh_CN
 custom filename you entered earlier. If you double-click to view this file it
 will contain the compiled JavaScript for our original source. On the last line
 however will be a <code>// @sourceURL</code> comment indicating what the original source
 file was. This can greatly help with debugging when working with language
+<<<<<<< HEAD
+abstractions.</li>
+</ul>
+=======
 abstractions.-->
 如果您展开
 Sources（源代码）面板，您会看到一个新文件，包含您之前输入的自定义文件名。如果您双击查看该文件，它会包含我们原来的源代码编译后的
 JavaScript ，但最后一行为 <code>//# sourceURL</code>
 注释，表示原始的源文件是哪个。当您使用语言抽象层时，这种方式可以极大地帮助您进行调试。
 </li>
+>>>>>>> legacy/zh_CN
 
 
 <p><div class="screenshot"><img src="javascript-debugging/coffeescript.jpg"/></div></p>
 
+<<<<<<< HEAD
+<p><h4>Read more</h4></p>
+
+<ul>
+<li>Conditional breakpoints
+=======
 <p><h4 id="read-more"><!--@Read more-->阅读更多内容</h4></p>
+>>>>>>> legacy/zh_CN
 
 <ul>
 <li><!--@Conditional breakpoints-->条件断点
@@ -835,6 +1016,10 @@ maps</a></li>
 CoffeeScript</a></li>
 </li>
 </ul>
+<<<<<<< HEAD
+
+=======
+>>>>>>> legacy/zh_CN
 
 </div>
 {{/partials.standard_devtools_article}}

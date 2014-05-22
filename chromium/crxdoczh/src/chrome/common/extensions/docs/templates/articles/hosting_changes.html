@@ -29,14 +29,14 @@ or <a href="http://developer.chrome.com/extensions/getstarted#unpacked">develope
   </li>
 </ul>
 
-<h2><!--@What’s the rationale for this measure?-->采取这一措施的根本原因</h2>
+<h2 id="rationale"><!--@What’s the rationale for this measure?-->采取这一措施的根本原因</h2>
 
 <p><!--@See <a href="http://blog.chromium.org/2013/11/protecting-windows-users-from-malicious.html">Protecting Windows users from malicious extensions</a>.-->
 请参见<a href="http://blog.chromium.org/2013/11/protecting-windows-users-from-malicious.html"
 >保护 Windows 用户避免恶意扩展程序</a>。
 </p>
 
-<h2><!--@For extensions that are currently hosted outside the Chrome Web Store, what should be done and by when?-->
+<h2 id="externally_hosted"><!--@For extensions that are currently hosted outside the Chrome Web Store, what should be done and by when?-->
 对于目前托管在 Chrome 网上应用店以外的扩展程序，我应该做什么？在什么时间之前完成？
 </h2>
 
@@ -60,7 +60,7 @@ href="https://developers.google.com/chrome/web-store/docs/inline_installation"
 网上应用店，请立刻在 Chrome 33 中测试。
 </p>
 
-<h2><!--@What will happen if I migrate the extension to the Chrome Web Store sometime in the future? Will I lose all my users?-->
+<h2 id="migration"><!--@What will happen if I migrate the extension to the Chrome Web Store sometime in the future? Will I lose all my users?-->
 如果我将来某时才将扩展程序迁移至 Chrome
 网上应用店，那会怎么样？是否会失去所有用户？
 </h2>
@@ -75,7 +75,7 @@ Chrome 网上应用店，用户可以在扩展程序设置网页（chrome://exte
 网上应用店中手工启用迁移后的扩展程序。
 </p>
 
-<h2><!--@What if I want to restrict access to certain users or prevent my extension from being listed on the Chrome Web Store?-->
+<h2 id="access_restriction"><!--@What if I want to restrict access to certain users or prevent my extension from being listed on the Chrome Web Store?-->
 如果我需要限制某些用户访问或者避免我的扩展程序在 Chrome
 网上应用店中显示那应该怎么办？
 </h2>
@@ -86,7 +86,7 @@ by unlisting the extension from the Chrome Web Store.-->
 网上应用店中列出，限制用户访问您的扩展程序。
 </p>
 
-<h2><!--@Which operating systems and Chrome channels are affected by this change?-->
+<h2 id="effective_changes"><!--@Which operating systems and Chrome channels are affected by this change?-->
 哪些操作系统和 Chrome 分支会受到这一更改的影响？
 </h2>
 
@@ -94,7 +94,7 @@ by unlisting the extension from the Chrome Web Store.-->
 这些更改仅在 Windows 系统下 Stable 和 Beta 分支中有效，从 Chrome 33 开始实施。
 </p>
 
-<h2><!--@Will this affect my ability to develop my extensions on Windows?-->
+<h2 id="unpacked"><!--@Will this affect my ability to develop my extensions on Windows?-->
 这一更改是否会影响我在 Windows 下开发扩展程序？
 </h2>
 
@@ -107,7 +107,7 @@ where these changes are not effective.-->
 中您仍然可以在<a href="getstarted#unpacked">开发者模式</a>下加载开发中的扩展程序，此外，您也可以在 Dev/Canary 分支的 Chrome 浏览器中开发扩展程序，这些更改对此并不适用。
 </p>
 
-<h2><!--@How can I distribute my extension if I cannot upload it to the Chrome Web Store for policy reasons?-->
+<h2 id="policies"><!--@How can I distribute my extension if I cannot upload it to the Chrome Web Store for policy reasons?-->
 如果出于策略原因不能将扩展程序上传至 Chrome 网上应用店，我应该如何发布扩展程序？
 </h2>
 
@@ -121,7 +121,7 @@ Chrome 网上应用店托管的扩展程序，可以在
 Dev/Canary 分支</a>或其他操作系统中所有 Chrome 版本中使用。
 </p>
 
-<h2><!--@Why couldn't this problem be solved by having a setting/option to load extensions that are not hosted in the Chrome Web Store?-->
+<h2 id="sandboxing"><!--@Why couldn't this problem be solved by having a setting/option to load extensions that are not hosted in the Chrome Web Store?-->
 为什么不增加一项设置，允许加载不在 Chrome
 网上应用店中托管的扩展程序，这样难道不能解决问题吗？
 </h2>
@@ -134,7 +134,7 @@ to this setting versus a malicious native app overriding the user’s setting.--
 并不使用沙盒隔离应用程序，所以我们无法区分是用户启用了该设置还是恶意的原生应用改写了用户的设置。
 </p>
 
-<h2><!--@What are the supported deployment options for extensions after this change?-->
+<h2 id="deployment"><!--@What are the supported deployment options for extensions after this change?-->
 这一更改发生后还支持哪些扩展程序的部署方式？
 </h2>
 
@@ -176,7 +176,7 @@ Note that the user's machine has to join a domain for GPO policy pushes to be ef
 </li>
 </ul>
 
-<h2><!--@Are there any other considerations to be aware of for extensions that depend on a native application binary?-->
+<h2 id="other_considerations"><!--@Are there any other considerations to be aware of for extensions that depend on a native application binary?-->
 对于依赖原生应用程序二进制文件的扩展程序来说，还要考虑哪些问题？
 </h2>
 
@@ -196,7 +196,7 @@ href="messaging#native-messaging">原生消息传递</a>或
 <a href="npapi">NPAPI</a> 的扩展程序）的扩展程序时要特别注意。
 </p>
 
-<h2><!--@What will users see when their off-store extension is disabled as a result of this rollout?-->
+<h2 id="disabled_extension"><!--@What will users see when their off-store extension is disabled as a result of this rollout?-->
 网上应用店以外的扩展程序由于这一更改而禁用时用户会看到什么？
 </h2>
 
@@ -207,7 +207,7 @@ href="messaging#native-messaging">原生消息传递</a>或
 href="https://support.google.com/chrome/answer/2811969">支持文章</a>的链接。
 </p>
 
-<h2><!--@Why do I see a bubble about “Disable developer mode extensions” when loading an unpacked extension in Windows stable/beta channels?-->
+<h2 id="diable_developer_mode"><!--@Why do I see a bubble about “Disable developer mode extensions” when loading an unpacked extension in Windows stable/beta channels?-->
 在 Windows 下 Stable/Beta 分支的 Chrome 浏览器中加载开发中的扩展程序时，为什么会看到“请停用以开发者模式运行的扩展程序”的气泡提示？
 </h2>
 

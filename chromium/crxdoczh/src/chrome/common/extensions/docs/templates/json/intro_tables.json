@@ -43,6 +43,22 @@
       }
     ]
   },
+  "bluetoothLowEnergy": {
+    "了解更多": [
+      {
+        "link": "app_bluetooth.html",
+        "text": "蓝牙"
+      }
+    ]
+  },
+  "bluetoothSocket": {
+    "了解更多": [
+      {
+        "link": "app_bluetooth.html",
+        "text": "蓝牙"
+      }
+    ]
+  },
   "cookies": {
     "权限": [
       {
