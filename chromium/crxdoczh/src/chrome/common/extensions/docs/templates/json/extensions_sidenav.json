@@ -1,19 +1,19 @@
 [
   {
     "title": "入门",
-    "href": "/extensions/getstarted.html"
+    "href": "/extensions/getstarted"
   },
   {
     "title": "概述",
-    "href": "/extensions/overview.html"
+    "href": "/extensions/overview"
   },
   {
     "title": "新增功能",
-    "href": "/extensions/whats_new.html"
+    "href": "/extensions/whats_new"
   },
   {
     "title": "开发者指南",
-    "href": "/extensions/devguide.html",
+    "href": "/extensions/devguide",
     "items": [
       {
         "title": "浏览器用户界面",
@@ -21,31 +21,31 @@
         "items": [
           {
             "title": "浏览器按钮",
-            "href": "/extensions/browserAction.html"
+            "href": "/extensions/browserAction"
           },
           {
             "title": "右键菜单",
-            "href": "/extensions/contextMenus.html"
+            "href": "/extensions/contextMenus"
           },
           {
             "title": "桌面通知",
-            "href": "/extensions/desktop_notifications.html"
+            "href": "/extensions/desktop_notifications"
           },
           {
             "title": "多功能框",
-            "href": "/extensions/omnibox.html"
+            "href": "/extensions/omnibox"
           },
           {
             "title": "选项页面",
-            "href": "/extensions/options.html"
+            "href": "/extensions/options"
           },
           {
             "title": "替代页面",
-            "href": "/extensions/override.html"
+            "href": "/extensions/override"
           },
           {
             "title": "页面按钮",
-            "href": "/extensions/pageAction.html"
+            "href": "/extensions/pageAction"
           }
         ]
       },
@@ -55,35 +55,35 @@
         "items": [
           {
             "title": "书签",
-            "href": "/extensions/bookmarks.html"
+            "href": "/extensions/bookmarks"
           },
           {
             "title": "Cookie",
-            "href": "/extensions/cookies.html"
+            "href": "/extensions/cookies"
           },
           {
             "title": "扩展开发者工具",
-            "href": "/extensions/devtools.html"
+            "href": "/extensions/devtools"
           },
           {
             "title": "事件",
-            "href": "/extensions/events.html"
+            "href": "/extensions/events"
           },
           {
             "title": "历史记录",
-            "href": "/extensions/history.html"
+            "href": "/extensions/history"
           },
           {
             "title": "管理",
-            "href": "/extensions/management.html"
+            "href": "/extensions/management"
           },
           {
             "title": "标签页",
-            "href": "/extensions/tabs.html"
+            "href": "/extensions/tabs"
           },
           {
             "title": "窗口",
-            "href": "/extensions/windows.html"
+            "href": "/extensions/windows"
           }
         ]
       },
@@ -93,39 +93,39 @@
         "items": [
           {
             "title": "辅助功能",
-            "href": "/extensions/a11y.html"
+            "href": "/extensions/a11y"
           },
           {
             "title": "事件页面",
-            "href": "/extensions/event_pages.html"
+            "href": "/extensions/event_pages"
           },
           {
             "title": "内容安全策略",
-            "href": "/extensions/contentSecurityPolicy.html"
+            "href": "/extensions/contentSecurityPolicy"
           },
           {
             "title": "内容脚本",
-            "href": "/extensions/content_scripts.html"
+            "href": "/extensions/content_scripts"
           },
           {
             "title": "跨站 XHR",
-            "href": "/extensions/xhr.html"
+            "href": "/extensions/xhr"
           },
           {
             "title": "国际化支持",
-            "href": "/extensions/i18n.html"
+            "href": "/extensions/i18n"
           },
           {
             "title": "消息传递",
-            "href": "/extensions/messaging.html"
+            "href": "/extensions/messaging"
           },
           {
             "title": "可选权限",
-            "href": "/extensions/permissions.html"
+            "href": "/extensions/permissions"
           },
           {
             "title": "NPAPI 插件",
-            "href": "/extensions/npapi.html"
+            "href": "/extensions/npapi"
           }
         ]
       },
@@ -135,11 +135,11 @@
         "items": [
           {
             "title": "托管",
-            "href": "/extensions/hosting.html"
+            "href": "/extensions/hosting"
           },
           {
             "title": "其他发布选项",
-            "href": "/extensions/external_extensions.html"
+            "href": "/extensions/external_extensions"
           }
         ]
       }
@@ -147,23 +147,23 @@
   },
   {
     "title": "教程",
-    "href": "/extensions/tutorials.html",
+    "href": "/extensions/tutorials",
     "items": [
       {
         "title": "清单文件版本 2",
-        "href": "/extensions/tut_migration_to_manifest_v2.html"
+        "href": "/extensions/tut_migration_to_manifest_v2"
       },
       {
         "title": "调试",
-        "href": "/extensions/tut_debugging.html"
+        "href": "/extensions/tut_debugging"
       },
       {
         "title": "Google Analytics（分析）",
-        "href": "/extensions/tut_analytics.html"
+        "href": "/extensions/tut_analytics"
       },
       {
         "title": "OAuth",
-        "href": "/extensions/tut_oauth.html"
+        "href": "/extensions/tut_oauth"
       }
     ]
   },
@@ -176,25 +176,25 @@
         "items": [
           {
             "title": "清单文件",
-            "href": "/extensions/manifest.html"
+            "href": "/extensions/manifest"
           },
           {
             "title": "匹配表达式",
-            "href": "/extensions/match_patterns.html"
+            "href": "/extensions/match_patterns"
           }
         ]
       },
       {
         "title": "权限警告",
-        "href": "/extensions/permission_warnings.html"
+        "href": "/extensions/permission_warnings"
       },
       {
         "title": "chrome.* API",
-        "href": "/extensions/api_index.html"
+        "href": "/extensions/api_index"
       },
       {
         "title": "其他 API",
-        "href": "/extensions/api_other.html"
+        "href": "/extensions/api_other"
       }
     ]
   },
@@ -203,7 +203,7 @@
     "items": [
       {
         "title": "常见问题",
-        "href": "/extensions/faq.html"
+        "href": "/extensions/faq"
       },
       {
         "title": "Chrome 网上应用店",
@@ -215,7 +215,7 @@
       },
       {
         "title": "主题背景",
-        "href": "/extensions/themes.html"
+        "href": "/extensions/themes"
       }
     ]
   }

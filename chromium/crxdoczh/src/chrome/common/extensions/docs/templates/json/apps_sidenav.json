@@ -4,7 +4,7 @@
     "items": [
       {
         "title": "什么是 Chrome 应用？",
-        "href": "/apps/about_apps.html"
+        "href": "/apps/about_apps"
       }
     ]
   },
@@ -13,7 +13,7 @@
     "items": [
       {
         "title": "创建您的第一个应用",
-        "href": "/apps/first_app.html"
+        "href": "/apps/first_app"
       },
       {
         "title": "教程",
@@ -25,39 +25,39 @@
             "items": [
               {
                 "title": "关于代码实验室",
-                "href": "/apps/app_codelab.html"
+                "href": "/apps/app_codelab"
               },
               {
                 "title": "1、设置开发环境",
-                "href": "/apps/app_codelab1_setup.html"
+                "href": "/apps/app_codelab1_setup"
               },
               {
                 "title": "2、创建基本的应用",
-                "href": "/apps/app_codelab2_basic.html"
+                "href": "/apps/app_codelab2_basic"
               },
               {
                 "title": "3、创建 MVC",
-                "href": "/apps/app_codelab3_mvc.html"
+                "href": "/apps/app_codelab3_mvc"
               },
               {
                 "title": "4、保存和获取数据",
-                "href": "/apps/app_codelab5_data.html"
+                "href": "/apps/app_codelab5_data"
               },
               {
                 "title": "5、管理应用的生命周期",
-                "href": "/apps/app_codelab6_lifecycle.html"
+                "href": "/apps/app_codelab6_lifecycle"
               },
               {
                 "title": "6、访问用户数据",
-                "href": "/apps/app_codelab7_useridentification.html"
+                "href": "/apps/app_codelab7_useridentification"
               },
               {
                 "title": "7、访问网络资源",
-                "href": "/apps/app_codelab8_webresources.html"
+                "href": "/apps/app_codelab8_webresources"
               },
               {
                 "title": "8、发布应用",
-                "href": "/apps/app_codelab_10_publishing.html"
+                "href": "/apps/app_codelab_10_publishing"
               }
             ]
           },
@@ -67,15 +67,15 @@
             "items": [
               {
                 "title": "关于 MVC 架构",
-                "href": "/apps/app_frameworks.html"
+                "href": "/apps/app_frameworks"
               },
               {
                 "title": "用 AngularJS 建立应用",
-                "href": "/apps/angular_framework.html"
+                "href": "/apps/angular_framework"
               },
               {
                 "title": "用 Sencha Ext JS 建立应用",
-                "href": "/apps/sencha_framework.html"
+                "href": "/apps/sencha_framework"
               }
             ]
           }
@@ -91,19 +91,19 @@
             "items": [
               {
                 "title": "应用的架构",
-                "href": "/apps/app_architecture.html"
+                "href": "/apps/app_architecture"
               },
               {
                 "title": "应用的生命周期",
-                "href": "/apps/app_lifecycle.html"
+                "href": "/apps/app_lifecycle"
               },
               {
                 "title": "首先考虑离线",
-                "href": "/apps/offline_apps.html"
+                "href": "/apps/offline_apps"
               },
               {
                 "title": "外部内容",
-                "href": "/apps/app_external.html"
+                "href": "/apps/app_external"
               }
             ]
           },
@@ -113,7 +113,7 @@
             "items": [
               {
                 "title": "内容安全策略",
-                "href": "/apps/contentSecurityPolicy.html"
+                "href": "/apps/contentSecurityPolicy"
               }
             ]
           },
@@ -127,19 +127,19 @@
                 "items": [
                   {
                     "title": "关于云消息服务",
-                    "href": "/apps/cloudMessaging.html"
+                    "href": "/apps/cloudMessaging"
                   },
                   {
                     "title": "客户端参考",
-                    "href": "/apps/pushMessaging.html"
+                    "href": "/apps/pushMessaging"
                   },
                   {
                     "title": "服务参考",
-                    "href": "/apps/gcm_server.html"
+                    "href": "/apps/gcm_server"
                   },
                   {
                     "title": "服务条款",
-                    "href": "/apps/gcm_tos.html"
+                    "href": "/apps/gcm_tos"
                   }
                 ]
               },
@@ -149,13 +149,13 @@
                 "items": [
                   {
                     "title": "chrome.storage",
-                    "href": "/apps/storage.html"
+                    "href": "/apps/storage"
                   }
                 ]
               },
               {
                 "title": "用户认证",
-                "href": "/apps/app_identity.html"
+                "href": "/apps/app_identity"
               }
             ]
           },
@@ -165,7 +165,7 @@
             "items": [
               {
                 "title": "存储 API",
-                "href": "/apps/app_storage.html"
+                "href": "/apps/app_storage"
               }
             ]
           },
@@ -175,19 +175,19 @@
             "items": [
               {
                 "title": "USB",
-                "href": "/apps/app_usb.html"
+                "href": "/apps/app_usb"
               },
               {
                 "title": "串行端口",
-                "href": "/apps/app_serial.html"
+                "href": "/apps/app_serial"
               },
               {
                 "title": "网络通信",
-                "href": "/apps/app_network.html"
+                "href": "/apps/app_network"
               },
               {
                 "title": "蓝牙",
-                "href": "/apps/app_bluetooth.html"
+                "href": "/apps/app_bluetooth"
               }
             ]
           },
@@ -197,7 +197,7 @@
             "items": [
               {
                 "title": "丰富的通知",
-                "href": "/apps/desktop_notifications.html"
+                "href": "/apps/desktop_notifications"
               }
             ]
           }
@@ -210,7 +210,7 @@
     "items": [
       {
         "title": "发布您的应用",
-        "href": "/apps/publish_app.html"
+        "href": "/apps/publish_app"
       },
       {
         "title": "通过您的应用获利",
@@ -218,13 +218,13 @@
         "items": [
           {
             "title": "用于数字商品的 Google 电子钱包",
-            "href": "/apps/google_wallet.html"
+            "href": "/apps/google_wallet"
           }
         ]
       },
       {
         "title": "Analytics（分析）",
-        "href": "/apps/analytics.html"
+        "href": "/apps/analytics"
       }
     ]
   },
@@ -233,23 +233,23 @@
     "items": [
       {
         "title": "Chrome 平台 API",
-        "href": "/apps/api_index.html"
+        "href": "/apps/api_index"
       },
       {
         "title": "Webview 标签",
-        "href": "/apps/tags/webview.html"
+        "href": "/apps/tags/webview"
       },
       {
         "title": "网页 API",
-        "href": "/apps/api_other.html"
+        "href": "/apps/api_other"
       },
       {
         "title": "清单文件格式",
-        "href": "/apps/manifest.html"
+        "href": "/apps/manifest"
       },
       {
         "title": "禁用的网页特性",
-        "href": "/apps/app_deprecated.html"
+        "href": "/apps/app_deprecated"
       }
     ]
   },
@@ -258,7 +258,7 @@
     "items": [
       {
         "title": "示例应用",
-        "href": "/apps/samples.html"
+        "href": "/apps/samples"
       }
     ]
   },
@@ -267,7 +267,7 @@
     "items": [
       {
         "title": "常见问题",
-        "href": "/apps/faq.html"
+        "href": "/apps/faq"
       },
       {
         "title": "Google 网上论坛",
