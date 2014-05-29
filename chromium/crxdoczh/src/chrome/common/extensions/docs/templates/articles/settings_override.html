@@ -10,10 +10,16 @@
 <!--@Here is an example how <a href="#homepage">homepage</a>, <a
 href="#search_provider">search provider</a> and <a href="#startup_pages">startup
 pages</a> can be modified in the <a href="manifest">extension
-manifest</a>.-->
+manifest</a>. Web sites used in the settings API must be
+<a href="https://support.google.com/webmasters/answer/35179">verified</a> (via
+Webmaster Tools) as being associated with that item in the Chrome Web Store.
+Note that if you verify ownership for a domain (for example, http://example.com)
+you can use any subdomain or page (for example, http://app.example.com or
+http://example.com/page.html) within your extension.-->
 如下例子演示如何在<a href="manifest">扩展程序的清单文件</a>中修改<a
 href="#homepage">主页</a>、<a href="#search_provider">搜索引擎</a>和<a
-href="#startup_pages">起始页</a>。
+href="#startup_pages">起始页</a>。使用设置 API 的网站必须在 Google
+网站站长工具中<a href="https://support.google.com/webmasters/answer/35179">经过验证</a>，并且要和 Chrome 网上应用店中的项目关联。注意，如果您验证了某个域名的所有权（例如 http://example.com），您可以在扩展程序中使用任意子域名或网页（例如 http://app.example.com 或 http://example.com/page.html）。
 </p>
 
 <pre>{

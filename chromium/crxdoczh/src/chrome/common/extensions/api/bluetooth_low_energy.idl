@@ -3,9 +3,11 @@
 // found in the LICENSE file.
 
 // <!--@The <code>chrome.bluetoothLowEnergy</code> API is used to communicate with
-// Bluetooth Smart (Low Energy) devices.-->
+// Bluetooth Smart (Low Energy) devices using the
+// <a href="https://developer.bluetooth.org/TechnologyOverview/Pages/GATT.aspx">
+// Generic Attribute Profile (GATT)</a>.-->
 // <code>chrome.bluetoothLowEnergy</code> API
-// 用来与蓝牙智能（低耗能）设备通信。
+// 用来和使用 GATT 的蓝牙智能（低耗能）设备通信。
 namespace bluetoothLowEnergy {
   // <!--@Values representing the possible properties of a characteristic.-->
   // 表示可能的特征属性值。
@@ -295,5 +297,13 @@ namespace bluetoothLowEnergy {
     // |characteristic| : <!--@The GATT characteristic whose value has changed.-->
     // 值更改的 GATT 特征。
     static void onCharacteristicValueChanged(Characteristic characteristic);
+
+    // <!--@Fired when the value of a remote GATT characteristic descriptor changes,
+    // usually as a result of a read or write request.-->
+    // 远程 GATT 特征描述符的值更改时产生，通常是读写请求的结果。
+    // |descriptor| : <!--@The GATT characteristic descriptor whose value has
+    // changed.-->
+    // 值更改的 GATT 特征描述符。
+    static void onDescriptorValueChanged(Descriptor descriptor);
   };
 };

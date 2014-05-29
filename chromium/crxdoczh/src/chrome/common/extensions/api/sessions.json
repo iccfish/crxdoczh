@@ -38,8 +38,9 @@
         "id": "Device",
         "type": "object",
         "properties": {
-//@          "info": {"type": "string", "description": "Represents all information about a foreign device."},
-          "info": {"type": "string", "description": "表示外来设备的所有信息。"},
+          "info": {"type": "string", "nodoc": true},
+//@          "deviceName": {"type": "string", "description": "The name of the foreign device."},
+          "deviceName": {"type": "string", "description": "外来设备的名称。"},
 //@          "sessions": {"type": "array", "items": {"$ref": "Session"}, "description": "A list of open window sessions for the foreign device, sorted from most recently to least recently modified session."}
           "sessions": {"type": "array", "items": {"$ref": "Session"}, "description": "外来设备打开的窗口会话列表，会话按照最近修改到最早修改的顺序排列。"}
         }
@@ -62,7 +63,7 @@
             "name": "callback",
             "parameters": [
               {
-//@                "name": "sessions", "type": "array", "items": { "$ref": "Session" }, "description": "The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index <code>0</code>).The entries may contain either tabs or windows."
+//@                "name": "sessions", "type": "array", "items": { "$ref": "Session" }, "description": "The list of closed entries in reverse order that they were closed (the most recently closed tab or window will be at index <code>0</code>). The entries may contain either tabs or windows."
                 "name": "sessions", "type": "array", "items": { "$ref": "Session" }, "description": "关闭的项目列表，按照与关闭相反的顺序排列（最近关闭的标签页或窗口位于索引 <code>0</code>）。项目既可能包含标签页，也可能包含窗口。"
               }
             ]
@@ -102,8 +103,8 @@
             "type": "string",
             "name": "sessionId",
             "optional": true,
-//@            "description": "The $(ref:windows.Window.sessionId), or $(ref:tabs.Tab.sessionId) to restore."
-            "description": "要恢复的 $(ref:windows.Window.sessionId) 或 $(ref:tabs.Tab.sessionId)。"
+//@            "description": "The $(ref:windows.Window.sessionId), or $(ref:tabs.Tab.sessionId) to restore. If this parameter is not specified, the most recently closed session is restored."
+            "description": "要恢复的 $(ref:windows.Window.sessionId) 或 $(ref:tabs.Tab.sessionId)。如果未指定该参数，则恢复最近关闭的会话。"
           },
           {
             "type": "function",

@@ -226,19 +226,6 @@ namespace bluetooth {
     boolean paused;
   };
 
-  dictionary OutOfBandPairingData {
-    // <!--@Simple Pairing Hash C.
-    // Always 16 octets long.-->
-    // 简单配对散列 C（Simple Pairing Hash C），总是为16字节长。
-    ArrayBuffer hash;
-
-    // <!--@Simple Pairing Randomizer R.
-    // Always 16 octets long.-->
-    // 简单配对随机数产生器 R（Simple Pairing Randomizer R），总是为
-    // 16 字节长。
-    ArrayBuffer randomizer;
-  };
-
   callback AdapterStateCallback = void(AdapterState result);
   callback AddressCallback = void(DOMString result);
   callback BooleanCallback = void(boolean result);
@@ -246,7 +233,6 @@ namespace bluetooth {
   callback DeviceCallback = void(Device result);
   callback DevicesCallback = void(Device[] result);
   callback NameCallback = void(DOMString result);
-  callback OutOfBandPairingDataCallback = void(OutOfBandPairingData data);
   callback ResultCallback = void();
   callback SizeCallback = void(long result);
   callback SocketCallback = void(Socket result);
@@ -269,21 +255,6 @@ namespace bluetooth {
     // <!--@The socket identifier.-->
     // 套接字标识符。
     long socketId;
-  };
-
-  // <!--@Options for the setOutOfBandPairingData function.-->
-  // setOutOfBandPairingData 函数中使用的选项。
-  dictionary SetOutOfBandPairingDataOptions {
-    // <!--@The address of the remote device that the data should be associated
-    // with. |deviceAddress| should be in the format 'XX:XX:XX:XX:XX:XX'.-->
-    // 要关联数据的远程设备地址。<code>deviceAddress</code>
-    // 的格式为“XX:XX:XX:XX:XX:XX”。
-    DOMString address;
-
-    // <!--@The Out Of Band Pairing Data. If this is omitted, the data for the
-    // device is cleared instead.-->
-    // 基带外配对（Out of Band Pairing）数据。如果省略，将清除该设备的数据。
-    OutOfBandPairingData? data;
   };
 
   // <!--@Callback from the <code>getSocket</code> method.-->
@@ -444,23 +415,6 @@ namespace bluetooth {
     // |callback| : <!--@Called when the list of sockets is available.-->
     // 套接字列表可用时调用。
     static void getSockets(GetSocketsCallback callback);
-
-    // <!--@Get the local Out of Band Pairing data.-->
-    // 获取本机的基带外配对（Out of Band Pairing）数据。
-    // |callback| : <!--@Called with the data.-->
-    // 调用时传递数据。
-    static void getLocalOutOfBandPairingData(
-        OutOfBandPairingDataCallback callback);
-
-    // <!--@Set the Out of Band Pairing data for a remote device.
-    // Any previous Out Of Band Pairing Data for this device is overwritten.-->
-    // 为远程设备设置基带外配对（Out of Band Pairing）数据，该设备之前的基带外配对（Out of Band Pairing）数据都会覆盖。
-    // |options|  : <!--@The options for this function.-->
-    // 该函数的选项。
-    // |callback| : <!--@Called to indicate success or failure.-->
-    // 调用时指示成功或失败。
-    static void setOutOfBandPairingData(SetOutOfBandPairingDataOptions options,
-                                        optional ResultCallback callback);
 
     // <!--@Start discovery. Newly discovered devices will be returned via the
     // onDeviceAdded event. Previously discovered devices already known to
