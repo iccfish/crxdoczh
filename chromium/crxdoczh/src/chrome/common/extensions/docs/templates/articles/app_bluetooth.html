@@ -1,17 +1,14 @@
 <h1><!--@Bluetooth-->蓝牙</h1>
 
 <p>
-<<<<<<< .mine
-  <!--@This document describes how to use the <a href="bluetooth">Bluetooth
-  API</a> to communicate with Bluetooth and Bluetooth Low Energy devices.-->
-  该文档描述如何使用<a href="bluetooth">蓝牙 API</a>
+  <!--@This document describes how to use the <a href="bluetooth.html">Bluetooth</a>,
+  <a href="bluetoothSocket">Bluetooth Socket</a> and
+  <a href="bluetoothLowEnergy">Bluetooth Low Energy</a> APIs to
+  communicate with Bluetooth and Bluetooth Low Energy devices.-->
+  该文档描述如何使用<a href="bluetooth">蓝牙</a>、<a href="bluetoothSocket"
+  >蓝牙套接字</a>以及<a
+  href="bluetoothLowEnergy">蓝牙低功耗</a> API
   与蓝牙设备和低功耗蓝牙设备通信。
-=======
-  This document describes how to use the <a href="bluetooth.html">Bluetooth</a>,
-  <a href="bluetoothSocket.html">Bluetooth Socket</a> and
-  <a href="bluetoothLowEnergy.html">Bluetooth Low Energy</a> APIs to
-  communicate with Bluetooth and Bluetooth Low Energy devices.
->>>>>>> .r272047
 </p>
 
 <p>
@@ -45,24 +42,14 @@
   <code>uuids</code> 列表。
 </p>
 
-<<<<<<< .mine
-<h2 id="adapter_state"><!--@Obtaining adapter state-->获取适配器状态</h2>
-=======
-<h2 id="adapter_info">Adapter information</h2>
->>>>>>> .r272047
+<h2 id="adapter_info"><!--@Adapter information-->适配器信息</h2>
 
-<h3 id="adapter_state">Obtaining adapter state</h3>
+<h3 id="adapter_state"><!--@Obtaining adapter state-->获取适配器状态</h3>
 
 <p>
-<<<<<<< .mine
   <!--@To obtain the state of the Bluetooth adapter, use the
-  <code>chrome.bluetooth.getAdapterState</code> method:-->
-  如果要获取蓝牙适配器的状态，请使用
-  <code>chrome.bluetooth.getAdapterState</code> 方法。
-=======
-  To obtain the state of the Bluetooth adapter, use the
-  $(ref:bluetooth.getAdapterState) method:
->>>>>>> .r272047
+  $(ref:bluetooth.getAdapterState) method:-->
+  使用 $(ref:bluetooth.getAdapterState) 方法获取蓝牙适配器的状态：
 </p>
 
 <pre>
@@ -71,20 +58,14 @@ chrome.bluetooth.getAdapterState(function(adapter) {
 });
 </pre>
 
-<h3 id="adapter_notifications">Adapter notifications</h3>
+<h3 id="adapter_notifications"><!--@Adapter notifications-->适配器通知</h3>
 
 <p>
-<<<<<<< .mine
-  <!--@The <code>chrome.bluetooth.onAdapterStateChanged</code> event is sent
-  whenever this state changes. This can be used, for example, to determine when
-  the adapter radio is powered on or off.-->
-  状态更改时会产生 <code>chrome.bluetooth.onAdapterStateChanged</code>
-  事件，可以用来确定适配器天线是否开启。
-=======
-  The $(ref:bluetooth.onAdapterStateChanged) event is sent
+  <!--@The $(ref:bluetooth.onAdapterStateChanged) event is sent
   whenever the adapter state changes. This can be used, for example, to
-  determine when the adapter radio is powered on or off.
->>>>>>> .r272047
+  determine when the adapter radio is powered on or off.-->
+  适配器状态更改时会产生 $(ref:bluetooth.onAdapterStateChanged)
+  事件。例如，该事件可以用来确定适配器天线是否开启。
 </p>
 
 <pre>
@@ -106,24 +87,14 @@ chrome.bluetooth.onAdapterStateChanged.addListener(
   });
 </pre>
 
-<<<<<<< .mine
-<h2 id="listing_devices"><!--@Listing known devices-->列举已知设备</h2>
-=======
-<h2 id="device_info">Device information</h2>
->>>>>>> .r272047
+<h2 id="device_info"><!--@Device information-->设备信息</h2>
 
-<h3 id="listing_devices">Listing known devices</h3>
+<h3 id="listing_devices"><!--@Listing known devices-->列举已知设备</h3>
 
 <p>
-<<<<<<< .mine
   <!--@To get a list of the devices known to the Bluetooth adapter, use the
-  <code>chrome.bluetooth.getDevices</code> method:-->
-  使用 <code>chrome.bluetooth.getDevices</code>
-  方法获取蓝牙适配器已知的设备列表：
-=======
-  To get a list of the devices known to the Bluetooth adapter, use the
-  $(ref:bluetooth.getDevices) method:
->>>>>>> .r272047
+  $(ref:bluetooth.getDevices) method:-->
+  使用 ($ref:bluetooth.getDevices) 方法获取蓝牙适配器已知的设备列表：
 </p>
 
 <pre>
@@ -142,38 +113,22 @@ chrome.bluetooth.getDevices(function(devices) {
   href="#discovery">发现附近的设备</a>）。
 </p>
 
-<<<<<<< .mine
-<h2 id="device_notifications"><!--@Receiving device notifications-->接收设备通知</h2>
-=======
-<h3 id="device_notifications">Receiving device notifications</h3>
->>>>>>> .r272047
+<h3 id="device_notifications"><!--@Receiving device notifications-->接收设备通知</h3>
 
 <p>
-<<<<<<< .mine
-  <!--@Instead of repeatedly calling <code>chrome.bluetooth.getDevices</code>, you
-  can use the <code>chrome.bluetooth.onDeviceAdded</code>,
-  <code>chrome.bluetooth.onDeviceChanged</code> and
-  <code>chrome.bluetooth.onDeviceRemoved</code> events to receive notifications.-->
-  您不应该反复调用 <code>chrome.bluetooth.getDevices</code>，而应该使用
-  <code>chrome.bluetooth.onDeviceAdded</code>、<code>chrome.bluetooth.onDeviceChanged</code>
-  和 <code>chrome.bluetooth.onDeviceRemoved</code> 事件接收通知。
-=======
-  Instead of repeatedly calling $(ref:bluetooth.getDevices), you
+  <!--@Instead of repeatedly calling $(ref:bluetooth.getDevices), you
   can use the $(ref:bluetooth.onDeviceAdded), $(ref:bluetooth.onDeviceChanged)
-  and $(ref:bluetooth.onDeviceRemoved) events to receive notifications.
->>>>>>> .r272047
+  and $(ref:bluetooth.onDeviceRemoved) events to receive notifications.-->
+  您不应该反复调用 $(ref:bluetooth.getDevices)，而应该使用
+  $(ref:bluetooth.onDeviceAdded)、$(ref:onDeviceChanged)
+  和 $(ref:bluetooth.onDeviceRemoved) 事件接收通知。
 </p>
 
 <p>
-<<<<<<< .mine
-  <!--@The <code>chrome.bluetooth.onDeviceAdded</code> event is sent whenever a
+  <!--@The $(ref:bluetooth.onDeviceAdded) event is sent whenever a
   device is discovered by the adapter or makes a connection to the adapter:-->
   每当设备被适配器发现或连接到适配器时都会产生
-  <code>chrome.bluetooth.onDeviceAdded</code> 事件。
-=======
-  The $(ref:bluetooth.onDeviceAdded) event is sent whenever a
-  device is discovered by the adapter or makes a connection to the adapter:
->>>>>>> .r272047
+  $(ref:bluetooth.onDeviceAdded) 事件。
 </p>
 
 <pre>
@@ -190,15 +145,10 @@ chrome.bluetooth.onDeviceAdded.addListener(function(device) {
 </p>
 
 <p>
-<<<<<<< .mine
   <!--@Changes to devices, including previously discovered devices becoming paired,
-  are notified by the <code>chrome.bluetooth.onDeviceChanged</code> event:-->
+  are notified by the $(ref:bluetooth.onDeviceChanged) event:-->
   设备更改，包括之前发现的设备进行配对，都会通过
-  <code>chrome.bluetooth.onDeviceChanged</code> 事件通知。
-=======
-  Changes to devices, including previously discovered devices becoming paired,
-  are notified by the $(ref:bluetooth.onDeviceChanged) event:
->>>>>>> .r272047
+  $(ref:bluetooth.onDeviceChanged) 事件通知。
 </p>
 
 <pre>
@@ -208,15 +158,11 @@ chrome.bluetooth.onDeviceChanged.addListener(function(device) {
 </pre>
 
 <p>
-<<<<<<< .mine
-  <!--@Finally the <code>chrome.bluetooth.onDeviceRemoved</code> event is sent
-=======
-  Finally the $(ref:bluetooth.onDeviceRemoved) event is sent
->>>>>>> .r272047
+  <!--@Finally the $(ref:bluetooth.onDeviceRemoved) event is sent
   whenever a paired device is removed from the system, or a discovered device
   has not been seen recently:-->
   最后每当配对的设备从系统中移除或发现的设备最近不在范围内时，就会产生
-  <code>chrome.bluetooth.onDeviceRemoved</code> 事件。
+  $(ref:bluetooth.onDeviceRemoved) 事件。
 </p>
 
 <pre>
@@ -225,40 +171,26 @@ chrome.bluetooth.onDeviceRemoved.addListener(function(device) {
 });
 </pre>
 
-<<<<<<< .mine
-<h2 id="discovery"><!--@Discovering nearby devices-->发现附近的设备</h2>
-=======
-<h3 id="discovery">Discovering nearby devices</h3>
->>>>>>> .r272047
+<h3 id="discovery"><!--@Discovering nearby devices-->发现附近的设备</h3>
 
 <p>
   <!--@To begin discovery of nearby devices, use the
-<<<<<<< .mine
-  <code>chrome.bluetooth.startDiscovery</code> method. Discovery can be
-  resource intensive so you should call
-  <code>chrome.bluetooth.stopDiscovery</code> when done.-->
-  使用 <code>chrome.bluetooth.startDiscovery</code>
-  方法开始发现附近的设备。发现操作会消耗很多资源，所以完成后您应该调用
-  <code>chrome.bluetooth.stopDiscovery</code>。
-=======
   $(ref:bluetooth.startDiscovery) method. Discovery can be resource intensive
-  so you should call $(ref:bluetooth.stopDiscovery) when done.
->>>>>>> .r272047
+  so you should call $(ref:bluetooth.stopDiscovery) when done.-->
+  使用 $(ref:bluetooth.startDiscovery)
+  方法开始发现附近的设备。发现操作会消耗很多资源，所以完成后您应该调用
+  $(ref:bluetooth.stopDiscovery)。
 </p>
 
 <p>
-<<<<<<< .mine
-  <!--@You should call <code>chrome.bletooth.startDiscovery</code> whenever your
-=======
-  You should call $(ref:bluetooth.startDiscovery) whenever your
->>>>>>> .r272047
+  <!--@You should call $(ref:bluetooth.startDiscovery) whenever your
   app needs to discover nearby devices. Do not check the
   <code>discovering</code> property of $(ref:bluetooth.AdapterState). The call
   to start discovery will succeed even if another app is discovering nearby
   devices, and will ensure the adapter continues to perform discovery after
   that other app has stopped.-->
   您的应用需要发现附近的设备时就可以调用
-  <code>chrome.bletooth.startDiscovery</code>，不需要检查 <code>AdapterState</code>
+  $(ref:bletooth.startDiscovery)，不需要检查 $(ref:bluetooth.AdapterState)
   的 <code>discovering</code>
   属性。即使另一个应用也在发现附近的设备，开始发现的调用也会成功，并确保另一个应用停止时适配器继续进行发现操作。
 </p>
@@ -268,18 +200,13 @@ chrome.bluetooth.onDeviceRemoved.addListener(function(device) {
   $(ref:bluetooth.onDeviceAdded) event. For devices that have
   already been discovered recently, or have been previously paired with or
   connected to, the event will not be sent. Instead you should call
-<<<<<<< .mine
-  <code>chrome.bluetooth.getDevices</code> to obtain the current information,
-  and use the <code>chrome.bluetooth.onDeviceChanged</code> event to be notified of changes to that information as a result of discovery.-->
-  每一个新发现设备的有关信息都通过 <code>chrome.bluetooth.onDeviceAdded</code>
-  事件接收，最近已经发现的设备或之前已经配对或连接的设备则不会产生该事件。您应该调用
-  <code>chrome.bluetooth.getDevices</code> 获取当前设备的信息，并使用
-  <code>chrome.bluetooth.onDeviceChanged</code> 事件接收发现操作中设备信息的更改。
-=======
   $(ref:bluetooth.getDevices) to obtain the current information,
   and use the $(ref:bluetooth.onDeviceChanged) event to be notified of changes
-  to that information as a result of discovery.
->>>>>>> .r272047
+  to that information as a result of discovery.-->
+  每一个新发现设备的有关信息都通过 $(ref:bluetooth.onDeviceAdded)
+  事件接收，最近已经发现的设备或之前已经配对或连接的设备则不会产生该事件。您应该调用
+  $(ref:bluetooth.getDevices) 获取当前设备的信息，并使用
+  $(ref:bluetooth.onDeviceChanged) 事件接收发现操作中设备信息的更改。
 </p>
 
 <p>
@@ -332,22 +259,13 @@ chrome.bluetooth.startDiscovery(function() {
   <code>chrome.bluetooth.startDiscovery</code> 恢复。请注意发现操作会消耗很多资源。
 </p>
 
-<<<<<<< .mine
-<h2 id="identifying_devices"><!--@Identifying devices-->识别设备</h2>
-=======
-<h3 id="identifying_devices">Identifying devices</h3>
->>>>>>> .r272047
+<h3 id="identifying_devices"><!--@Identifying devices-->识别设备</h3>
 
 <p>
-<<<<<<< .mine
   <!--@A number of different options are provided for identifying devices returned
-  by <code>chrome.bluetooth.getDevices</code> and the related events.-->
-  有多种方式可以识别 <code>chrome.bluetooth.getDevices</code>
+  by $(ref:bluetooth.getDevices) and the related events.-->
+  有多种方式可以识别 $(ref:bluetooth.getDevices)
   和相关事件返回的设备。
-=======
-  A number of different options are provided for identifying devices returned
-  by $(ref:bluetooth.getDevices) and the related events.
->>>>>>> .r272047
 </p>
 
 <p>
@@ -425,46 +343,53 @@ chrome.bluetooth.getDevices(function(devices) {
 });
 </pre>
 
-<h2 id="using_rfcomm">Using RFCOMM and L2CAP</h2>
+<h2 id="using_rfcomm"><!--@Using RFCOMM and L2CAP-->使用 RFCOMM 和 L2CAP</h2>
 
 <p>
-  Chrome Apps may make connections to any device that supports RFCOMM or
+  <!--@Chrome Apps may make connections to any device that supports RFCOMM or
   L2CAP services. This includes the majority of class Bluetooth devices on
-  the market.
+  the market.-->
+  Chrome 应用可以连接到支持 RFCOMM 或 L2CAP 服务的设备，包括市场上大部分主要的蓝牙设备。
 </p>
 
-<h3 id="connecting">Connecting to a socket</h3>
+<h3 id="connecting"><!--@Connecting to a socket-->连接到套接字</h3>
 
 <p>
-  In order to make a connection to a device you need three things. A socket
+  <!--@In order to make a connection to a device you need three things. A socket
   to make the connection with, created using $(ref:bluetoothSocket.create);
   the address of the device you wish to connect to, and the UUID of the
-  service itself.
+  service itself.-->
+  为了连接到设备，您需要这三者：建立连接的套接字，使用
+  $(ref:bluetoothSocket.create) 创建；您希望连接的设备地址；服务本身的 UUID。
 </p>
 
 <p>
-  Before making the connection you should verify that the adapter is aware of
+  <!--@Before making the connection you should verify that the adapter is aware of
   the device by using $(ref:bluetooth.getDevice) or the device
-  discovery APIs.
+  discovery APIs.-->
+  建立连接之前，您应该使用 $(ref:bluetooth.getDevice) 或设备发现 API
+  确认适配器已经检测到该设备。
 </p>
 
 <p>
-  The information necessary to establish the underlying connection, including
+  <!--@The information necessary to establish the underlying connection, including
   whether the RFCOMM or L2CAP protocol should be used and which channel or PSM,
-  is obtained using SDP discovery on the device.
+  is obtained using SDP discovery on the device.-->
+  建立下层连接所需的信息通过设备上的 SDP 发现获取，包括使用 RFCOMM 还是
+  L2CAP 协议以及使用的通道或 PSM。
 </p>
 
 <p>
-  Example:
+  <!--@Example:-->例如：
 </p>
 
 <pre>
 var uuid = '1105';
 var onConnectedCallback = function() {
   if (chrome.runtime.lastError) {
-    console.log("Connection failed: " + chrome.runtime.lastError);
+    console.log("连接失败：" + chrome.runtime.lastError);
   } else {
-    // Profile implementation here.
+    // 此处为配置文件的实现。
   }
 };
 
@@ -475,94 +400,109 @@ chrome.bluetoothSocket.create(function(createInfo) {
 </pre>
 
 <p>
-  Keep a handle to the socketId so that you can later send data
-  ($(ref:bluetoothSocket.send)) to this socket.
+  <!--@Keep a handle to the socketId so that you can later send data
+  ($(ref:bluetoothSocket.send)) to this socket.-->
+  保存 socketId 的值，以便之后向该套接字发送数据（$(ref:bluetoothSocket.send)）。
 </p>
 
-<h3 id="receiving">Receiving from and sending to a socket</h3>
+<h3 id="receiving"><!--@Receiving from and sending to a socket-->接收和发送套接字数据</h3>
 
 <p>
-  Receiving data from and sending to a socket uses <code>ArrayBuffer</code>
+  <!--@Receiving data from and sending to a socket uses <code>ArrayBuffer</code>
   objects. To learn about ArrayBuffers, check out the overview,
   <a href="https://developer.mozilla.org/en-US/docs/JavaScript_typed_arrays">JavaScript typed arrays</a>,
   and the tutorial,
-  <a href="http://updates.html5rocks.com/2012/06/How-to-convert-ArrayBuffer-to-and-from-String">How to convert ArrayBuffer to and from String</a>.\
+  <a href="http://updates.html5rocks.com/2012/06/How-to-convert-ArrayBuffer-to-and-from-String">How to convert ArrayBuffer to and from String</a>.\-->
+  接收和发送套接字数据时使用 <code>ArrayBuffer</code> 对象，请参考
+<a href="https://developer.mozilla.org/en-US/docs/JavaScript_typed_arrays">JavaScript
+类型化数组</a>概述以及<a href="http://updates.html5rocks.com/2012/06/How-to-convert-ArrayBuffer-to-and-from-String">怎样在
+ArrayBuffer 和字符串之间转换</a>的教程了解 ArrayBuffer 的有关信息。
 </p>
 
 <p>
-  To send data you have in <code>arrayBuffer</code> use
-  $(ref:bluetoothSocket.send):
+  <!--@To send data you have in <code>arrayBuffer</code> use
+  $(ref:bluetoothSocket.send):-->
+  使用 $(ref:bluetoothSocket.send) 发送 <code>arrayBuffer</code> 中的数据：
 </p>
 
 <pre>
 chrome.bluetoothSocket.send(socketId, arrayBuffer, function(bytes_sent) {
   if (chrome.runtime.lastError) {
-    console.log("Send failed: " + chrome.runtime.lastError);
+    console.log("发送失败：" + chrome.runtime.lastError);
   } else {
-    console.log("Sent " + bytes_sent + " bytes")
+    console.log("发送了 " + bytes_sent + " 字节")
   }
 })
 </pre>
 
 <p>
-  In contrast to the method to send data, data is received in an event
+  <!--@In contrast to the method to send data, data is received in an event
   ($(ref:bluetoothSocket.onReceive). Sockets are created unpaused (see
   $(ref:bluetoothSocket.setPaused)) so the listener for this event is
   typically added between $(ref:bluetoothSocket.create) and
-  $(ref:bluetoothSocket.connect).
+  $(ref:bluetoothSocket.connect).-->
+  与发送数据的方法不同，接收数据是通过 $(ref:bluetoothSocket.onReceive)
+  事件进行的。套接字创建时不处于暂停状态（参见
+  $(ref:bluetoothSocket.setPaused)），所以该事件的监听器通常在
+  $(ref:bluetoothSocket.create) 和 $(ref:bluetoothSocket.connect) 之间添加。
 </p>
 
 <pre>
 chrome.bluetoothSocket.onRecieve.addListener(function(receiveInfo) {
   if (receiveInfo.socketId != socketId)
     return;
-  // receiveInfo.data is an ArrayBuffer.
+  // receiveInfo.data 为 ArrayBuffer 对象。
 });
 </pre>
 
-<h3 id="errors">Receiving socket errors and disconnection</h3>
+<h3 id="errors"><!--@Receiving socket errors and disconnection-->接收套接字错误，处理连接断开的情况</h3>
 
 <p>
-  To be notified of socket errors, including disconnection, add a listener to
-  the $(ref:bluetoothSocket.onReceiveError) event.
+  <!--@To be notified of socket errors, including disconnection, add a listener to
+  the $(ref:bluetoothSocket.onReceiveError) event.-->
+  在 $(ref:bluetoothSocket.onReceiveError) 事件上添加监听器，接收套接字错误的通知，包括连接断开。
 </p>
 
 <pre>
 chrome.bluetoothSocket.onReceiveError.addListener(function(errorInfo) {
-  // Cause is in errorInfo.error.
+  // errorInfo.error 中包含原因。
   console.log(errorInfo.errorMessage);
 });
 </pre>
 
-<h3 id="disconnection">Disconnecting from a socket</h3>
+<h3 id="disconnection"><!--@Disconnecting from a socket-->断开连接套接字</h3>
 
 <p>
-  To hang up the connection and disconnect the socket use
-  $(ref:bluetoothSocket.disconnect).
+  <!--@To hang up the connection and disconnect the socket use
+  $(ref:bluetoothSocket.disconnect).-->
+  使用 $(ref:bluetoothSocket.disconnect) 断开套接字的连接。
 </p>
 
 <pre>
 chrome.bluetoothSocket.disconnect(socketId);
 </pre>
 
-<h2 id="using_rfcomm">Publishing services</h2>
+<h2 id="using_rfcomm"><!--@Publishing services-->发布服务</h2>
 
 <p>
-  In addition to making outbound connections to devices, Chrome Apps may
+  <!--@In addition to making outbound connections to devices, Chrome Apps may
   publish services that may be used by any device that supports RFCOMM or
-  L2CAP.
+  L2CAP.-->
+  除了向设备发起传出连接外，Chrome 应用还可以发布服务，让支持 RFCOMM 或
+  L2CAP 的设备使用。
 </p>
 
-<h3 id="listening">Listening on a socket</h3>
+<h3 id="listening"><!--@Listening on a socket-->监听套接字</h3>
 
 <p>
-  Three types of published service are supported. RFCOMM is the most commonly
-  used and covers the majority of devices and profiles:
+  <!--@Three types of published service are supported. RFCOMM is the most commonly
+  used and covers the majority of devices and profiles:-->
+  支持三种类型的发布服务，RFCOMM 是最常见的，覆盖了大部分设备和配置文件：
 </p>
 
 <pre>
 var uuid = '1105';
-var channel = 0; // Automatic channel selection.
+var channel = 0; // 自动选择通道。
 chrome.bluetoothSocket.create(function(createInfo) {
   chrome.bluetoothSocket.listenUsingRfcomm(createInfo.socketId,
     uuid, channel, onListenCallback);
@@ -570,9 +510,10 @@ chrome.bluetoothSocket.create(function(createInfo) {
 </pre>
 
 <p>
-  Insecure RFCOMM is an option for Bluetooth 1.0 and Bluetooth 2.0 devices that
+  <!--@Insecure RFCOMM is an option for Bluetooth 1.0 and Bluetooth 2.0 devices that
   do not support encryption. For all other device types this is no different
-  to using $(ref:bluetoothSocket.listenUsingRfcomm).
+  to using $(ref:bluetoothSocket.listenUsingRfcomm).-->
+  不支持加密的蓝牙 1.0 和蓝牙 2.0 设备可以使用不安全的 RFCOMM，对于其他设备来说该方法和 $(ref:bluetoothSocket.listenUsingRfcomm) 没有任何区别。
 </p>
 
 <pre>
@@ -583,13 +524,14 @@ chrome.bluetoothSocket.create(function(createInfo) {
 </pre>
 
 <p>
-  Finally L2CAP covers other device types and vendor-specific uses such as
-  firmware uploading.
+  <!--@Finally L2CAP covers other device types and vendor-specific uses such as
+  firmware uploading.-->
+  最后，L2CAP 覆盖了其他设备类型以及制造商特定的用法，例如固件上传。
 </p>
 
 <pre>
 var uuid = '0b87367c-f188-47cd-bc20-a5f4f70973c6';
-var psm = 0; // Automatic PSM selection.
+var psm = 0; // 自动选择 PSM。
 chrome.bluetoothSocket.create(function(createInfo) {
   chrome.bluetoothSocket.listenUsingL2cap(createInfo.socketId,
     uuid, psm, onListenCallback);
@@ -597,17 +539,20 @@ chrome.bluetoothSocket.create(function(createInfo) {
 </pre>
 
 <p>
-  In all three cases the callback indicates error through
+  <!--@In all three cases the callback indicates error through
   <code>chrome.runtime.lastError</code> and success otherwise.
   Keep a handle to the socketId so that you can later accept connections
-  ($(ref:bluetoothSocket.onAccept)) from this socket.
+  ($(ref:bluetoothSocket.onAccept)) from this socket.-->
+  这三种方式中回调函数都通过 <code>chrome.runtime.lastError</code>
+  报告错误，否则操作成功。请保存 socketId 的值，以便之后接受该套接字的连接（$(ref:bluetoothSocket.onAccept)）。
 </p>
 
-<h3 id="accepting">Accepting client connections</h3>
+<h3 id="accepting"><!--@Accepting client connections-->接受客户端连接</h3>
 
 <p>
-  Client connections are accepted and passed to your application through the
-  $(ref:bluetoothSocket.onAccept) event.
+  <!--@Client connections are accepted and passed to your application through the
+  $(ref:bluetoothSocket.onAccept) event.-->
+  客户端连接通过 $(ref:bluetoothSocket.onAccept) 事件接受并传递到您的应用中：
 </p>
 
 <pre>
@@ -615,22 +560,23 @@ chrome.bluetoothSocket.onAccept.addListener(function(acceptInfo) {
   if (info.socketId != serverSocketId)
     return;
 
-  // Say hello...
+  // 握手
   chrome.bluetoothSocket.send(acceptInfo.clientSocketId,
     data, onSendCallback);
 
-  // Accepted sockets are initially paused,
-  // set the onReceive listener first.
+  // 接受的套接字一开始处于暂停状态，
+  // 首先设置 onReceive 监听器。
   chrome.bluetoothSocket.onReceive.addListener(onReceive);
   chrome.bluetoothSocket.setPaused(false);
 });
 </pre>
 
-<h3 id="stop-accepting">Stop accepting client connections</h3>
+<h3 id="stop-accepting"><!--@Stop accepting client connections-->停止接受客户端连接</h3>
 
 <p>
-  To stop accepting client connections and unpublish the service use
-  $(ref:bluetoothSocket.disconnect).
+  <!--@To stop accepting client connections and unpublish the service use
+  $(ref:bluetoothSocket.disconnect).-->
+  使用 $(ref:bluetoothSocket.disconnect) 停止接受客户端连接，取消服务的发布。
 </p>
 
 <pre>

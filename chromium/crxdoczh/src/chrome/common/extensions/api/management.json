@@ -21,6 +21,13 @@
         }
       },
       {
+        "id": "LaunchType",
+        "type": "string",
+        "enum": ["OPEN_AS_REGULAR_TAB", "OPEN_AS_PINNED_TAB", "OPEN_AS_WINDOW", "OPEN_FULL_SCREEN"],
+//@        "description": "These are all possible app launch types. Note: This enum is only available to Chrome users on the dev channel."
+        "description": "包含所有可能的应用启动类型。注意：该枚举仅对 Dev 分支的 Chrome 用户可用。"
+      },
+      {
         "id": "ExtensionInfo",
 //@        "description": "Information about an installed extension, app, or theme.",
         "description": "已安装的扩展程序、应用或主题背景的有关信息。",
@@ -139,6 +146,21 @@
             "description": "扩展程序是如何安装的，为下列值之一：<br><var>\"admin\"</var> 表示扩展程序由于管理策略而安装；<br><var>\"development\"</var> 表示扩展程序以未打包形式在开发者模式下加载；<br><var>\"normal\"</var> 表示扩展程序由 .crx 文件正常安装；<br><var>\"sideload\"</var> 表示扩展程序由计算机上的其他软件安装；<br><var>\"other\"</var> 表示扩展程序通过其他方式安装。",
             "type": "string",
             "enum": ["admin", "development", "normal", "sideload", "other"]
+          },
+          "launchType": {
+//@            "description": "The app launch type (only present for apps). Note: This property is only available to Chrome users on the dev channel.",
+            "description": "应用的启动类型（仅在应用中存在）。注意：该属性仅对 Dev 分支的 Chrome 用户可用。",
+            "$ref": "LaunchType",
+            "optional": true
+          },
+          "availableLaunchTypes": {
+//@            "description": "The currently available launch types (only present for apps). Note: This property is only available to Chrome users on the dev channel.",
+            "description": "注意：当前可用的启动类型（仅在应用中存在）。注意：该属性仅对 Dev 分支的 Chrome 用户可用。",
+            "type": "array",
+            "optional": true,
+            "items": {
+              "$ref": "LaunchType"
+            }
           }
         }
       }
@@ -355,7 +377,32 @@
             "name": "callback",
             "type": "function",
             "optional": true,
-            "parameters":  []
+            "parameters": []
+          }
+        ]
+      },
+      {
+        "name": "setLaunchType",
+//@        "description": "Set the launch type of an app. Note: This function is only available to Chrome users on the dev channel.",
+        "description": "设置应用的启动类型。注意：该函数仅对 Dev 分支的 Chrome 用户可用。",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "string",
+//@            "description": "This should be the id from an app item of $(ref:management.ExtensionInfo)."
+            "description": "该参数应该为 $(ref:management.ExtensionInfo) 应用项目中的 id 属性。"
+          },
+          {
+            "name": "launchType",
+            "$ref": "LaunchType",
+//@            "description": "The target launch type. Always check and make sure this launch type is in $(ref:ExtensionInfo.availableLaunchTypes), because the available launch types vary on different platforms and configurations."
+            "description": "启动类型。请始终记得要确保指定的启动类型在 $(ref:ExtensionInfo.availableLaunchTypes) 中，因为可用的启动类型在不同的平台和配置上会有变化。"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true,
+            "parameters": []
           }
         ]
       }

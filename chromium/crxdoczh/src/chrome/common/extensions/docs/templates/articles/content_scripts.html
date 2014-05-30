@@ -175,12 +175,17 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     <td>boolean</td>
     <td><em><!--@Optional.-->可选。</em><!--@
     Whether to insert the content script on <code>about:blank</code> and
-    <code>about:srcdoc</code>. Content scripts will only be injected on pages if
-    your extension has access to the page's parent document. Scripts are only
-    inserted in a top-level <code>about:blank</code> frame when its opener is
-    accessible by the extension.-->是否在 <code>about:blank</code> 和
-    <code>about:srcdoc</code> 中插入内容脚本，只有当扩展程序有权限访问网页所属文档时才会插入内容脚本，另外只有当打开顶层
-    <code>about:blank</code> 框架的网页能被扩展程序访问时，才会插入脚本。
+    <code>about:srcdoc</code>. Content scripts will only be injected on pages
+    when their inherit URL is matched by one of the declared patterns in the
+    <code>matches</code> field. The inherit URL is the URL of the document that
+    created the frame or window.
+    <br>
+    Content scripts cannot be inserted in sandboxed frames.-->是否在 <code>about:blank</code> 和
+    <code>about:srcdoc</code> 中插入内容脚本，只有当继承 URL 匹配
+    <code>matches</code> 字段中声明的匹配表达式时才会插入内容脚本。继承 URL
+    为创建框架或窗口的文档 URL。
+    <br>
+    内容脚本不能在经过沙盒屏蔽的框架中插入。
     <br><br>
     <!--@Defaults to-->默认为 <code>false</code><!--@.-->。</td>
   </tr>
