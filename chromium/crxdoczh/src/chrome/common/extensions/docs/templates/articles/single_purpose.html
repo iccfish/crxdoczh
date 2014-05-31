@@ -243,11 +243,32 @@ by disabling the extension.-->
 <p>
 <!--@All Chrome settings changed by an extension will be reverted
 when that extension is disabled.
-All other settings will remain unchanged.-->
-扩展程序禁用时，它修改的所有 Chrome 浏览器设置都会恢复原状，其他设置保持不变。
+All other settings
+(for example, those changed directly by a Windows binary)
+will remain unchanged.-->
+扩展程序禁用时，它修改的所有 Chrome 浏览器设置都会恢复原状，其他设置（例如直接由
+Windows 二进制文件修改的设置）保持不变。
 </p>
 
-<h2 id="eleven"><!--@11.) Is this new policy Windows-only?-->11、该政策仅限于 Windows 系统吗？</h2>
+<h2 id="eleven"><!--@11.) Will users’ existing homepage, search provider or
+startup pages be affected by the introduction of the Settings Override API?-->11、用户现有的主页、搜索引擎或起始页是否会因为设置重写 API 的引入而受到影响？</h2>
+
+<p>
+<!--@No.
+A user’s existing homepage, search provider or startup settings will
+remain unchanged by the introduction of Settings Override API.
+Following the launch of the Settings Override API,
+only extensions can programmatically change these settings and
+only through the Settings Override API.
+But all changes to a user’s homepage, search provider or
+startup pages made prior to the launch of the Settings Override API,
+including any that may have been made by Windows binaries,
+will remain unchanged until the user manually updates those settings or
+installs an extension that uses the Settings Override API to change them. -->
+不会。设置重写 API 引入后，用户现有的主页、搜索引擎或启动设置保持不变。引入设置重写 API 后，只有扩展程序可以通过编程的方式更改这些设置，并且只能通过设置重写 API，但是采用该 API 前对用户主页、搜索引擎或起始页的所有更改，包括可能由 Windows 二进制文件进行的更改，都会保持不变，除非用户手动更新这些设置，或者安装某个使用设置重写 API 的扩展程序来更改它们。
+</p>
+
+<h2 id="twelve"><!--@12.) Is this new policy Windows-only?-->12、该政策仅限于 Windows 系统吗？</h2>
 
 <p>
 <!--@The <a href="https://developer.chrome.com/extensions/hosting_changes">requirement</a>
@@ -262,7 +283,7 @@ API 仅在 Windows 系统的 Chrome 浏览器中可用。但是，单一用途�
 Chrome 扩展程序。
 </p>
 
-<h2 id="twelve"><!--@12.) Does this policy apply to Chrome apps too?-->12、该政策还适用于 Chrome 应用吗？</h2>
+<h2 id="thirteen"><!--@13.) Does this policy apply to Chrome apps too?-->13、该政策还适用于 Chrome 应用吗？</h2>
 
 <p>
 <!--@At this time, Chrome apps (as distinguished from extensions)
@@ -273,7 +294,7 @@ Chrome apps are currently not capable of changing Chrome settings.-->
 应用目前也不能更改 Chrome 浏览器设置。
 </p>
 
-<h2 id="thirteen"><!--@13.) Can I bundle ad injection with some other type of functionality?-->13、我能不能在其他类型的功能中植入广告？</h2>
+<h2 id="fourteen"><!--@14.) Can I bundle ad injection with some other type of functionality?-->14、我能不能在其他类型的功能中植入广告？</h2>
 
 <p>
 <!--@No.
@@ -292,7 +313,7 @@ Chrome 政策，这样的扩展程序是可以接受的。例如，“相关文�
 href="https://developer.chrome.com/webstore/money">此处</a>描述的其他获利方式。
 </p>
 
-<h2 id="fourteen"><!--@14.) Are toolbars permitted under this policy?-->14、在这样的政策下还允许工具栏吗？</h2>
+<h2 id="fifteen"><!--@15.) Are toolbars permitted under this policy?-->15、在这样的政策下还允许工具栏吗？</h2>
 
 <p>
 <!--@It depends on what the toolbar does.
@@ -313,8 +334,8 @@ It's a better user experience, with no performance or security downsides.-->
 href="browserAction">浏览器按钮的弹出内容</a>，这才是用来解决这种问题的合理方式，拥有更好的用户体验，又不会引入性能或安全性问题。
 </p>
 
-<h2 id="fifteen"><!--@15.) What will happen to non-compliant extensions
-that were already installed by users?-->15、如果用户已经安装了不遵循政策的扩展程序那会发生什么？</h2>
+<h2 id="sixteen"><!--@16.) What will happen to non-compliant extensions
+that were already installed by users?-->16、如果用户已经安装了不遵循政策的扩展程序那会发生什么？</h2>
 
 <p>
 <!--@All extensions will need to comply with the Extension Quality Guidelines.
@@ -324,23 +345,21 @@ that is hosted in the Chrome Web Store.
 If the user is not updated to a compliant extension
 that is hosted in the Chrome Web Store,
 then the extension will be automatically disabled.
-When Chrome disables a non-compliant extension,
-it will not revert browser settings made at the same time as installing
-that extension prior to the launch of the Settings Override API.
-Only settings changed by an extension using the Settings Override API
+As noted above,
+any settings or behaviours controlled by the extension,
+including any settings controlled by the Settings Override API,
 will be reverted when the extension is disabled. 
 You can find more information
 <a href="http://blog.chromium.org/2014/02/make-sure-to-get-your-extension-in.html">here</a>.-->
 所有扩展程序都需要遵循扩展程序质量准则。如果用户安装了不遵循质量准则的扩展程序，您需要更新它们使之遵循质量准则，并托管在
-Chrome 网上应用店中。如果 Chrome 网上应用店中托管的扩展程序没有更新至遵循质量准则的版本，扩展程序会被自动禁用。Chrome
-浏览器禁用不符合政策的扩展程序时，不会恢复设置重写 API 发布之前安装该扩展程序时更改的浏览器设置，只有使用设置重写 API 修改的设置才会在扩展程序禁用时恢复原样。有关更多信息请参见<a href="http://blog.chromium.org/2014/02/make-sure-to-get-your-extension-in.html"
+Chrome 网上应用店中。如果 Chrome 网上应用店中托管的扩展程序没有更新至遵循质量准则的版本，扩展程序会被自动禁用。如上所述，由该扩展程序控制的所有设置和行为，包括通过设置重写 API 控制的设置，在扩展程序禁用时都会恢复原样。有关更多信息请参见<a href="http://blog.chromium.org/2014/02/make-sure-to-get-your-extension-in.html"
 >这里</a>。
 </p>
 
-<h2 id="sixteen"><!--@16.) If my extension is rejected from the Chrome Web Store
+<h2 id="seventeen"><!--@17.) If my extension is rejected from the Chrome Web Store
 because it doesn’t comply with the single purpose policy,
 what will happen after the requirement to host extensions
-in the Chrome Web Store comes into effect?-->16、如果我的扩展程序因为不遵循单一用途政策而被 Chrome 网上应用店拒绝，在 Chrome 网上应用店托管扩展程序的要求生效后会发生什么？</h2>
+in the Chrome Web Store comes into effect?-->17、如果我的扩展程序因为不遵循单一用途政策而被 Chrome 网上应用店拒绝，在 Chrome 网上应用店托管扩展程序的要求生效后会发生什么？</h2>
 
 <p>
 <!--@If your extension is rejected from the Chrome Web Store,
@@ -355,8 +374,8 @@ it will be automatically disabled from the users’ browsers. -->
 网上应用店托管，否则会自动在用户的浏览器中禁用。
 </p>
 
-<h2 id="seventeen"><!--@17.) If my extension gets flagged for review under the single purpose policy,
-what will happen?-->17、如果我的扩展程序被标记为需要审查是否遵循单一用途政策，接下来会发生什么？</h2>
+<h2 id="eighteen"><!--@18.) If my extension gets flagged for review under the single purpose policy,
+what will happen?-->18、如果我的扩展程序被标记为需要审查是否遵循单一用途政策，接下来会发生什么？</h2>
 
 <p>
 <!--@Our team will review it,
@@ -378,7 +397,7 @@ We’ll try to respond within a week.-->
 联系我们，附上您的扩展程序标识符。我们会尽量在一周内回复。
 </p>
 
-<h2 id="eighteen"><!--@18.) I need help. Who should I contact?-->18、我需要帮助，应该联系谁？</h2>
+<h2 id="nineteen"><!--@19.) I need help. Who should I contact?-->19、我需要帮助，应该联系谁？</h2>
 
 <p>
 <!--@You can email-->您可以给

@@ -41,8 +41,14 @@ namespace bluetooth {
     boolean discovering;
   };
 
+  // <!--@Callback from the <code>getAdapterState</code> method.-->
+  // <code>getAdapterState</code> 方法的回调函数。
+  // |adapterInfo| : <!--@Object containing the adapter information.-->
+  // 包含适配器信息的对象。
+  callback AdapterStateCallback = void(AdapterState adapterInfo);
+
   // <!--@Information about the state of a known Bluetooth device.-->
-  // 已知蓝牙设备状态的有关信息。
+  // 与已知蓝牙设备状态有关的信息。
   dictionary Device {
     // <!--@The address of the device, in the format 'XX:XX:XX:XX:XX:XX'.-->
     // 设备地址，格式为'XX:XX:XX:XX:XX:XX'。
@@ -119,193 +125,25 @@ namespace bluetooth {
     DOMString[]? uuids;
   };
 
-  // <!--@Information about a Bluetooth profile.-->
-  // 蓝牙配置文件的有关信息。
-  dictionary Profile {
-    // <!--@Unique profile identifier, e.g. 00001401-0000-1000-8000-00805F9B23FB-->
-    // 唯一的配置文件标识符，例如 00001401-0000-1000-8000-00805F9B23FB。
-    DOMString uuid;
+  // <!--@Callback from the <code>getDevice</code> method.-->
+  //<code>getDevice</code>  方法的回调函数。
+  // |deviceInfo| : <!--@Object containing the device information.-->
+  // 包含设备信息的对象。
+  callback GetDeviceCallback = void(Device deviceInfo);
 
-    // <!--@Human-readable name of the Profile, e.g. "Health Device"-->
-    // 可读的配置文件名称，例如“Health Device”（保健设备）。
-    DOMString? name;
+  // <!--@Callback from the <code>getDevices</code> method.-->
+  // <code>getDevices</code> 方法的回调函数。
+  // |deviceInfos| : <!--@Array of object containing device information.-->
+  // 包含设备信息的对象数组。
+  callback GetDevicesCallback = void(Device[] deviceInfos);
 
-    // <!--@The RFCOMM channel id, used when the profile is to be exported to remote
-    // devices.-->
-    // RFCOMM 通道标识符，当配置文件输出至远程设备时使用。
-    long? channel;
+  // Callback from the <code>startDiscovery</code> method.
+  // <code>startDiscovery</code> 方法的回调函数。
+  callback StartDiscoveryCallback = void();
 
-    // <!--@The LS2CAP PSM number, used when the profile is to be exported to remote
-    // devices.-->
-    // LS2CAP PSM 编号，当配置文件输出至远程设备时使用。
-    long? psm;
-
-    // <!--@Specifies whether pairing (and encryption) is required to be able to
-    // connect.-->
-    // 指定连接时是否要求配对（与加密）。
-    boolean? requireAuthentication;
-
-    // <!--@Specifies whether user authorization is required to be able to connect.-->
-    // 指定连接时是否要求用户认证。
-    boolean? requireAuthorization;
-
-    // <!--@Specifies whether this profile will be automatically connected if any
-    // other profile of device also exporting this profile connects to the host.-->
-    // 指定导出该配置文件的其他设备连接到主机时，该配置文件是否会自动连接。
-    boolean? autoConnect;
-
-    // <!--@Specifies the implemented version of the profile.-->
-    // 指定配置文件的实现版本。
-    long? version;
-
-    // <!--@Specifies the profile-specific bit field of features the implementation
-    // supports.-->
-    // 指定实现支持的配置文件特定的特性位域。
-    long? features;
-  };
-
-  // <!--@The socket properties specified in the $(ref:update) function. Each property
-  // is optional. If a property value is not specified, the existing value if
-  // preserved when calling $(ref:update).-->
-  // $(ref:update) 函数中指定的套接字属性。每个属性都是可选的，调用
-  // $(ref:update) 时如果没有指定属性值，则保留现有的值。
-  dictionary SocketProperties {
-    // <!--@Flag indicating whether the socket is left open when the event page of
-    // the application is unloaded (see <a
-    // href="http://developer.chrome.com/apps/app_lifecycle">Manage App
-    // Lifecycle</a>). The default value is <code>false.</code> When the
-    // application is loaded, any sockets previously opened with persistent=true
-    // can be fetched with $(ref:getSockets).-->
-    // 应用的事件页面卸载（参见<a href="app_lifecycle"
-    // >管理应用的生命周期</a>）时是否使套接字保持打开状态，默认值为
-    // <code>false</code>。应用加载时，之前使用 <code>persistent: true</code>
-    // 打开的套接字可以通过 $(ref:getSockets) 获取。
-    boolean? persistent;
-
-    // <!--@An application-defined string associated with the socket.-->
-    // 与套接字相关联的字符串，由应用定义。
-    DOMString? name;
-
-    // <!--@The size of the buffer used to receive data. The default value is 4096.-->
-    // 用于接收数据的缓冲区大小，默认值为 4096。
-    long? bufferSize;
-  };
-
-  dictionary Socket {
-    // <!--@The socket identifier.-->
-    // 套接字标识符。
-    long id;
-
-    // <!--@The remote Bluetooth device associated with this socket.-->
-    // 与该套接字关联的远程蓝牙设备。
-    Device device;
-
-    // <!--@The remote Bluetooth uuid associated with this socket.-->
-    // 与该套接字关联的远程蓝牙 UUID。
-    DOMString uuid;
-
-    // <!--@Flag indicating whether the socket is left open when the application is
-    // suspended (see <code>SocketProperties.persistent</code>).-->
-    // 应用关闭时（参见
-    // <code>SocketProperties.persistent</code>）是否使套接字保持打开状态。
-    boolean persistent;
-
-    // <!--@Application-defined string associated with the socket.-->
-    // 与套接字相关联的字符串，由应用定义。
-    DOMString? name;
-
-    // <!--@The size of the buffer used to receive data. If no buffer size has been
-    // specified explictly, the field is not provided.-->
-    // 用于接收数据的缓冲区大小。如果没有明确指定缓冲区大小，则不提供该属性的值。
-    long? bufferSize;
-
-    // <!--@Flag indicating whether a connected socket blocks its peer from sending
-    // more data (see <code>setPaused</code>).-->
-    // 表示连接的套接字是否阻止对方发送更多数据（请参见
-    // <code>setPaused</code>）。
-    boolean paused;
-  };
-
-  callback AdapterStateCallback = void(AdapterState result);
-  callback AddressCallback = void(DOMString result);
-  callback BooleanCallback = void(boolean result);
-  callback DataCallback = void(optional ArrayBuffer result);
-  callback DeviceCallback = void(Device result);
-  callback DevicesCallback = void(Device[] result);
-  callback NameCallback = void(DOMString result);
-  callback ResultCallback = void();
-  callback SizeCallback = void(long result);
-  callback SocketCallback = void(Socket result);
-
-  // <!--@Options for the connect function.-->
-  // connect 函数中使用的选项。
-  dictionary ConnectOptions {
-    // <!--@The connection is made to |device|.-->
-    // 连接到 <code>device</code> 设备。
-    Device device;
-
-    // <!--@The connection is made to |profile|.-->
-    // 连接到 <code>profile</code> 配置文件。
-    Profile profile;
-  };
-
-  // <!--@Options for the disconnect function.-->
-  // disconnect 函数中使用的选项。
-  dictionary DisconnectOptions {
-    // <!--@The socket identifier.-->
-    // 套接字标识符。
-    long socketId;
-  };
-
-  // <!--@Callback from the <code>getSocket</code> method.-->
-  // <code>getSocket</code> 方法的回调函数。
-  // |socket| : <!--@Object containing the socket information.-->
-  // 包含套接字信息的对象。
-  callback GetSocketCallback = void (Socket socket);
-
-  // <!--@Callback from the <code>getSockets</code> method.-->
-  // <code>getSockets</code> 方法的回调函数。
-  // |sockets| : <!--@Array of object containing socket information.-->
-  // 包含套接字信息的对象数组。
-  callback GetSocketsCallback = void (Socket[] sockets);
-
-  // <!--@Data from an <code>onReceive</code> event.-->
-  // 来自 <code>onReceive</code> 事件的数据。
-  dictionary ReceiveInfo {
-    // <!--@The socket identifier.-->
-    // 套接字标识符。
-    long socketId;
-
-    // <!--@The data received, with a maximum size of <code>bufferSize</code>.-->
-    // 接收到的数据，最大大小为 <code>bufferSize</code>。
-    ArrayBuffer data;
-  };
-
-  enum ReceiveError {
-    // <!--@The connection was disconnected.-->
-    // 连接已经断开。
-    disconnected,
-
-    // <!--@A system error occurred and the connection may be unrecoverable.-->
-    // 发生系统错误，可能无法恢复连接。
-    system_error
-  };
-
-  // <!--@Data from an <code>onReceiveError</code> event.-->
-  // 来自 <code>onReceiveError</code> 事件的数据。
-  dictionary ReceiveErrorInfo {
-    // <!--@The socket identifier.-->
-    // 套接字标识符。
-    long socketId;
-
-     // <!--@The error message.-->
-     // 错误消息。
-    DOMString errorMessage;
-
-    // <!--@An error code indicating what went wrong.-->
-    // 表示错误信息的错误代码。
-    ReceiveError error;
-  };
+  // <!--@Callback from the <code>stopDiscovery</code> method.-->
+  // <code>stopDiscovery</code> 方法的回调函数。
+  callback StopDiscoveryCallback = void();
 
   // <!--@These functions all report failures via chrome.runtime.lastError.-->
   // 这些函数都通过 chrome.runtime.lastError 报告错误。
@@ -317,104 +155,20 @@ namespace bluetooth {
     // 调用时传递 $(ref:AdapterState) 对象，描述适配器状态。
     static void getAdapterState(AdapterStateCallback callback);
 
-    // <!--@Get a list of Bluetooth devices known to the system, including paired
-    // and recently discovered devices.-->
-    // 获取系统已知的蓝牙设备列表，包括已配对或以前发现的设备。
-    // |callback| : <!--@Called when the search is completed.-->
-    // 搜索完成后调用。
-    static void getDevices(DevicesCallback callback);
-
     // <!--@Get information about a Bluetooth device known to the system.-->
     // 获取系统已知的蓝牙设备信息。
     // |deviceAddress| : <!--@Address of device to get.-->
     // 要获取的设备的地址。
     // |callback| : <!--@Called with the Device object describing the device.-->
     // 调用时传递 Device 对象描述设备。
-    static void getDevice(DOMString deviceAddress, DeviceCallback callback);
+    static void getDevice(DOMString deviceAddress, GetDeviceCallback callback);
 
-    // <!--@Registers the JavaScript application as an implementation for the given
-    // Profile; if a channel or PSM is specified, the profile will be exported
-    // in the host's SDP and GATT tables and advertised to other devices.-->
-    // 将 JavaScript 应用程序注册为指定配置文件的实现。如果指定了通道或
-    // PSM，配置文件将输出至主机的 SDP 与 GATT 表，并广播到其他设备。
-    static void addProfile(Profile profile, ResultCallback callback);
-
-    // <!--@Unregisters the JavaScript application as an implementation for the given
-    // Profile; only the uuid field of the Profile object is used.-->
-    // 取消注册 JavaScript 应用程序，不作为指定配置文件的实现。Profile
-    // 对象中只使用 uuid 字段。
-    static void removeProfile(Profile profile, ResultCallback callback);
-
-    // <!--@Connect to a service on a device.-->
-    // 连接到设备上的某个服务。
-    // |options|  : <!--@The options for the connection.-->
-    // 连接选项。
-    // |callback| : <!--@Called to indicate success or failure.-->
-    // 调用时指示成功或失败。
-    static void connect(ConnectOptions options,
-                        ResultCallback callback);
-
-    // <!--@Closes a Bluetooth connection.-->
-    // 关闭蓝牙连接。
-    // |options|  : <!--@The options for this function.-->
-    // 该函数的选项。
-    // |callback| : <!--@Called to indicate success or failure.-->
-    // 调用时指示成功或失败。
-    static void disconnect(DisconnectOptions options,
-                           optional ResultCallback callback);
-
-    // <!--@Sends data to a Bluetooth connection.-->
-    // 向蓝牙连接发送数据。
-    // |socketId| : <!--@The socket identifier.-->
-    // 套接字标识符。
-    // |data| : <!--@The data to send.-->
-    // 要发送的数据。
-    // |callback| : <!--@Called with the number of bytes sent.-->
-    // 调用时传递发送的字节数。
-    static void send(long socketId,
-                     ArrayBuffer data,
-                     optional SizeCallback callback);
-
-    // <!--@Updates the socket properties.-->
-    // 更新套接字属性。
-    // |socketId| : <!--@The socket identifier.-->
-    // 套接字标识符。
-    // |properties| : <!--@The properties to update.-->
-    // 要更新的属性。
-    // |callback| : <!--@Called when the properties are updated.-->
-    // 属性更新后调用。
-    static void updateSocket(long socketId,
-                             SocketProperties properties,
-                             optional ResultCallback callback);
-
-    // <!--@Enables or disables the application from receiving messages from its
-    // peer. The default value is <code>false</code>. Pausing a socket is
-    // typically used by an application to throttle data sent by its peer. When
-    // a socket is paused, no $(ref:onReceive) event is raised. When a socket is
-    // connected and un-paused, $(ref:onReceive) events are raised again when
-    // messages are received.-->
-    // 允许或禁止应用从对方接收消息，默认值为
-    // <code>false</code>。应用通常使用暂停套接字的方式限制对方发送的数据。套接字暂停时，不会产生 
-    // $(ref:onReceive) 事件。套接字处于连接状态并且取消暂停后，收到消息时会再次产生
-    // $(ref:onReceive) 事件。
-    static void setSocketPaused(long socketId,
-                                boolean paused,
-                                optional ResultCallback callback);
-
-    // <!--@Retrieves the state of the given socket.-->
-    // 获取指定套接字的状态。
-    // |socketId| : <!--@The socket identifier.-->
-    // 套接字标识符。
-    // |callback| : <!--@Called when the socket state is available.-->
-    // 套接字状态可用时调用。
-    static void getSocket(long socketId,
-                          GetSocketCallback callback);
-
-    // <!--@Retrieves the list of currently opened sockets owned by the application.-->
-    // 获取应用拥有的当前打开的套接字列表。
-    // |callback| : <!--@Called when the list of sockets is available.-->
-    // 套接字列表可用时调用。
-    static void getSockets(GetSocketsCallback callback);
+    // <!--@Get a list of Bluetooth devices known to the system, including paired
+    // and recently discovered devices.-->
+    // 获取系统已知的蓝牙设备列表，包括已配对或以前发现的设备。
+    // |callback| : <!--@Called when the search is completed.-->
+    // 搜索完成后调用。
+    static void getDevices(GetDevicesCallback callback);
 
     // <!--@Start discovery. Newly discovered devices will be returned via the
     // onDeviceAdded event. Previously discovered devices already known to
@@ -433,15 +187,13 @@ namespace bluetooth {
     // stopDiscovery。
     // |callback| : <!--@Called to indicate success or failure.-->
     // 调用时指示成功或失败。
-    static void startDiscovery(
-        optional ResultCallback callback);
+    static void startDiscovery(optional StartDiscoveryCallback callback);
 
     // <!--@Stop discovery.-->
     // 停止发现。
     // |callback| : <!--@Called to indicate success or failure.-->
     // 调用时指示成功或失败。
-    static void stopDiscovery(
-        optional ResultCallback callback);
+    static void stopDiscovery(optional StopDiscoveryCallback callback);
   };
 
   interface Events {
@@ -464,27 +216,5 @@ namespace bluetooth {
     // when a paired device is removed.-->
     // 之前发现的蓝牙设备很长时间不在范围内，视为不再可用时，或者配对的设备移除时产生。
     static void onDeviceRemoved(Device device);
-
-    // <!--@Fired when a connection has been made for a registered profile.-->
-    // 注册的配置文件建立连接时产生。
-    // |socket| : <!--@The socket for the connection.-->
-    // 该连接的套接字。
-    static void onConnection(Socket socket);
-
-    // <!--@Event raised when data has been received for a given socket.-->
-    // 套接字接收到数据时产生该事件。
-    // |info| : <!--@The event data.-->
-    // 事件数据。
-    static void onReceive(ReceiveInfo info);
-
-    // <!--@Event raised when a network error occured while the runtime was waiting
-    // for data on the socket. Once this event is raised, the socket is set to
-    // <code>paused</code> and no more <code>onReceive</code> events are raised
-    // for this socket.-->
-    // 运行时等待该套接字上的数据时如果发生网络错误则产生该事件。一旦产生该事件后，套接字将设置为
-    // <code>paused</code>（暂停）状态，不再产生 <code>onReceive</code> 事件。
-    // |info| : <!--@The event data.-->
-    // 事件数据。
-    static void onReceiveError(ReceiveErrorInfo info);
   };
 };
