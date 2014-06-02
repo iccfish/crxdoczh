@@ -84,10 +84,20 @@ namespace identity {
     // <code>oauth2</code> 部分</a>指定的 OAuth2 访问令牌。
     //
     // <!--@The Identity API caches access tokens in memory, so it's ok to
-    // call <code>getAuthToken</code> any time a token is
+    // call <code>getAuthToken</code> non-interactively any time a token is
     // required. The token cache automatically handles expiration.-->
-    // 认证 API 会在内存中缓存访问令牌，所以可以在需要令牌的任何时候调用
+    // 认证 API 会在内存中缓存访问令牌，所以可以在需要令牌的任何时候以非交互方式调用
     // <code>getAuthToken</code>。令牌缓存的过期问题会自动处理。
+    //
+    // <!--@For a good user experience it is important interactive token requests are
+    // initiated by UI in your app explaining what the authorization is for.
+    // Failing to do this will cause your users to get authorization requests,
+    // or Chrome sign in screens if they are not signed in, with with no
+    // context. In particular, do not use <code>getAuthToken</code>
+    // interactively when your app is first launched.-->
+    // 为了良好的用户体验，交互式令牌请求应该通过应用中的用户界面发起，并解释认证的原因。如果您没有做到这一点，用户会在没有任何上下文的情况下看到认证请求，如果未登录的话还会显示
+    // Chrome 登录屏幕。特别注意，不要在应用第一次启动时以交互方式调用
+    // <code>getAuthToken</code>。
     //
     // |details| : <!--@Token options.-->
     // 令牌选项。
@@ -132,11 +142,9 @@ namespace identity {
     // <!--@For a good user experience it is important interactive auth flows are
     // initiated by UI in your app explaining what the authorization is for.
     // Failing to do this will cause your users to get authorization requests
-    // - or even Chrome sign in screens if they are not signed in - with
-    // no context. In particular, do not launch an interactive auth flow when
-    // your app is first launched.-->
-    // 为了有更好的用户体验，交互式认证流程应该通过应用中的用户界面发起，并解释认证原因。如果您不这样做，您的用户看到认证请求时没有任何上下文，如果未登录的话甚至还会出现
-    // Chrome 登录屏幕。尤其注意，不要在应用第一次启动时开始交互式认证流程。
+    // with no context. In particular, do not launch an interactive auth flow
+    // when your app is first launched.-->
+    // 为了更好的用户体验，交互式认证流程应该通过应用中的用户界面发起，并解释认证原因。如果您没有这样做，您的用户看到认证请求时没有任何上下文。尤其注意，不要在应用第一次启动时开始交互式认证流程。
     //
     // |details| : <!--@WebAuth flow options.-->
     // WebAuth 流程选项。
