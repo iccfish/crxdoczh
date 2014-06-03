@@ -771,8 +771,8 @@
       {
         "name": "loadabort",
         "options": { "supportsDom": true },
-//@        "description": "Fired when a top-level load has aborted without committing.",
-        "description": "顶层加载未提交就终止时产生。",
+//@        "description": "Fired when a top-level load has aborted without committing. <p class=\"note\"><strong>Note:</strong> When a resource load is aborted, a <code>loadabort</code> event will be followed by a <code>loadstop</code> event.</p>",
+        "description": "顶层加载未提交就终止时产生。<p class=\"note\"><strong>注：</strong>资源加载终止后，<code>loadabort</code> 事件产生之后还会产生<code>loadstop</code> 事件。",
         "parameters": [
           {
             "name": "url",
@@ -864,8 +864,8 @@
       {
         "name": "loadstop",
         "options": { "supportsDom": true },
-//@        "description": "Fired when all loads in the guest page (including all subframes) have completed. Fires in addition to any related <code>loadcommit</code> or <code>loadabort</code> events, which occur per-frame.",
-        "description": "来宾网页中的所有加载操作（包括所有子框架）完成后产生，除此之外也会产生相关的 <code>loadcommit</code> 或 <code>loadabort</code> 事件，这些对每个框架都会产生。",
+//@        "description": "Fired when all loads in the guest page (including all subframes) have completed. Fires in addition to any related <code>loadcommit</code> or <code>loadabort</code> events, which occur per-frame. <p class=\"note\"><strong>Note:</strong> When a resource load is aborted, a <code>loadstop</code> event will follow a <code>loadabort</code> event.</p>",
+        "description": "来宾网页中的所有加载操作（包括所有子框架）完成后产生，除此之外还会产生相关的 <code>loadcommit</code> 或 <code>loadabort</code> 事件，这些事件对每个框架都会产生。<p class=\"note\"><strong>注：</strong>资源加载终止后，<code>loadabort</code> 事件产生之后还会产生<code>loadstop</code> 事件。",
         "parameters": []
       },
       {
@@ -1036,4 +1036,3 @@
     }
   }
 ]
-
