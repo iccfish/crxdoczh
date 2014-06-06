@@ -405,6 +405,36 @@
             "parameters": []
           }
         ]
+      },
+      {
+        "name": "generateAppForLink",
+//@        "description": "Generate an app for a URL. Returns the generated bookmark app. Note: This function is only available to Chrome users on the dev channel.",
+        "description": "为 URL 生成应用，返回生成的书签应用。注意：该函数仅对 Dev 分支的 Chrome 用户可用。",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+//@            "description": "The URL of a web page. The scheme of the URL can only be \"http\" or \"https\"."
+            "description": "网页 URL，URL 的协议只能是“http”或“https”。"
+          },
+          {
+            "name": "title",
+            "type": "string",
+//@            "description": "The title of the generated app."
+            "description": "生成的应用标题。"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true,
+            "parameters":  [
+              {
+                "name": "result",
+                "$ref": "ExtensionInfo"
+              }
+            ]
+          }
+        ]
       }
     ],
     "events": [

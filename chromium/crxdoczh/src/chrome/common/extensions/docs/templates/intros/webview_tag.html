@@ -166,3 +166,59 @@ onload = function() {
     </p>
   </div>
 
+<h2 id="local_resources"><!--@Accessing packaged resources-->访问打包的资源</h2>
+
+<p>
+<!--@By default, webviews are prevented from loading any resources packaged with
+the app. However, <a href="#partition">webview partitions</a> may be granted
+access to these resources via a <code>webview.partitions</code> section in
+the app manifest. Partitions may be granted access to a set of files by
+matching partition name patterns with file name patterns. Both sorts of
+patterns may contain the <code>*</code> wildcard.-->
+默认情况下，WebView 不能加载与应用一起打包的资源。但是可以通过 <a
+href="#partition">WebView 分区</a>授予这些资源的访问权限，只要在应用的清单文件中指定
+<code>webview.partitions</code> 部分。根据分区名称表达式与文件名表达式的匹配，授予分区访问一部分文件的权限。这两种匹配表达式都可以包含 <code>*</code>
+通配符。
+</p>
+
+<p>
+<!--@Consider the following <code>manifest.json</code> snippet:-->
+考虑如下 <code>manifest.json</code> 片段：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  "permissions": [
+    "webview"
+  ],
+  <strong>"webview": {
+    "partitions": [
+      // 在这个例子中，所有 &lt;webview partition="static"&gt; 或
+      // &lt;webview partition="persist:static"&gt; 都能访问
+      // header.html、footer.html 和 static.png。
+      {
+        "name": "static",
+        "accessible_resources": ["header.html", "footer.html", "static.png"]
+      },
+      // 此外，分区名称以“trusted”开头的 WebView（例如 "trusted-foo"、
+      // "persist:trusted-bar"）都能访问以“local_”开头的 .html 文件以及
+      // .png 和 .js 文件。
+      {
+        "name": "trusted*",
+        "accessible_resources": ["local_*.html", "*.png", "*.js"]
+      }
+      // 另外，所有 &lt;webview partition="trusted-audio"&gt; 或
+      // &lt;webview partition="persist:trusted-audio"&gt; 都能访问
+      // .mp3 文件。注意，还包括“local_*.html”、“*.png”、“*.js”，
+      // 因为 "trusted-audio" 也匹配 "trusted*" 表达式。
+      {
+        "name": "trusted-audio",
+        "accessible_resources": ["*.mp3"]
+      }
+      // 其他分区中的 WebView 禁止访问打包资源。
+    ]
+  }</strong>
+}
+</pre>

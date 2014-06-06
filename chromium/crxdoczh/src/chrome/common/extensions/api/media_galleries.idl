@@ -22,9 +22,12 @@ namespace mediaGalleries {
   };
 
   [inline_doc] enum GetMetadataType {
-    // <!--@Retrieve all available metadata.-->
-    // 获取所有可用的元数据。
+    // <!--@Retrieve the mime type, metadata tags, and attached images.-->
+    // 获取 MIME 类型、元数据标签以及附带的图片。
     all,
+    // <!--@Retrieve only the mime type and the metadata tags.-->
+    // 只获取 MIME 类型和元数据标签。
+    mimeTypeAndTags,
     // <!--@Retrieve only the mime type.-->
     // 仅获取 MIME 类型。
     mimeTypeOnly
@@ -183,6 +186,11 @@ namespace mediaGalleries {
     // stream order will be preserved. Container metadata is the first element.-->
     // 包含媒体文件中所有元数据的词典。如果文件格式包含多个媒体流，则按照媒体流的顺序表示，第一个元素是容器元数据。
     StreamInfo[] rawTags;
+
+    // <!--@The images embedded in the media file's metadata. This is most often
+    // used for album art or video thumbnails.-->
+    // 内嵌在媒体文件元数据中的图片，通常为艺术专辑或视频缩略图。
+    [instanceof=Blob] object[] attachedImages;
   };
 
   callback MediaMetadataCallback = void (MediaMetadata metadata);

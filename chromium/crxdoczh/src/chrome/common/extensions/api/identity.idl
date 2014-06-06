@@ -6,6 +6,13 @@
 // 使用 <code>chrome.identity</code> API 获取 OAuth2 访问令牌。
 namespace identity {
 
+  dictionary AccountInfo {
+    // <!--@A unique identifier for the account. This ID will not change
+    // for the lifetime of the account.-->
+    // 账户的唯一标识符，在账户的生命周期内不会更改。
+    DOMString id;
+  };
+
   dictionary TokenDetails {
     // <!--@Fetching a token may require the user to sign-in to Chrome, or
     // approve the application's requested scopes. If the interactive
@@ -19,6 +26,15 @@ namespace identity {
     // 会在必要时提示用户。当该标志为 <code>false</code>
     // 或省略时，需要提示时 <code>getAuthToken</code> 会返回失败。
     boolean? interactive;
+
+    // <!--@The account ID whose token should be returned. If not
+    // specified, the primary account for the profile will be used.-->
+    // 返回对应令牌的账户标识符，如果未指定，则使用当前配置文件中的主账户。
+    //
+    // <!--@<code>account</code> is only supported when the
+    // "enable-new-profile-management" flag is set.-->
+    // 只有设置“enable-new-profile-management”标志后才支持 <code>account</code> 参数。
+    AccountInfo? account;
   };
 
   dictionary InvalidTokenDetails {
@@ -54,13 +70,6 @@ namespace identity {
     // <code>false</code> 或省略，<code>launchWebAuthFlow</code>
     // 在第一次导航没有完成认证流程的情况下会返回错误。
     boolean? interactive;
-  };
-
-  dictionary AccountInfo {
-    // <!--@A unique identifier for the account. This ID will not change
-    // for the lifetime of the account.-->
-    // 账户的唯一标识符，在账户的生命周期内不会更改。
-    DOMString id;
   };
 
   callback GetAuthTokenCallback = void (optional DOMString token);

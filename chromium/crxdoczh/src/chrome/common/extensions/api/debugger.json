@@ -16,8 +16,8 @@
         "properties": {
 //@          "tabId": { "type": "integer", "optional": true, "description": "The id of the tab which you intend to debug." },
           "tabId": { "type": "integer", "optional": true, "description": "您要调试的标签页的标识符。" },
-//@          "extensionId": { "type": "string", "optional": true, "description": "The id of the extension which you intend to debug. Attaching to an extension background page is only possible when 'enable-silent-debugging' flag is enabled on the target browser." },
-          "extensionId": { "type": "string", "optional": true, "description": "您要调试的扩展程序的标识符。只有当目标浏览器上启用了“enable-silent-debugging”标志后，才可以附加到扩展程序的后台网页。" },
+//@          "extensionId": { "type": "string", "optional": true, "description": "The id of the extension which you intend to debug. Attaching to an extension background page is only possible when 'silent-debugger-extension-api' flag is enabled on the target browser." },
+          "extensionId": { "type": "string", "optional": true, "description": "您要调试的扩展程序的标识符。只有当目标浏览器上启用了“silent-debugger-extension-api”标志后，才可以附加到扩展程序的后台网页。" },
 //@          "targetId": { "type": "string", "optional": true, "description": "The opaque id of the debug target." }
           "targetId": { "type": "string", "optional": true, "description": "调试目标的不透明标识符。" }
         }

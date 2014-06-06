@@ -449,6 +449,10 @@ navigation menu look better.
               {
                 "title": "使用 SenchaJS 建立应用",
                 "href": "/apps/sencha_framework"
+              },
+              {
+                "title": "游戏引擎",
+                "href": "/apps/game_engines"
               }
             ]
           },

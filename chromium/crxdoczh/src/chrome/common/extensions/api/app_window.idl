@@ -464,6 +464,7 @@ namespace app.window {
     [nodoc] boolean hasFrameColor;
     [nodoc] long activeFrameColor;
     [nodoc] long inactiveFrameColor;
+    [nodoc] boolean? firstShowHasHappened;
 
     // <!--@Set whether the window should stay above most other windows. Requires the
     // <code>"alwaysOnTopWindows"</code> permission.-->
@@ -579,5 +580,8 @@ namespace app.window {
     // <!--@Fired when the window is restored from being minimized or maximized.-->
     // 当窗口从最小化或最大化的状态恢复时产生。
     [nocompile] static void onRestored();
+
+    // Event for testing. Lets tests wait until a window has been shown.
+    [nocompile, nodoc] static void onWindowFirstShown();
   };
 };

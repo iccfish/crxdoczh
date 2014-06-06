@@ -2,75 +2,116 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>chrome.enterprise.platformKeys</code> API to generate
+// <!--@Use the <code>chrome.enterprise.platformKeys</code> API to generate
 // hardware-backed keys and to install certificates for these keys. The
 // certificates will be available to the platform and can, for example, be used
-// for TLS authentication and network access.
+// for TLS authentication and network access.-->
+// 使用 <code>chrome.enterprise.platformKeys</code> API
+// 生成由硬件产生的密钥，并为这些密钥安装证书。这些证书安装后可以在平台中使用，例如可用于 TLS 认证和网络访问。
 [platforms = ("chromeos")]
 namespace enterprise.platformKeys {
-  [nocompile] dictionary Token {
-    // Uniquely identifies this Token. Static IDs are 'user' and 'device',
+  [nocompile, noinline_doc] dictionary Token {
+    // <!--@Uniquely identifies this <code>Token</code>.
+    // <p>Static IDs are <code>"user"</code> and <code>"device"</code>,
     // referring to the platform's user-specific and the device-wide hardware
     // token, respectively. Any other tokens (with other identifiers) might be
-    // returned by getTokens.
+    // returned by $(ref:enterprise.platformKeys.getTokens).</p>-->
+    // 唯一标志 <code>Token</code>。
+    // <p>静态标识符包括 <code>"user"</code> 和
+    // <code>"device"</code>，分别对应平台中特定用户和整个设备的硬件令牌，其他令牌（有不同的标识符）由
+    // $(ref:enterprise.platformKeys.getTokens) 返回。</p>
     DOMString id;
 
-    // Implements the WebCrypto's <code>SubtleCrypto</code> interface. The
-    // crypto operations are hardware-backed.
+    // <!--@Implements the WebCrypto's
+    // <a href="http://www.w3.org/TR/WebCryptoAPI/#subtlecrypto-interface">SubtleCrypto</a>
+    // interface. The cryptographic operations, including key generation, are
+    // hardware-backed.
+    // <p>Only non-extractable RSASSA-PKCS1-V1_5 keys with
+    // <code>modulusLength</code> up to 2048 can be generated. Each key can be
+    // used for signing data at most once.</p>
+    // <p>Keys generated on a specific <code>Token</code> cannot be used with
+    // any other Tokens, nor can they be used with
+    // <code>window.crypto.subtle</code>. Equally, <code>Key</code> objects
+    // created with <code>window.crypto.subtle</code> cannot be used with this
+    // interface.</p>-->
+    // 实现 WebCrypto 的 <a href="http://www.w3.org/TR/WebCryptoAPI/#subtlecrypto-interface">SubtleCrypto</a>
+    // 接口，其中的加密操作，包括密钥生成，都是由硬件进行的。
+    // <p>只能生成 <code>modulusLength</code> 不超过 2048 的不可提取
+    // RSASSA-PKCS1-V1_5 密钥，为数据签名时每个密钥只能使用一次。</p>
+    // <p>某个 <code>Token</code>（令牌）生成的密钥不能和其他令牌一起使用，也不能和
+    // <code>window.crypto.subtle</code> 一起使用。同样的，<code>window.crypto.subtle</code>
+    // 创建的 <code>Key</code> 对象也不能和该接口一起使用。
     [instanceOf = SubtleCrypto] object subtleCrypto;
   };
 
-  // Invoked by <code>getTokens</code> with the list of available Tokens.
+  // <!--@Invoked by <code>getTokens</code> with the list of available Tokens.-->
+  // 由 <code>getTokens</code> 调用，返回可用令牌。
+  // |tokens|: <!--@The list of available tokens.-->
+  // 可用令牌的列表。
   callback GetTokensCallback = void(Token[] tokens);
 
-  // Callback to which the certificates are passed.
-  // |certificates| The list of certificates, each in DER encoding of a X.509
-  //     certificate.
+  // <!--@Callback to which the certificates are passed.-->
+  // 传递证书的回调函数。
+  // |certificates|: <!--@The list of certificates, each in DER encoding of a X.509
+  //     certificate.-->
+  // 证书列表，全都为 X.509 证书以 DER 编码方式表示。
   callback GetCertificatesCallback = void(ArrayBuffer[] certificates);
 
-  // Invoked by importCertificate or removeCertificate when the respective
-  // operation is finished.
+  // <!--@Invoked by importCertificate or removeCertificate when the respective
+  // operation is finished.-->
+  // 对应操作完成时，由 importCertificate 或 removeCertificate 调用。
   callback DoneCallback = void();
 
   interface Functions {
-    // Returns the available Tokens. In a regular user's session the list will
-    // always contain the user's token with id 'user'. If a device-wide TPM
-    // token is available it will also contain the device-wide token with id
-    // 'device'. The device-wide token will be the same for all sessions on this
-    // device (device in the sense of e.g. a Chromebook).
+    // <!--@Returns the available Tokens. In a regular user's session the list will
+    // always contain the user's token with <code>id</code> <code>"user"</code>.
+    // If a device-wide TPM token is available it will also contain the
+    // device-wide token with <code>id</code> <code>"device"</code>. The
+    // device-wide token will be the same for all sessions on this device
+    // (device in the sense of e.g. a Chromebook).-->
+    // 返回可用的令牌。在通常的用户会话中，返回的列表一定包含用户令牌，<code>id</code>
+    // 为 <code>"user"</code>。如果设备范围内的 TPM
+    // 令牌可用，则会包含设备范围内的令牌，<code>id</code> 为
+    // <code>"device"</code>。设备范围内的令牌对该设备上的所有会话都相同（设备也就是 Chromebook）。
     [nocompile] static void getTokens(GetTokensCallback callback);
 
-    // Returns the list of all client certificates available from the given
+    // <!--@Returns the list of all client certificates available from the given
     // token. Can be used to check for the existence and expiration of client
-    // certificates that are usable for a certain authentication.
-    // |tokenId| The id of a Token returned by <code>getTokens</code>.
-    // |callback| Called back with the list of the available certificates.
+    // certificates that are usable for a certain authentication.-->
+    // 返回指定令牌中所有可用的客户端证书列表，可以用来检查某一次认证中客户端证书是否存在和过期。
+    // |tokenId|: <!--@The id of a Token returned by <code>getTokens</code>.-->
+    // 由 <code>getTokens</code> 返回的令牌标识符。
+    // |callback|: <!--@Called back with the list of the available certificates.-->
+    // 调用时返回可用证书列表。
     static void getCertificates(DOMString tokenId,
                                 GetCertificatesCallback callback);
 
-    // Imports |certificate| to the given token if the certified key is already
-    // stored in this token.
+    // <!--@Imports <code>certificate</code> to the given token if the certified key
+    // is already stored in this token.
     // After a successful certification request, this function should be used to
     // store the obtained certificate and to make it available to the operating
-    // system and browser for authentication.
-    // TODO: Instead of ArrayBuffer should be (ArrayBuffer or ArrayBufferView),
-    // or at least (ArrayBuffer or Uint8Array).
-    // |tokenId| The id of a Token returned by <code>getTokens</code>.
-    // |certificate| The DER encoding of a X.509 certificate.
-    // |callback| Called back when this operation is finished.
+    // system and browser for authentication.-->
+    // 将 <code>certificate</code>（证书）导入到指定令牌（如果证书密钥已经存储在该令牌中）。证书请求成功后，应该调用该函数存储获得的证书，以便使操作系统和浏览器可以利用它进行认证。
+    // |tokenId|: <!--@The id of a Token returned by <code>getTokens</code>.-->
+    // <code>getTokens</code> 返回的令牌标识符。
+    // |certificate|: <!--@The DER encoding of a X.509 certificate.-->
+    // 以 DER 编码方式表示的 X.509 证书。
+    // |callback|: <!--@Called back when this operation is finished.-->
+    // 操作完成后调用。
     static void importCertificate(DOMString tokenId,
                                   ArrayBuffer certificate,
                                   optional DoneCallback callback);
 
-    // Removes |certificate| from the given token if present.
+    // <!--@Removes <code>certificate</code> from the given token if present.
     // Should be used to remove obsolete certificates so that they are not
     // considered during authentication and do not clutter the certificate
-    // choice. Should be used to free storage in the certificate store.
-    // TODO: Instead of ArrayBuffer should be (ArrayBuffer or ArrayBufferView),
-    // or at least (ArrayBuffer or Uint8Array).
-    // |tokenId| The id of a Token returned by <code>getTokens</code>.
-    // |certificate| The DER encoding of a X.509 certificate.
-    // |callback| Called back when this operation is finished.
+    // choice. Should be used to free storage in the certificate store.-->
+    // |tokenId|: The id of a Token returned by <code>getTokens</code>.
+    // 从指定令牌中删除 <code>certificate</code>（证书）（如果存在的话），应该用于删除废弃的证书，因此在认证中不再考虑它们，而不会干扰证书的选择，还可以用于释放证书存储区的空间。
+    // |certificate|: <!--@The DER encoding of a X.509 certificate.-->
+    // 以 DER 编码方式表示的 X.509 证书。
+    // |callback|: <!--@Called back when this operation is finished.-->
+    // 操作完成后调用。
     static void removeCertificate(DOMString tokenId,
                                   ArrayBuffer certificate,
                                   optional DoneCallback callback);

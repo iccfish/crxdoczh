@@ -1,0 +1,97 @@
+<p class="note">
+<strong><!--@Note: -->注意：</strong><!--@
+This API is only available on Chrome OS and to
+<a href="https://support.google.com/chrome/a/answer/1375694?hl=en">extensions pre-installed by policy</a>.-->该
+API 仅在 Chrome OS 上可用，并且仅适用于<a
+href="https://support.google.com/chrome/a/answer/1375694?hl=en">通过策略预先安装的扩展程序</a>。
+</p>
+
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<!--@Typical usage of this API to enroll a client certificate follows these steps:-->
+该 API 的典型用法涉及到客户端证书，遵循如下步骤：
+<ul>
+  <li><!--@Get all available tokens using $(ref:enterprise.platformKeys.getTokens).-->
+  使用 $(ref:enterprise.platformKeys.getTokens) 获取所有可用令牌。
+  </li>
+  <li><!--@Find the Token with <code>id</code> equal <code>"user"</code>. Use this
+  Token subsequently.-->
+  找出 <code>id</code> 等于 <code>"user"</code> 的 Token 对象，接下来使用它。
+  </li>
+  <li><!--@Generate a key pair using the <code>generateKey</code> Token method
+  (defined in SubtleCrypto). This will return handle to the key.-->
+  通过令牌对象的 <code>generateKey</code> 方法（在 SubtleCrypto 中定义）生成密钥对，该方法会返回密钥句柄。
+  </li>
+  <li><!--@Export the public key using the <code>exportKey</code> Token method
+  (defined in SubtleCrypto).-->
+  通过令牌对象的 <code>exportKey</code> 方法（在 SubtleCrypto 中定义）导出公钥。
+  <li><!--@Create the signature of the certification request's data using the
+  <code>sign</code> Token method (defined in SubtleCrypto).-->
+  通过令牌对象的 <code>sign</code> 方法（在 SubtleCrypto 中定义）创建证书请求数据的签名。
+  </li>
+  <li><!--@Complete the certification request and send it to the certification
+  authority.-->
+  完成证书请求，并将它发送至证书权威机构。
+  </li>
+  <li><!--@If a certificate is received, import it using
+  $(ref:enterprise.platformKeys.importCertificate)-->
+  如果接收到证书，使用 $(ref:enterprise.platformKeys.importCertificate)
+  导入。</li>
+</ul>
+
+<p>
+<!--@Here's an example that shows the major API interaction except the building and sending of the certification request:-->
+下面的例子演示了主要的 API 交互过程，除了证书请求的建立和发送部分：
+</p>
+
+<pre data-filename="background.js">
+function getUserToken(callback) {
+  chrome.enterprise.platformKeys.getTokens(function(tokens) {
+    for (var i = 0; i < tokens.length; i++) {
+      if (tokens[i].id == "user") {
+        callback(tokens[i]);
+        return;
+      }
+    }
+    callback(undefined);
+  });
+}
+
+function generateAndSign(userToken) {
+  var data = new Uint8Array([0, 5, 1, 2, 3, 4, 5, 6]);
+  var algorithm = {
+    name: "RSASSA-PKCS1-v1_5",
+    // RsaHashedKeyGenParams
+    modulusLength: 2048,
+    publicExponent:
+        new Uint8Array([0x01, 0x00, 0x01]),  // 等价于 65537
+    hash: {
+      name: "SHA-1",
+    }
+  };
+  var cachedKeyPair;
+  userToken.subtleCrypto.generateKey(algorithm, false, ["sign"])
+    .then(function(keyPair) {
+            cachedKeyPair = keyPair;
+            return userToken.subtleCrypto.exportKey("spki", keyPair.publicKey);
+          },
+          console.log.bind(console))
+    .then(function(publicKeySpki) {
+            // 使用公钥建立证书请求。
+            return userToken.subtleCrypto.sign(
+                {name : "RSASSA-PKCS1-v1_5"}, cachedKeyPair.privateKey, data);
+          },
+          console.log.bind(console))
+    .then(function(signature) {
+              // 根据 |signature| 完成证书请求，将请求发送至
+              // CA，并调用 onClientCertificateReceived。
+          },
+          console.log.bind(console));
+}
+
+function onClientCertificateReceived(userToken, certificate) {
+  chrome.enterprise.platformKeys.importCertificate(userToken.id, certificate);
+}
+
+getUserToken(generateAndSign);
+</pre>
