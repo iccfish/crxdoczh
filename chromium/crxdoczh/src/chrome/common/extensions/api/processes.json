@@ -86,12 +86,6 @@
 //@            "description": "The most recent measurement of the process’s SQLite memory usage, in bytes. Only available when receiving the object as part of a callback from onUpdated or onUpdatedWithMemory."
             "description": "最近统计的进程 SQLite 的内存使用情况，以字节为单位，只有在 onUpdatedWithMemory 或包含 includeMemory 标志调用 getProcessInfo 时的回调函数中接收该对象时中才可用。"
           },
-          "fps": {
-            "type": "number",
-            "optional": true,
-//@            "description": "The most recent measurement of the process frames per second. Only available when receiving the object as part of a callback from onUpdated or onUpdatedWithMemory."
-            "description": "最近统计的进程帧率，只有在 onUpdated 或 onUpdatedWithMemory 的回调函数中接收该对象时才可用。"
-          },
           "imageCache": {
             "$ref": "Cache",
             "optional": true,

@@ -68,6 +68,13 @@
 //@            "description": "When the contents of this folder last changed, in milliseconds since the epoch."
             "description": "该文件夹内容的上一次修改时间，表示为自 1970 年 1 月 1 日午夜至今所经过的毫秒数。"
           },
+          "unmodifiable": {
+            "type": "string",
+            "enum": ["managed"],
+            "optional": true,
+//@            "description": "Indicates the reason why this node is unmodifiable. The <var>managed</var> value indicates that this node was configured by the system administrator. Omitted if the node can be modified by the user and the extension (default)."
+            "description": "表示该节点不可修改的原因，\"<var>managed</var>\" 表示该节点由系统管理员配置。如果该节点可以由用户和扩展程序修改（默认）则省略。"
+          },
           "children": {
             "type": "array",
             "optional": true,
