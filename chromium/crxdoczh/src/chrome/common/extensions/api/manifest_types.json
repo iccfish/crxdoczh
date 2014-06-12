@@ -212,6 +212,18 @@
               "description": "<p>UUID 字符串列表。</p>",
               "type": "string"
             }
+          },
+          "socket": {
+            "type": "boolean",
+//@            "description": "If <code>true</code>, gives permission to an app to use the $(ref:bluetoothSocket) API",
+            "description": "如果为 <code>true</code>，允许应用使用 $(ref:bluetoothSocket) API。",
+            "optional": true
+          },
+          "low_energy": {
+            "type": "boolean",
+//@            "description": "If <code>true</code>, gives permission to an app to use the $(ref:bluetoothLowEnergy) API",
+            "description": "如果为 <code>true</code>，允许应用使用 $(ref:bluetoothLowEnergy) API。",
+            "optional": true
           }
         }
       },

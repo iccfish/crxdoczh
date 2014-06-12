@@ -61,8 +61,35 @@ namespace bluetoothSocket {
   // <code>setPaused</code> 方法的回调函数。
   callback SetPausedCallback = void ();
 
-  // <!--@Callback from the <code>listenUsingRfcomm</code>,
-  // <code>listenUsingInsecureRfcomm</code> and
+  // <!--@Options that may be passed to the <code>listenUsingRfcomm</code> and
+  // <code>listenUsingL2cap</code> methods. Each property is optional with a
+  // default being used if not specified.-->
+  // 传递给 <code>listenUsingRfcomm</code> 和 <code>listenUsingL2cap</code>
+  // 方法的选项。所有属性都是可选的，如果未指定则使用默认值。
+  dictionary ListenOptions {
+    // <!--@The RFCOMM Channel used by <code>listenUsingRfcomm</code>. If specified,
+    // this channel must not be previously in use or the method call will fail.
+    // When not specified, an unused channel will be automatically allocated.-->
+    // <code>listenUsingRfcomm</code> 使用的 RFCOMM
+    // 通道。如果指定了该属性，指定的通道不能处于使用中的状态，否则该方法的调用会失败。如果未指定，则自动分配未使用的通道。
+    long? channel;
+
+    // <!--@The L2CAP PSM used by <code>listenUsingL2cap</code>. If specified, this
+    // PSM must not be previously in use or the method call with fail. When
+    // not specified, an unused PSM will be automatically allocated.-->
+    // <code>listenUsingL2cap</code> 使用的 L2CAP
+    // PSM。如果指定了该属性，指定的 PSM
+    // 不能处于使用中的状态，否则该方法的调用会失败。如果未指定，则自动分配未使用的
+    // PSM。
+    long? psm;
+
+    // <!--@Length of the socket's listen queue. The default value depends on the
+    // operating system's host subsystem.-->
+    // 套接字监听队列的长度，默认值取决于操作系统的主机子系统。
+    long? backlog;
+  };
+
+  // <!--@Callback from the <code>listenUsingRfcomm</code> and
   // <code>listenUsingL2cap</code> methods.-->
   // <code>listenUsingRfcomm</code>、<code>listenUsingInsecureRfcomm</code>
   // 和 <code>listenUsingL2cap</code>
@@ -286,41 +313,14 @@ namespace bluetoothSocket {
     // 套接字标识符。
     // |uuid| : <!--@Service UUID to listen on.-->
     // 要监听的服务 UUID。
-    // |channel| : <!--@RFCOMM channel id to listen on. Zero may be specified to
-    // allocate an unused channel.-->
-    // 要监听的 RFCOMM 通道，如果为零，则分配某个未用的通道。
-    // |backlog| : <!--@Length of the socket's listen queue. The default value
-    // depends on the operating system's host subsystem.-->
-    // 套接字监听队列长度，默认值取决于操作系统主机子系统。
+    // |options| : <!--@Optional additional options for the service.-->
+    // 该服务的其他可选选项。
     // |callback| : <!--@Called when listen operation completes.-->
     // 监听操作完成后调用。
     static void listenUsingRfcomm(long socketId,
                                   DOMString uuid,
-                                  long channel,
-                                  optional long backlog,
+                                  optional ListenOptions options,
                                   ListenCallback callback);
-
-    // <!--@Listens for connections from Bluetooth 1.0 and 2.0 devices using the
-    // RFCOMM protocol without requiring encryption or authentication on the
-    // socket.-->
-    // 使用 RFCOMM 协议监听蓝牙 1.0 和 2.0 设备发出的连接，而不需要在套接字上进行加密或认证。
-    // |socketId| : <!--@The socket identifier.-->
-    // 套接字标识符。
-    // |uuid| : <!--@Service UUID to listen on.-->
-    // 要监听的服务 UUID。
-    // |channel| : <!--@RFCOMM channel id to listen on. Zero may be specified to
-    // allocate an unused channel.-->
-    // 要监听的 RFCOMM 通道，如果为零，则分配某个未用的通道。
-    // |backlog| : <!--@Length of the socket's listen queue. The default value
-    // depends on the operating system's host subsystem.-->
-    // 套接字监听队列长度，默认值取决于操作系统主机子系统。
-    // |callback| : <!--@Called when listen operation completes.-->
-    // 监听操作完成后调用。
-    static void listenUsingInsecureRfcomm(long socketId,
-                                          DOMString uuid,
-                                          long channel,
-                                          optional long backlog,
-                                          ListenCallback callback);
 
     // <!--@Listen for connections using the L2CAP protocol.-->
     // 使用 L2CAP 协议监听连接。
@@ -328,18 +328,13 @@ namespace bluetoothSocket {
     // 套接字标识符。
     // |uuid| : <!--@Service UUID to listen on.-->
     // 要监听的服务 UUID。
-    // |psm| : <!--@L2CAP PSM to listen on. Zero may be specified to allocate an
-    // unused PSM.-->
-    // 要监听的 L2CAP PSM，如果为零，则分配某个未用的 PSM。
-    // |backlog| : <!--@Length of the socket's listen queue. The default value
-    // depends on the operating system's host subsystem.-->
-    // 套接字监听队列长度，默认值取决于操作系统主机子系统。
+    // |options| : <!--@Optional additional options for the service.-->
+    // 该服务的其他可选选项。
     // |callback| : <!--@Called when listen operation completes.-->
     // 监听操作完成后调用。
     static void listenUsingL2cap(long socketId,
                                  DOMString uuid,
-                                 long psm,
-                                 optional long backlog,
+                                 optional ListenOptions options,
                                  ListenCallback callback);
 
     // <!--@Connects the socket to a remote Bluetooth device. When the

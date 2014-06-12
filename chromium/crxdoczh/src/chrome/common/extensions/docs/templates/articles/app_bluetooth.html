@@ -23,24 +23,47 @@
   <!--@For Chrome Apps that use Bluetooth, add the
   <a href="manifest/bluetooth">bluetooth</a> entry to the manifest
   and specify, if appropriate, the UUIDs of profiles, protocols or services
-  you wish to implement.
-  For example:-->
+  you wish to implement along with whether you wish to implement these with the
+  socket and/or Low Energy APIs.-->
   使用蓝牙的 Chrome 应用需要在清单文件中添加
-  <a href="manifest/bluetooth">bluetooth</a> 项，如果适用的话还需要指定您希望实现的配置文件、协议或服务 UUID。例如：
+  <a href="manifest/bluetooth">bluetooth</a> 项，如果适用的话还需要指定您希望实现的配置文件、协议或服务 UUID，还有您是否希望通过套接字和/或低能耗 API
+  实现它们。
+</p>
+
+<p>
+  <!--@For example for a socket implementation:-->
+  例如套接字实现：
 </p>
 
 <pre data-filename="manifest.json">
 "bluetooth": {
-  "uuids": [ "1105", "1106" ]
+  "uuids": [ "1105", "1106" ],
+  "socket": true
+}
+</pre>
+
+<p>
+  <!--@And for a Low Energy implementation:-->
+  低能耗实现：
+</p>
+
+<pre data-filename="manifest.json">
+"bluetooth": {
+  "uuids": [ "180D", "1809", "180F" ],
+  "low_energy": true
 }
 </pre>
 
 <p>
   <!--@To only access adapter state, discover nearby devices, and obtain basic
-  information about devices, omit the <code>uuids</code> list.-->
-  如果只要访问适配器状态、发现附近的设备、获取设备的基本信息，可以省略
-  <code>uuids</code> 列表。
+  information about devices, only the entry itself is required:-->
+  如果只要访问适配器状态、发现附近的设备、获取设备的基本信息，只需要指定
+  bluetooth。
 </p>
+
+<pre data-filename="manifest.json">
+"bluetooth": { }
+</pre>
 
 <h2 id="adapter_info"><!--@Adapter information-->适配器信息</h2>
 
@@ -184,15 +207,15 @@ chrome.bluetooth.onDeviceRemoved.addListener(function(device) {
 
 <p>
   <!--@You should call $(ref:bluetooth.startDiscovery) whenever your
-  app needs to discover nearby devices. Do not check the
-  <code>discovering</code> property of $(ref:bluetooth.AdapterState). The call
-  to start discovery will succeed even if another app is discovering nearby
-  devices, and will ensure the adapter continues to perform discovery after
-  that other app has stopped.-->
+  app needs to discover nearby devices. Do not make the call conditional on
+  the <code>discovering</code> property of $(ref:bluetooth.AdapterState). The
+  call will succeed even if another app is discovering nearby devices, and will
+  ensure the adapter continues to perform discovery after that other app has
+  stopped.-->
   您的应用需要发现附近的设备时就可以调用
-  $(ref:bletooth.startDiscovery)，不需要检查 $(ref:bluetooth.AdapterState)
+  $(ref:bletooth.startDiscovery)，不需要根据 $(ref:bluetooth.AdapterState)
   的 <code>discovering</code>
-  属性。即使另一个应用也在发现附近的设备，开始发现的调用也会成功，并确保另一个应用停止时适配器继续进行发现操作。
+  属性决定是否调用该方法。即使另一个应用也在发现附近的设备，调用也会成功，并确保另一个应用停止时适配器继续进行发现操作。
 </p>
 
 <p>
@@ -347,7 +370,7 @@ chrome.bluetooth.getDevices(function(devices) {
 
 <p>
   <!--@Chrome Apps may make connections to any device that supports RFCOMM or
-  L2CAP services. This includes the majority of class Bluetooth devices on
+  L2CAP services. This includes the majority of classic Bluetooth devices on
   the market.-->
   Chrome 应用可以连接到支持 RFCOMM 或 L2CAP 服务的设备，包括市场上大部分主要的蓝牙设备。
 </p>
@@ -387,7 +410,7 @@ chrome.bluetooth.getDevices(function(devices) {
 var uuid = '1105';
 var onConnectedCallback = function() {
   if (chrome.runtime.lastError) {
-    console.log("连接失败：" + chrome.runtime.lastError);
+    console.log("连接失败：" + chrome.runtime.lastError.message);
   } else {
     // 此处为配置文件的实现。
   }
@@ -412,7 +435,7 @@ chrome.bluetoothSocket.create(function(createInfo) {
   objects. To learn about ArrayBuffers, check out the overview,
   <a href="https://developer.mozilla.org/en-US/docs/JavaScript_typed_arrays">JavaScript typed arrays</a>,
   and the tutorial,
-  <a href="http://updates.html5rocks.com/2012/06/How-to-convert-ArrayBuffer-to-and-from-String">How to convert ArrayBuffer to and from String</a>.\-->
+  <a href="http://updates.html5rocks.com/2012/06/How-to-convert-ArrayBuffer-to-and-from-String">How to convert ArrayBuffer to and from String</a>.-->
   接收和发送套接字数据时使用 <code>ArrayBuffer</code> 对象，请参考
 <a href="https://developer.mozilla.org/en-US/docs/JavaScript_typed_arrays">JavaScript
 类型化数组</a>概述以及<a href="http://updates.html5rocks.com/2012/06/How-to-convert-ArrayBuffer-to-and-from-String">怎样在
@@ -428,7 +451,7 @@ ArrayBuffer 和字符串之间转换</a>的教程了解 ArrayBuffer 的有关信
 <pre>
 chrome.bluetoothSocket.send(socketId, arrayBuffer, function(bytes_sent) {
   if (chrome.runtime.lastError) {
-    console.log("发送失败：" + chrome.runtime.lastError);
+    console.log("发送失败：" + chrome.runtime.lastError.message);
   } else {
     console.log("发送了 " + bytes_sent + " 字节")
   }
@@ -495,56 +518,43 @@ chrome.bluetoothSocket.disconnect(socketId);
 <h3 id="listening"><!--@Listening on a socket-->监听套接字</h3>
 
 <p>
-  <!--@Three types of published service are supported. RFCOMM is the most commonly
+  <!--@Two types of published service are supported. RFCOMM is the most commonly
   used and covers the majority of devices and profiles:-->
-  支持三种类型的发布服务，RFCOMM 是最常见的，覆盖了大部分设备和配置文件：
+  支持两种类型的发布服务，RFCOMM 是最常见的，覆盖了大部分设备和配置文件：
 </p>
 
 <pre>
 var uuid = '1105';
-var channel = 0; // 自动选择通道。
 chrome.bluetoothSocket.create(function(createInfo) {
   chrome.bluetoothSocket.listenUsingRfcomm(createInfo.socketId,
-    uuid, channel, onListenCallback);
+    uuid, onListenCallback);
 });
 </pre>
 
 <p>
-  <!--@Insecure RFCOMM is an option for Bluetooth 1.0 and Bluetooth 2.0 devices that
-  do not support encryption. For all other device types this is no different
-  to using $(ref:bluetoothSocket.listenUsingRfcomm).-->
-  不支持加密的蓝牙 1.0 和蓝牙 2.0 设备可以使用不安全的 RFCOMM，对于其他设备来说该方法和 $(ref:bluetoothSocket.listenUsingRfcomm) 没有任何区别。
-</p>
-
-<pre>
-chrome.bluetoothSocket.create(function(createInfo) {
-  chrome.bluetoothSocket.listenUsingInsecureRfcomm(createInfo.socketId,
-    uuid, channel, onListenCallback);
-});
-</pre>
-
-<p>
-  <!--@Finally L2CAP covers other device types and vendor-specific uses such as
-  firmware uploading.-->
-  最后，L2CAP 覆盖了其他设备类型以及制造商特定的用法，例如固件上传。
+  <!--@L2CAP is the other and covers other device types and vendor-specific uses
+  such as firmware uploading.-->
+  L2CAP 是另一种方式，覆盖了其他设备类型以及制造商特定的用途，例如固件上传。
 </p>
 
 <pre>
 var uuid = '0b87367c-f188-47cd-bc20-a5f4f70973c6';
-var psm = 0; // 自动选择 PSM。
 chrome.bluetoothSocket.create(function(createInfo) {
   chrome.bluetoothSocket.listenUsingL2cap(createInfo.socketId,
-    uuid, psm, onListenCallback);
+    uuid, onListenCallback);
 });
 </pre>
 
 <p>
-  <!--@In all three cases the callback indicates error through
-  <code>chrome.runtime.lastError</code> and success otherwise.
+  <!--@In both cases an optional $(ref:bluetoothSocket.ListenOptions) may be
+  passed to allocate a specific channel or PSM. The callback indicates error
+  through <code>chrome.runtime.lastError</code> and success otherwise.
   Keep a handle to the socketId so that you can later accept connections
   ($(ref:bluetoothSocket.onAccept)) from this socket.-->
-  这三种方式中回调函数都通过 <code>chrome.runtime.lastError</code>
-  报告错误，否则操作成功。请保存 socketId 的值，以便之后接受该套接字的连接（$(ref:bluetoothSocket.onAccept)）。
+  这两种方式都能指定可选的
+  $(ref:bluetoothSocket.ListenOptions)，分配某个通道或 PSM。回调函数通过
+  <code>chrome.runtime.lastError</code> 报告错误，否则操作成功。请保存
+  socketId 的值，以便之后接受该套接字的连接（$(ref:bluetoothSocket.onAccept)）。
 </p>
 
 <h3 id="accepting"><!--@Accepting client connections-->接受客户端连接</h3>

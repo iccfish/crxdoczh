@@ -97,21 +97,21 @@ namespace bluetooth {
     // dBm。如果设备当前已连接，则会测量连接信号的
     // RSSI，否则如果可用的话测量上一次发送给设备的查询信号的
     // RSSI。如果不可用则不存在该属性。
-    long? rssi;
+    [nodoc] long? rssi;
 
     // <!--@Indicates the host's current transmit power ("Tx power") for the
     // connection to the device, measured in dBm, to a resolution of 1dBm.
     // This value is only available if the device is currently connected.-->
     // 表示设备连接中主机当前的传输功率（Tx 功率），以 dBm 为单位，精度为 1
     // dBm。只有设备当前处于连接状态时该属性值才可用。
-    long? currentHostTransmitPower;
+    [nodoc] long? currentHostTransmitPower;
 
     // <!--@Indicates the host's maximum transmit power ("Tx power") for the
     // connection to the device, measured in dBm, to a resolution of 1dBm.
     // This value is only available if the device is currently connected.-->
     // 表示设备连接中主机的最大传输功率（Tx 功率），以 dBm 为单位，精度为 1
     // dBm。只有设备当前处于连接状态时该属性值才可用。
-    long? maximumHostTransmitPower;
+    [nodoc] long? maximumHostTransmitPower;
 
     // <!--@UUIDs of protocols, profiles and services advertised by the device.
     // For classic Bluetooth devices, this list is obtained from EIR data and

@@ -11,11 +11,27 @@ available for the $(ref:bluetooth) API.-->
 {
   "name": "我的蓝牙{{platformTitle}}",
   "bluetooth": {
-    // chrome.bluetooth.addProfile 权限：
+    // chrome.bluetoothSocket 的权限：
     // 对于使用 UUID 0x1105 和 0x1106 标识的
-    // 协议、配置文件或服务的设备，允许与应用
-    // 程序与之通信。
+    // 协议、配置文件或服务的设备，允许应用
+    // 通过蓝牙套接字 API 与之通信。
     "uuids": [ "1105", "1106" ]
+    "socket": true
+  },
+  ...
+}
+</pre>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的蓝牙{{platformTitle}}",
+  "bluetooth": {
+    // chrome.bluetoothLowEnergy 的权限：
+    // 对于使用 UUID 0x180D、0x1809 和 0x180F
+    // 标识的配置文件的设备，允许应用
+    // 通过蓝牙低能耗 API 与之通信。
+    "uuids": [ "180D", "1809", "180F" ],
+    "low_energy": true
   },
   ...
 }
