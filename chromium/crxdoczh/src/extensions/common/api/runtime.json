@@ -403,7 +403,7 @@
             "properties": {
               "reason": {
                 "type": "string",
-                "enum": ["install", "update", "chrome_update"],
+                "enum": ["install", "update", "chrome_update", "shared_module_update"],
 //@                "description": "The reason that this event is being dispatched."
                 "description": "分发这一事件的原因。"
               },
@@ -412,6 +412,11 @@
                 "optional": true,
 //@                "description": "Indicates the previous version of the extension, which has just been updated. This is present only if 'reason' is 'update'."
                 "description": "表示已更新扩展程序的前一个版本，只有当 reason 为 'update' 时才存在。"
+              },
+              "id": {
+                "type": "string",
+                "optional": true,
+                "description": "Indicates the ID of the imported shared module extension which updated. This is present only if 'reason' is 'shared_module_update'."
               }
             }
           }

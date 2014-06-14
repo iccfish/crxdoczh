@@ -292,6 +292,25 @@
         ]
       },
       {
+        "id": "FileSystemPermissionRequest",
+        "type": "object",
+//@        "description": "The type of <code>request</code> object which accompanies a <code>filesystem</code> <a href=\"#event-permissionrequest\">permissionrequest</a></code> DOM event.",
+        "description": "<code>filesystem <a href=\"#event-permissionrequest\">permissionrequest</a></code>（文件系统权限请求）DOM 事件的 <code>request</code> 对象。",
+        "properties": {
+          "url": {
+//@            "description": "The URL of the frame requesting access to local file system.",
+            "description": "请求访问本地文件系统的框架 URL。",
+            "type": "string"
+          }
+        },
+        "functions": [
+//@          { "name": "allow", "description": "Allow the permission request." },
+          { "name": "allow", "description": "允许权限请求。" },
+//@          { "name": "deny", "description": "Deny the permission request." }
+          { "name": "deny", "description": "拒绝权限请求。" }
+        ]
+      },
+      {
         "id": "LoadPluginPermissionRequest",
         "type": "object",
 //@        "description": "The type of <code>request</code> object which accompanies a <code>loadplugin</code> <a href=\"#event-permissionrequest\">permissionrequest</a> DOM event.<p>",
@@ -924,7 +943,7 @@
 //@            "description": "The type of permission being requested.",
             "description": "请求的权限类型。",
             "type": "string",
-            "enum": ["media", "geolocation", "pointerLock", "download", "loadplugin"]
+            "enum": ["media", "geolocation", "pointerLock", "download", "loadplugin", "filesystem"]
           },
           {
             "name": "requestId",

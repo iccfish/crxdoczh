@@ -21,7 +21,6 @@
         # Disable schema compiler to generate model extension API code.
         # Only register the extension functions in extension system.
         'non_compiled_schema_files': [
-          'adview.json',
           'browsing_data.json',
           'chromeos_info_private.json',
           'extension.json',
@@ -76,6 +75,7 @@
               'file_system_provider.idl',
               'file_system_provider_internal.idl',
               'font_settings.json',
+              'gcd_private.idl',
               'gcm.json',
               'guest_view_internal.json',
               'hangouts_private.idl',
