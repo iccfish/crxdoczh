@@ -35,6 +35,14 @@ namespace identity {
     // "enable-new-profile-management" flag is set.-->
     // 只有设置“enable-new-profile-management”标志后才支持 <code>account</code> 参数。
     AccountInfo? account;
+
+    // <!--@A list of OAuth2 scopes to request.-->
+    // 要请求的 OAuth2 范围列表。
+    //
+    // <!--@When the <code>scopes</code> field is present, it overrides the
+    // list of scopes specified in manifest.json.-->
+    // <code>scopes</code> 字段存在时，它会覆盖 manifest.json 中指定的范围列表。
+    DOMString[]? scopes;
   };
 
   dictionary InvalidTokenDetails {

@@ -24,8 +24,8 @@
         "id": "LaunchType",
         "type": "string",
         "enum": ["OPEN_AS_REGULAR_TAB", "OPEN_AS_PINNED_TAB", "OPEN_AS_WINDOW", "OPEN_FULL_SCREEN"],
-//@        "description": "These are all possible app launch types. Note: This enum is only available to Chrome users on the dev channel."
-        "description": "包含所有可能的应用启动类型。注意：该枚举仅对 Dev 分支的 Chrome 用户可用。"
+//@        "description": "These are all possible app launch types."
+        "description": "包含所有可能的应用启动类型。"
       },
       {
         "id": "ExtensionInfo",
@@ -148,14 +148,14 @@
             "enum": ["admin", "development", "normal", "sideload", "other"]
           },
           "launchType": {
-//@            "description": "The app launch type (only present for apps). Note: This property is only available to Chrome users on the dev channel.",
-            "description": "应用的启动类型（仅在应用中存在）。注意：该属性仅对 Dev 分支的 Chrome 用户可用。",
+//@            "description": "The app launch type (only present for apps). This property is new in Chrome 37.",
+            "description": "应用的启动类型（仅在应用中存在）。该属性在 Chrome 37 中新增。",
             "$ref": "LaunchType",
             "optional": true
           },
           "availableLaunchTypes": {
-//@            "description": "The currently available launch types (only present for apps). Note: This property is only available to Chrome users on the dev channel.",
-            "description": "注意：当前可用的启动类型（仅在应用中存在）。注意：该属性仅对 Dev 分支的 Chrome 用户可用。",
+//@            "description": "The currently available launch types (only present for apps). This property is new in Chrome 37.",
+            "description": "注意：当前可用的启动类型（仅在应用中存在）。该属性在 Chrome 37 中新增。",
             "type": "array",
             "optional": true,
             "items": {
@@ -364,8 +364,8 @@
       },
       {
         "name": "createAppShortcut",
-//@        "description": "Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created. Note: This function is only available to Chrome users on the dev channel.",
-        "description": "显示选项，为应用创建快捷方式。在 Mac 中，只能创建打包应用的快捷方式。注意：该函数仅对 Dev 分支的 Chrome 用户可用。",
+//@        "description": "Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created. This function is new in Chrome 37.",
+        "description": "显示选项，为应用创建快捷方式。在 Mac 中，只能创建打包应用的快捷方式。该函数在 Chrome 37 中新增。",
         "parameters": [
           {
             "name": "id",
@@ -383,8 +383,8 @@
       },
       {
         "name": "setLaunchType",
-//@        "description": "Set the launch type of an app. Note: This function is only available to Chrome users on the dev channel.",
-        "description": "设置应用的启动类型。注意：该函数仅对 Dev 分支的 Chrome 用户可用。",
+//@        "description": "Set the launch type of an app. This function is new in Chrome 37.",
+        "description": "设置应用的启动类型。该函数在 Chrome 37 中新增。",
         "parameters": [
           {
             "name": "id",
@@ -408,8 +408,8 @@
       },
       {
         "name": "generateAppForLink",
-//@        "description": "Generate an app for a URL. Returns the generated bookmark app. Note: This function is only available to Chrome users on the dev channel.",
-        "description": "为 URL 生成应用，返回生成的书签应用。注意：该函数仅对 Dev 分支的 Chrome 用户可用。",
+//@        "description": "Generate an app for a URL. Returns the generated bookmark app. This function is new in Chrome 37.",
+        "description": "为 URL 生成应用，返回生成的书签应用。该函数在 Chrome 37 中新增。",
         "parameters": [
           {
             "name": "url",
