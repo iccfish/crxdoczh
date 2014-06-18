@@ -13,6 +13,19 @@ namespace identity {
     DOMString id;
   };
 
+  dictionary ProfileUserInfo {
+    // <!--@An email address for the user account signed into the current
+    // profile. Empty if the user is not signed in.-->
+    // 当前配置文件中登录用户账户的电子邮件地址，如果用户未登录则为空。
+    DOMString email;
+
+    // <!--@A unique identifier for the account. This ID will not change
+    // for the lifetime of the account. Empty if the user is not
+    // signed in.-->
+    // 账户的唯一标志符，在账户的整个生命周期内不会更改。如果用户未登录则为空。
+    DOMString id;
+  };
+
   dictionary TokenDetails {
     // <!--@Fetching a token may require the user to sign-in to Chrome, or
     // approve the application's requested scopes. If the interactive
@@ -82,6 +95,7 @@ namespace identity {
 
   callback GetAuthTokenCallback = void (optional DOMString token);
   callback GetAccountsCallback = void (AccountInfo[] accounts);
+  callback GetProfileUserInfoCallback = void (ProfileUserInfo userInfo);
   callback InvalidateAuthTokenCallback = void ();
   callback LaunchWebAuthFlowCallback = void (optional DOMString responseUrl);
 
@@ -124,6 +138,17 @@ namespace identity {
     // undefined。
     static void getAuthToken(optional TokenDetails details,
                              GetAuthTokenCallback callback);
+
+    // <!--@Retrieves email address and obfuscated gaia id of the user
+    // signed into a profile.-->
+    // 获取当前配置文件中登录用户的电子邮件地址和模糊处理后的 GAIA 标识符。
+    //
+    // <!--@This API is different from identity.getAccounts in two
+    // ways. The information returned is available offline, and it
+    // only applies to the primary account for the profile.-->
+    // 该 API 与 identity.getAccounts
+    // 的区别表现在以下两方面，返回的信息可以在离线状态下获得，并且只适用于当前配置文件的主帐户。
+    static void getProfileUserInfo(GetProfileUserInfoCallback callback);
 
     // <!--@Removes an OAuth2 access token from the Identity API's token cache.-->
     // 从认证 API 的令牌缓存中移除 OAuth2 访问令牌。
