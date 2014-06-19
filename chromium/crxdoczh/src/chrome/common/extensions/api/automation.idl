@@ -2,12 +2,210 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// The <code>chrome.automation</code> API allows developers to access the
-// automation (accessibility) tree for the browser. This is a tree
-// representation, analogous to the DOM tree, which represents the
-// <em>semantic</em> structure of a page, and can be used to programmatically
-// interact with a page.
+// <!--@The <code>chrome.automation</code> API allows developers to access the
+// automation (accessibility) tree for the browser. The tree resembles the DOM
+// tree, but only exposes the <em>semantic</em> structure of a page. It can be
+// used to programmatically interact with a page by examining names, roles, and
+// states, listening for events, and performing actions on nodes.-->
+// 开发者可以使用 <code>chrome.automation</code> API
+// 访问浏览器的自动化（辅助功能）树，这种树与 DOM 树类似，但是只包含网页的<em>语义</em>结构，可以用来以编程方式和网页交互，例如检查名称、角色和状态，监听事件，还可以在节点上进行操作。
 [nocompile] namespace automation {
+  // Keep the following enums in sync with 'ui/accessibility/ax_enums.idl'.
+  // They are kept here purely for extension docs generation.
+
+  // <!--@Possible events fired on an $(ref:automation.AutomationNode).-->
+  // $(ref:automation.AutomationNode) 上可能产生的事件。
+  enum EventType {
+    activedescendantchanged,
+    alert,
+    ariaAttributeChanged,
+    autocorrectionOccured,
+    blur,
+    checkedStateChanged,
+    childrenChanged,
+    focus,
+    hide,
+    hover,
+    invalidStatusChanged,
+    layoutComplete,
+    liveRegionChanged,
+    loadComplete,
+    locationChanged,
+    menuEnd,
+    menuListItemSelected,
+    menuListValueChanged,
+    menuPopupEnd,
+    menuPopupStart,
+    menuStart,
+    rowCollapsed,
+    rowCountChanged,
+    rowExpanded,
+    scrollPositionChanged,
+    scrolledToAnchor,
+    selectedChildrenChanged,
+    selectedTextChanged,
+    selectionChanged,
+    show,
+    textChanged,
+    textInserted,
+    textRemoved,
+    valueChanged
+  };
+
+  // <!--@Describes the purpose of an $(ref:automation.AutomationNode).-->
+  // 描述 $(ref:automation.AutomationNode) 的用途。
+  enum RoleType {
+    alertDialog,
+    alert,
+    annotation,
+    application,
+    article,
+    banner,
+    browser,
+    busyIndicator,
+    button,
+    buttonDropDown,
+    canvas,
+    cell,
+    checkBox,
+    client,
+    colorWell,
+    columnHeader,
+    column,
+    comboBox,
+    complementary,
+    contentInfo,
+    definition,
+    descriptionListDetail,
+    descriptionListTerm,
+    desktop,
+    dialog,
+    directory,
+    disclosureTriangle,
+    div,
+    document,
+    drawer,
+    editableText,
+    embeddedObject,
+    footer,
+    form,
+    grid,
+    group,
+    growArea,
+    heading,
+    helpTag,
+    horizontalRule,
+    iframe,
+    ignored,
+    imageMapLink,
+    imageMap,
+    image,
+    incrementor,
+    inlineTextBox,
+    labelText,
+    legend,
+    link,
+    listBoxOption,
+    listBox,
+    listItem,
+    listMarker,
+    list,
+    locationBar,
+    log,
+    main,
+    marquee,
+    mathElement,
+    math,
+    matte,
+    menuBar,
+    menuButton,
+    menuItem,
+    menuListOption,
+    menuListPopup,
+    menu,
+    navigation,
+    note,
+    outline,
+    pane,
+    paragraph,
+    popUpButton,
+    presentational,
+    progressIndicator,
+    radioButton,
+    radioGroup,
+    region,
+    rootWebArea,
+    rowHeader,
+    row,
+    rulerMarker,
+    ruler,
+    svgRoot,
+    scrollArea,
+    scrollBar,
+    seamlessWebArea,
+    search,
+    sheet,
+    slider,
+    sliderThumb,
+    spinButtonPart,
+    spinButton,
+    splitGroup,
+    splitter,
+    staticText,
+    status,
+    systemWide,
+    tabGroup,
+    tabList,
+    tabPanel,
+    tab,
+    tableHeaderContainer,
+    table,
+    textArea,
+    textField,
+    timer,
+    titleBar,
+    toggleButton,
+    toolbar,
+    treeGrid,
+    treeItem,
+    tree,
+    unknown,
+    tooltip,
+    valueIndicator,
+    webArea,
+    window
+  };
+
+  // <!--@Describes characteristics of an $(ref:automation.AutomationNode).-->
+  // 描述 $(ref:automation.AutomationNode) 的特征。
+  enum StateType {
+    busy,
+    checked,
+    collapsed,
+    default,
+    disabled,  // ui/views only
+    editable,  // ui/views only
+    enabled,   // content only
+    expanded,
+    focusable,
+    focused,
+    haspopup,
+    hovered,
+    indeterminate,
+    invisible,
+    linked,
+    multiselectable,
+    offscreen,
+    pressed,
+    protected,
+    readOnly,
+    required,
+    selectable,
+    selected,
+    vertical,
+    visited
+  };
+
   dictionary Rect {
     long left;
     long top;
@@ -15,73 +213,105 @@
     long height;
   };
 
-  // An event in the Automation tree.
-  [nocompile] dictionary AutomationEvent {
-    // The $(ref:automation.AutomationNode) to which the event was targeted.
+  // <!--@An event in the Automation tree.-->
+  // 自动化树中的事件。
+  [nocompile, noinline_doc] dictionary AutomationEvent {
+    // <!--@The $(ref:automation.AutomationNode) to which the event was targeted.-->
+    // 事件的目标 $(ref:automation.AutomationNode)。
     AutomationNode target;
 
-    // The type of the event.
-    DOMString type;
+    // <!--@The type of the event.-->
+    // 事件类型。
+    EventType type;
 
-    // Prevents all other event listeners from being triggered for this event
-    // dispatch.
+    // <!--@Stops this event from further processing except for any remaining
+    // listeners on $(ref:AutomationEvent.target).-->
+    // 除了 $(ref:AutomationEvent.target) 上剩下的监听器外，不再进一步处理该事件。
     static void stopPropagation();
   };
 
-  // A listener for events on an <code>AutomationNode</code>.
+  // <!--@A listener for events on an <code>AutomationNode</code>.-->
+  // <code>AutomationNode</code> 上的事件监听器。
   callback AutomationListener = void(AutomationEvent event);
 
-  // A single node in an Automation tree.
-  [nocompile] dictionary AutomationNode {
-    // The root node of the tree containing this AutomationNode.
+  // <!--@A single node in an Automation tree.-->
+  // 自动化树中的一个节点。
+  [nocompile, noinline_doc] dictionary AutomationNode {
+    // <!--@The root node of the tree containing this AutomationNode.-->
+    // 包含该 AutomationNode 的树根节点。
     AutomationRootNode root;
 
-    // Whether this AutomationNode is an AutomationRootNode.
-    bool isRootNode;
+    // <!--@Whether this AutomationNode is an AutomationRootNode.-->
+    // 该 AutomationNode 是否为根节点。
+    boolean isRootNode;
 
-    // Unique ID to identify this node.
+    // <!--@Unique ID to identify this node.-->
+    // 标识该节点的唯一标志符。
     long id;
 
-    // The role of this node, e.g. button, static text etc.
-    DOMString role;
+    // <!--@The role of this node.-->
+    // 该节点的角色。
+    automation.RoleType role;
 
-    // The state of this node, e.g. {pressed": true, "inactive": true} etc.
+    // <!--@The $(ref:automation.StateType)s describing this node.-->
+    // 描述该节点的 $(ref:automation.StateType)（状态）。
     object state;
 
-    // The rendered location (as a bounding box) of this node within the frame.
-    Rect location;
+    // <!--@The rendered location (as a bounding box) of this node within the frame.-->
+    // 框架中该节点渲染的位置（以矩形框的形式表示）。
+    automation.Rect location;
 
-    // A collection of this node's other attributes.
-    // TODO(aboxhall): Create and use combined list of attributes from
-    // AXStringAttribute, AXIntAttribute etc.
+    // <!--@A collection of this node's other attributes.-->
+    // 该节点的其他属性。
     object? attributes;
 
-    // The index of this node in its parent node's list of children. If this is
-    // the root node, this will be undefined.
+    // <!--@The index of this node in its parent node's list of children. If this is
+    // the root node, this will be undefined.-->
+    // 该节点在上一级节点子节点列表中的索引，如果为根节点则为 undefined。
     long? indexInParent;
 
-    // Traversal.
-    static object[] children();
-    static object parent();
-    static object firstChild();
-    static object lastChild();
-    static object previousSibling();
-    static object nextSibling();
+    static AutomationNode[] children();
+    static AutomationNode parent();
+    static AutomationNode firstChild();
+    static AutomationNode lastChild();
+    static AutomationNode previousSibling();
+    static AutomationNode nextSibling();
 
-    // Actions.
+    // <!--@Does the default action based on this node's role. This is generally
+    // the same action that would result from clicking the node such as
+    // expanding a treeitem, toggling a checkbox, selecting a radiobutton,
+    // or activating a button.-->
+    // 根据节点的角色进行默认操作，通常与单击该节点进行的操作一样，例如展开树形条目、单击复选框、选择单选框或激活按钮。
     static void doDefault();
+
+    // <!--@Places focus on this node.-->
+    // 将焦点置于该节点上。
     static void focus();
+
+    // <!--@Scrolls this node to make it visible.-->
+    // 滚动该节点使之可见。
     static void makeVisible();
+
+    // <!--@Sets selection within a text field.-->
+    // 在文本框中设置选定范围。
     static void setSelection(long startIndex, long endIndex);
 
-    // Events.
+    // <!--@Adds a listener for the given event type and event phase.-->
+    // 为指定事件类型和事件阶段添加监听器。
     static void addEventListener(
-        DOMString eventType, AutomationListener listener, bool capture);
+        EventType eventType, AutomationListener listener, boolean capture);
+
+    // <!--@Removes a listener for the given event type and event phase.-->
+    // 为指定事件类型和事件阶段移除监听器。
     static void removeEventListener(
-        DOMString eventType, AutomationListener listener, bool capture);
+        EventType eventType, AutomationListener listener, boolean capture);
   };
 
-  // The root node of the automation tree for a single frame or desktop.
+  // <!--@Called when the <code>AutomationRootNode</code> for the page is available.-->
+  // 当前网页的 <code>AutomationRootNode</code> 可用时调用。
+  callback RootCallback = void(AutomationRootNode rootNode);
+
+  // <!--@The root node of the automation tree for a single frame or desktop.
   // This may be:
   // <ul>
   //   <li> The desktop
@@ -93,32 +323,53 @@
   // <code>AutomationRootNode</code>s in its descendants. Thus, the
   // <code>root</code> property of the <code>AutomationRootNode</code> will be
   // the immediate parent <code>AutomationRootNode</code>, or <code>null</code>
-  // if this is the top-level <code>AutomationRootNode</code>.
+  // if this is the top-level <code>AutomationRootNode</code>.-->
+  // 一个框架或桌面的自动化树根节点，可以为：
+  // <ul>
+  //   <li> 桌面
+  //   <li> 网页的顶层框架
+  //   <li> 网页中的框架或内嵌框架
+  // <ul>
+  // 所以 <code>AutomationRootNode</code> 可能是一个或多个 
+  // <code>AutomationRootNode</code> 的子节点，本身也可能包含一个或多个
+  // <code>AutomationRootNode</code> 子节点。<code>AutomationRootNode</code>
+  // 的 <code>root</code> 属性为直接隶属的
+  // <code>AutomationRootNode</code>，如果为顶层 
+  // <code>AutomationRootNode</code> 的话则为 <code>null</code>。
   //
-  // Extends $(ref:automation.AutomationNode).
-  [nocompile] dictionary AutomationRootNode {
-    // Whether this AutomationRootNode is loaded or not. If false, call load()
-    // to get the contents.
-    // TODO(aboxhall/dtseng): implement.
-    bool loaded;
+  // <!--@Extends $(ref:automation.AutomationNode).-->
+  // 由 $(ref:automation.AutomationNode) 扩展。
+  [nocompile, noinline_doc] dictionary AutomationRootNode {
+    // <!--@TODO(aboxhall/dtseng): implement loading. Kept separate to not include
+    // in generated docs.
 
-    // Load the accessibility tree for this AutomationRootNode.
-    // TODO(aboxhall/dtseng): implement.
+    // TODO(dtseng/aboxhall): Implement non-trivial |load| function before going
+    // to dev.
+
+    // Whether this AutomationRootNode is loaded or not. If false, call load()
+    // to get the contents.-->
+    // AutomationRootNode 是否已经加载完成，如果为 false，调用 load() 获取内容。
+    boolean loaded;
+
+    // <!--@Load the accessibility tree for this AutomationRootNode.-->
+    // 为当前 AutomationRootNode 加载辅助功能树。
     static void load(RootCallback callback);
   };
 
-  // Called when the <code>AutomationRootNode</code> for the page is available.
-  callback RootCallback = void(AutomationRootNode rootNode);
-
   interface Functions {
-    // Get the automation tree for the tab with the given tabId, or the current
+    // <!--@Get the automation tree for the tab with the given tabId, or the current
     // tab if no tabID is given, enabling automation if necessary. Returns a
     // tree with a placeholder root node; listen for the "loadComplete" event to
     // get a notification that the tree has fully loaded (the previous root node
-    // reference will stop working at or before this point).
+    // reference will stop working at or before this point).-->
+    // 为指定标识符的标签页获取自动化树，如果未指定则为当前标签页，如果有必要的话启用自动化功能。返回值为加载中的根节点，监听
+    // "loadComplete" 事件获取树完全加载的通知（在此时或之前的根节点引用不能使用）。
     [nocompile] static void getTree(optional long tabId, RootCallback callback);
 
-    // Get the automation tree for the desktop.
+    // <!--@Get the automation tree for the whole desktop which consists of all on
+    // screen views. Note this API is currently only supported on Chrome OS.-->
+    // 获取整个桌面的自动化树，包含所有屏幕上的视图。注意，该 API 目前仅在
+    // Chrome OS 上支持。
     [nocompile] static void getDesktop(RootCallback callback);
   };
 };
