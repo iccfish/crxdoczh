@@ -25,6 +25,8 @@
           "key": {"type": "string", "description": "按下的按键值。"},
 //@          "code": {"type": "string", "description": "Value of the physical key being pressed. The value is not affected by current keyboard layout or modifier state."},
           "code": {"type": "string", "description": "按下的物理按键的值，不受当前键盘布局或组合键状态的影响。"},
+//@          "keyCode": {"type": "integer", "optional": true, "description": "The deprecated HTML keyCode, which is system- and implementation-dependent numerical code signifying the unmodified identifier associated with the key pressed."},
+          "keyCode": {"type": "integer", "optional": true, "description": "弃用的 HTML5 按键代码，是一种与系统和实现相关的数字代码，表示与按键相关联的未经修改的标识符。"},
 //@          "altKey": {"type": "boolean", "optional": true, "description": "Whether or not the ALT key is pressed."},
           "altKey": {"type": "boolean", "optional": true, "description": "是否按下了 Alt 键。"},
 //@          "ctrlKey": {"type": "boolean", "optional": true, "description": "Whether or not the CTRL key is pressed."},
@@ -43,7 +45,7 @@
         "properties": {
 //@          "contextID": {"type": "integer", "description": "This is used to specify targets of text field operations.  This ID becomes invalid as soon as onBlur is called."},
           "contextID": {"type": "integer", "description": "该属性用来指定文本框操作的目标，一旦接收到 onBlur 事件该标识符就不再有效。"},
-//@          "type": {"type": "string", "description": "Type of value this text field edits, (Text, Number, URL, etc)", "enum": ["text", "search", "tel", "url", "email", "number"]}
+//@          "type": {"type": "string", "description": "Type of value this text field edits, (Text, Number, URL, etc)", "enum": ["text", "search", "tel", "url", "email", "number", "password"]}
           "type": {"type": "string", "description": "该文本框编辑的值的类型：文本、数字、URL 等。Type of value this text field edits, (Text, Number, URL, etc)", "enum": ["text", "search", "tel", "url", "email", "number"]}
         }
       },

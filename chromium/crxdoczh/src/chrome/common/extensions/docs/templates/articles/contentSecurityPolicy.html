@@ -420,3 +420,104 @@ function main() {
   您当然也可以以带来更多不便为代价，使用您的扩展程序允许的更严格的策略，来增强安全性。例如，要指定您的扩展程序只能从自己的包中加载<em>所有</em>类型（如图片等）的资源，可以使用这样的策略：<code>default_src 'self'</code>。<a
 href="samples#mappy">Mappy</a> 示例扩展程序就是使用的策略比默认设置更加严格的例子。
 </p>
+
+
+<h2 id="interactions"><!--@Content Scripts-->内容脚本</h2>
+
+<p>
+  <!--@The policy that we have been discussing applies to the <a
+  href="background_pages">background pages</a> and <a href="event_pages">event
+  pages</a> of the extension. How they apply to the <a href="content_scripts">
+  content scripts</a> of the extension is more complicated.-->
+  之前讨论的策略应用于扩展程序的<a href="background_pages">后台网页</a>和<a
+  href="event_pages">事件页面</a>，扩展程序的<a href="content_scripts"
+  >内容脚本</a>中应用这些策略时情况更复杂。
+</p>
+
+<p>
+  <!--@Content scripts are generally not subject to the CSP of the extension. Since
+  content scripts are not HTML, the main impact of this is that they may use
+  <code>eval</code> even if the extension's CSP does not specify
+  <code>unsafe-eval</code>, although this is not recommended.  Additionally, the
+  CSP of the <em>page</em> does not apply to content scripts. More complicated
+  are <code>&lt;script&gt;</code> tags that content scripts create and put into
+  the DOM of the page they are running on. We will refer to these as DOM
+  injected scripts going forward.-->
+  内容脚本通常不受扩展程序 CSP 的限制。内容脚本不是
+  HTML，这一点的主要影响是它们可以使用 <code>eval</code>，即使扩展程序的 CSP
+  没有指定 <code>unsafe-eval</code>，尽管并不推荐这么做。此外，<em>网页</em>的
+  CSP 不适用于内容脚本。更复杂的情况是内容脚本创建并加入所在网页 DOM 中的
+  <code>&lt;script&gt;</code> 标签，下面我们称之为 DOM 插入脚本。
+</p>
+
+<p>
+  <!--@DOM injected scripts that would be executed immediately upon injection into
+  the page will execute as you might expect. Imagine a content script with the
+  following code as a simple example:-->
+  插入网页后立即执行的 DOM 插入脚本执行的方式与预期一致，例如考虑以下代码所示的内容脚本：
+  <pre data-filename="content_script.js">
+    document.write("&lt;script&gt;'alert(1);&lt;/script&gt;'");
+  </pre>
+  <!--@This content script will cause an <code>alert</code> immediately upon the
+  <code>document.write()</code>. Note that this will execute regardless of the
+  policy a page may specify.-->
+  这段内容脚本执行 <code>document.write()</code> 时会立即显示
+  <code>alert</code>，无论网页指定了什么策略它都会执行。
+</p>
+
+<p>
+  <!--@However, the behavior becomes more complicated both inside that DOM injected
+  script and for any script that does not immediately execute upon injection.
+  Imagine that our extension is running on a page that provides its own CSP
+  that specifies <code>script-src 'self'</code>. Now imagine the content script
+  executes the following code:-->
+  但是在 DOM 插入脚本内部以及对于插入后不会立即执行的脚本来说，情况变得更加复杂。假设我们的扩展程序在某个自己提供了
+  CSP 的网页上运行，指定了 <code>script-src 'self'</code>。如果内容脚本执行以下代码：
+  <pre data-filename="content_script.js">
+    document.write("&lt;button onclick='alert(1);'&gt;click me&lt;/button&gt;'");
+  </pre>
+  <!--@If a user clicks on that button, the <code>onclick</code> script will
+  <em>not</em> execute. This is because the script did not immediately execute,
+  so it is not considered part of the content script, so the CSP
+  <em>of the page</em> (not of the extension) restricts its behavior. And since
+  that CSP does not specify <code>unsafe-inline</code>, the inline event handler
+  is blocked.-->
+  用户单击该按钮时，<code>onclick</code>
+  脚本<em>不会</em>运行，因为脚本不是立即执行的，所以并不视为内容脚本的一部分，所以<em>网页的</em>
+  CSP（而不是扩展程序）限制了它的行为。由于对应的 CSP 并未指定
+  <code>unsafe-inline</code>，内嵌事件处理程序禁止运行。
+</p>
+
+<p>
+  <!--@Another similar case is if the content script executes the following:-->
+  运行下列代码的内容脚本是另一种类似的情况：
+  <pre data-filename="content_script.js">
+    var script = document.createElement('script');
+    script.innerHTML = 'alert(1);'
+    document.getElementById('body').appendChild(script);
+  </pre>
+  <!--@In this case, the script <em>will</em> execute and the alert will pop up.
+  However, take this case:-->
+  这种情况下，脚本<em>会</em>执行，并弹出对话框。但是，考虑如下情况：
+  <pre data-filename="content_script.js">
+    var script = document.createElement('script');
+    script.innerHTML = 'eval("alert(1);")';
+    document.getElementById('body').appendChild(script);
+  </pre>
+  <!--@While the initial script will execute, the call to <code>eval</code> will be
+  blocked. That is, while the initial script execution is allowed, the behavior
+  within the script will be regulated by the page's CSP.-->
+  尽管一开始脚本会运行，<code>eval</code> 的调用则会被阻止，因为尽管一开始的脚本执行是允许的，脚本内的行为受到网页
+  CSP 的约束。
+</p>
+
+<p>
+  <!--@Thus, depending on how you write DOM injected scripts in your extension,
+  changes to the page's CSP may affect the behavior of your extension. Since
+  content scripts are <em>not</em> affected by the page's CSP, this a great
+  reason to put as much behavior as possible of your extension into the content
+  script rather than DOM injected scripts.-->
+  所以，取决于您在扩展程序中编写 DOM 插入脚本的方式，网页 CSP
+  的更改可能会影响扩展程序的行为。由于内容脚本<em>不受</em>网页 CSP 影响，您应该尽量将扩展程序的大部分行为放在内容脚本中，而不是
+  DOM 插入脚本中。
+</p>

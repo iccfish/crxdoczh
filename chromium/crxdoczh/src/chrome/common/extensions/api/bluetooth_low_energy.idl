@@ -33,7 +33,7 @@ namespace bluetoothLowEnergy {
     // application and available to other peripherals, or a remote service
     // hosted and received from a remote peripheral.-->
     // 该服务是否代表应用程序托管的本地服务，其他外设也能使用；或者是远程外设托管和接收的远程服务。
-    boolean isLocal;
+    [nodoc] boolean isLocal;
 
     // <!--@Returns the identifier assigned to this service. Use the instance ID to
     // distinguish between services from a peripheral with the same UUID and
@@ -62,7 +62,7 @@ namespace bluetoothLowEnergy {
     // hosted by the application and available to other peripherals, or a remote
     // characteristic hosted and received from a remote peripheral.-->
     // 该特征是否代表应用程序托管的本地特征，其他外设也能使用；或者是远程外设托管和接收的远程特征。
-    boolean isLocal;
+    [nodoc] boolean isLocal;
 
     // <!--@The GATT service this characteristic belongs to.-->
     // 该特征属于哪个 GATT 服务。
@@ -101,7 +101,7 @@ namespace bluetoothLowEnergy {
     // hosted by the application and available to other peripherals, or a remote
     // descriptor hosted and received from a remote peripheral.-->
     // 该描述符是否代表应用程序托管的本地描述符，其他外设也能使用；或者是远程外设托管和接收的远程描述符。
-    boolean isLocal;
+    [nodoc] boolean isLocal;
 
     // <!--@The GATT characteristic this descriptor belongs to.-->
     // 该描述符属于哪个 GATT 特征。
@@ -123,6 +123,15 @@ namespace bluetoothLowEnergy {
     ArrayBuffer? value;
   };
 
+  // The connection properties specified during a call to $ref:connect.
+  dictionary ConnectProperties {
+    // Flag indicating whether a connection to the device is left open when the
+    // event page of the application is unloaded (see <a
+    // href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App
+    // Lifecycle</a>). The default value is <code>false.</code>
+    boolean persistent;
+  };
+
   callback CharacteristicCallback = void(Characteristic result);
   callback CharacteristicsCallback = void(Characteristic[] result);
   callback DescriptorCallback = void(Descriptor result);
@@ -134,6 +143,39 @@ namespace bluetoothLowEnergy {
   // <!--@These functions all report failures via chrome.runtime.lastError.-->
   // 这些函数都通过 chrome.runtime.lastError 报告失败。
   interface Functions {
+    // <!--@Establishes a connection between the application and the device with the
+    // given address. A device may be already connected and its GATT services
+    // available without calling <code>connect</code>, however, an app that
+    // wants to access GATT services of a device should call this function to
+    // make sure that a connection to the device is maintained. If the device
+    // is not connected, all GATT services of the device will be discovered
+    // after a successful call to <code>connect</code>.-->
+    // 在应用程序与指定地址的设备之间建立连接。设备可能已经连接，并且它的 GATT
+    // 服务也可用，而不需要调用 <code>connect</code>。但是希望访问设备 GATT
+    // 服务的应用应该调用该函数，确保与设备维持连接。如果设备未连接，设备上的所有
+    // GATT 服务都会在成功调用 <code>connect</code> 后发现。
+    // |deviceAddress| : <!--@The Bluetooth address of the remote device to which a
+    // GATT connection should be opened.-->
+    // 打开 GATT 连接的远程设备蓝牙地址。
+    // |properties| : <!--@Connection properties (optional).-->
+    // 连接属性（可选）。
+    // |callback| : <!--@Called when the connect request has completed.-->
+    // 连接请求完成时调用。
+    static void connect(DOMString deviceAddress,
+                        optional ConnectProperties properties,
+                        ResultCallback callback);
+
+    // <!--@Closes the app's connection to the device with the given address. Note
+    // that this will not always destroy the physical link itself, since there
+    // may be other apps with open connections.-->
+    // 关闭应用与指定地址设备的连接。注意，该函数并不一定会撤销物理连接本身，因为可能还有其他应用打开了连接。
+    // |deviceAddress| : <!--@The Bluetooth address of the remote device.-->
+    // 远程设备的蓝牙地址。
+    // |callback| : <!--@Called when the disconnect request has completed.-->
+    // 断开连接的请求完成时调用。
+    static void disconnect(DOMString deviceAddress,
+                           optional ResultCallback callback);
+
     // <!--@Get the GATT service with the given instance ID.-->
     // 获取指定实例标识符的 GATT 服务。
     // |serviceId| : <!--@The instance ID of the requested GATT service.-->
@@ -145,7 +187,7 @@ namespace bluetoothLowEnergy {
     // <!--@Get all the GATT services that were discovered on the remote device with
     // the given device address.-->
     // 获取指定设备地址的远程设备上发现的所有 GATT 服务。
-    // |deviceAddress| : <!--@The Bluetooth Address of the remote device whose GATT
+    // |deviceAddress| : <!--@The Bluetooth address of the remote device whose GATT
     // services should be returned.-->
     // 要返回 GATT 服务的远程设备蓝牙地址。
     // |callback| : <!--@Called with the list of requested Service objects.-->
