@@ -16,7 +16,6 @@
     # should be eliminated. See crbug.com/305852.
     'android_schema_files': [
       'activity_log_private.json',
-      'events.json',
       'file_system.idl',
       'manifest_types.json',
       'permissions.json',
@@ -25,7 +24,6 @@
       'tabs.json',
       'types.json',
       'web_navigation.json',
-      'webview.json',
       'windows.json',
     ],
 
@@ -123,7 +121,7 @@
       'web_request.json',
       # Despite the name, this API does not rely on any
       # WebRTC-specific bits and as such does not belong in
-      # the enable_webrtc=0 section below.
+      # the enable_webrtc==0 section below.
       'webrtc_audio_private.idl',
       'webrtc_logging_private.idl',
       'webstore_private.json',
@@ -185,14 +183,14 @@
         # Disable schema compiler to generate model extension API code.
         # Only register the extension functions in extension system.
         'conditions': [
-          ['OS!="android"', {
+          ['enable_extensions==1', {
             'non_compiled_schema_files': [
               '<@(main_non_compiled_schema_files)',
             ],
             'schema_files': [
               '<@(main_schema_files)',
             ],
-          }, {  # OS=="android"
+          }, {  # enable_extensions==0
             'non_compiled_schema_files': [
             ],
             'schema_files': [
@@ -205,7 +203,7 @@
               '<@(chromeos_schema_files)',
             ],
           }],
-          ['enable_webrtc==1', {
+          ['enable_extensions==1 and enable_webrtc==1', {
             'schema_files': [
               '<@(webrtc_schema_files)',
             ],

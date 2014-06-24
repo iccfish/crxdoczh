@@ -40,8 +40,8 @@
 //@        "description": "An object containing information about the script context that sent a message or request.",
         "description": "包含有关发送消息或请求的脚本上下文信息的对象。",
         "properties": {
-//@          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "The $(ref:tabs.Tab) which opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab (including content scripts), and <strong>only</strong> if the receiver is an extension, not an app."},
-          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "打开连接的 $(ref:tabs.Tab)（标签页），如果有的话。<b>只有</b>当连接从标签页或内容脚本中打开，<b>并且</b>接收方是扩展程序而不是应用时才会存在这一属性。"},
+//@          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "The $(ref:tabs.Tab) which opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab (including content scripts), and <strong>only</strong> if the receiver is an extension, not an app.", "extension_types": ["extension", "legacy_packaged_app"]},
+          "tab": {"$ref": "tabs.Tab", "optional": true, "description": "打开连接的 $(ref:tabs.Tab)（标签页），如果有的话。<b>只有</b>当连接从标签页或内容脚本中打开，<b>并且</b>接收方是扩展程序而不是应用时才会存在这一属性。", "extension_types": ["extension", "legacy_packaged_app"]},
 //@          "id": {"type": "string", "optional": true, "description": "The ID of the extension or app that opened the connection, if any."},
           "id": {"type": "string", "optional": true, "description": "打开连接的扩展程序或应用的标识符（如果有的话）。"},
 //@          "url": {"type": "string", "optional": true, "description": "The URL of the page or frame that opened the connection, if any. This property will <strong>only</strong> be present when the connection was opened from a tab or content script."},
