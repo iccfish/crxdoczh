@@ -43,19 +43,19 @@
         "nocompile": true,
         "type": "array",
 //@        "description": "An array of HTTP headers. Each header is represented as a dictionary containing the keys <code>name</code> and either <code>value</code> or <code>binaryValue</code>.",
-        "description": "包含 HTTP 头信息的数组，每一项头信息都通过词典表示，包含 <code>name</code> 属性，以及 <code>value</code> 或 <code>binaryValue</code> 中的某一属性。",
+        "description": "包含 HTTP 标头的数组，每一项标头都通过词典表示，包含 <code>name</code> 属性，以及 <code>value</code> 或 <code>binaryValue</code> 中的某一属性。",
         "items": {
           "type": "object",
           "properties": {
 //@            "name": {"type": "string", "description": "Name of the HTTP header."},
-            "name": {"type": "string", "description": "HTTP 头信息的名称。"},
+            "name": {"type": "string", "description": "HTTP 标头的名称。"},
 //@            "value": {"type": "string", "optional": true, "description": "Value of the HTTP header if it can be represented by UTF-8."},
-            "value": {"type": "string", "optional": true, "description": "如果可以通过 UTF-8 编码表示的话，则为 HTTP 头信息的值。"},
+            "value": {"type": "string", "optional": true, "description": "如果可以通过 UTF-8 编码表示的话，则为 HTTP 标头的值。"},
             "binaryValue": {
               "type": "array",
               "optional": true,
 //@              "description": "Value of the HTTP header if it cannot be represented by UTF-8, stored as individual byte values (0..255).",
-              "description": "如果不能通过 UTF-8 编码表示的话，HTTP 头信息的值存储为单独的字节值（0～255）。",
+              "description": "如果不能通过 UTF-8 编码表示的话，HTTP 标头的值存储为单独的字节值（0～255）。",
               "items": {"type": "integer"}
             }
           }
@@ -84,13 +84,13 @@
             "$ref": "HttpHeaders",
             "optional": true,
 //@            "description": "Only used as a response to the onBeforeSendHeaders event. If set, the request is made with these request headers instead."
-            "description": "仅用于 onBeforeSendHeaders 事件的返回值。如果设置了这一属性，请求将改用这些头信息发出。"
+            "description": "仅用于 onBeforeSendHeaders 事件的返回值。如果设置了这一属性，请求将改用这些标头发出。"
           },
           "responseHeaders": {
             "$ref": "HttpHeaders",
             "optional": true,
 //@            "description": "Only used as a response to the onHeadersReceived event. If set, the server is assumed to have responded with these response headers instead. Only return <code>responseHeaders</code> if you really want to modify the headers in order to limit the number of conflicts (only one extension may modify <code>responseHeaders</code> for each request)."
-            "description": "仅用于 onHeadersReceived 事件的返回值。如果设置了这一属性，则假定服务器返回了这些响应头信息。为了限制冲突数目（对于每一个请求，只有一个扩展程序可以修改 <code>responseHeaders</code>），只有有当您确实需要修改头信息时才应该返回 <code>responseHeaders</code>。"
+            "description": "仅用于 onHeadersReceived 事件的返回值。如果设置了这一属性，则假定服务器返回了这些响应标头。为了限制冲突数目（对于每一个请求，只有一个扩展程序可以修改 <code>responseHeaders</code>），只有有当您确实需要修改标头时才应该返回 <code>responseHeaders</code>。"
           },
           "authCredentials": {
             "type": "object",
@@ -224,7 +224,7 @@
         "nocompile": true,
         "type": "function",
 //@        "description": "Fired before sending an HTTP request, once the request headers are available. This may occur after a TCP connection is made to the server, but before any HTTP data is sent. ",
-        "description": "在发送 HTTP 请求前，一旦请求头信息可用就产生这一事件。这一事件可能在与服务器的 TCP 连接建立后产生，但是确保在发送任何 HTTP 数据前产生。",
+        "description": "在发送 HTTP 请求前，一旦请求标头可用就产生这一事件。这一事件可能在与服务器的 TCP 连接建立后产生，但是确保在发送任何 HTTP 数据前产生。",
         "parameters": [
           {
             "type": "object",
@@ -246,7 +246,7 @@
 //@              "timeStamp": {"type": "number", "description": "The time when this signal is triggered, in milliseconds since the epoch."},
               "timeStamp": {"type": "number", "description": "该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。"},
 //@              "requestHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP request headers that are going to be sent out with this request."}
-              "requestHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "将要与这一请求一同发送的 HTTP 请求头信息。"}
+              "requestHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "将要与这一请求一同发送的 HTTP 请求标头。"}
             }
           }
         ],
@@ -303,7 +303,7 @@
 //@              "timeStamp": {"type": "number", "description": "The time when this signal is triggered, in milliseconds since the epoch."},
               "timeStamp": {"type": "number", "description": "该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。"},
 //@              "requestHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP request headers that have been sent out with this request."}
-              "requestHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "已经与这一请求一起发送的HTTP请求头信息。"}
+              "requestHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "已经与这一请求一起发送的HTTP请求标头。"}
             }
           }
         ],
@@ -332,7 +332,7 @@
         "nocompile": true,
         "type": "function",
 //@        "description": "Fired when HTTP response headers of a request have been received.",
-        "description": "当接收到 HTTP 响应头信息时产生。",
+        "description": "当接收到 HTTP 响应标头时产生。",
         "parameters": [
           {
             "type": "object",
@@ -357,7 +357,7 @@
               "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that have been received with this response."}
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that have been received with this response."}
-              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"}
+              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应标头。"}
              }
           }
         ],
@@ -422,7 +422,7 @@
 //@              "isProxy": {"type": "boolean", "description": "True for Proxy-Authenticate, false for WWW-Authenticate."},
               "isProxy": {"type": "boolean", "description": "如果为 Proxy-Authenticate（代理服务器认证）则为 true，否则如果为 WWW-Authenticate 则为 false。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
-              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
+              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应标头。"},
 //@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
               "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"}
             }
@@ -468,7 +468,7 @@
         "nocompile": true,
         "type": "function",
 //@        "description": "Fired when the first byte of the response body is received. For HTTP requests, this means that the status line and response headers are available.",
-        "description": "当响应正文的第一个字节接收到时产生。对于 HTTP 请求，这意味着状态行及请求头信息已经可用。",
+        "description": "当响应正文的第一个字节接收到时产生。对于 HTTP 请求，这意味着状态行及请求标头已经可用。",
         "parameters": [
           {
             "type": "object",
@@ -496,7 +496,7 @@
 //@              "statusCode": {"type": "integer", "description": "Standard HTTP status code returned by the server."},
               "statusCode": {"type": "integer", "description": "服务器返回的标准 HTTP 状态代码。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
-              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
+              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应标头。"},
 //@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
               "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"}
             }
@@ -557,7 +557,7 @@
 //@              "redirectUrl": {"type": "string", "description": "The new URL."},
               "redirectUrl": {"type": "string", "description": "新的 URL。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
-              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
+              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应标头。"},
 //@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
               "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"}
             }
@@ -616,7 +616,7 @@
 //@              "statusCode": {"type": "integer", "description": "Standard HTTP status code returned by the server."},
               "statusCode": {"type": "integer", "description": "服务器返回的标准 HTTP 状态代码。"},
 //@              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "The HTTP response headers that were received along with this response."},
-              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应头信息。"},
+              "responseHeaders": {"$ref": "HttpHeaders", "optional": true, "description": "与响应一起接收到的 HTTP 响应标头。"},
 //@              "statusLine": {"type": "string", "description": "HTTP status line of the response or the 'HTTP/0.9 200 OK' string for HTTP/0.9 responses (i.e., responses that lack a status line) or an empty string if there are no headers."}
               "statusLine": {"type": "string", "description": "响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。"}
             }

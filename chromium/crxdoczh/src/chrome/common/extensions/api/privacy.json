@@ -40,6 +40,12 @@
 //@            "description": "If enabled, Chrome offers to automatically fill in forms. This preference's value is a boolean, defaulting to <code>true</code>."
             "description": "如果启用的话，Chrome 浏览器会自动填充表单。这一选项的值是布尔类型，默认为 <code>true</code>。"
           },
+          "passwordSavingEnabled": {
+            "$ref": "types.ChromeSetting",
+            "value": ["passwordSavingEnabled", {"type":"boolean"}],
+//@            "description": "If enabled, the password manager will ask if you want to save passwords. This preference's value is a boolean, defaulting to <code>true</code>."
+            "description": "如果启用的话，密码管理器会询问是否要保存密码。这一选项的值是布尔类型，默认为 <code>true</code>。"
+          },
           "safeBrowsingEnabled": {
             "$ref": "types.ChromeSetting",
             "value": ["safeBrowsingEnabled", {"type":"boolean"}],

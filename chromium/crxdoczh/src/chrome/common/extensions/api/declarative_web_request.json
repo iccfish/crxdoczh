@@ -12,11 +12,11 @@
         "id": "HeaderFilter",
         "type": "object",
 //@        "description": "Filters request headers for various criteria. Multiple criteria are evaluated as a conjunction.",
-        "description": "通过各种条件过滤请求头信息，多个条件将同时求值。",
+        "description": "通过各种条件过滤请求标头，多个条件将同时求值。",
         "properties": {
           "namePrefix": {
 //@            "description" : "Matches if the header name starts with the specified string.",
-            "description" : "如果头信息的名称以指定字符串开头则匹配。",
+            "description" : "如果标头的名称以指定字符串开头则匹配。",
             "type": "string",
             "optional": true
           },
@@ -24,7 +24,7 @@
             "type": "string",
             "optional": true,
 //@            "description" : "Matches if the header name ends with the specified string."
-            "description" : "如果头信息的名称以指定字符串结尾则匹配。"
+            "description" : "如果标头的名称以指定字符串结尾则匹配。"
           },
           "nameContains": {
             "choices": [
@@ -33,25 +33,25 @@
             ],
             "optional": true,
 //@            "description" : "Matches if the header name contains all of the specified strings."
-            "description" : "如果头信息的名称包含所有指定的字符串则匹配。"
+            "description" : "如果标头的名称包含所有指定的字符串则匹配。"
           },
           "nameEquals": {
             "type": "string",
             "optional": true,
 //@            "description" : "Matches if the header name is equal to the specified string."
-            "description" : "如果头信息的名称与指定字符串相同则匹配。"
+            "description" : "如果标头的名称与指定字符串相同则匹配。"
           },
           "valuePrefix": {
             "type": "string",
             "optional": true,
 //@            "description" : "Matches if the header value starts with the specified string."
-            "description" : "如果头信息的值以指定字符串开头则匹配。"
+            "description" : "如果标头的值以指定字符串开头则匹配。"
           },
           "valueSuffix": {
             "type": "string",
             "optional": true,
 //@            "description" : "Matches if the header value ends with the specified string."
-            "description" : "如果头信息的值以指定字符串结尾则匹配。"
+            "description" : "如果标头的值以指定字符串结尾则匹配。"
           },
           "valueContains": {
             "choices": [
@@ -60,13 +60,13 @@
             ],
             "optional": true,
 //@            "description" : "Matches if the header value contains all of the specified strings."
-            "description" : "如果头信息的值包含所有指定的字符串则匹配。"
+            "description" : "如果标头的值包含所有指定的字符串则匹配。"
           },
           "valueEquals": {
             "type": "string",
             "optional": true,
 //@            "description" : "Matches if the header value is equal to the specified string."
-            "description" : "如果头信息的值与指定字符串相同则匹配。"
+            "description" : "如果标头的值与指定字符串相同则匹配。"
           }
         }
       },
@@ -99,42 +99,42 @@
             "type": "array",
             "optional": true,
 //@            "description": "Matches if the MIME media type of a response (from the HTTP Content-Type header) is contained in the list.",
-            "description": "如果响应的 MIME 媒体类型（来自 HTTP Content-Type 头信息）包含在列表中则匹配。",
+            "description": "如果响应的 MIME 媒体类型（来自 HTTP Content-Type 标头）包含在列表中则匹配。",
             "items": { "type": "string" }
           },
           "excludeContentType": {
             "type": "array",
             "optional": true,
 //@            "description": "Matches if the MIME media type of a response (from the HTTP Content-Type header) is <em>not</em> contained in the list.",
-            "description": "如果响应的 MIME 媒体类型（来自 HTTP Content-Type 头信息）<em>没有</em>包含在列表中则匹配。",
+            "description": "如果响应的 MIME 媒体类型（来自 HTTP Content-Type 标头）<em>没有</em>包含在列表中则匹配。",
             "items": { "type": "string" }
           },
           "requestHeaders": {
             "type": "array",
             "optional": true,
 //@            "description": "Matches if some of the request headers is matched by one of the HeaderFilters.",
-            "description": "如果某些请求头信息匹配 HeaderFilter 中的某一个则匹配该请求。",
+            "description": "如果某些请求标头匹配 HeaderFilter 中的某一个则匹配该请求。",
             "items": { "$ref": "HeaderFilter" }
           },
           "excludeRequestHeaders": {
             "type": "array",
             "optional": true,
 //@            "description": "Matches if none of the request headers is matched by any of the HeaderFilters.",
-            "description": "如果请求头信息都不匹配任何一个 HeaderFilter 则匹配该请求。",
+            "description": "如果请求标头都不匹配任何一个 HeaderFilter 则匹配该请求。",
             "items": { "$ref": "HeaderFilter" }
           },
           "responseHeaders": {
             "type": "array",
             "optional": true,
 //@            "description": "Matches if some of the response headers is matched by one of the HeaderFilters.",
-            "description": "如果某些响应头信息匹配 HeaderFilter 中的某一个则匹配该请求。",
+            "description": "如果某些响应标头匹配 HeaderFilter 中的某一个则匹配该请求。",
             "items": { "$ref": "HeaderFilter" }
           },
           "excludeResponseHeaders": {
             "type": "array",
             "optional": true,
 //@            "description": "Matches if none of the response headers is matched by any of the HeaderFilters.",
-            "description": "如果响应头信息都不匹配任何一个 HeaderFilter 则匹配该请求。",
+            "description": "如果响应标头都不匹配任何一个 HeaderFilter 则匹配该请求。",
             "items": { "$ref": "HeaderFilter" }
           },
           "thirdPartyForCookies": {
@@ -234,7 +234,7 @@
       {
         "id": "declarativeWebRequest.SetRequestHeader",
 //@        "description": "Sets the request header of the specified name to the specified value. If a header with the specified name did not exist before, a new one is created. Header name comparison is always case-insensitive. Each request header name occurs only once in each request.",
-        "description": "将指定名称的请求头信息设置为指定值。如果指定名称的头信息原来不存在，则会创建新的。头信息名称的比较不区分大小写，且每个请求中每个请求头信息名称只会出现一次。",
+        "description": "将指定名称的请求标头设置为指定值。如果指定名称的标头原来不存在，则会创建新的。标头名称的比较不区分大小写，且每个请求中每个请求标头名称只会出现一次。",
         "type": "object",
         "properties": {
           "instanceType": {
@@ -244,19 +244,19 @@
           "name": {
             "type": "string",
 //@            "description": "HTTP request header name."
-            "description": "HTTP 请求头信息的名称。"
+            "description": "HTTP 请求标头的名称。"
           },
           "value": {
             "type": "string",
 //@            "description": "HTTP request header value."
-            "description": "HTTP 请求头信息的值。"
+            "description": "HTTP 请求标头的值。"
           }
         }
       },
       {
         "id": "declarativeWebRequest.RemoveRequestHeader",
 //@        "description": "Removes the request header of the specified name. Do not use SetRequestHeader and RemoveRequestHeader with the same header name on the same request. Each request header name occurs only once in each request.",
-        "description": "移除指定名称的请求头信息。不要在同一请求的同一头信息名称上同时使用 SetRequestHeader 和 RemoveRequestHeader。每个请求中每个请求头信息名称只会出现一次。",
+        "description": "移除指定名称的请求标头。不要在同一请求的同一标头名称上同时使用 SetRequestHeader 和 RemoveRequestHeader。每个请求中每个请求标头名称只会出现一次。",
         "type": "object",
         "properties": {
           "instanceType": {
@@ -266,14 +266,14 @@
           "name": {
             "type": "string",
 //@            "description": "HTTP request header name (case-insensitive)."
-            "description": "HTTP 请求头信息的名称（不区分大小写）。"
+            "description": "HTTP 请求标头的名称（不区分大小写）。"
           }
         }
       },
       {
         "id": "declarativeWebRequest.AddResponseHeader",
 //@        "description": "Adds the response header to the response of this web request. As multiple response headers may share the same name, you need to first remove and then add a new response header in order to replace one.",
-        "description": "向当前网络请求的响应中添加响应头信息。由于多个响应头信息可能会使用相同的名称，您需要首先删除然后再添加新的响应头信息才能完成替换。",
+        "description": "向当前网络请求的响应中添加响应标头。由于多个响应标头可能会使用相同的名称，您需要首先删除然后再添加新的响应标头才能完成替换。",
         "type": "object",
         "properties": {
           "instanceType": {
@@ -283,19 +283,19 @@
           "name": {
             "type": "string",
 //@            "description": "HTTP response header name."
-            "description": "HTTP 响应头信息的名称。"
+            "description": "HTTP 响应标头的名称。"
           },
           "value": {
             "type": "string",
 //@            "description": "HTTP response header value."
-            "description": "HTTP 响应头信息的值。"
+            "description": "HTTP 响应标头的值。"
           }
         }
       },
       {
         "id": "declarativeWebRequest.RemoveResponseHeader",
 //@        "description": "Removes all response headers of the specified names and values.",
-        "description": "删除指定名称和值的所有响应头信息。",
+        "description": "删除指定名称和值的所有响应标头。",
         "type": "object",
         "properties": {
           "instanceType": {
@@ -305,12 +305,12 @@
           "name": {
             "type": "string",
 //@            "description": "HTTP request header name (case-insensitive)."
-            "description": "HTTP 请求头信息的名称（不区分大小写）。"
+            "description": "HTTP 请求标头的名称（不区分大小写）。"
           },
           "value": {
             "type": "string",
 //@            "description": "HTTP request header value (case-insensitive).",
-            "description": "HTTP 响应头信息的值（不区分大小写）。",
+            "description": "HTTP 响应标头的值（不区分大小写）。",
             "optional": true
           }
         }
