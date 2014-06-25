@@ -13,8 +13,8 @@
         "type": "object",
         "js_module": "ChromeSetting",
         "customBindings": "ChromeSetting",
-//@        "description": "An interface that allows access to a Chrome browser setting. See $(ref:proxy.settings) for an example.",
-        "description": "允许访问 Chrome 浏览器设置的接口，有关例子请参见 $(ref:proxy.settings)。",
+//@        "description": "An interface that allows access to a Chrome browser setting. See $(ref:accessibilityFeatures) for an example.",
+        "description": "允许访问 Chrome 浏览器设置的接口，有关例子请参见 $(ref:accessibilityFeatures)。",
         "functions": [
           {
             "name": "get",

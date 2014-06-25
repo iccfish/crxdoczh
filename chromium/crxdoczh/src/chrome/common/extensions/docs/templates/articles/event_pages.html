@@ -2,13 +2,13 @@
 
 
 <p>
-<!--@Event pages are very similar to
-<a href="background_pages">background pages</a>,
-with one important difference:
-event pages are loaded only when they are needed.
+<!--@A common need for apps and extensions is to have
+a single long-running script to manage some task or state.
+Event pages to the rescue.
+Event pages are loaded only when they are needed.
 When the event page is not actively doing something,
 it is unloaded, freeing memory and other system resources.-->
-事件页面与<a href="background_pages">后台网页</a>十分相似，但是有一个重要的区别：事件页面只在需要时加载，当事件页面当前不活动时将会卸载，释放内存及其他系统资源。
+应用和扩展程序通常需要长时间运行的脚本来管理某些任务或状态，这就是事件页面的作用。事件页面只在需要时加载，当事件页面不活动时就会卸载，以便释放内存和其他系统资源。
 </p>
 
 {{?is_apps}}
@@ -160,6 +160,7 @@ Checker</a> extension.-->
 有关事件注册操作的具体例子，您可以查看<a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/gmail/">Google Mail Checker</a>扩展程序。
 </p>
 
+{{^is_apps}}
 <h2 id="transition"><!--@Convert background page to event page-->将后台页面转换为事件页面</h2>
 <p>
 <!--@Follow this checklist to convert your extension's
@@ -195,6 +196,7 @@ Checker</a> extension.-->
   <code>$(ref:runtime.getBackgroundPage)</code>。新方法是异步的，所以如果有必要的话它可以在返回前启动事件页面。
 </ol>
 </p>
+{{/is_apps}}
 
 <h2 id="best-practices"><!--@Best practices when using event pages-->使用事件页面时的最佳做法</h2>
 <p>
@@ -227,6 +229,7 @@ Checker</a> extension.-->
   can no longer rely on global variables for runtime state.-->
   如果您需要在浏览器会话间保持运行时状态，请使用<a href="storage">存储 API</a> 或 IndexedDB。由于事件页面不会长时间保持加载状态，您不能再依赖全局变量来保存运行时状态。
 
+  {{^is_apps}}
   <li><!--@Use <a href="events#filtered">event filters</a> to restrict
   your event notifications to the cases you care about. For example, if
   you listen to the <code>$(ref:tabs.onUpdated)</code>
@@ -239,6 +242,7 @@ Checker</a> extension.-->
   <code>$(ref:tabs.onUpdated)</code> 事件，尝试改用
   <code>$(ref:webNavigation.onCompleted)</code> 事件并使用过滤器（标签页 API
   不支持过滤器），这样，您的事件页面仅在您感兴趣的事件产生时才会加载。
+  {{/is_apps}}
 
   <li><!--@Listen to the-->如果您在事件页面卸载之前需要做最后的清理，请监听
   <code>$(ref:runtime.onSuspend)</code>

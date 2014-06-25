@@ -77,8 +77,9 @@
                   {
                     "name": "tab",
                     "$ref": "tabs.Tab",
-//@                    "description": "The details of the tab where the click took place."
-                    "description": "单击发生的标签页详情。"
+//@                    "description": "The details of the tab where the click took place.",
+                    "description": "单击发生的标签页详情。",
+                    "extension_types": ["extension", "legacy_packaged_app"]
                   }
                 ]
               },
