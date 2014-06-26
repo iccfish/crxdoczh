@@ -23,6 +23,7 @@ MIME 类型为 <code><em>type</em></code> 的任何文件。如下是一个指�
     "types": [
       "text/*"
     ],
+    "title": "{应用名称}"
   },
   "image": {
     "types": [
@@ -32,14 +33,26 @@ MIME 类型为 <code><em>type</em></code> 的任何文件。如下是一个指�
     "extensions": [
       "tiff"
     ],
+    "title": "{应用名称}"
   },
   "any": {
     "extensions": [
       "*"
     ],
+    "title": "{应用名称}"
   }
 }
 </pre>
+
+<p class="note">
+<!--@The <code>title</code> attribute is mandatory on Chrome
+version 37 and earlier. As of Chrome version 38, it is deprecated and
+will be ignored (the app's name will be used instead). For
+compatibility, <code>title</code> should always be the name of the app.-->
+Chrome 37 和更早版本中必须指定 <code>title</code> 属性。从 Chrome 38
+开始，该属性弃用并忽略（而是使用应用名称）。为了保持兼容，<code>title</code>
+应该始终为应用的名称。
+</p>
 
 <p>
 <!--@To handle files, apps also need to declare the $(ref:fileSystem)

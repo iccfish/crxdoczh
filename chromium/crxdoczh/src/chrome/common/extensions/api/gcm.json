@@ -5,8 +5,8 @@
 [
   {
     "namespace": "gcm",
-//@    "description": "Use <code>chrome.gcm</code> to enable apps and extensions to send and receive messages through <a href='http://developer.android.com/google/gcm/'>Google Cloud Messaging</a>.",
-    "description": "使用 <code>chrome.gcm</code> 通过 <a href='https://developer.android.com/google/gcm/'>Google Cloud Messaging</a> 在应用和扩展程序中发送和接收消息。",
+//@    "description": "Use <code>chrome.gcm</code> to enable apps and extensions to send and receive messages through the <a href='http://developer.android.com/google/gcm/'>Google Cloud Messaging Service</a>.",
+    "description": "使用 <code>chrome.gcm</code> 通过 <a href='https://developer.android.com/google/gcm/'>Google Cloud Messaging 服务</a>在应用和扩展程序中发送和接收消息。",
     "properties": {
       "MAX_MESSAGE_SIZE": {
         "value": 4096,

@@ -2,13 +2,16 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-// Use the <code>chrome.fileSystemProvider</code> API to create file systems,
-// that can be accessible from the file manager on Chrome OS.
+// <!--@Use the <code>chrome.fileSystemProvider</code> API to create file systems,
+// that can be accessible from the file manager on Chrome OS.-->
+// 使用 <code>chrome.fileSystemProvider</code> API 创建可以在 Chrome OS
+// 文件管理器中访问的文件系统。
 [platforms=("chromeos"),
  implemented_in="chrome/browser/chromeos/extensions/file_system_provider/file_system_provider_api.h"]
 namespace fileSystemProvider {
-  // Error codes used by providing extensions in response to requests. For
-  // success, <code>OK</code> should be used.
+  // <!--@Error codes used by providing extensions in response to requests. For
+  // success, <code>OK</code> should be used.-->
+  // 扩展程序响应请求时使用的错误代码，如果成功则应该使用 <code>OK</code>。
   enum ProviderError {
     OK,
     FAILED,
@@ -29,59 +32,71 @@ namespace fileSystemProvider {
     IO
   };
 
-  // Mode of opening a file. Used by <code>onOpenFileRequested</code>.
+  // <!--@Mode of opening a file. Used by <code>onOpenFileRequested</code>.-->
+  // 打开文件的模式，由 <code>onOpenFileRequested</code> 使用。
   enum OpenFileMode {
     READ,
     WRITE
   };
 
-  // Represents metadata of a file or a directory.
+  // <!--@Represents metadata of a file or a directory.-->
+  // 表示文件或目录的元数据。
   dictionary EntryMetadata {
-    // True if it is a directory.
+    // <!--@True if it is a directory.-->
+    // 如果为目录则为 true。
     boolean isDirectory;
 
-    // Name of this entry (not full path name).
+    // <!--@Name of this entry (not full path name).-->
+    // 项目名称（不是完整路径）。
     DOMString name;
 
-    // File size in bytes.
+    // <!--@File size in bytes.-->
+    // 文件大小，以字节为单位。
     double size;
 
-    // The last modified time of this entry.
+    // <!--@The last modified time of this entry.-->
+    // 该项目上一次修改的时间。
     [instanceOf=Date] object modificationTime;
-  };
+};
 
-  // Options for the <code>mount()</code> method.
+  // <!--@Options for the <code>mount()</code> method.-->
+  // <code>mount()</code> 方法的选项。
   dictionary MountOptions {
     DOMString fileSystemId;
     DOMString displayName;
   };
 
-  // Options for the <code>unmount()</code> method.
+  // <!--@Options for the <code>unmount()</code> method.-->
+  // <code>unmount()</code> 方法的选项。
   dictionary UnmountOptions {
     DOMString fileSystemId;
   };
 
-  // Options for the <code>onUnmountRequested()</code> event.
+  // <!--@Options for the <code>onUnmountRequested()</code> event.-->
+  // <code>onUnmountRequested()</code> 事件的选项。
   dictionary UnmountRequestedOptions {
     DOMString fileSystemId;
     long requestId;
   };
 
-  // Options for the <code>onGetMetadataRequested()</code> event.
+  // <!--@Options for the <code>onGetMetadataRequested()</code> event.-->
+  // <code>onGetMetadataRequested()</code> 事件的选项。
   dictionary GetMetadataRequestedOptions {
     DOMString fileSystemId;
     long requestId;
     DOMString entryPath;
   };
 
-  // Options for the <code>onReadDirectoryRequested()</code> event.
+  // <!--@Options for the <code>onReadDirectoryRequested()</code> event.-->
+  // <code>onReadDirectoryRequested()</code> 事件的选项。
   dictionary ReadDirectoryRequestedOptions {
     DOMString fileSystemId;
     long requestId;
     DOMString directoryPath;
   };
 
-  // Options for the <code>onOpenFileRequested()</code> event.
+  // <!--@Options for the <code>onOpenFileRequested()</code> event.-->
+  // <code>onOpenFileRequested()</code> 事件的选项。
   dictionary OpenFileRequestedOptions {
     DOMString fileSystemId;
     long requestId;
@@ -90,14 +105,16 @@ namespace fileSystemProvider {
     boolean create;
   };
 
-  // Options for the <code>onCloseFileRequested()</code> event.
+  // <!--@Options for the <code>onCloseFileRequested()</code> event.-->
+  // <code>onCloseFileRequested()</code> 事件的选项。
   dictionary CloseFileRequestedOptions {
     DOMString fileSystemId;
     long requestId;
     long openRequestId;
   };
 
-  // Options for the <code>onReadFileRequested()</code> event.
+  // <!--@Options for the <code>onReadFileRequested()</code> event.-->
+  // <code>onReadFileRequested()</code> 事件的选项。
   dictionary ReadFileRequestedOptions {
     DOMString fileSystemId;
     long requestId;
@@ -106,111 +123,149 @@ namespace fileSystemProvider {
     double length;
   };
 
-  // Callback to receive the result of mount() function.
+  // <!--@Callback to receive the result of mount() function.-->
+  // 接收 mount() 函数结果的回调函数。
   callback MountCallback = void([nodoc, instanceOf=DOMError] object error);
 
-  // Callback to receive the result of unmount() function.
+  // <!--@Callback to receive the result of unmount() function.-->
+  // 接收 unmount() 函数结果的回调函数。
   callback UnmountCallback = void([nodoc, instanceOf=DOMError] object error);
 
-  // Callback to be called by the providing extension in case of a success.
+  // <!--@Callback to be called by the providing extension in case of a success.-->
+  // 操作成功后由提供文件系统的扩展程序调用的回调函数。
   callback ProviderSuccessCallback = void();
 
-  // Callback to be called by the providing extension in case of an error.
+  // <!--@Callback to be called by the providing extension in case of an error.-->
+  // 遇到错误时由提供文件系统的扩展程序调用的回调函数。
   callback ProviderErrorCallback = void(ProviderError error);
 
-  // Callback to handle an error raised from the browser.
+  // <!--@Callback to handle an error raised from the browser.-->
+  // 处理由浏览器产生的错误的回调函数。
   [nocompile] callback ErrorCallback = void([instanceOf=DOMError] object error);
 
-  // Success callback for the <code>onGetMetadataRequested</code> event.
+  // <!--@Success callback for the <code>onGetMetadataRequested</code> event.-->
+  // <code>onGetMetadataRequested</code> 事件成功时的回调函数。
   callback MetadataCallback = void(EntryMetadata metadata);
 
-  // Success callback for the <code>onReadDirectoryRequested</code> event. If
+  // <!--@Success callback for the <code>onReadDirectoryRequested</code> event. If
   // more entries will be returned, then <code>hasMore</code> must be true, and
   // it has to be called again with additional entries. If no more entries are
-  // available, then <code>hasMore</code> must be set to false.
-  callback EntriesCallback = void(ResourceEntry[] entries, bool hasMore);
+  // available, then <code>hasMore</code> must be set to false.-->
+  // <code>onReadDirectoryRequested</code> 事件成功时的回调函数。如果还会返回更多项目，必须将
+  // <code>hasMore</code> 设置为 true，而且必须再次调用，传递其他项目。如果没有可用的项目，<code>hasMore</code>
+  // 必须设为 false。
+  callback EntriesCallback = void(EntryMetadata[] entries, boolean hasMore);
 
-  // Success callback for the <code>onReadFileRequested</code> event. If more
+  // <!--@Success callback for the <code>onReadFileRequested</code> event. If more
   // data will be returned, then <code>hasMore</code> must be true, and it
   // has to be called again with additional entries. If no more data is
-  // available, then <code>hasMore</code> must be set to false.
-  callback FileDataCallback = void(ArrayBuffer data, bool hasMore);
+  // available, then <code>hasMore</code> must be set to false.-->
+  // <code>onReadDirectoryRequested</code> 事件成功时的回调函数。如果还会返回更多数据，必须将
+  // <code>hasMore</code> 设置为 true，而且必须再次调用，传递其他数据。如果没有可用的数据，<code>hasMore</code>
+  // 必须设为 false。
+  callback FileDataCallback = void(ArrayBuffer data, boolean hasMore);
 
   interface Functions {
-    // Mounts a file system with the given <code>fileSystemId</code> and <code>
+    // <!--@Mounts a file system with the given <code>fileSystemId</code> and <code>
     // displayName</code>. <code>displayName</code> will be shown in the left
     // panel of Files.app. <code>displayName</code> can contain any characters
     // including '/', but cannot be an empty string. <code>displayName</code>
     // should be descriptive but doesn't have to be unique. Duplicate display
-    // names are uniquified by adding suffix like "(1)" in the Files app UI.
+    // names are uniquified by adding suffix like "(1)" in the Files app UI.-->
+    // 挂载指定 <code>fileSystemId</code>（文件系统标识符）和
+    // <code>displayName</code>（显示名称）的文件系统。<code>displayName</code>
+    // 显示在文件管理器的左侧面板，可以包含任意字符，包括“/”，但不能为空字符串。<code>displayName</code>
+    // 应当具有描述性，但不一定需要唯一。文件管理器用户界面中，重复的显示名称后会添加“(1)”这样的后缀使之唯一。
     //
-    // If a file system with the passed <code>fileSystemId</code> is already
+    // <!--@If a file system with the passed <code>fileSystemId</code> is already
     // mounted by this extension, then <code>errorCallback</code> will be called
     // with <code>ProviderError.EXISTS</code> value. The <code>fileSystemId
-    // </code> must not be an empty string.
+    // </code> must not be an empty string.-->
+    // 如果传递的 <code>fileSystemId</code>
+    // 对应的文件系统已经由当前扩展程序挂载，则会调用 <code>errorCallback</code>，并传递
+    // <code>ProviderError.EXISTS</code> 值。<code>fileSystemId</code> 不能为空字符串。
     static void mount(MountOptions options,
                       MountCallback successCallback,
                       [nocompile] ErrorCallback errorCallback);
 
-    // Unmounts a file system with the given <code>fileSystemId</code>. It
+    // <!--@Unmounts a file system with the given <code>fileSystemId</code>. It
     // should be called after <code>onUnmountRequested</code> is invoked. Also,
     // the providing extension can decide to perform unmounting if not requested
     // (eg. in case of lost connection, or a file error). If there is no file
     // system with the requested id, or unmounting fails, then the
-    // <code>errorCallback</code> will be called.
+    // <code>errorCallback</code> will be called.-->
+    // 取消挂载指定 <code>fileSystemId</code>（文件系统标识符）的文件系统，应当在
+    // <code>onUnmountRequested</code> 执行后调用。此外，提供文件系统的扩展程序即使没有被请求也可以进行取消挂载操作（例如连接丢失或文件错误的情况下）。如果不存在指定标识符的文件系统，或取消挂载失败，则会调用
+    // <code>errorCallback</code>。
     static void unmount(UnmountOptions options,
                         UnmountCallback successCallback,
                         [nocompile] ErrorCallback errorCallback);
   };
 
   interface Events {
-    // Raised when unmounting for the file system with the <code>fileSystemId
+    // <!--@Raised when unmounting for the file system with the <code>fileSystemId
     // </code> identifier is requested. In the response, the <code>unmount
     // </code> API method should be called together with <code>successCallback
     // </code>. If unmounting is not possible (eg. due to a pending operation),
-    // then <code>errorCallback</code> must be called.
+    // then <code>errorCallback</code> must be called.-->
+    // 请求取消挂载标识符为 <code>fileSystemId</code>
+    // 的文件系统时产生。响应该事件时应调用 <code>unmount</code> API 方法以及
+    // <code>successCallback</code>。如果不能取消挂载（例如操作未完成），必须调用
+    // <code>errorCallback</code>。
     [maxListeners=1] static void onUnmountRequested(
         UnmountRequestedOptions options,
         ProviderSuccessCallback successCallback,
         ProviderErrorCallback errorCallback);
 
-    // Raised when metadata of a file or a directory at <code>entryPath</code>
+    // <!--@Raised when metadata of a file or a directory at <code>entryPath</code>
     // is requested. The metadata should be returned with the <code>
     // successCallback</code> call. In case of an error, <code>errorCallback
-    // </code> must be called.
+    // </code> must be called.-->
+    // 请求位于 <code>entryPath</code> 的文件或目录元数据时产生，您应该调用
+    // <code>successCallback</code> 返回元数据，如果发生错误则必须调用
+    // <code>errorCallback</code>。
     [maxListeners=1] static void onGetMetadataRequested(
         GetMetadataRequestedOptions options,
         MetadataCallback successCallback,
         ProviderErrorCallback errorCallback);
 
-    // Raised when contents of a directory at <code>directoryPath</code> are
+    // <!--@Raised when contents of a directory at <code>directoryPath</code> are
     // requested. The results should be returned in chunks by calling the <code>
     // successCallback</code> several times. In case of an error, <code>
-    // errorCallback</code> must be called.
+    // errorCallback</code> must be called.-->
+    // 请求位于 <code>directoryPath</code> 的目录内容时产生，您应该多次调用
+    // <code>successCallback</code> 分块返回结果，如果发生错误则必须调用
+    // <code>errorCallback</code>。
     [maxListeners=1] static void onReadDirectoryRequested(
         ReadDirectoryRequestedOptions options,
         EntriesCallback successCallback,
         ProviderErrorCallback errorCallback);
 
-    // Raised when opening a file at <code>filePath</code> is requested.
+    // <!--@Raised when opening a file at <code>filePath</code> is requested.
     // If <code>create</code> is set to <code>true</code> and the file does not
-    // exist, then it should be created.
+    // exist, then it should be created.-->
+    // 请求打开位于 <code>directoryPath</code> 的文件时产生。如果 <code>create</code>
+    // 为 <code>true</code> 但文件不存在，则应该创建文件。
     [maxListeners=1] static void onOpenFileRequested(
         OpenFileRequestedOptions options,
         ProviderSuccessCallback successCallback,
         ProviderErrorCallback errorCallback);
 
-    // Raised when opening a file previously opened with <code>openRequestId
-    // </code> is requested to be closed.
+    // <!--@Raised when opening a file previously opened with <code>openRequestId
+    // </code> is requested to be closed.-->
+    // 请求关闭之前使用 <code>openRequestId</code> 打开的文件时产生。
     [maxListeners=1] static void onCloseFileRequested(
         CloseFileRequestedOptions options,
         ProviderSuccessCallback successCallback,
         ProviderErrorCallback errorCallback);
 
-    // Raised when contents of a file opened previously with <code>openRequestId
+    // <!--@Raised when contents of a file opened previously with <code>openRequestId
     // </code>. The results should be returned in chunks by calling <code>
     // successCallback</code> several times. In case of an error, <code>
-    // errorCallback</code> must be called.
+    // errorCallback</code> must be called.-->
+    // 请求读取之前使用 <code>openRequestId</code> 打开的文件内容时产生。您应该多次调用
+    // <code>successCallback</code> 分块返回结果，如果发生错误，则必须调用
+    // <code>errorCallback</code>。
     [maxListeners=1] static void onReadFileRequested(
         ReadFileRequestedOptions options,
         FileDataCallback successCallback,

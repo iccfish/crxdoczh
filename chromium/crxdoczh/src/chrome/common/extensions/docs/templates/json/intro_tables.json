@@ -136,8 +136,12 @@
   "gcm": {
     "了解更多": [
       {
-        "link": "cloudMessagingV2",
-        "text": "Google 云消息服务"
+        "link": "cloudMessaging",
+        "text": "Google 云消息服务教程"
+      },
+      {
+        "link": "inform_users",
+        "text": "随时通知用户"
       }
     ]
   },
@@ -173,6 +177,14 @@
   "notifications": {
     "了解更多": [
       {
+        "link": "richNotifications",
+        "text": "丰富的通知"
+      },
+      {
+        "link": "inform_users",
+        "text": "随时通知用户"
+      },
+      {
         "link": "https://developers.google.com/live/shows/83992232-1001/",
         "text": "Chrome 应用办公时间：丰富的通知"
       }
@@ -189,7 +201,7 @@
   "pushMessaging": {
     "了解更多": [
       {
-        "link": "cloudMessaging",
+        "link": "cloudMessagingV1",
         "text": "用于 Chrome 浏览器的 Google 云消息服务"
       },
       {

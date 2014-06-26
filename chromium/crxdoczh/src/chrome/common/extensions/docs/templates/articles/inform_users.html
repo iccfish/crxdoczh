@@ -1,0 +1,170 @@
+<h1 id="informUsers"><!--@Keep Users Informed-->随时通知用户</h1>
+
+<p>
+<!--@Users engage with multiple devices throughout the day
+and they like notifications keeping them informed
+without disrupting what's in front of them.-->
+一天内用户使用多种设备，他们希望随时得到通知，但是又不会干扰他们正在进行的工作。
+</p>
+
+<p>
+<!--@You can keep your users informed and help them decide
+when is a good time to re-engage with your app using
+<a href="cloudMessaging">Google Cloud Messaging (GCM)</a> and
+<a href="richNotifications">Rich Notifications</a> APIs. -->
+您可以使用 <a href="cloudMessaging">Google 云消息服务（GCM）</a>以及<a
+href="richNotifications">丰富的通知</a> API
+随时通知用户，并让他们决定什么时候适合重新与您的应用交互。
+</p>
+
+<p><img src="{{static}}/images/notifications.png"
+     alt="Notifications in system user tray">
+</p>
+
+<p class="note">
+<b><!--@GCM and Rich Notifications sample-->GCM 和丰富的通知示例</b><br>
+<!--@The --><a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/gcm-notifications">gcm-notifications <!--@sample-->示例</a><!--@
+shows a simple integration between GCM and Rich Notifications API. -->演示了
+GCM 与丰富的通知 API 之间的简单集成。
+</p>
+
+<h2 id="summary_workflow"><!--@Summary of user workflow-->用户工作流程概述</h2>
+
+<p>
+<!--@To keep users informed,
+you need a way to push new information to your users
+even when all your app's windows are closed or minimized.
+Here's a summary of the user workflow for a very simple email app
+(a real email app would be a lot more sophisticated),
+with implementation details to follow:-->
+为了随时通知用户，您需要某种方式将新信息推送至用户，即使所有的应用窗口都已经关闭或最小化。如下是一个很简单的电子邮件应用中用户工作流程的概述（真正的电子邮件应用会复杂得多），之后是实现细节：
+</p>
+
+<ol>
+  <li><!--@Register your app with GCM.-->在 GCM 中注册您的应用。</li>
+  <li><!--@Your app listens for new email data coming from the server.-->您的应用监听服务器上新的电子邮件数据。</li>
+  <li><!--@Your server sends new email data to a user's app.-->您的服务器将新的电子邮件数据发送至用户的应用。</li>
+  <li><!--@Google Cloud Messaging wakes up the user's app to tell it there's a new email message.-->Google 云消息服务唤醒用户的应用，告诉它有新的电子邮件消息。</li>
+  <li><!--@The app parses the server data to create a notification.-->应用分析服务器的数据，创建通知。</li>
+  <li><!--@The user sees the notification in the system tray.-->用户在系统托盘中看到通知。</li>
+</ol>
+
+<p><!--@This workflow is one example implementation.
+You could choose to push messages from the server straight to the user,
+without using the rich notifications;
+you could also send notifications to users without using data from GCM.
+However, these two APIs are a natural fit for each other:
+GCM can wake up an app when new data is available server-side;
+rich notifications surface the information to the user.-->
+这样的工作流程是一种实现方式。您可以选择直接从服务器向用户推送消息，而不使用丰富的通知；您也可以向用户发送通知，而不使用来自
+GCM 的数据。然而，这两种 API 是很好的搭档：GCM
+可以在服务器端有新数据可用时唤醒应用，丰富的通知将信息展现给用户。
+</p>
+
+<h2 id="register"><!--@Register with GCM-->在 GCM 中注册</h2>
+
+<p>
+<!--@Register your app or extension with GCM
+to obtain the registraiton ID used to
+send messages to it:-->
+在 GCM 中注册您的应用或扩展程序，获取注册标识符，用于发送消息：</p>
+
+<pre data-filename="background.js"><code>
+function registerCallback(registrationId) {
+  if (chrome.runtime.lastError) {
+    // 如果注册失败，处理错误，并在一段时间后重试。
+    return;
+  }
+
+  // 这就是您的注册标识符。
+  // 通常您将它发送给服务器，接下来使用它发送消息。
+  console.log(registrationId);
+}
+</code></pre>
+
+<h2 id="get_data"><!--@Listen for new data-->监听新数据</h2>
+
+<p>
+<!--@Messages from the server are delivered via the <a href=gcm#event-onMessage>gcm.onMessage</a> event.
+Your app or extension must register a handler in the event page
+to receive this event and be able to wake up your app or extension:-->
+来自服务器的消息通过 $(ref:gcm.onMessage)
+事件传递，您的应用或扩展程序必须在事件页面中注册处理程序接收该事件，这样才能唤醒您的应用或扩展程序。
+</p>
+
+<pre data-filename="background.js"><code>
+// 设置 GCM 消息事件的监听器。
+chrome.gcm.onMessage.addListener(messageReceived);
+</code></pre>
+
+<p class="note">
+<b><!--@Enable-->启用 GCM</b><br>
+<!--@To use GCM in your app or extension,
+you need to <a href="cloudMessaging#enable_gcm">enable it first</a>.-->
+如果要在您的应用或扩展程序中使用 GCM，您首先需要<a
+href="cloudMessaging#enable_gcm">启用它</a>。
+</p>
+
+<h2 id="send_message"><!--@Send message to app-->向应用发送消息</h2>
+
+<p>
+<!--@Use the-->使用 <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/gcm-notifications">gcm-notifications <!--@sample-->示例</a><!--@
+to generate a curl command to send a message to the server:-->生成一条
+curl 命令，向服务器发送消息：
+</p>
+
+<pre>
+curl -H "Content-Type:application/x-www-form-urlencoded;charset=UTF-8" -H "Authorization: key=YOUR_APP_KEY" -d "registration_id=YOUR_REGISTRATION_ID" -d data.YOUR_MESSAGE_KEY=YOUR_MESSAGE_VALUE https://android.googleapis.com/gcm/send
+</pre>
+
+<p>
+<!--@GCM servers route the message to all instances of Chrome running apps
+or extensions with one of the registration IDs.
+As long as Chrome is running, even if the extension or app is not running,
+the app or extension's event page is woken up to deliver a message.</p>-->
+GCM 服务器会将消息转发给所有运行着应用或扩展程序的 Chrome
+实例，只要它们具有其中某一个注册标识符。只要 Chrome
+浏览器还在运行，即使扩展程序或应用不在运行，应用或扩展程序的事件页面也会唤醒，以便传递消息。
+</p>
+
+<h2 id="create_notification"><!--@Create notification-->创建通知</h2>
+
+<p>
+<!--@The <code>messageReceived</code> event handler goes in your event page
+(see <a href="#get_data">Listen for new data</a> above).
+When the GCM service sends a message,
+the event handler creates a notification:-->
+<code>messageReceived</code> 事件处理程序进入您的事件页面（请参见上面的<a
+href="#get_data">监听新数据</a>部分）。GCM 服务发送消息时，事件处理程序创建通知：
+</p>
+
+<pre>
+  function messageReceived(message) {
+    // message 对象包含 data 属性，它由键值对构成。
+  
+    // 返回通知中使用的新通知标识符。
+    function getNotificationId() {
+      var id = Math.floor(Math.random() * 9007199254740992) + 1; 
+      // 保存最新的通知标识符，这样后台网页关闭后事件处理程序
+      // 仍然能访问通知。
+      chrome.storage.local.set({'id': id});
+      return id.toString();
+    }
+  
+    // 将所有键值对连接起来，形成显示的字符串。
+    var messageString = "";
+    for (var key in message.data) {
+      if (messageString != "")
+        messageString += ", "
+      messageString += key + ":" + message.data[key];
+    }
+  
+    // 弹出通知显示 GCM 消息。
+    chrome.notifications.create(getNotificationId(), {
+      title: '新邮件',
+      iconUrl: 'mail_128.png',
+      type: 'basic',
+      message: messageString
+    }, creationCallback);
+  }
+ </pre>

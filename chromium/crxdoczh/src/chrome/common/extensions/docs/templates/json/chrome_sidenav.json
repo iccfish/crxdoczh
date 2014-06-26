@@ -403,8 +403,16 @@ navigation menu look better.
                 "href": "/apps/app_storage"
               },
               {
+                "title": "随时通知用户",
+                "href": "/apps/inform_users"
+              },
+              {
                 "title": "云消息服务",
                 "href": "/apps/cloudMessaging"
+              },
+              {
+                "title": "丰富的通知",
+                "href": "/apps/richNotifications"
               },
               {
                 "title": "用户认证",

@@ -1,0 +1,242 @@
+<h1 id="richNotifications"><!--@Rich Notifications-->丰富的通知</h1>
+
+<p><!--@The <a href="https://developer.chrome.com/apps/notifications">rich notifications API</a>
+lets you create notifications using templates and
+show these notifications to users in the user's system tray:-->
+您可以使用<a href="notifications">丰富的通知 API</a> 使用模板创建通知，并在系统托盘中向用户展现这些通知。
+</p>
+
+<p><img src="{{static}}/images/notifications.png"
+     alt="Notifications in system user tray">
+</p>
+
+<h2 id="look"><!--@How they look-->外观</h2>
+
+<p>
+<!--@Rich notifications come in four different flavors:
+basic, image, list, and progress.
+All notifications include a title, message, small icon displayed
+to the left of the notification message, and a contextMessage field,
+which is displayed as a 3rd text field in a lighter color font.-->
+丰富的通知包含四种风格：基本（basic）、图片（image）、列表（list）和进度条（progress）。所有通知都包含标题（title）、消息（message）、通知消息左侧显示的小图标以及
+contextMessage 字段，以浅色字体显示为第三文本域。
+</p>
+
+<p>
+<!--@A basic image:-->
+基本通知：
+</p>
+
+<p>
+<img src="{{static}}/images/basic_notification.png"
+     alt="Basic notification">
+</p>
+
+<p>
+<!--@List notifications display any number of list items:-->
+显示项目列表的列表通知：
+</p>
+
+<p>
+<img src="{{static}}/images/list_notification.png"
+     alt="List notification">
+</p>
+
+<p>
+<!--@Image notifications include an image preview:-->
+包含图片预览的图片通知：
+</p>
+
+<p>
+<img src="{{static}}/images/image_notification.png"
+     alt="Image notification">
+</p>
+
+<!--@Progress notifications show a progress bar:-->
+显示进度条的进度条通知：
+<p>
+<img src="{{static}}/images/progress_notification.png"
+     alt="Progress notification">
+</p>
+
+<h2 id="behave"><!--@How they behave-->行为</h2>
+
+<p>
+<!--@Notifications show up in a user's system tray,
+and stay in the system tray until the user dismisses them.
+On most platforms,
+the bell icon is lit when there's new notifications;
+On ChromeOS,
+the system tray keeps a count of all new notifications.
+Once a users sees the notifications in the system tray,
+the count is reset to zero;-->
+通知显示在用户的系统托盘中，在用户关闭它们之前保留在系统托盘中。在大部分平台上，有新通知时铃铛图标就会点亮。在
+Chrome OS 上，系统托盘显示所有新通知的数目，用户查看系统托盘中的通知后，通知数目重置为零。
+</p>
+
+<p>
+<!--@Notifications can be assigned a priority between -2 to 2.
+Priorities < 0 are only shown in the center;
+priorities > 0 are shown for increasing duration and 
+more high priority notifications can be displayed in the system tray.-->
+您可以为通知分配优先级，范围在 -2 到 2 之间。优先级小于 0 的通知仅在通知中心显示，优先级大于 0 的通知显示的时间更长，更高优先级的通知可以在系统托盘中显示。
+</p>
+
+<p>
+<!--@In addition to displaying information,
+all notification types can include up to two action items.
+When users click on an action item,
+your app can respond with the appropriate action.
+For example,
+when the user clicks on "Reply",
+the email app opens and the user can complete the reply:-->
+除了显示信息外，所有通知类型都能包含操作项，最多两个。当用户单击操作项时，应用可以进行相应的动作。例如，当用户单击“回复”时，电子邮件应用打开，用户可以完成回复：
+</p>
+
+<p><img src="{{static}}/images/action_notification.png"
+     alt="Action in notification">
+</p>
+
+<h2 id="develop"><!--@How to develop them-->如何开发</h2>
+
+<p>
+<!--@To use this API,
+call the $(ref:notifications.create) method,
+passing in the notification details
+via the <code>options</code> parameter:-->
+使用该 API 时，只要调用 $(ref:notifications.create) 方法，通过
+<code>options</code> 参数传递通知详情：
+</p>
+
+<pre>
+chrome.notifications.create(id, options, creationCallback);
+</pre>
+
+<p>
+<!--@The $(ref:notifications.NotificationOptions) must include a
+$(ref:notifications.TemplateType),
+which defines available notification details
+and how those details are displayed.-->
+$(ref:notifications.NotificationOptions) 必须包含
+$(ref:notifications.TemplateType)，定义可用的通知详情以及如何显示它们。
+</p>
+
+<p class="note">
+<b><!--@Consider integrating with GCM!-->请考虑与 GCM 的集成！</b><br>
+<a href="inform_users"><!--@Keep your users informed-->随时通知用户</a><!--@ all the time,
+even when your app isn't opened.
+The -->，即使您的应用没有打开。<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/gcm-notifications">gcm-notifications <!--@sample-->示例</a><!--@
+shows a simple integration between GCM and Rich Notifications API. -->演示了
+GCM 和丰富的通知 API 之间的简单集成。
+</p>
+
+<h3 id="basic"><!--@Create basic notification-->创建基本通知</h3>
+
+<p>
+<!--@All template types
+(<code>basic</code>, <code>image</code>, and <code>list</code>)
+must include a notification <code>title</code> and <code>message</code>,
+as well as an <code>iconUrl</code>, which is a link to a small icon that
+is displayed to the left of the notification message.-->
+所有模板类型（<code>basic</code>、<code>image</code> 和
+<code>list</code>）都必须包含通知的标题（<code>title</code>）、消息（<code>message</code>）和图标 URL（<code>iconUrl</code>，显示在通知消息左侧的小图标链接）。
+</p>
+
+<p>
+<!--@Here's an example of a <code>basic</code> template:-->
+如下是 <code>basic</code>（基本）模板的示例：
+</p>
+
+<pre>
+var opt = {
+  type: "basic",
+  title: "主要标题",
+  message: "要显示的主要消息",
+  iconUrl: "url_to_small_icon"
+}
+</pre>
+
+<h3 id="list"><!--@Create list notification-->创建列表通知</h3>
+
+<p>
+<!--@The <code>list</code> template displays <code>items</code>
+in a list format:-->
+<code>list</code>（列表）模板以列表的形式显示 <code>items</code>：
+</p>
+
+<pre>
+var opt = {
+  type: "list",
+  title: "主要标题",
+  message: "要显示的主要消息",
+  iconUrl: "url_to_small_icon",
+  items: [{ title: "项目 1", message: "这是项目 1。"},
+          { title: "项目 2", message: "这是项目 2。"},
+          { title: "项目 3", message: "这是项目 3。"}]
+}
+</pre>
+
+<h3 id="image"><!--@Create image notification-->创建图片通知</h3>
+
+<p>
+<!--@The <code>image</code>
+template type also includes an <code>imageUrl</code>, which is a link to
+an image that is previewed within the notification:-->
+<code>image</code>（图片）模板类型还包含 <code>imageUrl</code>（图片
+URL），即通知中预览的图片链接：
+</p>
+
+<pre>
+var opt = {
+  type: "basic",
+  title: "主要标题",
+  message: "要显示的主要消息",
+  iconUrl: "url_to_small_icon"
+  imageUrl: "url_to_preview_image"
+}
+</pre>
+
+<p>
+<!--@In Chrome Apps, due to a strict <a href="contentSecurityPolicy">Content Security Policy</a>
+these URLs must point to a local resource or use a
+<a href="app_external">blob or data URL</a>.
+Use a 3:2 ratio for your image; otherwise a black border frames the image.-->
+由于严格的<a href="contentSecurityPolicy">内容安全策略</a>，Chrome 应用中这些 URL
+必须指向本地资源，或使用 <a href="app_external">blob 或 data URL</a>。请使用 3：2
+的图片，否则图片外会有黑色边框。
+</p>
+
+<h2 id="events"><!--@Listening for and responding to events-->监听和响应事件</h2>
+
+<p>
+<!--@All notifications can include event listeners and event handlers
+that respond to user actions (see <a href="events">chrome.events</a>).
+For example,
+you can write an event handler to respond to an
+$(ref:notifications.onButtonClicked) event.-->
+所有通知都能包含响应用户操作的事件监听器和事件处理程序（请参见
+<a href="events">chrome.events</a>）。例如，您可以编写事件处理程序，响应
+$(ref:notifications.onButtonClicked) 事件。
+</p>
+
+<p><!--@Event listener:-->事件监听器：</p>
+
+<pre>
+chrome.notifications.onButtonClicked.addListener(replyBtnClick);
+</pre>
+
+<p><!--@Event handler:-->事件处理程序：</p>
+
+<pre>
+function replyBtnClick {
+	// 编写函数响应用户操作。
+}
+</pre>
+
+<p><!--@Consider including event listeners and handlers within the
+  <a href="app_lifecycle#create_event_page">event page</a>,
+so that notifications can pop-up even when the app or extension isn't running.-->
+请将事件监听器和处理程序放在在<a href="app_lifecycle#create_event_page"
+>事件页面</a>中，这样即使应用或扩展程序不在运行时也能弹出通知。
+</p>
+
