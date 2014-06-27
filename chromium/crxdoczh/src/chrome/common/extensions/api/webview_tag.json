@@ -575,6 +575,12 @@
         "description": "指示 webview 的用户代理字符串是否由 $(ref:webviewTag.setUserAgentOverride) 覆盖。"
       },
       {
+        "name": "print",
+        "type": "function",
+//@        "description": "Prints the contents of the webview, this is equivalent to calling scripted print function from the webview itself."
+        "description": "打印 WebView 的内容，等价于在 WebView 中调用 JavaScript print 函数。"
+      },
+      {
         "name": "reload",
         "type": "function",
 //@        "description": "Reloads the current top-level page.",

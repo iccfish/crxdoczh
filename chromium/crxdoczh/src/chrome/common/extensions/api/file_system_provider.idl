@@ -57,7 +57,11 @@ namespace fileSystemProvider {
     // <!--@The last modified time of this entry.-->
     // 该项目上一次修改的时间。
     [instanceOf=Date] object modificationTime;
-};
+
+    // <!--@Mime type for the entry.-->
+    // 该项目的 MIME 类型。
+    DOMString? mimeType; 
+  };
 
   // <!--@Options for the <code>mount()</code> method.-->
   // <code>mount()</code> 方法的选项。
@@ -131,6 +135,10 @@ namespace fileSystemProvider {
   // 接收 unmount() 函数结果的回调函数。
   callback UnmountCallback = void([nodoc, instanceOf=DOMError] object error);
 
+  // <!--@Callback to handle an error raised from the browser.-->
+  // 处理由浏览器产生的错误的回调函数。
+  [nocompile] callback ErrorCallback = void([instanceOf=DOMError] object error);
+
   // <!--@Callback to be called by the providing extension in case of a success.-->
   // 操作成功后由提供文件系统的扩展程序调用的回调函数。
   callback ProviderSuccessCallback = void();
@@ -138,10 +146,6 @@ namespace fileSystemProvider {
   // <!--@Callback to be called by the providing extension in case of an error.-->
   // 遇到错误时由提供文件系统的扩展程序调用的回调函数。
   callback ProviderErrorCallback = void(ProviderError error);
-
-  // <!--@Callback to handle an error raised from the browser.-->
-  // 处理由浏览器产生的错误的回调函数。
-  [nocompile] callback ErrorCallback = void([instanceOf=DOMError] object error);
 
   // <!--@Success callback for the <code>onGetMetadataRequested</code> event.-->
   // <code>onGetMetadataRequested</code> 事件成功时的回调函数。
