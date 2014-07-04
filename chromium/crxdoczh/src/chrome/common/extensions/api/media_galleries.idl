@@ -8,6 +8,16 @@
 // （在用户允许的前提下）访问用户本地磁盘中的媒体文件（音频、图片、视频）。
 namespace mediaGalleries {
 
+  [inline_doc] enum GalleryChangeType {
+    // <!--@The contents of the gallery have changed.-->
+    // 媒体库的内容已经更改。
+    contents_changed,
+    // <!--@The watch has been dropped because the device has been detached,
+    // the gallery permission has been removed, or any other reason.-->
+    // 监视已经取消，因为设备已经弹出、媒体库权限取消或者其他原因。
+    watch_dropped
+  };
+
   [inline_doc] enum GetMediaFileSystemsInteractivity {
     // <!--@Do not act interactively.-->
     // 不要交互式地进行。
@@ -48,6 +58,16 @@ namespace mediaGalleries {
     // <!--@The scan encountered an error and could not proceed.-->
     // 扫描遇到错误，不能继续进行。
     error
+  };
+  
+  [inline_doc] dictionary GalleryChangeDetails {
+    // <!--@Type of change event.-->
+    // 更改事件的类型。
+    GalleryChangeType type;
+    
+    // <!--@Identifies the modified gallery.-->
+    // 标识修改的媒体库。
+    DOMString galleryId;
   };
 
   [inline_doc] dictionary MediaFileSystemsDetails {
@@ -259,6 +279,10 @@ namespace mediaGalleries {
   };
 
   interface Events {
+    // <!--@Fired when a media gallery is changed or a gallery watch is dropped.-->
+    // 媒体库更改时或取消媒体库监视时产生。
+    static void onGalleryChanged(GalleryChangeDetails details);
+
     // <!--@The pending media scan has changed state. See details for more
     // information.-->
     // 正在进行中的媒体扫描已经更改状态，有关更多信息请参见 details 参数。

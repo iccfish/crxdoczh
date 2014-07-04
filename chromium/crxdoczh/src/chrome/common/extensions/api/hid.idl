@@ -8,20 +8,19 @@
 // 使用 <code>chrome.hid</code> API 与连接的 HID 设备交互。使用该 API
 // 您可以在应用中进行 HID 操作，应用可以作为硬件设备的驱动程序使用。
 namespace hid {
-  // <!--@HID usage pair. Each enumerated device interface exposes an array of
-  // these objects. Values correspond to those defined by the
-  // <a href="http://www.usb.org/developers/devclass_docs/HID1_11.pdf>
-  // HID device class specification</a>.-->
-  // HID 用途。枚举出来的每个设备接口都会提供这种对象的数组，具体的值对应于
-  // <a href="http://www.usb.org/developers/devclass_docs/HID1_11.pdf">HID
-  // 设备类型规范</a>中定义的内容。
-  // |usage_page|: <!--@HID usage page identifier.-->
+  // <!--@HID top-level collection attributes.
+  // Each enumerated device interface exposes an array of these objects.-->
+  // HID 顶层集合属性。每一个枚举的设备接口都包含这些对象的数组。
+  // |usagePage|: <!--@HID usage page identifier.-->
   // HID 用途类别。
   // |usage|: <!--@Page-defined usage identifier.-->
   // 类别定义的用途标识符。
-  dictionary HidUsageAndPage {
-    long usage_page;
+  // |reportIds|: <!--@Report IDs which belong to the collection and to its children.-->
+  // 报告标识符，属于该集合和它包含的内容。
+  dictionary HidCollectionInfo {
+    long usagePage;
     long usage;
+    long[] reportIds;
   };
 
   // <!--@Returned by <code>getDevices</code> functions to describes a connected HID
@@ -34,13 +33,22 @@ namespace hid {
   // 制造商标识符。
   // |productId|: <!--@Product ID.-->
   // 产品标识符。
-  // |usages|: HID usage pairs exposed by underlying Top-level collections.
-  // 下层接口提供的 HID 用途。
+  // |collections|: <!--@Top-level collections from this device's report descriptor.-->
+  // 来自设备报告描述符的顶层集合。
+  // |maxInputReportSize|: <!--@Top-level collection's max input report size.-->
+  // 顶层集合的最大输入报告大小。
+  // |maxOutputReportSize|: <!--@Top-level collection's max output report size.-->
+  // 顶层集合的最大输出报告大小。
+  // |maxFeatureReportSize|: <!--@Top-level collection's max feature report size.-->
+  // 顶层集合的最大特性报告大小。
   dictionary HidDeviceInfo {
     long deviceId;
     long vendorId;
     long productId;
-    HidUsageAndPage[] usages;
+    HidCollectionInfo[] collections;
+    long maxInputReportSize;
+    long maxOutputReportSize;
+    long maxFeatureReportSize;
   };
 
   // <!--@Returned by <code>connect</code> to represent a communication session with

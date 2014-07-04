@@ -81,10 +81,9 @@ namespace bluetoothLowEnergy {
     DOMString? instanceId;
 
     // <!--@The currently cached characteristic value. This value gets updated when
-    // the value of the characteristic is read, written, or updated via a
-    // notification or indication. For local characteristics, this is the value
-    // that will be returned upon requests from remote peripherals by default.-->
-    // 目前缓存的特征值，读取、写入或通过通知或指示的方式更新特征值时也会更新该属性。对于本地特征来说，该属性的值就是默认情况下远程外设请求返回的值。
+    // the value of the characteristic is read or updated via a notification
+    // or indication.-->
+    // 目前缓存的特征值，读取或通过通知或指示的方式更新特征值时也会更新该属性。
     ArrayBuffer? value;
   };
 
@@ -116,19 +115,31 @@ namespace bluetoothLowEnergy {
     DOMString? instanceId;
 
     // <!--@The currently cached descriptor value. This value gets updated when
-    // the value of the descriptor is read or written. For local descriptors,
-    // this is the value that will be returned upon requests from remote
-    // peripherals by default.-->
-    // 目前缓存的描述符值，读取、写入或通过通知或指示的方式更新描述符值时也会更新该属性。对于本地描述符来说，该属性的值就是默认情况下远程外设请求返回的值。
+    // the value of the descriptor is read.-->
+    // 目前缓存的描述符值，读取描述符值时也会更新该属性。
     ArrayBuffer? value;
   };
 
-  // The connection properties specified during a call to $ref:connect.
+  // The connection properties specified during a call to $(ref:connect).
   dictionary ConnectProperties {
     // Flag indicating whether a connection to the device is left open when the
     // event page of the application is unloaded (see <a
     // href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App
     // Lifecycle</a>). The default value is <code>false.</code>
+    boolean persistent;
+  };
+
+  // <!--@Optional characteristic notification session properties specified during a
+  // call to $(ref:startCharacteristicNotifications).-->
+  // 调用 $(ref:startCharacteristicNotifications) 时指定的可选特征通知会话属性。
+  dictionary NotificationProperties {
+    // <!--@Flag indicating whether the app should receive notifications when the
+    // event page of the application is unloaded (see <a
+    // href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App
+    // Lifecycle</a>). The default value is <code>false</code>.-->
+    // 该标志表示应用的事件页面卸载时是否应该接收通知（请参见 <a
+    // href="app_lifecycle">管理应用的生命周期</a>。默认值为
+    // <code>false</code>。
     boolean persistent;
   };
 
@@ -251,8 +262,8 @@ namespace bluetoothLowEnergy {
                                DescriptorsCallback callback);
 
     // <!--@Retrieve the value of a specified characteristic from a remote
-    // peripheral. This function will fail if the characteristic is local.-->
-    // 从远程外设获取指定特征的值，如果特征是本地的则该函数会失败。
+    // peripheral.-->
+    // 从远程外设获取指定特征的值。
     // |characteristicId| : <!--@The instance ID of the GATT characteristic whose
     // value should be read from the remote device.-->
     // 要从远程设备读取的 GATT 特征实例标识符。
@@ -264,9 +275,8 @@ namespace bluetoothLowEnergy {
     static void readCharacteristicValue(DOMString characteristicId,
                                         CharacteristicCallback callback);
 
-    // <!--@Write the value of a specified characteristic from a remote peripheral.
-    // This function will fail if the characteristic is local.-->
-    // 从远程外设写入指定特征的值，如果特征是本地的则该函数会失败。
+    // <!--@Write the value of a specified characteristic from a remote peripheral.-->
+    // 从远程外设写入指定特征的值。
     // |characteristicId| : <!--@The instance ID of the GATT characteristic whose
     // value should be written to.-->
     // 要写入 GATT 特征值的实例标识符。
@@ -279,9 +289,39 @@ namespace bluetoothLowEnergy {
                                          ArrayBuffer value,
                                          ResultCallback callback);
 
+    // <!--@Enable value notifications/indications from the specified characteristic.
+    // Once enabled, an application can listen to notifications using the
+    // $(ref:onCharacteristicValueChanged) event.-->
+    // 启用指定特征值的通知/指示，启用后应用可以通过
+    // $(ref:onCharacteristicValueChanged) 事件监听通知。
+    // |characteristicId| : <!--@The instance ID of the GATT characteristic that
+    // notifications should be enabled on.-->
+    // 需要启用通知的 GATT 特征实例标识符。
+    // |properties| : <!--@Notification session properties (optional).-->
+    // 通知会话属性（可选）。
+    // |callback| : <!--@Called when the request has completed.-->
+    // 请求完成后调用。
+    static void startCharacteristicNotifications(
+        DOMString characteristicId,
+        optional NotificationProperties properties,
+        ResultCallback callback);
+
+    // <!--@Disable value notifications/indications from the specified
+    // characteristic. After a successful call, the application will stop
+    // receiving notifications/indications from this characteristic.-->
+    // 禁用指定特征值的通知/指示。调用成功后，应用不再接收该特征的通知/指示。
+    // |characteristicId| : <!--@The instance ID of the GATT characteristic on which
+    // this app's notification session should be stopped.-->
+    // 需要停用通知的 GATT 特征实例标识符。
+    // |callback| : <!--@Called when the request has completed (optional).-->
+    // 请求完成后调用（可选）。
+    static void stopCharacteristicNotifications(
+        DOMString characteristicId,
+        optional ResultCallback callback);
+
     // <!--@Retrieve the value of a specified characteristic descriptor from a remote
-    // peripheral. This function will fail if the descriptor is local.-->
-    // 从远程外设获取指定特征描述符的值，如果描述符是本地的则该函数会失败。
+    // peripheral.-->
+    // 从远程外设获取指定特征描述符的值。
     // |descriptorId| : <!--@The instance ID of the GATT characteristic descriptor
     // whose value should be read from the remote device.-->
     // 要从远程设备读取的 GATT 特征实例标识符。
@@ -294,8 +334,8 @@ namespace bluetoothLowEnergy {
                                     DescriptorCallback callback);
 
     // <!--@Write the value of a specified characteristic descriptor from a remote
-    // peripheral. This function will fail if the descriptor is local.-->
-    // 从远程外设写入指定特征描述符的值，如果描述符是本地的则该函数会失败。
+    // peripheral.-->
+    // 从远程外设写入指定特征描述符的值。
     // |descriptorId| : <!--@The instance ID of the GATT characteristic descriptor
     // whose value should be written to.-->
     // 要写入的 GATT 特征描述符的实例标识符。
@@ -333,16 +373,21 @@ namespace bluetoothLowEnergy {
     static void onServiceRemoved(Service service);
 
     // <!--@Fired when the value of a remote GATT characteristic changes, either as
-    // a result of a read or write request, or a value change notification or
-    // indication.-->
-    // 远程 GATT 特征值更改时产生，无论是由于读取或写入请求，还是值更改通知或指示。
+    // a result of a read request, or a value change notification/indication
+    // This event will only be sent if the app has enabled notifications by
+    // calling $(ref:startCharacteristicNotifications).-->
+    // 远程 GATT 特征值更改时产生，无论是由于读取请求，还是值更改通知/指示。只有当应用调用
+    // $(ref:startCharacteristicNotifications) 启用通知后才会发送该事件。
     // |characteristic| : <!--@The GATT characteristic whose value has changed.-->
     // 值更改的 GATT 特征。
     static void onCharacteristicValueChanged(Characteristic characteristic);
 
     // <!--@Fired when the value of a remote GATT characteristic descriptor changes,
-    // usually as a result of a read or write request.-->
-    // 远程 GATT 特征描述符的值更改时产生，通常是读写请求的结果。
+    // usually as a result of a read request. This event exists
+    // mostly for convenience and will always be sent after a successful
+    // call to $(ref:readDescriptorValue).-->
+    // 远程 GATT 特征描述符的值更改时产生，通常是读取请求的结果。该事件只是为了方便而存在，成功调用
+    // $(ref:readDescriptorValue) 后都会发送该事件。
     // |descriptor| : <!--@The GATT characteristic descriptor whose value has
     // changed.-->
     // 值更改的 GATT 特征描述符。

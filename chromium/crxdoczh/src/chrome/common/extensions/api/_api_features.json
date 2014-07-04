@@ -423,7 +423,9 @@
       "nckgahadagoaajjgafhacjanaoiihapd",
       "ljclpkphhpbpinifbeabbhlfddcpfdde",
       "ppleadejekpmccmnpjdimmlfljlkdfej",
-      "eggnbpckecmjlblplehfpjjdhhidfdoj"
+      "eggnbpckecmjlblplehfpjjdhhidfdoj",
+      "jfjjdfefebklmdbmenmlehlopoocnoeh",
+      "knipolnnllmklapflnccelgolnpehhpl"
     ]
   },
   "hid": {
@@ -565,10 +567,6 @@
   "permissions": {
     "channel": "stable",
     "extension_types": ["extension", "legacy_packaged_app", "platform_app"],
-    "contexts": ["blessed_extension"]
-  },
-  "power": {
-    "dependencies": ["permission:power"],
     "contexts": ["blessed_extension"]
   },
   "preferencesPrivate": {
