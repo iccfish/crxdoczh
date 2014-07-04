@@ -226,7 +226,7 @@
         "type": "function",
         "nocompile": true,
 //@        "description": "Attempts to connect to connect listeners within an extension/app (such as the background page), or other extensions/apps. This is useful for content scripts connecting to their extension processes, inter-app/extension communication, and <a href=\"manifest/externally_connectable\">web messaging</a>. Note that this does not connect to any listeners in a content script. Extensions may connect to content scripts embedded in tabs via <a href="/extensins/tabs#method-connect">tabs.connect</a>.",
-        "description": "尝试连接到扩展程序/应用中的连接监听者（例如后台网页）或其他扩展程序/应用，该方法可用于内容脚本连接到所属扩展程序进程、应用/扩展程序之间的通信以及<a href=\"manifest/externally_connectable\">与网页通信</a>。注意，该方法不能连接到内容脚本中的监听者，扩展程序可以通过 <a href="/extensins/tabs#method-connect">tabs.connect</a> 连接到嵌入至标签页中的内容脚本。",
+        "description": "尝试连接到扩展程序/应用中的连接监听者（例如后台网页）或其他扩展程序/应用，该方法可用于内容脚本连接到所属扩展程序进程、应用/扩展程序之间的通信以及<a href=\"manifest/externally_connectable\">与网页通信</a>。注意，该方法不能连接到内容脚本中的监听者，扩展程序可以通过 <a href=\"/extensins/tabs#method-connect\">tabs.connect</a> 连接到嵌入至标签页中的内容脚本。",
         "parameters": [
 //@          {"type": "string", "name": "extensionId", "optional": true, "description": "The ID of the extension or app to connect to. If omitted, a connection will be attempted with your own extension. Required if sending messages from a web page for <a href=\"manifest/externally_connectable\">web messaging</a>."},
           {"type": "string", "name": "extensionId", "optional": true, "description": "您需要连接的扩展程序或应用的标识符，如果省略，则会尝试连接到您自己的扩展程序。如果使用<a href=\"manifest/externally_connectable\">与网页通信</a>的方式从网页发送消息则必须指定该参数。"},
@@ -274,7 +274,7 @@
         "nocompile": true,
         "allowAmbiguousOptionalArguments": true,
 //@        "description": "Sends a single message to event listeners within your extension/app or a different extension/app. Similar to $(ref:runtime.connect) but only sends a single message, with an optional response. If sending to your extension, the $(ref:runtime.onMessage) event will be fired in each page, or $(ref:runtime.onMessageExternal), if a different extension. Note that extensions cannot send messages to content scripts using this method. To send messages to content scripts, use <a href="/extensins/tabs#method-sendMessage">tabs.sendMessage</a>.",
-        "description": "向您的扩展程序/应用或另一个扩展程序/应用中的其他事件监听者发送单个消息。与 $(ref:runtime.connect) 类似，但是只发送单个消息（可以有响应）。如果向您自己的扩展程序发送消息，每个网页中都会产生 $(ref:runtime.onMessage) 事件；如果发送至另一个扩展程序则产生 $(ref:runtime.onMessageExternal) 事件。注意，扩展程序不能使用该方法向内容脚本发送消息。要向内容脚本发送消息，请使用 <a href="/extensins/tabs#method-sendMessage">tabs.sendMessage</a>。",
+        "description": "向您的扩展程序/应用或另一个扩展程序/应用中的其他事件监听者发送单个消息。与 $(ref:runtime.connect) 类似，但是只发送单个消息（可以有响应）。如果向您自己的扩展程序发送消息，每个网页中都会产生 $(ref:runtime.onMessage) 事件；如果发送至另一个扩展程序则产生 $(ref:runtime.onMessageExternal) 事件。注意，扩展程序不能使用该方法向内容脚本发送消息。要向内容脚本发送消息，请使用 <a href=\"/extensins/tabs#method-sendMessage\">tabs.sendMessage</a>。",
         "parameters": [
 //@          {"type": "string", "name": "extensionId", "optional": true, "description": "The ID of the extension/app to send the message to. If omitted, the message will be sent to your own extension/app. Required if sending messages from a web page for <a href=\"manifest/externally_connectable\">web messaging</a>."},
           {"type": "string", "name": "extensionId", "optional": true, "description": "您需要发送消息的扩展程序或应用的标识符，如果省略，消息就发送到您自己的扩展程序/应用。如果使用<a href=\"manifest/externally_connectable\">与网页通信</a>的方式从网页发送消息则必须指定该参数。"},
