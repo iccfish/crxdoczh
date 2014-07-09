@@ -456,7 +456,7 @@ href="samples#mappy">Mappy</a> 示例扩展程序就是使用的策略比默认�
   following code as a simple example:-->
   插入网页后立即执行的 DOM 插入脚本执行的方式与预期一致，例如考虑以下代码所示的内容脚本：
   <pre data-filename="content_script.js">
-    document.write("&lt;script&gt;'alert(1);&lt;/script&gt;'");
+    document.write("&lt;script&gt;alert(1);&lt;/script&gt;");
   </pre>
   <!--@This content script will cause an <code>alert</code> immediately upon the
   <code>document.write()</code>. Note that this will execute regardless of the
@@ -477,20 +477,35 @@ href="samples#mappy">Mappy</a> 示例扩展程序就是使用的策略比默认�
     document.write("&lt;button onclick='alert(1);'&gt;click me&lt;/button&gt;'");
   </pre>
   <!--@If a user clicks on that button, the <code>onclick</code> script will
-  <em>not</em> execute. This is because the script did not immediately execute,
-  so it is not considered part of the content script, so the CSP
-  <em>of the page</em> (not of the extension) restricts its behavior. And since
-  that CSP does not specify <code>unsafe-inline</code>, the inline event handler
-  is blocked.-->
+  <em>not</em> execute. This is because the script did not immediately execute
+  and code not interpreted until the click event occurs is not considered part
+  of the content script, so the CSP <em>of the page</em> (not of the extension)
+  restricts its behavior. And since that CSP does not specify
+  <code>unsafe-inline</code>, the inline event handler is blocked.-->
   用户单击该按钮时，<code>onclick</code>
-  脚本<em>不会</em>运行，因为脚本不是立即执行的，所以并不视为内容脚本的一部分，所以<em>网页的</em>
+  脚本<em>不会</em>运行，因为脚本不是立即执行的，代码要等到单击事件产生时才会解释，并不视为内容脚本的一部分，所以<em>网页的</em>
   CSP（而不是扩展程序）限制了它的行为。由于对应的 CSP 并未指定
   <code>unsafe-inline</code>，内嵌事件处理程序禁止运行。
 </p>
 
 <p>
-  <!--@Another similar case is if the content script executes the following:-->
-  运行下列代码的内容脚本是另一种类似的情况：
+  <!--@The correct way to implement the desired behavior in this case would be to add
+  the <code>onclick</code> handler as a function from the content script as
+  follows:-->
+  在这种情况下，实现期望行为的正确方式是在内容脚本中将函数添加为
+  <code>onclick</code> 处理程序，如下所示：
+  <pre data-filename="content_script.js">
+    document.write("&lt;button id='mybutton'&gt;click me&lt;/button&gt;'");
+    var button = document.getElementById('mybutton');
+    button.onclick = function() {
+      alert(1);
+    };
+  </pre>
+</p>
+
+<p>
+  <!--@Another similar issue arises if the content script executes the following:-->
+  如果内容脚本执行以下代码的话就会产生另一种类似的问题：
   <pre data-filename="content_script.js">
     var script = document.createElement('script');
     script.innerHTML = 'alert(1);'
