@@ -15,7 +15,6 @@
     # These duplicate other lists and are the only ones used on Android. They
     # should be eliminated. See crbug.com/305852.
     'android_schema_files': [
-      'file_system.idl',
       'manifest_types.json',
     ],
 
@@ -90,7 +89,6 @@
       'push_messaging.idl',
       'reading_list_private.json',
       'screenlock_private.idl',
-      'serial.idl',
       'sessions.json',
       'signed_in_devices.idl',
       'streams_private.idl',
@@ -213,7 +211,6 @@
         # include generated headers from these targets.
         # TODO(brettw) this should be made unnecessary if possible.
         '<(DEPTH)/components/components.gyp:component_metrics_proto',
-        '<(DEPTH)/device/serial/serial.gyp:device_serial',
 
         '<(DEPTH)/content/content.gyp:content_browser',
         '<(DEPTH)/skia/skia.gyp:skia',
