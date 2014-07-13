@@ -1,0 +1,422 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Mobile emulation-->移动平台模拟</h1>
+
+<p><!--@The mobile web has evolved to enable increasingly sophisticated applications,
+which we often wish to debug during development on the desktop. The DevTools
+include support for a number of features that can help with this which we will
+walk through in this section.-->
+随着移动平台网页的演化，越来越复杂的应用程序都可以实现，但我们经常希望在桌面平台上开发和调试。开发者工具支持一系列特性，在这样的情况下很有用，我们将在这一部分进行概述。</p>
+
+
+<p class="note"><b><!--@Note-->注</b><!--@: Some of our documentation may be ahead of the stable version of Chrome. If you are unable to locate a feature listed, we recommend trying <a href="https://www.google.com/intl/en/chrome/browser/canary.html">Chrome Canary</a> which contains the latest version of the DevTools.-->：文档中的部分内容可能超前于目前 Chrome 浏览器的稳定版本。如果您找不到列出的某一特性，我们建议您试用
+<a href="https://www.google.com/intl/en/chrome/browser/canary.html"
+>Chrome Canary</a>，包含了最新版本的开发者工具。</p>
+
+<div class="collapsible">
+<h2 id="enable-emulation-panel"><!--@Enabling the Emulation Panel-->启用 Emulation（模拟）面板</h2>
+
+<p><!--@Chrome has received a number of improved mobile emulation tools which can be accessed by enabling the Emulation panel through the Settings panel. To enable:-->Chrome 新增了大量经过改善的移动平台模拟工具，可以在设置面板启用 Emulation（模拟）面板后访问。要启用模拟面板：</p>
+
+<p><!--@Bring up the DevTools console drawer by hitting the-->按下 <span class="kbd">Esc</span> <!--@key and then select the Emulation panel.-->键打开开发者工具的控制台窗格，并选择
+Emulation（模拟）面板。</p>
+
+<div class="screenshot"><img width="468" src="mobile-emulation/emulation-panel.png" alt="Emulation panel"/></div>
+<p class="note"><b><!--@Note-->注</b><!--@: Emulation tools within DevTools were previously contained within an <strong>Overrides</strong> pane inside the Settings panel. The Emulation panel is the new Overrides pane. If you do not see the Emulation tab, open the DevTools Settings and select "Show Emulation view in console drawer."-->：开发者工具中的模拟工具以前包含在设置面板中的
+<strong>Overrides</strong>（重写）窗格内，模拟面板是新的重写窗格。如果您找不到模拟标签页，请打开开发者工具设置，并选择“Show Emulation view in console drawer”（在控制台窗格中显示模拟视图）。</p>
+</div>
+
+<div class="collapsible">
+<h2 id="emulate-devices"><!--@Emulating Devices-->模拟设备</h2>
+
+<p><!--@It's often easier to start prototyping on the desktop and then tackle the
+mobile-specific parts on the devices you intend to support. Device emulation can
+make this process more straightforward.-->一般来说，首先在桌面平台上开始设计原型，然后在支持的设备上解决移动平台上特有的问题要容易一些。设备模拟可以使这一过程更加直观。</p>
+
+<div class="video-container">
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/z7sTRdSpA04" frameborder="0" allowfullscreen=""></iframe>
+</div>
+
+<p><!--@DevTools contains built in presets for a number of devices, this allows you to emulate and debug mobile viewport issues like CSS media query breakpoints. Selecting a device preset automatically enables a number of settings:-->开发者工具内置了许多设备的预设，允许您模拟和调试移动平台上的问题，例如
+CSS 媒体查询断点。选择某一设备的预设后就会自动启用一系列设置：</p>
+
+<ul>
+  <li><strong>User agent</strong><!--@ - a string available at <code>navigator.userAgent</code> and also sent as a request header for page resources. See <a href="#useragent-spoofing">Useragent Spoofing</a>.-->（用户代理）——可通过
+    <code>navigator.userAgent</code> 访问，并且作为网页资源请求的标头发送的字符串，请参见<a href="#useragent-spoofing">用户代理伪装</a>。
+  </li>
+  <li><strong>Screen resolution</strong><!--@ - matches the actual dimensions (width and height) of the selected device. For example, selecting the Nexus S will emulate a resolution of 480x800.-->（屏幕分辨率）——匹配选定设备的实际大小（宽度和高度）。例如，选择
+  Nexus S 就会模拟 480×800 的分辨率。</li>
+  <li><strong>Device Pixel Ratio</strong><!--@ - matches the DPR of the selected device. Allows emulation of a retina device from a non-retina machine. This also means media queries such as <code>@media only screen and (min-device-pixel-ratio: 2)</code> can be tested.-->（设备像素比例）——匹配选定设备的像素比例，可以在非 Retina 屏幕的计算机上模拟 Retina 设备，同时您也可以测试像
+  <code>@media only screen and (min-device-pixel-ratio: 2)</code>
+  这样的媒体查询。
+  </li>
+  <li><strong>Emulate viewport</strong><!--@ - zooms the page out to the physical default viewport of that device. In the case of the Nexus 4, the device-width would be 768. This box also makes sure scrollbars overlay (as they do on mobile and OS X), `window.screen` values are in CSS pixels, and the default body width of 980 pixels.-->（模拟视角）——缩放网页至对应设备的物理默认视角。例如在
+  Nexus 4 中，设备宽度为 768。该选项同时确保滚动条覆盖层（正如移动平台和
+  OS X 上）、`window.screen` 值为 CSS 像素，默认 body 宽度为 980 像素。</li>
+  <li><strong>Text autosizing</strong><!--@ - emulate font boosting which occurs on mobile devices.-->（自动调整文字大小）——模拟移动设备上的字体增强。</li>
+    <li><strong>Android font metrics</strong><!--@ - Android artificially increases the font metrics used by text autosizing based on the system settings and screen size. Enabled by default only when emulating an Android device.-->（Android 字体尺寸）——Android 会根据系统设置和屏幕大小自动调整字体大小，人为增加字体尺寸。模拟 Android 设备时自动启用。</li>
+  <li><strong>Touch screen</strong><!--@ (part of the Sensors pane) - uses touch events, see <a href="#emulate-touch-events">Emulating Touch Events</a>.-->（触摸屏）（在 Sensors（传感器）窗格中）——使用触摸事件，请参见<a
+  href="#emulate-touch-events">模拟触摸事件</a>。</li>
+</ul>
+
+<div class="screenshot"><img width="746" src="mobile-emulation/viewport-emulation.gif" alt="Viewport emulation"/></div>
+
+
+<p><!--@Emulate a device via a preset using the following steps:-->通过以下步骤可以使用预设模拟设备：</p>
+
+<ol>
+  <li><!--@Open the Emulation panel within the DevTools-->打开开发者工具中的 Emulation（模拟）面板。</li>
+  <li><!--@With the Device pane selected, select "Google Nexus S".-->选择
+  Device（设备）窗格中的“Google Nexus 5”。</li>
+  <li><!--@Click Emulate.-->单击 Emulate（模拟）。</li>
+</ol>
+
+<div class="screenshot"><img width="550" src="mobile-emulation/image_3.png" alt="Viewport Overrides"/></div>
+
+<p><!--@You are now in device emulation mode. The Screen, User Agent, and Sensors panes reflect the device settings which are now enabled. -->
+现在您就处于设备模拟模式下。Screen（屏幕）、User Agent（用户代理）以及
+Sensors（传感器）窗格体现出目前启用的设备设置。</p>
+
+<div class="screenshot"><img width="375" src="mobile-emulation/device_metrics.png" alt="Viewport Overrides"/></div>
+<h4><!--@Notes-->注意</h4>
+<ul>
+  <li><!--@The <strong>Swap dimensions</strong> button in between the <em>Resolution</em> values (<img src="../images/swap-dimensions-button.png"/>) will swap the width and height.--><em>Resolution</em>（分辨率）值之间的
+  <strong>Swap dimensions</strong>（交换大小）按钮（<img src="../images/swap-dimensions-button.png"/>）可以交换宽度与高度。</li>
+  <li><b>Shrink to fit</b><!--@ ensures the emulated device screen is completely visible within your browser window. This setting does not emulate the device differently.-->（缩小以适应窗口）确保模拟的设备屏幕在您的浏览器窗口中完全可见。该设置不会以不同的方式模拟设备。</li>
+  <li><!--@Device media queries (e.g <code>@media only screen and (min-device-width:768px)</code>) will be enabled according to the values defined in the Resolution settings.-->设备媒体查询（例如 <code>@media only screen and (min-device-width:768px)</code>）根据分辨率设置中定义的值启用。</li>
+  <li><!--@You may want to undock DevTools or dock it to the right while working with emulated viewport settings.-->模拟视角设置时，您可能不希望固定开发者工具或者希望固定在右侧。
+  <li><!--@Device settings can be configured independently of a device preset.-->设备设置可以单独配置，不受设备预设的影响。</li>
+  <li><!--@If you would like to contribute patches to support new device presets, please see our <a href="contributing.md">contribution docs</a>.-->
+  如果您希望贡献补丁支持新的设备预设，请参见我们的<a href="contributing"
+  >贡献文档</a>。</li>
+</ul>
+
+</div>
+<div class="collapsible">
+<h2 id="emulate-touch-events"><!--@Emulating Touch Events-->模拟触摸事件</h2>
+
+<p><!--@Touch is an input method that's difficult to test on the desktop, since most
+desktops don't have touch input. Having to test on mobile can lengthen your
+development cycle, since every change you make needs to be pushed out to a
+server and then loaded on the device.-->
+触摸是一种桌面平台上难以测试的输入方式，因为大部分桌面平台上没有触摸输入。如果必须在移动平台上测试，就会延长您的开发周期，因为您每次修改后都要推送到服务器，然后在设备上加载。</p>
+
+<p><!--@A solution to this problem is to simulate touch events on your development
+machine. For single-touches, the Chrome DevTools supports single<a href="http://www.w3.org/TR/touch-events/">
+</a><a href="http://www.w3.org/TR/touch-events/">touch
+event</a> emulation to make it easier to debug
+mobile applications on the desktop.-->
+一种解决方法是在开发计算机上模拟触摸事件。对于单指触摸，Chrome
+开发者工具支持单指<a href="http://www.w3.org/TR/touch-events/"
+>触摸</a>事件模拟，使您可以更方便地在桌面平台上调试移动应用程序。</p>
+
+<p><strong><!--@To enable support for touch event emulation:-->如果要启用触摸事件模拟：</strong></p>
+
+<ol>
+<li><!--@Open the Emulation panel in the DevTools.-->在开发者工具中打开模拟面板。</li>
+<li><!--@Enable "Emulate touch screen" in the Sensors pane.-->在传感器窗格中启用“Emulate touch screen”（模拟触摸屏）。</li>
+</ol>
+
+<div class="screenshot"><img width="480" src="mobile-emulation/image_0.png" alt="Emulating touch events in the Overrides panel"/></div>
+
+<p><!--@Your mouse actions will now also trigger the relevant touch events: <code>touchstart</code>, <code>touchmove</code> and <code>touchend</code>.-->现在，您的鼠标操作就会触发相应的触摸事件：<code>touchstart</code>、<code>touchmove</code> 以及 <code>touchend</code>。</p>
+
+<h4><!--@Notes-->注意</h4>
+
+<ul>
+<li><!--@Feature detects such as <code><a href="http://modernizr.com">Modernizr.touch</a></code> will now
+succeed on page refresh.-->网页刷新后，像
+<code><a href="http://modernizr.com">Modernizr.touch</a></code>
+这样的特性检测就会成功。</li>
+<li><!--@This feature, like many other overrides, will only work while the DevTools are open.-->与其他重写设置类似，该功能只有在开发者工具打开时才能正常工作。</li>
+<li><!--@The cursor will change to a small circle to emulate a fingertip size.-->光标会变成小圆点，模拟指尖的大小。</li>
+<li><!--@Use-->使用 <span class="kbd">Shift</span> + <!--@Drag to emulate a "pinch".-->拖动模拟双指触摸。</li>
+<li><!--@Enabling "Emulate touch screen" does not disable mouse events entirely, as they are fired on touch devices. Try this <a href="http://patrickhlauke.github.io/touch/tests/event-listener.html">touch event listener test page</a>, touch is another option we can debug with.-->启用“Emulate touch screen”（模拟触摸屏）后并不会完全禁用鼠标事件，因为它们在触屏设备上也会产生。请尝试<a href="http://patrickhlauke.github.io/touch/tests/event-listener.html">触摸事件监听器测试页</a>，触摸是另一种调试的方式。</li>
+<!--@<li>On click, the order of events fired is currently: <code>touchstart > mousedown > touchmove > touchend > mouseup > click</code>. On touch devices, this order is slightly different. The tools will shortly be <a href="https://code.google.com/p/chromium/issues/detail?id=181204">updated with the right order.</li>-->
+<!--# Already fixed. -->
+<li>使用该功能时 <code>elem.ontouch<i>*</i></code> <!--@handlers will currently -->处理程序目前<a href="https://code.google.com/p/chromium/issues/detail?id=133915"><!--@not fire-->不会触发</a><!--@ with this feature. Use the-->，请使用 <code>--touch-events</code> <a href="http://www.chromium.org/developers/how-tos/run-chromium-with-flags"><!--@command line flag-->命令行参数</a><!--@ to let Chrome trigger these handlers.-->使 Chrome 浏览器触发这些处理程序。
+</ul>
+<div class="screenshot"><img width="495" src="mobile-emulation/scrolling-emulation.gif" alt="Emulating pinch to zoom"/></div>
+
+<p><strong><!--@Debugging touch events-->调试触摸事件</strong></p>
+
+<ol>
+<li><!--@Open up the<a href="http://paulirish.com/demo/multi"> </a>-->打开<a href="http://paulirish.com/demo/multi"><!--@Canvas Fingerpaint
+Demo-->手绘画布演示</a></li>
+<li><!--@Navigate to the Sources panel-->切换到源代码面板</li>
+<li><!--@Expand the "Event Listener Breakpoints" sub-panel-->展开“Event Listeners Breakpoints”（事件监听器断点）子面板</li>
+<li><!--@Check the "touchstart" and "touchmove" events under "Touch"-->单击“Touch”（触摸）下的“touchstart”和“touchmove”事件</li>
+<li><!--@Move your cursor over the paint area-->在画图区域移动光标</li>
+<li><!--@The debugger should successfully pause on the <span class=
+  "source-code">draw()</span> method-->调试器应该在
+  <code>draw()</code> 方法上暂停</li>
+</ol>
+
+
+<div class="screenshot"><img width="700" src="mobile-emulation/image_2.png" alt="Debugging touch events"/></div>
+
+<!--@You may also monitor touch events as they fire on an element in the console. Use-->您还可以在控制台中监视元素上产生的触摸事件。请使用<a href="commandline-api.md#monitoreventsobject-events">命令行 API 中的 <code>monitorEvents</code><!--@ from the command line API--></a>：
+
+<pre class="prettyprint"><code>monitorEvents(document.body, 'touch')</code></pre>
+
+
+<p><strong><!--@Multi-touch-->多点触控</strong></p>
+
+<p><!--@Multi-touch events can be simulated if you have a device with touch input, such
+as a modern Apple MacBook. For further assistance with multi-touch event
+simulation, see the "Developer tools" chapter of the <a href="http://www.html5rocks.com/en/mobile/touch/"><b>Multi-touch web
+development</b> guide on HTML5 Rocks</a>.-->如果您有触摸输入设备（例如现在的
+Apple MacBook）的话就可以模拟多点触控事件。有关多点触控事件模拟的进一步帮助，请参见
+<a href="http://www.html5rocks.com/zh/mobile/touch/#toc-touchdev">HTML5 Rocks
+上<b>多点触摸网络开发</b></a>指南中的“开发人员工具”这一章。</p>
+
+
+
+</div>
+<div class="collapsible">
+<h2 id="useragent-spoofing"><!--@Useragent Spoofing-->用户代理伪装</h2>
+
+
+<p><strong><!--@Emulating The User Agent-->模拟用户代理</strong></p>
+
+<ol>
+<li><!---@Navigate to the <a href="http://www.google.com">Google</a> homepage.-->导航到 <a href="https://www.google.com/">Google</a> 主页。</li>
+<li><!--@In the DevTools, open up the User Agent pane within the Emulation panel.-->在开发者工具中，打开 Emulation（模拟）面板中的 User Agent（用户代理）窗格。</li>
+<li><!--@Check "Spoof user agent" and select "Android 2.3 - Nexus S".-->选中“Spoof user agent”（伪装用户代理），并选择“Android 2.3 - Nexus 5”。</li>
+<li><!--@Refresh the page.-->刷新网页。</li>
+</ol>
+
+<p><!--@An updated user-agent field is now sent as part of the request headers for page resources. Some websites may decide to serve optimized versions of the page depending on the user-agent, this is one case where spoofing a user-agent may be useful.-->更新后的用户代理字段作为网页资源请求标头的一部分发送，一些网站根据用户代理提供网页的优化版本，这种情况下用户代理伪装就很有用。</p>
+
+<table>
+<thead>
+<tr><th>
+<!--@Before:-->
+之前：
+</th><th>
+<!--@After:-->
+之后：
+</th></tr>
+</thead>
+<tbody> <tr>
+<td><img style="max-width: 100%" src="mobile-emulation/image_4.png" alt="Before user agent and device metric emulation have been applied"/></td>
+<td><img style="max-width: 100%" src="mobile-emulation/image_5.png" alt="After user agent and device metric emulation are applied"/></td>
+</tr></tbody>
+</table>
+
+
+</div>
+<div class="collapsible">
+<h2 id="network-throttling"><!--@Network Bandwidth Throttling-->限制网络带宽</h2>
+
+
+<p><!--@The DevTools does not currently support network throttling, however it's important to understand and test the impact of slower connections on your site.-->
+开发者工具目前还不支持网络带宽限制，但是理解和测试低速连接对您的站点的影响也是很重要的。
+
+ <p> <!--@On Mac, we recommend using the <a href="http://nshipster.com/network-link-conditioner/">Network Link Conditioner</a> that is available via <a href="https://developer.apple.com/xcode/">Xcode</a>. It has presets for network conditions like EDGE, 3G, DSL, WiFi, High Latency DNS, Very Bad Network, and 100% Loss. Changes made within Network Link Conditioner will affect all system network traffic, including Chrome or any running emulators and simulators.-->在 Mac 上，我们建议您使用 <a href="http://nshipster.com/network-link-conditioner/">Network Link Conditioner</a>，可通过
+<a href="https://developer.apple.com/xcode/">Xcode</a> 安装。它包含了各种网络的预设，例如
+EDGE、3G、DSL、WiFi、高延迟 DNS、十分差劲的网络以及 100% 丢失。Network
+Link Conditioner 中进行的更改会影响整个系统的网络流量，包括 Chrome
+浏览器或者其他正在运行的模拟器。</p>
+
+<img src="mobile-emulation/network-link-conditioner-system-preference.png" alt="Network Link Conditioner preference panel" style="max-height: 300px">
+
+ <p><!--@On Windows, we recommend using-->在 Windows 上，我们建议您使用 <a href="http://jagt.github.io/clumsy/index.html">Clumsy</a><!--@, which can add extra lag, drop packets, throttle and manipulate other network conditions.-->，它可以添加额外的延迟、丢弃数据包或操纵其他网络状况。</p>
+
+<img src="http://jagt.github.io/clumsy/clumsy-demo.gif" alt="Clumsy Options" style="max-height: 300px">
+
+<p><!--@On Linux, there are many options for traffic shaping; -->在 Linux 上有很多方法可以控制网络流量，建议您使用 <a href="http://info.iet.unipi.it/~luigi/dummynet/">dummynet</a><!--@ is the recommended option. -->。</p>
+
+<table>
+    <caption style="font-weight:normal;"><!--@It is recommended to use the following parameters for testing different network conditions.-->建议使用以下参数测试不同的网络状况。</caption>
+    <thead>
+        <tr>
+            <td></td>
+            <th><!--@Download Speed-->下载速度</th>
+            <th><!--@Upload Speed-->上传速度</th>
+            <th><!--@RTT (ms)-->来回通信延迟（毫秒）</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th><!--@Cable-->有线电视网络</th>
+            <td>5 Mbps</td>
+            <td>1 Mbps</td>
+            <td>28</td>
+        </tr>
+        <tr>
+            <th>DSL</th>
+            <td>1.5 Mbps</td>
+            <td>384 Kbps</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <th>FIOS</th>
+            <td>20 Mbps</td>
+            <td>5 Mbps</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <th>56K <!--@Dial-up-->拨号上网</th>
+            <td>49 Kbps</td>
+            <td>30 Kbps</td>
+            <td>120</td>
+        </tr>
+        <tr>
+            <th><!--@Mobile-->移动 3G</th>
+            <td>1.6 Mbps</td>
+            <td>768 Kbps</td>
+            <td>300</td>
+        </tr>
+        <tr>
+            <th><!--@Mobile 3G - Fast-->高速移动 3G</th>
+            <td>1.6 Mbps</td>
+            <td>768 Kbps</td>
+            <td>150</td>
+        </tr>
+   </tbody>
+</table>
+
+</div>
+<div class="collapsible">
+<h2 id="device-geolocation-overrides"><!--@Geolocation Overrides-->地理位置重写</h2>
+
+<p><!--@When working with HTML5 geolocation support in an application, it can be useful
+to debug the output received when using different values for longitude and
+latitude. The DevTools support both overriding position values for <em>navigator.geolocation
+</em>and simulating geolocation not being available via the Sensors pane.-->
+在应用程序中使用 HTML5 地理定位支持时，使用不同的经纬度值调试得到的结果是非常有用的。开发者工具支持
+<em>navigator.geolocation</em> 位置值的重写，还可以通过
+Sensors（传感器）面板模拟地理定位不可用的情况。</p>
+
+<p><strong><!--@Overriding geolocation positions-->模拟地理位置</strong></p>
+
+<ol>
+<li><!--@Navigate to the <a href="http://html5demos.com/geo">Geolocation</a> demo and allow the page access to your position.-->导航到<a href="http://html5demos.com/geo">地理定位</a>演示，并允许网页访问您的位置。</li>
+<li><!--@In the DevTools, open up the Sensors pane within the Emulation panel.-->在开发者工具中，打开 Emulation（模拟）面板中的 Sensors（传感器）面板。</li>
+<li><!--@Check "Emulate geolocation coordinates" and enter 41.4949819 in the Lat field and -0.1461206 in the Lon field.-->选中“Emulate geolocation coordinates”（模拟地理位置坐标），在 Lat（维度）字段中输入 41.4949819，在 Lon（经度）字段中输入 -0.1461206。</li>
+</ol>
+
+
+<div class="screenshot"><img src="mobile-emulation/image_11.png"/></div>
+
+<ol start="4">
+<li><!--@Refresh the page. The demo will now use your overridden position for geolocation.-->刷新网页，现在演示网页会使用您重写的地理位置。</li>
+</ol>
+
+
+<div class="screenshot"><img src="mobile-emulation/image_12.png"/></div>
+
+<ol start="5">
+<li><!--@Check the "Emulate position unavailable" option.-->选中“Emulate
+position unavailable”（模拟位置不可用的情况）选项。</li>
+<li><!--@Refresh the page. The demo will now inform you that finding your location has failed.-->刷新网页，现在演示网页会提示您无法找到您的位置。</li>
+</ol>
+
+
+<div class="screenshot"><img src="mobile-emulation/image_13.png"/></div>
+
+
+
+</div>
+<div class="collapsible">
+<h2 id="device-orientation-overrides"><!--@Device Orientation Overrides-->设备方向重写</h2>
+
+<p><!--@Many new mobile devices are now shipping with accelerometers, gyroscopes,
+compasses and other hardware designed to determine capture motion and
+orientation data. Many web browsers have access to that new hardware,
+such as via the <a href="http://dev.w3.org/geo/api/spec-source-orientation">HTML5
+DeviceOrientation</a> events.
+These events provide developers with information about the orientation, motion
+and acceleration of the device.-->
+许多新型的移动设备都配备加速度传感器、陀螺仪、指南针等用于确定和捕获运动和方向数据的硬件，许多网页浏览器都能访问这些新硬件，例如通过
+<a href="http://www.w3.org/TR/orientation-event/">HTML5
+DeviceOrientation</a> 事件。这些事件可以向开发者提供设备方向、运动和加速度的有关信息。</p>
+
+<p><!--@If your application is taking advantage of device orientation events, it can
+also be useful to override the values received by these events during debugging
+to avoid the need to test them on a physical mobile device.-->如果您的应用程序利用设备方向事件工作，在调试过程中重写这些事件接收的值也是很有用的，这样就不用在实际的移动设备上测试。</p>
+
+<p><strong><!--@Overriding orientation values-->重写方向值</strong></p>
+
+<ol>
+<li><!--@Navigate to the<a href="http://www.html5rocks.com/en/tutorials/device/orientation/deviceorientationsample.html">
+</a>-->导航到<a href="http://www.html5rocks.com/en/tutorials/device/orientation/deviceorientationsample.html"><!--@Device
+Orientation-->设备方向</a><!--@ demo and notice the standard HTML5 logo along with the current orientation
+values listed above it.-->演示，注意到标准 HTML5 标志上列出的当前方向值。</li>
+<li><!--@Open the Emulation panel in the DevTools and click the Sensors pane.-->打开开发者工具中的模拟面板，并单击传感器窗格。</li>
+<li><!--@Check "Accelerometer".-->单击“Accelerometer”加速度传感器。</li>
+<li><!--@You will see three fields:-->您会看到以下三个字段：
+  <ul>
+    <li><b>α</b><!--@: how much the device has been rotated around the z-axis.-->：设备沿着 z 轴旋转了多少度。
+    <li><b>β</b><!--@: how much the device is tilted left-to-right.-->：设备从左到右倾斜了多少度。
+    <li><b>γ</b><!--@: how much it's tilted front-to-back.-->：设备从前到后倾斜了多少度。</li>
+  </ul>
+<li><!--@Change the values to the following:-->请将这些值更改为以下数据：
+
+<ol>
+<li>α - 0</li>
+<li>β - 60</li>
+<li>γ - 60</li>
+</ol>
+</li>
+</ol>
+
+
+<div class="screenshot"><img width="401" src="mobile-emulation/image_14.png" alt="Enabling device orientation overrides"/></div>
+
+<p><!--@We have altered the left/right tilt and front/back tilt, in this case resulting
+in our application being emulated as rotating in a clockwise direction.-->
+我们更改了左右倾斜和前后倾斜，使我们的应用程序在顺时针旋转的方向下模拟。</p>
+
+<div class="screenshot"><img width="369" src="mobile-emulation/image_15.png" alt="Device orientation allows us to emulate the directions a device may be turned" /></div>
+
+
+
+</div>
+<div class="collapsible">
+<h2 id="css-media-type-emulation">CSS <!--@Media Type Emulation-->媒体类型模拟</h2>
+
+<p><!--@CSS media types allow you to apply different styles to a page depending on the
+medium it is being used through (e.g print, screen, tv, braille and so on).-->CSS 媒体类型允许您根据网页使用的媒介（例如打印、屏幕、电视机、盲文等）采用不同的样式。</p>
+
+<p><strong><!--@Emulating media types-->模拟媒体类型</strong></p>
+
+<ol>
+<li><!--@Navigate to-->导航到 <a href="http://www.html5rocks.com/en/tutorials/developertools/novdigest/">HTML5 Rocks</a><!--@.-->。</li>
+<li><!--@Open the Emulation panel in the DevTools.-->打开开发者工具中的模拟面板。</li>
+<li><!--@Enable "CSS media" on the "Screen" pane and select the "print" media type option from the drop-down
+box.-->启用“Screen”（屏幕）窗格中的 “CSS media”（CSS 媒体），并从下拉框中选择“print”（打印）媒体类型。</li>
+<li><!--@The page will adjust to using a stylesheet for the chosen CSS media type if
+one is available.-->如果可用的话，网页会调整为使用对应 CSS 媒体类型的样式表。</li>
+</ol>
+
+
+<table>
+<thead>
+<tr><th>
+<!--@Before:-->
+之前：
+</th><th>
+<!--@After:-->
+之后：
+</th></tr>
+</thead>
+<tbody> <tr>
+<td><img style="max-width: 100%" src="mobile-emulation/emulatecss_before.jpg" alt="Before enabling CSS media type emulation"/></td>
+<td><img style="max-width: 100%" src="mobile-emulation/emulatecss_after.jpg" alt="After enabling CSS media type emulation"/></td>
+</tr></tbody>
+</table>
+
+</div>
+<div class="collapsible">
+<h2 id="faq"><!--@Frequently Asked Questions-->常见问题</h2>
+
+<p><strong><!--@Q: Do the DevTools supports remote debugging?-->开发者工具是否支持远程调试？</strong><br/>
+<!--@A: Yes. Please see our <a href="remote-debugging.html">remote debugging</a>
+documentation for more information.-->支持。有关更多信息请参见我们的<a href="remote-debugging">远程调试</a>文档。</p>
+
+<p><strong><!--@Q: Can the DevTools emulate lower GPU memory limits or slower CPUs, as found on mobile devices?-->开发者工具能否模拟移动设备上 GPU 内存较小的限制或较慢的 CPU？</strong><br>
+<!--@A: Currently there is no means within DevTools or Chrome to emulate these characteristics. -->目前开发者工具或 Chrome 浏览器中无法模拟这些特性。</p>
+
+</div>
+{{/partials.standard_devtools_article}}

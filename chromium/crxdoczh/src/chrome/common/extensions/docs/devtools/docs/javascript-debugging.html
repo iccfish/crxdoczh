@@ -496,7 +496,15 @@ DOMSubtreeModified, DOMContentLoaded<br>
 
 </div>
 <div class="collapsible">
-<h2 id="long-resume">The Long Resume</h2>
+<h2 id="long-resume"><!--@The Long Resume-->长恢复</h2>
+
+<p><!--@When paused, click and hold the resume button to "Resume with all pauses blocked for 500 ms". This makes all breakpoints disabled for half a second, naturally. Use this to get to the next event loop, so you can avoid hitting breakpoints continually exiting a loop, for example.-->在暂停状态下，单击并按住恢复按钮，可以“恢复执行并在 500 毫秒内不再暂停”，这样就自然会在半秒钟内使所有断点都处于禁用状态。例如，使用该功能可以进入下一次事件循环，以免不断地遇到断点退出循环。</p>
+
+<p><!--@Quick protip: When "refresh" is initiated from DevTools (Ctrl+R while focused in DevTools), all pauses are disabled until the new page load is commenced (or as a plan B, until the user presses the "Pause" button).  However, if you initiate refresh from the browser button (or Ctrl+R while focus is outside the DevTools), any remaining breakpoints will actually be hit. This fact could be used for those who are  interested in page unloading process.-->小提示：在开发者工具中刷新时（焦点在开发者工具时按下
+Ctrl+R），所有断点都会禁用，直到新的网页加载完成（或者直到用户按下“暂停”按钮）。然而，如果您通过浏览器按钮刷新（或者在焦点位于开发者工具外时按下
+Ctrl+R），仍然会遇到剩下的断点。当您对网页卸载过程感兴趣的时候可以利用这一点。</p>
+
+<p><div class="screenshot"><img src="javascript-debugging/long-resume.png"/></div></p>
 
 </div>
 <div class="collapsible">

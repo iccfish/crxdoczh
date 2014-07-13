@@ -1,0 +1,79 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Verifying Action Cleanness-->检验操作是否干净</h1>
+
+
+<script type="text/javascript" src="heap-profiling-comparison-files/script.js"></script>
+
+
+<p><!--@This page demonstrates how action cleanness can be verified using
+the Heap
+Profiler. By <em>cleanness</em>, we mean that after starting and
+completing (or canceling) the action, no garbage is left. If an action
+leaves garbage, multiple invocations of it may result in excessive
+memory usage.-->
+该网页演示如何使用堆性能分析器检验操作是否干净。<em>干净</em>的含义是，操作开始和完成（或取消）后，没有留下垃圾。如果操作留下了垃圾，多次执行后可能会导致大量内存占用。</p>
+
+<p><!--@Below is the source code of the script, for reference:-->如下是用于参考的脚本源代码：</p>
+
+<pre class="prettyprint">
+function Item(x)
+{
+  this.x = x;
+}
+
+Item.prototype = {
+  clone: function()
+  {
+    return new Item(this.x);
+  }
+};
+
+function action()
+{
+  for (var i = 0; i < data.length - 1; ++i) {
+    line = new Array(data[i].length);
+    for (var j = 0, l = data[i].length; j < l; ++j)
+      line[j] = data[i][j].clone();
+    for (var j = 0, l = data[i].length; j < l; ++j) {
+      data[i][j] = data[i + 1][j].clone();
+      data[i + 1][j] = line[j].clone();
+    }
+  }
+}
+
+var data = new Array(10);
+for (var i = 0; i < data.length; ++i) {
+  data[i] = new Array(1000);
+  for (var j = 0, l = data[i].length; j < l; ++j)
+    data[i][j] = new Item(i * l + j);
+}
+
+</pre>
+
+<p><!--@Try this:-->试一试：
+<ul>
+  <li><!--@Take a heap snapshot-->抓取堆快照</li>
+
+  <li><!--@Press the button: -->按下按钮：<button id="doAction" onclick="action()"><!--@Action!-->运行！</button></li>
+
+  <li><!--@Take another snapshot-->再次抓取快照</li>
+
+  <li><!--@Open the-->打开 <strong>Comparison</strong><!--@ view-->（比较）视图</li>
+</ul></p>
+
+<p><!--@The view will show how objects count has changed between two
+snapshots. In this example it can be seen that some
+garbage <code>Item</code> objects are left from the last loop
+iteration. They must be explicitly dereferenced on action completion
+in order to fix the leak.-->
+视图中会显示两次快照之间对象总数如何更改。在这个例子中，您可以看出有一些
+<code>Item</code> 对象垃圾在上一次循环后遗留下来。要修复泄漏，操作完成时必须显式取消对它们的引用。</p>
+
+<p><!--@You can also take multiple snapshots, and compare them arbitrarily
+(not necessary to complete the last one with the previous one.)-->
+您还可以抓取多个快照，任意进行比较（不一定非要将最后一个快照与前一个比较）。</p>
+
+
+
+
+{{/partials.standard_devtools_article}}

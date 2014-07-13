@@ -90,6 +90,7 @@ Some files are removed:
     docs/elements-styles-files/warningIcon.png
     docs/elements-styles.html
     docs/elements.html
+    docs/extensions-gallery.html
     docs/rendering-settings-files/composited-layer-borders.png
     docs/rendering-settings-files/continuous-page-repainting.png
     docs/rendering-settings-files/fps-memory-meter.png
@@ -97,6 +98,7 @@ Some files are removed:
     docs/rendering-settings-files/rendering-settings.png
     docs/rendering-settings-files/show-paint-rects.png
     docs/rendering-settings.html
+    docs/resources.html
     docs/scripts-exceptions-files/examples.js
     docs/tests/xhr-test.html
     pillar-images/console-pillar.png

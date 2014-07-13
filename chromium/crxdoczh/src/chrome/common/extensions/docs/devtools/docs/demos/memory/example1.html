@@ -1,0 +1,65 @@
+{{+bindTo:partials.standard_devtools_article}}
+<!DOCTYPE html>
+<h1><!--@Example 1-->例 1</h1>
+
+
+  <h1><!--@Example 1: Watch the memory grow-->例 1：观察内存增长</h1>
+  <ol>
+    <li><!--@Open DevTools-->打开开发者工具</li>
+
+    <li><!--@Select Timeline Tab-->选择 Timeline（时间线）标签页</li>
+
+    <li><!--@Select Memory-->选择 Memory（内存）</li>
+
+    <li><!--@Record-->开始记录</li>
+
+    <li><!--@Push The Button-->按下按钮</li>
+
+  </ol><button onclick="grow()"><!--@The Button-->按钮</button>
+
+  <div id="nodes" style="display:none"></div>
+<script>
+var x = [];
+
+function createSomeNodes() {
+    var div,
+        buf,
+        i = 100,
+        frag = document.createDocumentFragment();
+    for (; i > 0; i--) {
+        div = document.createElement('div');
+        buf = document.createTextNode(i + ' - ' + new Date().toTimeString());
+        div.appendChild(buf);
+        frag.appendChild(div);
+    }
+    document.getElementById('nodes').appendChild(frag);
+}
+function grow() {
+    x.push(new Array(1000000).join('x'));
+    createSomeNodes();
+    setTimeout(grow, 1000);
+}
+</script>
+
+  <hr>
+  <pre>
+var x = [];
+
+function createSomeNodes() {
+    var div,
+        i = 100,
+        frag = document.createDocumentFragment();
+    for (;i &gt; 0; i--) {
+        div = document.createElement("div");
+        div.appendChild(document.createTextNode(i + " - "+ new Date().toTimeString()));
+        frag.appendChild(div);
+    }
+    document.getElementById("nodes").appendChild(frag);
+}
+function grow() {
+    x.push(new Array(1000000).join('x'));
+    createSomeNodes();
+    setTimeout(grow,1000);
+}
+</pre>
+{{/partials.standard_devtools_article}}

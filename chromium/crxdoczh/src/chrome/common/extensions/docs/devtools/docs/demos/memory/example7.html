@@ -1,0 +1,100 @@
+{{+bindTo:partials.standard_devtools_article}}
+<!DOCTYPE html>
+<h1><!--@Example-->例 7</h1>
+
+  <h1><!--@Example 7: Eval is evil (almost always)-->例 7：eval 是有害的（几乎总是这样）</h1>
+
+  <p><!--@Let's analyze the impact of closures on memory-->让我们分析闭包对内存的影响</p>
+
+  <p><!--@You can see that 'eval' retains a reference on all the variables of the closure.-->您会发现 eval 持有闭包内所有变量的引用。</p>
+
+  <ol>
+    <li><!--@Start the creation of new closures-->开始创建新的闭包</li>
+
+    <li><!--@Take a heap snapshot-->抓取堆快照</li>
+
+    <li><!--@Find the closures (named lC, sC and eC)-->找到闭包（名为 lC、sC 和 eC）。</li>
+  </ol>
+
+  <p><button onclick="largeClosures()"><!--@Closures mantain hold on large string-->持有大字符串的闭包</button></p>
+
+  <p><button onclick="smallClosures()"><!--@Closures mantain hold only on small
+  strings-->只持有小字符串的闭包</button></p>
+
+  <p><button onclick="evalClosures()"><!--@Closures with eval-->包含 eval 的闭包</button></p>
+
+  <p><button onclick="stopAndClear()"><!--@Stop and clear-->停止并清理</button></p>
+
+    <script src="javascripts/closures.js" type="text/javascript">
+</script>
+
+  <hr>
+  <pre>
+'use strict';
+
+var intervalId,
+    closures = [];
+
+function createLargeClosure() {
+    var largeStr = new Array(1000000).join('x');
+    return function lC() {
+        return largeStr;
+    };
+}
+
+function createSmallClosure() {
+    var smallStr = 'x';
+    var largeStr = new Array(1000000).join('x');
+    return function sC() {
+        return smallStr;
+    };
+}
+
+function createEvalClosure() {
+    var smallStr = 'x';
+    var largeStr = new Array(1000000).join('x');
+    return function eC() {
+        eval('');
+        return smallStr;
+    };
+}
+
+function largeClosures() {
+    stopInterval();
+    intervalId = setInterval(function () {
+        closures.push(createLargeClosure());
+    }, 1000);
+}
+
+function smallClosures() {
+    stopInterval();
+        intervalId = setInterval(function () {
+        closures.push(createSmallClosure());
+    }, 1000);
+
+}
+
+function evalClosures() {
+    stopInterval();
+    intervalId = setInterval(function () {
+        closures.push(createEvalClosure());
+    }, 1000);
+}
+
+function stopInterval() {
+    if (intervalId) {
+        clearInterval(intervalId);
+    }
+    intervalId = null;
+}
+
+function clear() {
+    closures.length = 0;
+}
+
+function stopAndClear(){
+    stopInterval();
+    clear();
+}
+</pre>
+{{/partials.standard_devtools_article}}

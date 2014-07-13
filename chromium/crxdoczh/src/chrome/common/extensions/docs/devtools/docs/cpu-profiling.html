@@ -1,0 +1,196 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Profiling JavaScript Performance-->分析 JavaScript 性能</h1>
+
+
+
+
+
+<div class="collapsible">
+  <h2 id="cpu-profiles"><!--@Introduction to JavaScript Profiling-->JavaScript
+  性能分析简介</h2>
+
+
+  <p><!--@Using Google Chrome, open the-->使用 Google Chrome 浏览器打开 <a href="https://v8.googlecode.com/svn/data/benchmarks/v7/run.html" target=
+  "_blank">V8 Benchmark Suite</a><!--@ page. Click the-->网页，单击 <strong>Start
+  profiling</strong> <!--@button or press-->（开始性能分析）按钮或者按 <span class="kbd">Cmd</span> + <span class="kbd">E</span> <!--@start recording a JavaScript CPU profile. Now refresh the V8 Benchmark Suite page.-->
+  开始记录 JavaScript CPU 性能，然后刷新 V8 Benchmark Suite 网页。</p>
+
+  <p><!--@When the page has completed reloading, a score for the benchmark tests
+  is shown. Return to the DevTools and stop the recording by clicking the Stop button or by pressing-->网页重新加载完成后，显示性能评测分数。返回开发者工具，单击 Stop（停止）按钮或再次按下 <span class="kbd">Cmd</span> + <span class="kbd">E</span> <!--@again.-->停止记录。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/heavy-bottom-up.png">
+  </div>
+
+  <p><!--@This <strong>Bottom Up</strong> view lists functions by impact on performance.
+    It also enables you to examine the calling paths to those functions.-->
+    这种<strong>自底向上</strong>的视图按照对性能的影响列举函数，另外还允许您查看这些函数的调用路径。
+  </p>
+
+  <p><!--@Now select the <strong>Top Down</strong> view by clicking the Bottom Up
+  / Top Down selection button. Then click the small arrow to the left of
+  <strong>(program)</strong> in the <strong>Function</strong> column. The
+  <strong>Top Down</strong> view shows an overall picture of the calling
+  structure, starting at the top of the call stack.-->
+  现在单击 Bottom Up / Top Down（自底向上/自顶向下）选择按钮切换到
+  <strong>Top Down</strong>（自顶向下）视图，然后单击
+  <strong>Function</strong>（函数）一列中 <strong>(program)</strong>
+  左侧的小箭头。<strong>Top Down</strong>（自顶向下）视图显示调用结构的整体图像，从调用堆栈顶层开始。</p>
+
+  <p class="note"><b><!--@Note:-->注：</b><!--@ You can click the <strong>Percentage</strong> button to view absolute times.-->您可以单击 <strong>Percentage</strong>（百分比）按钮查看绝对时间。</p>
+
+  <p><!--@Select one of the functions in the <strong>Function</strong> column,
+  then click the <strong>Focus selected function</strong> button (the Eye
+  icon on the right).-->
+  在 <strong>Function</strong>（函数）一列选择某个函数，然后单击
+  <strong>Focus selected function</strong>（关注选定函数）按钮（右边的眼睛图标）。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/focus-selected-function.png">
+  </div>
+
+  <p><!--@This filters the profile to show only the selected function and its callers. Click the <strong>Reload</strong> button at the bottom-right of the window to restore the profile to its original state.-->
+  这样就会过滤性能分析报告，只显示选定函数及其调用者。单击窗口右下角的
+  <strong>Reload</strong>（重新加载）按钮可以将性能分析报告恢复到原始状态。</p>
+
+  <p><!--@Select one of the functions in the <strong>Function</strong> column,
+  then click the <strong>Exclude selected function</strong> button (the X
+  icon). Depending on the function you selected, you should see something
+  like this:-->
+  选择 <strong>Function</strong>（函数）列中的某个函数，单击
+  <strong>Exclude selected function</strong>（排除选定函数）（✕ 图标）。取决于您选择的函数，您应该看到类似于下面的内容：</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/tree-top-down.png">
+  </div>
+
+  <p><!--@The <strong>Exclude selected function</strong> button removes the selected function from the profile and charges its callers with the excluded function's total time. Click the <strong>Reload</strong> button to restore the profile to its original state.-->
+  <strong>Exclude selected function</strong>（排除选定函数）按钮从性能分析报告中删除选定函数，并从调用者中扣除排除函数的总时间。单击
+  <strong>Reload</strong>（重新加载）按钮可以将性能分析报告恢复到原始状态。
+  </p>
+
+  <p><!--@You can record multiple profiles. Click the <strong>Start profiling</strong> button, reload the V8 Benchmark page, then click the <strong>Stop profiling</strong> button.-->
+  您可以多次记录性能分析报告。单击
+  <strong>Start profiling</strong>（开始性能分析）按钮，重新加载
+  V8 Benchmark 网页，然后单击 <strong>Stop profiling</strong>（停止性能分析）按钮。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/sidebar-profile-history.png">
+  </div>
+
+  <p><!--@The sidebar on the left lists your recorded profiles, the tree view on the right shows the information gathered for the selected profile.-->
+  左侧边栏列出了您记录的性能分析报告，右侧的树视图显示选定性能分析报告收集的信息。</p>
+
+
+</div>
+<div class="collapsible">
+  <h2 id="flame-chart"><!--@Using the Flame Chart-->使用火焰图</h2>
+
+  <p><!--@The Flame Chart view provides a visual representation of JavaScript processing over time, similar to those found in the Timeline and Network panels. Using the <strong>Flame Chart</strong> feature on the Details view after performing a <em>JavaScript &amp; CPU profile</em>, you are able to view the profile data a few different ways.-->
+  火焰图视图提供了一段时间内 JavaScript
+  处理的直观表示，与时间线和网络面板中类似。进行
+  <em>JavaScript 和 CPU 性能分析</em>后在详情视图使用
+  <strong>Flame Chart</strong> 功能，您可以使用几种方式查看性能分析数据。</p>
+
+  <h3><!--@Visualizing execution paths-->形象地表示执行路径</h3>
+
+  <p><!--@By analyzing and understanding function call progression visually you can gain a better understanding of the execution paths within your app.-->形象地分析和理解函数调用过程，您可以更好地理解应用中的执行路径。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart00.png">
+  </div>
+
+
+  <h3><!--@Identifying outliers with color coding-->通过颜色辨认突出部分</h3>
+
+  <p><!--@When zoomed out you can identify repetitive patterns that could be optimized, or more importantly, you're able to spot outliers or unexpected executions much easier.-->
+  将图形缩小后，您可以辨别重复的模式以便优化。更重要的是，您可以更容易地看出突出部分或意料之外的执行。
+  </p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart-outliers.png">
+  </div>
+
+
+  <h3><!--@Visualizing JavaScript profiler data against a time scale (like Timeline)-->使用时间标尺形象地表示 JavaScript 性能分析数据（与时间线类似）</h3>
+
+  <p><!--@Other JavaScript profiling reports data that is aggregated <em>over time</em>, whereas the Flame Chart reports data <em>by time</em>. This means when you see events happen, you are able to drill into the time scale of them and really get some perspective on execution of JavaScript. For example, when you see big streaks of yellow in the Timeline, this is the perfect way to see the issue.-->其他 JavaScript 性能分析报告的数据是<em
+  >一段时间</em>积累下来的结果，而在火焰图报告中数据<em
+  >按照时间</em>展现。也就是说，当您看到事件发生时，您可以深入分析它们的时间标尺，了解 JavaScript 的执行。例如，如果您在时间线中看到黄色的粗条，就能很快发现问题。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart02.png">
+  </div>
+
+
+  <p><!--@You may even want to do a Timeline recording simultaneously while you do a recording with the JavaScript Profiler. Here’s a snippet you can use to do this:-->
+  您使用 JavaScript 性能分析器记录的过程中可能还希望同时进行时间线记录，使用如下代码片段就能做到这一点：</p>
+
+  <pre class="prettyprint">
+    <code>(function() {
+      console.timeline();
+      console.profile();
+      setTimeout(function() {
+          console.timelineEnd();
+          console.profileEnd();
+      }, 3000);
+    })();</code></pre>
+
+  <p class="note"><strong><!--@Note-->注意：</strong><!--@: The horizontal axis is time and vertical axis is the call stack. Expensive functions are wide. Call stacks are represented on the Y axis, so a tall flame is not necessarily significant. Pay close attention to wide bars, no matter their position in the call stack.-->横轴是时间，纵轴是调用堆栈，昂贵的函数更宽。调用堆栈在
+  Y 轴上表示，所以高度大的框不一定花费很多时间。特别注意宽条，无论它们处于调用堆栈中的什么位置。</p>
+
+
+  <h3><!--@How to use the Flame Chart:-->如何使用火焰图：</h3>
+
+  <ol>
+    <li><!--@Open the DevTools and go to the Profiles panel.-->打开开发者工具，进入 Profiles（性能分析）面板。</li>
+    <li><!--@Choose <strong>Record JavaScript CPU profile</strong> and click <strong>Start</strong>.-->选择 <strong>Record JavaScript CPU profile</strong>（记录 JavaScript CPU 性能），并单击 <strong>Start</strong>（开始）。</li>
+    <li><!--@When you are done collecting data, click <strong>Stop</strong>.-->数据收集完后，单击 <strong>Stop</strong>（停止）。</li>
+  </ol>
+
+  <p><!--@In the profile view, select the Flame Chart visualization from the select menu at the bottom of the DevTools.-->在性能分析报告视图中，从开发者工具底部的选择菜单中选择 Flame Chart（火焰图）表示。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart03.jpg">
+  </div>
+
+  <p class="note"><strong><!--@Note-->注：</strong><!--@: For increased accuracy of profiling times enable <strong>High resolution CPU profiling</strong> in the DevTools flame-chart under Profiling. When enabled, you can zoom into the graph to view it by a tenth of a millisecond even.-->为了增加性能分析报告中时间的精确性，您可以启用开发者工具设置中
+  Profiling（性能分析）部分的 <strong>High resolution CPU
+  profiling</strong>（高精度 CPU 性能分析）。启用之后，您可以将图形放大，以十分之一毫秒的精度查看。</p>
+
+  <p><!--@Across the top of the panel is an overview that shows the entire recording. You can zoom in on a specific region of the overview by selecting it with your mouse as shown below, and you can also pan left and right by clicking on the white area and dragging your mouse. The Details view timescale shrinks accordingly.-->面板顶部是显示整个记录的概述，您可以像下面这样用鼠标选择概述中的某一区域将它放大，还可以单击白色区域并拖动鼠标向左或向右滑动。详情视图的时间标尺会相应地缩小。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart04.png">
+  </div>
+
+  <p><!--@In the Details view, a <strong>call stack</strong> is represented as a stack of function "blocks". A block that sits atop another was called by the lower function block. Hovering over a given block displays its function name and timing data:-->
+  在详情视图中，<strong>调用堆栈</strong>以堆叠起来的函数“块”表示，位于上方的函数块由下方的函数块调用。将鼠标悬停在某个函数块上会显示函数名称的时间数据。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart05.jpg">
+  </div>
+
+  <ul>
+    <li><strong>Name</strong><!--@ — The name of the function.-->（名称）——函数名称。</li>
+    <li><strong>Self time</strong><!--@ — How long it took to complete the current invocation of the function, including only the statements in the function itself, not including any functions that it called.-->（自身的时间）——函数的当前调用花费多少时间完成，只包括函数本身的语句，不包括它调用的任何函数。</li>
+    <li><strong>Total time</strong><!--@ — The time it took to complete the current invocation of this function and any functions that it called.-->（总时间）——该函数及其调用的所有函数的当前调用花费多少时间完成。</li>
+    <li><strong>Aggregated self time</strong><!--@ — Aggregate time for all invocations of the function across the recording, not including functions called by this function.-->（累计自身时间）——整个记录中该函数所有调用的累计时间，不包括该函数调用的函数。</li>
+    <li><strong>Aggregated total time</strong><!--@ — Aggregate total time for all invocations of the function, including functions called by this function.-->（累计总时间）——该函数所有调用的累计时间，包括该函数调用的函数。</li>
+  </ul>
+
+  <p><!--@The colors in the Flame Chart fairly random, however functions will always be colored the same across invocations. This allows you to see a pattern of execution and then spot outliers easier. There is no correlation to the colors used in the Timeline.-->火焰图中的颜色是非常随机的，但是同一函数的不同调用总是会使用相同的颜色，这样您就可以更容易地看出运行的模式，以便找出突出部分。它们和时间线中使用的颜色没有任何关系。</p>
+
+  <div class="screenshot">
+    <img src="cpu-profiling-files/flamechart06.png">
+  </div>
+
+  <p><!--@Clicking a function block opens its containing JavaScript file in the Sources panel, at the line where the function is defined.-->
+  单击函数块就会在 Sources（源代码）面板中打开包含它的
+  JavaScript 文件，显示函数定义的那一行。</p>
+
+
+
+
+</div>
+{{/partials.standard_devtools_article}}

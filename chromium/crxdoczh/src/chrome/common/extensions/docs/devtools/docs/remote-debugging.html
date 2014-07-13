@@ -1,0 +1,451 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Remote Debugging Chrome on Android-->远程调试 Android 上的 Chrome 浏览器</h1>
+
+<p><!--@The experience of your web content on mobile devices can operate very differently than what users experience on the desktop. Get a bug-free page that behaves perfectly across all devices by using Google Chrome DevTools on your development machine to inspect, debug, and analyze browser tabs and WebViews on your Android device.-->
+您编写的网页内容在移动设备上的用户体验可能与桌面上有很大区别，在开发计算机上使用
+Google Chrome 开发者工具审查、调试、分析 Android 设备上的浏览器标签页和
+WebView，最终可以使网页在所有设备上都有完美的表现。
+</p>
+
+<img alt="Debugging Chrome for Android using the Chrome Developer Tools" src="remote-debugging/remote-debug-banner.png">
+
+<section class="collapsible">
+<h2 id="setting-up-device"><!--@Set up remote debugging-->设置远程调试</h2>
+
+<p><!--@To begin remote debugging, you will need:-->要开始远程调试，您需要：</p>
+
+<ul>
+<li><!--@For <strong>browser tabs</strong>: Android 4.0+ and --><strong>浏览器标签页</strong>：Android 4.0+ 以及 <a href="https://play.google.com/store/apps/details?id=com.android.chrome&amp;hl=en">Chrome for Android</a><!--@.-->。</li>
+<li><!--@For <strong>Android apps</strong>: Android 4.4+ and a WebView <a href="#configure-webview">configured for debugging</a>.--><strong>Android 应用</strong>：Android 4.4+ 以及<a href="#configure-webview">为调试而配置好的</a> WebView。</li>
+<li><!--@A USB cable to plug in your Android device-->插入 Android 设备的 USB 电缆。</li>
+<li><!--@Chrome 32 or later installed on your development machine-->开发计算机上安装 Chrome 32 或更高版本。</li>
+</ul>
+
+<h3 id="enable-usb-debugging"><!--@1. Enable USB debugging on your Android device-->1、在 Android 设备上启用 USB 调试</h3>
+
+<p><!--@On your Android device, go to <b>Settings > Developer options</b>.-->
+在您的 Android 设备中，进入<b>设置 &gt; 开发者选项</b>。</p>
+
+<div class="note">
+  <!--@On <strong>Android 4.2</strong> and newer, the developer options are hidden by default.-->
+  在 <strong>Android 4.2</strong>
+  及更高版本中，开发者选项默认情况下是隐藏的。
+  <p><!--@To make it available, go to <b>Settings > About phone</b> and tap <b>Build number</b> seven times. Yup, just tap it 7 times, even if it seems crazy. Then, return to the previous screen to find <b>Developer options</b>.-->
+    为了使之可用，请进入<b>设置 &gt; 关于本机</b>，并轻触<b
+    >版本号</b>七次。是的，虽然看起来有些疯狂，但是只要轻触七次。然后，回到前面的屏幕，就能找到<b>开发者选项</b>。
+  </p>
+
+  <figure style="text-align: center;">
+    <video loop muted controls src="remote-debugging/7tap-optimized.mp4" onended="this.play()"></video>
+    <figcaption><!--@Watch how to enable the developer options on Android 4.2.-->观看视频了解如何在 Android 4.2 中启用开发者选项。</figcaption>
+  </figure>
+</div>
+
+<p><!--@In <b>Developer options</b>, confirm that <b>USB debugging</b> is checked:-->在<b>开发者选项</b>中，确认 <b>USB 调试</b>已经选中。</p>
+
+<figure>
+  <img alt="USB debugging settings in Developer options" src="remote-debugging/usb_debugging_on.png">
+  <figcaption><!--@In order to debug over USB, set up your Android device for
+development.-->设置您的 Android 设备用于开发，以便通过 USB 调试。</figcaption>
+</figure>
+
+<h3 id="enable-usb-discovery"><!--@2. Enable USB discovery in Chrome-->2、启用 Chrome 浏览器中的 USB 发现</h3>
+
+<p><!--@On your desktop Chrome browser, go to <b>chrome://inspect</b>. Alternatively, to get to the same screen, you can select <b>Chrome menu > Tools > Inspect Devices</b>.-->
+在桌面版 Chrome 浏览器中，进入 <b>chrome://inspect</b>。您也可以选择
+<b>Chrome 菜单 &gt; 工具 &gt; 检查设备</b>
+</p>
+
+<p><!--@Confirm that <b>Discover USB Devices</b> is checked:-->
+确认 <b>Discover USB Devices</b>（发现 USB 设备）已经选中：<p>
+
+<figure>
+  <img alt="Discover USB Devices in chrome://inspect" src="remote-debugging/discover-usb-devices.png">
+</figure>
+
+<h3 id="connect-device-via-usb"><!--@3. Connect your device via USB-->3、通过 USB 连接您的设备</h3>
+
+<p><!--@Connect your mobile device to the development machine using a USB cable.-->使用 USB 电缆将您的移动设备连接到开发计算机。</p>
+
+<p class="note"><!--@If you are developing on <strong>Windows</strong>, install the appropriate USB driver for your device. See <a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank">OEM USB Drivers</a> on the Android Developers site.-->
+如果您在 <strong>Windows</strong> 上开发，请为您的设备安装合适的 USB
+驱动程序，请参见 Android 开发者网站上的
+<a href="https://developer.android.com/tools/extras/oem-usb.html" target="_blank">OEM USB 驱动程序</a>。
+</p>
+
+<p><!--@After connecting, you may see an alert on the device requesting permission for USB debugging from your computer:-->连接完成后，您可能会在设备上看到警告，请求从您的计算机上进行 USB 调试的权限：</p>
+
+<figure>
+  <img alt="USB debugging permission alert" src="remote-debugging/usb-debugging-dialog.png" />
+</figure>
+
+<p><!--@To avoid seeing this alert each time you debug, check <b>Always allow from this computer</b>. Tap <b>OK</b>.-->为了避免每次调试时都看到这一警告，请选中<b>一律允许使用这台计算机进行调试</b>，并单击<b>确定</b>。</p>
+
+<h3 id="debug-remote"><!--@4. Debug a remote web view-->4、调试远程 WebView</h2>
+
+<p><!--@Once you have set up your device for debugging over USB, the <b>chrome://inspect</b> page displays every connected device, along with its open tabs and debug-enabled WebViews:-->
+设备的 USB 调试设置好之后，<b>chrome://inspect</b>
+网页就会显示每一台连接的设备，以及其中打开的标签页和启用调试的 WebView：
+</p>
+
+<figure>
+  <img src="remote-debugging/about-inspect-stuff.png">
+  <figcaption><!--@Check <b>Discover USB devices</b> and plug in your mobile device to see your phone or tablet show up in <b>chrome://inspect</b>.-->
+    选中 <b>Discover USB devices</b>（发现 USB 设备），插入您的移动设备，就能在
+    <b>chrome://inspect</b> 中看到您的手机或平板电脑出现。
+  </figcaption>
+</figure>
+
+<p><!--@Find the tab or WebView you're interested in and click the <b>inspect</b> link to open DevTools on it:-->找到您感兴趣的标签页或 WebView，并单击
+<b>inspect</b>（审查）链接打开开发者工具：</p>
+
+<figure>
+  <img src="remote-debugging/inspect-open-tab.png" alt="Click inspect to start remote debugging">
+</figure>
+
+<p><!--@Open new browser tabs on the remote device by typing the URL in the text input field, then click <b>Open</b>.-->
+在文本框中键入 URL，并单击
+<b>Open</b>（打开），就能在远程设备上打开新的浏览器标签页。
+</p>
+
+<figure>
+  <img src="remote-debugging/open-new-remote-tab.png" alt="Click inspect to start remote debugging">
+</figure>
+
+<h3 id="troubleshooting"><!--@Troubleshooting-->疑难解答</h3>
+
+<ul>
+  <li><!--@On your device, verify you have <b>USB debugging</b> turned on. When you connect your device to a laptop, there will be a "USB debugging connected" item in the notification drawer of your phone or tablet.-->
+    确认设备上的 <b>USB 调试</b>已经启用。当您把设备连接到笔记本电脑时，手机或平板电脑的通知栏中会显示“USB 调试已连接”。
+  </li>
+  <li><!--@On your desktop, verify you are using Chrome version 32 or later. You can check the version number in <b>chrome://version</b>.-->
+    在桌面计算机上，确认您使用的是 Chrome 32 或更高版本。您可以在
+    <b>chrome://version</b> 中检查版本号。
+  </li>
+  <li><!--@If USB debugging is on but <b>chrome://inspect</b> doesn't show your device, check that <b>Discover USB devices</b> is checked. If so, unplug the device and try revoking all the USB authorizations in the Android <b>Developer options</b> to retry.-->
+    如果 USB 调试已启用，但是 <b>chrome://inspect</b> 中没有显示您的设备，确认
+    <b>Discover USB devices</b> 已选中。如果确实如此，拔出设备，并在 Android
+    <b>开发者选项</b>中撤销所有 USB 授权，然后再试。
+  </li>
+  <li><!--@If you're running a web server on your development machine, and network restrictions prevent your mobile device from accessing the server, try <a href="#reverse-port-forwarding">enabling port forwarding</a> or setting up a <a href="#virtual-host-mapping">virtual host map</a>.-->
+    如果您在开发计算机上运行网络服务器，但是由于网络限制，您的移动设备无法访问服务器，请尝试<a
+    href="#reverse-port-forwarding">启用端口转发</a>或设置<a
+    href="#virtual-host-mapping">虚拟主机映射</a>。
+  </li>
+  <li><!--@Lastly, if things still are not working, you may have to try the <a href="remote-debugging-legacy">legacy workflow for remote debugging</a> via the <code>adb</code> binary from the Android SDK.-->
+    最后，如果一切仍然无法正常工作，您可能需要通过 Android SDK 中的
+    <code>adb</code> 程序，尝试<a href="remote-debugging-legacy">远程调试的旧式工作流程</a>。
+  </li>
+
+</ul>
+
+</section>
+
+
+<section class="collapsible">
+<h2 id="debug-your-app"><!--@Debug browser tabs-->调试浏览器标签页</h2>
+
+<p><!--@When inspecting a remote browser tab in Chrome for Android, the element you are mousing over in the DevTools window will highlight the element on your device in real time. In fact, turn on inspect mode by clicking the-->审查 Chrome for Android 中的远程浏览器标签页时，开发者工具窗口中鼠标指针指向的元素在设备上会实时高亮显示。您还可以单击 <img src="../images/inspect-icon.png" class="inspect-icon" alt="Inspect icon"> <!--@icon, and then tap on your device screen.-->图标，打开审查模式，并轻触设备屏幕。</p>
+
+<figure>
+  <img alt="Debugging Chrome for Android using the Chrome Developer Tools" src="remote-debugging/remote-debug-overview.jpg"/>
+  <figcaption><!--@Debug a web page loaded on your Android phone from your laptop using Chrome DevTools.-->在笔记本电脑上采用 Chrome 开发者工具调试您的 Android 手机上加载的网页。</figcaption>
+</figure>
+
+<p><!--@Similarly, editing scripts or executing commands from the DevTools console affects the page being inspected on your device. You can also also use all of the other panels, such as <a href="timeline">Timeline</a> and <a href="cpu-profiling">Profiles</a>.-->
+与之类似，在开发者工具中编辑脚本或者在控制台执行命令会影响设备上正在审查的网页。您还可以使用所有其他面板，例如<a href="timeline">时间线</a>和<a
+href="cpu-profiling">性能分析</a>。</p>
+
+<h3 id="tips"><!--@Debugging tips-->调试技巧</h3>
+
+<ul>
+<li><!--@Reload the remote page from the DevTools window using-->使用 <span class="kbd">F5</span><!--@ (or-->（或 Mac 上的 <span class="kbd">Cmd</span>+<span class="kbd">R</span><!--@ on Mac).-->）在开发者工具窗口中重新加载远程网页。</li>
+<li><!--@Keep the device on a real cellular
+network to view the network waterfall in the <b>Network</b> panel under actual
+network conditions.-->在设备上使用真实的蜂窝网络，在实际的网络条件下查看
+<b>Network</b>（网络）面板中的网络瀑布。</li>
+<li><!--@The hardware on mobile devices often run your content much slower, so use the <a href="timeline">Timeline</a> to analyze how to optimize rendering and CPU for the best effect.-->
+移动设备上的硬件通常会以较慢的速度运行您的内容，所以使用<a href="timeline"
+>时间线</a>可以分析如何优化渲染和 CPU，以达到最佳效果。</li>
+</ul>
+
+<h3 id="notes"><!--@Notes-->注意</h3>
+
+<ul>
+<li><!--@Closing the DevTools window has no effect on the remote device.-->关闭开发者工具窗口不会影响远程设备。</li>
+<li><!--@Chrome will prevent your screen from going to sleep while remote debugging. Be aware that whilst useful, this makes your device less secure.-->Chrome 浏览器进行远程调试时会阻止屏幕进入睡眠状态，请注意尽管这一点很有用，它会降低设备的安全性。</li>
+<li><!--@You may notice that the version of the DevTools you have access to during remote debugging differs to the version you have running on your development machine. This is because the tools are synchronized with the Chrome on Android version in use.-->您可能会注意到移动调试期间访问到的开发者工具版本与开发计算机上运行的版本不同，这是因为这些工具与
+Android 上的 Chrome 版本同步。</li>
+</ul>
+
+</section>
+
+
+<section class="collapsible">
+<h2 id="debugging-webviews"><!--@Debug WebViews-->调试 WebView</h2>
+
+<p><!--@Starting Android 4.4 (KitKat), you can use the DevTools to debug the contents of
+Android WebViews inside native Android applications.-->
+从 Android 4.4（KitKat）开始，您可以使用开发者工具调试原生 Android
+应用程序中 Android WebView 的内容。
+</p>
+
+<p><!--@The procedure for debugging WebViews is very similar to what was outlined in the <a href="#setting-up-device">Set up your device for remote debugging</a> section except the <strong>Enable USB web debugging</strong> setting in Chrome doesn't affect WebViews.-->调试
+WebView 的过程与<a href="#setting-up-device">设置远程调试</a>部分的概述类似，只是
+Chrome 浏览器中的<strong>启用 USB 网页调试</strong>设置不影响 WebView。</p>
+
+<h3 id="configure-webview"><!--@Configure WebViews for debugging-->配置 WebView 用于调试</h3>
+
+<p><!--@To debug the contents of your WebView, you need to enable it programmatically from within your application by calling-->要调试 WebView 内容，您需要以编程方式在您的应用程序中启用它，只要调用
+<code>WebView</code> 类中的静态方法
+<a href="http://developer.android.com/reference/android/webkit/WebView.html#setWebContentsDebuggingEnabled(boolean)">
+setWebContentsDebuggingEnabled</a><!--@, a static method on the <code>WebView</code> class.-->。</p>
+
+<pre>
+if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+    WebView.setWebContentsDebuggingEnabled(true);
+}
+</pre>
+
+<p><!--@This setting applies to all of the application's WebViews. Note that web debugging is <strong>not</strong> affected
+by the state of the <code>debuggable</code> flag in the application's manifest. If you want to enable web debugging only
+when <code>debuggable</code> is <code>true</code>, test the flag at runtime.-->
+该设置应用于应用程序中的所有 WebView。注意，网页调试<strong>并不</strong>受应用程序清单文件中
+<code>debuggable</code> 标志的影响。如果您希望仅当
+<code>debuggable</code> 为 <code>true</code> 时启用网页调试，请在运行时测试该标志。</p>
+
+<pre>
+if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+    if ( 0 != ( getApplcationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE ) ) {
+        WebView.setWebContentsDebuggingEnabled(true);
+    }
+}
+</pre>
+
+<h3 id="open-webview"><!--@Open a WebView in DevTools-->在开发者工具中打开 WebView</h3>
+
+<p><!--@Go to <b>chrome://inspect</b> in Chrome to get a list of debuggable WebViews. Click <b>inspect</b> on the WebView you wish to debug and use the DevTools as you would for a remote browser tab.-->
+在 Chrome 浏览器中进入 <b>chrome://inspect</b>，显示可调试的 WebView
+列表。单击您要调试的 WebView 上的
+<b>inspect</b>（审查）连接，和远程浏览器标签页一样使用开发者工具。
+</p>
+
+<figure>
+  <img src="remote-debugging/about-inspect-webview.gif">
+</figure>
+
+<aside class="note"><b><!--@Note:-->注：</b><!--@ In Chrome 31 and later, the <b>chrome://inspect</b> page provides a graphic representing the WebView's
+size and position relative to the device's screen. Prior to Chrome 31, the <b>chrome://inspect</b> page only supplied the WebView's title.
+Setting a title on all of your WebViews simpifies the process of picking the correct WebView.-->在
+Chrome 31 及更高版本中，<b>chrome://inspect</b>
+网页以图形方式展现了 WebView 相对于设备屏幕的大小和位置。在 Chrome 31
+之前，<b>chrome://inspect</b> 网页只提供 WebView 标题。为所有 WebView
+设置标题可以更容易地选择正确的 WebView。</aside>
+
+</section>
+
+
+<section class="collapsible">
+<h2 id="screencasting"><!--@Screencasting-->屏幕录像</h2>
+
+<p><!--@Screencasting lets you bring the experience of your device onto your machine. This allows you to keep your attention on one screen instead of switching back and forth between the device and the DevTools. As of KitKat 4.4.3, screencasting in now also available for Android WebViews.-->屏幕录像允许您将设备上的体验带到计算机上，这样可以使您的注意力集中在屏幕上，而不是在设备和开发者工具间来回切换。从
+KitKat 4.4.3 开始，Android WebView 也可以使用屏幕录像。</p>
+
+<p><!--@While debugging a remote device, you will see a screencast icon in the DevTools toolbar:-->调试远程设备时，您会在开发者工具的工具栏中看到屏幕录像图标：</p>
+
+<figure>
+  <img src="remote-debugging/screencast-button.png">
+</figure>
+
+<p><!--@Clicking on the screencast icon-->单击屏幕录像图标 <img alt="Screencast" src="remote-debugging/screencast0.png"> <!--@opens up a panel on your computer displaying your  device's screen:-->就会在您的计算机上打开面板，显示设备上的屏幕：</p>
+
+<figure>
+  <img alt="Screencasting device" src="remote-debugging/screencast1.png">
+</figure>
+
+<p><!--@Watch a video of screencasting in action:-->请观看屏幕录像的操作视频：</p>
+
+<div class="video-container">
+  <!-- DISABLED DUE TO BLOCKING ON LOCALHOST -->
+  <!-- TODO: PUT BACK IN AFTER REWRITING CONTENT! -->
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/Q7rEFEMpwe4" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<h3 id="interacting-with-screencast"><!--@Interacting with the screencast-->与屏幕录像交互</h3>
+
+<p><!--@You can interact with the screencast of your device in a number of ways.-->您可以使用各种方式与设备的屏幕录像交互。</p>
+
+<ul>
+  <li><!--@<strong>Type</strong> on your machine's keyboard and these keystrokes are sent to the device-->在计算机键盘上<strong>输入</strong>，这些按键会发送到设备。</li>
+  <li><!--@<strong>Click</strong> to tap. Clicks will be sent to the device as proper touch events.-->通过<strong>单击</strong>的方式进行触控，单击会以合适的触摸事件发送到设备。</li>
+  <li><!--@<strong>Scroll</strong> by mousewheel, trackpad, or by flinging the content with your pointer.-->通过鼠标滚轮、触摸板或使用指针移动内容的方式进行<strong>滚动</strong>。</li>
+  <li><!--@<strong>Inspect Element</strong> by selecting the magnifying glass or by pressing-->选中放大镜或按下 <span class="kbd">Cmd</span> + <span class="kbd">Shift</span> + <span class="kbd">C</span>
+  <strong>审查元素</strong>。</li>
+  <li><!--@<strong>Zoom</strong> with a simulated pinch gesture with-->通过 <span class="kbd">Cmd</span> + <span class="kbd"><!--@Click with two fingers-->用两只手指单击</span> + <span class="kbd"><!--@Drag-->拖动</span>
+  模拟捏合手势进行<strong>缩放</strong>。</li>
+  <li><!--@<strong>Resize</strong> the pane that screencast is in to better size its contents. --><strong>重新调整屏幕录像所在窗格大小</strong>，更好地调整内容大小。</li>
+  <li><!--@<strong>Transparent</strong> portions of the screencast are covered by things like the omnibox and keyboard. Only page content is being screencasted.-->使屏幕录像中被多功能框和键盘遮挡的部分<strong>透明显示</strong>，只有网页内容才会进行屏幕录像。</li>
+</ul>
+
+<p class="note"><strong><!--@Note:-->注：</strong><!--@ The screencast feature repeatedly snaps screenshots on the device to give you the live view, but this does have a performance overhead. Disable screencast if you're testing framerate-sensitive situations.-->屏幕录像功能反复抓取设备上的屏幕截图，为您提供实时的视图，但是这样也确实会导致性能上的负担。如果您正在测试帧率敏感的情形，请禁用屏幕录像。</p>
+
+</section>
+
+
+<section class="collapsible">
+<h2 id="reverse-port-forwarding"><!--@Port Forwarding-->端口转发</h2>
+
+<p><!--@Commonly you have a web server running on your local development machine, and you want to
+connect to that site from your device. If the mobile device and the development machine are
+on the same network, this is straightforward. But this may be difficult in some cases, like
+on a restricted corporate network.-->
+通常您在开发计算机上运行网络服务器，并希望从您的设备上连接到该网站。如果移动设备和开发计算机在同一网络中，这样是很直接的。但是某些情况下，例如在受限的公司网络中，这可能会有困难。</p>
+
+<p><!--@Chrome for Android supports port fowarding making this workflow very simple to do.
+It works by creating a listening TCP port on your mobile device that maps to a particular TCP
+port on your development machine. The traffic through the forwarded port travels over USB, so
+it doesn't depend on the mobile device's network configuration.-->
+Chrome for Android 支持端口转发，使这样的工作流程非常轻松。它的工作方式是在移动设备上创建一个处于监听状态的
+TCP 端口，并映射到开发计算机上的某个 TCP 端口。经过转发端口的流量使用
+USB 传输，所以这样就不依赖于移动设备的网络配置。</p>
+
+<h3 id="enable-reverse-port-forwarding"><!--@Enable port forwarding-->启用端口转发</h3>
+
+<p><!--@This procedure assumes that you already have remote debugging configured and working. On your development machine within Chrome:-->以下过程假定您已经配置好了远程调试并正常工作。在开发计算机上的 Chrome 浏览器中：</p>
+
+<figure>
+  <img src="remote-debugging/port-forwarding-settings.png">
+</figure>
+
+<ol>
+<li><!--@Open-->打开 <b>chrome://inspect</b><!--@.-->。</li>
+<li><!--@Click <b>Port Forwarding</b> button at the top.-->单击底部的
+<b>Port Forwarding</b> 按钮。</li>
+<li><!--@In the Device port field, enter the port number the Android should device listen on (defaults to 8080).-->
+在 Device port（设备端口）字段中输入 Android 设备应该监听的端口（默认为 8080）。
+<li><!--@In the Host field, add the IP (or hostname) and port number where your web application is running. This location can be any local location accessible from your development machine. Currently, it is limited to ports over 1024 and under 65535 (inclusive).-->
+在 Host（主机）字段添加网络服务器运行的 IP 和端口号。指定的位置可以为开发计算机上能够访问的任意本地位置，目前仅限于 1024 以上以及 65535 以下（含）的端口号。</li>
+<li><!--@Make sure to check <b>Enable port forwarding</b> before hitting <b>Done</b>.-->
+按下 <b>Done</b>（完成）之前确保已选中 <b>Enable port forwarding</b>（启用端口转发）。
+</ol>
+
+<p><!--@On <b>chrome://inspect</b> you should now see a green circle indicating your port forwarding is succssful.
+Now, enter in your local URL into the <b>Open tab</b> field and hit <b>Go</b> to open it on your device's browser.-->
+在 <b>about:inspect</b> 中，您应该能看到绿色的圆点，表示端口转发成功。现在，在
+<b>Open tab</b>（打开标签页）字段输入本机 URL 并单击
+<b>Go</b>（转到）在设备的浏览器打开。
+</p>
+
+<p><!--@You should see the content being served by your development machine:-->您应该能看到本地计算机托管的内容：</p>
+
+<figure>
+  <img src="remote-debugging/portforward.png">
+</figure>
+
+<h3 id="virtual-host-mapping"><!--@Virtual host mapping-->虚拟主机映射</h3>
+
+<p><!--@Follow the instructions for virtual host mapping to preview customised local domains (something other than <code>localhost</code>) on your device. Consider the following use cases for local development to understand where this is useful:-->
+采用虚拟主机映射的方式，可以在设备上预览自定义的本地域名（而不是
+<code>localhost</code>）。请考虑本地开发中的下列情况，理解什么时候需要使用该功能：</p>
+
+<ul>
+  <li><!--@You use a customised domain during development such as <b>http://local.dev</b> configured through any number of means, such as virtual hosts on your WebServer (e.g. <a href="http://www.mamp.info/en/mamp-pro/features/webserver.html">MAMP</a>).-->
+    您在开发的过程中使用自定义的域名，例如
+    <b>http://local.dev</b>，通过各种方式配置，例如网络服务器上的虚拟主机（如
+    <a href="http://www.mamp.info/en/mamp-pro/features/webserver.html">MAMP</a>）。
+  </li>
+  <li><!--@You add a hosts file entry such as <code>127.0.0.1 production.com</code> as the third party JavaScript SDK on your page only works on a whitelisted domain.-->
+    您在 hosts 文件中添加了类似 <code>127.0.0.1 production.com</code>
+    的一行，因为网页上的第三方 JavaScript SDK 只能在白名单中的域名上使用。
+  </li>
+</ul>
+
+<p><!--@To configure virtual host mapping with Chrome for Android, the device will need to communicate with a proxy installed on the host machine.-->
+要想为 Android 配置 Chrome 中的虚拟主机映射，设备需要与主机上安装的代理服务器通信。</p>
+
+<strong><!--@On the Android device:-->在 Android 设备上：</strong>
+<ol>
+  <li><!--@Open Wi-Fi settings.-->打开无线和网络设置。</li>
+  <li><!--@Long-press the current network. (The proxy setting is per-network.)-->长按当前网络（每一种网络都有各自的代理设置）。</li>
+  <li><!--@Select <b>Modify network</b>.-->选择<b>修改网络设置</b>。</li>
+  <li><!--@Tap the <b>Show advanced options</b> checkbox below <b>IP Address</b>.-->轻触 <b>IP 地址</b> 下的<b>显示高级选项</b>复选框。</li>
+  <li><!--@<b>Proxy settings</b> will appear. Select <b>Manual</b>.-->出现<b>代理设置</b>后，选择<b>手动</b>。</li>
+  <li><!--@Set <b>Proxy hostname</b> to <code>localhost</code>.-->将<b>代理服务器主机名</b>设置为 <code>localhost</code>。</li>
+  <li><!--@Set <b>Proxy port</b> to a port that Android will let you use, for example <code>9000</code>.-->将<b>代理服务器端口</b>设置为 Android 允许您使用的某个端口，例如 <code>9000</code>。</li>
+  <li><!--@Tap <b>Save</b>.-->轻触<b>保存</b>。</li>
+</ol>
+
+<figure>
+  <img width="250" alt="Android Wi-Fi proxy settings" src="remote-debugging/android-proxy-settings.jpg"/>
+</figure>
+
+<strong><!--@On the host machine:-->在主机上：</strong>
+<ol>
+  <li><!--@Install proxy software such as <a href="http://www.charlesproxy.com/">Charles Proxy</a> (free trial available) or <a href="http://www.squid-cache.org/">Squid</a>. -->
+    安装代理服务器软件，例如
+    <a href="http://www.charlesproxy.com/">Charles Proxy</a>（可以使用免费的试用版）或
+    <a href="http://www.squid-cache.org/">Squid</a>。
+  </li>
+  <li><!--@Make note of the port the proxy is using. In Charles, you can access this via <b>Proxy > Proxy Settings</b> and making note of the port number in the <b>HTTP Proxy > Port</b> field.-->
+    记下代理服务器使用的端口。在 Charles 中，您可以通过
+    <b>Proxy &gt; Proxy Settings</b> 访问，记下 <b>HTTP Proxy &gt; Port</b>
+    字段中的端口号。
+  </li>
+  <li><!--@Navigate to <code>chrome://inspect/#devices</code> on Google Chrome.-->在 Google Chrome 中导航到 <code>chrome://inspect/#devices</code>。</li>
+  <li><!--@Select <b>Port forwarding</b>.-->选择 <b>Port forwarding</b>（端口转发）。</li>
+  <li><!--@Enter <code>9000</code> in the <b>Port</b> field.-->在
+  <b>Port</b>（端口）字段中输入 <code>9000</code>。</li>
+  <li><!--@Enter <code>localhost:1234</code> where <code>1234</code> is the port retrieved in step 2.-->输入 <code>localhost:1234</code>，其中 <code>1234</code> 是第二步中获得的端口号。</li>
+  <li><!--@Ensure the <b>Enable port forwarding</b> checkbox is checked.-->确保
+  <b>Enable port forwarding</b>（启用端口转发）复选框已经选中。</li>
+</ol>
+
+<p><!--@The steps above are required <strong>once</strong> per development session. Once port forwarding has been configured to forward requests to the host machine's proxy (from the device), you can load local domains on Chrome for Android just as you would on the host machine. -->
+在每个开发会话中以上步骤只需要进行<strong>一次</strong>。一旦端口转发配置为（从设备）转发请求至主机的代理服务器，您就可以在
+Android 上的 Chrome 浏览器中加载本机域名，就像主机上一样。
+</p>
+
+<figure>
+  <img width="250" alt="Virtual host mapping on Chrome for Android" src="remote-debugging/vhost-mapping.jpg"/>
+</figure>
+
+</section>
+
+<section class="collapsible">
+<h2><!--@Additional information-->其他信息</h2>
+
+<h3><!--@Remote debugging and ADB-->远程调试和 ADB</h3>
+
+<p><!--@DevTools now supports <strong>native USB debugging</strong> of connected devices. You no longer need to configure ADB or the ADB plugin to see all instances of Chrome and the Chrome-powered WebView on devices connected to your system. This functionality works on all operating systems: Windows, Mac, Linux and Chrome OS.-->开发者工具现在支持连接设备的<strong>原生 USB
+调试</strong>，您不用再配置 ADB 或 ADB 插件就能看到连接到系统的设备上所有
+Chrome 实例以及基于 Chrome 的 WebView 实例。该功能可以在所有操作系统上使用：Windows、Mac、Linux
+和 Chrome OS。</p>
+
+<aside class="note"><!--@However, if you do encounter problems, you can try the legacy workflow for connectivity which uses the <code>adb</code> binary from the Android SDK:
+<a href="remote-debugging-legacy">Remote Debugging on Android (Legacy Workflow)</a>.-->
+然而，如果您确实遇到了问题，您可以尝试连接设备的旧式工作流程，使用 Android
+SDK 中的 <code>adb</code> 程序：<a href="remote-debugging-legacy">Android
+上的远程调试（旧式工作流程）</a>。
+</aside>
+
+<p><!--@If you use the <code>adb</code> binary for other reasons, please note the direct USB connection between Chrome and the device may interrupt an <code>adb</code> connection that you may be trying to establish. To fix, just uncheck the <b>Discover USB Devices</b> checkbox, unplug the device, and plug it back in, before establishing your connection via <code>adb</code>.-->
+如果您是出于其他原因使用 <code>adb</code> 程序，请注意 Chrome
+与设备之间的直接连接会中断您尝试建立的 <code>adb</code>
+连接。要修复这一问题，只要取消选中 <b>Discover USB Devices</b>（发现 USB
+设备）复选框，拔出设备，然后重新插入，接下来可以通过 <code>adb</code>
+建立连接。
+</p>
+
+
+
+<h3><!--@Remote debugging for DevTools extension developers-->开发者工具扩展程序开发者使用的远程调试功能</h3>
+
+<p><!--@For information on the interaction protocol we use for our remote debugging, please see the <a href="debugger-protocol">Debugger Protocol</a> documentation and <a href="/extensions/debugger">chrome.debugger</a>.-->
+如果您想了解我们在远程调试中所使用的交互协议的有关信息，请参见<a
+href="debugger-protocol">调试协议</a>文档以及
+<a href="/extensions/debugger">chrome.debugger</a>。
+</p>
+
+</section>
+
+{{/partials.standard_devtools_article}}

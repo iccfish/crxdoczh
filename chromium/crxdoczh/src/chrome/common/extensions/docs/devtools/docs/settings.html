@@ -1,0 +1,215 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Settings-->设置</h1>
+
+
+
+  <p>
+    <strong><!--@To modify the Settings in DevTools:-->要修改开发者工具设置：</strong>
+    <ul>
+      <li><!--@Click on the Settings cog-->单击设置图标 <img src="../images/gear.png"> <!--@and open up the General Settings pane to make changes. Alternatively, you can use the shortcut <span class="kbd">?</span> to open to Settings pane too.-->打开
+      General（常用）设置窗格进行更改。您也可以使用
+      <span class="kbd">?</span>
+      快捷键打开设置窗格。</li>
+    </ul>
+  </p>
+
+  <div class="screenshot">
+    <img src="settings-files/general-settings.png">
+  </div>
+
+<div class="collapsible">
+  <h2 id="general">General（常用）</h2>
+
+  <h4>Disable cache（禁用缓存）</h4>
+  <p><!--@Prevents the caching of resources <strong>ONLY</strong> for pages which have DevTools open. This will not disable caching if the DevTools are closed.--><strong>只有</strong>当开发者工具打开时避免资源缓存，如果开发者工具关闭了就不会禁用缓存。</p>
+
+
+  <h4>Disable JavaScript（禁用 JavaScript）</h4>
+  <p><!--@Immediately suspends all JavaScript from running on the tab running the instance of DevTools which has this checked.-->选中该选项后立即暂停对应标签页中所有 JavaScript 的运行。</p>
+
+  <p class="note"><strong><!--@Note:-->注意：</strong><!--@ Both the Disable cache and Disable JavaScript settings will <strong>ONLY</strong> apply when DevTools is open. When it is open, for the page which has the DevTools open.-->禁用缓存和禁用 JavaScript <strong>只会</strong>在开发者工具打开时适用，启用时适用于打开了开发者工具的网页。</p>
+
+
+  <h4>Enable Ctrl + 1-9 shortcuts to switch panels（启用快捷键 Ctrl + 1～9 切换面板）</h4>
+  <p><!--@You are able to use-->您可以使用 <span class="kbd">Ctrl</span> + <span class="kbd">1-9</span> <!--@shortcuts to jump to specific tabs in Chrome when multiple tabs are open, with tabs 1-8 and 9 being the last tab if more than 9 are open. This setting will enable DevTools to function in the same way, so you are able to switch between panels quickly.-->快捷键跳转到 Chrome 浏览器打开的多个标签页中的某个标签页，如果标签页数目超过 9 个，1～8 对应前 8 个标签页，9 对应最后一个标签页。该设置可以使开发者工具也具有这项功能，这样您可以快速在面板间切换。</p>
+
+  <p class="note"><strong><!--@Note:-->注：</strong><!--@ Enabling this may cause conflicts with shortcut keys that are used by other applications.-->启用该设置后可能会和其他应用程序中使用的快捷键冲突。</p>
+
+  <h3 id="appearance">Appearance（外观）</h3>
+
+  <h4>Split panels vertically when docked to right（在右侧固定时垂直分隔面板）</h4>
+  <p><!--@Enabling this will change the layout of the panels so the main section is stacked on top of the sidebar sections. You may find this useful when there is not enough horizontal space when they are side-by-side which is the case for smaller screens.-->启用该设置后会改变面板布局，使面板的主要部分放置在侧边栏顶部。如果在小屏幕上它们并排显示的话可能没有足够的水平空间，这时该选项就很有用。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/dock-to-right.png">
+  </div>
+
+
+  <h3 id="elements">Elements（元素）</h3>
+
+  <h4>Color format（颜色格式）</h4>
+  <ul>
+    <li>As authored<!--@ - -->（使用编写的格式）<strong><!--@(how the code was written in the stylesheet)-->（样式表中编写的代码）</strong></li>
+    <li>HEX：<code>#DAC0DE</code></li>
+    <li>RGB：<code>rgb(128, 255, 255)</code></li>
+    <li>HSL：<code>hsl(300, 80%, 90%)</code></li>
+  </ul>
+
+  <div class="screenshot">
+    <img src="settings-files/color-format-settings.png">
+  </div>
+
+  <p><!--@The <strong>color format</strong> setting lets you control how the color codes are displayed in the <strong>Styles Sidebar</strong> of the Elements panel. In addition to the Settings option for controlling the color format, you can click on the gear icon at the top of the Styles Sidebar to change the format of color codes.-->
+  <strong>颜色格式</strong>设置允许您控制元素面板中的<strong>样式侧边栏</strong>内如何显示颜色代码。除了控制颜色格式的设置选项外，您还可以单击样式侧边栏顶部的齿轮按钮更改颜色代码的格式。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/color-picker-format.png">
+  </div>
+
+  <p><!--@Selecting-->选择 <strong>As authored</strong><!--@ will use the color format for properties as defined in the stylesheet.-->（以编写的格式显示）会使用样式表定义的属性中的颜色格式。</p>
+
+  <h4>Show user agent styles（显示用户代理样式）</h4>
+  <p><!--@You may find it useful to show <strong>user agent styles</strong> in the Styles Sidebar of the Elements panel.-->您可能会发现在元素面板的样式侧边栏中显示<strong>用户代理样式</strong>会很有用。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/show-user-agent-styles.png">
+  </div>
+
+  <p><!--@The <strong>user agent</strong> refers to the browser. Each browser implements a default stylesheet consisting of basic style rules which are applied to DOM Elements in a page. If you've ever had a difficult time removing white-space between two elements, for example, it may have been because of the user agent stylesheet adding a default margin or padding to that particular type of element.-->
+  <strong>用户代理</strong>指浏览器，每个浏览器都会实现默认的样式表，包含基本的样式规则，应用于网页中的 DOM 元素。例如，如果您试着删除两个元素之间的空白时遇到困难，可能是因为用户代理样式表为这种类型的元素添加了默认外边距或内边距。</p>
+
+  <h4>Word wrap（自动换行）</h4>
+  <p><!--@As with any text editor you can choose to wrap long lines of code in the Elements panel.-->和任何一种文本编辑器一样，您可以选择为元素面板中的代码自动换行。</p>
+
+
+  <h4>Show Shadow DOM（显示 Shadow DOM）</h4>
+  <p><!--@With <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM</a>, elements can get a new kind of node associated with them. This new kind of node is called a <strong>shadow root</strong>. An element that has a shadow root associated with it is called a shadow host. The child nodes of a shadow host isn't rendered; the content of the shadow root is rendered instead.-->
+  通过 <a href="http://www.html5rocks.com/zh/tutorials/webcomponents/shadowdom/">Shadow DOM</a>，元素可以有一种新的节点与之关联，这种新节点称为
+  <strong>shadow root</strong>。拥有与之关联的 shadow root 的元素称为
+  shadow host。shadow host 的子节点不会渲染，而 shadow root 的内容却会渲染。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/show-shadow-dom.png">
+  </div>
+
+  <ul>
+    <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/">Shadow DOM 201</a></li>
+    <li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/">Shadow DOM 301</a></li>
+    <li><a href="http://www.polymer-project.org/platform/shadow-dom.html">Shadow DOM Polyfill</a></li>
+    <li><a href="http://updates.html5rocks.com/2013/03/Visualizing-Shadow-DOM-Concepts">Visualizing Shadow DOM Concepts（以图形方式展现 Shadow DOM 概念）</a></li>
+    <li><a href="http://blogs.adobe.com/webplatform/2013/04/03/defining-presentational-boxes-with-shadow-dom/">Define presentational boxes using shadow DOM（使用 Shadow DOM 定义展示框）</a></li>
+  </ul>
+
+  <h4>Show rulers（显示标尺）</h4>
+  <p><!--@This will display a ruler overlay along the top, left and bottom sides of the viewport.-->该选项会在视图顶部、左侧和底部显示标尺覆盖层。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/show-rulers.png">
+  </div>
+
+
+  <h3 id="sources">Sources（源代码）</h3>
+
+  <h4>Search in content scripts（在内容脚本中搜索）</h4>
+  <p><!--@<a href="http://developer.chrome.com/extensions/content_scripts.html">Content scripts</a> are JavaScript files contained within Chrome extensions that run in the context of web pages but from a protected scope that is completely separate from ordinary page JavaScript. As such, content scripts and page scripts cannot interact with each other in an ordinary way.-->
+  <a href="/extensions/content_scripts">内容脚本</a>是 Chrome 扩展程序中包含的
+  JavaScript 文件，在网页的上下文中，但是又在与原始网页的 JavaScript
+  完全隔离的作用域内运行。这样一来，内容脚本和网页中的脚本就不能通过普通的方法互相交互。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/search-content-scripts.png">
+  </div>
+
+  <p><!--@When looking at the <strong>Content Scripts</strong> tab in the Sources panel you will see both the scripts added by extensions (<em>or by <a href="http://www.chromium.org/developers/design-documents/user-scripts">User Scripts</a> which are compiled into extensions in Chrome</em>), and also content scripts that are built-in parts of the browser, specifically the API that extensions can use.-->
+  在源代码面板中查看
+  <strong>Content Scripts</strong>（内容脚本）标签页时，您可以看到扩展程序（<em>或
+  <a href="http://www.chromium.org/developers/design-documents/user-scripts">User Script</a>，在 Chrome
+  浏览器中编译为扩展程序</em>）添加的脚本，还有浏览器内建的内容脚本，特别是扩展程序可以使用的 API。</p>
+
+  <p class="note"><strong><!--@Note:-->注：</strong><!--@ When developing Chrome apps or extensions enable this setting so you can search within these native API scripts, otherwise it is not useful having it enabled.-->开发
+  Chrome 应用或扩展程序时启用该设置，以便在这些原生 API
+  脚本中搜索。其他情况下启用该设置没有什么用处。</p>
+
+  <h4>Enable JS source maps（启用 JS 源代码映射）</h4>
+  <p><!--@If you have code which is concatenated and minified it is difficult to tell what file a piece of code may be in when you need to debug it. Enabling this setting is useful for <a href="javascript-debugging.html#source-maps">debugging JavaScript</a> and <a href="http://www.youtube.com/watch?v=HijZNR6kc9A#t=1m32s">working with Source maps</a> in general.-->
+  如果您的代码经过连接和压缩，在调试时就很难知道某一段代码在哪个文件中。启用该设置在<a
+  href="javascript-debugging#source-maps">调试 JavaScript</a>
+  并且<a href="https://www.youtube.com/watch?v=HijZNR6kc9A#t=1m32s"
+  >使用源代码映射</a>时会很有用。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/js-source-maps.png">
+  </div>
+
+  <h4 id="css-source-maps">Enable CSS source maps（启用 CSS 源代码映射）</h4>
+  <p><!--@Enables Source Maps for CSS files generated using a preprocessor (for example, Sass).-->为预处理器（例如 Sass）生成的 CSS 文件启用源代码映射。</p>
+
+  <p><!--@For details see <a href="css-preprocessors.html">Working with CSS Preprocessors</a>.-->有关详情请参见<a href="css-preprocessors"
+  >与 CSS 预处理器协作</a>。</p>
+
+  <h4>Auto-reload generated CSS（自动重新加载生成的 CSS）</h4>
+  <p><!--@Only used if <b>Enable CSS source maps</b> is turned on. Determines whether generated CSS files should be reloaded when the source file is saved.-->只有在<strong>启用 CSS 源代码映射</strong>打开时才能使用，决定在源代码保存后是否重新加载生成的 CSS 文件。</p>
+
+  <h4>Detect Indentation（检测缩进）</h4>
+  <p><!--@Specifies how code is indented when editing in DevTools:-->指定开发者工具中编辑代码时如何缩进。</p>
+
+  <ul>
+    <li>2 <!--@spaces-->个空格</li>
+    <li>4 <!--@spaces-->个空格</li>
+    <li>8 <!--@spaces-->个空格</li>
+    <li>Tab <!--@character-->制表符</li>
+  </ul>
+
+  <h4>Show whitespace characters（显示空白字符）</h4>
+  <p><!--@This will show dots for spaces and tab characters in the Sources panel.-->该选项会在源代码面板中为空格和制表符显示点。</p>
+
+
+  <h3 id="profiler">Profiler（性能分析器）</h3>
+
+  <h4>High resolution CPU profiling（高精度 CPU 性能分析）</h4>
+  <p><!--@Enables you to zoom into the graph to view it by a tenth of a millisecond on Flame charts.-->使您在火焰图中可以将图象放大至十分之一毫秒来查看。</p>
+
+
+  <h3 id="console">Console（控制台）</h3>
+
+  <h4>Log XMLHttpRequests（记录 XMLHttpRequest）</h4>
+  <p><!--@Display XHR request objects in the console which expand to show details of the request.-->在控制台中显示 XHR 请求对象，展开后可以显示请求详情。</p>
+
+  <h4>Preserve log upon navigation（导航时保留日志）</h4>
+  <p><!--@When navigating through multiple pages of a site you may choose to not clear the console logs with each page load so you can view the history of output across pages.-->在网站的多个网页之间导航时，您可以选择不要在每次网页加载时清除控制台日志，这样您可以查看不同网页之间的输出历史记录。</p>
+
+  <p class="note"><strong><!--@Note:-->注：</strong><!--@ Both of these settings can be changed by right clicking on the console.-->这两项设置都可以右键单击控制台更改。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/console-right-click.png">
+  </div>
+
+
+  <h3 id="extensions">Extensions（扩展程序）</h3>
+
+  <strong>Open links in:</strong> <code>a panel chosen automatically</code>（在<code>自动选择的面板</code>中打开链接）
+  <p></p>
+
+
+</div>
+<div class="collapsible">
+  <h2 id="workspace">Workspace（工作空间）</h2>
+
+  <p><!--@<a href="workspaces.html">Workspaces</a> allow you to select <strong>custom directories</strong> in your file system which are always available for you to edit within the <strong>Sources panel</strong>. This can be one specific project directory or a directory that contains multiple different projects within it.-->
+  <a href="workspaces">工作空间</a>允许您选择文件系统中的<strong>自定义目录</strong>，使您可以随时在<strong>源代码面板</strong>中编辑。它可以是某个项目的目录，也可以是包含多个不同项目的目录。</p>
+
+  <p><!--@To use this feature it open the <strong>Workspaces tab</strong> via the Settings pane. Here you will see an <strong>Add Folder</strong> link allowing you to add local directories for editing (eg: project root directories).-->要使用该功能，请打开设置窗格中的 <strong>Workspaces</strong>（工作空间）标签页。您可以看到<strong>Add folder</strong>（添加文件夹）按钮，允许您添加需要编辑的本地目录（例如项目根目录）。</p>
+
+  <div class="screenshot">
+    <img src="settings-files/workspace.png">
+  </div>
+
+  <p><!--@Once you've added a folder directory, you will be able to view, edit and save changes to files within it anytime you are working in the Sources panel. All changes to files will persist down to local file contained in directory.-->一旦您添加文件夹后，您就可以随时在源代码面板中查看、编辑和保存文件夹中的文件，文件的所有更改都会保存到目录中包含的本地文件中。</p>
+
+  <p><!--@In addition to adding a file system for your Workspace, you are also able to add file <strong>Mappings</strong> individual file urls to the path of the file on your local machine.-->
+  除了在工作空间中添加文件系统外，您还可以将文件 URL <strong>映射</strong>至本地计算机上的文件路径。</p>
+
+
+
+</div>
+{{/partials.standard_devtools_article}}

@@ -1,0 +1,138 @@
+{{+bindTo:partials.standard_devtools_article}}
+<!DOCTYPE html>
+<h1><!--@Example-->例 9</h1>
+
+  <h1><!--@Example 9: DOM leaks bigger than expected-->例 9：DOM 泄漏大于预期</h1>
+
+  <ol>
+    <li><!--@Start memory profiling. Watch node count.-->开始内存性能分析，观察节点数目。</li>
+
+    <li><!--@Create a subtree of dom nodes and save a reference to a leaf and subtree
+    route-->创建 DOM 节点子树，并保存叶节点和字数路径的引用</li>
+
+    <li><!--@Detach tree-->脱离树</li>
+
+    <li><!--@Watch the detached node count-->观察脱离的节点数目</li>
+
+    <li><!--@Remove tree reference-->移除树引用</li>
+
+    <li><!--@Watch the detached node count-->观察脱离的节点数目</li>
+
+    <li><!--@Remove leaf reference-->移除叶引用</li>
+
+    <li><!--@Watch the detached node count-->观察脱离的节点数目</li>
+  </ol>
+
+  <p><button onclick="createTree()"><!--@Create tree-->创建树</button></p>
+
+  <p><button onclick="detachTree()"><!--@Detach tree-->脱离树</button></p>
+
+  <p><button onclick="removeTreeReference()"><!--@Remove tree reference-->移除树节点</button></p>
+
+  <p><button onclick="removeLeafReference()"><!--@Remove leaf reference-->移除叶节点</button></p>
+
+    <script>
+    'use strict';
+
+var leakedNodes = [], parentDiv, leaf, counter = 0;
+
+function createLeaf() {
+    counter++;
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode('Leaf  ' + counter));
+    div.someText = (new Array(1E6).join('x'));
+    return div;
+}
+
+function createBranch(number) {
+    var div = document.createElement('div');
+    createNodesAndReturnLastLeaf(div, number - 1);
+    return div;
+}
+
+function createNodesAndReturnLastLeaf(parentDiv, number) {
+    var i, lastLeaf;
+    for (i = 0; i < number; i++) {
+        parentDiv.appendChild(createBranch(number));
+    }
+    for (i = 0; i < number; i++) {
+        parentDiv.appendChild(lastLeaf = createLeaf(number, i));
+    }
+    return lastLeaf;
+}
+
+
+
+function createTree() {
+    parentDiv = document.createElement('div');
+    leaf = createNodesAndReturnLastLeaf(parentDiv, 4);
+    document.body.appendChild(parentDiv);
+}
+
+function detachTree() {
+    document.body.removeChild(parentDiv);
+}
+
+function removeTreeReference() {
+    parentDiv = null;
+}
+
+function removeLeafReference() {
+    leaf = null;
+}
+
+    </script>
+</script>
+
+  <hr>
+  <pre>
+'use strict';
+
+var leakedNodes = [], parentDiv, leaf, counter = 0;
+
+function createLeaf() {
+    counter++;
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode("Leaf  " + counter));
+    div.someText = (new Array(1E6).join("x"));
+    return div;
+}
+
+function createBranch(number) {
+    var div = document.createElement("div");
+    createNodesAndReturnLastLeaf(div, number - 1);
+    return div;
+}
+
+function createNodesAndReturnLastLeaf(parentDiv, number) {
+    var i, lastLeaf;
+    for (i = 0; i &lt; number; i++) {
+        parentDiv.appendChild(createBranch(number));
+    }
+    for (i = 0; i &lt; number; i++) {
+        parentDiv.appendChild(lastLeaf = createLeaf(number, i));
+    }
+    return lastLeaf;
+}
+
+
+
+function createTree() {
+    parentDiv = document.createElement("div");
+    leaf = createNodesAndReturnLastLeaf(parentDiv, 4);
+    document.body.appendChild(parentDiv);
+}
+
+function detachTree() {
+    document.body.removeChild(parentDiv);
+}
+
+function removeTreeReference() {
+    parentDiv = null;
+}
+
+function removeLeafReference() {
+    leaf = null;
+}
+</pre>
+{{/partials.standard_devtools_article}}

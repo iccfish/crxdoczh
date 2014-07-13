@@ -1,0 +1,71 @@
+{{+bindTo:partials.standard_devtools_article}}
+<!DOCTYPE html>
+<h1><!--@Example-->例 4</h1>
+
+  <h1><!--@Example 4: Detached nodes-->例 4：脱离的节点</h1>
+
+  <p><!--@Watch nodes evolution in memory timeline-->观察内存时间线中节点的变化</p>
+
+  <p><!--@Take heap snapshots and find detached nodes-->抓取堆快照并找出脱离的节点</p>
+
+  <p><button onclick="createDetachedNodes()"><!--@Create detached nodes-->创建脱离的节点</button></p>
+
+  <p><button onclick="cleanNodes()"><!--@Clean detached nodes-->清理脱离的节点</button></p>
+  <script>
+  'use strict';
+
+var frags = [];
+
+function createFrag() {
+    var i, frag, div, buf;
+    frag = document.createDocumentFragment();
+    for (i = 0; i < 50; i++) {
+        div = document.createElement('div');
+        buf = document.createTextNode(i + ' - ' + new Date().toTimeString());
+        div.appendChild(buf);
+        frag.appendChild(div);
+    }
+    frags.push(frag);
+}
+
+function createDetachedNodes() {
+    var i;
+    for (i = 0; i < 10; i++) {
+        createFrag();
+    }
+}
+
+function cleanNodes() {
+    frags.length = 0;
+}
+</script>
+</script>
+  <hr>
+  <pre>
+'use strict';
+
+var frags = [];
+
+function  createFrag() {
+    var i, frag, div;
+    frag = document.createDocumentFragment();
+    for(i = 0; i &lt; 50; i++) {
+        div = document.createElement("div");
+        div.appendChild(document.createTextNode(i + " - " + new Date().toTimeString()));
+        frag.appendChild(div);
+    }
+    frags.push(frag);
+}
+
+function createDetachedNodes() {
+    var i;
+    for(i = 0; i &lt; 10; i++) {
+        createFrag();
+    }
+}
+
+function cleanNodes() {
+    frags.length = 0;
+}
+</pre>
+{{/partials.standard_devtools_article}}

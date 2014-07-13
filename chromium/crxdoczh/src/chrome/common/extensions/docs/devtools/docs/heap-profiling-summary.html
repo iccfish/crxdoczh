@@ -1,0 +1,72 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Gathering Scattered Objects-->收集分散的对象</h1>
+
+
+<script src="//developers.google.com/chrome-developer-tools/docs/heap-profiling-summary-files/script.js"></script>
+<script type="text/javascript">document.body.onload = init;</script>
+
+
+<p><!--@This page demonstrates how an overview of the space occupied by the
+objects of the same kind can be evaluated using
+the Heap
+Profiler</a>.-->
+该网页演示了如何使用<a href="javascript-memory-profiling"
+>堆性能分析器</a>评估同一种对象占用空间的概况。</p>
+
+<p><!--@Below is the source code of the script, for reference:-->如下是用于参考的脚本源代码：</p>
+
+<pre class="prettyprint">
+function Item(x)
+{
+  this.x = x;
+}
+
+function numbers()
+{
+  var result = new Array(10000);
+  for (var i = 0, l = result.length; i < l; ++i)
+    result[i] = new Item(i);
+  return new Item(result);
+}
+
+function strings()
+{
+  var result = new Array(10000);
+  for (var i = 0, l = result.length; i < l; ++i)
+    result[i] = new Item(i.toString());
+  return new Item(result);
+}
+
+function init()
+{
+  numberCache = numbers();
+  stringCache = strings();
+  documentCache = new Item(document.body.textContent.toLowerCase());
+}
+
+</pre>
+
+<p><!--@Try this:-->试一试：
+<ul>
+  <li><!--@Take a heap snapshot-->抓取堆快照</li>
+
+  <li><!--@Open the-->打开 <strong>Summary</strong><!--@ view-->（概述）视图</li>
+</ul></p>
+
+<p><!--@Objects of the same kind can be scattered among application data,
+and unintentionally, form a significant group, wasting memory. The
+<strong>Summary</strong> view helps to discover excessive
+instantiations.-->
+同一种类型的对象可能会分散在应用程序数据中，并且不经意间形成了很大一块浪费内存。<strong>Summary</strong>（概述）视图可以帮您发现过多的实例化。</p>
+
+<p><!--@For example, -->例如，<code>Item</code> <!--@objects are used for different
+storage purposes among application code. All objects are grouped in
+the-->
+对象在应用程序代码中用于不同的存储目的，所有对象都在
+<strong>Summary</strong><!--@ view, regardless of their origin, and
+statistics for them is provided.-->（概述）视图中分类显示，无论它们的来源是什么，另外还提供了统计信息。</p>
+
+
+
+
+{{/partials.standard_devtools_article}}

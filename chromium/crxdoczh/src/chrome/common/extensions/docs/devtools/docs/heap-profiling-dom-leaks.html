@@ -1,0 +1,87 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Uncovering DOM Leaks-->找出 DOM 泄漏</h1>
+
+
+<script type="text/javascript" src="heap-profiling-dom-leaks-files/script.js"></script>
+<script type="text/javascript">document.body.onload = start;</script>
+
+
+
+<p><!--@This page demonstrates how leaking of DOM nodes can be uncovered
+using the Heap
+Profiler.-->该网页演示如何使用堆性能分析器找出 DOM 节点的泄漏。</p>
+
+<p><!--@Below is the source code of the script, for reference:-->如下是用于参考的脚本源代码：</p>
+
+<pre class="prettyprint">
+function start()
+{
+  var p = document.getElementById("p");
+  detached = document.createElement("div");
+  p.appendChild(detached);
+  p.removeChild(detached);
+  fill();
+}
+
+function fill()
+{
+  for (var i = 0; i < 25; ++i) {
+    var div = document.createElement('div');
+    div.data = new Array(10000);
+    for (var j = 0, l = div.data.length; j < l; ++j)
+      div.data[j] = j.toString();
+    detached.appendChild(div);
+  }
+}
+</pre>
+
+<p><!--@Try this:-->试一试：
+<ul>
+  <li><!--@Take a heap snapshot-->抓取堆快照</li>
+
+  <li><!--@Open the-->打开 <strong>Summary</strong><!--@ view-->（概述）视图</li>
+
+  <li><!--@Find the-->找到 <code>Detached DOM tree</code><!--@ entry, expand it-->（脱离的 DOM 树）项并展开</li>
+
+  <li><!--@Alternatively, open the-->也可以打开 <strong>Containment</strong><!--@ view-->（包含）视图</li>
+
+  <li><!--@Expand the-->展开 <code>(Native objects)</code><!--@ entry,
+  locate the-->（原生对象）项，找到其中的 <code>Detached DOM tree</code><!--@ entry there-->（脱离的 DOM 树）项</li>
+</ul></p>
+
+<p id="p"><!--@In this example, a DOM node is detached from the tree, but
+it still holds DOM wrapper objects (<code>HTMLDivElement</code>
+objects) that reference script data, effectively preventing the data
+from being collected.-->
+在这个例子中，DOM 节点从文档树中脱离，但是仍然持有 DOM
+外覆对象（<code>HTMLDivElement</code> 对象），引用脚本数据，使数据无法通过垃圾回收释放。</p>
+
+<p><!--@DOM trees can be found in <strong>Summary</strong> and
+  <strong>Containment</strong> views. Note that the number of entries
+displayed for DOM subtrees is the number of native DOM nodes it
+contains, not the number of wrapper objects it holds.-->
+DOM 树可以在 <strong>Summary</strong>（概述）和
+<strong>Containment</strong>（包含）视图中找到。注意，显示的 DOM
+子树数目是它包含的原生 DOM 节点数目，而不是持有的外覆对象数目。</p>
+
+<p><!--@By tracing paths to window objects, it can be observed, that the
+detached DOM tree is referenced as the native link from the DOM
+wrapper stored in the <code>detached</code> window property. To
+confirm this, do the following:-->
+跟踪 DOM 树到 window 对象的路径，您可以观察到脱离的 DOM 树以原生链接的形式通过
+window 的 <code>detached</code> 属性中存储的 DOM
+外覆引用。为了确认这一点，可以进行如下操作：
+<ul>
+  <li><!--@Expand the-->展开 <code>Detached DOM tree</code><!--@ entry-->（脱离的 DOM 树）项</li>
+
+  <li><!--@Click on any of its-->单击其中的某个 <code>HTMLDivElement</code> <!--@descendants-->子项</li>
+
+  <li><!--@Select <strong>to window objects</strong> on the top of the <strong>Retaining paths</strong> view-->
+  选择 <strong>Retaining paths</strong>（持有路径）视图顶部的
+  <strong>to window objects</strong>（到 window 对象）</li>
+</ul>
+</p>
+
+
+
+{{/partials.standard_devtools_article}}

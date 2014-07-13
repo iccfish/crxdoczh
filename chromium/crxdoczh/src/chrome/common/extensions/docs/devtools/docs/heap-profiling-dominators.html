@@ -1,0 +1,83 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Finding Accumulation Points-->找到聚集点</h1>
+
+
+<script type="text/javascript" src="heap-profiling-dominators-files/script.js"></script>
+
+<p><!--@This page demonstrates how accumulation points can be detected
+using the Heap
+Profiler.-->该网页演示如何使用堆性能分析器检测聚集点。</p>
+
+<p><!--@Below is the source code of the script, for reference:-->如下是用于参考的脚本源代码：</p>
+
+<pre class="prettyprint">
+function CollectionItem(s)
+{
+  this.s = s;
+}
+
+function Collection()
+{
+  this.items = [];
+}
+
+Collection.prototype = {
+  add: function(item)
+  {
+    this.items.push(item);
+  },
+
+  item: function(index)
+  {
+    return this.items[index];
+  }
+}
+
+function createCollection(count)
+{
+  var collection = new Collection();
+  for (var i = 0; i < count; ++i)
+    collection.add(new CollectionItem(i.toString()));
+  return collection;
+}
+
+var holder1 = [createCollection(10000), createCollection(15000)];
+var holder2 = [holder1[0]];
+
+</pre>
+
+<p><!--@Using the-->使用 <strong>Dominators</strong><!--@ view, it's easy to spot
+collection objects that are small by themselves but retain lots of
+memory.  In the <strong>Dominators</strong> view, find the
+<code>DOMWindows</code> node (usually, the topmost one) and expand
+it. Look at the top two child nodes (by default nodes are sorted
+by their retained size). The first one is a system wrapper
+around the <code>holder1</code> array. The second one is the
+<code>Collection</code> node. Both of them have
+small shallow size, but big retained size, due to a fact that
+they hold lots of <code>CollectionItem</code>
+objects.-->（支配者）视图，您可以很容易地看到本身很小但是持有大量内存的集合对象。在
+<strong>Dominators</strong>（支配者）视图中，找到 <code>DOMWindow</code>
+节点（通常是最上面的那个）并展开。查看最上面的两个子节点（默认情况下节点按照持有大小排序），第一个是
+<code>holder1</code> 数组的系统外覆，第二个是 <code>Collection</code>
+节点。它们的浅大小都很小，但是持有大小却很大，因为它们持有了大量
+<code>CollectionItem</code> 对象。
+</p>
+
+<p><!--@Note that the -->注意，<strong>Dominators</strong><!--@ reveals dependencies
+between objects, not their references. For example, one of
+the <code>Collection</code> objects is shared between two arrays, thus
+it is not retained by any of them, but by the <code>DOMWindows</code>
+object.-->（支配者）视图反映的是对象之间的依赖关系，而不是它们的引用。例如，其中一个
+<code>Collection</code> 对象由两个数组共享，所以两者都不持有该对象，而是由
+<code>DOMWindow</code> 对象持有。
+</p>
+
+<p><!--@To see, how an object is actually referenced, click on it, and
+  look at the lower panel that shows retaining paths.-->
+  如果要查看对象是如何引用的，单击该对象，并查看底部的面板，显示持有路径。</p>
+
+
+
+
+{{/partials.standard_devtools_article}}

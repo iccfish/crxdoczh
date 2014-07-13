@@ -1,0 +1,97 @@
+{{+bindTo:partials.standard_devtools_article}}
+<!DOCTYPE html>
+<h1><!--@Example-->例 6</h1>
+
+  <h1><!--@Example 6: Leaking DOM nodes-->例 6：DOM 节点泄漏</h1>
+
+  <p><!--@If the compiler can use hidden classes, your code will execute MUCH faster and will
+  use MUCH LESS memory.-->如果编译器可以利用隐藏类，您的代码运行起来就会快得多，并且占用更少的内存。</p>
+
+  <ol>
+    <li><!--@Open Timeline tab.-->打开时间线标签页。</li>
+
+    <li><!--@Start recording activty.-->开始记录活动。</li>
+
+    <li><!--@Repeat the next steps and watch the Timeline-->反复进行下列步骤，观察时间线
+
+      <ol>
+        <li><!--@Create some nodes-->创建一些节点</li>
+
+        <li><!--@GC-->垃圾回收</li>
+      </ol>
+    </li>
+  </ol>
+
+  <p><button onclick="createNodes()"><!--@Create nodes (some of them leaked)-->创建节点（其中一部分有泄漏）</button></p>
+
+  <script>
+  'use strict';
+
+var leakedNodes = [];
+
+function createNode(text) {
+    var div = document.createElement('div'),
+        innerDiv = document.createElement('div'),
+        buf;
+    buf = document.createTextNode(text + ' - ' + new Date().toTimeString());
+    innerDiv.appendChild(buf);
+    div.appendChild(innerDiv);
+    return div;
+}
+
+function createLeakedNodes() {
+    var i;
+    for (i = 0; i < 20; i++) {
+        leakedNodes.push(createNode('Leaked:' + i));
+    }
+}
+
+function createGCNodes() {
+    var i;
+    for (i = 0; i < 20; i++) {
+        createNode('Collected:' + i);
+    }
+}
+
+function createNodes() {
+    createLeakedNodes();
+    createGCNodes();
+}
+
+  </script>
+</script>
+
+  <hr>
+  <pre>
+'use strict';
+
+var leakedNodes = [];
+
+function createNode(text) {
+    var div = document.createElement("div"),
+        innerDiv = document.createElement("div");
+    innerDiv.appendChild(document.createTextNode(text + " - "+ new Date().toTimeString()));
+    div.appendChild(innerDiv);
+    return div;
+}
+
+function createLeakedNodes() {
+    var i;
+    for (i = 0; i &lt; 20; i++) {
+        leakedNodes.push(createNode("Leaked:" + i));
+    }
+}
+
+function createGCNodes() {
+    var i;
+    for (i = 0; i &lt; 20; i++) {
+        createNode("Collected:" + i);
+    }
+}
+
+function createNodes() {
+    createLeakedNodes();
+    createGCNodes();
+}
+</pre>
+{{/partials.standard_devtools_article}}

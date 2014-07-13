@@ -1,0 +1,203 @@
+{{+bindTo:partials.standard_devtools_article}}
+<h1><!--@Remote debugging protocol-->远程调试协议</h1>
+
+
+
+
+
+<p><!--@Under the hood, Chrome Developer Tools is a web application written in HTML,
+JavaScript and CSS. It has a special binding available at JavaScript runtime
+that allows interacting with chrome pages and instrumenting them. Interaction
+protocol consists of commands that are sent to the page and events that
+the page is generating. Although Chrome Developer Tools is the only client of
+this protocol, there are ways for third parties to bypass it and start
+instrumenting browser pages explicitly. We will describe the ways it could be
+done below.-->
+Chrome 开发者工具事实上是用 HTML、JavaScript 和 CSS 编写的网页应用程序。它的
+JavaScript 运行时环境中包含特殊的绑定，允许与 Chrome 网页交互并控制它们。交互协议由发送给网页的命令和网页生成的事件组成，虽然 Chrome
+开发者工具是这种协议唯一的客户端，还是有一些方式让第三方跳过它并直接控制浏览器网页。我们将讨论实现这一点的方法。</p>
+
+<p class="note"><b><!--@Note:-->注：</b><!--@ If you are interested in inspecting remote pages on Chrome for Android, please see the <a href="remote-debugging.html">remote debugging documentation</a>. For users wishing to implement custom inspection code using our debugger protocol instead, please use the instructions below.-->如果您想了解如何审查 Chrome for Android
+上的远程网页，请参见<a href="remote-debugging">远程调试文档</a>。如果您希望使用我们的调试协议实现自定义的审查代码，请使用以下指南。</p>
+
+<div class="collapsible">
+<h2 id="protocol"><!--@Protocol-->协议</h2>
+<p><!--@Interaction protocol consists of JSON commands that are sent to the page and
+events that the page is generating. We define this protocol in Blink
+("upstream") so that any Blink-based browser supported it.-->
+交互协议由发送至网页的 JSON 命令和网页生成的事件组成。我们在
+Blink（“上游”）中定义了这种协议，所以基于 Blink 的浏览器都支持它。</p>
+
+<p>
+  <ul>
+  <li><!--@As of Google Chrome M31, we commit to supporting the version
+<a href="protocol/1.1/index.html">1.1</a> of the protocol. All
+subsequent 1.* versions of the protocol are going to be backwards compatible with 1.1.-->
+从 Chrome 31 开始，我们支持协议的 <a href="protocol/1.1/index">1.1</a>
+版本，后续 1.* 版本的协议也会向后兼容 1.1。
+</li>
+  <li><!--@As of Google Chrome M18, we commit to supporting the version
+<a href="protocol/1.0/index.html">1.0</a> of the protocol. All
+subsequent 1.* versions of the protocol are going to be backwards compatible with 1.0.-->
+从 Chrome 18 开始，我们支持协议的 <a href="protocol/1.0/index">1.0</a>
+版本，后续 1.* 版本的协议也会向后兼容 1.0。
+</li>
+  <li><!--@As of Google Chrome M16, we commit to supporting the version
+<a href="protocol/0.1/index.html">0.1</a> of the protocol. All
+subsequent 0.* versions of the protocol are going to be backwards compatible with 0.1.-->
+从 Chrome 16 开始，我们支持协议的 <a href="protocol/0.1/index">0.1</a>
+版本，后续 0.* 版本的协议也会向后兼容 0.1。
+</li>
+</li>
+</ul>
+
+</p>
+<p>
+<!--@Protocol backwards compatibility is defined as follows:-->
+协议的向后兼容性按照以下方式定义：
+  <ul>
+  <li><!--@No commands or events are removed from the protocol-->不会从协议中移除命令或事件</li>
+  <li><!--@No required parameters are added to the commands-->不会向命令添加必选参数</li>
+  <li><!--@No required parameters are removed from command responses or events-->不会从命令响应或事件中移除必选参数</li>
+</ul>
+</p>
+
+<p><!--@There also is a <a href="protocol/tot/index.html">tip-of-tree</a> version of the
+protocol that reflects present state of the protocol in Blink repository. You can
+use it with <a href="http://tools.google.com/dlpage/chromesxs">Google Canary</a>
+builds at your own risk. Note that unless tip of the tree revision is promoted to the
+draft, there is no backwards compatibility support guaranteed for the capabilities it
+introduces.-->
+还有一种协议的<a href="protocol/tot/index">开发</a>版本，体现了 Blink 仓库中协议的当前状态。您可以在
+<a href="https://tools.google.com/dlpage/chromesxs">Google Canary</a>
+中使用它，但是有一些风险。注意，除非开发版本提升为草案，不能保证引入的新功能具有向后兼容性。
+</p>
+
+
+<p><!--@DevTools may introduce new features that are not currently documented under the tip-of-tree protocol documentation. You can discover these if you want to try using features, however, the <a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/devtools/protocol.json&q=protocol.json&sq=package:chromium&type=cs">undocumented protocol</a> is volatile and may break at any time. First, <a href="https://developers.google.com/chrome-developer-tools/docs/contributing#step_3_inspector_inception">inspect the inspector</a> and reload the inspector so your attached one can view its WebSocket connection (<code>Network > Filter > WebSockets</code>). Then view the frames of WebSocket activity as you use the host DevTools. You may need to re-click the WebSocket item to have the Frame activity update.-->
+开发者工具可能会引进新的特性，目前还未加入开发版本的协议文档中。如果您想试一试这些特性的话可以探索它们，但是<a href="https://code.google.com/p/chromium/codesearch#chromium/src/third_party/WebKit/Source/devtools/protocol.json&q=protocol.json&sq=package:chromium&type=cs">未加入文档的协议</a>可能会发生变化，任何时候都可能消失。首先，<a href="contributing#step_3_inspector_inception">审查开发者工具</a>并重新加载开发者工具，这样您附加后的开发者工具就能查看自己的
+WebSocket 连接（<code>Network（网络） &gt; Filter（过滤器） &gt;
+WebSockets</code>）。然后一边使用宿主开发者工具，一边查看 WebSocket
+帧的活动。您可能需要再次单击 WebSocket 项目才能看到帧活动的更新。
+</p>
+
+<figure class="screenshot"> <a href="debugger-protocol/debugger-protocol-sniffing-full.jpg"><img src="debugger-protocol/debugger-protocol-sniffing.jpg" alt="Sniffing the debugger protocol" /></a></figure>
+
+<h2 id="remote"><!--@Debugging over the wire-->通过线路调试</h2>
+<p><!--@Today Developer Tools front-end can attach to a remotely running Chrome
+instance for debugging.
+
+For this scenario to work, you should start your
+<i>host</i> Chrome instance with the remote-debugging-port
+command line switch:-->
+目前开发者工具前端可以附加到远程运行的 Chrome
+实例用于调试。为了在这种情况下正常工作，您应该使用 remote-debugging-port
+命令行参数启动<i>主机</i> Chrome 实例：</p>
+
+<pre>
+chrome.exe --remote-debugging-port=9222
+</pre>
+
+<p><!--@Then you can start a <i>client</i> Chrome instance, using a separate user profile:-->
+然后，您可以使用单独的用户配置文件启动<i>客户端</i> Chrome 实例。</p>
+
+<pre>
+chrome.exe --user-data-dir=&lt;some directory&gt;
+</pre>
+
+<p><!--@And now you can navigate to the given port from your <i>client</i> and attach to
+any of the discovered tabs for debugging.-->
+现在您可以在<i>客户端</i>中导航到指定窗口，并附加到显示的任何标签页进行调试。</p>
+
+<pre>
+http://localhost:9222
+</pre>
+
+<p><!--@You will find Developer Tools interface identical to the embedded one and
+here is why:-->
+您会发现开发者工具的界面和被嵌入者相同，因为：</p>
+<ul>
+<li><!--@When you navigate your <i>client</i> browser to the remote's Chrome port,
+Developer Tools front-end is being served from the <i>host</i> Chrome
+as a Web Application from the Web Server.-->
+当您在<i>客户端</i>浏览器中导航到远程 Chrome 端口时，开发者工具前端由<i>主机</i>
+Chrome 浏览器以网络服务器中网上应用的形式托管。</li>
+<li><!--@It fetches HTML, JavaScript and CSS files over HTTP-->它通过 HTTP
+ 获取 HTML、JavaScript 和 CSS 文件。</li>
+<li><!--@Once loaded, Developer Tools establishes a Web Socket connection to its
+host and starts interchanging JSON messages with it.-->
+加载完成后，开发者工具通过 WebSocket 连接到主机，并通过它开始交换 JSON 消息。
+</li>
+</ul>
+
+<p><!--@In this scenario, you can substitute Developer Tools front-end with your
+own implementation. Instead of navigating to the HTML page at
+http://localhost:9222, your application can discover available
+pages by issuing the following HTTP request to the browser:-->
+在这种情况下，您可以替换开发者工具前端，使用您自己的实现。您的应用程序可以向浏览器发送以下 HTTP 请求，而不是导航到 http://localhost:9222 的网页，来发现可用的网页：</p>
+
+<pre>
+http://localhost:9222/json
+</pre>
+
+<p><!--@and getting a JSON object with information about inspectable pages along
+with the WebSocket addresses that you could use in order to start
+instrumenting them.-->
+这样就会得到一个 JSON 对象，包含可审查网页的有关信息，还有您可以使用的
+WebSocket 地址，以便开始调试它们。</p>
+<p class="note"><!--@Note that we are currently working on exposing an HTTP-based
+protocol that does not require client WebSocket implementation.-->注：我们正在致力于提供一种基于 HTTP 的协议，不需要客户端 WebSocket 实现。</p>
+
+<p><!--@Remote debugging is especially useful when debugging remote
+instances of the browser or attaching to the embedded devices. Blink port
+owners are responsible for exposing debugging connections to the external
+users.-->调试浏览器的远程实例或附加到嵌入式设备时，远程调试十分有用。Blink
+移植者有责任为外部用户暴露调试连接。</p>
+
+</div>
+<div class="collapsible">
+<h2 id="extension"><!--@Using debugger extension API-->使用调试器扩展程序 API</h2>
+<p><!--@To allow third parties to interact with the protocol, we introduced
+<a href="https://developer.chrome.com/extensions/debugger.html">
+chrome.debugger</a> extension API that exposes this JSON message
+transport interface. As a result, you can not only attach to the remotely
+running Chrome instance, but also instrument it from its own extension.-->
+为了允许第三方与该协议交互，我们引入了
+<a href="/extensions/debugger">chrome.debugger</a> 扩展程序 API，提供了这种
+JSON 消息传输接口。这样，您不仅可以附加到远程运行的 Chrome
+实例，还可以从自己的扩展程序中控制它。
+</p>
+
+<p><!--@Chrome Debugger Extension API provides a higher level API where command
+domain, name and body are provided explicitly in the <code>sendCommand</code>
+call. This API hides request ids and handles binding of the request with its
+response, hence allowing <code>sendCommand</code> to report result in the
+callback function call. One can also use this API in combination with the other
+Extension APIs.-->
+Chrome 调试器扩展程序 API 提供了一种高层 API，在 <code>sendCommand</code>
+调用中显式提供命令域、名称和正文。该 API 隐藏了请求标识符，并处理了请求与响应的关系，所以允许
+<code>sendCommand</code> 通过回调函数的调用报告结果。您可以和其他扩展程序 API
+一起使用该 API。
+</p>
+
+<p><!--@If you are developing a Web-based IDE, you should implement an extension that
+exposes debugging capabilities to your page and your IDE will be able to open
+pages with the target application, set breakpoints there, evaluate expressions
+in console, live edit JavaScript and CSS, display live DOM, network interaction
+and any other aspect that Developer Tools is instrumenting today.-->
+如果您正在开发基于网页的 IDE，您应该实现一个扩展程序，将调试能力暴露给您的网页，这样您的
+IDE 就能在目标应用程序中打开网页、设置断点、在控制台中运行表达式、实时编辑
+JavaScript 和 CSS、实时显示 DOM、进行网络交互以及开发者工具目前可以进行的其他任何操作。</p>
+
+<p class="note"><!--@Note: opening embedded Developer Tools will terminate the
+remote connection / detach the extension and will replace active debugger with
+itself. We are working on allowing several clients to instrument the page
+simultaneously.-->
+注意：打开内置的开发者工具会终止远程连接，使扩展程序脱离，并替换当前的调试器。我们正在致力于允许多个客户端同时控制网页。</p>
+<p></p>
+
+
+
+
+</div>
+{{/partials.standard_devtools_article}}

@@ -1,0 +1,175 @@
+{{+bindTo:partials.standard_devtools_article}}
+
+<h1><!--@Workspaces - Persistent authoring in the DevTools-->工作空间——保留开发者工具中编写的内容</h1>
+
+<h2><!--@Introduction-->简介</h2>
+
+<p>
+<!--@Chrome DevTools lets you make changes to elements of the webpage or the CSS and see your changes immediately.  But what good is that to your authoring workflow if you have to copy-and-paste the changes to an external editor all the time?  Workspaces helps you make those changes persist to disk without having to leave the Chrome DevTools to do so.-->
+Chrome 开发者工具允许您更改网页中的元素或
+CSS，并且能立即看到您的更改。但是如果您每次都需要将这些更改复制、粘贴到外部编辑器的话，这样对您的编写工作流程还有什么好处呢？工作空间可以帮您将这些更改保存在磁盘上，而不需要离开
+Chrome 开发者工具进行这些操作。
+</p>
+
+<p>
+<!--@With Workspaces, you can edit any type of source file from within the Sources panel and save your changes to disk.  And you can map resources served from a local web server to files on disk, so when you change and save those files, you can view them as if they were being served.  And if you have the right mapping set up, Style changes on the Elements panel persist to disk automatically.-->
+使用工作空间，您可以在源代码面板中编辑任意类型的源文件，并将更改保存在磁盘中。您还可以将本地网页服务器上的资源映射到磁盘文件上，这样的话，当您更改和保存这些文件时，您可以像服务器托管一样查看它们。如果您设置了正确的映射关系，元素面板中的样式更改也可以自动保存在磁盘上。
+</p>
+
+<h2><!--@Bringing Your Project Into Workspaces-->将您的项目引入工作空间</h2>
+
+<p>
+<!--@To make a local folder’s source files editable in the Sources panel, right-click in the left panel of Sources and select <b>Add Folder to Workspace</b>. This launches you into a file dialog where you can choose a new folder to add to your Workspaces. (It does not add the currently highlighted folder to your Workspaces.)-->
+为了让本地文件夹中的源文件能够在源代码面板中编辑，右键单击源代码左侧面板，选择
+<b>Add Folder to Workspace</b>（在工作空间中添加文件夹）。这样操作之后会打开一个文件对话框，您可以选择要添加到工作空间中的新文件夹。（目前高亮的文件夹不会添加到工作空间中。）
+</p>
+
+<p><img src="workspaces-files/addfolder.png" alt="Add Folder to Workspace" /></p>
+
+<p>
+<!--@Click <b>Allow</b> when Chrome brings up the yellow banner at the top saying “DevTools requests full access to [path to your folder]”.-->
+Chrome 浏览器顶部显示黄色信息栏“DevTools 请求对[文件夹路径]的完整访问权限”时，单击<b>允许</b>按钮。
+</p>
+
+<p>
+<!--@You can now edit any of the source files in that folder or its subfolders in Chrome.  “Source files” in this case is not limited to HTML and CSS and Javascript, but can be anything, including markdown and JSON.-->
+现在您就可以在 Chrome 浏览器中编辑该文件夹及其子文件夹中的任意源文件，在这种情况下“源文件”就不仅限于
+HTML、CSS 和 JavaScript 了，可以是任何类型，包括 Markdown 和 JSON。
+</p>
+
+<h2><!--@Mapping a Network Resource-->映射网络资源</h2>
+
+<p>
+<!--@The real power of Workspaces lies in being able to map a local file to a URL (or “Network Resource”).  Whenever Chrome loads the mapped URL, it displays the workspace folder contents in place of the network folder contents.  It’s as if it’s being served on the web, but you can modify it with DevTools and save the changes persistently to the local file.-->
+工作空间的真正优势在于它能够将本地文件映射到 URL（或“网络资源”）。每当 Chrome
+浏览器加载映射后的 URL 时，它会显示工作空间文件夹内容，代替网络文件夹内容，就像在网络上托管一样，但是您可以使用开发者工具修改它，并将更改保存到本地文件。
+</p>
+
+<p>
+<!--@To map your website to a local workspace folder:-->
+如果要将您的网站映射到本地工作空间文件夹：
+</p>
+
+<ol>
+<li><!--@In the Sources panel, right-click or Control+click on a file on the website.-->在源代码面板中，右键单击或 Control+单击（Mac）网站中的文件。</li>
+<li><!--@Select-->选择 <b>Map to File System Resource</b><!--@.-->（映射至文件系统资源）。</li>
+<li><!--@Select the corresponding file from the list (you may have to type in a filename or a partial search string to find the file that you want).-->从列表中选择对应文件（您可能需要键入文件名或一部分搜索字符串才能找到您需要的文件）。</li>
+<li><!--@Reload the page in Chrome.-->重新加载 Chrome 浏览器中的网页。</li>
+</ol>
+
+<p><img src="workspaces-files/maptoresource.png" alt="Map to File System Resource" /></p>
+
+<p>
+<!--@The Sources panel should now show just the contents of your site's local workspace folder, not the localhost sources.-->
+现在源代码面板应该显示网站本地工作空间文件夹中的内容，而不是 localhost 源代码。
+</p>
+
+<p>
+<!--@You can also do this the other way around, mapping a workspace folder to a URL, using Map to Network Resource.  Keep in mind that not all network resource files may be loaded into the browser to map from local files, but all of your local files should be available to map to a URL.  Mapping one file within a workspace should map most of the website to that workspace.-->
+您还可以采用另一种方式实现这一点，使用 Map to Network Resource（映射至网络资源）将工作空间文件夹映射至 URL。请牢记这一点，不是所有网络资源文件都能在浏览器中加载，并映射到本地文件，但是所有本地文件都能映射至 URL。映射工作空间中的一个文件应该能将网站的大部分内容映射到相应的工作空间。
+</p>
+
+<h2><!--@Caveats-->注意事项</h2>
+
+<p>
+<!--@Workspaces makes a lot of your workflow simpler, without having to keep switching back and forth between your Chrome browser and an external editor.  However, of course, there are a few things to be aware of:-->
+工作空间可以大大简化您的工作流程，而不用在 Chrome 浏览器和外部编辑器之间来回切换。当然，还有一些事项要注意：
+</p>
+
+<ul>
+<li><!--@Only style changes in the Elements panel are persisted; changes to the DOM are not persisted.  -->
+元素面板中只有样式更改才会保留，DOM 更改不会保留。</li>
+<li><!--@Style changes on the elements panel are persisted immediately, as long as you have the CSS file mapped to a local copy (that is, the changes from the elements panel persist to the file without you explicitly having to save).-->
+只要您将 CSS 文件映射至本地副本，元素面板中的样式更改就会立即保存（也就是说，元素面板中的更改会自动保存到文件中，而不用您显式保存）。</li>
+<li><!--@If you are mapping files from a remote server instead of a local server, when you refresh the page, Chrome reloads the page from the remote server again.  Your changes still persist to disk and are reapplied if you continue editing in Workspaces.-->
+如果您映射远程服务器而不是本地服务器上的文件，当您刷新网页时，Chrome
+浏览器会再次从远程服务器重新加载网页。您的更改仍然会保存到磁盘，如果您继续在工作空间中编辑的话更改也会重新应用。</li>
+</ul>
+
+<h2><!--@File Management With Workspaces-->工作空间中的文件管理</h2>
+
+<p>
+<!--@In addition to editing existing files, you can also add and delete files in the local directory you’re using for Workspaces.-->
+除了编辑现有的文件，您还可以在工作空间中的本地目录内添加和删除文件。
+</p>
+
+<h3><!--@Add File-->添加文件</h3>
+
+<p>
+<!--@Right-click on a folder in the left Sources panel and select <b>New File</b>.-->
+右键单击左侧源代码面板中的文件夹，并选择
+<b>New File</b>（新建文件）。
+</p>
+
+<p><img src="workspaces-files/newfile.png" alt="New File" /></p>
+
+<h3><!--@Delete File-->删除文件</h3>
+
+<p>
+<!--@Right-click on a file in the left Sources panel and select <b>Delete File</b>.-->
+右键单击左侧源代码面板中的文件，并选择
+<b>Delete File</b>（删除文件）。
+</p>
+
+<p><img src="workspaces-files/deletefile.png" alt="Delete File" /></p>
+
+<p>
+<!--@You can also duplicate a file by selecting <b>Duplicate File</b>.  The new file shows up in the Sources panel and you can enter a new name for it (it doesn’t just create “Copy of myfile.txt”).-->
+您还可以选择 <b>Duplicate File</b>（复制文件）来复制某个文件，新文件会显示在源代码面板中，您可以输入新的文件名（不只是创建“Copy of myfile.txt”）。
+</p>
+
+<h3><!--@Refresh-->刷新</h3>
+
+<p>
+<!--@Now that you can create (or delete) files directly in Workspaces, the Sources directory will also automatically refresh and show these new files. If not, you can always right-click on a folder and select <b>Refresh</b> from the pop-up menu to force a refresh.-->
+您不仅可以直接在工作空间中创建（或删除）文件，源代码目录还会自动刷新并显示这些新文件。如果没有刷新，您随时都可以右键单击某个文件夹，并从弹出菜单中选择
+<b>Refresh</b>（刷新）强制刷新。
+</p>
+
+<p>
+<!--@This is also useful if you happen to change your files open in another editor and want the changes to show up in DevTools.  Usually DevTools catches your refreshes automatically, even from an external editor, but if you have to recompile an HTML file or a CSS file, you may need to do a refresh.-->
+如果您恰好更改了另一个编辑器中打开的文件，希望更改显示在开发者工具中的话，这一点也很有用。通常开发者工具能自动刷新，即使是在外部编辑器中编辑，但是如果您要重新编译
+HTML 文件或 CSS 文件的话，您可能需要手动刷新。
+</p>
+
+<h3><!--@Search For Files and Across Files-->搜索文件和在所有文件中搜索</h3>
+
+<p>
+<!--@When searching for a loaded file normally in DevTools, you press <span class="kbd">Ctrl</span> + <span class="kbd">O</span> (<span class="kbd">Cmd</span> + <span class="kbd">O</span> on Mac) to open a dialog and search for a file name.  You can still do this in Workspaces, only it searches through both the remote loaded files AND the local files in your Workspace folder.-->
+搜索开发者工具中以通常方式加载的文件时，您可以按下
+<span class="kbd">Ctrl</span> + <span class="kbd">O</span>（或 Mac 上的
+<span class="kbd">Cmd</span> + <span class="kbd">O</span>）打开对话框并搜索文件名。在工作空间中您也可以这么做，只是它既搜索远程加载的文件，也会搜索工作空间文件夹中的本地文件。
+</p>
+
+<p>
+<!--@There is also a mechanism for searching through the text of files, so you can search for strings across all of the files in your workspaces as well as all of the files loaded into DevTools. You can either search for a string or for a regular expression, and we match every occurrence in every file or page.-->
+还有另一种搜索文件内容的方式，所以您可以在工作空间中的所有文件以及开发者工具中加载的所有文件中搜索字符串。您既可以搜索字符串，也可以使用正则表达式，我们会匹配每一个文件或网页中出现的内容。
+</p>
+
+<p>
+<!--@To search for text across multiple files in Workspaces:-->
+如果要在工作空间中的多个文件内搜索文本：
+</p>
+
+<ol>
+<li><!--@Open the console drawer by pressing the Escape key, and click the Search tab next to Console to open the Search window-->按下 Esc
+键打开控制台抽屉，并单击 Console（控制台）旁边的 Search（搜索）标签页，打开搜索窗口。<br/>
+<br/>
+<!--@OR-->或<br/>
+<br/>
+<!--@Press <span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">F</span> (<span class="kbd">Cmd</span> + <span class="kbd">Opt</span> + <span class="kbd">F</span> on Mac) to open the Search window.-->
+按下
+<span class="kbd">Ctrl</span> + <span class="kbd">Shift</span> + <span class="kbd">F</span>（或 Mac 上的 <span class="kbd">Cmd</span> + <span class="kbd">Opt</span> + <span class="kbd">F</span>）打开搜索窗口。</li>
+
+<li><!--@Type your query into the Search Sources box, and press Enter. If your query is a regular expression or needs to be case-insensitive, click the appropriate box.-->在搜索源代码框中输入查询内容，并按下回车键。如果您的查询内容是正则表达式或者需要区分大小写，请单击相应的复选框。</li>
+</ol>
+
+<p><img src="workspaces-files/searchacross.png" alt="Search Across Files" /></p>
+
+<br>
+
+<!--@Workspaces is a new and emerging area of the DevTools. There are more possibilities than what's covered here, some of which are touched on in <a href="https://github.com/GoogleChrome/devtools-docs/issues/30">this documentation ticket</a>.-->
+工作空间是开发者工具中正在开发的新功能，还有更多的用法没有在这里涉及到，其中一部分可在<a href="https://github.com/GoogleChrome/devtools-docs/issues/30"
+>该文档</a>中访问。
+
+{{/partials.standard_devtools_article}}

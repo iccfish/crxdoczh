@@ -1,0 +1,155 @@
+{{+bindTo:partials.standard_devtools_article}}
+<!DOCTYPE html>
+<h1><!--@Example-->例 5</h1>
+
+  <h1><!--@Example 5: Memory and V8 hidden classes-->例 5：内存和 V8 隐藏类</h1>
+
+  <p><!--@If the compiler can use hidden classes (<a href=
+  "https://developers.google.com/v8/design">https://developers.google.com/v8/design</a>),
+  your code will execute MUCH faster and will use MUCH LESS memory.-->
+  如果编译器可以利用隐藏类（<a href=
+  "https://developers.google.com/v8/design">https://developers.google.com/v8/design</a>），您的代码运行起来就会快得多，并且占用更少的内存。</p>
+
+  <ol>
+    <li><!--@Create some objects-->创建一些对象</li>
+
+    <li><!--@Take heap snapshot-->抓取堆快照</li>
+
+    <li><!--@Compare memory usage-->比较内存占用</li>
+  </ol>
+
+  <p><button onclick="createObjects()"><!--@Create objects-->创建对象</button></p>
+
+  <p><button onclick="calculate()"><!--@Do some calculus-->进行一些计算</button></p>
+
+  <table>
+    <tr>
+      <th><!--@With inner classes-->包含内嵌类</th>
+
+      <th><!--@With slow objects-->包含较慢的对象</th>
+    </tr>
+
+    <tr>
+      <td id="innerTime"></td>
+
+      <td id="slowTime"></td>
+    </tr>
+  </table>
+
+  <script>
+  'use strict';
+
+var fastObjects = [],
+    slowObjects = [];
+
+
+function calculateTotalFast(purchase) {
+    purchase.total = purchase.units * purchase.price;
+}
+
+function calculateTotalSlow(purchase) {
+    purchase.total = purchase.units * purchase.price;
+}
+
+function slowPurchase(units, price) {
+    var slowObject = new SlowPurchase(units, price);
+    delete slowObject.x;
+    return slowObject;
+}
+
+function SlowPurchase(units, price) {
+    this.units = units;
+    this.price = price;
+    this.total = 0;
+    this.x = 1;
+}
+
+function FastPurchase(units, price) {
+    this.units = units;
+    this.price = price;
+    this.total = 0;
+    this.x = 1;
+}
+
+function createObjects() {
+    var i;
+    for (i = 0; i < 300000; i++) {
+        fastObjects.push(new FastPurchase(i, 10));
+        slowObjects.push(slowPurchase(i, 10));
+    }
+}
+
+
+function calculate() {
+    var fastStart, slowStart, fastEnd, slowEnd;
+    fastStart = new Date();
+    fastObjects.forEach(calculateTotalFast);
+    fastEnd = new Date();
+    slowStart = new Date();
+    slowObjects.forEach(calculateTotalSlow);
+    slowEnd = new Date();
+    document.getElementById('innerTime').innerHTML = fastEnd - fastStart;
+    document.getElementById('slowTime').innerHTML = slowEnd - slowStart;
+}
+
+  </script>
+</script>
+
+  <hr>
+  <pre>
+'use strict';
+
+var fastObjects = [],
+    slowObjects = [];
+    
+    
+function calculateTotalFast(purchase) {
+    purchase.total = purchase.units * purchase.price;
+}
+
+function calculateTotalSlow(purchase) {
+    purchase.total = purchase.units * purchase.price;
+}
+
+function slowPurchase(units, price) {
+    var slowObject = new SlowPurchase(units, price);
+    delete slowObject.x;
+    return slowObject;
+}
+
+function SlowPurchase(units, price) {
+    this.units = units;
+    this.price = price;
+    this.total = 0;
+    this.x = 1;
+}
+
+function FastPurchase(units, price) {
+    this.units = units;
+    this.price = price;
+    this.total = 0;
+    this.x = 1;
+}
+
+function createObjects() {
+    var i;
+    for (i = 0; i &lt; 300000; i++) {
+        fastObjects.push(new FastPurchase(i, 10));
+        slowObjects.push(slowPurchase(i, 10));
+    }
+}
+
+
+function calculate() {
+    var fastStart, slowStart, fastEnd, slowEnd;
+    fastStart = new Date();
+    fastObjects.forEach(calculateTotalFast);
+    fastEnd = new Date();
+    slowStart = new Date();
+    slowObjects.forEach(calculateTotalSlow);
+    slowEnd = new Date();
+    document.getElementById("innerTime").innerHTML = fastEnd - fastStart;
+    document.getElementById("slowTime").innerHTML  = slowEnd - slowStart;
+}
+</pre>
+{{/partials.standard_devtools_article}}
