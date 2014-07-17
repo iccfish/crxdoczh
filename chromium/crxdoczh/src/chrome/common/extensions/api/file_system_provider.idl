@@ -68,6 +68,7 @@ namespace fileSystemProvider {
   dictionary MountOptions {
     DOMString fileSystemId;
     DOMString displayName;
+    [nodoc] boolean? writable;
   };
 
   // <!--@Options for the <code>unmount()</code> method.-->

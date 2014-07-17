@@ -60,7 +60,33 @@ namespace app.runtime {
     boolean? isKioskSession;
   };
 
+  // <!--@This object specifies details and operations to perform on the embedding
+  // request. The app to be embedded can make a decision on whether or not to
+  // allow the embedding and what to embed based on the embedder making the
+  // request.-->
+  // 该对象指定嵌入请求的详情和操作，被嵌入的应用可以决定是否允许嵌入，并根据发出请求的嵌入者决定嵌入的内容。
+  dictionary EmbedRequest {
+    DOMString embedderId;
+
+    // <!--@Allows <code>embedderId</code> to embed this app in an &lt;appview&gt;
+    // element. The <code>url</code> specifies the content to embed.-->
+    // 允许 <code>embedderId</code> 通过 &lt;appview&gt;
+    // 元素嵌入该应用，<code>url</code> 指定要嵌入的内容。
+    [nocompile] static void allow(DOMString url);
+
+    // <!--@Prevents <code> embedderId</code> from embedding this app in an
+    // &lt;appview&gt; element.-->
+    // 阻止 <code>embedderId</code> 通过 &lt;appview&gt; 元素嵌入该应用。
+    [nocompile] static void deny();
+  };
+
   interface Events {
+    // <!--@Fired when an embedding app requests to embed this app. This event is
+    // only available on dev channel with the flag --enable-app-view.-->
+    // 其他应用请求嵌入该应用时产生。该事件仅在 Dev 分支上，并且指定
+    // --enable-app-view 参数的情况下才可用。
+    static void onEmbedRequested(EmbedRequest request);
+
     // <!--@Fired when an app is launched from the launcher.-->
     // 应用从执行器执行时产生。
     static void onLaunched(optional LaunchData launchData);

@@ -210,7 +210,7 @@ namespace mediaGalleries {
     // <!--@The images embedded in the media file's metadata. This is most often
     // used for album art or video thumbnails.-->
     // 内嵌在媒体文件元数据中的图片，通常为艺术专辑或视频缩略图。
-    [instanceof=Blob] object[] attachedImages;
+    [instanceOf=Blob] object[] attachedImages;
   };
 
   callback MediaMetadataCallback = void (MediaMetadata metadata);
