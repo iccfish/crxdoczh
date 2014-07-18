@@ -101,14 +101,41 @@
       {
         "name": "eval",
         "type": "function",
-//@        "description": "Evaluates a JavaScript expression in the context of the main frame of the inspected page. The expression must evaluate to a JSON-compliant object, otherwise an exception is thrown.",
-        "description": "在审查页面主框架的上下文中对 JavaScript 表达式求值，这一表达式的结果必须是一个遵循 JSON 的对象，否则将会引发异常。",
+//@        "description": "Evaluates a JavaScript expression in the context of the main frame of the inspected page. The expression must evaluate to a JSON-compliant object, otherwise an exception is thrown. The eval function can report either a DevTools-side error or a JavaScript exception that occurs during evaluation. In either case, the <code>result</code> parameter of the callback is <code>undefined</code>. In the case of a DevTools-side error, the <code>isException</code> parameter is non-null and has <code>isError</code> set to true and <code>code</code> set to an error code. In the case of a JavaScript error, <code>isException</code> is set to true and <code>value</code> is set to the string value of thrown object.",
+        "description": "在审查页面主框架的上下文中对 JavaScript 表达式求值，表达式的结果必须是一个可转换为 JSON 的对象，否则将会引发异常。eval 函数可能会报告开发者工具中的错误，也可能是求值过程中产生的 JavaScript 异常。无论是哪种情况，回调函数的 <code>result</code> 参数均为 <code>undefined</code>。如果是开发者工具中的错误，<code>isException</code> 参数就不为 null，并包含 <code>isError</code> 属性，设置为 true，还有 <code>code</code> 属性，设置为错误码。如果是 JavaScript 错误，<code>isException</code> 设置为 true，<code>value</code> 设置为抛出的异常对象的字符串值。",
         "parameters": [
           {
             "name": "expression",
             "type": "string",
 //@            "description": "An expression to evaluate."
             "description": "需要求值的表达式。"
+          },
+          {
+            "name": "options",
+            "type": "object",
+            "optional": true,
+//@            "description": "The options parameter can contain one or more options.",
+            "description": "options 参数可以包含一个或多个选项。",
+            "properties": {
+              "frameURL": {
+                "type": "string",
+                "optional": true,
+//@                "description": "If specified, the expression is evaluated on the iframe whose URL matches the one specified. By default, the expression is evaluated in the top frame of the inspected page."
+                "description": "如果指定了该参数，表达式将在匹配指定 URL 的内嵌框架中运行。默认情况下表达式在审查网页的顶层框架中运行。"
+              },
+              "useContentScriptContext": {
+                "type": "boolean",
+                "optional": true,
+//@                "description": "Evaluate the expression in the context of the content script of the calling extension, provided that the content script is already injected into the inspected page. If not, the expression is not evaluated and the callback is invoked with the exception parameter set to an object that has the <code>isError</code> field set to true and the <code>code</code> field set to <code>E_NOTFOUND</code>."
+                "description": "在当前扩展程序内容脚本的上下文中运行表达式，要求内容脚本已经插入审查的网页。如果还没有，表达式就不会运行，调用回调函数时异常参数设置为一个对象，其中 <code>isError</code> 字段设为 true，<code>code</code> 字段设为 <code>E_NOTFOUND</code>。"
+              },
+              "contextSecurityOrigin": {
+                "type": "string",
+                "optional": true,
+//@                "description": "Evaluate the expression in the context of a content script of an extension that matches the specified origin. If given, contextSecurityOrigin overrides the 'true' setting on userContentScriptContext."
+                "description": "在匹配指定来源的扩展程序对应的内容脚本上下文中运行表达式。如果指定了该属性，contextSecurityOrigin 覆盖设置为 true 的 userContentScriptContext 属性。"
+              }
+            }
           },
           {
             "name": "callback",
@@ -125,10 +152,43 @@
                 "description": "求值结果。"
               },
               {
-                "name": "isException",
-                "type": "boolean",
-//@                "description": "Set if an exception was caught while evaluating the expression."
-                "description": "如果计算表达式的过程中产生异常则设为 true。"
+                "name": "exceptionInfo",
+                "type": "object",
+//@                "description": "An object providing details if an exception occurred while evaluating the expression.",
+                "description": "如果执行表达式的过程中发生异常，该对象提供详细信息。",
+                "properties": {
+                  "isError": {
+                    "type": "boolean",
+//@                    "description": "Set if the error occurred on the DevTools side before the expression is evaluated."
+                    "description": "如果表达式运行之前开发者工具中发生错误则设置为 true。"
+                  },
+                  "code": {
+                    "type": "string",
+//@                    "description": "Set if the error occurred on the DevTools side before the expression is evaluated."
+                    "description": "如果运行表达式前开发者工具中产生错误则设置该属性。"
+                  },
+                  "description": {
+                    "type": "string",
+//@                    "description": "Set if the error occurred on the DevTools side before the expression is evaluated."
+                    "description": "如果运行表达式前开发者工具中产生错误则设置该属性。"
+                  },
+                  "details": {
+                    "type": "array",
+                    "items": { "type": "any" },
+//@                    "description": "Set if the error occurred on the DevTools side before the expression is evaluated, contains the array of the values that may be substituted into the description string to provide more information about the cause of the error."
+                    "description": "如果运行表达式前开发者工具中产生错误则设置该属性，包含在描述字符串中需要替换的值数组，以便提供有关错误的更多信息。"
+                  },
+                  "isException": {
+                    "type": "boolean",
+//@                    "description": "Set if the evaluated code produces an unhandled exception."
+                    "description": "如果运行的代码产生未处理的异常则设置该属性。"
+                  },
+                  "value": {
+                    "type": "string",
+//@                    "description": "Set if the evaluated code produces an unhandled exception."
+                    "description": "如果运行的代码产生未处理的异常则设置该属性。"
+                  }
+                }
               }
             ]
           }
@@ -162,6 +222,12 @@
                 "optional": true,
 //@                "description": "If specified, the script will be injected into every frame of the inspected page immediately upon load, before any of the frame's scripts. The script will not be injected after subsequent reloads&mdash;for example, if the user presses Ctrl+R."
                 "description": "如果指定的话，这一脚本将会在刚开始载入时，在任何框架的脚本之前插入至审查页面的每一个框架。这一脚本在以后的重新载入中不会插入——例如，如果用户按下 Ctrl+R。"
+              },
+              "preprocessorScript": {
+                "type": "string",
+                "optional": true,
+//@                "description": "If specified, this script evaluates into a function that accepts three string arguments: the source to preprocess, the URL of the source, and a function name if the source is an DOM event handler. The preprocessorerScript function should return a string to be compiled by Chrome in place of the input source. In the case that the source is a DOM event handler, the returned source must compile to a single JS function."
+                "description": "如果指定了该属性，运行该脚本时会传递三个参数：要预处理的源代码、源代码 URL 以及函数名称（如果源代码为 DOM 事件处理程序）。preprocessorerScript 函数应该返回字符串，Chrome 浏览器使用它代替输入的源代码。如果源代码为 DOM 事件处理程序，返回的源代码必须编译为单个 JS 函数。"
               }
             }
           }

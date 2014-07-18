@@ -297,6 +297,11 @@
         "$ref": "ElementsPanel",
 //@        "description": "Elements panel."
         "description": "元素面板。"
+      },
+      "sources": {
+        "$ref": "SourcesPanel",
+//@        "description": "Sources panel."
+        "description": "源代码面板。"
       }
     },
     "functions": [
@@ -361,6 +366,33 @@
                 "description": "单击的资源对应的 $(ref:devtools.inspectedWindow.Resource) 对象。"
               }
             ]
+          }
+        ]
+      },
+      {
+        "name": "openResource",
+        "type": "function",
+//@        "description": "Requests DevTools to open a URL in a Developer Tools panel.",
+        "description": "请求开发者工具在开发者工具面板中打开 URL。",
+        "parameters": [
+          {
+            "name": "url",
+            "type": "string",
+//@            "description": "The URL of the resource to open."
+            "description": "要打开的资源的 URL。"
+          },
+          {
+            "name": "lineNumber",
+            "type": "integer",
+//@            "description": "Specifies the line number to scroll to when the resource is loaded."
+            "description": "指定资源加载后滚动到哪一行。"
+          },
+          {
+            "name": "callback",
+            "type": "function",
+            "optional": true,
+//@            "description": "A function that is called when the resource has been successfully loaded."
+            "description": "资源成功加载后调用的函数。"
           }
         ]
       }
