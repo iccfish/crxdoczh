@@ -53,6 +53,44 @@
             "nodoc": true
           }
         }
+      },
+      {
+        "id": "RequestContentScript",
+//@        "description": "Declarative event action that injects a content script.",
+        "description": "声明式事件操作，插入内容脚本。",
+        "type": "object",
+        "properties": {
+          "css": {
+            "type": "array",
+            "optional": true,
+//@            "description": "Names of CSS files to be injected as a part of the content script.",
+            "description": "以内容脚本的形式插入的 CSS 文件名。",
+            "items": { "type": "string" }
+          },
+          "js": {
+            "type": "array",
+            "optional": true,
+//@            "description": "Names of Javascript files to be injected as a part of the content script.",
+            "description": "以内容脚本的形式插入的 JavaScript 文件名。",
+            "items": { "type": "string" }
+          },
+          "allFrames": {
+            "type": "boolean",
+            "optional": true,
+//@            "description": "Whether the content script runs in all frames of the matching page, or only the top frame. Default is false."
+            "description": "内容脚本是否在匹配网页的所有框架中运行，还是仅在顶层框架中。默认为 false。"
+          },
+          "matchAboutBlank": {
+            "type": "boolean",
+            "optional": true,
+//@            "description": "Whether to insert the content script on about:blank and about:srcdoc. Default is false."
+            "description": "是否在 about:blank 和 about:srcdoc 中插入内容脚本，默认为 false。"
+          },
+          "instanceType": {
+            "type": "string", "enum": ["declarativeContent.RequestContentScript"],
+            "nodoc": true
+          }
+        }
       }
     ],
     "functions": [
@@ -65,6 +103,7 @@
           "supportsRules": true,
           "conditions": ["declarativeContent.PageStateMatcher"],
           "actions": [
+            "declarativeContent.RequestContentScript",
             "declarativeContent.ShowPageAction"
           ]
         }
