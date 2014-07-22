@@ -14,8 +14,8 @@
   {{{description}}}
 {{/description}}
 {{?returns}}	
-  <br/>Returns<span class="property">	
-    {{+partials.variable_type type:returns/}}.
+  <br/><!--@Returns-->返回值为 <span class="property">	
+    {{+partials.variable_type type:returns/}}<!--@.--> 类型。
   </span>
 {{/returns}}
 {{+partials.enum_descriptions enums:enum_values/}}

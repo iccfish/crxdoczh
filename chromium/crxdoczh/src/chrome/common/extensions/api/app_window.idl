@@ -131,44 +131,54 @@ namespace app.window {
 
   dictionary FrameOptions {
     // <!--@Frame type: <code>none</code> or <code>chrome</code> (defaults to
-    // <code>chrome</code>).<br>
-    // For <code>none</code>, the <code>-webkit-app-region</code> CSS property
-    // can be used to apply draggability to the app's window.
-    // <code>-webkit-app-region: drag</code> can be used to mark regions
-    // draggable. <code>no-drag</code> can be used to disable this style on
-    // nested elements.<br>-->
+    // <code>chrome</code>).-->
     // 边框类型：<code>none</code> 或 <code>chrome</code>（默认为
-    // <code>chrome</code>）。<br>
+    // <code>chrome</code>）。
+    //
+    // <!--@For <code>none</code>, the <code>-webkit-app-region</code> CSS property
+    // can be used to apply draggability to the app's window.-->
     // 如果使用 <code>none</code>，CSS 属性 <code>-webkit-app-region</code>
-    // 使应用窗口可以拖放。<code>-webkit-app-region: drag</code>
+    // 使应用窗口可以拖放。
+    //
+    // <!--@<code>-webkit-app-region: drag</code> can be used to mark regions
+    // draggable. <code>no-drag</code> can be used to disable this style on
+    // nested elements.-->
+    //<code>-webkit-app-region: drag</code>
     // 用于将区域标记为可拖放，<code>no-drag</code>
-    // 用于禁用嵌套元素上的这一样式。<br>
+    // 用于禁用嵌套元素上的这一样式。
     DOMString? type;
     // <!--@Allows the frame color to be set. Frame coloring is only available if the
-    // frame type is <code>chrome</code>.<br>
-    // Frame coloring is new in Chrome 36.-->
+    // frame type is <code>chrome</code>.-->
     // 允许设置边框颜色，只有边框类型为 <code>chrome</code>
-    // 时才能设置边框颜色。<br>边框颜色在 Chrome 36 中新增。
+    // 时才能设置边框颜色。
+    //
+    // <!--@Frame coloring is new in Chrome 36.-->
+    // 边框颜色在 Chrome 36 中新增。
     DOMString? color;
     // <!--@Allows the frame color of the window when active to be set. Frame
-    // coloring is only available if the frame type is <code>chrome</code>.<br>
-    // Frame coloring is only available if the frame type is
-    // <code>chrome</code>.<br>
-    // Frame coloring is new in Chrome 36.-->
+    // coloring is only available if the frame type is <code>chrome</code>.-->
     // 允许设置窗口处于活动状态时的边框颜色，只有当边框类型为
-    // <code>chrome</code> 时边框颜色才能设置。<br>边框颜色在 Chrome 36
-    // 中新增。
+    // <code>chrome</code> 时才能设置边框颜色。
+    //
+    // <!--@Frame coloring is only available if the frame type is
+    // <code>chrome</code>.
+    //
+    // Frame coloring is new in Chrome 36.-->
+    // 边框颜色在 Chrome 36 中新增。
     DOMString? activeColor;
     // <!--@Allows the frame color of the window when inactive to be set differently
     // to the active color. Frame
-    // coloring is only available if the frame type is <code>chrome</code>.<br>
-    // <code>inactiveColor</code> must be used in conjunction with <code>
-    // color</code>.<br>
-    // Frame coloring is new in Chrome 36.-->
+    // coloring is only available if the frame type is <code>chrome</code>.-->
     // 允许设置窗口处于不活动状态时的边框颜色，只有当边框类型为
-    // <code>chrome</code> 时边框颜色才能设置。<code>inactiveColor</code>
-    // 必须和 <code>color</code> 同时使用。<br>边框颜色在 Chrome 36
-    // 中新增。
+    // <code>chrome
+    //
+    // <!--@<code>inactiveColor</code> must be used in conjunction with <code>
+    // color</code>.-->
+    // </code> 时才能设置边框颜色。<code>inactiveColor</code>
+    // 必须和 <code>color</code> 同时使用。
+    //
+    // <!--@Frame coloring is new in Chrome 36.-->
+    // 边框颜色在 Chrome 36 中新增。
     DOMString? inactiveColor;
   };
 
@@ -280,13 +290,14 @@ namespace app.window {
     // <code>-webkit-app-region</code> CSS property can be used to apply
     // draggability to the app's window. <code>-webkit-app-region: drag</code>
     // can be used to mark regions draggable. <code>no-drag</code> can be used
-    // to disable this style on nested elements.<br>
-    // Use of <code>FrameOptions</code> is new in M36.-->
+    // to disable this style on nested elements.-->
     // 框架类型：'none' 或 'chrome'（默认为 'chrome'）。如果使用
     // 'none'，可以通过 CSS 属性 <code>-webkit-app-region</code>
     // 设置应用窗口的拖放特性。<code>-webkit-app-region: drag</code>
     // 可以将区域标志为可拖放的，而 <code>no-drag</code>
-    // 可以用来在嵌套元素上禁用该样式。<br>
+    // 可以用来在嵌套元素上禁用该样式。
+    //
+    // <!--@Use of <code>FrameOptions</code> is new in M36.-->
     // 在 Chrome 36 或更高版本中可以使用 FrameOptions 对象。
     (DOMString or FrameOptions)? frame;
 
@@ -330,13 +341,14 @@ namespace app.window {
     // <!--@If true, the window will stay above most other windows. If there are
     // multiple windows of this kind, the currently focused window will be in
     // the foreground. Requires the <code>"alwaysOnTopWindows"</code>
-    // permission. Defaults to false.<br>
-    // Call <code>setAlwaysOnTop()</code> on the window to change this property
-    // after creation.<br>-->
+    // permission. Defaults to false.-->
     // 如果为
     // true，窗口会保持在其他大部分窗口之上。如果有多个这样的窗口，当前具有焦点的窗口会在前台。需要
-    // <code>"alwaysOnTopWindows"</code> 权限，默认为 false。创建窗口后调用
-    // <code>setAlwaysOnTop</code> 修改该属性。
+    // <code>"alwaysOnTopWindows"</code> 权限，默认为 false。
+    //
+    // <!--@Call <code>setAlwaysOnTop()</code> on the window to change this property
+    // after creation.-->
+    // 创建窗口后调用 <code>setAlwaysOnTop</code> 修改该属性。
     boolean? alwaysOnTop;
 
     // <!--@If true, the window will be focused when created. Defaults to true.-->
@@ -346,17 +358,16 @@ namespace app.window {
 
   // <!--@Called in the creating window (parent) before the load event is called in
   // the created window (child). The parent can set fields or functions on the
-  // child usable from onload. E.g. background.js:<br>
-  // <code>function(createdWindow) { createdWindow.contentWindow.foo =
-  // function () { }; };</code>
-  // <br>window.js:<br>
-  // <code>window.onload = function () { foo(); }</code>-->
+  // child usable from onload. E.g. background.js:-->
   // 在已创建窗口（子窗口）的 load
   // 事件产生前在父窗口中调用，父窗口可以设置子窗口中的字段或函数，以便在
-  // onload 中使用。例如：background.js：<br>
+  // onload 中使用。例如：background.js：
+  //
   // <code>function(createdWindow) { createdWindow.contentWindow.foo =
   // function () { }; };</code>
-  // <br>window.js：<br>
+  //
+  // window.js:
+  //
   // <code>window.onload = function () { foo(); }</code>
   callback CreateWindowCallback =
       void ([instanceOf=AppWindow] object createdWindow);
@@ -366,15 +377,17 @@ namespace app.window {
     // 使窗口拥有焦点。
     static void focus();
 
-    // <!--@Fullscreens the window.<br>
-    // The user will be able to restore the window by pressing ESC. An
+    // <!--@Fullscreens the window.-->
+    // 使窗口进入全屏状态。
+    //
+    // <!--@The user will be able to restore the window by pressing ESC. An
     // application can prevent the fullscreen state to be left when ESC is
     // pressed by requesting the <b>overrideEscFullscreen</b> permission and
-    // canceling the event by calling .preventDefault(), like this:<br>-->
-    // 使窗口进入全屏状态。<br>
+    // canceling the event by calling .preventDefault(), like this:-->
     // 用户可以按下 Esc 键恢复窗口。如果应用请求 <b>overrideEscFullscreen</b>
     // 权限，并调用 .preventDefault()
-    // 取消事件，就能避免离开全屏状态，如下所示：<br>
+    // 取消事件，就能避免离开全屏状态，如下所示：
+    //
     // <code>window.onKeyDown = function(e) { if (e.keyCode == 27 /* ESC */) {
     // e.preventDefault(); } };</code>
     static void fullscreen();

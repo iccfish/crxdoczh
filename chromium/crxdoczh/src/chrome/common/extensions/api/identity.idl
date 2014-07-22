@@ -101,9 +101,10 @@ namespace identity {
 
   interface Functions {
     // <!--@Retrieves a list of AccountInfo objects describing the accounts
-    // present on the profile.<br>
-    // <code>getAccounts</code> is only supported on dev channel.-->
-    // 获取 AccountInfo 对象列表，描述配置文件中存在的账户。<br>
+    // present on the profile.-->
+    // 获取 AccountInfo 对象列表，描述配置文件中存在的账户。
+    //
+    // <!--@<code>getAccounts</code> is only supported on dev channel.-->
     // <code>getAccounts</code> 目前仅在 Dev 分支中支持。
     static void getAccounts(GetAccountsCallback callback);
 
