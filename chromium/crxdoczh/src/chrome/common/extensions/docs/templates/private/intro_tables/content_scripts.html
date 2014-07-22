@@ -1,0 +1,12 @@
+{{?content.contentScriptSupport.restrictedTo}}
+  支持
+  {{#n:content.contentScriptSupport.restrictedTo}}
+    {{^n.first}}<!--@
+      -->{{^n.last}}<!--@,-->、{{/n.last}}{{?n.last}} <!--@and-->和 {{/n.last}}<!--@
+    -->{{/n.first}}<!--@
+    -->$(ref:{{content.contentScriptSupport.name}}.{{n.node}} {{n.node}})<!--@
+  -->{{/content.contentScriptSupport.restrictedTo}}<!--@ are supported.-->。<!--@
+-->{{:}}
+  <!--@Fully supported.-->完全支持。<!--@
+-->{{/content.contentScriptSupport.restrictedTo}}<!--@
+--><a href="content_scripts"><!--@Learn more-->了解更多</a>
