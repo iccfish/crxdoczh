@@ -40,9 +40,9 @@ They <b>cannot</b>:-->
     <ul id="content_script_supported_nodes">
       {{#api:content_scripts}}
       <li>
-        $(ref:{{api.name}})
-        {{?api.restrictedTo}}
-          （{{#n:api.restrictedTo}}<!--@
+        $(ref:{{api.name}})<!--@
+        -->{{?api.restrictedTo}}<!--@
+          -->（{{#n:api.restrictedTo}}<!--@
            -->$(ref:{{api.name}}.{{n.node}} {{n.node}})<!--@
            -->{{^n.last}}<!--@,-->、{{/n.last}}<!--@
            -->{{/api.restrictedTo}}）
