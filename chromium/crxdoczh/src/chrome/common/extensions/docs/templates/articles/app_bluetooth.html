@@ -143,7 +143,7 @@ chrome.bluetooth.getDevices(function(devices) {
   can use the $(ref:bluetooth.onDeviceAdded), $(ref:bluetooth.onDeviceChanged)
   and $(ref:bluetooth.onDeviceRemoved) events to receive notifications.-->
   您不应该反复调用 $(ref:bluetooth.getDevices)，而应该使用
-  $(ref:bluetooth.onDeviceAdded)、$(ref:onDeviceChanged)
+  $(ref:bluetooth.onDeviceAdded)、$(ref:bluetooth.onDeviceChanged)
   和 $(ref:bluetooth.onDeviceRemoved) 事件接收通知。
 </p>
 
@@ -213,7 +213,7 @@ chrome.bluetooth.onDeviceRemoved.addListener(function(device) {
   ensure the adapter continues to perform discovery after that other app has
   stopped.-->
   您的应用需要发现附近的设备时就可以调用
-  $(ref:bletooth.startDiscovery)，不需要根据 $(ref:bluetooth.AdapterState)
+  $(ref:bluetooth.startDiscovery)，不需要根据 $(ref:bluetooth.AdapterState)
   的 <code>discovering</code>
   属性决定是否调用该方法。即使另一个应用也在发现附近的设备，调用也会成功，并确保另一个应用停止时适配器继续进行发现操作。
 </p>
@@ -592,3 +592,484 @@ chrome.bluetoothSocket.onAccept.addListener(function(acceptInfo) {
 <pre>
 chrome.bluetoothSocket.disconnect(serverSocketId);
 </pre>
+
+<h2 id="low-energy"><!--@Interacting with Low Energy devices-->与低耗能设备交互</h2>
+
+<p>
+  <!--@Bluetooth Low Energy or (Bluetooth Smart) is a wireless technology aimed at
+  reduced power consumption. The
+  <a href="bluetoothLowEnergy.html">Bluetooth Low Energy</a> API allows
+  applications to implement the central role in a LE connection to a
+  peripheral. The following sections describe how to discover,
+  connect to, and interact with Bluetooth Low Energy peripherals.-->
+  蓝牙低耗能（或蓝牙智能）是一种旨在降低功耗的无线技术，<a
+  href="bluetoothLowEnergy">蓝牙低耗能</a> API 允许应用程序实现外设 LE
+  连接的中心角色。以下几节描述如何发现、连接以及和蓝牙低能耗外设交互。
+</p>
+
+<h3 id="le-discovery"><!--@Discovering and connecting to peripherals-->发现并连接到外设</h3>
+
+<p>
+  <!--@As with traditional Bluetooth devices, LE peripherals can be discovered
+  using the methods described in <a href="#discovery">Discovering nearby devices
+  </a>. An LE device makes itself discoverable by sending data packets called
+  "Advertising Data" and the device is said to be in <em>advertising mode</em>.
+  The advertising data may contain UUIDs of services that are available on the
+  device. If present, these UUIDs will be accessible using the
+  <code>uuids</code> property of the corresponding $(ref:bluetooth.Device)
+  object.-->
+  与传统蓝牙设备类似，LE 外设也可以使用<a href="#discovery"
+  >发现附近的设备</a>中描述的方法发现。LE 设备发送一种称为“通知数据“（Advertising
+  Data）的数据包使自身可以被发现，此时设备处于<em>通知模式</em>。通知数据可能包含设备上可用的服务
+  UUID，如果存在的话，这些 UUID 可以通过对应 $(ref:bluetooth.Device) 对象的
+  <code>uuids</code> 属性访问。
+</p>
+
+<p>
+  <!--@Once discovered, an LE device can be connected to by calling
+  $(ref:bluetoothLowEnergy.connect) so that the application can interact with
+  its services:-->
+  发现设备后，可以调用 $(ref:bluetoothLowEnergy.connect) 连接到 LE
+  设备，应用程序就能与它的服务交互了：
+</p>
+
+<pre>
+chrome.bluetooth.onDeviceAdded.addListener(function(device) {
+  var uuid = '0000180d-0000-1000-8000-00805f9b34fb';
+  if (!device.uuids || device.uuids.indexOf(uuid) < 0)
+    return;
+
+  // 设备支持指定 UUID 的服务。
+  chrome.bluetoothLowEnergy.connect(device.address, function () {
+    if (chrome.runtime.lastError) {
+      console.log('无法连接：' + chrome.runtime.lastError.message);
+      return;
+    }
+
+    // 已连接！与设备交互……
+    ...
+  });
+});
+</pre>
+
+<p>
+  <!--@Once connected, the <code>connected</code> property of the corresponding
+  $(ref:bluetooth.Device) object will have the value <code>true</code>. Calling
+  $(ref:bluetoothLowEnergy.connect) establishes a claim by the application on
+  the physical connection to the device. A physical connection to the device
+  can exist without ever calling $(ref:bluetoothLowEnergy.connect) (for example
+  due to another application). In this case, while your application can still
+  interact with the services of the device, it should always call
+  $(ref:bluetoothLowEnergy.connect) to prevent another application from
+  disconnecting the physical link.-->
+  连接完成后，对应 $(ref:bluetooth.Device) 对象的 <code>connected</code>
+  属性就变为 <code>true</code>。调用 $(ref:bluetoothLowEnergy.connect)
+  使应用程序占有设备的物理连接。还未调用 $(ref:bluetoothLowEnergy.connect)
+  时设备的物理连接也可以存在（例如由于其他应用程序），在这种情况下，尽管您的应用程序仍然可以与设备的服务交互，它还是应该调用
+  $(ref:bluetoothLowEnergy.connect) 以免其他应用程序断开物理连接。
+</p>
+
+<p>
+  <!--@Once your application no longer needs to be connected, it can remove its
+  claim on the connection by calling $(ref:bluetoothLowEnergy.disconnect):-->
+  一旦您的应用程序不再需要连接，只要调用 $(ref:bluetoothLowEnergy.disconnect)
+  就能取消对连接的占有：
+</p>
+
+<pre>
+chrome.bluetoothLowEnergy.disconnect(deviceAddress);
+</pre>
+
+<p>
+  <!--@Note that this won't necessarily destroy the physical link to the device, as
+  there may be other applications who have active connections to the device.
+  Sometimes the device might become disconnected due to reasons that are beyond
+  the control of the application (e.g. if the device disappears or gets
+  explicitly disconnected by the user through utilities of the operating
+  system). Your application should observe the $(ref:bluetooth.onDeviceChanged)
+  event to get notified of changes to the connection and reconnect if necessary.-->
+  注意，该操作不一定会撤销设备的物理连接，可能还有其他应用程序拥有设备的活动连接。有时候设备还可能因为应用程序无法控制的原因（例如设备消失或者用户通过操作系统的实用程序手动断开连接）而断开连接。您的应用程序应该监听
+  $(ref:bluetooth.onDeviceChanged) 事件，获得连接更改的通知，并在必要时重新连接。
+</p>
+
+<p>
+  <!--@Once connected, the device that is running Chrome will be in the
+  so called <em>central role</em>, while the remote device is said to be in the
+  <em>peripheral role</em>. At this point, your application can interact with
+  the services on the device using the methods described in the following
+  section. <em>Note:</em> The APIs currently do not support acting as a LE
+  peripheral; apps can only implement the central role.-->
+  连接完成后，运行 Chrome 浏览器的设备就处于<em>中心角色</em>，而远程设备则处于<em>外设角色</em>。在这一刻，您的应用程序就能通过下面描述的方法与设备上的服务交互。<em>注：</em>目前这些 API 还不支持以 LE 外设的角色表现，应用只能实现中心角色。
+</p>
+
+<h3 id="gatt"><!--@Services, Characteristics, and Descriptors-->服务、特征和描述符</h3>
+
+<p>
+<!--@Bluetooth Low Energy is based on a simple request-response protocol called the
+<em>Attribute Protocol</em> (ATT). Using ATT, a central device interacts with
+the so called <em>attributes</em> on a peripheral device by conforming to a
+special Bluetooth profile called the <em>Generic Attribute Profile</em> (GATT).
+GATT defines the following high level concepts:-->
+蓝牙低耗能设备基于一种简单的请求—响应协议，称为<em>属性协议</em>（Attribute
+Protocol，ATT）。通过 ATT，中心设备遵循一种特殊的蓝牙配置文件，称为<em>通用属性配置文件</em>（Gereric Attribute Profile，GATT），与外围设备上的<em>属性</em>交互。GATT 定义了以下高层概念：
+</p>
+
+<ul style="list-style-type: none;">
+  <li>
+    <span style="font-weight: bold;"><!--@Service:-->服务：</span><!--@ A GATT service
+    represents a collection of data and associated behaviors to accomplish a
+    particular function of a device. For example, a heart rate monitor will
+    typically have at least one "Heart Rate Service". Information about a
+    GATT service is contained in a $(ref:bluetoothLowEnergy.Service) object.-->GATT
+    服务代表了一系列数据及其相关联的行为，以便实现设备的某种功能。例如，心率监视器通常包含至少一种“心率服务”。GATT 服务的有关信息包含在 $(ref:bluetoothLowEnergy.Service) 对象中。
+  </li>
+  <li>
+    <span style="font-weight: bold;"><!--@Characteristic:-->特征：</span><!--@ A GATT
+    characteristic is a basic data element used to construct a GATT service,
+    containing a value along with properties that define how that value can
+    be accessed. For example, the "Heart Rate Service" has the "Heart Rate
+    Measurement" characteristic, which is used to obtain the value of the
+    user's heart rate. Information about a GATT characteristic is contained
+    in a $(ref:bluetoothLowEnergy.Characteristic) object.-->GATT
+    特征是一种构成 GATT 服务的基本数据元素，包含值以及定义如何访问值的属性。例如，“心率服务”有“心率测试”特征，用于获取用户的心率值。GATT 特征的有关信息包含在 $(ref:bluetoothLowEnergy.Characteristic) 对象中。
+  </li>
+  <li>
+    <span style="font-weight: bold;"><!--@Descriptor:-->描述符：</span><!--@ A GATT characteristic
+    descriptor contains further information about a characteristic. Information
+    about a GATT characteristic descriptor is contained in a
+    $(ref:bluetoothLowEnergy.Descriptor) object.-->GATT
+    特征描述符包含与特征有关的更多信息，GATT 特征描述符的有关信息包含在
+    $(ref:bluetoothLowEnergy.Descriptor) 对象中。
+  </li>
+</ul>
+
+<p>
+  <!--@The <a href="bluetoothLowEnergy.html">Bluetooth Low Energy</a> API allows
+  applications to find information about a device's services, characteristics,
+  and descriptors by calling $(ref:bluetoothLowEnergy.getServices),
+  $(ref:bluetoothLowEnergy.getCharacteristics), and
+  $(ref:bluetoothLowEnergy.getDescriptors). Apps can filter through services,
+  characteristics, and descriptors by comparing their <code>uuid</code> field
+  to the desired GATT UUID:-->
+  <a href="bluetoothLowEnergy">蓝牙低耗能</a> API 允许应用程序获取设备服务、特征和描述符的有关信息，只要分别调用
+  $(ref:bluetoothLowEnergy.getServices)、$(ref:bluetoothLowEnergy.getCharacteristics)
+  和 $(ref:bluetoothLowEnergy.getDescriptors) 即可。应用可以根据
+  <code>uuid</code> 字段是否匹配期望的 GATT UUID 过滤服务、特征和描述符。
+</p>
+
+<pre>
+chrome.bluetoothLowEnergy.getServices(deviceAddress, function(services) {
+  ...
+  for (var i = 0; i < services.length; i++) {
+    if (services[i].uuid == HEART_RATE_SERVICE_UUID) {
+      heartRateService = services[i];
+      break;
+    }
+  }
+  ...
+});
+</pre>
+
+<p>
+  <!--@Each service, characteristic, and descriptor accessible through the API is
+  assigned a unique instance identifier, which can be obtained using the
+  <code>instanceId</code> field. This instance ID can be used to identify a
+  GATT object and to perform specific operations on it:-->
+  通过该 API 访问的每一项服务、特征和描述符都有唯一的实例标识符，可以通过
+  <code>instanceId</code> 字段获取。实例标识符可用于标志 GATT 对象，并对它进行具体的操作：
+</p>
+
+<pre>
+chrome.bluetoothLowEnergy.getCharacteristics(heartRateService.instanceId,
+                                             function(chracteristics) {
+  ...
+  for (var i = 0; i < characteristics.length; i++) {
+    if (characteristics[i].uuid == HEART_RATE_MEASUREMENT_UUID) {
+      measurementChar = characteristics[i];
+      break;
+    }
+  }
+  ...
+  chrome.bluetoothLowEnergy.getDescriptors(measurementChar.instanceId,
+                                           function(descriptors) {
+    ...
+  });
+});
+</pre>
+
+<h3 id="service-events"><!--@Service events-->服务事件</h3>
+
+<p>
+  <!--@Once a device is connected, Chrome will discover its services. As each service
+  is discovered and removed, the application will receive the
+  $(ref:bluetoothLowEnergy.onServiceAdded) and
+  $(ref:bluetoothLowEnergy.onServiceRemoved) events:-->
+  设备连接后，Chrome 浏览器会发现它的服务。服务发现和移除时应用程序分别会接收到
+$(ref:bluetoothLowEnergy.onServiceAdded) 和
+$(ref:bluetoothLowEnergy.onServiceRemoved) 事件：
+</p>
+
+<pre>
+  var initializeService = function(service) {
+    if (!service) {
+      console.log('没有选定的服务！');
+      // 重置用户界面等。
+      ...
+      return;
+    }
+
+    myService = service;
+
+    // 获取所有特征和描述符，并启动应用。
+    ...
+  };
+
+  chrome.bluetoothLowEnergy.onServiceAdded.addListener(function(service) {
+    if (service.uuid == MY_SERVICE_UUID)
+      initializeService(service);
+  });
+
+  chrome.bluetoothLowEnergy.onServiceRemoved.addListener(function(service) {
+    if (service.instanceId == myService.instanceId)
+      initializeService(null);
+  });
+</pre>
+
+<p>
+  <!--@Chrome discovers all characteristics and descriptors of a service
+  asynchronously. This means that, at the time a
+  $(ref:bluetoothLowEnergy.onServiceAdded) event is sent to the app, not all
+  characteristics of a service may have been discovered yet. Each time a
+  characteristic or a descriptor is added through discovery, the app will
+  receive the $(ref:bluetoothLowEnergy.onServiceChanged) event. This event will
+  also be sent if a notification is received from the remote device telling
+  Chrome that the service definition itself has changed:-->
+  Chrome 浏览器会在后台发现服务的所有特征和描述符，也就是说
+  $(ref:bluetoothLowEnergy.onServiceAdded)
+  事件发送给应用时，服务的一些特征可能还没有发现。每一次通过发现操作添加特征或描述符时，应用都会收到
+  $(ref:bluetoothLowEnergy.onServiceChanged) 事件。如果从远程设备收到通知，告知
+  Chrome 浏览器服务定义本身已更改的话也会发送该事件。
+</p>
+
+<pre>
+  chrome.bluetoothLowEnergy.onServiceChanged.addListener(function(service) {
+    if (service.instanceId != myService.instanceId)
+      return;
+
+    // 获取特征。
+    chrome.bluetoothLowEnergy.getCharacteristics(service.instanceId,
+                                                 function(result) {
+      ...
+      if (result.length == 0) {
+        console.log('特征还未发现。');
+        return;
+      }
+
+      for (var i = 0; i < result.length; i++) {
+        if (result[i].uuid == MY_CHARACTERISTIC_UUID) {
+          myChar = result[i];
+          break;
+        }
+
+        if (!myChar) {
+          console.log('相关的特征还未发现。');
+          return;
+        }
+        ...
+      }
+    });
+  });
+</pre>
+
+<h3 id="gatt-read-write"><!--@Reading and writing a characteristic's value-->读取和写入特征值</h3>
+
+<p>
+  <!--@A GATT characteristic encodes one aspect of its service. A central app reads,
+  acts on, and modifies the state of a peripheral's service by operating on a
+  characteristic's value. The characteristic value is a sequence of bytes and
+  its meaning is defined by the high-level specification that defines a certain
+  characteristic. For example, the value of the <em>Heart Rate Measurement</em>
+  characteristic encodes the user's heart rate and the total amount of calories
+  they burned, while the <em>Body Sensor Location</em> characteristic encodes
+  where in the body the heart rate sensor should be worn.-->
+  GATT 特征编码服务的某一方面。中心应用通过对特征值的操作读取、修改外设服务的状态，并根据它作出不同的反应。特征值为字节序列，其含义由定义某一特征的高层规范指定。例如，<em>心率测试</em>特征的值表示用户的心率以及消耗的热量，而<em>体传感器位置</em>特征则表示心率传感器应该穿戴在身体的哪个部位。
+</p>
+
+<p>
+  <!--@Chrome provides the $(ref:bluetoothLowEnergy.readCharacteristicValue) method
+  to read the value of a characteristic:-->
+  Chrome 浏览器提供了 $(ref:bluetoothLowEnergy.readCharacteristicValue)
+  方法读取特征值：
+</p>
+
+<pre>
+chrome.bluetoothLowEnergy.readCharacteristicValue(chrc.instanceId,
+                                                  function(result) {
+  if (chrome.runtime.lastError) {
+    console.log('无法读取值：' + chrome.runtime.lastError.message);
+    return;
+  }
+
+  var bytes = new Uint8Array(result.value);
+
+  // 对字节进行处理。
+  ...
+});
+</pre>
+
+<p>
+  <!--@Some characteristics are writable, especially those that behave as "Control
+  Points", where writing the value has side effects. For example, the <em>Heart
+  Rate Control Point</em> characteristic is used to tell a heart rate sensor to
+  reset its count of total calories burned and only supports writes. To achieve
+  this, Chrome provides the $(ref:bluetoothLowEnergy.writeCharacteristicValue)
+  method:-->
+  一些特征是可写的，尤其是表现为“控制点”的那些，值的写入有副作用。例如，<em>心率控制点</em>特征用于告知心率传感器重置消耗的总热量，只支持写入。为了实现这一点，Chrome 浏览器提供了 $(ref:bluetoothLowEnergy.writeCharacteristicValue) 方法：
+</p>
+
+<pre>
+var myBytes = new Uint8Array([ ... ]);
+chrome.bluetoothLowEnergy.writeCharacteristicValue(chrc.instanceId,
+                                                   myBytes.buffer,
+                                                   function() {
+  if (chrome.runtime.lastError) {
+    console.log('无法写入值。' +
+                chrome.runtime.lastError.message);
+    return;
+  }
+
+  // 值已经写入。
+});
+</pre>
+
+<p>
+  <!--@Characteristic descriptors behave the same way and can be readable and/or
+  writable. Chrome provides the $(ref:bluetoothLowEnergy.readDescriptorValue)
+  and $(ref:bluetoothLowEnergy.writeDescriptorValue) methods to read and write
+  the value of a descriptor.-->
+  特征值的描述符与之类似，可以是可读和/或可写的。Chrome 浏览器提供了
+  $(ref:bluetoothLowEnergy.readDescriptorValue) 和
+  $(ref:bluetoothLowEnergy.writeDescriptorValue) 方法读取和写入描述符的值。
+</p>
+
+<p>
+  <!--@To check if a characteristic supports reads or writes, an application can
+  check the <code>properties</code> field of a
+  $(ref:bluetoothLowEnergy.Characteristic) object. While this field does not
+  contain information about the security requirements to access a value, it does
+  describe which value operation the characteristic supports in general.-->
+  要确认特征是否支持读或写，应用程序可以检查 $(ref:bluetoothLowEnergy.Characteristic)
+  对象的 <code>properties</code> 字段。尽管该字段不包含访问值的安全要求相关信息，但它确实总体描述了特征支持的值操作。
+</p>
+
+<h3 id="gatt-notifications"><!--@Handling value notifications-->处理值通知</h3>
+
+<p>
+  <!--@Some characteristics make their value known using notifications or
+  indications. For example the <em>Heart Rate Measurement</em> characteristic is
+  neither readable nor writable but sends updates on its current value at
+  regular intervals. Applications can listen to these notifications using the
+  $(ref:bluetoothLowEnergy.onCharacteristicValueChanged) event.-->
+  一些特征可能会使用通知或指示告知它的值。例如，<em>心率测试</em>特征既不可读，也不可写，但是会定期发送当前值的更新。应用程序可以使用 $(ref:bluetoothLowEnergy.onCharacteristicValueChanged) 事件监听这些通知。
+</p>
+
+<pre>
+  chrome.bluetoothLowEnergy.onCharacteristicValueChanged.addListener(
+      function(chrc) {
+    if (chrc.instanceId != myCharId)
+      return;
+
+    var bytes = new Uint8Array(chrc.value);
+
+    // 对字节进行处理。
+    ...
+  });
+</pre>
+
+<p>
+  <!--@Even if a characteristic supports notifications/indications, they aren't
+  enabled by default. An application should call the
+  $(ref:bluetoothLowEnergy.startCharacteristicNotifications) and
+  $(ref:bluetoothLowEnergy.stopCharacteristicNotifications) methods to start or
+  stop receiving the $(ref:bluetoothLowEnergy.onCharacteristicValueChanged)
+  event.-->
+  即使特征支持通知/指示，默认情况下并没有启用。应用程序应该调用
+$(ref:bluetoothLowEnergy.startCharacteristicNotifications) 和
+$(ref:bluetoothLowEnergy.stopCharacteristicNotifications)
+方法开始或停止接收 $(ref:bluetoothLowEnergy.onCharacteristicValueChanged)
+事件。
+</p>
+
+<pre>
+  // 开始接收特征值通知。
+  var notifying = false;
+  chrome.bluetoothLowEnergy.startCharacteristicNotifications(chrc.instanceId,
+                                                             function() {
+    if (chrome.runtime.lastError) {
+      console.log('无法启用通知：' +
+                  chrome.runtime.lastError.message);
+      return;
+    }
+
+    notifying = true;
+  });
+
+  ...
+
+  // 不再希望收到该特征的通知。
+  if (notifying) {
+    chrome.bluetoothLowEnergy.stopCharacteristicNotifications(
+        chrc.instanceId);
+  }
+</pre>
+
+<p>
+  <!--@Once notifications are started, the application will receive the
+  $(ref:bluetoothLowEnergy.onCharacteristicValueChanged) every time a
+  notification or indication is received from the characteristic. If the
+  characteristic supports reads, then this event will also be sent after a
+  successful call to $(ref:bluetoothLowEnergy.readCharacteristicValue). This
+  allows apps to unify the control flow of a value update triggered through a
+  read request and notifications:-->
+  一旦启用通知，每次从特征接收到通知或指示时，应用程序都会接收到
+$(ref:bluetoothLowEnergy.onCharacteristicValueChanged)。如果特征支持读取，成功调用
+$(ref:bluetoothLowEnergy.readCharacteristicValue) 后也会发送该事件。这样就能使应用统一值更新的控制流程，无论是通过读取请求还是通知触发：
+</p>
+
+<pre>
+  chrome.bluetoothLowEnergy.onCharacteristicValueChanged.addListener(
+      function(chrc) {
+    // 处理值。
+    ...
+  });
+
+  chrome.bluetoothLowEnergy.startCharacteristicNotifications(chrc.instanceId,
+                                                             function() {
+    // 通知开始，读取初始值。
+    chrome.bluetoothLowEnergy.readCharacteristicValue(chrc.instanceId,
+                                                      function(result) {
+      ...
+      // 不需要做什么，因为 onCharacteristicValueChanged 会处理。
+    });
+  });
+</pre>
+
+<p>
+  <!--@If a characteristic supports notifications, its <code>properties</code> field
+  will contain either the <code>"notify"</code> or <code>"indicate"</code>
+  property.-->
+  如果特征支持通知，它的 <code>properties</code> 字段会包含 <code>"notify"</code>
+  或 <code>"indicate"</code> 属性。
+</p>
+
+<p>
+  <span style="font-weight: bold;"><!--@NOTE:-->注意：</span><!--@ If a characteristic supports
+  notifications/indications, it will have the "Client Characteristic
+  Configuration" descriptor to enable/disable notifications. Chrome does not
+  permit apps to write to this descriptor. Apps should instead use the
+  $(ref:bluetoothLowEnergy.startCharacteristicNotifications) and
+  $(ref:bluetoothLowEnergy.stopCharacteristicNotifications) methods to control
+  notification behavior.-->如果特征支持通知/指示，它会包含“客户端特征配置”描述符，用于启用/禁用通知。Chrome 浏览器不允许应用写入该描述符，应用应该使用
+$(ref:bluetoothLowEnergy.startCharacteristicNotifications) 和
+$(ref:bluetoothLowEnergy.stopCharacteristicNotifications) 方法控制通知行为。
+</p>
