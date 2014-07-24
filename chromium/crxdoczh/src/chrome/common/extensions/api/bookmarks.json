@@ -9,14 +9,16 @@
     "description": "使用 <code>chrome.bookmarks</code> API 创建、组织或通过其他方式操纵书签，另外请参见<a href='override'>替代页面</a>，通过它您可以创建一个自定义的书签管理器页面。",
     "properties": {
       "MAX_WRITE_OPERATIONS_PER_HOUR": {
-        "value": 100,
-//@        "description": "The maximum number of <code>move</code>, <code>update</code>, <code>create</code>, or <code>remove</code> operations that can be performed each hour. Updates that would cause this limit to be exceeded fail."
-        "description": "每小时可以执行的移动（<code>move</code>）、更新（<code>update</code>）、创建（<code>create</code>）或删除（<code>remove</code>）操作的最大数目，超过这一限制的更新将会失败。"
+        "value": 1000000,
+//@        "deprecated": "Bookmark write operations are no longer limited by Chrome.",
+        "deprecated": "Chrome 浏览器不再限制书签写入操作。",
+        "description": ""
       },
       "MAX_SUSTAINED_WRITE_OPERATIONS_PER_MINUTE": {
-        "value": 2,
-//@        "description": "The maximum number of <code>move</code>, <code>update</code>, <code>create</code>, or <code>remove</code> operations that can be performed each minute, sustained over 10 minutes. Updates that would cause this limit to be exceeded fail."
-        "description": "在连续的 10 分钟内每分钟可以执行的移动（<code>move</code>）、更新（<code>update</code>）、创建（<code>create</code>）或删除（<code>remove</code>）操作的最大数目，超过这一限制的更新将会失败。"
+        "value": 1000000,
+//@        "deprecated": "Bookmark write operations are no longer limited by Chrome.",
+        "deprecated": "Chrome 浏览器不再限制书签写入操作。",
+        "description": ""
       }
     },
     "types": [
