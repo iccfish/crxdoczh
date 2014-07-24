@@ -14,6 +14,102 @@
         "enum": ["installing", "downloading"],
 //@        "description": "Enum used to indicate the stage of the installation process. 'downloading' indicates that the necessary files are being downloaded, and 'installing' indicates that the files are downloaded and are being actively installed."
         "description": "表示安装阶段的枚举值，'downloading' 表示正在下载所需文件，'installing' 表示下载的文件正在安装。"
+      },
+      {
+        "id": "ErrorCode",
+        "type": "string",
+//@        "description": "Enum of the possible install results, including error codes sent back in the event that an inline installation has failed.",
+        "description": "可能的安装结果，包括内嵌安装失败后事件中发回的错误代码。",
+        "enum": [
+          // Keep this list of enums in sync with
+          // chrome/common/extensions/webstore_install_result.h and
+          // chrome/common/extensions/api/webstore/webstore_api_constants.cc!
+          {
+//@            "description": "An uncommon, unrecognized, or unexpected error. In some cases, the readable error string can provide more information.",
+            "description": "发生了不常见、未识别或意料之外的错误，某些情况下可读的错误字符串可以提供更多信息。",
+            "name": "otherError"
+          },
+          {
+//@            "description": "The operation was aborted as the requestor is no longer alive.",
+            "description": "请求方不再活动，因而操作终止。",
+            "name": "aborted"
+          },
+          {
+//@            "description": "An installation of the same extension is in progress.",
+            "description": "同一扩展程序的安装正在进行。",
+            "name": "installInProgress"
+          },
+          {
+//@            "description": "The installation is not permitted.",
+            "description": "不允许安装。",
+            "name": "notPermitted"
+          },
+          {
+//@            "description": "Invalid Chrome Web Store item ID.",
+            "description": "Chrome 网上应用店项目标识符无效。",
+            "name": "invalidId"
+          },
+          {
+//@            "description": "Failed to retrieve extension metadata from the Web Store.",
+            "description": "无法从 Chrome 网上应用店获取扩展程序元数据。",
+            "name": "webstoreRequestError"
+          },
+          {
+//@            "description": "The extension metadata retrieved from the Web Store was invalid.",
+            "description": "从 Chrome 网上应用店获取的扩展程序元数据无效。",
+            "name": "invalidWebstoreResponse"
+          },
+          {
+//@            "description": "An error occurred while parsing the extension manifest retrieved from the Web Store.",
+            "description": "分析网上应用店中获取的扩展程序清单文件时遇到错误。",
+            "name": "invalidManifest"
+          },
+          {
+//@            "description": "Failed to retrieve the extension's icon from the Web Store, or the icon was invalid.",
+            "description": "无法从网上应用店获取扩展程序图标，或者获取的图标无效。",
+            "name": "iconError"
+          },
+          {
+//@            "description": "The user canceled the operation.",
+            "description": "用户取消了操作。",
+            "name": "userCanceled"
+          },
+          {
+//@            "description": "The extension is blacklisted.",
+            "description": "扩展程序在黑名单中。",
+            "name": "blacklisted"
+          },
+          {
+//@            "description": "Unsatisfied dependencies, such as shared modules.",
+            "description": "依赖项未安装，例如共享模块。",
+            "name": "missingDependencies"
+          },
+          {
+//@            "description": "Unsatisfied requirements, such as webgl.",
+            "description": "系统要求不符合，例如 webgl。",
+            "name": "requirementViolations"
+          },
+          {
+//@            "description": "The extension is blocked by management policies.",
+            "description": "扩展程序被管理策略阻止。",
+            "name": "blockedByPolicy"
+          },
+          {
+//@            "description": "The launch feature is not available.",
+            "description": "启动功能不可用。",
+            "name": "launchFeatureDisabled"
+          },
+          {
+//@            "description": "The launch feature is not supported for the extension type.",
+            "description": "该类型的扩展程序不支持启动功能。",
+            "name": "launchUnsupportedExtensionType"
+          },
+          {
+//@            "description": "A launch of the same extension is in progress.",
+            "description": "同一扩展程序正在启动。",
+            "name": " launchInProgress"
+          }
+        ]
       }
     ],  // types
     "events": [
@@ -76,6 +172,13 @@
                 "type": "string",
 //@                "description": "The failure detail. You may wish to inspect or log this for debugging purposes, but you should not rely on specific strings being passed back."
                 "description": "失败的详情。您可以为调试目的检查或记录它，但是您不应该依赖于传递过来的特定字符串。"
+              },
+              {
+                "name": "errorCode",
+                "$ref": "ErrorCode",
+                "optional": "true",
+//@                "description": "The error code from the stable set of possible errors."
+                "description": "错误代码，来自稳定的可能错误列表。"
               }
             ],
 //@            "description": "This function is invoked when inline installation does not successfully complete. Possible reasons for this include the user canceling the dialog, the linked item not being found in the store, or the install being initiated from a non-verified site."

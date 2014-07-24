@@ -146,6 +146,32 @@ namespace fileSystemProvider {
     boolean recursive;
   };
 
+  // <!--@Options for the <code>onCreateFileRequested()</code> event.-->
+  // <code>onCreateFileRequested()</code> 事件的选项。
+  dictionary CreateFileRequestedOptions {
+    DOMString fileSystemId;
+    long requestId;
+    DOMString filePath;
+  };
+
+  // <!--@Options for the <code>onCopyEntryRequested()</code> event.-->
+  // <code>onCopyEntryRequested()</code> 事件的选项。
+  dictionary CopyEntryRequestedOptions {
+    DOMString fileSystemId;
+    long requestId;
+    DOMString sourcePath;
+    DOMString targetPath;
+  };
+
+  // <!--@Options for the <code>onMoveEntryRequested()</code> event.-->
+  // <code>onMoveEntryRequested()</code> 事件的选项。
+  dictionary MoveEntryRequestedOptions {
+    DOMString fileSystemId;
+    long requestId;
+    DOMString sourcePath;
+    DOMString targetPath;
+  };
+
   // <!--@Callback to receive the result of mount() function.-->
   // 接收 mount() 函数结果的回调函数。
   callback MountCallback = void([nodoc, instanceOf=DOMError] object error);
@@ -306,6 +332,28 @@ namespace fileSystemProvider {
     // must be recursively deleted as well.
     [maxListeners=1, nodoc] static void onDeleteEntryRequested(
         DeleteEntryRequestedOptions options,
+        ProviderSuccessCallback successCallback,
+        ProviderErrorCallback errorCallback);
+
+    // Raised when creating a file is requested. If the file already exists,
+    // then <code>errorCallback</code> must be called with the <code>EXISTS
+    // </code> error code.
+    [maxListeners=1, nodoc] static void onCreateFileRequested(
+        CreateFileRequestedOptions options,
+        ProviderSuccessCallback successCallback,
+        ProviderErrorCallback errorCallback);
+
+    // Raised when copying an entry (recursively if a directory) is requested.
+    // If an error occurs, then <code>errorCallback</code> must be called.
+    [maxListeners=1, nodoc] static void onCopyEntryRequested(
+        CopyEntryRequestedOptions options,
+        ProviderSuccessCallback successCallback,
+        ProviderErrorCallback errorCallback);
+
+    // Raised when moving an entry (recursively if a directory) is requested.
+    // If an error occurs, then <code>errorCallback</code> must be called.
+    [maxListeners=1, nodoc] static void onMoveEntryRequested(
+        MoveEntryRequestedOptions options,
         ProviderSuccessCallback successCallback,
         ProviderErrorCallback errorCallback);
   };
