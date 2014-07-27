@@ -172,6 +172,15 @@ namespace fileSystemProvider {
     DOMString targetPath;
   };
 
+  // <!--@Options for the <code>onTruncateRequested()</code> event.-->
+  // <code>onTruncateRequested()</code> 事件的选项。
+  dictionary TruncateRequestedOptions {
+    DOMString fileSystemId;
+    long requestId;
+    DOMString filePath;
+    double length;
+  };
+
   // <!--@Callback to receive the result of mount() function.-->
   // 接收 mount() 函数结果的回调函数。
   callback MountCallback = void([nodoc, instanceOf=DOMError] object error);
@@ -354,6 +363,13 @@ namespace fileSystemProvider {
     // If an error occurs, then <code>errorCallback</code> must be called.
     [maxListeners=1, nodoc] static void onMoveEntryRequested(
         MoveEntryRequestedOptions options,
+        ProviderSuccessCallback successCallback,
+        ProviderErrorCallback errorCallback);
+
+    // Raised when truncating a file to a desired length is requested.
+    // If an error occurs, then <code>errorCallback</code> must be called.
+    [maxListeners=1, nodoc] static void onTruncateRequested(
+        TruncateRequestedOptions options,
         ProviderSuccessCallback successCallback,
         ProviderErrorCallback errorCallback);
   };

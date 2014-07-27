@@ -417,6 +417,10 @@
       "5894126C625EF31852F215ED301A5FF1F9B7D026"   // Test
     ]
   },
+  "embeddedExtensionOptions": {
+    "channel": "trunk",
+    "extension_types": ["extension"]
+  },
   "experimental": {
     "channel": "stable",
     "extension_types": [
@@ -499,8 +503,14 @@
     "extension_types": ["extension", "legacy_packaged_app"]
   },
   "gcdPrivate": {
-    "channel": "trunk",
-    "extension_types": ["extension", "platform_app"]
+    "channel": "dev",
+    "extension_types": ["extension", "platform_app"],
+    "whitelist": [
+      "11B478CEC461C766A2DC1E5BEEB7970AE06DC9C2",  // http://crbug.com/394124
+      "0EFB879311E9EFBB7C45251F89EC655711B1F6ED",  // http://crbug.com/394124
+      "9193D3A51E2FE33B496CDA53EA330423166E7F02",  // http://crbug.com/394124
+      "F9119B8B18C7C82B51E7BC6FF816B694F2EC3E89"   // http://crbug.com/394124
+    ]
   },
   "gcm": {
     "channel": "stable",
@@ -512,20 +522,6 @@
       "extension", "legacy_packaged_app", "hosted_app", "platform_app"
     ]
   },
-  "hid": [
-    {
-      "channel": "dev",
-      "extension_types": ["platform_app"]
-    },
-    {
-      "channel": "stable",
-      "extension_types": ["extension"],
-      "whitelist": [
-        "496B6890097EB6E19809ADEADD095A8721FBB2E0",  // FIDO U2F APIs
-        "E24F1786D842E91E74C27929B0B3715A4689A473"   // CryptoToken
-      ]
-    }
-  ],
   "history": {
     "channel": "stable",
     "extension_types": ["extension", "legacy_packaged_app"]
@@ -693,7 +689,10 @@
     "whitelist": [
       "4B1D0E19C6C43C008C44A8278C8B5BFE15ABEB3C",
       "F7FA7ABC1ECB89BA8EE6656847EFABBF43BB9BCA",
-      "4FE45FA56EF6A25FDE8C302C44045CA9CE8A605A"
+      "4FE45FA56EF6A25FDE8C302C44045CA9CE8A605A",
+      "3D14248405B8A59043420AAC160077C99E7788A9",
+      "A6C87307BBE5886CC5F1393025000E2FE8060BF2",
+      "3407516021EA3669C0EC8E65E6B9837E5A521B9C"
     ]
   },
   "mediaPlayerPrivate": {
@@ -752,7 +751,10 @@
       "4B1D0E19C6C43C008C44A8278C8B5BFE15ABEB3C", // Music Manager
       "B8F61FD1B25DE03706DBB8906A73261E4DBB992A", // Test
       "F7FA7ABC1ECB89BA8EE6656847EFABBF43BB9BCA",
-      "4FE45FA56EF6A25FDE8C302C44045CA9CE8A605A"
+      "4FE45FA56EF6A25FDE8C302C44045CA9CE8A605A",
+      "3D14248405B8A59043420AAC160077C99E7788A9",
+      "A6C87307BBE5886CC5F1393025000E2FE8060BF2",
+      "3407516021EA3669C0EC8E65E6B9837E5A521B9C"
     ]
   },
   "nativeMessaging": {
@@ -966,7 +968,7 @@
   },
   "systemPrivate": {
     "channel": "stable",
-    "extension_types": ["extension", "legacy_packaged_app"],
+    "extension_types": ["extension", "legacy_packaged_app", "platform_app"],
     "location": "component"
   },
   "tabs": [

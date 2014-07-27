@@ -151,7 +151,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     <th><!--@Type-->类型</th>
     <th><!--@Description-->描述</th>
   </tr>
-  <tr>
+  <tr id="matches">
     <td><code>matches</code></td>
     <td>array of strings</td>
     <td><em><!--@Required.-->必选。</em><!--@
@@ -165,7 +165,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     的信息请参见<a href="#match-patterns-globs">匹配表达式和范围</a>。
     </td>
   </tr>
-  <tr>
+  <tr id="exclude_matches">
     <td><code>exclude_matches</code></td>
     <td>array of strings</td>
     <td><em><!--@Optional.-->可选。</em><!--@
@@ -180,7 +180,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     的信息请参见<a href="#match-patterns-globs">匹配表达式和范围</a>。
     </td>
   </tr>
-  <tr>
+  <tr id="match_about_blank">
     <td><code>match_about_blank<code></td>
     <td>boolean</td>
     <td><em><!--@Optional.-->可选。</em><!--@
@@ -199,7 +199,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     <br><br>
     <!--@Defaults to-->默认为 <code>false</code><!--@.-->。</td>
   </tr>
-  <tr>
+  <tr id="css">
     <td><code>css<code></td>
     <td>array of strings</td>
     <td><em><!--@Optional.-->可选。</em><!--@
@@ -208,7 +208,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     构造或显示之前，按照数组中指定的顺序插入。
     </td>
   </tr>
-  <tr>
+  <tr id="js">
     <td><code>js<code></td>
     <td><nobr>array of strings</nobr></td>
     <td><em><!--@Optional.-->可选。</em><!--@
@@ -259,7 +259,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     事件是否已经发生。
     </td>
   </tr>
-  <tr>
+  <tr id="all_frames">
     <td><code>all_frames<code></td>
     <td>boolean</td>
     <td><em><!--@Optional.-->可选。</em><!--@
@@ -270,7 +270,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     默认为 false，意味着仅在顶层框架中运行。
     </td>
   </tr>
-  <tr>
+  <tr id="include_globs">
     <td><code>include_globs</code></td>
     <td>array of string</td>
     <td><em><!--@Optional.-->可选。</em><!--@
@@ -284,7 +284,7 @@ JavaScript 和 CSS 文件，<code>content_scripts</code>
     href="#match-patterns-globs">匹配表达式和范围</a>。
     </td>
   </tr>
-  <tr>
+  <tr id="exclude_globs">
     <td><code>exclude_globs</code></td>
     <td>array of string</td>
     <td><em><!--@Optional.-->可选。</em><!--@

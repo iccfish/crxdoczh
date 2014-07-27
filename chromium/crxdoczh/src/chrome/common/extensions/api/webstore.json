@@ -107,7 +107,7 @@
           {
 //@            "description": "A launch of the same extension is in progress.",
             "description": "同一扩展程序正在启动。",
-            "name": " launchInProgress"
+            "name": "launchInProgress"
           }
         ]
       }

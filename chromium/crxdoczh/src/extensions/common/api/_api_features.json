@@ -40,6 +40,10 @@
     "dependencies": ["permission:dns"],
     "contexts": ["blessed_extension"]
   },
+  "hid": {
+    "dependencies": ["permission:hid"],
+    "contexts": ["blessed_extension"]
+  },
   "power": {
     "dependencies": ["permission:power"],
     "contexts": ["blessed_extension"]
@@ -53,7 +57,14 @@
     "contexts": ["blessed_extension", "unblessed_extension", "content_script"]
   },
   "runtime.connect": {
-    "contexts": "all",
+    // Everything except WebUI.
+    "contexts": [
+      "blessed_web_page",
+      "content_script",
+      "blessed_extension",
+      "unblessed_extension",
+      "web_page"
+    ],
     "matches": ["<all_urls>"]
   },
   "runtime.getURL": {
@@ -74,7 +85,14 @@
     "contexts": ["blessed_extension", "unblessed_extension", "content_script"]
   },
   "runtime.sendMessage": {
-    "contexts": "all",
+    // Everything except WebUI.
+    "contexts": [
+      "blessed_web_page",
+      "content_script",
+      "blessed_extension",
+      "unblessed_extension",
+      "web_page"
+    ],
     "matches": ["<all_urls>"]
   },
   "runtime.setUninstallURL": {
@@ -104,7 +122,13 @@
     "internal": true,
     "channel": "stable",
     "extension_types": "all",
-    "contexts": ["blessed_extension", "unblessed_extension", "content_script"]
+    // Everything except web pages.
+    "contexts": [
+      "blessed_extension",
+      "content_script",
+      "unblessed_extension",
+      "webui"
+    ]
   },
   "types": {
     "channel": "stable",

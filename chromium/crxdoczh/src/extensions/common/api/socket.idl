@@ -35,6 +35,8 @@ namespace socket {
 
   callback ListenCallback = void (long result);
 
+  callback SecureCallback = void (long result);
+
   dictionary AcceptInfo {
     long resultCode;
     // <!--@The id of the accepted socket.-->
@@ -131,6 +133,21 @@ namespace socket {
     // <!--@The prefix length-->
     // 前缀长度。
     long prefixLength;
+  };
+
+  dictionary TLSVersionConstraints {
+    // <!--@The minimum and maximum acceptable versions of TLS. These will
+    // be <code>ssl3</code>, <code>tls1</code>, <code>tls1.1</code>,
+    // or <code>tls1.2</code>.-->
+    // 可以接受的最低和最高 TLS 版本，可以为
+    // <code>ssl3</code>、<code>tls1</code>、<code>tls1.1</code> 或
+    // <code>tls1.2</code>。
+    DOMString? min;
+    DOMString? max;
+  };
+
+  dictionary SecureOptions {
+    TLSVersionConstraints? tlsVersion;
   };
 
   callback RecvFromCallback = void (RecvFromInfo recvFromInfo);
@@ -456,6 +473,18 @@ namespace socket {
     // 调用时传递字符串数据，表示结果。
     static void getJoinedGroups(long socketId,
                                 GetJoinedGroupsCallback callback);
+
+    // <!--@Start a TLS client connection over a connected TCP client socket.-->
+    // 在已连接的 TCP 客户端套接字上启动 TLS 客户端连接。
+    // |socketId| : <!--@The connected socket to use.-->
+    // 要使用的套接字（已连接）。
+    // |options| : <!--@Constraints and parameters for the TLS connection.-->
+    // TLS 连接的约束和参数。
+    // |callback| : <!--@Called when the TLS connection attempt is complete.-->
+    // 尝试连接完成后调用。
+    static void secure(long socketId,
+                       optional SecureOptions options,
+                       SecureCallback callback);
   };
 
 };
