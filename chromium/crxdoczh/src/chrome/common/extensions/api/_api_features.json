@@ -309,6 +309,10 @@
     "contexts": "all",
     "matches": ["<all_urls>"]
   },
+  "experienceSamplingPrivate": {
+    "dependencies": ["permission:experienceSamplingPrivate"],
+    "contexts": ["blessed_extension"]
+  },
   "experimental.devtools.audits": {
     "dependencies": ["permission:experimental", "manifest:devtools_page"],
     "contexts": ["blessed_extension"]
@@ -612,10 +616,6 @@
   },
   "scriptBadge": {
     "dependencies": ["manifest:script_badge"],
-    "contexts": ["blessed_extension"]
-  },
-  "serial": {
-    "dependencies": ["permission:serial"],
     "contexts": ["blessed_extension"]
   },
   "sessions": {

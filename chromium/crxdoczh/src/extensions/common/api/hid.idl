@@ -70,13 +70,25 @@ namespace hid {
   callback ConnectCallback = void (HidConnectInfo connection);
   callback DisconnectCallback = void ();
 
-  // <!--@The callback to be invoked when a <code>receive</code> or
-  // <code>receiveFeatureReport</code> call is finished.-->
-  // <code>receive</code> 或 <code>receiveFeatureReport</code>
+  // <!--@The callback to be invoked when a <code>receive</code> call is finished.-->
+  // <code>receive</code>
   // 调用完成时执行的回调函数。
+  // |reportId|: <!--@The ID of the report.-->
+  // 报告的标识符。
   // |data|: <!--@The content of the report.-->
   // 报告内容。
-  callback ReceiveCallback = void (ArrayBuffer data);
+  callback ReceiveCallback = void (long reportId, ArrayBuffer data);
+
+  // <!--@The callback to be invoked when a <code>receiveFeatureReport</code> call
+  // is finished.-->
+  // <code>receiveFeatureReport</code> 调用完成时执行的回调函数。
+  // |data|: <!--@The content of the report.-->
+  // 报告内容。
+  callback ReceiveFeatureReportCallback = void (ArrayBuffer data);
+
+  // <!--@The callback to be invoked when a <code>send</code> or
+  // <code>sendFeatureReport</code> call is finished.-->
+  // <code>send</code> 或 <code>sendFeatureReport</code> 调用完成时执行的回调函数。
   callback SendCallback = void();
 
   interface Functions {
@@ -116,12 +128,9 @@ namespace hid {
     // 输入报告通过 INTERRUPT IN（中断输入）端点返回给主机。
     // |connectionId|: <!--@The connection from which to receive a report.-->
     // 接收报告的连接。
-    // |size|: <!--@The size of the Input report to receive.-->
-    // 接收输入报告的大小。
     // |callback|: <!--@The callback to invoke with received report.-->
     // 调用回调函数时传递接收的报告。
     static void receive(long connectionId,
-                        long size,
                         ReceiveCallback callback);
 
     // <!--@Send an Output report to an HID device.
@@ -152,14 +161,11 @@ namespace hid {
     // 要读取特性报告的设备。
     // |reportId|: <!--@The report ID, or zero if none.-->
     // 使用的报告标识符，如果没有则为零。
-    // |size|: <!--@The size of the Feature report to receive.-->
-    // 要接收的特性报告大小。
     // |callback|: <!--@The callback to invoke once the write is finished.-->
     // 操作完成后调用的回调函数。
     static void receiveFeatureReport(long connectionId,
                                      long reportId,
-                                     long size,
-                                     ReceiveCallback callback);
+                                     ReceiveFeatureReportCallback callback);
 
     // <!--@Send a Feature report to the device.-->
     // 向设备发送 Feature（特性）报告。
