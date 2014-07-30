@@ -3,16 +3,15 @@
 <td>{{?optional}}<span class="optional"><!--@(optional)-->（可选）</span><br>{{/}}
     {{name}}</td>
 <td>
-{{?deprecated}}
-  {{+partials.warning_deprecated item:property/}}
-{{/deprecated}}
 {{?availability}}
-<span class="availability">{{+availability.partial content:availability/}}</span>
+<p class="availability">
+  {{+availability.partial content:availability item:property/}}
+</p>
 {{/availability}}
 
-{{?description}}
+{{?description}}<p>
   {{{description}}}
-{{/description}}
+</p>{{/description}}
 {{?returns}}	
   <br/><!--@Returns-->返回值为 <span class="property">	
     {{+partials.variable_type type:returns/}}<!--@.--> 类型。

@@ -148,14 +148,14 @@
             "enum": ["admin", "development", "normal", "sideload", "other"]
           },
           "launchType": {
-//@            "description": "The app launch type (only present for apps). This property is new in Chrome 37.",
-            "description": "应用的启动类型（仅在应用中存在）。该属性在 Chrome 37 中新增。",
+//@            "description": "The app launch type (only present for apps).",
+            "description": "应用的启动类型（仅在应用中存在）。",
             "$ref": "LaunchType",
             "optional": true
           },
           "availableLaunchTypes": {
-//@            "description": "The currently available launch types (only present for apps). This property is new in Chrome 37.",
-            "description": "注意：当前可用的启动类型（仅在应用中存在）。该属性在 Chrome 37 中新增。",
+//@            "description": "The currently available launch types (only present for apps).",
+            "description": "注意：当前可用的启动类型（仅在应用中存在）。",
             "type": "array",
             "optional": true,
             "items": {
@@ -364,8 +364,8 @@
       },
       {
         "name": "createAppShortcut",
-//@        "description": "Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created. This function is new in Chrome 37.",
-        "description": "显示选项，为应用创建快捷方式。在 Mac 中，只能创建打包应用的快捷方式。该函数在 Chrome 37 中新增。",
+//@        "description": "Display options to create shortcuts for an app. On Mac, only packaged app shortcuts can be created.",
+        "description": "显示选项，为应用创建快捷方式。在 Mac 中，只能创建打包应用的快捷方式。",
         "parameters": [
           {
             "name": "id",
@@ -383,8 +383,8 @@
       },
       {
         "name": "setLaunchType",
-//@        "description": "Set the launch type of an app. This function is new in Chrome 37.",
-        "description": "设置应用的启动类型。该函数在 Chrome 37 中新增。",
+//@        "description": "Set the launch type of an app.",
+        "description": "设置应用的启动类型。",
         "parameters": [
           {
             "name": "id",
@@ -408,8 +408,8 @@
       },
       {
         "name": "generateAppForLink",
-//@        "description": "Generate an app for a URL. Returns the generated bookmark app. This function is new in Chrome 37.",
-        "description": "为 URL 生成应用，返回生成的书签应用。该函数在 Chrome 37 中新增。",
+//@        "description": "Generate an app for a URL. Returns the generated bookmark app.",
+        "description": "为 URL 生成应用，返回生成的书签应用。",
         "parameters": [
           {
             "name": "url",

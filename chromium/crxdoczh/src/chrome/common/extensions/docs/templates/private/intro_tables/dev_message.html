@@ -1,3 +1,10 @@
-仅用于 <a href="http://www.chromium.org/getting-involved/dev-channel">Dev</a>
- 分支{{?content.scheduled}}（计划在 Chrome {{content.scheduled}}
-中发布）{{/content.scheduled}}。
+{{?content.scheduled}}
+<!--@Since-->从 Chrome {{content.scheduled}}<!--@.
+ --> 开始支持。<em><!--@Warning:-->警告：</em><!--@: this is the current <strong>Dev</strong> channel.
+-->目前为 <strong>Dev</strong> 分支。{{:content.scheduled}}
+<!--@<strong>Dev</strong> channel only.
+-->仅用于 <strong>Dev</strong> 分支。{{/content.scheduled}}<!--@
+
+{{- TODO(kalman): Link to an actual article about API/feature availability and
+    feature detection. -}}
+ --><a href="api_index#dev_apis"><!--@Learn more-->了解更多内容</a><!--@.-->
