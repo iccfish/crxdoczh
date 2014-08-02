@@ -134,12 +134,12 @@ GCM 和丰富的通知 API 之间的简单集成。
 
 <p>
 <!--@All template types
-(<code>basic</code>, <code>image</code>, and <code>list</code>)
+(<code>basic</code>, <code>image</code>, <code>list</code> and <code>progress</code>)
 must include a notification <code>title</code> and <code>message</code>,
 as well as an <code>iconUrl</code>, which is a link to a small icon that
 is displayed to the left of the notification message.-->
-所有模板类型（<code>basic</code>、<code>image</code> 和
-<code>list</code>）都必须包含通知的标题（<code>title</code>）、消息（<code>message</code>）和图标 URL（<code>iconUrl</code>，显示在通知消息左侧的小图标链接）。
+所有模板类型（<code>basic</code>、<code>image</code>、<code>list</code> 和
+<code>progress</code>）都必须包含通知的标题（<code>title</code>）、消息（<code>message</code>）和图标 URL（<code>iconUrl</code>，显示在通知消息左侧的小图标链接）。
 </p>
 
 <p>
@@ -155,6 +155,37 @@ var opt = {
   iconUrl: "url_to_small_icon"
 }
 </pre>
+
+<h3 id="image"><!--@Create image notification-->创建图片通知</h3>
+
+<p>
+<!--@The <code>image</code>
+template type also includes an <code>imageUrl</code>, which is a link to
+an image that is previewed within the notification:-->
+<code>image</code>（图片）模板类型还包含 <code>imageUrl</code>
+属性，表示通知中预览的图片链接。
+</p>
+
+<pre>
+var opt = {
+  type: "basic",
+  title: "主要标题",
+  message: "要显示的主要消息",
+  iconUrl: "url_to_small_icon",
+  imageUrl: "url_to_preview_image"
+}
+</pre>
+
+<p>
+<!--@In Chrome Apps, due to a strict <a href="contentSecurityPolicy">Content Security Policy</a>
+these URLs must point to a local resource or use a
+<a href="app_external">blob or data URL</a>.
+Use a 3:2 ratio for your image; otherwise a black border frames the image.-->
+在 Chrome 应用中，由于严格的<a href="contentSecurityPolicy"
+>内容安全策略</a>，这些 URL 必须指向本地资源或使用
+<a href="app_external">blob 或 data URL</a>。请使用尺寸比例为 3：2
+的图片，否则图片周围会有黑色边框。
+</p>
 
 <h3 id="list"><!--@Create list notification-->创建列表通知</h3>
 
@@ -176,35 +207,24 @@ var opt = {
 }
 </pre>
 
-<h3 id="image"><!--@Create image notification-->创建图片通知</h3>
+<h3 id="list"><!--@Create progress notification-->创建进度条通知</h3>
 
 <p>
-<!--@The <code>image</code>
-template type also includes an <code>imageUrl</code>, which is a link to
-an image that is previewed within the notification:-->
-<code>image</code>（图片）模板类型还包含 <code>imageUrl</code>（图片
-URL），即通知中预览的图片链接：
+<!--@The <code>progress</code> template displays a progress bar where current
+progress ranges from 0 to 100:-->
+<code>progress</code> 模板显示进度条，其中当前进度的范围从 0 到 100 变化：
 </p>
 
 <pre>
 var opt = {
-  type: "basic",
+  type: "progress",
   title: "主要标题",
   message: "要显示的主要消息",
-  iconUrl: "url_to_small_icon"
-  imageUrl: "url_to_preview_image"
+  iconUrl: "url_to_small_icon",
+  progress: 42
 }
 </pre>
 
-<p>
-<!--@In Chrome Apps, due to a strict <a href="contentSecurityPolicy">Content Security Policy</a>
-these URLs must point to a local resource or use a
-<a href="app_external">blob or data URL</a>.
-Use a 3:2 ratio for your image; otherwise a black border frames the image.-->
-由于严格的<a href="contentSecurityPolicy">内容安全策略</a>，Chrome 应用中这些 URL
-必须指向本地资源，或使用 <a href="app_external">blob 或 data URL</a>。请使用 3：2
-的图片，否则图片外会有黑色边框。
-</p>
 
 <h2 id="events"><!--@Listening for and responding to events-->监听和响应事件</h2>
 
