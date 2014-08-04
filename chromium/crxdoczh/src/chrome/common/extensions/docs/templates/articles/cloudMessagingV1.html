@@ -520,9 +520,9 @@ as a text notification when it arrives:-->
 
 <pre>
 function showPushMessage(message) {
-  var notification = window.webkitNotifications.createNotification(
-    '', '新消息', message.payload + " [" + message.subchannelId + "]");
-  notification.show();
+  new Notification('新消息', {
+    body: message.payload + " [" + message.subchannelId + "]"
+  });
 }
 </pre>
 
