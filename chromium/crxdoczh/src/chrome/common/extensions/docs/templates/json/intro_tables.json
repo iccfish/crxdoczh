@@ -215,6 +215,7 @@
       {
         "link": "app_lifecycle",
         "text": "管理应用的生命周期"
+        "extension_types": ["platform_app"]
       },
       {
         "link": "event_pages",
