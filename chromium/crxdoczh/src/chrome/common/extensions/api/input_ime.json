@@ -586,6 +586,13 @@
             "name": "engineID",
 //@            "description": "ID of the engine receiving the event"
             "description": "接收这一事件的引擎标识符。"
+          },
+          {
+            "type": "string",
+            "name": "screen",
+            "enum": ["normal", "login", "lock", "secondary-login"],
+//@            "description": "The screen type under which the IME is activated."
+            "description": "激活输入法的屏幕类型。"
           }
         ]
       },

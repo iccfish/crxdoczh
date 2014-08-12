@@ -1,0 +1,183 @@
+// Copyright 2014 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+// <!--@Use the <code>chrome.copresence</code> API to communicate with other nearby
+// devices using Google's copresence service.-->
+// 使用 <code>chrome.copresence</code> API 通过 Google 的共存服务与附近的设备通信。
+namespace copresence {
+  // <!--@Suggestions to copresence on how to do the publication and subscription.
+  // Note: These are only suggestions. Actual behavior may not always match
+  // what is requested.-->
+  // 如何发布与订阅的共存建议。注意：这些仅仅是建议，实际行为不一定始终匹配请求的建议。
+  dictionary Strategy {
+    // <!--@Attempt to use low power mode. Defaults to false.-->
+    // 尝试使用低功耗模式，默认为 false。
+    boolean? lowPower;
+    // <!--@Attempt to only broadcast. Using this with onlyScan can result in both
+    // being ignored. Defaults to false.-->
+    // 只尝试广播，同时使用 onlyScan 会使设备完全被忽略。默认为 false。
+    boolean? onlyBroadcast;
+    // <!--@Attempt to only scan. Using this with onlyBroadcast can result in both
+    // being ignored. Defaults to false.-->
+    // 只尝试扫描，同时使用 onlyBroadcast 会使设备完全被忽略。默认为 false。
+    boolean? onlyScan;
+    // <!--@Attempt to use audible audio. Defaults to false.-->
+    // 尝试使用可听的音频，默认为 false。
+    boolean? audible;
+  };
+
+  dictionary Message {
+    // <!--@The type of message being published. Cannot be empty.-->
+    // 要发布的消息类型，不能为空。
+    DOMString type;
+    // <!--@The message payload, in raw bytes.-->
+    // 消息内容，以原始字节的形式表示。
+    ArrayBuffer payload;
+  };
+
+  dictionary MessageFilter {
+    // <!--@The type of messages to subscribe to. Cannot be empty.-->
+    // 要订阅的消息类型，不能为空。
+    DOMString type;
+  };
+
+  [noinline_doc] dictionary AccessPolicy {
+    // <!--@Only send this message to devices within hearing range.
+    // Defaults to false.-->
+    // 只将该消息发送到可听范围内的设备。默认为 false。
+    boolean? onlyEarshot;
+  };
+
+  [noinline_doc] dictionary PublishOperation {
+    // <!--@A unique ID that identifies this publish.-->
+    // 标志本次发布的唯一标志符。
+    DOMString id;
+    // <!--@The message to publish.-->
+    // 要发布的消息。
+    Message message;
+    // <!--@The number of milliseconds for which this publication will be active.
+    // This is capped at 24 hours. If not provided, a default of 5 minutes is
+    // used.-->
+    // 本次发布活动的时间，以毫秒为单位，不超过 24 小时。如果未提供，默认为
+    // 5 分钟。
+    long? timeToLiveMillis;
+    // <!--@A policy specifying who can get the message.-->
+    // 指定什么设备能收到该消息的策略。
+    AccessPolicy? policy;
+    // <!--@A set of strategies to use when publishing the message. These
+    // strategies are suggestions to copresence that may or may not be followed.-->
+    // 发布消息时采取的手段，这些手段仅仅是对共存服务的建议，可能遵守也可能不遵守。
+    Strategy? strategies;
+  };
+
+  [noinline_doc] dictionary SubscribeOperation {
+    // <!--@A unique ID that identifies this subscription.-->
+    // 标志本次订阅的唯一标志符。
+    DOMString id;
+    // <!--@Filter that defines which messages we want to subscribe to.-->
+    // 定义需要订阅哪些消息的过滤器。
+    MessageFilter filter;
+    // <!--@The number of milliseconds for which this subscription will be active.
+    // This is capped at 24 hours. If not provided, a default of 5 minutes is
+    // used.-->
+    // 本次订阅活动的时间，以毫秒为单位，不超过 24 小时。如果未提供，默认为
+    // 5 分钟。
+    long? timeToLiveMillis;
+    // <!--@A set of strategies to use when subscribing with this filter. These
+    // strategies are suggestions to copresence that may or may not be followed.-->
+    // 使用指定过滤器订阅时采取的手段，这些手段仅仅是对共存服务的建议，可能遵守也可能不遵守。
+    Strategy? strategies;
+  };
+
+  [noinline_doc] dictionary UnpublishOperation {
+    // <!--@The ID of a message to unpublish. Required if the operation type
+    // is 'unpublish'.-->
+    // 要取消发布的消息标识符，如果操作类型为 'unpublish' 则必须指定。
+    DOMString unpublishId;
+  };
+
+  [noinline_doc] dictionary UnsubscribeOperation {
+    // <!--@The ID of a subscription to cancel. Required if the operation type
+    // is 'unsubscribe'.-->
+    // 要取消的订阅标识符，如果操作类型为 'unsubscribe' 则必须指定。
+    DOMString unsubscribeId;
+  };
+
+  // <!--@Only one of these can be set.-->
+  // 只能设置其中某一属性。
+  [noinline_doc] dictionary Operation {
+    // <!--@Publication details. Required if the operation type is 'publish'.-->
+    // 发布详情，如果操作类型为 'publish' 则必须指定。
+    PublishOperation? publish;
+    // <!--@Subscription details. Required if the operation type is 'subscribe'.-->
+    // 订阅详情，如果操作类型为 'subscribe' 则必须指定。
+    SubscribeOperation? subscribe;
+    // <!--@Unpublish details. Required if the operation type is 'unpublish'.-->
+    // 取消发布的详情，如果操作类型为 'unpublish' 则必须指定。
+    UnpublishOperation? unpublish;
+    // <!--@Unsubscribe details. Required if the operation type is 'unsubscribe'.-->
+    // 取消订阅的详情，如果操作类型为 'unsubscribe' 则必须指定。
+    UnsubscribeOperation? unsubscribe;
+  };
+
+  // <!--@Indicates whether a batchExecute() call succeeded or encountered errors.-->
+  // 指示 batchExecute() 调用成功还是遇到了错误。
+  enum ExecuteStatus {
+    // <!--@All operations sent to batchExecute succeeded.-->
+    // 发送给 batchExecute 的所有操作都成功了。
+    success,
+    // <!--@One of the operations sent to batchExecute failed.-->
+    // 发送给 batchExecute 的某一项操作失败了。
+    failed,
+    // <!--@Contacting the Copresence server failed.-->
+    // Copresence 服务器连接失败。
+    serverError,
+    // <!--@Initializing Copresence failed.-->
+    // Copresence 服务无法初始化。
+    initFailed
+  };
+
+  // <!--@Specifies an asynchronous status event sent to the app.-->
+  // 指定发送给应用的异步状态事件。
+  enum Status {
+    // <!--@We attempted to broadcast audio but weren't able to.-->
+    // 尝试广播音频但是失败了。
+    audioFailed,
+    // <!--@Contacting the Copresence server failed.-->
+    // Copresence 服务器连接失败。
+    serverError
+  };
+
+  // <!--@Callback to return the status of a completed batchExecute() call.-->
+  // 返回 batchExecute() 调用状态的回调函数。
+  callback ExecuteCallback = void(ExecuteStatus status);
+
+  interface Functions {
+    // Sets the API key to use with the app. This parameter only needs to be
+    // set to communicate with apps on other platforms. Once the API key is set,
+    // apps on any platform that are using this API key can publish/subscribe to
+    // each other.
+    [nodoc] static void setApiKey(DOMString apiKey);
+    
+    // <!--@Executes a set of copresence operations in one batch. They will either
+    // all be executed, or none will be executed (due to an error in one or
+    // more of them). Publish/Subscribe operations are executed in the order
+    // that they exist in the array. Unpublish and Unsubscribe are processsed
+    // at the end, again, in the order that they exist in the array.-->
+    // 批量进行一系列共存操作，要么全部执行，要么完全不执行（由于其中某一个或多个操作的错误）。发布/订阅操作按照数组中存在的顺序执行，取消发布和取消订阅操作最后处理，同样按照数组中存在的顺序。
+    static void execute(Operation[] operations, ExecuteCallback callback);
+  };
+
+  interface Events {
+    // <!--@Fired when new messages arrive.-->
+    // 收到新消息时产生。
+    static void onMessagesReceived(DOMString subscriptionId,
+                                   Message[] messages);
+                                   
+    // <!--@Fired when a new copresence status update is available.-->
+    // 新的共存状态更新可用时产生。
+    static void onStatusUpdated(Status status);
+  };
+};
+

@@ -43,6 +43,8 @@
       'context_menus_internal.json',
       'context_menus.json',
       'cookies.json',
+      'copresence.idl',
+      'copresence_private.idl',
       'debugger.json',
       'desktop_capture.json',
       'developer_private.idl',
