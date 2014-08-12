@@ -214,7 +214,7 @@
     "了解更多": [
       {
         "link": "app_lifecycle",
-        "text": "管理应用的生命周期"
+        "text": "管理应用的生命周期",
         "extension_types": ["platform_app"]
       },
       {
