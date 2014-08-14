@@ -7,6 +7,13 @@
     "namespace": "contextMenus",
 //@    "description": "Use the <code>chrome.contextMenus</code> API to add items to Google Chrome's context menu. You can choose what types of objects your context menu additions apply to, such as images, hyperlinks, and pages.",
     "description": "使用 <code>chrome.contextMenus</code> API 向 Google Chrome 浏览器的右键菜单添加项目。您可以选择您在右键菜单中添加的项目应用于哪些类型的对象，例如图片、超链接和页面。",
+    "properties": {
+      "ACTION_MENU_TOP_LEVEL_LIMIT": {
+        "value": 6,
+//@        "description": "The maximum number of top level extension items that can be added to an extension action context menu. Any items beyond this limit will be ignored."
+        "description": "最多允许添加多少顶层扩展程序菜单项至扩展程序按钮的右键菜单中，超过该限制的菜单项将会忽略。"
+      }
+    },
     "functions": [
       {
         "name": "create",
@@ -55,7 +62,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "enum": ["all", "page", "frame", "selection", "link", "editable", "image", "video", "audio", "launcher"]
+                  "enum": ["all", "page", "frame", "selection", "link", "editable", "image", "video", "audio", "launcher", "browser_action", "page_action"]
                 },
                 "minItems": 1,
                 "optional": true,
@@ -162,7 +169,7 @@
                 "type": "array",
                 "items": {
                   "type": "string",
-                  "enum": ["all", "page", "frame", "selection", "link", "editable", "image", "video", "audio", "launcher"]
+                  "enum": ["all", "page", "frame", "selection", "link", "editable", "image", "video", "audio", "launcher", "browser_action", "page_action"]
                 },
                 "minItems": 1,
                 "optional": true

@@ -309,9 +309,9 @@ namespace app.window {
     [deprecated="请使用 innerBounds 或 outerBounds。"] ContentBounds? bounds;
 
     // <!--@Enable window background transparency.
-    // Only supported in ash. Requires experimental API permission.-->
-    // 启用窗口背景透明，仅在 ash 中支持，需要实验性 API 权限。
-    boolean? transparentBackground;
+    // Only supported in ash. Requires app.window.alpha API permission.-->
+    // 启用窗口背景透明，仅在 ash 中支持，需要 app.window.alpha 权限。
+    boolean? alphaEnabled;
 
     // <!--@The initial state of the window, allowing it to be created already
     // fullscreen, maximized, or minimized. Defaults to 'normal'.-->
