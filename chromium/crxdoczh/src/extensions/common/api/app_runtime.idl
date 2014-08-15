@@ -68,6 +68,11 @@ namespace app.runtime {
   dictionary EmbedRequest {
     DOMString embedderId;
 
+    // <!--@Optional developer specified data that the app to be embedded can use
+    // when making an embedding decision.-->
+    // 开发者指定的可选数据，嵌入的应用可以利用它决定嵌入后的行为。
+    any? data;
+
     // <!--@Allows <code>embedderId</code> to embed this app in an &lt;appview&gt;
     // element. The <code>url</code> specifies the content to embed.-->
     // 允许 <code>embedderId</code> 通过 &lt;appview&gt;
