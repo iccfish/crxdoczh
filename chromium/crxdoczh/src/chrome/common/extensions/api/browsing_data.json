@@ -114,17 +114,23 @@
 //@            "description": "Server-bound certificates."
             "description": "服务器绑定的证书。"
           },
+          "passwords": {
+            "type": "boolean",
+            "optional": true,
+//@            "description": "Stored passwords."
+            "description": "保存的密码。"
+          },
           "pluginData": {
             "type": "boolean",
             "optional": true,
 //@            "description": "Plugins' data."
             "description": "插件数据。"
           },
-          "passwords": {
+          "serviceWorkers": {
             "type": "boolean",
             "optional": true,
-//@            "description": "Stored passwords."
-            "description": "保存的密码。"
+//@            "description": "Service Workers."
+            "description": "Service Worker。"
           },
           "webSQL": {
             "type": "boolean",
