@@ -323,13 +323,29 @@ function main() {
   network attacker. As <a
   href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">man-in-the-middle
   attacks</a> are both trivial and undetectable over HTTP, those origins will
-  not be accepted. Currently, we allow whitelisting origins with the following
-  schemes: <code>HTTPS</code>, <code>chrome-extension</code>, and
-  <code>chrome-extension-resource</code>.-->
+  not be accepted.-->
   如果您需要某些外部 JavaScript
   代码或对象资源，您可以在有限的程度上放宽策略，将安全来源的可接受脚本加入白名单。我们希望确保以扩展程序提升的权限加载的可执行资源一定是您预期的，而没有被主动的网络攻击者替换。由于<a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">中间人攻击</a>非常普遍，并且通过
-  HTTP 无法检测到，这些来源不会被接受。目前，我们允许将来源为以下协议的资源加入白名单：<code>HTTPS</code>、<code>chrome-extension</code>
-  和 <code>chrome-extension-resource</code>。
+  HTTP 无法检测到，这些来源不会被接受。
+</p>
+
+<p>
+  <!--@Currently, we allow whitelisting origins with the following schemes:
+  <code>blob</code>, <code>filesystem</code>, <code>https</code>,
+  <code>chrome-extension</code>, and <code>chrome-extension-resource</code>.
+  The host part of the origin must explicitly be specified for the
+  <code>https</code> and <code>chrome-extension</code> schemes.
+  Generic wildcards such as <code>https:</code>, <code>https://*</code> and
+  <code>https://*.com</code> are not allowed; subdomain wildcards such as
+  <code>https://*.example.com</code> are allowed.-->
+  目前，我们允许将来源为以下协议的资源加入白名单：<code
+  >blob</code>、<code>filesystem</code>、<code>https</code>、<code
+  >chrome-extension</code> 和 <code>chrome-extension-resource</code>。<code
+  >https</code> 和 <code>chrome-extension</code>
+  协议必须显式指定来源的主机部分，不允许 <code>https:</code>、<code
+  >https://*</code> 和 <code>https://*.com</code>
+  之类的通配符，允许使用类似于 <code>https://*.example.com</code>
+  的子域名通配符。
 </p>
 
 <p>
