@@ -205,7 +205,7 @@
             "description": "可以在同步存储区储存的数据量大小（以字节为单位），计算方式为每一个值 JSON 字符串化的结果加上每一个键的长度。超出该限制的更新将失败，并设置 $(ref:runtime.lastError)。"
           },
           "QUOTA_BYTES_PER_ITEM": {
-            "value": 4096,
+            "value": 8192,
 //@            "description": "The maximum size (in bytes) of each individual item in sync storage, as measured by the JSON stringification of its value plus its key length. Updates containing items larger than this limit will fail immediately and set $(ref:runtime.lastError)."
             "description": "同步存储区中每个项目的最大大小（以字节为单位），计算方式为值 JSON 字符串化的结果加上键的长度。包含的项目比该限制大的更新将失败，并设置 $(ref:runtime.lastError)。"
           },
