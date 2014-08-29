@@ -67,7 +67,7 @@ namespace tabCapture {
     // 配置返回的流媒体。
     // |callback| : <!--@Callback with either the tab capture stream or
     //   <code>null</code>.-->
-    // 传递返回的流媒体或 <code>null</code> 的回调函数。
+    // 传递标签页捕获的流媒体或 <code>null</code> 的回调函数。
     static void capture(CaptureOptions options,
                         GetTabMediaCallback callback);
 

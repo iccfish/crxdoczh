@@ -82,7 +82,6 @@ namespace hid {
   callback ConnectCallback = void (HidConnectInfo connection);
   callback DisconnectCallback = void ();
 
-<<<<<<< HEAD
   // |reportId|: <!--@The ID of the report.-->
   // 报告的标识符。
   // |data|: <!--@The content of the report.-->
