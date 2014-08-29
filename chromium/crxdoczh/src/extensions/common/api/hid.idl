@@ -8,46 +8,39 @@
 // 使用 <code>chrome.hid</code> API 与连接的 HID 设备交互。使用该 API
 // 您可以在应用中进行 HID 操作，应用可以作为硬件设备的驱动程序使用。
 namespace hid {
-  // <!--@HID top-level collection attributes.
-  // Each enumerated device interface exposes an array of these objects.-->
-  // HID 顶层集合属性。每一个枚举的设备接口都包含这些对象的数组。
-  // |usagePage|: <!--@HID usage page identifier.-->
-  // HID 用途类别。
-  // |usage|: <!--@Page-defined usage identifier.-->
-  // 类别定义的用途标识符。
-  // |reportIds|: <!--@Report IDs which belong to the collection and to its children.-->
-  // 报告标识符，属于该集合和它包含的内容。
   dictionary HidCollectionInfo {
+    // <!--@HID usage page identifier.-->
+    // HID 用途类别。
     long usagePage;
+    // <!--@Page-defined usage identifier.-->
+    // 类别定义的用途标识符。
     long usage;
+    // <!--@Report IDs which belong to the collection and to its children.-->
+  // 报告标识符，属于该集合和它包含的内容。
     long[] reportIds;
   };
 
-  // <!--@Returned by <code>getDevices</code> functions to describes a connected HID
-  // device. Use <code>connect</code> to connect to any of the returned devices.-->
-  // 由 <code>getDevices</code> 函数返回，描述连接的 HID 设备。使用
-  // <code>connect</code> 可以连接到返回的任意一个设备。
-  // |deviceId|: <!--@Device opaque ID.-->
-  // 不透明的设备标识符。
-  // |vendorId|: <!--@Vendor ID.-->
-  // 制造商标识符。
-  // |productId|: <!--@Product ID.-->
-  // 产品标识符。
-  // |collections|: <!--@Top-level collections from this device's report descriptor.-->
-  // 来自设备报告描述符的顶层集合。
-  // |maxInputReportSize|: <!--@Top-level collection's max input report size.-->
-  // 顶层集合的最大输入报告大小。
-  // |maxOutputReportSize|: <!--@Top-level collection's max output report size.-->
-  // 顶层集合的最大输出报告大小。
-  // |maxFeatureReportSize|: <!--@Top-level collection's max feature report size.-->
-  // 顶层集合的最大特性报告大小。
-  dictionary HidDeviceInfo {
+  [noinline_doc] dictionary HidDeviceInfo {
+    // <!--@Device opaque ID.-->
+    // 不透明的设备标识符。
     long deviceId;
+    // <!--@Vendor ID.-->
+    // 制造商标识符。
     long vendorId;
+    // <!--@Product ID.-->
+    // 产品标识符。
     long productId;
+    // <!--@Top-level collections from this device's report descriptors.-->
+    // 来自设备报告描述符的顶层集合。
     HidCollectionInfo[] collections;
+    // <!--@Top-level collection's maximum input report size.-->
+    // 顶层集合的最大输入报告大小。
     long maxInputReportSize;
+    // <!--@Top-level collection's maximum output report size.-->
+    // 顶层集合的最大输出报告大小。
     long maxOutputReportSize;
+    // <!--@Top-level collection's maximum feature report size.-->
+    // 顶层集合的最大特性报告大小。
     long maxFeatureReportSize;
   };
 
@@ -59,46 +52,54 @@ namespace hid {
     long connectionId;
   };
 
-  // <!--@Searching criteria to enumerate devices with.-->
-  // 枚举设备时的搜索条件。
+  [noinline_doc] dictionary DeviceFilter {
+    // <!--@Device vendor ID.-->
+    // 设备的制造商标识符。
+    long? vendorId;
+    // <!--@Device product ID, only checked only if the vendor ID matches.-->
+    // 设备的产品标识符，只有制造商标识符匹配时才会检查该属性。
+    long? productId;
+    // <!--@HID usage page identifier.-->
+    // HID 用途类别。
+    long? usagePage;
+    // <!--@HID usage identifier, checked only if the HID usage page matches.-->
+    // HID 用途标识符，只有当 HID 用途类别匹配时才会检查该属性。
+    long? usage;
+  };
+
   dictionary GetDevicesOptions {
-    long vendorId;
-    long productId;
+    [deprecated="Equivalent to setting $(ref:DeviceFilter.vendorId)."]
+    long? vendorId;
+    [deprecated="Equivalent to setting $(ref:DeviceFilter.productId)."]
+    long? productId;
+    // <!--@A device matching any given filter will be returned. An empty filter list
+    // will return all devices the app has permission for.-->
+    // 返回匹配任意一项过滤规则的设备，过滤器列表如果为空则返回应用拥有权限的所有设备。
+    DeviceFilter[]? filters;
   };
 
   callback GetDevicesCallback = void (HidDeviceInfo[] devices);
   callback ConnectCallback = void (HidConnectInfo connection);
   callback DisconnectCallback = void ();
 
-  // <!--@The callback to be invoked when a <code>receive</code> call is finished.-->
-  // <code>receive</code>
-  // 调用完成时执行的回调函数。
+<<<<<<< HEAD
   // |reportId|: <!--@The ID of the report.-->
   // 报告的标识符。
   // |data|: <!--@The content of the report.-->
   // 报告内容。
   callback ReceiveCallback = void (long reportId, ArrayBuffer data);
 
-  // <!--@The callback to be invoked when a <code>receiveFeatureReport</code> call
-  // is finished.-->
-  // <code>receiveFeatureReport</code> 调用完成时执行的回调函数。
   // |data|: <!--@The content of the report.-->
   // 报告内容。
   callback ReceiveFeatureReportCallback = void (ArrayBuffer data);
 
-  // <!--@The callback to be invoked when a <code>send</code> or
-  // <code>sendFeatureReport</code> call is finished.-->
-  // <code>send</code> 或 <code>sendFeatureReport</code> 调用完成时执行的回调函数。
   callback SendCallback = void();
 
   interface Functions {
-    // <!--@Enumerate all the connected HID devices specified by the vendorId/
-    // productId/interfaceId tuple.-->
-    // 根据制造商标识符/产品标识符/接口标识符枚举所有已连接的 HID 设备。
+    // <!--@Enumerate connected HID devices.-->
+    // 列举连接的 HID 设备。
     // |options|: <!--@The properties to search for on target devices.-->
     // 在目标设备上搜索的属性。
-    // |callback|: <!--@Invoked with the <code>HidDeviceInfo</code> array on success.-->
-    // 如果成功，调用时传递 <code>HidDeviceInfo</code> 数组。
     static void getDevices(GetDevicesOptions options,
                            GetDevicesCallback callback);
 
@@ -106,8 +107,6 @@ namespace hid {
     // 连接到 HID 设备进行通信。
     // |deviceId|: <!--@The ID of the device to open.-->
     // 要打开的设备标识符。
-    // |callback|: <!--@Invoked with an <code>HidConnectInfo</code>.-->
-    // 调用时传递 <code>HidConnectInfo</code>。
     static void connect(long deviceId,
                         ConnectCallback callback);
 
@@ -116,8 +115,6 @@ namespace hid {
     // 断开设备的连接，调用该函数后继续在设备上进行操作是安全的，只是没有任何效果。
     // |connectionId|: <!--@The connection to close.-->
     // 要关闭的连接。
-    // |callback|: <!--@The callback to invoke once the device is closed.-->
-    // 设备关闭后调用的回调函数。
     static void disconnect(long connectionId,
                            optional DisconnectCallback callback);
 
@@ -128,8 +125,6 @@ namespace hid {
     // 输入报告通过 INTERRUPT IN（中断输入）端点返回给主机。
     // |connectionId|: <!--@The connection from which to receive a report.-->
     // 接收报告的连接。
-    // |callback|: <!--@The callback to invoke with received report.-->
-    // 调用回调函数时传递接收的报告。
     static void receive(long connectionId,
                         ReceiveCallback callback);
 
@@ -147,8 +142,6 @@ namespace hid {
     // 使用的报告标识符，如果没有则为 <code>0</code>。
     // |data|: <!--@The report data.-->
     // 报告数据。
-    // |callback|: <!--@The callback to invoke once the write is finished.-->
-    // 写入完成后调用的回调函数。
     static void send(long connectionId,
                      long reportId,
                      ArrayBuffer data,
@@ -161,8 +154,6 @@ namespace hid {
     // 要读取特性报告的设备。
     // |reportId|: <!--@The report ID, or zero if none.-->
     // 使用的报告标识符，如果没有则为零。
-    // |callback|: <!--@The callback to invoke once the write is finished.-->
-    // 操作完成后调用的回调函数。
     static void receiveFeatureReport(long connectionId,
                                      long reportId,
                                      ReceiveFeatureReportCallback callback);
@@ -179,8 +170,6 @@ namespace hid {
     // 使用的报告标识符，如果没有则为 <code>0</code>。
     // |data|: <!--@The report data.-->
     // 报告数据。
-    // |callback|: <!--@The callback to invoke once the write is finished.-->
-    // 写入完成后调用的回调函数。
     static void sendFeatureReport(long connectionId,
                                   long reportId,
                                   ArrayBuffer data,

@@ -215,6 +215,16 @@ namespace mediaGalleries {
 
   callback MediaMetadataCallback = void (MediaMetadata metadata);
 
+  // <!--@A dictionary that describes the add gallery watch request results.-->
+  // 描述媒体库监视请求结果的词典。
+  dictionary AddGalleryWatchResult {
+    DOMString galleryId;
+    boolean success;
+  };
+
+  callback AddGalleryWatchCallback = void (AddGalleryWatchResult result);
+  callback GetAllGalleryWatchCallback = void (DOMString[] galleryIds);
+
   interface Functions {
     // <!--@Get the media galleries configured in this user agent. If none are
     // configured or available, the callback will receive an empty array.-->
@@ -276,6 +286,23 @@ namespace mediaGalleries {
     static void getMetadata([instanceOf=Blob] object mediaFile,
                             optional MediaMetadataOptions options,
                             MediaMetadataCallback callback);
+
+    // <!--@Adds a gallery watch for the gallery with the specified gallery ID.
+    // The given callback is then fired with a success or failure result.-->
+    // 开始监视指定标识符的媒体库。调用提供的回调函数时传递成功或失败的结果。
+    static void addGalleryWatch(DOMString galleryId,
+                                AddGalleryWatchCallback callback);
+
+    // <!--@Removes a gallery watch for the gallery with the specified gallery ID.-->
+    // 停止监视指定标识符的媒体库。
+    static void removeGalleryWatch(DOMString galleryId);
+
+    // Notifies which galleries are being watched via the given callback.
+    static void getAllGalleryWatch(GetAllGalleryWatchCallback callback);
+
+    // <!--@Removes all gallery watches.-->
+    // 停止监视所有媒体库。
+    static void removeAllGalleryWatch();
   };
 
   interface Events {

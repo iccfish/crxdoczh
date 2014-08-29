@@ -55,18 +55,19 @@ namespace tabCapture {
   callback GetCapturedTabsCallback = void (CaptureInfo[] result);
 
   interface Functions {
-    // <!--@Captures the visible area of the currently active tab.
-    // This method can only be used on the currently active page after the
-    // extension has been <em>invoked</em>, similar to the way that
-    // <a href="activeTab">activeTab</a> works.-->
+    // <!--@Captures the visible area of the currently active tab.  Capture can
+    // only be started on the currently active tab after the extension has been
+    // <em>invoked</em>.  Capture is maintained across page navigations within
+    // the tab, and stops when the tab is closed, or the media stream is closed
+    // by the extension.-->
     // 捕获当前活动标签页的可视区域。该方法只能在扩展程序被<em
-    // >调用</em>之后在当前活动网页上使用，与
-    // <a href="activeTab">activeTab</a>
-    // 的工作方式类似。
+    // >调用</em>之后在当前活动的标签页上使用。标签页中的网页导航后仍然可以继续捕获，直到标签页关闭或者扩展程序关闭媒体流之后停止。
+    //
     // |options| : <!--@Configures the returned media stream.-->
     // 配置返回的流媒体。
-    // |callback| : <!--@Callback with either the stream returned or null.-->
-    // 传递返回的流媒体或 null 的回调函数。
+    // |callback| : <!--@Callback with either the tab capture stream or
+    //   <code>null</code>.-->
+    // 传递返回的流媒体或 <code>null</code> 的回调函数。
     static void capture(CaptureOptions options,
                         GetTabMediaCallback callback);
 
@@ -78,6 +79,8 @@ namespace tabCapture {
     // 返回已经请求捕获或者正在捕获的标签页列表，即
     // status != "stopped" 并且 status !=
     // "error"。这样扩展程序就能告知用户已经存在标签页捕获，使新的标签页捕获不能成功（或者防止同一个标签页的重复请求）。
+    // |callback| : <!--@Callback invoked with CaptureInfo[] for captured tabs.-->
+    // 调用时传递 CaptureInfo[]，对应于捕获的标签页。
     static void getCapturedTabs(GetCapturedTabsCallback callback);
   };
 
@@ -86,6 +89,8 @@ namespace tabCapture {
     // This allows extension authors to keep track of the capture status of
     // tabs to keep UI elements like page actions and infobars in sync.-->
     // 标签页的捕获状态更改时产生该事件，这样扩展程序就能跟踪标签页的捕获状态，使用户界面元素（例如页面按钮及信息栏）保持同步。
+    // |info| : <!--@CaptureInfo with new capture status for the tab.-->
+    // CaptureInfo 对象，包含标签页现在的捕获状态。
     static void onStatusChanged(CaptureInfo info);
   };
 

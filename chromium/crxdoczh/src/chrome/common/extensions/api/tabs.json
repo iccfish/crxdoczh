@@ -755,7 +755,7 @@
             "description": "目标窗口，默认为<a href='windows#current-window'>当前窗口</a>。"
           },
           {
-            "$ref": "types.ImageDetails",
+            "$ref": "extensionTypes.ImageDetails",
             "name": "options",
             "optional": true
           },
